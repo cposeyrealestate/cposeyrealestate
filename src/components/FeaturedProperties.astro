@@ -1,0 +1,223 @@
+---
+// BoldTrail IDX will populate this with real listings.
+// For now we show placeholder cards.
+const placeholderListings = [
+  {
+    id: 1,
+    status: 'Active',
+    price: '$450,000',
+    address: '123 Sample Drive',
+    city: 'New Braunfels, TX 78130',
+    beds: 4,
+    baths: 3,
+    sqft: '2,450',
+    img: 'https://placehold.co/600x400/1a1a1a/FF1616?text=Property+Photo',
+  },
+  {
+    id: 2,
+    status: 'Active',
+    price: '$325,000',
+    address: '456 River Bend Blvd',
+    city: 'New Braunfels, TX 78132',
+    beds: 3,
+    baths: 2,
+    sqft: '1,890',
+    img: 'https://placehold.co/600x400/1a1a1a/FF1616?text=Property+Photo',
+  },
+  {
+    id: 3,
+    status: 'Pending',
+    price: '$589,000',
+    address: '789 Hill Country Ln',
+    city: 'New Braunfels, TX 78130',
+    beds: 5,
+    baths: 4,
+    sqft: '3,100',
+    img: 'https://placehold.co/600x400/1a1a1a/FF1616?text=Property+Photo',
+  },
+  {
+    id: 4,
+    status: 'Active',
+    price: '$275,000',
+    address: '321 Gruene Road',
+    city: 'New Braunfels, TX 78130',
+    beds: 3,
+    baths: 2,
+    sqft: '1,650',
+    img: 'https://placehold.co/600x400/1a1a1a/FF1616?text=Property+Photo',
+  },
+];
+---
+
+<section class="properties section" id="featured-properties">
+  <div class="container">
+    <div class="section-title">
+      <h2>Featured <span class="accent">Listings</span></h2>
+      <p>Hand-picked properties in the New Braunfels area</p>
+    </div>
+
+    <div class="swiper properties-swiper">
+      <div class="swiper-wrapper">
+        {placeholderListings.map(listing => (
+          <div class="swiper-slide">
+            <div class="prop-card">
+              <div class="prop-card__img-wrap">
+                <img src={listing.img} alt={listing.address} class="prop-card__img" loading="lazy" />
+                <span class={`prop-card__status ${listing.status.toLowerCase()}`}>{listing.status}</span>
+              </div>
+              <div class="prop-card__body">
+                <div class="prop-card__price">{listing.price}</div>
+                <div class="prop-card__address">{listing.address}</div>
+                <div class="prop-card__city">{listing.city}</div>
+                <div class="prop-card__details">
+                  <span>🛏 {listing.beds} Beds</span>
+                  <span>🛁 {listing.baths} Baths</span>
+                  <span>📐 {listing.sqft} sqft</span>
+                </div>
+                <a href="/properties" class="btn btn-outline-dark prop-card__btn">View Details</a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+    <div class="properties__cta">
+      <a href="/properties" class="btn btn-primary">View All Listings</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .properties {
+    background: var(--light-gray);
+  }
+
+  .section-title p {
+    color: var(--gray);
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+  }
+
+  .properties-swiper {
+    padding-bottom: 3.5rem !important;
+    margin-bottom: 2rem;
+  }
+
+  .prop-card {
+    background: #fff;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+  }
+
+  .prop-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+  }
+
+  .prop-card__img-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+  }
+
+  .prop-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+
+  .prop-card:hover .prop-card__img {
+    transform: scale(1.05);
+  }
+
+  .prop-card__status {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 0.3rem 0.8rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #fff;
+  }
+
+  .prop-card__status.active { background: #FF1616; }
+  .prop-card__status.pending { background: #e07b00; }
+  .prop-card__status.sold { background: #333; }
+
+  .prop-card__body {
+    padding: 1.25rem;
+  }
+
+  .prop-card__price {
+    font-family: 'Abhaya Libre', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #FF1616;
+    margin-bottom: 0.3rem;
+  }
+
+  .prop-card__address {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .prop-card__city {
+    font-size: 0.8rem;
+    color: #777;
+    margin-bottom: 1rem;
+  }
+
+  .prop-card__details {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.78rem;
+    color: #555;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .prop-card__btn {
+    width: 100%;
+    text-align: center;
+    font-size: 0.75rem;
+  }
+
+  .properties__cta {
+    text-align: center;
+    margin-top: 1rem;
+  }
+</style>
+
+<script>
+  // Initialize Swiper after DOM loads
+  document.addEventListener('DOMContentLoaded', () => {
+    new (window as any).Swiper('.properties-swiper', {
+      slidesPerView: 1,
+      spaceBetween: 24,
+      loop: true,
+      navigation: {
+        nextEl: '.properties-swiper .swiper-button-next',
+        prevEl: '.properties-swiper .swiper-button-prev',
+      },
+      pagination: {
+        el: '.properties-swiper .swiper-pagination',
+        clickable: true,
+      },
+      breakpoints: {
+        640: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+      },
+    });
+  });
+</script>

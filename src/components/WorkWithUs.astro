@@ -1,0 +1,363 @@
+---
+---
+
+<section class="work-with-us section" id="about">
+  <div class="container work-with-us__inner">
+    <div class="work-with-us__image-wrap">
+      <!-- TODO: Replace with your professional photo -->
+      <img
+        src="https://placehold.co/500x600/1a1a1a/FF1616?text=Cody+Posey"
+        alt="Cody Posey - New Braunfels Real Estate Agent"
+        class="work-with-us__img"
+        loading="lazy"
+      />
+      <div class="work-with-us__badge">
+        <span class="work-with-us__badge-num">100+</span>
+        <span class="work-with-us__badge-label">Families Helped</span>
+      </div>
+    </div>
+
+    <div class="work-with-us__content">
+      <p class="work-with-us__eyebrow">Your Local Expert</p>
+      <h2>Work With <span class="accent">Cody Posey</span></h2>
+      <p class="work-with-us__bio">
+        <!-- TODO: Replace with your actual bio -->
+        As a dedicated New Braunfels real estate agent, I bring deep local knowledge,
+        honest guidance, and relentless hustle to every transaction. Whether you're
+        buying your first home, upgrading, downsizing, or selling — I'm here to make
+        the process smooth, clear, and rewarding.
+      </p>
+      <p class="work-with-us__bio">
+        New Braunfels is more than a market to me — it's my community. I know the
+        neighborhoods, the schools, the growth corridors, and the hidden gems that
+        data alone can't tell you.
+      </p>
+
+      <div class="work-with-us__stats">
+        <div class="work-with-us__stat">
+          <div class="work-with-us__stat-num">5★</div>
+          <div class="work-with-us__stat-label">Average Rating</div>
+        </div>
+        <div class="work-with-us__stat">
+          <div class="work-with-us__stat-num">100+</div>
+          <div class="work-with-us__stat-label">Transactions</div>
+        </div>
+        <div class="work-with-us__stat">
+          <div class="work-with-us__stat-num">NB</div>
+          <div class="work-with-us__stat-label">Local Expert</div>
+        </div>
+      </div>
+
+      <div class="work-with-us__actions">
+        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+        <a href="#home-valuation" class="btn btn-outline-dark">Free Home Valuation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact section" id="contact" style="background:#000;color:#fff;">
+  <div class="container">
+    <div class="section-title">
+      <h2 style="color:#fff;">Let's <span class="accent">Connect</span></h2>
+      <p style="color:#aaa;">Ready to buy, sell, or just have questions? Reach out — I'd love to help.</p>
+    </div>
+
+    <div class="contact__inner">
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name *</label>
+            <input type="text" name="firstName" required placeholder="First name" />
+          </div>
+          <div class="form-group">
+            <label>Last Name *</label>
+            <input type="text" name="lastName" required placeholder="Last name" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address *</label>
+          <input type="email" name="email" required placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" name="phone" placeholder="(555) 555-5555" />
+        </div>
+        <div class="form-group">
+          <label>I'm interested in...</label>
+          <select name="interest">
+            <option value="">Select one</option>
+            <option>Buying a Home</option>
+            <option>Selling My Home</option>
+            <option>Home Valuation</option>
+            <option>Investment Property</option>
+            <option>Relocating to New Braunfels</option>
+            <option>Just Browsing</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea name="message" rows="4" placeholder="Tell me how I can help..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
+      </form>
+
+      <div class="contact__info">
+        <div class="contact__info-item">
+          <div class="contact__info-icon">📞</div>
+          <div>
+            <div class="contact__info-label">Call or Text</div>
+            <!-- TODO: Replace with your phone number -->
+            <a href="tel:+1XXXXXXXXXX" class="contact__info-value">(XXX) XXX-XXXX</a>
+          </div>
+        </div>
+        <div class="contact__info-item">
+          <div class="contact__info-icon">✉️</div>
+          <div>
+            <div class="contact__info-label">Email</div>
+            <!-- TODO: Replace with your email -->
+            <a href="mailto:cody@cposeyrealestate.com" class="contact__info-value">cody@cposeyrealestate.com</a>
+          </div>
+        </div>
+        <div class="contact__info-item">
+          <div class="contact__info-icon">📍</div>
+          <div>
+            <div class="contact__info-label">Serving</div>
+            <div class="contact__info-value">New Braunfels &amp; surrounding Hill Country</div>
+          </div>
+        </div>
+        <div class="contact__info-item">
+          <div class="contact__info-icon">🕐</div>
+          <div>
+            <div class="contact__info-label">Availability</div>
+            <div class="contact__info-value">Mon–Sun, 8am–8pm CT</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Work With Us */
+  .work-with-us {
+    background: var(--white);
+  }
+
+  .work-with-us__inner {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .work-with-us__image-wrap {
+    position: relative;
+  }
+
+  .work-with-us__img {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 5/6;
+  }
+
+  .work-with-us__badge {
+    position: absolute;
+    bottom: -1.5rem;
+    right: -1.5rem;
+    background: #FF1616;
+    color: #fff;
+    padding: 1.5rem;
+    text-align: center;
+    min-width: 110px;
+  }
+
+  .work-with-us__badge-num {
+    display: block;
+    font-family: 'Abhaya Libre', serif;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .work-with-us__badge-label {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.3rem;
+  }
+
+  .work-with-us__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #FF1616;
+    margin-bottom: 0.5rem;
+  }
+
+  .work-with-us__content h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .work-with-us__bio {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .work-with-us__stats {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+  }
+
+  .work-with-us__stat-num {
+    font-family: 'Abhaya Libre', serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #FF1616;
+    line-height: 1;
+  }
+
+  .work-with-us__stat-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #777;
+    margin-top: 0.25rem;
+  }
+
+  .work-with-us__actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* Contact */
+  .contact__inner {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .contact-form .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .contact-form label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #aaa;
+    margin-bottom: 0.4rem;
+  }
+
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: #111;
+    border: 1px solid #333;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+
+  .contact-form input:focus,
+  .contact-form select:focus,
+  .contact-form textarea:focus {
+    border-color: #FF1616;
+  }
+
+  .contact-form select option {
+    background: #111;
+  }
+
+  .contact__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 0.5rem;
+  }
+
+  .contact__info-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .contact__info-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .contact__info-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #666;
+    margin-bottom: 0.3rem;
+  }
+
+  .contact__info-value {
+    font-size: 0.95rem;
+    color: #fff;
+    transition: color 0.2s;
+  }
+
+  a.contact__info-value:hover {
+    color: #FF1616;
+  }
+
+  @media (max-width: 900px) {
+    .work-with-us__inner {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .work-with-us__badge {
+      right: 0;
+    }
+    .contact__inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .contact-form .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById('contactForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const data = new FormData(form);
+    // TODO: Connect to your CRM / email service / n8n webhook
+    console.log('Contact form submitted:', Object.fromEntries(data));
+    alert('Thank you! Cody will be in touch with you shortly.');
+    form.reset();
+  });
+</script>

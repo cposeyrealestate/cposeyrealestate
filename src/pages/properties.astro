@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import BoldTrailIDX from '../components/BoldTrailIDX.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Search Homes | Cody Posey Real Estate | New Braunfels, TX"
+  description="Search all homes for sale and lease in New Braunfels, TX. Browse MLS listings with Cody Posey Real Estate."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+    <div class="properties-hero">
+      <div class="properties-hero__overlay"></div>
+      <div class="properties-hero__content">
+        <h1>Search <span style="color:#FF1616;">Properties</span></h1>
+        <p>Find homes for sale and lease in New Braunfels and the Texas Hill Country</p>
+      </div>
+    </div>
+
+    <BoldTrailIDX />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .properties-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .properties-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .properties-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .properties-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .properties-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+  }
+</style>

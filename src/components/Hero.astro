@@ -1,0 +1,329 @@
+---
+---
+
+<section class="hero" id="hero">
+  <!-- Video Background -->
+  <!-- TODO: Replace src with your actual hero video URL -->
+  <video
+    class="hero__video"
+    autoplay
+    muted
+    loop
+    playsinline
+    poster="/images/hero-poster.jpg"
+  >
+    <source src="/videos/hero.mp4" type="video/mp4" />
+  </video>
+  <div class="hero__overlay"></div>
+
+  <div class="hero__content">
+    <h1 class="hero__title">
+      Find Your Dream Home in<br />
+      <span class="hero__title-accent">New Braunfels, Texas</span>
+    </h1>
+    <p class="hero__subtitle">
+      Local expertise. Trusted results. Let's find the perfect place to call home.
+    </p>
+
+    <!-- Property Search -->
+    <div class="hero__search-wrap">
+      <div class="hero__search-tabs">
+        <button class="hero__tab active" data-tab="buy">Buy</button>
+        <button class="hero__tab" data-tab="lease">Lease</button>
+      </div>
+
+      <div class="hero__search-bar">
+        <svg class="hero__search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input
+          type="text"
+          id="heroSearch"
+          class="hero__search-input"
+          placeholder="Search by city, neighborhood, zip, or address..."
+          autocomplete="off"
+        />
+        <button class="hero__search-btn btn btn-primary" id="heroSearchBtn">Search</button>
+        <button class="hero__near-me" id="heroNearMe" title="Search near me">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2a8 8 0 0 1 8 8c0 5.4-7.05 11.5-7.35 11.76a1 1 0 0 1-1.3 0C11.05 21.5 4 15.4 4 10a8 8 0 0 1 8-8z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Quick links below search -->
+      <div class="hero__quick-links">
+        <a href="/properties?status=active" class="hero__quick-link">Homes for Sale</a>
+        <a href="/properties?type=new-construction" class="hero__quick-link">New Construction</a>
+        <a href="#home-valuation" class="hero__quick-link">What's My Home Worth?</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="hero__scroll">
+    <span>Scroll</span>
+    <div class="hero__scroll-line"></div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #fff;
+  }
+
+  .hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.55) 0%,
+      rgba(0,0,0,0.45) 60%,
+      rgba(0,0,0,0.7) 100%
+    );
+    z-index: 1;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 1.5rem;
+    width: 100%;
+    max-width: 900px;
+  }
+
+  .hero__title {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    color: #fff;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    line-height: 1.15;
+  }
+
+  .hero__title-accent {
+    color: #FF1616;
+  }
+
+  .hero__subtitle {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+  }
+
+  /* Search Box */
+  .hero__search-wrap {
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 1.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .hero__search-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1rem;
+  }
+
+  .hero__tab {
+    flex: 1;
+    padding: 0.6rem;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.6);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .hero__tab.active {
+    background: #FF1616;
+    border-color: #FF1616;
+    color: #fff;
+  }
+
+  .hero__search-bar {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    gap: 0;
+    overflow: hidden;
+  }
+
+  .hero__search-icon {
+    width: 18px;
+    height: 18px;
+    margin: 0 0.75rem;
+    color: #555;
+    flex-shrink: 0;
+  }
+
+  .hero__search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    padding: 0.9rem 0;
+    background: transparent;
+    color: #000;
+  }
+
+  .hero__search-input::placeholder {
+    color: #999;
+  }
+
+  .hero__search-btn {
+    border-radius: 0;
+    padding: 0.9rem 1.5rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .hero__near-me {
+    background: none;
+    border: none;
+    border-left: 1px solid #eee;
+    padding: 0 0.75rem;
+    cursor: pointer;
+    color: #555;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .hero__near-me svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hero__near-me:hover {
+    color: #FF1616;
+  }
+
+  .hero__quick-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .hero__quick-link {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .hero__quick-link:hover {
+    color: #FF1616;
+  }
+
+  /* Scroll indicator */
+  .hero__scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .hero__scroll span {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .hero__scroll-line {
+    width: 1px;
+    height: 40px;
+    background: rgba(255,255,255,0.3);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollLine {
+    0% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; transform: scaleY(1); }
+  }
+
+  @media (max-width: 600px) {
+    .hero__search-btn span { display: none; }
+    .hero__quick-links { gap: 1rem; }
+  }
+</style>
+
+<script>
+  // Tab switching
+  const tabs = document.querySelectorAll('.hero__tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+
+  // Search button — redirects to properties page
+  document.getElementById('heroSearchBtn')?.addEventListener('click', () => {
+    const query = (document.getElementById('heroSearch') as HTMLInputElement)?.value.trim();
+    if (query) {
+      window.location.href = `/properties?q=${encodeURIComponent(query)}`;
+    } else {
+      window.location.href = '/properties';
+    }
+  });
+
+  // Enter key on search
+  document.getElementById('heroSearch')?.addEventListener('keydown', (e) => {
+    if ((e as KeyboardEvent).key === 'Enter') {
+      document.getElementById('heroSearchBtn')?.click();
+    }
+  });
+
+  // Near me
+  document.getElementById('heroNearMe')?.addEventListener('click', () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((pos) => {
+        const { latitude: lat, longitude: lng } = pos.coords;
+        window.location.href = `/properties?lat=${lat}&lng=${lng}`;
+      });
+    }
+  });
+</script>

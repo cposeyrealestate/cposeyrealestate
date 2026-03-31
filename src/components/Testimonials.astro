@@ -1,0 +1,169 @@
+---
+// TODO: Replace with your real client testimonials
+const testimonials = [
+  {
+    name: 'Sarah & Mike Johnson',
+    role: 'Home Buyers',
+    quote: 'Cody made buying our first home an incredible experience. His knowledge of the New Braunfels market is unmatched and he guided us every step of the way.',
+    avatar: 'https://placehold.co/100x100/FF1616/fff?text=SJ',
+  },
+  {
+    name: 'David R.',
+    role: 'Home Seller',
+    quote: 'We listed with Cody and had multiple offers within the first week. His marketing strategy and negotiation skills are top-notch. Highly recommend!',
+    avatar: 'https://placehold.co/100x100/FF1616/fff?text=DR',
+  },
+  {
+    name: 'Amanda & Chris T.',
+    role: 'Relocating Buyers',
+    quote: 'Moving from out of state is stressful, but Cody handled everything remotely and made the process seamless. We couldn\'t be happier with our new home!',
+    avatar: 'https://placehold.co/100x100/FF1616/fff?text=AT',
+  },
+  {
+    name: 'Jennifer L.',
+    role: 'Investment Buyer',
+    quote: 'Cody found us the perfect investment property and his insight into the local market helped us make a smart decision. He\'s our go-to agent.',
+    avatar: 'https://placehold.co/100x100/FF1616/fff?text=JL',
+  },
+];
+---
+
+<section class="testimonials section" id="testimonials"
+  style="background-image: url('https://media-production.lp-cdn.com/cdn-cgi/image/format=auto,quality=85,fit=scale-down,width=1280/https://media-production.lp-cdn.com/media/28b62a24-fd1c-4443-9e1b-dcc7e4069f64');">
+  <div class="testimonials__overlay"></div>
+
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="section-title">
+      <h2 style="color:#fff;">What <span class="accent">Clients</span> Say</h2>
+      <p style="color:rgba(255,255,255,0.7);">Real stories from real people I've helped find their home</p>
+    </div>
+
+    <div class="swiper testimonials-swiper">
+      <div class="swiper-wrapper">
+        {testimonials.map(t => (
+          <div class="swiper-slide">
+            <div class="testi-card">
+              <div class="testi-card__stars">★★★★★</div>
+              <blockquote class="testi-card__quote">
+                "{t.quote}"
+              </blockquote>
+              <div class="testi-card__author">
+                <img src={t.avatar} alt={t.name} class="testi-card__avatar" />
+                <div>
+                  <div class="testi-card__name">{t.name}</div>
+                  <div class="testi-card__role">{t.role}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  .testimonials__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+  }
+
+  .testimonials-swiper {
+    padding-bottom: 3.5rem !important;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .testi-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px);
+    padding: 2.5rem;
+    text-align: center;
+  }
+
+  .testi-card__stars {
+    color: #FF1616;
+    font-size: 1.2rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 1.5rem;
+  }
+
+  .testi-card__quote {
+    font-family: 'Abhaya Libre', serif;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: rgba(255,255,255,0.9);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .testi-card__author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .testi-card__avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #FF1616;
+  }
+
+  .testi-card__name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #fff;
+    text-align: left;
+  }
+
+  .testi-card__role {
+    font-size: 0.75rem;
+    color: #FF1616;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: left;
+  }
+
+  .testimonials-swiper .swiper-button-next,
+  .testimonials-swiper .swiper-button-prev {
+    color: #FF1616 !important;
+  }
+
+  .testimonials-swiper .swiper-pagination-bullet-active {
+    background: #FF1616 !important;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    new (window as any).Swiper('.testimonials-swiper', {
+      slidesPerView: 1,
+      spaceBetween: 24,
+      loop: true,
+      autoplay: { delay: 5000, disableOnInteraction: false },
+      navigation: {
+        nextEl: '.testimonials-swiper .swiper-button-next',
+        prevEl: '.testimonials-swiper .swiper-button-prev',
+      },
+      pagination: {
+        el: '.testimonials-swiper .swiper-pagination',
+        clickable: true,
+      },
+    });
+  });
+</script>

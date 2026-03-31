@@ -1,0 +1,179 @@
+---
+const neighborhoods = [
+  {
+    name: 'Gruene',
+    description: 'Historic charm, live music, and the Guadalupe River. One of New Braunfels\'s most beloved areas.',
+    img: 'https://placehold.co/1200x700/1a1a1a/FF1616?text=Gruene',
+  },
+  {
+    name: 'Solms Landing',
+    description: 'Master-planned community with parks, trails, and easy access to I-35.',
+    img: 'https://placehold.co/1200x700/111/FF1616?text=Solms+Landing',
+  },
+  {
+    name: 'Vintage Oaks',
+    description: 'Hill Country luxury living with stunning views and resort-style amenities.',
+    img: 'https://placehold.co/1200x700/222/FF1616?text=Vintage+Oaks',
+  },
+  {
+    name: 'Rockwall Ranch',
+    description: 'Family-friendly neighborhood with great schools and a strong community feel.',
+    img: 'https://placehold.co/1200x700/1a1a1a/FF1616?text=Rockwall+Ranch',
+  },
+  {
+    name: 'River Chase',
+    description: 'Acreage estates along the Guadalupe River with custom homes and natural beauty.',
+    img: 'https://placehold.co/1200x700/111/FF1616?text=River+Chase',
+  },
+];
+---
+
+<section class="neighborhoods" id="neighborhoods">
+  <div class="neighborhoods__header container">
+    <h2>Explore <span class="accent">Neighborhoods</span></h2>
+    <p>Discover the communities that make New Braunfels special</p>
+  </div>
+
+  <div class="swiper neighborhoods-swiper">
+    <div class="swiper-wrapper">
+      {neighborhoods.map(hood => (
+        <div class="swiper-slide">
+          <div class="hood-slide">
+            <img src={hood.img} alt={hood.name} class="hood-slide__img" loading="lazy" />
+            <div class="hood-slide__overlay"></div>
+            <div class="hood-slide__content">
+              <h3 class="hood-slide__name">{hood.name}</h3>
+              <p class="hood-slide__desc">{hood.description}</p>
+              <a href={`/properties?neighborhood=${encodeURIComponent(hood.name)}`} class="btn btn-outline">
+                Explore {hood.name}
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+<style>
+  .neighborhoods {
+    background: var(--black);
+    padding: 5rem 0;
+  }
+
+  .neighborhoods__header {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 3rem;
+    padding: 0 1.5rem;
+  }
+
+  .neighborhoods__header h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .neighborhoods__header p {
+    color: #aaa;
+    font-size: 0.95rem;
+  }
+
+  .neighborhoods-swiper {
+    padding-bottom: 3.5rem !important;
+  }
+
+  .hood-slide {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+  }
+
+  .hood-slide__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .swiper-slide-active .hood-slide__img {
+    transform: scale(1.03);
+  }
+
+  .hood-slide__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.85) 0%,
+      rgba(0,0,0,0.3) 50%,
+      transparent 100%
+    );
+  }
+
+  .hood-slide__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2.5rem;
+    color: #fff;
+  }
+
+  .hood-slide__name {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+
+  .hood-slide__desc {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.8);
+    max-width: 500px;
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+
+  .neighborhoods-swiper .swiper-button-next,
+  .neighborhoods-swiper .swiper-button-prev {
+    color: #fff !important;
+    background: rgba(0,0,0,0.4);
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 50%;
+  }
+
+  .neighborhoods-swiper .swiper-button-next::after,
+  .neighborhoods-swiper .swiper-button-prev::after {
+    font-size: 16px !important;
+  }
+
+  @media (max-width: 600px) {
+    .hood-slide {
+      height: 380px;
+    }
+    .hood-slide__content {
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    new (window as any).Swiper('.neighborhoods-swiper', {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      loop: true,
+      effect: 'slide',
+      navigation: {
+        nextEl: '.neighborhoods-swiper .swiper-button-next',
+        prevEl: '.neighborhoods-swiper .swiper-button-prev',
+      },
+      pagination: {
+        el: '.neighborhoods-swiper .swiper-pagination',
+        clickable: true,
+      },
+    });
+  });
+</script>

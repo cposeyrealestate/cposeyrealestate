@@ -1,0 +1,241 @@
+---
+---
+
+<header class="navbar" id="navbar">
+  <div class="navbar__inner container">
+    <a href="/" class="navbar__logo">
+      <!-- Replace with your actual logo image -->
+      <span class="navbar__logo-text">CODY POSEY</span>
+      <span class="navbar__logo-sub">REAL ESTATE</span>
+    </a>
+
+    <nav class="navbar__nav" id="navMenu">
+      <ul class="navbar__links">
+        <li><a href="/" class="navbar__link">Home</a></li>
+        <li><a href="/properties" class="navbar__link">Search Homes</a></li>
+        <li class="navbar__dropdown">
+          <a href="#" class="navbar__link">Buyers &amp; Sellers</a>
+          <ul class="navbar__sub">
+            <li><a href="#home-valuation">Home Valuation</a></li>
+            <li><a href="#neighborhoods">Neighborhoods</a></li>
+          </ul>
+        </li>
+        <li><a href="#about" class="navbar__link">About</a></li>
+        <li><a href="#contact" class="navbar__link">Contact</a></li>
+      </ul>
+    </nav>
+
+    <a href="tel:+1XXXXXXXXXX" class="btn btn-primary navbar__cta">
+      <!-- TODO: Replace with your phone number -->
+      Call Now
+    </a>
+
+    <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1rem 1.5rem;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .navbar.scrolled {
+    background: #000;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  }
+
+  .navbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .navbar__logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    color: #fff;
+  }
+
+  .navbar__logo-text {
+    font-family: 'Abhaya Libre', serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .navbar__logo-sub {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #FF1616;
+  }
+
+  .navbar__links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .navbar__link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #fff;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .navbar__link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #FF1616;
+    transition: width 0.3s;
+  }
+
+  .navbar__link:hover::after {
+    width: 100%;
+  }
+
+  .navbar__link:hover {
+    color: #FF1616;
+  }
+
+  /* Dropdown */
+  .navbar__dropdown {
+    position: relative;
+  }
+
+  .navbar__sub {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #000;
+    min-width: 200px;
+    padding: 0.5rem 0;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  }
+
+  .navbar__dropdown:hover .navbar__sub {
+    display: block;
+  }
+
+  .navbar__sub li a {
+    display: block;
+    padding: 0.6rem 1.2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #fff;
+    transition: color 0.2s, padding-left 0.2s;
+  }
+
+  .navbar__sub li a:hover {
+    color: #FF1616;
+    padding-left: 1.6rem;
+  }
+
+  .navbar__cta {
+    font-size: 0.75rem;
+    padding: 0.6rem 1.4rem;
+    white-space: nowrap;
+  }
+
+  .navbar__hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .navbar__hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #fff;
+    transition: 0.3s;
+  }
+
+  @media (max-width: 900px) {
+    .navbar__nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #000;
+      padding: 1.5rem;
+    }
+
+    .navbar__nav.open {
+      display: block;
+    }
+
+    .navbar__links {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.2rem;
+    }
+
+    .navbar__sub {
+      position: static;
+      display: block;
+      box-shadow: none;
+      padding-left: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .navbar__cta {
+      display: none;
+    }
+
+    .navbar__hamburger {
+      display: flex;
+    }
+  }
+</style>
+
+<script>
+  // Scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar?.classList.add('scrolled');
+    } else {
+      navbar?.classList.remove('scrolled');
+    }
+  });
+
+  // Hamburger toggle
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('navMenu');
+  hamburger?.addEventListener('click', () => {
+    navMenu?.classList.toggle('open');
+  });
+</script>
