@@ -1,0 +1,158 @@
+---
+---
+
+<section class="quick-actions">
+  <h2 class="quick-actions__heading">Find Your Ideal Space</h2>
+  <div class="container quick-actions__grid">
+    <a href="/properties" class="qa-card">
+      <div class="qa-card__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </div>
+      <h3 class="qa-card__title">Home Search</h3>
+      <p class="qa-card__desc">Browse available listings in New Braunfels and surrounding areas.</p>
+      <span class="qa-card__link">Search Now &rarr;</span>
+    </a>
+
+    <a href="#home-valuation" class="qa-card">
+      <div class="qa-card__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <h3 class="qa-card__title">Home Valuation</h3>
+      <p class="qa-card__desc">Find out what your home is worth with a free, instant estimate.</p>
+      <span class="qa-card__link">Get My Value &rarr;</span>
+    </a>
+
+    <a href="#contact" class="qa-card">
+      <div class="qa-card__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+      </div>
+      <h3 class="qa-card__title">Let's Connect</h3>
+      <p class="qa-card__desc">Ready to buy, sell, or just have questions? Reach out today.</p>
+      <span class="qa-card__link">Contact Cody &rarr;</span>
+    </a>
+  </div>
+</section>
+
+<style>
+  .quick-actions {
+    background: #fff;
+    padding: 0;
+    position: relative;
+    z-index: 3;
+    margin-top: -4rem;
+  }
+
+  .quick-actions__heading {
+    text-align: center;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: #000;
+    padding: 2rem 1.5rem 1.5rem;
+    margin: 0;
+  }
+
+  .quick-actions__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+  }
+
+  .qa-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2.5rem 2rem;
+    background: #fff;
+    border-right: 1px solid #eee;
+    transition: background 0.3s, color 0.3s;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .qa-card:last-child {
+    border-right: none;
+  }
+
+  .qa-card:hover {
+    background: #FF1616;
+    color: #fff;
+  }
+
+  .qa-card__icon {
+    color: #FF1616;
+    margin-bottom: 1.25rem;
+    transition: color 0.3s;
+  }
+
+  .qa-card:hover .qa-card__icon {
+    color: #fff;
+  }
+
+  .qa-card__title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    color: #000;
+    transition: color 0.3s;
+  }
+
+  .qa-card:hover .qa-card__title {
+    color: #fff;
+  }
+
+  .qa-card__desc {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    flex: 1;
+    transition: color 0.3s;
+  }
+
+  .qa-card:hover .qa-card__desc {
+    color: rgba(255,255,255,0.85);
+  }
+
+  .qa-card__link {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #FF1616;
+    transition: color 0.3s;
+  }
+
+  .qa-card:hover .qa-card__link {
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    .quick-actions {
+      margin-top: 0;
+    }
+
+    .quick-actions__grid {
+      grid-template-columns: 1fr;
+      box-shadow: none;
+    }
+
+    .qa-card {
+      border-right: none;
+      border-bottom: 1px solid #eee;
+    }
+
+    .qa-card:last-child {
+      border-bottom: none;
+    }
+  }
+</style>

@@ -1,0 +1,254 @@
+---
+const blogs = [
+  {
+    title: 'Remote Workers Moving to Hill Country: Tax Impact Decoded',
+    category: 'Lifestyle',
+    date: 'January 30, 2026',
+    img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80',
+    slug: 'remote-workers-hill-country-tax-impact',
+  },
+  {
+    title: 'VA Loans for Hill Country Vets: 2026 Guide',
+    category: 'Buying',
+    date: 'January 29, 2026',
+    img: 'https://images.unsplash.com/photo-1605146769289-440113cc3d00?w=600&q=80',
+    slug: 'va-loans-hill-country-vets-2026',
+  },
+  {
+    title: 'Beat New Builds: Sell Your NB Home Strategically',
+    category: 'Strategic Selling',
+    date: 'January 29, 2026',
+    img: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=600&q=80',
+    slug: 'beat-new-builds-sell-nb-home-strategically',
+  },
+  {
+    title: 'New Construction vs Resale: Hill Country 2026',
+    category: 'Buying',
+    date: 'January 26, 2026',
+    img: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80',
+    slug: 'new-construction-vs-resale-hill-country-2026',
+  },
+  {
+    title: 'New Construction vs Resale: True Cost 2026',
+    category: 'Buying',
+    date: 'January 24, 2026',
+    img: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=600&q=80',
+    slug: 'new-construction-vs-resale-true-cost-2026',
+  },
+  {
+    title: 'New Braunfels 2026: Best Time to Sell Your Home?',
+    category: 'Strategic Selling',
+    date: 'January 23, 2026',
+    img: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?w=600&q=80',
+    slug: 'new-braunfels-2026-best-time-to-sell',
+  },
+  {
+    title: 'Is Creekside Worth the Premium in 2026?',
+    category: 'Lifestyle Change',
+    date: 'January 22, 2026',
+    img: 'https://images.unsplash.com/photo-1676802540678-2dceb1820113?w=600&q=80',
+    slug: 'creekside-worth-premium-2026',
+  },
+  {
+    title: 'New vs Resale Homes: Best Buy in New Braunfels?',
+    category: 'Buying',
+    date: 'January 21, 2026',
+    img: 'https://images.unsplash.com/photo-1605146769289-440113cc3d00?w=600&q=80',
+    slug: 'new-vs-resale-homes-best-buy-new-braunfels',
+  },
+  {
+    title: 'Resale vs New Construction: Where to Sell in 2026',
+    category: 'Strategic Selling',
+    date: 'January 19, 2026',
+    img: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=600&q=80',
+    slug: 'resale-vs-new-construction-where-to-sell-2026',
+  },
+];
+---
+
+<section class="blogs section" id="blog">
+  <div class="container">
+    <div class="section-title">
+      <h2>Featured <span class="accent">Blogs</span></h2>
+      <p>Insights on buying, selling, and living in the New Braunfels area</p>
+    </div>
+
+    <div class="blogs__grid">
+      {blogs.slice(0, 3).map(post => (
+        <article class="blog-card blog-card--featured">
+          <a href={`/blog/${post.slug}`} class="blog-card__img-link">
+            <img src={post.img} alt={post.title} class="blog-card__img" loading="lazy" />
+          </a>
+          <div class="blog-card__body">
+            <span class="blog-card__cat">{post.category}</span>
+            <h3 class="blog-card__title">
+              <a href={`/blog/${post.slug}`}>{post.title}</a>
+            </h3>
+            <p class="blog-card__meta">Cody Posey &nbsp;|&nbsp; {post.date}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="blogs__list">
+      {blogs.slice(3).map(post => (
+        <article class="blog-row">
+          <span class="blog-row__cat">{post.category}</span>
+          <h4 class="blog-row__title">
+            <a href={`/blog/${post.slug}`}>{post.title}</a>
+          </h4>
+          <span class="blog-row__date">{post.date}</span>
+        </article>
+      ))}
+    </div>
+
+    <div class="blogs__cta">
+      <a href="/blog" class="btn btn-outline-dark">View All Posts</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .blogs {
+    background: #fff;
+  }
+
+  .blogs__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.13);
+  }
+
+  .blog-card__img-link {
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+  }
+
+  .blog-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+
+  .blog-card:hover .blog-card__img {
+    transform: scale(1.05);
+  }
+
+  .blog-card__body {
+    padding: 1.25rem;
+    flex: 1;
+  }
+
+  .blog-card__cat {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #FF1616;
+    margin-bottom: 0.6rem;
+  }
+
+  .blog-card__title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+
+  .blog-card__title a {
+    color: #000;
+    transition: color 0.2s;
+  }
+
+  .blog-card__title a:hover {
+    color: #FF1616;
+  }
+
+  .blog-card__meta {
+    font-size: 0.75rem;
+    color: #999;
+  }
+
+  /* List rows */
+  .blogs__list {
+    border-top: 1px solid #eee;
+    margin-bottom: 2rem;
+  }
+
+  .blog-row {
+    display: grid;
+    grid-template-columns: 120px 1fr 140px;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .blog-row__cat {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #FF1616;
+  }
+
+  .blog-row__title a {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #000;
+    transition: color 0.2s;
+  }
+
+  .blog-row__title a:hover {
+    color: #FF1616;
+  }
+
+  .blog-row__date {
+    font-size: 0.75rem;
+    color: #999;
+    text-align: right;
+  }
+
+  .blogs__cta {
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .blogs__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .blogs__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .blog-row {
+      grid-template-columns: 1fr;
+      gap: 0.3rem;
+    }
+
+    .blog-row__date {
+      text-align: left;
+    }
+  }
+</style>

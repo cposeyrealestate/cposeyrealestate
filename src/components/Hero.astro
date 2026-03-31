@@ -17,13 +17,9 @@
   <div class="hero__overlay"></div>
 
   <div class="hero__content">
-    <h1 class="hero__title">
-      Find Your Dream Home in<br />
-      <span class="hero__title-accent">New Braunfels, Texas</span>
-    </h1>
-    <p class="hero__subtitle">
-      Local expertise. Trusted results. Let's find the perfect place to call home.
-    </p>
+    <h1 class="hero__name">Cody Posey</h1>
+    <h2 class="hero__title">New Braunfels and Texas Hill Country<br />Real Estate Agent</h2>
+    <p class="hero__tagline"><em>Educating. Serving. Delivering Results.</em></p>
 
     <!-- Property Search -->
     <div class="hero__search-wrap">
@@ -110,24 +106,28 @@
     max-width: 900px;
   }
 
-  .hero__title {
-    font-size: clamp(2.2rem, 5vw, 4rem);
+  .hero__name {
+    font-size: clamp(3rem, 7vw, 5.5rem);
     color: #fff;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     text-shadow: 0 2px 12px rgba(0,0,0,0.5);
-    line-height: 1.15;
+    line-height: 1.1;
   }
 
-  .hero__title-accent {
-    color: #FF1616;
-  }
-
-  .hero__subtitle {
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
-    color: rgba(255,255,255,0.85);
-    margin-bottom: 2.5rem;
+  .hero__title {
+    font-size: 24px;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 0.75rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    line-height: 1.4;
     font-weight: 400;
-    letter-spacing: 0.03em;
+  }
+
+  .hero__tagline {
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.05em;
   }
 
   /* Search Box */
@@ -290,7 +290,7 @@
   }
 </style>
 
-<script>
+<script is:inline>
   // Tab switching
   const tabs = document.querySelectorAll('.hero__tab');
   tabs.forEach(tab => {
@@ -302,9 +302,10 @@
 
   // Search button — redirects to properties page
   document.getElementById('heroSearchBtn')?.addEventListener('click', () => {
-    const query = (document.getElementById('heroSearch') as HTMLInputElement)?.value.trim();
+    const input = document.getElementById('heroSearch');
+    const query = input ? input.value.trim() : '';
     if (query) {
-      window.location.href = `/properties?q=${encodeURIComponent(query)}`;
+      window.location.href = '/properties?q=' + encodeURIComponent(query);
     } else {
       window.location.href = '/properties';
     }
@@ -312,7 +313,7 @@
 
   // Enter key on search
   document.getElementById('heroSearch')?.addEventListener('keydown', (e) => {
-    if ((e as KeyboardEvent).key === 'Enter') {
+    if (e.key === 'Enter') {
       document.getElementById('heroSearchBtn')?.click();
     }
   });

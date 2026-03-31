@@ -1,0 +1,147 @@
+---
+---
+
+<section class="newsletter" id="newsletter">
+  <div class="container newsletter__inner">
+    <div class="newsletter__content">
+      <h2>Receive Exclusive <span class="accent">Listings</span> in Your Inbox</h2>
+      <p>Be the first to know about new properties, price drops, and market insights in New Braunfels and the Texas Hill Country.</p>
+    </div>
+
+    <form class="newsletter__form" id="newsletterForm">
+      <div class="newsletter__fields">
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          required
+          class="newsletter__input"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email Address"
+          required
+          class="newsletter__input"
+        />
+        <button type="submit" class="btn btn-primary newsletter__btn">Subscribe</button>
+      </div>
+      <p class="newsletter__disclaimer">
+        No spam. Unsubscribe anytime. Your information is never shared.
+      </p>
+      <p class="newsletter__success" id="newsletterSuccess" style="display:none;">
+        You have successfully been added to our Newsletter. Stay tuned for the latest updates sent straight to your inbox!
+      </p>
+    </form>
+  </div>
+</section>
+
+<style>
+  .newsletter {
+    background: #000;
+    color: #fff;
+    padding: 4rem 0;
+  }
+
+  .newsletter__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .newsletter__content h2 {
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  .newsletter__content p {
+    color: #aaa;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .newsletter__fields {
+    display: flex;
+    gap: 0;
+    margin-bottom: 0.75rem;
+  }
+
+  .newsletter__input {
+    flex: 1;
+    padding: 0.9rem 1.1rem;
+    background: #111;
+    border: 1px solid #333;
+    border-right: none;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .newsletter__input:first-child {
+    max-width: 180px;
+  }
+
+  .newsletter__input:focus {
+    border-color: #FF1616;
+  }
+
+  .newsletter__input::placeholder {
+    color: #666;
+  }
+
+  .newsletter__btn {
+    border-radius: 0;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .newsletter__disclaimer {
+    font-size: 0.7rem;
+    color: #555;
+  }
+
+  .newsletter__success {
+    font-size: 0.85rem;
+    color: #FF1616;
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .newsletter__inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .newsletter__fields {
+      flex-direction: column;
+    }
+
+    .newsletter__input {
+      max-width: 100% !important;
+      border-right: 1px solid #333;
+      border-bottom: none;
+    }
+
+    .newsletter__input:last-of-type {
+      border-bottom: none;
+    }
+
+    .newsletter__btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<script is:inline>
+  document.getElementById('newsletterForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const success = document.getElementById('newsletterSuccess');
+    // TODO: Connect to your email service / n8n webhook
+    if (success) success.style.display = 'block';
+    form.reset();
+  });
+</script>

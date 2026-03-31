@@ -292,15 +292,15 @@
   }
 </style>
 
-<script>
+<script is:inline>
   const modal = document.getElementById('valuationModal');
   const openBtn = document.getElementById('valuationBtn');
   const closeBtn = document.getElementById('modalClose');
-  const addressInput = document.getElementById('valuationAddress') as HTMLInputElement;
-  const formAddressField = document.getElementById('formAddressField') as HTMLInputElement;
+  const addressInput = document.getElementById('valuationAddress');
+  const formAddressField = document.getElementById('formAddressField');
 
   openBtn?.addEventListener('click', () => {
-    if (formAddressField && addressInput?.value) {
+    if (formAddressField && addressInput && addressInput.value) {
       formAddressField.value = addressInput.value;
     }
     if (modal) modal.style.display = 'flex';
@@ -321,7 +321,7 @@
 
   document.getElementById('valuationForm')?.addEventListener('submit', (e) => {
     e.preventDefault();
-    const form = e.target as HTMLFormElement;
+    const form = e.target;
     const data = new FormData(form);
     // TODO: Connect to your CRM / email service / n8n webhook
     console.log('Valuation form submitted:', Object.fromEntries(data));

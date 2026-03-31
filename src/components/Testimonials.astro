@@ -2,6 +2,24 @@
 // Reviews sourced from Google Business Profile (29 reviews, all 5-star)
 const testimonials = [
   {
+    name: 'Shasta King',
+    role: 'Home Buyer',
+    quote: 'God truly blessed us when he sent Cody Posey our way when we were looking for our new home. He truly pays attention to what you want, need, and everything in between. He makes the process so smooth and easy. We are so grateful for him!',
+    avatar: 'https://placehold.co/100x100/FF1616/fff?text=SK',
+  },
+  {
+    name: 'Megan Dupuis',
+    role: 'Home Buyer & Renter',
+    quote: 'I would highly recommend Cody during your home or rental search. He is extremely knowledgeable and goes above and beyond to get you the best deal. He just got me set up in a rental and I plan to go back to him when I am ready to buy.',
+    avatar: 'https://placehold.co/100x100/FF1616/fff?text=MD',
+  },
+  {
+    name: 'Patrick Mechlinar',
+    role: 'Home Buyer',
+    quote: 'Mr Posey was very reliable, flexible and super friendly! Working with him was great! He made it so easy for us to find a new home, we are so thankful to have found him and work with him! Great Realtor!',
+    avatar: 'https://placehold.co/100x100/FF1616/fff?text=PM',
+  },
+  {
     name: 'Brian Tilton',
     role: 'Home Buyer — Mortgage Industry Executive',
     quote: 'I recently worked with Cody on a home purchase that just closed, and I can confidently say he stands out as one of the best agents I\'ve partnered with in my 30+ years in the mortgage industry.',
@@ -174,20 +192,19 @@ const testimonials = [
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    new (window as any).Swiper('.testimonials-swiper', {
-      slidesPerView: 1,
-      spaceBetween: 24,
-      loop: true,
-      autoplay: { delay: 5000, disableOnInteraction: false },
-      navigation: {
-        nextEl: '.testimonials-swiper .swiper-button-next',
-        prevEl: '.testimonials-swiper .swiper-button-prev',
-      },
-      pagination: {
-        el: '.testimonials-swiper .swiper-pagination',
-        clickable: true,
-      },
-    });
+  import Swiper from 'swiper/bundle';
+  new Swiper('.testimonials-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 24,
+    loop: true,
+    autoplay: { delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true },
+    navigation: {
+      nextEl: '.testimonials-swiper .swiper-button-next',
+      prevEl: '.testimonials-swiper .swiper-button-prev',
+    },
+    pagination: {
+      el: '.testimonials-swiper .swiper-pagination',
+      clickable: true,
+    },
   });
 </script>

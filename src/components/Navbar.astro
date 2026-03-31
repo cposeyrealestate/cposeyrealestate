@@ -3,23 +3,27 @@
 
 <header class="navbar" id="navbar">
   <div class="navbar__inner container">
-    <a href="/" class="navbar__logo">
-      <img src="/images/logo-dark.jpg" alt="Popby Realty™" class="navbar__logo-img" />
-    </a>
+    <a href="/" class="navbar__logo"></a>
 
     <nav class="navbar__nav" id="navMenu">
       <ul class="navbar__links">
         <li><a href="/" class="navbar__link">Home</a></li>
-        <li><a href="/properties" class="navbar__link">Search Homes</a></li>
+        <li><a href="/properties" class="navbar__link">Home Search</a></li>
+        <li><a href="#home-valuation" class="navbar__link">Home Valuation</a></li>
+        <li><a href="#neighborhoods" class="navbar__link">Neighborhoods</a></li>
+        <li><a href="/blog" class="navbar__link">Blog</a></li>
         <li class="navbar__dropdown">
-          <a href="#" class="navbar__link">Buyers &amp; Sellers</a>
+          <a href="#" class="navbar__link">Resources</a>
           <ul class="navbar__sub">
-            <li><a href="#home-valuation">Home Valuation</a></li>
-            <li><a href="#neighborhoods">Neighborhoods</a></li>
+            <li><a href="#about">About Cody</a></li>
+            <li><a href="#featured-properties">Portfolio</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="/buyers-guide">Buyer's Guide</a></li>
+            <li><a href="/sellers-guide">Seller's Guide</a></li>
+            <li><a href="/mortgage-calculator">Mortgage Calculator</a></li>
           </ul>
         </li>
-        <li><a href="#about" class="navbar__link">About</a></li>
-        <li><a href="#contact" class="navbar__link">Contact</a></li>
+        <li><a href="#contact" class="navbar__link">Let's Connect</a></li>
       </ul>
     </nav>
 
@@ -144,6 +148,18 @@
     padding-left: 1.6rem;
   }
 
+  .navbar__brokerage-logo {
+    height: 36px;
+    width: auto;
+    opacity: 0.55;
+    mix-blend-mode: screen;
+    transition: opacity 0.3s;
+  }
+
+  .navbar__brokerage-logo:hover {
+    opacity: 0.85;
+  }
+
   .navbar__cta {
     font-size: 0.75rem;
     padding: 0.6rem 1.4rem;
@@ -201,13 +217,17 @@
       display: none;
     }
 
+    .navbar__brokerage-logo {
+      display: none;
+    }
+
     .navbar__hamburger {
       display: flex;
     }
   }
 </style>
 
-<script>
+<script is:inline>
   // Scroll effect
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {

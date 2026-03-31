@@ -20,16 +20,10 @@
       <p class="work-with-us__eyebrow">Your Local Expert</p>
       <h2>Work With <span class="accent">Cody Posey</span></h2>
       <p class="work-with-us__bio">
-        As a US Veteran and dedicated New Braunfels real estate agent, I bring deep
-        local knowledge, a servant's heart, and relentless work ethic to every
-        transaction. Whether you're buying your first home, upgrading, downsizing,
-        or selling — I'm here to make the process smooth, clear, and rewarding.
+        With two decades of service in the United States Army, Retired First Sergeant Cody Posey brings unmatched leadership, integrity, and determination to real estate. Drawing on his experience managing investment properties and consulting on over 250 home remodels, Cody expertly guides clients through the complexities of buying or selling a home.
       </p>
       <p class="work-with-us__bio">
-        New Braunfels is more than a market to me — it's my community. I know the
-        neighborhoods, the schools, the growth corridors, and the hidden gems that
-        data alone can't tell you. My clients consistently call me the most
-        knowledgeable agent in the area, and I back that up with results.
+        A devoted family man and community leader, Cody mentors future Army leaders, supports fellow veterans, and actively contributes to the New Braunfels Rotary Club and VFW Post 7110. Passionate about helping others achieve their homeownership dreams, Cody is dedicated to providing exceptional service at every step.
       </p>
 
       <div class="work-with-us__stats">
@@ -347,10 +341,10 @@
   }
 </style>
 
-<script>
+<script is:inline>
   document.getElementById('contactForm')?.addEventListener('submit', (e) => {
     e.preventDefault();
-    const form = e.target as HTMLFormElement;
+    const form = e.target;
     const data = new FormData(form);
     // TODO: Connect to your CRM / email service / n8n webhook
     console.log('Contact form submitted:', Object.fromEntries(data));

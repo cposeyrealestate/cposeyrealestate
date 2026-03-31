@@ -200,24 +200,22 @@ const placeholderListings = [
 </style>
 
 <script>
-  // Initialize Swiper after DOM loads
-  document.addEventListener('DOMContentLoaded', () => {
-    new (window as any).Swiper('.properties-swiper', {
-      slidesPerView: 1,
-      spaceBetween: 24,
-      loop: true,
-      navigation: {
-        nextEl: '.properties-swiper .swiper-button-next',
-        prevEl: '.properties-swiper .swiper-button-prev',
-      },
-      pagination: {
-        el: '.properties-swiper .swiper-pagination',
-        clickable: true,
-      },
-      breakpoints: {
-        640: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 },
-      },
-    });
+  import Swiper from 'swiper/bundle';
+  new Swiper('.properties-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 24,
+    loop: true,
+    navigation: {
+      nextEl: '.properties-swiper .swiper-button-next',
+      prevEl: '.properties-swiper .swiper-button-prev',
+    },
+    pagination: {
+      el: '.properties-swiper .swiper-pagination',
+      clickable: true,
+    },
+    breakpoints: {
+      640: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
+    },
   });
 </script>

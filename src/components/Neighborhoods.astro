@@ -1,29 +1,44 @@
 ---
 const neighborhoods = [
   {
-    name: 'Gruene',
-    description: 'Historic charm, live music, and the Guadalupe River. One of New Braunfels\'s most beloved areas.',
-    img: 'https://placehold.co/1200x700/1a1a1a/FF1616?text=Gruene',
+    name: 'Veramendi',
+    description: 'A master-planned Hill Country community with resort-style amenities, beautiful parks, and stunning views just minutes from downtown New Braunfels.',
+    img: 'https://placehold.co/1200x700/1a1a1a/FF1616?text=Veramendi',
   },
   {
-    name: 'Solms Landing',
-    description: 'Master-planned community with parks, trails, and easy access to I-35.',
-    img: 'https://placehold.co/1200x700/111/FF1616?text=Solms+Landing',
-  },
-  {
-    name: 'Vintage Oaks',
-    description: 'Hill Country luxury living with stunning views and resort-style amenities.',
-    img: 'https://placehold.co/1200x700/222/FF1616?text=Vintage+Oaks',
-  },
-  {
-    name: 'Rockwall Ranch',
-    description: 'Family-friendly neighborhood with great schools and a strong community feel.',
-    img: 'https://placehold.co/1200x700/1a1a1a/FF1616?text=Rockwall+Ranch',
+    name: 'Manor Creek',
+    description: 'An established neighborhood offering spacious homes, mature trees, and a close-knit community feel in the heart of New Braunfels.',
+    img: 'https://placehold.co/1200x700/111/FF1616?text=Manor+Creek',
   },
   {
     name: 'River Chase',
-    description: 'Acreage estates along the Guadalupe River with custom homes and natural beauty.',
-    img: 'https://placehold.co/1200x700/111/FF1616?text=River+Chase',
+    description: 'Acreage estates along the Guadalupe River with custom homes, natural beauty, and a peaceful Hill Country lifestyle.',
+    img: 'https://placehold.co/1200x700/222/FF1616?text=River+Chase',
+  },
+  {
+    name: 'Vintage Oaks',
+    description: 'Hill Country luxury living with stunning panoramic views, resort-style amenities, and an active community in the Texas Wine Country.',
+    img: 'https://placehold.co/1200x700/1a1a1a/FF1616?text=Vintage+Oaks',
+  },
+  {
+    name: 'Copper Ridge',
+    description: 'Family-friendly community with well-designed homes, green spaces, and convenient access to New Braunfels schools and shopping.',
+    img: 'https://placehold.co/1200x700/111/FF1616?text=Copper+Ridge',
+  },
+  {
+    name: 'Mayfair',
+    description: 'A charming New Braunfels neighborhood with attractive homes, tree-lined streets, and easy access to Landa Park and downtown.',
+    img: 'https://placehold.co/1200x700/222/FF1616?text=Mayfair',
+  },
+  {
+    name: 'Oak Run',
+    description: 'Tucked into the Hill Country, Oak Run features custom homes on wooded lots with a quiet, private atmosphere and scenic surroundings.',
+    img: 'https://placehold.co/1200x700/1a1a1a/FF1616?text=Oak+Run',
+  },
+  {
+    name: 'Garden Ridge',
+    description: 'A peaceful city just north of San Antonio offering large lots, excellent schools, and a strong sense of community in a beautiful Hill Country setting.',
+    img: 'https://placehold.co/1200x700/111/FF1616?text=Garden+Ridge',
   },
 ];
 ---
@@ -160,20 +175,18 @@ const neighborhoods = [
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    new (window as any).Swiper('.neighborhoods-swiper', {
-      slidesPerView: 1,
-      spaceBetween: 0,
-      loop: true,
-      effect: 'slide',
-      navigation: {
-        nextEl: '.neighborhoods-swiper .swiper-button-next',
-        prevEl: '.neighborhoods-swiper .swiper-button-prev',
-      },
-      pagination: {
-        el: '.neighborhoods-swiper .swiper-pagination',
-        clickable: true,
-      },
-    });
+  import Swiper from 'swiper/bundle';
+  new Swiper('.neighborhoods-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    loop: true,
+    navigation: {
+      nextEl: '.neighborhoods-swiper .swiper-button-next',
+      prevEl: '.neighborhoods-swiper .swiper-button-prev',
+    },
+    pagination: {
+      el: '.neighborhoods-swiper .swiper-pagination',
+      clickable: true,
+    },
   });
 </script>
