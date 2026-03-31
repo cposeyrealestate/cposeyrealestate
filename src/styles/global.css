@@ -2,7 +2,7 @@
    GLOBAL STYLES — cposeyrealestate.com
    ========================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap');
 
 /* --- Reset & Base --- */
 *, *::before, *::after {
@@ -16,9 +16,9 @@
   --black: #000000;
   --white: #ffffff;
   --gray: #555555;
-  --light-gray: #f5f5f5;
-  --font-serif: 'Abhaya Libre', serif;
-  --font-sans: 'Montserrat', sans-serif;
+  --light-gray: #E0E0E0;
+  --font-heading: 'Poppins', sans-serif;
+  --font-sans: 'Open Sans', sans-serif;
   --transition: 0.3s ease;
 }
 
@@ -51,10 +51,11 @@ ul {
 
 /* --- Typography --- */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   text-transform: uppercase;
   letter-spacing: 0.02em;
   line-height: 1.1;
+  font-weight: 800;
 }
 
 h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
