@@ -28,37 +28,14 @@
       <p>Browse homes for sale and lease in New Braunfels and surrounding areas</p>
     </div>
 
-    <!-- ============================================================
-         REPLACE THIS BLOCK WITH YOUR BOLDTRAIL IDX EMBED CODE
-         ============================================================ -->
-    <div class="idx-placeholder">
-      <div class="idx-placeholder__inner">
-        <div class="idx-placeholder__icon">🏠</div>
-        <h3>BoldTrail IDX — Coming Soon</h3>
-        <p>
-          Your live MLS property search will appear here once your<br />
-          BoldTrail IDX embed code is connected.
-        </p>
-        <a href="https://boldtrail.com" target="_blank" rel="noopener" class="btn btn-primary">
-          Go to BoldTrail Dashboard
-        </a>
-      </div>
+    <div class="idx-embed">
+      <iframe
+        src="https://codyposey.popbyrealty.com/embed.php"
+        allowtransparency="true"
+        frameBorder="0"
+        title="Property Search"
+      ></iframe>
     </div>
-    <!-- ============================================================
-         END IDX PLACEHOLDER
-         ============================================================ -->
-
-    <!--
-    Example iframe embed (uncomment and update with your URL):
-    <iframe
-      src="https://YOUR-BOLDTRAIL-IDX-URL.com/search"
-      width="100%"
-      height="800px"
-      frameborder="0"
-      allowfullscreen
-      title="Property Search"
-    ></iframe>
-    -->
 
   </div>
 </section>
@@ -68,30 +45,17 @@
     background: var(--light-gray);
   }
 
-  .idx-placeholder {
-    border: 2px dashed #ccc;
+  .idx-embed {
     background: #fff;
-    padding: 4rem 2rem;
-    text-align: center;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   }
 
-  .idx-placeholder__icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-  }
-
-  .idx-placeholder h3 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.6rem;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-    color: #333;
-  }
-
-  .idx-placeholder p {
-    color: #777;
-    font-size: 0.9rem;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
+  .idx-embed iframe {
+    width: 100%;
+    height: 800px;
+    border: none;
+    display: block;
   }
 </style>
