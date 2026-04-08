@@ -1,0 +1,164 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="About Cody Posey | New Braunfels REALTOR | Cody Posey Real Estate"
+  description="Meet Cody Posey — a New Braunfels REALTOR, U.S. Army veteran, and local real estate expert serving the Texas Hill Country."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- About Section -->
+    <section class="about">
+      <div class="about__image">
+        <img src="/images/cody-posey.jpg" alt="Cody Posey — New Braunfels REALTOR" />
+      </div>
+      <div class="about__content">
+        <h1>About <span class="accent">Cody Posey</span></h1>
+        <p class="about__tagline">Real guidance, local expertise, and a commitment to serving the New Braunfels community.</p>
+
+        <div class="about__bio">
+          <p>I'm Cody Posey, a New Braunfels-based REALTOR&reg; with a heart for service and a deep connection to the Texas Hill Country. Before real estate, I spent 20 years in the U.S. Army, where I learned the value of integrity, clear communication, and putting people first. Those lessons guide how I serve buyers and sellers today.</p>
+
+          <p>After retiring from the military, my family and I chose the Hill Country as our home. Its mix of community, beauty, and opportunity felt like the perfect place to begin our next chapter. Real estate quickly became more than a career — it became a way to help people make one of the biggest decisions of their lives with confidence.</p>
+
+          <p>I take an educational, straightforward approach with every client. Whether you're buying your first home, selling in a shifting market, or trying to make sense of local trends, my goal is to give you the clarity you need to move forward without stress or second-guessing.</p>
+
+          <p>Today, I serve the New Braunfels and Greater Hill Country area with the same commitment and sense of duty that shaped my years in uniform. This community is home for my family, and helping others find their place here is something I truly value. If you're ready to take the next step or just want honest insight on what the market is doing, I'm here to help.</p>
+        </div>
+
+        <p class="about__motto"><em>Educating. Serving. Delivering Results.</em></p>
+
+        <div class="about__details">
+          <div class="about__detail">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            <a href="tel:+18303605569">(830) 360-5569</a>
+          </div>
+          <div class="about__detail">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:cody@cposeyrealestate.com">cody@cposeyrealestate.com</a>
+          </div>
+          <div class="about__detail">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>New Braunfels, Texas</span>
+          </div>
+        </div>
+
+        <div class="about__cta">
+          <a href="#contact" class="btn btn-primary">Let's Connect</a>
+          <a href="/explorearea" class="btn btn-outline-dark">Explore the Area</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I'd like to connect with Cody..." />
+  <Footer />
+</Layout>
+
+<style>
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 80px);
+  }
+
+  .about__image {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .about__content {
+    padding: 4rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .about__content h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    margin-bottom: 1rem;
+  }
+
+  .about__tagline {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--gray);
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--light-gray);
+  }
+
+  .about__bio p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .about__motto {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #FF1616;
+    margin: 1.5rem 0;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--light-gray);
+  }
+
+  .about__details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin: 1.5rem 0 2rem;
+  }
+
+  .about__detail {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .about__detail a,
+  .about__detail span {
+    font-size: 0.9rem;
+    color: var(--gray);
+    transition: color 0.2s;
+  }
+
+  .about__detail a:hover {
+    color: #FF1616;
+  }
+
+  .about__cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 900px) {
+    .about {
+      grid-template-columns: 1fr;
+    }
+
+    .about__image {
+      height: 400px;
+    }
+
+    .about__content {
+      padding: 2.5rem 1.5rem;
+    }
+  }
+</style>

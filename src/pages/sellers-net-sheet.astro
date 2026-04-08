@@ -1,0 +1,660 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Seller's Net Sheet Calculator | Cody Posey Real Estate | New Braunfels, TX"
+  description="Estimate your net proceeds from selling your home in New Braunfels, TX. Free seller's net sheet calculator with standard Texas closing costs."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="ns-hero">
+      <div class="ns-hero__overlay"></div>
+      <div class="ns-hero__content">
+        <h1>Seller's <span style="color:#FF1616;">Net Sheet</span></h1>
+        <p>Estimate your net proceeds from selling your home</p>
+      </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <section class="ns-disclaimer">
+      <div class="container">
+        <div class="ns-disclaimer__box">
+          <strong>Disclaimer:</strong> This calculator provides a preliminary estimate only and is not a guarantee of actual closing costs or net proceeds. Actual costs vary by title company, lender, transaction terms, and closing date. Title insurance rates are based on the Texas Department of Insurance promulgated rates and may change. Property tax prorations, HOA dues, and other line items are estimates and should be verified with your title company prior to closing. This tool is for informational purposes only and does not constitute financial, legal, or tax advice. Always consult with your title company, lender, and/or tax professional for accurate closing figures.
+        </div>
+      </div>
+    </section>
+
+    <!-- Calculator -->
+    <section class="section">
+      <div class="container">
+        <div class="ns-calc">
+
+          <!-- Input Form -->
+          <div class="ns-form">
+            <h2>Transaction <span class="accent">Details</span></h2>
+
+            <div class="ns-form__group">
+              <h3>Sale Information</h3>
+              <div class="ns-form__field">
+                <label for="salePrice">Sale Price *</label>
+                <div class="ns-input-wrap">
+                  <span class="ns-input-prefix">$</span>
+                  <input type="number" id="salePrice" value="400000" min="0" step="1000" />
+                </div>
+              </div>
+              <div class="ns-form__field">
+                <label for="closingDate">Estimated Closing Date</label>
+                <input type="date" id="closingDate" />
+              </div>
+            </div>
+
+            <div class="ns-form__group">
+              <h3>Commission</h3>
+              <div class="ns-form__row">
+                <div class="ns-form__field">
+                  <label for="listingCommission">Listing Agent (%)</label>
+                  <div class="ns-input-wrap">
+                    <input type="number" id="listingCommission" value="3" min="0" max="10" step="0.1" />
+                    <span class="ns-input-suffix">%</span>
+                  </div>
+                </div>
+                <div class="ns-form__field">
+                  <label for="buyerCommission">Buyer Agent (%)</label>
+                  <div class="ns-input-wrap">
+                    <input type="number" id="buyerCommission" value="3" min="0" max="10" step="0.1" />
+                    <span class="ns-input-suffix">%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ns-form__group">
+              <h3>Mortgage Payoff</h3>
+              <div class="ns-form__field">
+                <label for="mortgageBalance">Remaining Mortgage Balance</label>
+                <div class="ns-input-wrap">
+                  <span class="ns-input-prefix">$</span>
+                  <input type="number" id="mortgageBalance" value="250000" min="0" step="1000" />
+                </div>
+              </div>
+            </div>
+
+            <div class="ns-form__group">
+              <h3>Prorations</h3>
+              <div class="ns-form__row">
+                <div class="ns-form__field">
+                  <label for="annualTaxes">Annual Property Taxes</label>
+                  <div class="ns-input-wrap">
+                    <span class="ns-input-prefix">$</span>
+                    <input type="number" id="annualTaxes" value="8000" min="0" step="100" />
+                  </div>
+                </div>
+                <div class="ns-form__field">
+                  <label for="monthlyHOA">Monthly HOA Dues</label>
+                  <div class="ns-input-wrap">
+                    <span class="ns-input-prefix">$</span>
+                    <input type="number" id="monthlyHOA" value="0" min="0" step="10" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ns-form__group">
+              <h3>Standard Closing Costs</h3>
+              <p class="ns-form__note">Pre-filled with typical Texas amounts. Adjust as needed.</p>
+              <div class="ns-form__row">
+                <div class="ns-form__field">
+                  <label for="docPrep">Document Preparation</label>
+                  <div class="ns-input-wrap">
+                    <span class="ns-input-prefix">$</span>
+                    <input type="number" id="docPrep" value="125" min="0" />
+                  </div>
+                </div>
+                <div class="ns-form__field">
+                  <label for="escrowFee">Escrow Fee</label>
+                  <div class="ns-input-wrap">
+                    <span class="ns-input-prefix">$</span>
+                    <input type="number" id="escrowFee" value="500" min="0" />
+                  </div>
+                </div>
+              </div>
+              <div class="ns-form__row">
+                <div class="ns-form__field">
+                  <label for="wireFee">Wire Transfer Fee</label>
+                  <div class="ns-input-wrap">
+                    <span class="ns-input-prefix">$</span>
+                    <input type="number" id="wireFee" value="30" min="0" />
+                  </div>
+                </div>
+                <div class="ns-form__field">
+                  <label for="taxCertFee">Tax Certificate Fee</label>
+                  <div class="ns-input-wrap">
+                    <span class="ns-input-prefix">$</span>
+                    <input type="number" id="taxCertFee" value="79" min="0" />
+                  </div>
+                </div>
+              </div>
+              <div class="ns-form__row">
+                <div class="ns-form__field">
+                  <label for="copyFee">Copy Fee</label>
+                  <div class="ns-input-wrap">
+                    <span class="ns-input-prefix">$</span>
+                    <input type="number" id="copyFee" value="15" min="0" />
+                  </div>
+                </div>
+                <div class="ns-form__field">
+                  <label for="surveyFee">Survey Amendment</label>
+                  <div class="ns-input-wrap">
+                    <span class="ns-input-prefix">$</span>
+                    <input type="number" id="surveyFee" value="261" min="0" />
+                  </div>
+                </div>
+              </div>
+              <div class="ns-form__row">
+                <div class="ns-form__field">
+                  <label for="deliveryFee">Delivery Fee</label>
+                  <div class="ns-input-wrap">
+                    <span class="ns-input-prefix">$</span>
+                    <input type="number" id="deliveryFee" value="50" min="0" />
+                  </div>
+                </div>
+                <div class="ns-form__field">
+                  <label for="homeWarranty">Home Warranty</label>
+                  <div class="ns-input-wrap">
+                    <span class="ns-input-prefix">$</span>
+                    <input type="number" id="homeWarranty" value="0" min="0" />
+                  </div>
+                </div>
+              </div>
+              <div class="ns-form__field">
+                <label for="repairsCredits">Estimated Repairs / Seller Credits</label>
+                <div class="ns-input-wrap">
+                  <span class="ns-input-prefix">$</span>
+                  <input type="number" id="repairsCredits" value="0" min="0" />
+                </div>
+              </div>
+            </div>
+
+            <button type="button" id="calcBtn" class="btn btn-primary ns-form__btn">Calculate Net Sheet</button>
+          </div>
+
+          <!-- Results -->
+          <div class="ns-results" id="nsResults" style="display: none;">
+            <h2>Seller's Preliminary <span class="accent">Estimated Statement</span></h2>
+
+            <div class="ns-table-wrap">
+              <table class="ns-table" id="nsTable">
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th class="ns-col-num">Debits</th>
+                    <th class="ns-col-num">Credits</th>
+                  </tr>
+                </thead>
+                <tbody id="nsTableBody">
+                </tbody>
+                <tfoot>
+                  <tr class="ns-total-row">
+                    <td><strong>Due to Seller (ESTIMATED)</strong></td>
+                    <td class="ns-col-num" id="nsTotalDebit"></td>
+                    <td class="ns-col-num ns-total-amount" id="nsTotalCredit"></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+
+            <div class="ns-print">
+              <button type="button" id="printBtn" class="btn btn-outline-dark">Print Net Sheet</button>
+            </div>
+
+            <div class="ns-disclaimer__box ns-disclaimer__box--small">
+              <strong>Disclaimer:</strong> This is a preliminary estimate only. Actual closing costs and net proceeds will vary based on title company, lender requirements, transaction terms, and closing date. Title insurance rates are based on Texas Department of Insurance promulgated rates. Property tax prorations and HOA dues are estimates. This tool does not constitute financial, legal, or tax advice. Consult with your title company and tax professional for accurate figures.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background: #000; color: #fff; text-align: center;">
+      <div class="container">
+        <h2>Want an <span class="accent">Accurate Net Sheet</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">This calculator gives you a starting point. For a detailed net sheet based on your specific property and situation, reach out and I'll prepare one for you.</p>
+        <a href="#contact" class="btn btn-outline">Request a Detailed Net Sheet</a>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I'd like a detailed seller's net sheet for my property..." />
+  <Footer />
+</Layout>
+
+<style>
+  .ns-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .ns-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .ns-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .ns-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .ns-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+  }
+
+  /* Disclaimer */
+  .ns-disclaimer {
+    padding: 1.5rem 0 0;
+  }
+
+  .ns-disclaimer__box {
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    font-size: 0.8rem;
+    color: #5d4037;
+    line-height: 1.6;
+  }
+
+  .ns-disclaimer__box--small {
+    margin-top: 2rem;
+    font-size: 0.75rem;
+  }
+
+  /* Calculator Layout */
+  .ns-calc {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* Form */
+  .ns-form h2 {
+    margin-bottom: 2rem;
+  }
+
+  .ns-form__group {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .ns-form__group h3 {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    color: var(--gray);
+  }
+
+  .ns-form__note {
+    font-size: 0.8rem;
+    color: #999;
+    margin-bottom: 1rem;
+  }
+
+  .ns-form__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .ns-form__field {
+    margin-bottom: 1rem;
+  }
+
+  .ns-form__field label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.3rem;
+  }
+
+  .ns-input-wrap {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--light-gray);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .ns-input-wrap:focus-within {
+    border-color: #FF1616;
+  }
+
+  .ns-input-prefix,
+  .ns-input-suffix {
+    padding: 0.6rem 0.75rem;
+    background: #f5f5f5;
+    font-size: 0.85rem;
+    color: var(--gray);
+    border: none;
+  }
+
+  .ns-input-wrap input {
+    flex: 1;
+    padding: 0.6rem 0.75rem;
+    border: none;
+    font-size: 0.9rem;
+    font-family: var(--font-sans);
+    outline: none;
+    min-width: 0;
+  }
+
+  .ns-form__field input[type="date"] {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--light-gray);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-family: var(--font-sans);
+  }
+
+  .ns-form__field input[type="date"]:focus {
+    outline: none;
+    border-color: #FF1616;
+  }
+
+  .ns-form__btn {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  /* Results Table */
+  .ns-results h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .ns-table-wrap {
+    overflow-x: auto;
+  }
+
+  .ns-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    table-layout: fixed;
+  }
+
+  .ns-table thead {
+    background: #333;
+    color: #fff;
+  }
+
+  .ns-table th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .ns-table th:first-child {
+    width: 55%;
+  }
+
+  .ns-table th:nth-child(2),
+  .ns-table th:nth-child(3) {
+    width: 22.5%;
+    text-align: right;
+  }
+
+  .ns-table td {
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid #eee;
+  }
+
+  .ns-col-num {
+    text-align: right !important;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ns-table tbody tr:nth-child(even) {
+    background: #fafafa;
+  }
+
+  .ns-total-row {
+    background: #000 !important;
+    color: #fff;
+  }
+
+  .ns-total-row td {
+    padding: 1rem;
+    border: none;
+    font-size: 1rem;
+  }
+
+  .ns-total-amount {
+    color: #4CAF50;
+    font-weight: 800;
+    font-size: 1.1rem !important;
+  }
+
+  .ns-print {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  @media print {
+    .navbar, .ns-hero, .ns-form, .ns-print, .ns-disclaimer, footer, .contact-form, section[style*="background: #000"] {
+      display: none !important;
+    }
+
+    .ns-results {
+      display: block !important;
+    }
+
+    main {
+      padding-top: 0 !important;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .ns-form__row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script is:inline>
+  // Texas Title Insurance Rate Table (TDI promulgated basic rates)
+  function getTitleInsurance(price) {
+    if (price <= 0) return 0;
+    // Simplified Texas basic rate schedule
+    if (price <= 100000) return price * 0.00567;
+    if (price <= 1000000) return 567 + (price - 100000) * 0.00528;
+    if (price <= 5000000) return 567 + 4752 + (price - 1000000) * 0.00477;
+    return 567 + 4752 + 19080 + (price - 5000000) * 0.00420;
+  }
+
+  function formatMoney(val) {
+    return val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function getVal(id) {
+    return parseFloat(document.getElementById(id)?.value) || 0;
+  }
+
+  // Set default closing date to 30 days from now
+  const dateInput = document.getElementById('closingDate');
+  const d = new Date();
+  d.setDate(d.getDate() + 30);
+  dateInput.value = d.toISOString().split('T')[0];
+
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    const salePrice = getVal('salePrice');
+    const closingDate = document.getElementById('closingDate').value;
+    const listingPct = getVal('listingCommission');
+    const buyerPct = getVal('buyerCommission');
+    const mortgage = getVal('mortgageBalance');
+    const annualTaxes = getVal('annualTaxes');
+    const monthlyHOA = getVal('monthlyHOA');
+    const docPrep = getVal('docPrep');
+    const escrowFee = getVal('escrowFee');
+    const wireFee = getVal('wireFee');
+    const taxCertFee = getVal('taxCertFee');
+    const copyFee = getVal('copyFee');
+    const surveyFee = getVal('surveyFee');
+    const deliveryFee = getVal('deliveryFee');
+    const homeWarranty = getVal('homeWarranty');
+    const repairsCredits = getVal('repairsCredits');
+
+    // Calculate commission
+    const totalCommission = salePrice * ((listingPct + buyerPct) / 100);
+
+    // Calculate tax proration (Jan 1 to closing date)
+    let taxProration = 0;
+    let taxLabel = 'Property Tax Proration';
+    if (closingDate && annualTaxes > 0) {
+      const close = new Date(closingDate);
+      const jan1 = new Date(close.getFullYear(), 0, 1);
+      const dayOfYear = Math.ceil((close - jan1) / (1000 * 60 * 60 * 24));
+      const isLeap = (close.getFullYear() % 4 === 0 && close.getFullYear() % 100 !== 0) || close.getFullYear() % 400 === 0;
+      const daysInYear = isLeap ? 366 : 365;
+      taxProration = (annualTaxes / daysInYear) * dayOfYear;
+      const monthDay = close.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric' });
+      taxLabel = `Prop. Taxes, 1/1 to ${monthDay}`;
+    }
+
+    // Calculate HOA proration
+    let hoaProration = 0;
+    let hoaLabel = 'HOA Dues Proration';
+    if (closingDate && monthlyHOA > 0) {
+      const close = new Date(closingDate);
+      const dayOfMonth = close.getDate();
+      const daysInMonth = new Date(close.getFullYear(), close.getMonth() + 1, 0).getDate();
+      hoaProration = (monthlyHOA / daysInMonth) * dayOfMonth;
+      const monthDay = close.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric' });
+      hoaLabel = `HOA Dues, 1/1 to ${monthDay}`;
+    }
+
+    // Title insurance
+    const titleInsurance = getTitleInsurance(salePrice);
+
+    // Build line items
+    const items = [];
+    items.push({ label: 'Sales Price', debit: 0, credit: salePrice });
+
+    if (mortgage > 0) {
+      items.push({ label: 'Mortgage Payoff', debit: mortgage, credit: 0 });
+    }
+
+    if (totalCommission > 0) {
+      items.push({ label: `Broker's Compensation/Commission (${listingPct + buyerPct}%)`, debit: totalCommission, credit: 0 });
+    }
+
+    if (docPrep > 0) {
+      items.push({ label: `Document Preparation Fee (Total: $${formatMoney(docPrep)})`, debit: docPrep, credit: 0 });
+    }
+
+    if (taxProration > 0) {
+      items.push({ label: taxLabel, debit: taxProration, credit: 0 });
+    }
+
+    if (hoaProration > 0) {
+      items.push({ label: hoaLabel, debit: hoaProration, credit: 0 });
+    }
+
+    if (titleInsurance > 0) {
+      items.push({ label: `Owner's Policy of Title Insurance (Est: $${formatMoney(titleInsurance)})`, debit: titleInsurance, credit: 0 });
+    }
+
+    if (escrowFee > 0) {
+      items.push({ label: `Escrow Fee (Total: $${formatMoney(escrowFee)})`, debit: escrowFee, credit: 0 });
+    }
+
+    if (wireFee > 0) {
+      items.push({ label: `Wire Transfer Fee (Est. Total: $${formatMoney(wireFee)})`, debit: wireFee, credit: 0 });
+    }
+
+    if (taxCertFee > 0) {
+      items.push({ label: 'Tax Certificate Fee', debit: taxCertFee, credit: 0 });
+    }
+
+    if (copyFee > 0) {
+      items.push({ label: 'Copy Fee', debit: copyFee, credit: 0 });
+    }
+
+    if (surveyFee > 0) {
+      items.push({ label: `Survey Amendment (Total: $${formatMoney(surveyFee)})`, debit: surveyFee, credit: 0 });
+    }
+
+    if (deliveryFee > 0) {
+      items.push({ label: 'Delivery Fee', debit: deliveryFee, credit: 0 });
+    }
+
+    if (homeWarranty > 0) {
+      items.push({ label: 'Home Warranty Premium', debit: homeWarranty, credit: 0 });
+    }
+
+    if (repairsCredits > 0) {
+      items.push({ label: 'Estimated Repairs / Seller Credits', debit: repairsCredits, credit: 0 });
+    }
+
+    // Calculate totals
+    const totalDebits = items.reduce((sum, i) => sum + i.debit, 0);
+    const totalCredits = items.reduce((sum, i) => sum + i.credit, 0);
+    const netToSeller = totalCredits - totalDebits;
+
+    // Render table
+    const numStyle = 'text-align:right;font-variant-numeric:tabular-nums;';
+    const tbody = document.getElementById('nsTableBody');
+    tbody.innerHTML = items.map(item => `
+      <tr>
+        <td>${item.label}</td>
+        <td style="${numStyle}">${item.debit > 0 ? '$' + formatMoney(item.debit) : ''}</td>
+        <td style="${numStyle}">${item.credit > 0 ? '$' + formatMoney(item.credit) : ''}</td>
+      </tr>
+    `).join('');
+
+    document.getElementById('nsTotalDebit').textContent = '';
+    const totalEl = document.getElementById('nsTotalCredit');
+    totalEl.textContent = '$' + formatMoney(netToSeller);
+    totalEl.style.textAlign = 'right';
+    totalEl.style.fontVariantNumeric = 'tabular-nums';
+
+    // Show results
+    document.getElementById('nsResults').style.display = 'block';
+    document.getElementById('nsResults').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // Print
+  document.getElementById('printBtn')?.addEventListener('click', () => {
+    window.print();
+  });
+</script>
