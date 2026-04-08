@@ -1,0 +1,296 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
+---
+
+<Layout
+  title="New Braunfels Neighborhoods | Cody Posey Real Estate"
+  description="Explore New Braunfels neighborhoods by area and buyer type. From Gruene to the I-35 corridor — find the right fit for your lifestyle and budget."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="nb-hero">
+      <div class="nb-hero__overlay"></div>
+      <div class="nb-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/new-braunfels/">New Braunfels</a> <span>/</span> <span>Neighborhoods</span>
+        </nav>
+        <h1>New Braunfels <span style="color:#FF1616;">Neighborhoods</span></h1>
+        <p>Understand how the city is laid out and where you might fit</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="nb-page-intro nb-page-intro--centered">New Braunfels isn't one-size-fits-all. The city spans from the historic Gruene district on the north side to the growing I-35 corridor in the south, with distinct neighborhoods that vary by lot size, price point, age of homes, and lifestyle. Here's how the city breaks down.</p>
+      </div>
+    </section>
+
+    <!-- Area Breakdown -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>By <span class="accent">Area</span></h2>
+        </div>
+
+        <div class="nb-area">
+          <h3>Gruene & River Area</h3>
+          <p>The northwest side of New Braunfels, anchored by historic Gruene Hall and the Guadalupe River. Gruene was originally a small cotton farming community established in the 1870s by German settlers. Today it's a recognized historic district with live music, local restaurants, wine tasting rooms, and shops along Hunter Road and Gruene Road.</p>
+          <p>Housing in the Gruene area is a mix of older ranch-style homes on larger lots, custom-built properties, and riverfront homes along the Guadalupe. Some newer small-scale developments have been built in the surrounding area, but this is not where you'll find large master-planned subdivisions. Lot sizes tend to be larger than what you'll see on the south side of the city, and many properties back to or sit near the river corridor. Pricing varies widely depending on river access, acreage, and whether the home is a custom build.</p>
+        </div>
+
+        <div class="nb-area">
+          <h3>Downtown & Central New Braunfels</h3>
+          <p>Central New Braunfels is built around the original town plaza on San Antonio Street, with the Comal River and Landa Park forming the recreational core of the area. The Comal River — the shortest navigable river in Texas — runs through the center of town and is a defining feature of the downtown experience.</p>
+          <p>Housing in central New Braunfels includes older homes built from the mid-1900s through the 1980s, historic properties near the downtown core, and some newer infill construction on smaller lots. Neighborhoods like River Acres sit along the Comal River, while areas closer to Landa Park and Katy Crossing offer walkability to parks, schools, and local businesses. This part of the city appeals to buyers who prioritize location and convenience over newer construction and HOA amenities.</p>
+        </div>
+
+        <div class="nb-area">
+          <h3>West of I-35 — Hill Country Side</h3>
+          <p>The west side of I-35 is where New Braunfels transitions into the Texas Hill Country. The terrain here is noticeably different — more elevation, native oaks, limestone outcroppings, and Hill Country views compared to the flatter land east of the interstate. This side of the city includes a mix of established neighborhoods and master-planned communities spread along FM 306, FM 1863, and the roads heading toward Canyon Lake.</p>
+          <p>Communities on this side include River Chase, Havenwood, Copper Ridge, and Manor Creek — established neighborhoods that are largely built out with mature landscaping and larger lots. Vintage Oaks, located between New Braunfels and Canyon Lake, is a large-lot community developed by SouthStar Communities with amenities including pools, a lazy river, and miles of trails. Veramendi, one of the largest master-planned communities in the area, sits on the west side near the intersection of FM 306 and Loop 337 and includes multiple builders across a range of price points. Neighborhoods on this side of the city are served by both <a href="https://www.comalisd.org" target="_blank" rel="noopener" class="nb-area__link">Comal ISD</a> and <a href="https://www.nbisd.org" target="_blank" rel="noopener" class="nb-area__link">New Braunfels ISD</a> depending on the specific location, so verifying school assignments for any property you're considering is important. This area is popular with families and buyers looking for more space and a Hill Country setting while remaining within a reasonable drive of I-35 and city services.</p>
+        </div>
+
+        <div class="nb-area">
+          <h3>North New Braunfels</h3>
+          <p>The north side of New Braunfels is anchored by the Creekside area and is seeing significant new development. Creekside is an established commercial and retail center along IH-35 that serves as a hub for the north side of the city, with grocery stores, restaurants, medical offices, and services that reduce the need to drive into central New Braunfels or south toward San Antonio.</p>
+          <p>Mayfair is a new master-planned community developed by SouthStar Communities on the north side of the city. The community includes over 300 acres of public parks and recreational open space, more than 35 miles of planned trails, and a pedestrian-friendly pathway network connecting neighborhoods. Mayfair Elementary, a new Comal ISD campus, has already opened within the community, with four additional Comal ISD schools planned. A commercial district — Midtown Mayfair — is planned to include shopping, dining, and workplace spaces. New homes in Mayfair start from the $290s, with single-family homes, townhomes, and quick move-in inventory available. The community is located approximately 1.5 miles from Creekside, 5 miles from Gruene, and 7 miles from downtown New Braunfels.</p>
+        </div>
+
+        <div class="nb-area">
+          <h3>East of I-35 — Hwy 46 to FM 1044</h3>
+          <p>The east side of I-35, stretching from Highway 46 in the north down to FM 1044 in the south, is where much of the newer residential growth in New Braunfels has been concentrated. This corridor is generally flatter and more accessible from the interstate, making it a draw for commuters and first-time buyers looking for newer construction at more competitive price points.</p>
+          <p>Communities in this area include Voss Farms and Pecan Crossing, both master-planned developments with production builder homes, amenity centers, and parks. Development along FM 1044 and Klein Road has been expanding as builders move into the remaining available land on the east side of the city. Lot sizes in this corridor tend to be smaller than what you'll find west of I-35, and homes are primarily newer construction built from the 2010s forward. This side of the city offers quick highway access for commuters heading toward San Antonio or Austin, and proximity to retail and services along the I-35 corridor.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- By Buyer Type -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>By <span class="accent">Buyer Type</span></h2>
+          <p>Not sure where to start? Here's how neighborhoods tend to group by budget and lifestyle</p>
+        </div>
+
+        <div class="nb-buyer__grid">
+          <div class="nb-buyer__card">
+            <h3>Entry-Level & First-Time Buyers</h3>
+            <p>Newer subdivisions along the I-35 corridor and south side of the city offer the most accessible price points. Communities like Meyer Ranch, Homestead, and sections of Veramendi have homes from national builders in the $250K-$400K range. Expect smaller lots, builder incentives, and proximity to I-35 for commuting.</p>
+          </div>
+          <div class="nb-buyer__card">
+            <h3>Move-Up Buyers</h3>
+            <p>Established neighborhoods in central and north New Braunfels offer more space, larger lots, and mature landscaping. Communities like River Chase, Copper Ridge, and Manor Creek typically fall in the $400K-$700K range. These neighborhoods are generally built out, meaning less construction activity and more established street trees and landscaping.</p>
+          </div>
+          <div class="nb-buyer__card">
+            <h3>Luxury & Custom</h3>
+            <p>The Gruene area, Hill Country properties northwest of the city, and communities like Vintage Oaks offer custom homes, acreage, and premium finishes. Pricing starts around $700K and extends well beyond $1M for riverfront properties, custom builds on multi-acre tracts, and homes with Hill Country views.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Living Here Callout -->
+    <section class="section nb-living-callout">
+      <div class="container">
+        <div class="nb-living-callout__inner">
+          <div>
+            <h2>Beyond the <span class="accent">Neighborhood</span></h2>
+            <p>Choosing where to live isn't just about the house or the subdivision. Commute times, daily routines, local culture, and how the city actually feels day-to-day all factor in. If you want to understand what living in New Braunfels is really like before narrowing down a neighborhood, start here.</p>
+          </div>
+          <a href="/new-braunfels/living-in-new-braunfels/" class="btn btn-primary">What It's Like to Live Here</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background: #000; color: #fff; text-align: center;">
+      <div class="container">
+        <h2>Need Help <span class="accent">Narrowing It Down</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">I can walk you through the differences between areas and help you focus your search on neighborhoods that match your priorities.</p>
+        <a href="#contact" class="btn btn-outline">Get Help Narrowing Down Areas</a>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I need help narrowing down neighborhoods..." />
+  <Footer />
+</Layout>
+
+<style>
+  .nb-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .nb-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .nb-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .nb-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .nb-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  .nb-page-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 800px;
+  }
+
+  .nb-page-intro--centered {
+    text-align: center;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0 auto;
+  }
+
+  /* Area Cards */
+  .nb-area {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .nb-area h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .nb-area p {
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .nb-area p:last-child {
+    margin-bottom: 0;
+  }
+
+  .nb-area__link {
+    color: #FF1616;
+    font-weight: 600;
+    transition: opacity 0.2s;
+  }
+
+  .nb-area__link:hover {
+    opacity: 0.7;
+  }
+
+  /* Living Here Callout */
+  .nb-living-callout {
+    background: #fafafa;
+    border-top: 3px solid #FF1616;
+  }
+
+  .nb-living-callout__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .nb-living-callout__inner p {
+    color: var(--gray);
+    line-height: 1.7;
+    margin-top: 0.75rem;
+    max-width: 700px;
+  }
+
+  .nb-living-callout__inner .btn {
+    flex-shrink: 0;
+  }
+
+  /* Buyer Type */
+  .nb-buyer__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .nb-buyer__card {
+    border: 1px solid var(--light-gray);
+    padding: 2rem;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .nb-buyer__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .nb-buyer__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .nb-buyer__card p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .nb-buyer__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .nb-living-callout__inner {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

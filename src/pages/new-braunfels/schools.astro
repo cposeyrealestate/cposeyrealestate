@@ -1,0 +1,293 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
+---
+
+<Layout
+  title="New Braunfels Schools & School Districts | Cody Posey Real Estate"
+  description="Overview of school districts serving New Braunfels, TX. Understand how attendance boundaries affect your home search."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="nb-hero">
+      <div class="nb-hero__overlay"></div>
+      <div class="nb-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/new-braunfels/">New Braunfels</a> <span>/</span> <span>Schools</span>
+        </nav>
+        <h1>New Braunfels <span style="color:#FF1616;">Schools</span></h1>
+        <p>School district information for home buyers</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="nb-page-intro">Schools are one of the most common factors in a home search. Two main independent school districts serve the New Braunfels area, and which district a home falls in depends entirely on its physical location — not the city it's addressed in. This page provides an overview to help you understand the landscape, but always verify specific school assignments directly with the district.</p>
+      </div>
+    </section>
+
+    <!-- Districts -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>School <span class="accent">Districts</span></h2>
+        </div>
+
+        <div class="schools__district">
+          <h3>New Braunfels ISD</h3>
+          <p>New Braunfels ISD serves the central and downtown areas of the city. The district operates multiple elementary, middle, and high school campuses. NBISD has a long history in the community and serves a diverse student population across a range of neighborhoods.</p>
+          <div class="schools__link">
+            <a href="https://www.nbisd.org" target="_blank" rel="noopener">Visit New Braunfels ISD Website</a>
+          </div>
+        </div>
+
+        <div class="schools__district">
+          <h3>Comal ISD</h3>
+          <p>Comal ISD is one of the fastest-growing districts in Texas, serving the north, west, and south sides of the New Braunfels area, as well as parts of surrounding communities. The district has been expanding rapidly with new campuses to accommodate growth. Comal ISD's boundaries extend well beyond the city limits of New Braunfels.</p>
+          <div class="schools__link">
+            <a href="https://www.comalisd.org" target="_blank" rel="noopener">Visit Comal ISD Website</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Boundaries Matter -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Why Boundaries <span class="accent">Matter</span></h2>
+        </div>
+        <div class="schools__info-grid">
+          <div class="schools__info">
+            <h3>Address Determines Assignment</h3>
+            <p>School attendance is based on the physical address of the home, not the subdivision name or city. Two homes in the same neighborhood can be in different districts. Always verify the specific school assignment for any property you're considering.</p>
+          </div>
+          <div class="schools__info">
+            <h3>Boundaries Can Change</h3>
+            <p>As new schools are built and the area grows, attendance boundaries may be redrawn. A home that feeds into one school today may be reassigned in the future. Check with the district directly for the most current boundary information.</p>
+          </div>
+          <div class="schools__info">
+            <h3>Impact on Home Values</h3>
+            <p>School assignments are a factor in home values and buyer demand. Understanding which schools a home is zoned for — and whether that's likely to change — is an important part of evaluating a purchase, especially for families with school-age children.</p>
+          </div>
+          <div class="schools__info">
+            <h3>Verify Before You Buy</h3>
+            <p>Do not rely solely on listing data or third-party websites for school assignments. Contact the school district directly or use their official boundary lookup tools to confirm which schools serve a specific address.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Official Resources -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Official <span class="accent">Resources</span></h2>
+          <p>Use these links to verify school assignments and get current district information</p>
+        </div>
+        <div class="schools__resources">
+          <a href="https://www.nbisd.org" target="_blank" rel="noopener" class="schools__resource">
+            <h3>New Braunfels ISD</h3>
+            <p>District website, campus info, enrollment, and boundary maps</p>
+          </a>
+          <a href="https://www.comalisd.org" target="_blank" rel="noopener" class="schools__resource">
+            <h3>Comal ISD</h3>
+            <p>District website, campus info, enrollment, and boundary finder</p>
+          </a>
+          <a href="https://tea.texas.gov" target="_blank" rel="noopener" class="schools__resource">
+            <h3>Texas Education Agency</h3>
+            <p>State-level school data, accountability ratings, and district reports</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background: #000; color: #fff; text-align: center;">
+      <div class="container">
+        <h2>Need Help Finding Homes in a <span class="accent">Specific School Zone</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">If a specific school or district is a priority, I can set up a search filtered to homes within those attendance boundaries.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="/new-braunfels/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Help Finding Homes by School Zone</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I need help finding homes in a specific school zone..." />
+  <Footer />
+</Layout>
+
+<style>
+  .nb-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .nb-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .nb-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .nb-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .nb-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  .nb-page-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 800px;
+  }
+
+  /* Districts */
+  .schools__district {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .schools__district h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .schools__district p {
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .schools__link a {
+    color: #FF1616;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: opacity 0.2s;
+  }
+
+  .schools__link a:hover {
+    opacity: 0.7;
+  }
+
+  /* Info Grid */
+  .schools__info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .schools__info {
+    border-left: 3px solid #FF1616;
+    padding: 1.5rem 2rem;
+    background: #fafafa;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .schools__info h3 {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .schools__info p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  /* Resources */
+  .schools__resources {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .schools__resource {
+    display: block;
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .schools__resource:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .schools__resource h3 {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: #000;
+  }
+
+  .schools__resource:hover h3 {
+    color: #FF1616;
+  }
+
+  .schools__resource p {
+    color: var(--gray);
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .schools__info-grid,
+    .schools__resources {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,258 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
+
+const faqs = [
+  {
+    question: "Is New Braunfels a good place to live?",
+    answer: "New Braunfels consistently ranks among the fastest-growing and most desirable cities in Texas. It offers a combination of Hill Country scenery, river access, strong schools, and proximity to both Austin and San Antonio. Whether it's the right fit depends on your priorities — <a href='/new-braunfels/living-in-new-braunfels/'>read more about what daily life looks like here</a>."
+  },
+  {
+    question: "What are the most popular neighborhoods in New Braunfels?",
+    answer: "Popular neighborhoods vary by buyer type. Gruene and the river area attract buyers who want character and outdoor access. North New Braunfels and communities like Vintage Oaks appeal to families and custom home buyers. The I-35 corridor on the south side offers newer construction at more accessible price points. <a href='/new-braunfels/neighborhoods/'>See the full neighborhood breakdown</a>."
+  },
+  {
+    question: "Where is new construction happening in New Braunfels?",
+    answer: "New construction is concentrated in master-planned communities like Veramendi (north), Meyer Ranch and Homestead (south), and Vintage Oaks (Hill Country). National and regional builders are active across the area with homes ranging from the mid $300Ks to over $1M. <a href='/new-braunfels/new-construction/'>Explore new construction communities</a>."
+  },
+  {
+    question: "What is the commute from New Braunfels to San Antonio?",
+    answer: "San Antonio is approximately 30-40 minutes south on I-35 outside of rush hour. During peak commute times, expect 45-60 minutes depending on your destination within San Antonio. The south side of New Braunfels provides the quickest highway access for SA commuters."
+  },
+  {
+    question: "What is the commute from New Braunfels to Austin?",
+    answer: "Austin is approximately 45-60 minutes north on I-35 under normal conditions. Rush hour and ongoing I-35 construction can extend that to 75+ minutes. If you're commuting to Austin daily, consider whether the drive is sustainable for your lifestyle — or look at a remote/hybrid work arrangement."
+  },
+  {
+    question: "What school districts serve New Braunfels?",
+    answer: "Two main districts serve the area: New Braunfels ISD (central/downtown) and Comal ISD (north, west, and south sides). Which district a home falls in depends on its physical address, not the subdivision or city. Always verify school assignments directly with the district. <a href='/new-braunfels/schools/'>View school district details</a>."
+  },
+  {
+    question: "What is the difference between Gruene and central New Braunfels?",
+    answer: "Gruene is the historic district on the northwest side — known for Gruene Hall, the Guadalupe River, and a mix of older homes and custom builds on larger lots. Central/downtown New Braunfels is more walkable with access to the Comal River, Landa Park, and local shops. Gruene tends to be pricier and more rural in feel, while downtown is more compact and convenient."
+  },
+  {
+    question: "Are there neighborhoods with larger lots in New Braunfels?",
+    answer: "Yes. The Gruene area, properties toward Canyon Lake, and communities like Vintage Oaks offer homes on half-acre to multi-acre lots. North and west of the city tend to have more land options. The I-35 corridor communities typically have smaller lots (5,000-8,000 sq ft) with homes closer together. <a href='/new-braunfels/neighborhoods/'>See neighborhoods by area</a>."
+  },
+  {
+    question: "What should first-time buyers know about New Braunfels?",
+    answer: "Entry-level homes in New Braunfels are primarily found in newer subdivisions along the I-35 corridor and south side of the city, typically in the $250K-$400K range. New construction builder incentives (rate buydowns, closing cost help) can make new builds competitive with resale. Having your own agent — even for new construction — is free to you and ensures someone is on your side."
+  },
+  {
+    question: "Is New Braunfels growing too fast?",
+    answer: "Growth is real and ongoing. The city has invested in infrastructure, road expansions, and services, but some areas are still catching up. Traffic on I-35 and FM 306 can be heavy, and some newer communities are still being built out. That said, the growth is also bringing new restaurants, retail, healthcare, and amenities. <a href='/new-braunfels/living-in-new-braunfels/'>Read about the practical realities of living here</a>."
+  }
+];
+---
+
+<Layout
+  title="New Braunfels FAQ | Common Buyer Questions | Cody Posey Real Estate"
+  description="Answers to the most common questions about buying a home and living in New Braunfels, Texas."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="nb-hero">
+      <div class="nb-hero__overlay"></div>
+      <div class="nb-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/new-braunfels/">New Braunfels</a> <span>/</span> <span>FAQ</span>
+        </nav>
+        <h1>Frequently Asked <span style="color:#FF1616;">Questions</span></h1>
+        <p>Answers to common questions about buying and living in New Braunfels</p>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="section">
+      <div class="container">
+        <div class="faq__list">
+          {faqs.map((faq, i) => (
+            <div class="faq__item" data-faq-index={i}>
+              <button class="faq__question" aria-expanded="false">
+                <span>{faq.question}</span>
+                <svg class="faq__icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </button>
+              <div class="faq__answer">
+                <p set:html={faq.answer} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background: #000; color: #fff; text-align: center;">
+      <div class="container">
+        <h2>Have a Question I <span class="accent">Didn't Cover</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">I'm happy to answer anything about New Braunfels — neighborhoods, market conditions, schools, or the buying process.</p>
+        <a href="#contact" class="btn btn-primary">Ask About New Braunfels</a>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I have a question about New Braunfels..." />
+  <Footer />
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer.replace(/<[^>]*>/g, '')
+      }
+    }))
+  })} />
+</Layout>
+
+<style>
+  .nb-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .nb-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .nb-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .nb-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .nb-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  /* FAQ */
+  .faq__list {
+    max-width: 800px;
+  }
+
+  .faq__item {
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .faq__question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    gap: 1rem;
+  }
+
+  .faq__question span {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #000;
+  }
+
+  .faq__icon {
+    flex-shrink: 0;
+    transition: transform 0.3s;
+    color: #FF1616;
+  }
+
+  .faq__item.open .faq__icon {
+    transform: rotate(180deg);
+  }
+
+  .faq__answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+
+  .faq__item.open .faq__answer {
+    max-height: 500px;
+    padding-bottom: 1.5rem;
+  }
+
+  .faq__answer p {
+    color: var(--gray);
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  .faq__answer a {
+    color: #FF1616;
+    font-weight: 600;
+  }
+
+  .faq__answer a:hover {
+    opacity: 0.7;
+  }
+</style>
+
+<script is:inline>
+  document.querySelectorAll('.faq__question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq__item');
+      const isOpen = item.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.faq__item').forEach(i => i.classList.remove('open'));
+      document.querySelectorAll('.faq__question').forEach(b => b.setAttribute('aria-expanded', 'false'));
+
+      // Toggle current
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>

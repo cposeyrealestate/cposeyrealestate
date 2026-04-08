@@ -1,0 +1,330 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
+---
+
+<Layout
+  title="New Braunfels, TX Real Estate | Cody Posey"
+  description="Explore New Braunfels, Texas — neighborhoods, homes for sale, schools, and lifestyle. Your guide to finding the right home in the Texas Hill Country."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="nb-hero">
+      <div class="nb-hero__overlay"></div>
+      <div class="nb-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <span>New Braunfels</span>
+        </nav>
+        <h1>New <span style="color:#FF1616;">Braunfels</span></h1>
+        <p>Your guide to living, buying, and investing in one of Texas's fastest-growing cities</p>
+      </div>
+    </div>
+
+    <!-- City Intro -->
+    <section class="section nb-intro">
+      <div class="container">
+        <div class="nb-intro__grid">
+          <div class="nb-intro__text">
+            <h2>A City That <span class="accent">Keeps Growing</span></h2>
+            <p>New Braunfels sits between Austin and San Antonio along the I-35 corridor, anchored by the Comal and Guadalupe Rivers. What started as a small German settlement has become one of the most sought-after places to live in Texas — and for good reason.</p>
+            <p>The city offers a rare combination: Hill Country scenery, strong schools, a growing job market within commuting distance of two major metros, and a quality of life that draws families, professionals, and retirees alike.</p>
+            <p>Whether you're relocating from out of state, moving from San Antonio or Austin, or looking for your next home within the area — this section is designed to help you understand what makes New Braunfels different and where you might fit.</p>
+          </div>
+          <div class="nb-intro__stats">
+            <div class="nb-stat">
+              <span class="nb-stat__number">100K+</span>
+              <span class="nb-stat__label">Population</span>
+            </div>
+            <div class="nb-stat">
+              <span class="nb-stat__number">30 min</span>
+              <span class="nb-stat__label">To San Antonio</span>
+            </div>
+            <div class="nb-stat">
+              <span class="nb-stat__number">45 min</span>
+              <span class="nb-stat__label">To Austin</span>
+            </div>
+            <div class="nb-stat">
+              <span class="nb-stat__number">Top 5</span>
+              <span class="nb-stat__label">Fastest Growing TX Cities</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why People Move Here -->
+    <section class="section nb-why" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Why People <span class="accent">Move Here</span></h2>
+          <p>The most common reasons buyers choose New Braunfels</p>
+        </div>
+        <div class="nb-why__grid">
+          <div class="nb-why__card">
+            <h3>Location</h3>
+            <p>Positioned directly between Austin and San Antonio on I-35, with easy access to both metros for work, dining, healthcare, and entertainment.</p>
+          </div>
+          <div class="nb-why__card">
+            <h3>Affordability</h3>
+            <p>More home for your money compared to Austin, with a lower cost of living and no state income tax. Housing options range from starter homes to luxury estates.</p>
+          </div>
+          <div class="nb-why__card">
+            <h3>Quality of Life</h3>
+            <p>Hill Country scenery, river access, historic Gruene, local shops, and a pace of life that balances growth with small-town character.</p>
+          </div>
+          <div class="nb-why__card">
+            <h3>Schools & Families</h3>
+            <p>Two well-regarded school districts serve the area — New Braunfels ISD and Comal ISD — making it a top choice for families with school-age children.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Cards -->
+    <section class="section nb-explore">
+      <div class="container">
+        <div class="section-title">
+          <h2>Explore <span class="accent">New Braunfels</span></h2>
+          <p>Dig deeper into the areas, homes, and lifestyle that matter to you</p>
+        </div>
+        <div class="nb-explore__grid">
+          <a href="/new-braunfels/neighborhoods/" class="nb-explore__card">
+            <h3>Neighborhoods</h3>
+            <p>Understand how the city is laid out — from Gruene to the I-35 corridor — and find the area that fits your lifestyle.</p>
+          </a>
+          <a href="/new-braunfels/homes-for-sale/" class="nb-explore__card">
+            <h3>Homes for Sale</h3>
+            <p>Search current listings in New Braunfels. Filter by price, area, and home type to find what's available now.</p>
+          </a>
+          <a href="/new-braunfels/new-construction/" class="nb-explore__card">
+            <h3>New Construction</h3>
+            <p>Explore builder communities, new developments, and what to know before buying a new build in the area.</p>
+          </a>
+          <a href="/new-braunfels/living-in-new-braunfels/" class="nb-explore__card">
+            <h3>Living Here</h3>
+            <p>What daily life actually looks like — commutes, culture, growth, weather, and who New Braunfels is best for.</p>
+          </a>
+          <a href="/new-braunfels/schools/" class="nb-explore__card">
+            <h3>Schools</h3>
+            <p>An overview of the school districts serving New Braunfels and how attendance boundaries affect your home search.</p>
+          </a>
+          <a href="/new-braunfels/faq/" class="nb-explore__card">
+            <h3>FAQ</h3>
+            <p>Answers to the most common questions buyers ask about moving to and living in New Braunfels.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section nb-cta" style="background: #000; color: #fff; text-align: center;">
+      <div class="container">
+        <h2>Ready to Explore <span class="accent">New Braunfels</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Whether you're just starting your search or ready to schedule showings, I can help you navigate the market and find the right fit.</p>
+        <div class="nb-cta__buttons">
+          <a href="/new-braunfels/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Ask About New Braunfels</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I'd like to learn more about New Braunfels..." />
+  <Footer />
+</Layout>
+
+<style>
+  /* Hero */
+  .nb-hero {
+    position: relative;
+    height: 320px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .nb-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .nb-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .nb-hero__content h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .nb-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  /* Intro */
+  .nb-intro__grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .nb-intro__text p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .nb-intro__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .nb-stat {
+    background: var(--light-gray);
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 8px;
+  }
+
+  .nb-stat__number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #FF1616;
+  }
+
+  .nb-stat__label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--gray);
+    margin-top: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Why Section */
+  .nb-why__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .nb-why__card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .nb-why__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .nb-why__card p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  /* Explore Cards */
+  .nb-explore__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .nb-explore__card {
+    display: block;
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    padding: 2rem;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .nb-explore__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .nb-explore__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: #000;
+  }
+
+  .nb-explore__card:hover h3 {
+    color: #FF1616;
+  }
+
+  .nb-explore__card p {
+    color: var(--gray);
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  /* CTA */
+  .nb-cta__buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .nb-intro__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .nb-why__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .nb-explore__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

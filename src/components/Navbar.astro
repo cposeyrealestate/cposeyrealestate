@@ -3,14 +3,23 @@
 
 <header class="navbar" id="navbar">
   <div class="navbar__inner container">
-    <a href="/" class="navbar__logo"></a>
+    <a href="/" class="navbar__logo">
+      <img src="/images/popby-logo.png" alt="Popby Realty" class="navbar__logo-img" />
+    </a>
 
     <nav class="navbar__nav" id="navMenu">
       <ul class="navbar__links">
         <li><a href="/" class="navbar__link">Home</a></li>
         <li><a href="/properties" class="navbar__link">Home Search</a></li>
         <li><a href="#home-valuation" class="navbar__link">Home Valuation</a></li>
-        <li><a href="#neighborhoods" class="navbar__link">Neighborhoods</a></li>
+        <li class="navbar__dropdown">
+          <a href="#neighborhoods" class="navbar__link">Explore Area</a>
+          <ul class="navbar__sub">
+            <li><a href="/new-braunfels/">New Braunfels</a></li>
+            <li><a href="/new-braunfels/neighborhoods/">Neighborhoods</a></li>
+            <li><a href="/new-braunfels/new-construction/">New Construction</a></li>
+          </ul>
+        </li>
         <li><a href="/blog" class="navbar__link">Blog</a></li>
         <li class="navbar__dropdown">
           <a href="#" class="navbar__link">Resources</a>
