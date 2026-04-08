@@ -1,69 +1,12 @@
 ---
-const blogs = [
-  {
-    title: 'Remote Workers Moving to Hill Country: Tax Impact Decoded',
-    category: 'Lifestyle',
-    date: 'January 30, 2026',
-    img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80',
-    slug: 'remote-workers-hill-country-tax-impact',
-  },
-  {
-    title: 'VA Loans for Hill Country Vets: 2026 Guide',
-    category: 'Buying',
-    date: 'January 29, 2026',
-    img: 'https://images.unsplash.com/photo-1605146769289-440113cc3d00?w=600&q=80',
-    slug: 'va-loans-hill-country-vets-2026',
-  },
-  {
-    title: 'Beat New Builds: Sell Your NB Home Strategically',
-    category: 'Strategic Selling',
-    date: 'January 29, 2026',
-    img: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=600&q=80',
-    slug: 'beat-new-builds-sell-nb-home-strategically',
-  },
-  {
-    title: 'New Construction vs Resale: Hill Country 2026',
-    category: 'Buying',
-    date: 'January 26, 2026',
-    img: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80',
-    slug: 'new-construction-vs-resale-hill-country-2026',
-  },
-  {
-    title: 'New Construction vs Resale: True Cost 2026',
-    category: 'Buying',
-    date: 'January 24, 2026',
-    img: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=600&q=80',
-    slug: 'new-construction-vs-resale-true-cost-2026',
-  },
-  {
-    title: 'New Braunfels 2026: Best Time to Sell Your Home?',
-    category: 'Strategic Selling',
-    date: 'January 23, 2026',
-    img: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?w=600&q=80',
-    slug: 'new-braunfels-2026-best-time-to-sell',
-  },
-  {
-    title: 'Is Creekside Worth the Premium in 2026?',
-    category: 'Lifestyle Change',
-    date: 'January 22, 2026',
-    img: 'https://images.unsplash.com/photo-1676802540678-2dceb1820113?w=600&q=80',
-    slug: 'creekside-worth-premium-2026',
-  },
-  {
-    title: 'New vs Resale Homes: Best Buy in New Braunfels?',
-    category: 'Buying',
-    date: 'January 21, 2026',
-    img: 'https://images.unsplash.com/photo-1605146769289-440113cc3d00?w=600&q=80',
-    slug: 'new-vs-resale-homes-best-buy-new-braunfels',
-  },
-  {
-    title: 'Resale vs New Construction: Where to Sell in 2026',
-    category: 'Strategic Selling',
-    date: 'January 19, 2026',
-    img: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=600&q=80',
-    slug: 'resale-vs-new-construction-where-to-sell-2026',
-  },
-];
+import allPosts from '../data/blog-posts.json';
+const blogs = allPosts.slice(0, 9).map(post => ({
+  title: post.title,
+  category: post.category,
+  date: post.date,
+  img: post.featuredImage,
+  slug: post.slug,
+}));
 ---
 
 <section class="blogs section" id="blog">

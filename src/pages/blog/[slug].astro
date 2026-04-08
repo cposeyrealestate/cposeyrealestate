@@ -1,0 +1,237 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import Footer from '../../components/Footer.astro';
+import blogPosts from '../../data/blog-posts.json';
+
+export function getStaticPaths() {
+  return blogPosts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+---
+
+<Layout
+  title={`${post.title} | Cody Posey Real Estate`}
+  description={post.excerpt.slice(0, 160)}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="post-hero">
+      <div class="post-hero__overlay"></div>
+      <div class="post-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/blog/">Blog</a> <span>/</span> <span>{post.title}</span>
+        </nav>
+        <span class="post-hero__cat">{post.category}</span>
+        <h1>{post.title}</h1>
+        <p class="post-hero__meta">By Cody Posey &nbsp;|&nbsp; {post.date}</p>
+      </div>
+    </div>
+
+    <!-- Featured Image -->
+    <div class="post-image container">
+      <img src={post.featuredImage} alt={post.title} />
+    </div>
+
+    <!-- Post Content -->
+    <article class="post-content section">
+      <div class="container">
+        <div class="post-content__body" set:html={post.content} />
+      </div>
+    </article>
+
+    <!-- Back to Blog -->
+    <section class="section" style="background: var(--light-gray); text-align: center;">
+      <div class="container">
+        <a href="/blog/" class="btn btn-outline-dark">Back to All Posts</a>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I have a question about this article..." />
+  <Footer />
+</Layout>
+
+<style>
+  .post-hero {
+    position: relative;
+    min-height: 320px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding: 2rem 1.5rem;
+  }
+
+  .post-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .post-hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+  }
+
+  .post-hero__cat {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #FF1616;
+    margin-bottom: 1rem;
+  }
+
+  .post-hero__content h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .post-hero__meta {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.85rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.75rem;
+    margin-bottom: 1.5rem;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.4);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  /* Featured Image */
+  .post-image {
+    margin-top: -60px;
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1.5rem;
+  }
+
+  .post-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  }
+
+  /* Post Content */
+  .post-content__body {
+    max-width: 750px;
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 1.85;
+    color: #333;
+  }
+
+  .post-content__body :global(h2) {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    margin: 2.5rem 0 1rem;
+    color: #000;
+  }
+
+  .post-content__body :global(h3) {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin: 2rem 0 0.75rem;
+    color: #000;
+  }
+
+  .post-content__body :global(p) {
+    margin-bottom: 1.25rem;
+  }
+
+  .post-content__body :global(ul),
+  .post-content__body :global(ol) {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+
+  .post-content__body :global(li) {
+    margin-bottom: 0.5rem;
+    list-style: disc;
+  }
+
+  .post-content__body :global(ol li) {
+    list-style: decimal;
+  }
+
+  .post-content__body :global(a) {
+    color: #FF1616;
+    font-weight: 600;
+    transition: opacity 0.2s;
+  }
+
+  .post-content__body :global(a:hover) {
+    opacity: 0.7;
+  }
+
+  .post-content__body :global(blockquote) {
+    border-left: 3px solid #FF1616;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    background: #fafafa;
+    font-style: italic;
+    color: var(--gray);
+  }
+
+  .post-content__body :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+  }
+
+  .post-content__body :global(strong) {
+    color: #000;
+  }
+
+  .post-content__body :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+
+  .post-content__body :global(th),
+  .post-content__body :global(td) {
+    padding: 0.75rem;
+    border: 1px solid var(--light-gray);
+    text-align: left;
+    font-size: 0.9rem;
+  }
+
+  .post-content__body :global(th) {
+    background: #f5f5f5;
+    font-weight: 700;
+  }
+</style>

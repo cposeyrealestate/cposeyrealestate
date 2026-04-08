@@ -1,0 +1,205 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import blogPosts from '../../data/blog-posts.json';
+---
+
+<Layout
+  title="Blog | Cody Posey Real Estate | New Braunfels, TX"
+  description="Real estate insights for New Braunfels and the Texas Hill Country. Market updates, neighborhood guides, buyer and seller strategies."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="blog-hero">
+      <div class="blog-hero__overlay"></div>
+      <div class="blog-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <span>Blog</span>
+        </nav>
+        <h1>The <span style="color:#FF1616;">Blog</span></h1>
+        <p>Insights on buying, selling, and living in the New Braunfels area</p>
+      </div>
+    </div>
+
+    <!-- Blog Grid -->
+    <section class="section">
+      <div class="container">
+        <div class="blog-grid">
+          {blogPosts.map(post => (
+            <article class="blog-card">
+              <a href={`/blog/${post.slug}`} class="blog-card__img-link">
+                <img src={post.featuredImage} alt={post.title} class="blog-card__img" loading="lazy" />
+              </a>
+              <div class="blog-card__body">
+                <span class="blog-card__cat">{post.category}</span>
+                <h3 class="blog-card__title">
+                  <a href={`/blog/${post.slug}`}>{post.title}</a>
+                </h3>
+                <p class="blog-card__excerpt">{post.excerpt.slice(0, 150)}...</p>
+                <p class="blog-card__meta">Cody Posey &nbsp;|&nbsp; {post.date}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .blog-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .blog-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .blog-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .blog-hero__content h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .blog-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  /* Blog Grid */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+  }
+
+  .blog-card__img-link {
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+  }
+
+  .blog-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+
+  .blog-card:hover .blog-card__img {
+    transform: scale(1.05);
+  }
+
+  .blog-card__body {
+    padding: 1.25rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blog-card__cat {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #FF1616;
+    margin-bottom: 0.5rem;
+  }
+
+  .blog-card__title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+  }
+
+  .blog-card__title a {
+    color: #000;
+    transition: color 0.2s;
+  }
+
+  .blog-card__title a:hover {
+    color: #FF1616;
+  }
+
+  .blog-card__excerpt {
+    font-size: 0.8rem;
+    color: var(--gray);
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+    flex: 1;
+  }
+
+  .blog-card__meta {
+    font-size: 0.7rem;
+    color: #999;
+    margin-top: auto;
+  }
+
+  @media (max-width: 900px) {
+    .blog-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
