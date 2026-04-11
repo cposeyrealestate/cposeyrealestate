@@ -1,0 +1,217 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import Footer from '../../components/Footer.astro';
+
+const terms = [
+  { term: 'Pre-Approval', definition: "A mortgage lender's written statement that the approved person(s) will be granted a loan for a set amount pending underwriting approval. A pre-approval letter can strengthen a buyer's offer, making it more attractive to a seller." },
+  { term: "Buyer's Agent", definition: 'A buyer\'s agent is an agent who represents the interests of the homebuyer throughout the transaction.' },
+  { term: 'Listing Agent', definition: 'A listing agent is an agent who represents the interests of the seller in the transaction.' },
+  { term: 'Listing', definition: 'The description of the property for sale. A listing typically includes information about a property, like square footage, number of beds and bathrooms, price, and photos.' },
+  { term: 'Offer', definition: 'A formal proposal that a buyer wants to purchase a home at a specified price and terms.' },
+  { term: 'Private Mortgage Insurance (PMI)', definition: "A monthly insurance payment that may be required if a buyer is unable to put down 20 percent of the home's purchase price. PMI protects lenders against loss if a borrower is unable to make the loan payments." },
+  { term: 'Sales Contract', definition: 'A legal agreement between a buyer and seller to purchase a property, for a specified price and terms, for a limited time period. When the seller accepts, or a counteroffer is presented and accepted, it becomes a legally binding sales contract.' },
+  { term: 'Earnest Money', definition: 'Money offered in "good faith" to show that a buyer is serious about purchasing a property.' },
+  { term: 'Option Period', definition: 'A set amount of days that the buyer has the "option" to back out of a home purchase. An option fee is paid if the buyer wants an option period, sometimes called an inspection period.' },
+  { term: 'Down Payment', definition: 'The amount of money a home buyer puts down toward a home purchase. This amount is separate from the loan amount.' },
+  { term: 'Home Inspection', definition: 'During the option period, the buyer hires a home inspector to check out the property for any issues that the home may have.' },
+  { term: 'Appraisal', definition: "An unbiased evaluation of what a property is worth. A home appraisal can impact the amount of money a lender is willing to loan for a specific property." },
+  { term: "Seller's Concessions", definition: "Sellers may choose to offer concessions to help cover closing costs or in lieu of making repairs to the home." },
+  { term: 'Closing Costs', definition: 'Fees associated with completing a real estate transaction. These fees may include fees for attorneys, document creation, credit reports, or deed recording.' },
+  { term: 'Contingencies', definition: "Conditions that must be met before the close of a sale. In some cases, a home buyer will make a purchase contract contingent on the sale of their current home." },
+  { term: 'HOA', definition: "The Homeowner's Association. This is the organization that makes and enforces rules in a neighborhood." },
+  { term: 'Mortgage', definition: 'The monthly payment a homebuyer makes on their loan balance.' },
+  { term: 'Home Warranty', definition: 'A warranty, often purchased by the sellers for the buyer, that covers issues that may come up with the home after the sale.' },
+  { term: 'Title Insurance', definition: 'A type of insurance that protects the home buyer and lender against any unknown liens or debts that may be placed against the property.' },
+  { term: 'Final Walk-Through', definition: 'The time that a buyer last inspects the property before the closing date to ensure everything is in order.' },
+  { term: "Seller's Disclosure", definition: 'A state mandated document the seller completes that lists any issues that the owner may be aware of with the property.' },
+  { term: 'Closing', definition: 'The last step in the homebuying process. This is when the funds are transferred, paperwork is signed, and the sale is completed.' },
+];
+---
+
+<Layout
+  title="Common Real Estate Terms | Buyer's Guide | Cody Posey Real Estate"
+  description="A glossary of common real estate terms every home buyer should know. Understand the language before you sign."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="sub-hero">
+      <div class="sub-hero__overlay"></div>
+      <div class="sub-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/buyers-guide">Buyer's Guide</a> <span>/</span> <span>Real Estate Terms</span>
+        </nav>
+        <h1>Common Real Estate <span style="color:#FF1616;">Terms</span></h1>
+        <p>Know the language before you sign on the dotted line</p>
+      </div>
+    </div>
+
+    <!-- Terms -->
+    <section class="section">
+      <div class="container">
+        <p class="page-intro">The real estate industry is known for having its own lingo. Before taking the plunge into homebuying, make sure you're familiar with these terms.</p>
+
+        <div class="terms-grid">
+          {terms.map((t) => (
+            <div class="term-card">
+              <h3>{t.term}</h3>
+              <p>{t.definition}</p>
+            </div>
+          ))}
+        </div>
+
+        <p class="terms-note">There are a lot of terms that you will come across during a real estate transaction. Don't worry — your REALTOR&reg; will be by your side to explain all of your questions and guide you through the process.</p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="sub-cta">
+      <div class="sub-cta__overlay"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <h2>Have <span class="accent">Questions</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Real estate doesn't have to be confusing. Reach out and I'll explain everything in plain language.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="#contact" class="btn btn-primary">Let's Connect</a>
+          <a href="/buyers-guide" class="btn btn-outline">Back to Buyer's Guide</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I have some questions about the home buying process..." />
+  <Footer />
+</Layout>
+
+<style>
+  .sub-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .sub-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .sub-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .sub-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .sub-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .page-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 800px;
+    text-align: center;
+    margin: 0 auto 3rem;
+    font-weight: 600;
+  }
+
+  .terms-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .term-card {
+    background: #fafafa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-top: 3px solid #FF1616;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .term-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  }
+
+  .term-card h3 {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.4rem;
+  }
+
+  .term-card p {
+    color: var(--gray);
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .terms-note {
+    text-align: center;
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-top: 2.5rem;
+    font-style: italic;
+  }
+
+  .sub-cta {
+    position: relative;
+    padding: 5rem 0;
+    color: #fff;
+    text-align: center;
+    background-image: url('/images/testimonials-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #333;
+  }
+
+  .sub-cta__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+  }
+
+  .sub-cta h2 { color: #fff; }
+
+  @media (max-width: 900px) {
+    .terms-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .terms-grid { grid-template-columns: 1fr; }
+    .sub-cta { background-attachment: scroll; }
+  }
+</style>

@@ -1,0 +1,514 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+
+const testimonials = [
+  {
+    name: 'Brian Tilton',
+    role: 'Home Buyer',
+    quote: "I recently worked with Cody on a home purchase that just closed, and I can confidently say he stands out as one of the best agents I've partnered with in my 30+ years in the mortgage industry. Having spent much of that time in executive roles overseeing large mortgage operations, and now as the owner of a mortgage company, I've seen firsthand what separates good agents from truly exceptional ones — and Cody is definitely in the latter category. He consistently demonstrated genuine care for his clients, always making decisions based on their best interests rather than just getting the deal done. His communication throughout the process was excellent — clear, proactive, and timely — which made navigating this purchase far smoother than it could have been. This transaction did present some challenges along the way, but instead of becoming reactionary, Cody approached every issue thoughtfully and strategically. Working together, we were able to collaborate on effective solutions and ultimately get the homebuyers into their dream home. I strongly recommend Cody to anyone seeking a knowledgeable real estate professional with true integrity. He's someone you can trust to guide you through even the most complex transactions.",
+    initials: 'BT',
+    date: '6 weeks ago',
+  },
+  {
+    name: 'David Goad',
+    role: 'Verified Client',
+    quote: 'Cody is exceptional at his craft. He is also very in tune with technology and his local market. If you are looking to buy and sell and he is in your area I highly recommend giving him a call.',
+    initials: 'DG',
+    date: '10 weeks ago',
+  },
+  {
+    name: 'Michelle Maloney',
+    role: 'Google Local Guide',
+    quote: "Cody Posey is the most knowledgeable real estate agent in Texas! His knowledge of the market is top notch, but beyond that he knows how to market your home to buyers to get it SOLD! As a US Veteran, he has a servant heart matched only by his precision and attention to detail, which are the qualities I look for and admire in a realtor. I can't recommend Cody enough!! I wish I could give him 10 stars!",
+    initials: 'MM',
+    date: '11 weeks ago',
+  },
+  {
+    name: 'Kori Dvorak',
+    role: 'Home Buyer',
+    quote: 'We really enjoyed working with Cody! He was personable, knowledgeable, and to the point. He was honest and realistic about the market while also staying positive. Would definitely recommend!',
+    initials: 'KD',
+    date: '30 weeks ago',
+  },
+  {
+    name: 'Donna Davi',
+    role: 'Verified Client',
+    quote: 'I had several real estate questions which gave me a lot of anxiety. I saw one of Cody Posey videos which I found to be very informative, easy to understand. I reached out to him. Cody responded immediately. He was selfless with his time, which I appreciated. He answered my questions, he was patient. I highly recommend him. Thank you Cody!!',
+    initials: 'DD',
+    date: '30 weeks ago',
+  },
+  {
+    name: 'Mara',
+    role: 'Google Local Guide',
+    quote: "We had the best experience with Cody! He took his time, even spontaneously on the same day to help us finding our home. Everything went smoothly and he took care of the whole process and still after everything was signed and we moved in he's still there to help us with any questions. We can highly recommend him. Thank you!",
+    initials: 'M',
+    date: '35 weeks ago',
+  },
+  {
+    name: 'Shannon Cheatham',
+    role: 'Google Local Guide',
+    quote: 'Cody was a pleasure to work with. He went above and beyond and exemplifies true customer service! We would highly recommend him if you are selling or buying a home! He helped in many different ways to ensure EVERYTHING was perfect. Thank you Cody for going above and beyond expectations!',
+    initials: 'SC',
+    date: '35 weeks ago',
+  },
+  {
+    name: 'Marla Taase',
+    role: 'Verified Client',
+    quote: "Working with Cody was great!! I am not in a position to purchase yet, but Cody still treated me with the same level of care and attention as if I were buying a home! He helped me find a great house to lease and took the time to help, all within my timeline. He's knowledgeable, personable, and quick to respond.",
+    initials: 'MT',
+    date: '36 weeks ago',
+  },
+  {
+    name: 'Rick Gunnybeard',
+    role: 'Google Local Guide',
+    quote: 'Mr Posey was very reliable, flexible and super friendly! Working with him was great! He made it so easy for us to find a new home, we are so thankful to have found him and work with him! Great Realtor - I recommend choosing him!',
+    initials: 'RG',
+    date: '36 weeks ago',
+  },
+  {
+    name: 'Megan Dupuis',
+    role: 'Home Buyer',
+    quote: 'I would highly recommend Cody during your home or rental search. He is extremely knowledgeable and goes above and beyond to get you the best deal. He just got me set up in a rental and I plan to go back to him when I buy next year!',
+    initials: 'MD',
+    date: '46 weeks ago',
+  },
+  {
+    name: "Shasta's Glow",
+    role: 'Home Buyer',
+    quote: 'God truly blessed us when he sent Cody Posey our way when we were looking for our new home. He truly pays attention to what you want, need, and everything in between. He offered great insight so that we could make the best decision financially for our family. He worked with us from out of state and called and texted often to keep us updated on everything. He is your guy trust me.',
+    initials: 'SG',
+    date: '48 weeks ago',
+  },
+  {
+    name: 'Greg Van Leer',
+    role: 'Home Buyer',
+    quote: "Cody has always been a pleasure to work with. He has an outstanding knowledge of the home buying process. He also will go above and beyond for anyone who works with him. He will not only inspect the home thoroughly but he will tell you what's needed and not needed before purchase. He is also one of the most honest and hardest working persons I've ever met. I look forward to working with him on multiple properties to come!",
+    initials: 'GV',
+    date: '50 weeks ago',
+  },
+  {
+    name: 'Aaron H',
+    role: 'Google Local Guide',
+    quote: "On the ball! Cody helped me sort out a property tax issue and uncovered that my mortgage company was overcharging me for the past few years. In just a few hours he was able to get past the road blocks that I encountered and even was responsive well into the evening hours as to what steps I needed to take. Because of his help, we were able to enroll our child into a better after school program which we will reap the benefits of for years to come! Cody is my first call for any and everything home related!",
+    initials: 'AH',
+    date: 'Mar 2025',
+  },
+  {
+    name: 'Anna Chandler',
+    role: 'Verified Client',
+    quote: 'Super great to work with.',
+    initials: 'AC',
+    date: 'Mar 2025',
+  },
+  {
+    name: 'Ferrol Bell',
+    role: 'New Construction Buyer',
+    quote: "Cody was phenomenal from start to finish. Our home buying process went extremely fast and felt like a whirlwind but Cody handled it all knowing how hectic our schedules. He even caught that the builders gutter crew installed the gutters improperly. He's more than willing to go above and beyond for any of his clients and once it's all said and done I'm sure you'll feel like you gained a new family member. Thanks again, Cody — The Bell Family",
+    initials: 'FB',
+    date: 'Mar 2025',
+  },
+  {
+    name: 'Cesar Bartolo',
+    role: 'Home Buyer',
+    quote: "I had the pleasure of working with Cody during the process, and I couldn't have asked for a better experience. From the very beginning, Cody was incredibly professional, knowledgeable, and attentive to my needs. He took the time to understand what I was looking for in a home and provided excellent guidance throughout every step of the journey. What really stood out was Cody's commitment to making sure I felt comfortable and informed. He was always available to answer questions, provided great advice, and helped me navigate any challenges that came up. I highly recommend Cody to anyone looking for a trustworthy, reliable, and dedicated realtor. He goes above and beyond to ensure his clients have a smooth and successful experience. I'm grateful for all his hard work and would definitely work with him again in the future!",
+    initials: 'CB',
+    date: 'Mar 2025',
+  },
+  {
+    name: 'Daisy Lopez',
+    role: 'Relocation Buyer',
+    quote: 'Hands down the most AMAZING realtor to work with. Coming from California to Texas was the best decision we made, especially with Cody on our side. His work ethics is highly visible. His hospitality and knowledge were incredible. We spent a weekend looking at homes all over San Antonio and fell in love with our dream home in Garden Ridge. Not one question we had did Cody leave unanswered. I will say Cody has gone above and beyond not only as our Realtor but now a friend.',
+    initials: 'DL',
+    date: 'Mar 2025',
+  },
+  {
+    name: 'Joe Espinoza',
+    role: 'Home Seller',
+    quote: 'We enjoyed working with Cody. We appreciated his guidance, patience during the process of the sale. He is very professional and detailed my family and I recommend him highly. Thank you Cody. — Gloria DeLaCerdaEspinoza & Family',
+    initials: 'JE',
+    date: 'Feb 2025',
+  },
+  {
+    name: 'Chance Alwin',
+    role: 'Verified Client',
+    quote: "Cody's professionalism and expertise made this transaction seamless. He brings a high level of communication and energy and is always willing to go the extra mile to serve his clients at the highest level. I would highly recommend utilizing Cody for your future real estate needs.",
+    initials: 'CA',
+    date: 'Feb 2025',
+  },
+  {
+    name: 'Eric McNamara',
+    role: 'Home Buyer & Seller',
+    quote: "Cody is an awesome realtor. We wanted to work with him after he did an amazing job with selling my in-laws house. He was always responsive and gave guidance to make the selling process as simple as possible. Now my mom has him as her realtor to both buy and sell. If you're reading reviews then you might be on the fence or just want to make sure Cody lives up to all the hype. He does. Just let Cody take care of you.",
+    initials: 'EM',
+    date: 'Jan 2025',
+  },
+  {
+    name: 'Brad & Amaya Donnelly',
+    role: 'Home Buyer',
+    quote: "Cody was absolutely phenomenal, dealing with an out of state title company. If your looking for a man that knows the law that has what seems to be an endless supply of knowledge, to an individual that will fight for you from the beginning to the end. Cody Posey is the agent everyone looks for but can never seem to find. I highly recommend working with Cody in any situation.",
+    initials: 'BD',
+    date: 'Nov 2024',
+  },
+  {
+    name: 'Marjorie Herbert',
+    role: 'Home Buyer',
+    quote: 'Cody Posey is an excellent realtor who puts his clients needs before anything else. He worked with me and my son and daughter-in-law to find a house that had a room to accommodate my baby grand piano. He spent numerous weekends patiently showing us multiple properties that would meet our needs. Finally he found the perfect home for me in a gated community for people over 55 years of age. He is warm, friendly and kind. I have recommended him to others and would go to him if seeking another property in New Braunfels or the surrounding areas.',
+    initials: 'MH',
+    date: 'Oct 2024',
+  },
+  {
+    name: 'Mike McCown',
+    role: 'Home Inspector',
+    quote: "I've had the pleasure of working with Cody as the home inspector for mutual clients navigating the home purchase process. In all of my interactions with him, he has consistently shown all of the qualities that make for an exceptional Realtor. High integrity, excellent communication skills, relentless work ethic, and a passion for taking care of his clients by prioritizing their needs, protecting their interests, and educating them throughout the transaction. I highly recommend Cody to anyone looking for a reliable and professional Realtor.",
+    initials: 'MC',
+    date: 'Sep 2024',
+  },
+  {
+    name: 'Gregory Beelek',
+    role: 'Home Seller',
+    quote: "Cody was always there to answer our questions and help guide us with the biggest change in our life and the sale of the first home we ever owned. When we needed to find services to get our home ready to sell, Cody had great recommendations that we found trustworthy and timely. It felt like he worked tirelessly and was a huge part of getting us under contract within 6 weeks of us listing our home. He was very respectful and cared so much that we recommended him to our daughter when she and her husband were ready to sell their home also. I hope anyone getting ready to sell their home is able to find a great partner like Cody was for us.",
+    initials: 'GB',
+    date: 'Aug 2024',
+  },
+  {
+    name: 'Ginger Browning',
+    role: 'Fellow Agent',
+    quote: 'I had the pleasure of working with Cody on the opposite side of a transaction. I represented the seller and he represented the buyer. He was professional and kind throughout the transaction. His ability to work toward a common goal that benefited everyone while truly fulfilling his duties to his client was very refreshing.',
+    initials: 'GB',
+    date: 'Aug 2024',
+  },
+  {
+    name: 'Rene Paez',
+    role: 'Out-of-State Agent',
+    quote: "Had a great experience using Cody as my agent. I'm an agent in another state but wanted to make sure I used someone local that knew the area well. Cody didn't disappoint and was able to educate me on all the differences in TX compared to other states. I highly recommend him.",
+    initials: 'RP',
+    date: 'Jul 2024',
+  },
+  {
+    name: 'David Abrahams',
+    role: 'Google Local Guide',
+    quote: "Cody is conscientious, hard-working and passionate about finding the right property for his clients. He listens well, and works relentlessly until his client's needs have been fully met. There is no one better I would recommend for real estate assistance in New Braunfels and the surrounding area!",
+    initials: 'DA',
+    date: 'May 2024',
+  },
+];
+
+const REVIEWS_PER_PAGE = 6;
+const totalPages = Math.ceil(testimonials.length / REVIEWS_PER_PAGE);
+---
+
+<Layout
+  title="Testimonials | Cody Posey Real Estate | New Braunfels, TX"
+  description="Read what clients say about working with Cody Posey — a New Braunfels REALTOR dedicated to educating, serving, and delivering results. 5.0 stars from 29 Google Reviews."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="testi-hero">
+      <div class="testi-hero__overlay"></div>
+      <div class="testi-hero__content">
+        <h1>Testimonials</h1>
+      </div>
+    </div>
+
+    <!-- Reviews with Pagination -->
+    <section class="testi-section">
+      <div class="container">
+        <div class="testi-list" id="testiList">
+          {testimonials.map((t, i) => (
+            <div class="testi-item" data-review-index={i} style={i >= REVIEWS_PER_PAGE ? 'display:none;' : ''}>
+              <div class="testi-item__icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="#fff">
+                  <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/>
+                </svg>
+              </div>
+              <blockquote class="testi-item__quote">&ldquo;{t.quote}&rdquo;</blockquote>
+              <button class="testi-item__readmore" aria-expanded="false">READ MORE &#9662;</button>
+              <div class="testi-item__name">&mdash; {t.name.toUpperCase()}</div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Pagination -->
+        <div class="testi-pagination" id="testiPagination">
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              class={`testi-pagination__btn ${i === 0 ? 'testi-pagination__btn--active' : ''}`}
+              data-page={i}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="testi-cta">
+      <div class="testi-cta__overlay"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <h2>Ready to Get <span class="accent">Started</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Whether you're buying, selling, or just have questions about the New Braunfels market &mdash; I'm here to help.</p>
+        <a href="#contact" class="btn btn-outline">Let's Connect</a>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I'd like to work with Cody..." />
+  <Footer />
+</Layout>
+
+<style>
+  /* Hero */
+  .testi-hero {
+    position: relative;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+    background-image: url('/images/testimonials-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #333;
+  }
+
+  .testi-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+  }
+
+  .testi-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .testi-hero__content h1 {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* Testimonials Section */
+  .testi-section {
+    background: #fff;
+    padding: 4rem 0;
+  }
+
+  .testi-list {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .testi-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .testi-item:last-child {
+    border-bottom: none;
+  }
+
+  /* Red quote circle */
+  .testi-item__icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #FF1616;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  /* Quote text — collapsed by default, show first 200 chars */
+  .testi-item__quote {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.8;
+    font-style: normal;
+    max-width: 650px;
+    overflow: hidden;
+    max-height: 5.4em;
+    transition: max-height 0.4s ease;
+  }
+
+  .testi-item.expanded .testi-item__quote {
+    max-height: 1000px;
+  }
+
+  /* Read More button */
+  .testi-item__readmore {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #333;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #333;
+    cursor: pointer;
+    margin-top: 1rem;
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .testi-item__readmore:hover {
+    color: #FF1616;
+    border-color: #FF1616;
+  }
+
+  .testi-item.expanded .testi-item__readmore {
+    display: none;
+  }
+
+  /* Reviewer name */
+  .testi-item__name {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #333;
+    margin-top: 1.5rem;
+  }
+
+  /* Pagination */
+  .testi-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .testi-pagination__btn {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #e0e0e0;
+    border-radius: 50%;
+    background: #fff;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #333;
+  }
+
+  .testi-pagination__btn:hover {
+    border-color: #FF1616;
+    color: #FF1616;
+  }
+
+  .testi-pagination__btn--active {
+    background: #FF1616;
+    border-color: #FF1616;
+    color: #fff;
+  }
+
+  .testi-pagination__btn--active:hover {
+    color: #fff;
+  }
+
+  /* CTA Parallax */
+  .testi-cta {
+    position: relative;
+    padding: 5rem 0;
+    color: #fff;
+    text-align: center;
+    background-image: url('/images/testimonials-hero.jpg');
+    background-size: cover;
+    background-position: center bottom;
+    background-attachment: fixed;
+    background-color: #333;
+  }
+
+  .testi-cta__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .testi-cta h2 {
+    color: #fff;
+  }
+
+  @media (max-width: 600px) {
+    .testi-cta {
+      background-attachment: scroll;
+    }
+
+    .testi-item__icon {
+      width: 80px;
+      height: 80px;
+    }
+
+    .testi-item__icon svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .testi-hero {
+      height: 280px;
+    }
+  }
+</style>
+
+<script is:inline>
+  const REVIEWS_PER_PAGE = 6;
+  const items = document.querySelectorAll('.testi-item');
+  const buttons = document.querySelectorAll('.testi-pagination__btn');
+
+  function showPage(pageIndex) {
+    const start = pageIndex * REVIEWS_PER_PAGE;
+    const end = start + REVIEWS_PER_PAGE;
+
+    items.forEach((item, i) => {
+      if (i >= start && i < end) {
+        item.style.display = 'flex';
+        item.classList.remove('expanded');
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    buttons.forEach(btn => {
+      const active = parseInt(btn.dataset.page) === pageIndex;
+      btn.classList.toggle('testi-pagination__btn--active', active);
+    });
+
+    document.querySelector('.testi-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Read More toggle
+  document.querySelectorAll('.testi-item__readmore').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.closest('.testi-item')?.classList.add('expanded');
+    });
+  });
+
+  // Pagination
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      showPage(parseInt(btn.dataset.page));
+    });
+  });
+</script>

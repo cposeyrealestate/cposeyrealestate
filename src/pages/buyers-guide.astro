@@ -1,0 +1,244 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+
+const sections = [
+  {
+    title: 'The Home Buying Process',
+    description: 'A step-by-step walkthrough from finding an agent to getting your keys on closing day.',
+    href: '/buyers-guide/home-buying-process',
+    icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>`,
+  },
+  {
+    title: 'Why Work with a REALTOR\u00AE',
+    description: 'Learn why partnering with a licensed REALTOR\u00AE gives you a major advantage in the home buying process.',
+    href: '/buyers-guide/why-use-a-realtor',
+    icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>`,
+  },
+  {
+    title: 'Mortgage Checklist',
+    description: 'The documents and information you\'ll need to provide your lender to get pre-approved for a home loan.',
+    href: '/buyers-guide/mortgage-checklist',
+    icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
+  },
+  {
+    title: 'Common Real Estate Terms',
+    description: 'A glossary of the most common terms you\'ll encounter during a real estate transaction.',
+    href: '/buyers-guide/real-estate-terms',
+    icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>`,
+  },
+  {
+    title: 'New Braunfels Utility Providers',
+    description: 'Contact information for electric, water, sewer, gas, trash, internet, and phone providers in the area.',
+    href: '/buyers-guide/utility-providers',
+    icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
+  },
+];
+---
+
+<Layout
+  title="Buyer's Guide | New Braunfels Home Buying | Cody Posey Real Estate"
+  description="Your complete guide to buying a home in New Braunfels, TX. Learn the home buying process, mortgage checklist, common real estate terms, and local utility providers."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="bg-hero">
+      <div class="bg-hero__overlay"></div>
+      <div class="bg-hero__content">
+        <h1>Buyer's <span style="color:#FF1616;">Guide</span></h1>
+        <p>Everything you need to know before buying a home in New Braunfels &amp; the surrounding Hill Country area</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="bg-intro">Buying a home is one of the biggest financial decisions you'll make. Whether you're a first-time buyer or have been through the process before, having the right information upfront can make all the difference. Explore the guides below to get prepared.</p>
+      </div>
+    </section>
+
+    <!-- Section Cards -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="bg-cards">
+          {sections.map((s) => (
+            <a href={s.href} class="bg-card">
+              <div class="bg-card__icon" set:html={s.icon} />
+              <h3>{s.title}</h3>
+              <p>{s.description}</p>
+              <span class="bg-card__link">Learn More &rarr;</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-cta">
+      <div class="bg-cta__overlay"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <h2>Ready to Start Your <span class="accent">Home Search</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Whether you're just starting to think about buying or you're ready to tour homes this weekend — I'm here to guide you every step of the way.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="/home-search/listings" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Let's Connect</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I'm interested in buying a home in the New Braunfels area..." />
+  <Footer />
+</Layout>
+
+<style>
+  /* Hero */
+  .bg-hero {
+    position: relative;
+    height: 320px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .bg-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .bg-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .bg-hero__content h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .bg-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+    max-width: 550px;
+    margin: 0 auto;
+  }
+
+  /* Intro */
+  .bg-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 750px;
+    text-align: center;
+    margin: 0 auto;
+    font-weight: 600;
+  }
+
+  /* Cards */
+  .bg-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .bg-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    padding: 2.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: center;
+  }
+
+  .bg-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+  }
+
+  .bg-card__icon {
+    margin: 0 auto 1.25rem;
+  }
+
+  .bg-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.75rem;
+    color: #000;
+  }
+
+  .bg-card p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    flex-grow: 1;
+  }
+
+  .bg-card__link {
+    display: inline-block;
+    margin-top: 1.25rem;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #FF1616;
+    transition: letter-spacing 0.2s;
+  }
+
+  .bg-card:hover .bg-card__link {
+    letter-spacing: 0.14em;
+  }
+
+  /* CTA Parallax */
+  .bg-cta {
+    position: relative;
+    padding: 5rem 0;
+    color: #fff;
+    text-align: center;
+    background-image: url('/images/testimonials-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #333;
+  }
+
+  .bg-cta__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+  }
+
+  .bg-cta h2 {
+    color: #fff;
+  }
+
+  @media (max-width: 900px) {
+    .bg-cards {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .bg-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .bg-cta {
+      background-attachment: scroll;
+    }
+  }
+</style>

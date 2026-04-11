@@ -1,0 +1,250 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout
+  title="The Home Buying Process | Buyer's Guide | Cody Posey Real Estate"
+  description="A step-by-step guide to buying a home in New Braunfels, TX — from finding a REALTOR to closing day."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="sub-hero">
+      <div class="sub-hero__overlay"></div>
+      <div class="sub-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/buyers-guide">Buyer's Guide</a> <span>/</span> <span>Home Buying Process</span>
+        </nav>
+        <h1>The Home Buying <span style="color:#FF1616;">Process</span></h1>
+        <p>A step-by-step overview from start to keys in hand</p>
+      </div>
+    </div>
+
+    <!-- Steps -->
+    <section class="section">
+      <div class="container">
+        <p class="page-intro">Buying a home can feel overwhelming, but it doesn't have to be. Here's a clear breakdown of what to expect at each stage of the process. Having a trusted REALTOR&reg; by your side makes every step smoother.</p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step__number">1</div>
+            <div class="step__content">
+              <h3>Find a REALTOR&reg; You Can Trust</h3>
+              <p>There's no commitment required on your part for the initial meeting. It will be educational and help you identify your next steps. A good agent will guide you through the entire process and advocate for your best interests.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step__number">2</div>
+            <div class="step__content">
+              <h3>Obtain Financial Pre-Qualification</h3>
+              <p>Your real estate agent will assist you in the pre-qualification process by connecting you with lenders and guiding you through the necessary documents. This step clarifies your budget and strengthens your offer.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step__number">3</div>
+            <div class="step__content">
+              <h3>Select &amp; View Properties</h3>
+              <p>Begin touring homes in your price range and desired location. Narrow down your preferences, such as size, style, and neighborhood. Your agent will set up a customized search based on your criteria.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step__number">4</div>
+            <div class="step__content">
+              <h3>Make an Offer</h3>
+              <p>Once you find a home you like, work with your agent to submit a competitive offer with terms and price. You may include earnest money, an option fee, and an option for the right to back out during the inspection period. The seller may accept, counter, or reject your offer.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step__number">5</div>
+            <div class="step__content">
+              <h3>Accept the Contract</h3>
+              <p>After your offer is accepted, review the terms and conditions carefully. Work with your agent or attorney to ensure you're comfortable before signing. Complete inspections and remove contingencies during the option period.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step__number">6</div>
+            <div class="step__content">
+              <h3>Complete Mortgage Application</h3>
+              <p>Submit your full mortgage application to the lender, providing all required financial documents. This finalizes your loan approval and locks in your interest rate. The lender will order a credit report, appraisal, and verifications.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step__number">7</div>
+            <div class="step__content">
+              <h3>Final Details</h3>
+              <p>Complete paperwork, sign final loan documents, do a final walk-through, and confirm closing arrangements before receiving your keys. Contact the title company to coordinate the closing.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step__number">8</div>
+            <div class="step__content">
+              <h3>Closing Day</h3>
+              <p>This is the transfer of funds and ownership. Sign the final paperwork, pay closing costs, and receive the keys to your new home. Congratulations — you're now a homeowner!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="sub-cta">
+      <div class="sub-cta__overlay"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <h2>Ready to Get <span class="accent">Started</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">I'll walk you through every step and make sure you feel confident from start to finish.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="#contact" class="btn btn-primary">Let's Connect</a>
+          <a href="/buyers-guide" class="btn btn-outline">Back to Buyer's Guide</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I'm ready to start the home buying process..." />
+  <Footer />
+</Layout>
+
+<style>
+  .sub-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .sub-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .sub-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .sub-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .sub-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .page-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 800px;
+    text-align: center;
+    margin: 0 auto 3rem;
+    font-weight: 600;
+  }
+
+  .steps {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .step {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  .step__number {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #FF1616;
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step__content h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.4rem;
+  }
+
+  .step__content p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .sub-cta {
+    position: relative;
+    padding: 5rem 0;
+    color: #fff;
+    text-align: center;
+    background-image: url('/images/testimonials-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #333;
+  }
+
+  .sub-cta__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+  }
+
+  .sub-cta h2 { color: #fff; }
+
+  @media (max-width: 600px) {
+    .step {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .sub-cta { background-attachment: scroll; }
+  }
+</style>
