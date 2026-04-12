@@ -1,0 +1,82 @@
+// Raw HTML endpoint for IDX Broker Wrappers → Includes → Footer URL
+// Injects scripts into every IDX page
+export function GET() {
+  const html = `<script>
+(function(){
+  function shortPrice(text) {
+    var clean = text.replace(/[^0-9.]/g, '');
+    var num = parseFloat(clean);
+    if (isNaN(num) || num === 0) return text;
+    if (num >= 1000000) {
+      var m = num / 1000000;
+      return '$' + (m >= 10 ? m.toFixed(1) : m.toFixed(2)).replace(/\\.?0+$/, '') + 'M';
+    }
+    if (num >= 1000) {
+      var k = Math.round(num / 1000);
+      return '$' + k + 'K';
+    }
+    return '$' + num.toLocaleString();
+  }
+
+  function reformatPins() {
+    var els = document.querySelectorAll('.leaflet-label, .leaflet-tooltip');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      var txt = el.textContent.trim();
+      if (txt.charAt(0) === '$' && txt.indexOf(',') !== -1 && !el.getAttribute('data-short')) {
+        el.textContent = shortPrice(txt);
+        el.setAttribute('data-short', '1');
+      }
+    }
+  }
+
+  function hideElements() {
+    var main = document.getElementById('IDX-main');
+    if (main) {
+      var children = main.children;
+      for (var i = 0; i < children.length; i++) {
+        var child = children[i];
+        if (child.tagName === 'DIV' && !child.id && !child.className &&
+            child.textContent.indexOf('Data services') !== -1) {
+          child.style.display = 'none';
+        }
+      }
+    }
+    var attr = document.querySelectorAll('.leaflet-control-attribution');
+    for (var j = 0; j < attr.length; j++) {
+      attr[j].style.display = 'none';
+    }
+    var nav = document.getElementById('global-navbar');
+    if (nav) nav.style.display = 'none';
+    var footer = document.getElementById('global-footer');
+    if (footer) footer.style.display = 'none';
+  }
+
+  setInterval(function() {
+    reformatPins();
+    hideElements();
+  }, 800);
+
+  var mapEl = document.getElementById('IDX-map');
+  if (mapEl) {
+    new MutationObserver(function() {
+      setTimeout(function() {
+        reformatPins();
+        hideElements();
+      }, 100);
+    }).observe(mapEl, { childList: true, subtree: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', hideElements);
+  } else {
+    hideElements();
+  }
+})();
+<` + `/script>`;
+
+
+  return new Response(html, {
+    headers: { 'Content-Type': 'text/html' },
+  });
+}
