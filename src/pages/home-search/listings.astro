@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
-import MapSearch from '../../components/MapSearch.astro';
 import Footer from '../../components/Footer.astro';
 import ContactForm from '../../components/ContactForm.astro';
 ---
@@ -26,32 +25,40 @@ import ContactForm from '../../components/ContactForm.astro';
     </div>
 
     <!-- Tabbed Search -->
-    <section class="section" style="background: var(--light-gray);">
+    <section class="section hs-search-section">
       <div class="container">
         <div class="hs-tabs" id="hsTabs">
-          <button class="hs-tab hs-tab--active" data-tab="advanced">Advanced Search</button>
-          <button class="hs-tab" data-tab="map">Map Search</button>
+          <button class="hs-tab hs-tab--active" data-tab="map">Map Search</button>
+          <button class="hs-tab" data-tab="advanced">Advanced Search</button>
         </div>
 
-        <div class="hs-tab-panel hs-tab-panel--active" id="panel-advanced">
+        <div class="hs-tab-panel hs-tab-panel--active" id="panel-map">
+          <div class="idx-embed idx-embed--map">
+            <iframe
+              src="https://cposeyrealestate.idxbroker.com/idx/map/mapsearch"
+              allowtransparency="true"
+              frameBorder="0"
+              title="Map Property Search"
+            ></iframe>
+          </div>
+        </div>
+
+        <div class="hs-tab-panel" id="panel-advanced">
           <div class="idx-embed">
             <iframe
-              src="https://cposeyrealestate.idxbroker.com/idx/search/advanced"
+              src=""
+              data-src="https://cposeyrealestate.idxbroker.com/idx/search/advanced"
               allowtransparency="true"
               frameBorder="0"
               title="Advanced Property Search"
             ></iframe>
           </div>
         </div>
-
-        <div class="hs-tab-panel" id="panel-map">
-          <MapSearch />
-        </div>
       </div>
     </section>
 
     <!-- Browse by Area -->
-    <section class="section">
+    <section class="section" style="background: var(--light-gray);">
       <div class="container">
         <div class="section-title">
           <h2>Browse by <span class="accent">Area</span></h2>
@@ -104,7 +111,7 @@ import ContactForm from '../../components/ContactForm.astro';
 <style>
   .hs-hero {
     position: relative;
-    height: 280px;
+    height: 260px;
     background: #000;
     display: flex;
     align-items: center;
@@ -155,16 +162,22 @@ import ContactForm from '../../components/ContactForm.astro';
     margin: 0 0.3rem;
   }
 
+  /* Search Section - minimal padding to maximize map */
+  .hs-search-section {
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+  }
+
   /* Tabs */
   .hs-tabs {
     display: flex;
     gap: 0;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     border-bottom: 2px solid #ddd;
   }
 
   .hs-tab {
-    padding: 0.85rem 2rem;
+    padding: 0.75rem 2rem;
     background: none;
     border: none;
     font-family: var(--font-heading);
@@ -225,6 +238,13 @@ import ContactForm from '../../components/ContactForm.astro';
     display: block;
   }
 
+  /* Map embed - taller for better experience */
+  .idx-embed--map iframe {
+    height: calc(100vh - 260px);
+    min-height: 600px;
+    max-height: 900px;
+  }
+
   /* Area Grid */
   .hs-area-grid {
     display: grid;
@@ -279,6 +299,11 @@ import ContactForm from '../../components/ContactForm.astro';
       padding: 0.75rem 1.25rem;
       font-size: 0.78rem;
     }
+
+    .idx-embed--map iframe {
+      height: 500px;
+      min-height: 400px;
+    }
   }
 </style>
 
@@ -298,15 +323,10 @@ import ContactForm from '../../components/ContactForm.astro';
       if (panel) {
         panel.classList.add('hs-tab-panel--active');
 
-        // Trigger Leaflet map resize when map tab is shown
-        if (target === 'map' && window.L) {
-          setTimeout(() => {
-            const mapEl = document.getElementById('mapContainer');
-            if (mapEl && mapEl._leaflet_id) {
-              // Force map to recalculate size
-              window.dispatchEvent(new Event('resize'));
-            }
-          }, 100);
+        // Lazy-load iframe if it has data-src
+        const iframe = panel.querySelector('iframe[data-src]');
+        if (iframe && iframe.getAttribute('src') !== iframe.dataset.src) {
+          iframe.src = iframe.dataset.src;
         }
       }
     });
