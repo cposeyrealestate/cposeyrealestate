@@ -1,0 +1,224 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
+---
+
+<Layout
+  title="Bulverde Neighborhoods | Cody Posey Real Estate"
+  description="Explore Bulverde, TX neighborhoods by community and price range. Find the right fit for your lifestyle and budget in the Hill Country."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="bv-hero">
+      <div class="bv-hero__overlay"></div>
+      <div class="bv-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/bulverde/">Bulverde</a> <span>/</span> <span>Neighborhoods</span>
+        </nav>
+        <h1>Bulverde <span style="color:#FF1616;">Neighborhoods</span></h1>
+        <p>Find the right community for your lifestyle and budget</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="bv-page-intro bv-page-intro--centered">Bulverde offers a range of neighborhoods — from master-planned communities with full amenities to quiet subdivisions on larger lots. All are served by Comal ISD and share the area's Hill Country character.</p>
+      </div>
+    </section>
+
+    <!-- Neighborhoods -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Bulverde <span class="accent">Communities</span></h2>
+        </div>
+
+        <div class="bv-area">
+          <h3>Estates at Indian Springs</h3>
+          <div class="bv-area__meta">
+            <span class="bv-area__price">$400K - $700K</span>
+            <span class="bv-area__district">Comal ISD</span>
+          </div>
+          <p>Large lots and custom-style homes define this established community. Estates at Indian Springs appeals to buyers looking for space, privacy, and a Hill Country setting with room to spread out. Lot sizes here are generous compared to more densely developed neighborhoods closer to the city.</p>
+        </div>
+
+        <div class="bv-area">
+          <h3>Bulverde Village</h3>
+          <div class="bv-area__meta">
+            <span class="bv-area__price">$350K - $550K</span>
+            <span class="bv-area__district">Comal ISD</span>
+          </div>
+          <p>Conveniently located near schools and local services, Bulverde Village offers a family-friendly environment with easy access to the essentials. The community balances a neighborhood feel with proximity to Bulverde's main corridors.</p>
+        </div>
+
+        <div class="bv-area">
+          <h3>Hidden Trails</h3>
+          <div class="bv-area__meta">
+            <span class="bv-area__price">$200K - $400K</span>
+            <span class="bv-area__district">Comal ISD</span>
+          </div>
+          <p>A more accessible price point with well-built brick homes and a quiet, established feel. Hidden Trails is a solid option for first-time buyers and families looking for value in the Bulverde area without sacrificing the Hill Country lifestyle.</p>
+        </div>
+
+        <div class="bv-area">
+          <h3>Johnson Ranch</h3>
+          <div class="bv-area__meta">
+            <span class="bv-area__price">$350K - $600K</span>
+            <span class="bv-area__district">Comal ISD</span>
+          </div>
+          <p>A master-planned community with resort-style amenities including pools, parks, and trails. Johnson Ranch attracts families and move-up buyers who want a neighborhood with built-in lifestyle features and a strong sense of community.</p>
+        </div>
+
+        <div class="bv-area">
+          <h3>Singing Hills</h3>
+          <div class="bv-area__meta">
+            <span class="bv-area__price">$300K - $500K</span>
+            <span class="bv-area__district">Comal ISD</span>
+          </div>
+          <p>Hill Country views and a peaceful setting make Singing Hills a popular choice for buyers who prioritize scenery and a quieter pace. The community offers a mix of home styles with the rolling terrain that defines the Bulverde landscape.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background: #000; color: #fff; text-align: center;">
+      <div class="container">
+        <h2>Need Help <span class="accent">Narrowing It Down</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">I can walk you through the differences between Bulverde communities and help you focus your search on neighborhoods that match your priorities.</p>
+        <a href="#contact" class="btn btn-outline">Get Help Narrowing Down Areas</a>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I need help narrowing down Bulverde neighborhoods..." />
+  <Footer />
+</Layout>
+
+<style>
+  .bv-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .bv-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .bv-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .bv-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .bv-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  .bv-page-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 800px;
+  }
+
+  .bv-page-intro--centered {
+    text-align: center;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0 auto;
+  }
+
+  /* Area Cards */
+  .bv-area {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .bv-area h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .bv-area__meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .bv-area__price {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #FF1616;
+  }
+
+  .bv-area__district {
+    font-size: 0.85rem;
+    color: var(--gray);
+    background: var(--light-gray);
+    padding: 0.15rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  .bv-area p {
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .bv-area p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .bv-area__meta {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+</style>

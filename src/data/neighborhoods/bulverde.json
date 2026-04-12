@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "estates-at-indian-springs",
+    "name": "Estates at Indian Springs",
+    "summary": "A prestigious community featuring large homesites and custom homes nestled among mature oaks and Hill Country terrain. Indian Springs offers privacy and space with Comal ISD schools.",
+    "priceRange": "$400K-$700K",
+    "schoolDistrict": "Comal ISD",
+    "buyerType": "luxury",
+    "features": ["Large homesites", "Custom homes", "Mature oak trees", "Hill Country terrain", "Comal ISD schools"]
+  },
+  {
+    "slug": "bulverde-village",
+    "name": "Bulverde Village",
+    "summary": "A convenient Bulverde neighborhood close to schools and local shopping. Bulverde Village offers a balance of Hill Country living and everyday convenience for families.",
+    "priceRange": "$350K-$550K",
+    "schoolDistrict": "Comal ISD",
+    "buyerType": "move-up",
+    "features": ["Near schools", "Local shopping access", "Family-friendly", "Hill Country setting", "Comal ISD schools"]
+  },
+  {
+    "slug": "hidden-trails",
+    "name": "Hidden Trails",
+    "summary": "An established community with brick homes and a welcoming neighborhood feel. Hidden Trails offers some of the most affordable options in the Bulverde area with Comal ISD schools.",
+    "priceRange": "$200K-$400K",
+    "schoolDistrict": "Comal ISD",
+    "buyerType": "entry-level",
+    "features": ["Brick homes", "Affordable for Bulverde", "Established neighborhood", "Community feel", "Comal ISD schools"]
+  },
+  {
+    "slug": "johnson-ranch",
+    "name": "Johnson Ranch",
+    "summary": "A master-planned community with resort-style amenities including pools, a fitness center, and miles of trails. Johnson Ranch is one of the most popular new communities in the Bulverde area.",
+    "priceRange": "$350K-$600K",
+    "schoolDistrict": "Comal ISD",
+    "buyerType": "move-up",
+    "features": ["Master-planned community", "Resort-style amenities", "Fitness center", "Miles of trails", "Comal ISD schools"]
+  },
+  {
+    "slug": "singing-hills",
+    "name": "Singing Hills",
+    "summary": "A scenic community perched on the rolling hills of Bulverde with panoramic Hill Country views. Singing Hills offers a peaceful setting with larger lots and a true country feel.",
+    "priceRange": "$300K-$500K",
+    "schoolDistrict": "Comal ISD",
+    "buyerType": "move-up",
+    "features": ["Hill Country views", "Larger lots", "Peaceful setting", "Rolling terrain", "Comal ISD schools"]
+  }
+]

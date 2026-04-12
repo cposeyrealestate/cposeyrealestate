@@ -1,0 +1,244 @@
+---
+---
+
+<div class="lead-gate" id="leadGate">
+  <div class="lead-gate__backdrop"></div>
+  <div class="lead-gate__modal">
+    <h2 class="lead-gate__title">Unlock Full <span class="lead-gate__accent">Access</span></h2>
+    <p class="lead-gate__subtext">Register once to access all neighborhood guides, market insights, and local resources.</p>
+
+    <form class="lead-gate__form" id="leadGateForm" novalidate>
+      <div class="lead-gate__field">
+        <label for="lg-name">Name <span class="lead-gate__required">*</span></label>
+        <input type="text" id="lg-name" name="name" required placeholder="Your full name" />
+      </div>
+      <div class="lead-gate__field">
+        <label for="lg-email">Email <span class="lead-gate__required">*</span></label>
+        <input type="email" id="lg-email" name="email" required placeholder="you@example.com" />
+      </div>
+      <div class="lead-gate__field">
+        <label for="lg-phone">Phone <span class="lead-gate__required">*</span></label>
+        <input type="tel" id="lg-phone" name="phone" required placeholder="(555) 555-5555" />
+      </div>
+      <div class="lead-gate__error" id="leadGateError" style="display: none;">
+        Something went wrong. Please try again.
+      </div>
+      <button type="submit" class="btn btn-primary lead-gate__submit">Get Access</button>
+    </form>
+
+    <p class="lead-gate__privacy">Your information is never shared.</p>
+  </div>
+</div>
+
+<style>
+  .lead-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+
+  .lead-gate__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .lead-gate__modal {
+    position: relative;
+    z-index: 1;
+    background: #111;
+    border-radius: 10px;
+    padding: 2.5rem 2rem;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+  }
+
+  .lead-gate__title {
+    color: #fff;
+    font-size: 1.75rem;
+    text-align: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .lead-gate__accent {
+    color: #FF1616;
+  }
+
+  .lead-gate__subtext {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+  }
+
+  .lead-gate__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .lead-gate__field label {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.4rem;
+  }
+
+  .lead-gate__required {
+    color: #FF1616;
+  }
+
+  .lead-gate__field input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    transition: border-color 0.2s;
+  }
+
+  .lead-gate__field input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .lead-gate__field input:focus {
+    outline: none;
+    border-color: #FF1616;
+  }
+
+  .lead-gate__field input.error {
+    border-color: #FF1616;
+  }
+
+  .lead-gate__error {
+    padding: 0.75rem 1rem;
+    background: rgba(255, 22, 22, 0.15);
+    border: 1px solid rgba(255, 22, 22, 0.3);
+    border-radius: 6px;
+    color: #FF1616;
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  .lead-gate__submit {
+    width: 100%;
+    padding: 0.85rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-top: 0.25rem;
+  }
+
+  .lead-gate__privacy {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  /* Lead-gated content blur */
+  :global(.lead-gated) {
+    filter: blur(6px);
+    pointer-events: none;
+    user-select: none;
+    transition: filter 0.4s;
+  }
+
+  :global(.lead-gated--unlocked) {
+    filter: none;
+    pointer-events: auto;
+    user-select: auto;
+  }
+</style>
+
+<script is:inline>
+  (function() {
+    var overlay = document.getElementById('leadGate');
+    var form = document.getElementById('leadGateForm');
+    var errorEl = document.getElementById('leadGateError');
+
+    function unlock() {
+      if (overlay) overlay.style.display = 'none';
+      document.body.style.overflow = '';
+      document.querySelectorAll('.lead-gated').forEach(function(el) {
+        el.classList.remove('lead-gated');
+        el.classList.add('lead-gated--unlocked');
+      });
+    }
+
+    // Check if already registered
+    var stored = localStorage.getItem('cpr_lead');
+    if (stored) {
+      unlock();
+      return;
+    }
+
+    // Show overlay and lock scroll
+    if (overlay) overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+
+    form && form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Clear errors
+      form.querySelectorAll('.error').forEach(function(el) { el.classList.remove('error'); });
+      if (errorEl) errorEl.style.display = 'none';
+
+      var nameInput = form.querySelector('#lg-name');
+      var emailInput = form.querySelector('#lg-email');
+      var phoneInput = form.querySelector('#lg-phone');
+      var valid = true;
+
+      if (!nameInput.value.trim()) { nameInput.classList.add('error'); valid = false; }
+      if (!emailInput.value.trim() || !emailInput.value.includes('@')) { emailInput.classList.add('error'); valid = false; }
+      if (!phoneInput.value.trim()) { phoneInput.classList.add('error'); valid = false; }
+
+      if (!valid) return;
+
+      var data = {
+        name: nameInput.value.trim(),
+        email: emailInput.value.trim(),
+        phone: phoneInput.value.trim()
+      };
+
+      fetch('/api/lead-capture', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(function(res) {
+        if (!res.ok) throw new Error('Server error');
+        return res.json();
+      })
+      .then(function() {
+        localStorage.setItem('cpr_lead', JSON.stringify({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          registeredAt: Date.now()
+        }));
+        unlock();
+      })
+      .catch(function() {
+        if (errorEl) {
+          errorEl.textContent = 'Something went wrong. Please try again.';
+          errorEl.style.display = 'block';
+        }
+      });
+    });
+  })();
+</script>

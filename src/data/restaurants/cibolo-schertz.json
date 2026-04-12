@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Main Street Social",
+    "cuisine": "American",
+    "description": "Upscale casual dining in downtown Schertz.",
+    "priceRange": "$$",
+    "tags": ["american", "upscale-casual", "downtown", "date-night"]
+  },
+  {
+    "name": "Sauced Wings & Bar",
+    "cuisine": "Wings/Bar",
+    "description": "Creative wing flavors, sports bar atmosphere.",
+    "priceRange": "$",
+    "tags": ["wings", "bar", "sports-bar", "casual"]
+  },
+  {
+    "name": "Nacho Daddy",
+    "cuisine": "Tex-Mex",
+    "description": "Loaded nachos and Tex-Mex favorites, family-friendly.",
+    "priceRange": "$",
+    "tags": ["tex-mex", "nachos", "family-friendly", "casual"]
+  },
+  {
+    "name": "Thai Lao Cuisine",
+    "cuisine": "Thai",
+    "description": "Authentic Thai in Schertz, local favorite.",
+    "priceRange": "$$",
+    "tags": ["thai", "authentic", "local-favorite"]
+  },
+  {
+    "name": "Wild Wings N' Things",
+    "cuisine": "Wings/American",
+    "description": "Popular wings and casual dining.",
+    "priceRange": "$",
+    "tags": ["wings", "american", "casual", "family-friendly"]
+  }
+]

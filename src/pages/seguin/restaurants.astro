@@ -1,0 +1,236 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
+---
+
+<Layout
+  title="Best Restaurants in Seguin, TX | Cody Posey Real Estate"
+  description="The best restaurants in Seguin, Texas — from Michelin-recognized BBQ to local breweries and downtown cafes."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="seg-hero">
+      <div class="seg-hero__overlay"></div>
+      <div class="seg-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/seguin/">Seguin</a> <span>/</span> <span>Restaurants</span>
+        </nav>
+        <h1>Seguin <span style="color:#FF1616;">Restaurants</span></h1>
+        <p>Where the locals eat — from award-winning BBQ to craft breweries</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="seg-page-intro seg-page-intro--centered">Seguin's food scene punches well above its weight. The city is home to a Michelin Bib Gourmand BBQ spot, a growing brewery district, and the kind of local cafes that make small-town Texas special.</p>
+      </div>
+    </section>
+
+    <!-- Restaurant List -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Top <span class="accent">Restaurants</span></h2>
+        </div>
+
+        <div class="seg-restaurant">
+          <div class="seg-restaurant__header">
+            <div>
+              <h3>Burnt Bean Co.</h3>
+              <span class="seg-restaurant__type">BBQ</span>
+              <span class="seg-restaurant__price">$$</span>
+            </div>
+          </div>
+          <p>A Michelin Bib Gourmand recipient and Texas Monthly top-ranked BBQ joint. Burnt Bean Co. has put Seguin on the culinary map with exceptional brisket, handmade sausage, and sides that rival the meat. Get there early — they sell out.</p>
+        </div>
+
+        <div class="seg-restaurant">
+          <div class="seg-restaurant__header">
+            <div>
+              <h3>Seguin Brewing Company</h3>
+              <span class="seg-restaurant__type">Brewery</span>
+              <span class="seg-restaurant__price">$$</span>
+            </div>
+          </div>
+          <p>A local favorite known for their pecan honey cream ale and brick oven pizzas. Seguin Brewing Company offers a laid-back taproom atmosphere with rotating craft beers and a solid food menu that goes beyond standard pub fare.</p>
+        </div>
+
+        <div class="seg-restaurant">
+          <div class="seg-restaurant__header">
+            <div>
+              <h3>The Oak Tavern</h3>
+              <span class="seg-restaurant__type">American</span>
+              <span class="seg-restaurant__price">$$</span>
+            </div>
+          </div>
+          <p>A gastropub offering elevated American cuisine with craft cocktails. The Oak Tavern brings a modern dining experience to downtown Seguin with quality ingredients, creative dishes, and a curated drink menu.</p>
+        </div>
+
+        <div class="seg-restaurant">
+          <div class="seg-restaurant__header">
+            <div>
+              <h3>Juan Seguin Brewing Co.</h3>
+              <span class="seg-restaurant__type">Brewery</span>
+              <span class="seg-restaurant__price">$$</span>
+            </div>
+          </div>
+          <p>Named after the city's namesake, this local craft brewery serves up a rotating selection of beers brewed on-site. A great spot to enjoy a pint and soak in the local atmosphere.</p>
+        </div>
+
+        <div class="seg-restaurant">
+          <div class="seg-restaurant__header">
+            <div>
+              <h3>Court Street Coffee</h3>
+              <span class="seg-restaurant__type">Cafe</span>
+              <span class="seg-restaurant__price">$</span>
+            </div>
+          </div>
+          <p>A cozy downtown hangout serving specialty coffee, fresh pastries, and light bites. Court Street Coffee is the kind of neighborhood cafe that becomes part of your morning routine — a community gathering spot with great drinks.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background: #000; color: #fff; text-align: center;">
+      <div class="container">
+        <h2>Ready to Call Seguin <span class="accent">Home</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Great food is just one part of what makes Seguin special. Let me help you find the right home in the right neighborhood.</p>
+        <div class="seg-cta__buttons">
+          <a href="/seguin/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Ask About Seguin</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I'd like to learn more about living in Seguin..." />
+  <Footer />
+</Layout>
+
+<style>
+  .seg-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .seg-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .seg-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .seg-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .seg-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  .seg-page-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 800px;
+  }
+
+  .seg-page-intro--centered {
+    text-align: center;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0 auto;
+  }
+
+  /* Restaurant Cards */
+  .seg-restaurant {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .seg-restaurant__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  .seg-restaurant__header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+  }
+
+  .seg-restaurant__type {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #FF1616;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: 0.75rem;
+  }
+
+  .seg-restaurant__price {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--gray);
+  }
+
+  .seg-restaurant p {
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  /* CTA Buttons */
+  .seg-cta__buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

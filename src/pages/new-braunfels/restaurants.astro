@@ -1,0 +1,341 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import Footer from '../../components/Footer.astro';
+
+const restaurants = [
+  { name: "Cooper's Old Time Pit Bar-B-Que", cuisine: 'BBQ', description: "Classic Texas BBQ joint famous for its giant Big Chop pork chop and pit-smoked brisket, sausage, and ribs in a casual counter-service setting.", price: '$$', tags: ['bbq', 'casual'] },
+  { name: "Black's Barbecue", cuisine: 'BBQ', description: "Outpost of the legendary Lockhart family spot, known for rich, smoky brisket, sausage, and classic sides. Real Texas barbecue.", price: '$$', tags: ['bbq', 'iconic'] },
+  { name: "Granzin Bar-B-Q", cuisine: 'BBQ', description: "Local favorite meat-market style BBQ known for tender pulled pork sandwiches, sausage, and no-frills plates at approachable prices.", price: '$', tags: ['bbq', 'local-favorite'] },
+  { name: 'Adobe Cafe', cuisine: 'Tex-Mex', description: "Colorful neighborhood restaurant known for classic Tex-Mex combo plates, enchiladas, and margaritas. Great for groups and after-river dinners.", price: '$$', tags: ['tex-mex', 'groups'] },
+  { name: 'El Tapatio Mexican Restaurant', cuisine: 'Tex-Mex', description: "Downtown staple since 2006 known for big portions of fajitas, enchiladas, caldo, and combo plates in a casual family atmosphere.", price: '$', tags: ['tex-mex', 'family'] },
+  { name: 'Lupe Tortilla', cuisine: 'Tex-Mex', description: "Regional Tex-Mex chain's NB location, known for sizzling fajitas, made-from-scratch tortillas, and a lively bar for brunch, lunch, and dinner.", price: '$$', tags: ['tex-mex', 'lively'] },
+  { name: 'Alpine Haus Restaurant', cuisine: 'German', description: "Upscale, intimate German restaurant in a 160-year-old downtown house. Known for schnitzel, bratwurst, sauerbraten, and a strong German beer and wine list.", price: '$$$', tags: ['german', 'date-night'] },
+  { name: "Krause's Cafe", cuisine: 'German / Brewery', description: "Large beer-garden restaurant known for its huge German and local beer tap wall, jaeger schnitzel, bratwurst platters, and live music. Family-friendly with a big outdoor space.", price: '$$', tags: ['german', 'brewery', 'live-music', 'family'] },
+  { name: 'Faust Brewing Company', cuisine: 'Brewery', description: "Microbrewery and pub known for on-site brewed lagers, IPAs, and stouts paired with hearty American pub fare in a relaxed historic setting.", price: '$$', tags: ['brewery', 'craft-beer'] },
+  { name: 'New Braunfels Brewing Company', cuisine: 'Brewery', description: "Small brewery known for sour wheat beers and experimental brews, with a cozy taproom and beer garden popular with craft-beer enthusiasts.", price: '$$', tags: ['brewery', 'craft-beer'] },
+  { name: 'Huisache Grill', cuisine: 'Fine Dining', description: "Intimate bistro-style restaurant known for contemporary American and Southwestern-leaning dishes, a solid wine list, and a cozy courtyard. One of NB's top date night spots.", price: '$$$', tags: ['fine-dining', 'date-night'] },
+  { name: "McAdoo's Seafood Company", cuisine: 'Fine Dining', description: "Upscale seafood and Southern-influenced restaurant in a historic post office building. Gulf-focused seafood plates, craft cocktails, and a polished but lively atmosphere.", price: '$$$', tags: ['fine-dining', 'seafood'] },
+  { name: "Myron's Prime Steakhouse", cuisine: 'Fine Dining', description: "Classic steakhouse known for prime steaks, big sides, and white-tablecloth service. One of NB's go-to special-occasion restaurants.", price: '$$$$', tags: ['fine-dining', 'steakhouse'] },
+  { name: 'Gristmill River Restaurant & Bar', cuisine: 'American', description: "Iconic multi-level riverside spot next to Gruene Hall. Known for chicken-fried steak, burgers, and salads with spectacular river views and plenty of seating.", price: '$$', tags: ['american', 'river-views', 'iconic'] },
+  { name: 'Gruene River Grill', cuisine: 'American', description: "River-view restaurant near Gruene Hall serving American and Tex-Mex comfort dishes, burgers, and salads in a casual, family-friendly setting.", price: '$$', tags: ['american', 'family', 'river-views'] },
+];
+
+const categories = [...new Set(restaurants.map(r => r.cuisine))];
+---
+
+<Layout
+  title="Best Restaurants in New Braunfels, TX | Cody Posey Real Estate"
+  description="A local's guide to the best restaurants in New Braunfels — BBQ, Tex-Mex, German, breweries, fine dining, and family-friendly favorites."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="rest-hero">
+      <div class="rest-hero__overlay"></div>
+      <div class="rest-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/new-braunfels/">New Braunfels</a> <span>/</span> <span>Restaurants</span>
+        </nav>
+        <h1>New Braunfels <span style="color:#FF1616;">Restaurants</span></h1>
+        <p>A local's guide to the best places to eat in town</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="rest-intro">New Braunfels has a food scene that punches well above its weight. From legendary Texas BBQ and authentic Tex-Mex to German beer halls that honor the city's heritage and upscale dining you'd expect in a much bigger city — there's something for every taste and occasion. Here are the spots the locals actually eat at.</p>
+      </div>
+    </section>
+
+    <!-- Filter Tabs -->
+    <section class="section" style="background: var(--light-gray); padding-top: 2rem; padding-bottom: 0;">
+      <div class="container">
+        <div class="rest-filters" id="restFilters">
+          <button class="rest-filter rest-filter--active" data-filter="all">All</button>
+          {categories.map(cat => (
+            <button class="rest-filter" data-filter={cat}>{cat}</button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Restaurant List -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="rest-grid" id="restGrid">
+          {restaurants.map(r => (
+            <div class="rest-card" data-cuisine={r.cuisine}>
+              <div class="rest-card__header">
+                <h3>{r.name}</h3>
+                <span class="rest-card__cuisine">{r.cuisine}</span>
+              </div>
+              <p class="rest-card__desc">{r.description}</p>
+              <div class="rest-card__footer">
+                <span class="rest-card__price">{r.price}</span>
+                <div class="rest-card__tags">
+                  {r.tags.map(tag => (
+                    <span class="rest-card__tag">{tag.replace(/-/g, ' ')}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="rest-cta">
+      <div class="rest-cta__overlay"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <h2>Looking for a Home Near Your <span class="accent">Favorite Spots</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">I can help you find homes in the neighborhoods closest to the restaurants, shops, and nightlife you love.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="/new-braunfels/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Let's Connect</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I'd like to find homes near the best restaurants in NB..." />
+  <Footer />
+</Layout>
+
+<style>
+  .rest-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .rest-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .rest-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .rest-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .rest-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .rest-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 800px;
+    text-align: center;
+    margin: 0 auto;
+    font-weight: 600;
+  }
+
+  /* Filters */
+  .rest-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    padding-bottom: 2rem;
+  }
+
+  .rest-filter {
+    padding: 0.5rem 1.25rem;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    background: #fff;
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #333;
+  }
+
+  .rest-filter:hover {
+    border-color: #FF1616;
+    color: #FF1616;
+  }
+
+  .rest-filter--active {
+    background: #FF1616;
+    border-color: #FF1616;
+    color: #fff;
+  }
+
+  .rest-filter--active:hover {
+    color: #fff;
+  }
+
+  /* Cards */
+  .rest-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .rest-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    border-left: 3px solid #FF1616;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .rest-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .rest-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .rest-card__header h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .rest-card__cuisine {
+    flex-shrink: 0;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #FF1616;
+    background: rgba(255, 22, 22, 0.08);
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  .rest-card__desc {
+    color: var(--gray);
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .rest-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 0.75rem;
+  }
+
+  .rest-card__price {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #FF1616;
+  }
+
+  .rest-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .rest-card__tag {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--gray);
+    background: #f5f5f5;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  /* CTA */
+  .rest-cta {
+    position: relative;
+    padding: 5rem 0;
+    color: #fff;
+    text-align: center;
+    background-image: url('/images/testimonials-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #333;
+  }
+
+  .rest-cta__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+  }
+
+  .rest-cta h2 { color: #fff; }
+
+  @media (max-width: 768px) {
+    .rest-grid { grid-template-columns: 1fr; }
+    .rest-cta { background-attachment: scroll; }
+  }
+</style>
+
+<script is:inline>
+  // Filter functionality
+  const filters = document.querySelectorAll('.rest-filter');
+  const cards = document.querySelectorAll('.rest-card');
+
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      filters.forEach(f => f.classList.remove('rest-filter--active'));
+      btn.classList.add('rest-filter--active');
+
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.cuisine === filter) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

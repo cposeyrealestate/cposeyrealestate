@@ -1,0 +1,268 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
+---
+
+<Layout
+  title="Best Restaurants in Cibolo & Schertz, TX | Cody Posey Real Estate"
+  description="Discover the best restaurants in Cibolo and Schertz, Texas — from upscale American to authentic Thai and Tex-Mex favorites."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="cs-hero">
+      <div class="cs-hero__overlay"></div>
+      <div class="cs-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/cibolo-schertz/">Cibolo / Schertz</a> <span>/</span> <span>Restaurants</span>
+        </nav>
+        <h1>Cibolo / Schertz <span style="color:#FF1616;">Restaurants</span></h1>
+        <p>Local favorites and go-to spots in the area</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="cs-page-intro cs-page-intro--centered">The Cibolo/Schertz dining scene continues to grow alongside the communities themselves. From upscale casual to quick family-friendly spots, here are some of the local favorites worth checking out.</p>
+      </div>
+    </section>
+
+    <!-- Restaurant List -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Where to <span class="accent">Eat</span></h2>
+        </div>
+
+        <div class="cs-restaurant__grid">
+          <div class="cs-restaurant">
+            <div class="cs-restaurant__header">
+              <h3>Main Street Social</h3>
+              <div class="cs-restaurant__meta">
+                <span class="cs-restaurant__cuisine">American</span>
+                <span class="cs-restaurant__price">$$</span>
+              </div>
+            </div>
+            <p>Upscale casual dining with a curated American menu. Great atmosphere for date nights or catching up with friends over craft cocktails and elevated comfort food.</p>
+          </div>
+
+          <div class="cs-restaurant">
+            <div class="cs-restaurant__header">
+              <h3>Sauced Wings & Bar</h3>
+              <div class="cs-restaurant__meta">
+                <span class="cs-restaurant__cuisine">Wings / Bar</span>
+                <span class="cs-restaurant__price">$</span>
+              </div>
+            </div>
+            <p>Creative wing flavors and a lively bar atmosphere. A go-to spot for game day, casual hangouts, and trying some of the most inventive wing sauces in the area.</p>
+          </div>
+
+          <div class="cs-restaurant">
+            <div class="cs-restaurant__header">
+              <h3>Nacho Daddy</h3>
+              <div class="cs-restaurant__meta">
+                <span class="cs-restaurant__cuisine">Tex-Mex</span>
+                <span class="cs-restaurant__price">$</span>
+              </div>
+            </div>
+            <p>Known for their loaded nachos and family-friendly vibe. Nacho Daddy serves up generous portions of Tex-Mex favorites in a casual, welcoming setting the whole family can enjoy.</p>
+          </div>
+
+          <div class="cs-restaurant">
+            <div class="cs-restaurant__header">
+              <h3>Thai Lao Cuisine</h3>
+              <div class="cs-restaurant__meta">
+                <span class="cs-restaurant__cuisine">Thai</span>
+                <span class="cs-restaurant__price">$$</span>
+              </div>
+            </div>
+            <p>Authentic Thai dishes and a local favorite. From curries and pad thai to specialty dishes, Thai Lao Cuisine delivers consistent quality and flavors that keep regulars coming back.</p>
+          </div>
+
+          <div class="cs-restaurant">
+            <div class="cs-restaurant__header">
+              <h3>Wild Wings N' Things</h3>
+              <div class="cs-restaurant__meta">
+                <span class="cs-restaurant__cuisine">Wings / American</span>
+                <span class="cs-restaurant__price">$</span>
+              </div>
+            </div>
+            <p>A popular spot for wings and American favorites. Wild Wings N' Things is a neighborhood staple with generous portions, cold drinks, and a laid-back atmosphere.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background: #000; color: #fff; text-align: center;">
+      <div class="container">
+        <h2>Thinking About <span class="accent">Moving Here</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Great food is just the start. Let me help you find the right home in the Cibolo/Schertz area so you can enjoy these spots as a local.</p>
+        <div class="cs-cta__buttons">
+          <a href="/cibolo-schertz/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Ask About the Area</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I'd like to learn more about living in Cibolo/Schertz..." />
+  <Footer />
+</Layout>
+
+<style>
+  .cs-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .cs-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .cs-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .cs-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .cs-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  .cs-page-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 800px;
+  }
+
+  .cs-page-intro--centered {
+    text-align: center;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0 auto;
+  }
+
+  /* Restaurant Grid */
+  .cs-restaurant__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cs-restaurant {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .cs-restaurant__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .cs-restaurant__header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+  }
+
+  .cs-restaurant__meta {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .cs-restaurant__cuisine {
+    display: inline-block;
+    background: var(--light-gray);
+    color: var(--gray);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .cs-restaurant__price {
+    display: inline-block;
+    background: #FF1616;
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .cs-restaurant p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  /* CTA */
+  .cs-cta__buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .cs-restaurant__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cs-restaurant__header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Comal River Tubing",
+    "category": "outdoor",
+    "description": "Float the crystal-clear spring-fed Comal River, the shortest river in Texas. Perfect for a relaxing 2-hour journey with access points throughout the city.",
+    "tags": ["tubing", "river", "summer", "family-friendly", "spring-fed"]
+  },
+  {
+    "name": "Guadalupe River Adventures",
+    "category": "outdoor",
+    "description": "Kayaking, tubing, and paddleboarding on the Guadalupe River. Full-day trips with beautiful Hill Country scenery.",
+    "tags": ["kayaking", "tubing", "paddleboarding", "river", "hill-country"]
+  },
+  {
+    "name": "Schlitterbahn Waterpark",
+    "category": "family",
+    "description": "One of the best waterparks in the country, powered by natural spring water from the Comal River. Multiple water coasters, lazy rivers, and slides.",
+    "tags": ["waterpark", "family-friendly", "summer", "slides", "spring-water"]
+  },
+  {
+    "name": "Gruene Hall",
+    "category": "nightlife",
+    "description": "Texas' oldest continually operating dance hall, built in 1878. Live music every night, from up-and-coming artists to national acts.",
+    "tags": ["live-music", "dance-hall", "historic", "nightlife", "iconic"]
+  },
+  {
+    "name": "Gruene Historic District",
+    "category": "culture",
+    "description": "Shop, dine, and explore charming storefronts in this preserved 1800s German settlement. Wine tasting rooms, antique shops, and the famous Gristmill restaurant.",
+    "tags": ["shopping", "dining", "historic", "wine-tasting", "antiques"]
+  },
+  {
+    "name": "Natural Bridge Caverns",
+    "category": "family",
+    "description": "The largest commercial caverns in Texas, 180 feet underground. Discovery Tour shows massive formations, plus zip lines and a maze above ground.",
+    "tags": ["caverns", "underground", "family-friendly", "zip-lines", "educational"]
+  },
+  {
+    "name": "Natural Bridge Wildlife Ranch",
+    "category": "family",
+    "description": "A 500-acre drive-through safari park with over 500 animals. Feed giraffes, see zebras, and explore walkabout exhibits.",
+    "tags": ["safari", "animals", "family-friendly", "drive-through", "wildlife"]
+  },
+  {
+    "name": "Landa Park",
+    "category": "outdoor",
+    "description": "A 51-acre city park along the Comal River with a spring-fed pool, miniature train, paddle boats, and walking trails. Free admission.",
+    "tags": ["park", "free", "family-friendly", "spring-fed-pool", "trails"]
+  },
+  {
+    "name": "The Cliff Carver Alpine Coaster",
+    "category": "family",
+    "description": "Texas' first alpine coaster. A gravity-propelled sled zooms through the Hill Country hillside at up to 25mph.",
+    "tags": ["alpine-coaster", "thrill-ride", "family-friendly", "hill-country"]
+  },
+  {
+    "name": "Wurstfest",
+    "category": "seasonal",
+    "description": "The annual 10-day salute to sausage drawing 240,000+ visitors. German food, 40+ bands on 5 stages, carnival rides, and beer. Every November.",
+    "tags": ["festival", "german", "food", "live-music", "november", "annual"]
+  },
+  {
+    "name": "Gruene Music & Wine Festival",
+    "category": "seasonal",
+    "description": "Four-day celebration featuring 50+ Texas wineries and breweries with live music in the Gruene Historic District.",
+    "tags": ["festival", "wine", "live-music", "gruene", "annual"]
+  }
+]

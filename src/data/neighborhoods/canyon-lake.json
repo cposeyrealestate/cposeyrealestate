@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "canyon-lake-hills",
+    "name": "Canyon Lake Hills",
+    "summary": "One of the oldest and most established communities around Canyon Lake, offering a mix of waterfront and hill-view properties. Residents enjoy lake access, community boat ramps, and a true lake-life atmosphere.",
+    "priceRange": "$300K-$800K",
+    "schoolDistrict": "Comal ISD",
+    "buyerType": "move-up",
+    "features": ["Lake access & boat ramps", "Established community", "Mix of waterfront & hill views", "Community clubhouse", "Comal ISD schools"]
+  },
+  {
+    "slug": "mystic-shores",
+    "name": "Mystic Shores",
+    "summary": "A gated Hill Country community with stunning river and canyon views. Mystic Shores offers larger lots, a community pool, and a peaceful setting while still being close to Canyon Lake amenities.",
+    "priceRange": "$350K-$700K",
+    "schoolDistrict": "Comal ISD",
+    "buyerType": "move-up",
+    "features": ["Gated community", "River & canyon views", "Community pool & pavilion", "Larger homesites", "Comal ISD schools"]
+  },
+  {
+    "slug": "oak-shores-estates",
+    "name": "Oak Shores Estates",
+    "summary": "The most exclusive gated community on Canyon Lake, featuring private lakefront estates on large wooded lots. This is the premier address for luxury waterfront living in the Hill Country.",
+    "priceRange": "$500K-$4M+",
+    "schoolDistrict": "Comal ISD",
+    "buyerType": "luxury",
+    "features": ["Private gated community", "Luxury lakefront estates", "Deep-water lots", "Large wooded homesites", "Private boat docks"]
+  },
+  {
+    "slug": "holiday-estates",
+    "name": "Holiday Estates",
+    "summary": "An established lakeside community with waterfront access and a friendly neighborhood feel. A mix of full-time residents and vacation homeowners enjoy the community park, boat ramp, and lake proximity.",
+    "priceRange": "$250K-$500K",
+    "schoolDistrict": "Comal ISD",
+    "buyerType": "entry-level",
+    "features": ["Waterfront access", "Community boat ramp", "Established neighborhood", "Mix of full-time & vacation homes", "Community park"]
+  },
+  {
+    "slug": "hancock-park",
+    "name": "Hancock Park",
+    "summary": "An entry-level lake community near Canyon Lake marina, offering affordable homes close to the water. Popular with first-time buyers and those seeking a weekend lake getaway.",
+    "priceRange": "$200K-$400K",
+    "schoolDistrict": "Comal ISD",
+    "buyerType": "entry-level",
+    "features": ["Near Canyon Lake marina", "Entry-level pricing", "Close to boat ramps", "Weekend getaway potential", "Lake-area convenience"]
+  },
+  {
+    "slug": "river-mountain-ranch",
+    "name": "River Mountain Ranch",
+    "summary": "A premier acreage community offering panoramic Hill Country views and spacious homesites. Ideal for buyers seeking privacy, space, and the beauty of the Texas Hill Country with Comal ISD schools.",
+    "priceRange": "$400K-$800K",
+    "schoolDistrict": "Comal ISD",
+    "buyerType": "luxury",
+    "features": ["Acreage homesites", "Panoramic Hill Country views", "Gated entrance", "Private & secluded", "Comal ISD schools"]
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "slug": "new-braunfels",
+    "name": "New Braunfels",
+    "tagline": "Where Texas Heritage Meets Hill Country Living",
+    "description": "Founded in 1845 by German settlers, New Braunfels has grown into one of the fastest-growing cities in the nation while keeping its small-town charm. Located between San Antonio and Austin along the I-35 corridor, NB offers spring-fed rivers, historic Gruene, top-rated schools, and a thriving local economy.",
+    "population": "100,000+",
+    "distToSA": "30 min",
+    "distToAustin": "45 min",
+    "medianHome": "$370K",
+    "heroImage": "/images/areas/new-braunfels-hero.jpg",
+    "highlights": [
+      "Spring-fed Comal & Guadalupe Rivers",
+      "Historic Gruene District",
+      "Schlitterbahn Waterpark",
+      "Two Top-Rated School Districts",
+      "German Heritage & Culture"
+    ]
+  },
+  {
+    "slug": "canyon-lake",
+    "name": "Canyon Lake",
+    "tagline": "Hill Country Lakeside Living at Its Best",
+    "description": "Canyon Lake is a scenic Hill Country community built around the 8,230-acre Canyon Lake reservoir on the Guadalupe River. Known for waterfront living, outdoor recreation, and a laid-back lifestyle, it's a favorite for retirees, second-home buyers, and families seeking a quieter pace without sacrificing access to New Braunfels and San Antonio.",
+    "population": "33,000+",
+    "distToSA": "45 min",
+    "distToNB": "20 min",
+    "medianHome": "$406K",
+    "heroImage": "/images/areas/canyon-lake-hero.jpg",
+    "highlights": [
+      "8,230-Acre Reservoir",
+      "Guadalupe River Access",
+      "Whitewater Amphitheater",
+      "Boating, Fishing & Watersports",
+      "Hill Country Views & Acreage"
+    ]
+  },
+  {
+    "slug": "seguin",
+    "name": "Seguin",
+    "tagline": "Affordable Living with Small-Town Texas Charm",
+    "description": "Seguin is a historic city on the Guadalupe River, about 35 miles east of San Antonio. Named after Texas Revolution hero Juan Seguín, the city combines affordable housing, a growing job market anchored by manufacturing, and a charming downtown with local restaurants and shops. It's one of the best-value markets in the region.",
+    "population": "33,000+",
+    "distToSA": "35 min",
+    "distToNB": "20 min",
+    "medianHome": "$313K",
+    "heroImage": "/images/areas/seguin-hero.jpg",
+    "highlights": [
+      "Most Affordable in the Region",
+      "Historic Downtown & Main Street",
+      "Guadalupe River & Max Starcke Park",
+      "Strong Manufacturing Job Market",
+      "Michelin Bib Gourmand BBQ"
+    ]
+  },
+  {
+    "slug": "cibolo-schertz",
+    "name": "Cibolo / Schertz",
+    "tagline": "Family-Friendly Communities Between SA & New Braunfels",
+    "description": "Cibolo and Schertz are two of the most desirable suburban communities in the I-35 corridor between San Antonio and New Braunfels. Known for excellent schools (SCUCISD), safe neighborhoods, and proximity to Randolph AFB, these cities offer a strong sense of community with convenient access to big-city amenities.",
+    "population": "75,000+ combined",
+    "distToSA": "20 min",
+    "distToNB": "15 min",
+    "medianHome": "$372K",
+    "heroImage": "/images/areas/cibolo-schertz-hero.jpg",
+    "highlights": [
+      "A-Rated School District (SCUCISD)",
+      "Near Randolph Air Force Base",
+      "85+ Acres of City Parks",
+      "Growing Retail & Dining",
+      "Military-Friendly Communities"
+    ]
+  },
+  {
+    "slug": "bulverde",
+    "name": "Bulverde",
+    "tagline": "Quiet Hill Country Living on Acreage",
+    "description": "Bulverde is a rural Hill Country community approximately 25 miles north of downtown San Antonio. Known for larger lots, scenic views, and a quieter pace, it appeals to buyers seeking space and privacy while remaining close to city conveniences. The area is served by Comal ISD and features access to rivers, parks, and the JW Marriott Hill Country Resort.",
+    "population": "6,000+",
+    "distToSA": "25 min",
+    "distToNB": "25 min",
+    "medianHome": "$406K",
+    "heroImage": "/images/areas/bulverde-hero.jpg",
+    "highlights": [
+      "Large Lots & Acreage Properties",
+      "Guadalupe River State Park",
+      "Hill Country Views",
+      "Comal ISD Schools",
+      "Close to JW Marriott Resort"
+    ]
+  }
+]

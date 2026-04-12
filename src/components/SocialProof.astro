@@ -1,0 +1,72 @@
+---
+---
+
+<section class="social-proof">
+  <div class="social-proof__inner container">
+    <a href="/testimonials" class="social-proof__rating">
+      <span class="social-proof__score">5.0</span>
+      <span class="social-proof__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span class="social-proof__text">from 27 Google Reviews</span>
+    </a>
+    <p class="social-proof__tagline">Veteran-Owned | Educating. Serving. Delivering Results.</p>
+  </div>
+</section>
+
+<style>
+  .social-proof {
+    background: #111;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .social-proof__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .social-proof__rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: opacity 0.2s;
+  }
+
+  .social-proof__rating:hover {
+    opacity: 0.85;
+  }
+
+  .social-proof__score {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #fff;
+  }
+
+  .social-proof__stars {
+    font-size: 1rem;
+    color: #FF1616;
+    letter-spacing: 0.1em;
+  }
+
+  .social-proof__text {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .social-proof__tagline {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  @media (max-width: 480px) {
+    .social-proof__rating {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+</style>

@@ -1,0 +1,236 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
+---
+
+<Layout
+  title="Best Restaurants in Canyon Lake, TX | Cody Posey Real Estate"
+  description="Discover the best restaurants in Canyon Lake, Texas — from lakeside hangouts and BBQ joints to Italian trattorias and artisan bakeries."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="cl-hero">
+      <div class="cl-hero__overlay"></div>
+      <div class="cl-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/canyon-lake/">Canyon Lake</a> <span>/</span> <span>Restaurants</span>
+        </nav>
+        <h1>Canyon Lake <span style="color:#FF1616;">Restaurants</span></h1>
+        <p>Casual lakeside dining and hidden Hill Country gems</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="cl-page-intro cl-page-intro--centered">The dining scene around Canyon Lake is more casual and laid-back than what you'll find in the city — and that's part of the charm. Think lakeside patios, live music on the weekends, smoked meats, and hidden gems tucked into the Hill Country. Here are some of the standouts.</p>
+      </div>
+    </section>
+
+    <!-- Restaurants -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Where to <span class="accent">Eat</span></h2>
+        </div>
+
+        <div class="cl-restaurant__list">
+          <div class="cl-restaurant__card">
+            <div class="cl-restaurant__info">
+              <h3>Gennaro's Trattoria</h3>
+              <span class="cl-restaurant__cuisine">Italian</span>
+              <p>Fresh pasta and quality meats in a warm, family-friendly setting. Gennaro's brings authentic Italian cooking to the Hill Country with a menu that changes seasonally and a wine list to match.</p>
+              <span class="cl-restaurant__price">$$</span>
+            </div>
+          </div>
+
+          <div class="cl-restaurant__card">
+            <div class="cl-restaurant__info">
+              <h3>Wildflour Artisan Bakery & Grill</h3>
+              <span class="cl-restaurant__cuisine">American</span>
+              <p>Homemade baked goods, eggs benedict, chicken and waffles, and one of the best brunch spots in the area. Wildflour is a local favorite for weekend mornings and a great grab-and-go option during the week.</p>
+              <span class="cl-restaurant__price">$$</span>
+            </div>
+          </div>
+
+          <div class="cl-restaurant__card">
+            <div class="cl-restaurant__info">
+              <h3>Baja Icehouse and Grill</h3>
+              <span class="cl-restaurant__cuisine">Tex-Mex / Bar</span>
+              <p>The only restaurant actually on Canyon Lake. Baja Icehouse offers waterfront dining, cold drinks, Tex-Mex favorites, and live music on the weekends. It's the kind of place you boat up to.</p>
+              <span class="cl-restaurant__price">$$</span>
+            </div>
+          </div>
+
+          <div class="cl-restaurant__card">
+            <div class="cl-restaurant__info">
+              <h3>The Last Shot Bar & Grill</h3>
+              <span class="cl-restaurant__cuisine">American / Bar</span>
+              <p>A casual bar and grill with solid burgers, cold beer, and live music. The Last Shot is a go-to for locals looking for a laid-back night out without leaving the lake area.</p>
+              <span class="cl-restaurant__price">$</span>
+            </div>
+          </div>
+
+          <div class="cl-restaurant__card">
+            <div class="cl-restaurant__info">
+              <h3>Canyon Lake Smokehouse</h3>
+              <span class="cl-restaurant__cuisine">BBQ</span>
+              <p>Smoked meats done right with lake-area charm. Canyon Lake Smokehouse serves up brisket, ribs, sausage, and all the classic sides in a no-frills setting that lets the food do the talking.</p>
+              <span class="cl-restaurant__price">$$</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background: #000; color: #fff; text-align: center;">
+      <div class="container">
+        <h2>Thinking About <span class="accent">Canyon Lake</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Great food is just one part of what makes Canyon Lake special. If you're considering a move to the area, I can help you find the right home in the right neighborhood.</p>
+        <div class="cl-cta__buttons">
+          <a href="/canyon-lake/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Ask About Canyon Lake</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I'd like to learn more about Canyon Lake..." />
+  <Footer />
+</Layout>
+
+<style>
+  .cl-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .cl-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .cl-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .cl-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .cl-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  .cl-page-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 800px;
+  }
+
+  .cl-page-intro--centered {
+    text-align: center;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0 auto;
+  }
+
+  /* Restaurant Cards */
+  .cl-restaurant__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .cl-restaurant__card {
+    background: #fff;
+    border-left: 3px solid #FF1616;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .cl-restaurant__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .cl-restaurant__info h3 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+  }
+
+  .cl-restaurant__cuisine {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #FF1616;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+
+  .cl-restaurant__info p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+  }
+
+  .cl-restaurant__price {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--gray);
+    background: var(--light-gray);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  .cl-cta__buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

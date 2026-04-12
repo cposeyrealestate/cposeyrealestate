@@ -1,0 +1,215 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
+---
+
+<Layout
+  title="Things to Do in Canyon Lake, TX | Cody Posey Real Estate"
+  description="Discover the best things to do in Canyon Lake, Texas — boating, river tubing, live music, hiking, fishing, and more in the Texas Hill Country."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="cl-hero">
+      <div class="cl-hero__overlay"></div>
+      <div class="cl-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/canyon-lake/">Canyon Lake</a> <span>/</span> <span>Things to Do</span>
+        </nav>
+        <h1>Things to <span style="color:#FF1616;">Do</span></h1>
+        <p>Water, trails, live music, and Hill Country adventure</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="cl-page-intro cl-page-intro--centered">Life at Canyon Lake centers on the water and the outdoors. From boating and fishing on the 8,230-acre reservoir to whitewater kayaking below the dam, live music at one of Texas' best outdoor venues, and hiking with panoramic views — there's no shortage of ways to spend your time here.</p>
+      </div>
+    </section>
+
+    <!-- Activities -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>What to <span class="accent">Do</span></h2>
+        </div>
+
+        <div class="cl-activity__grid">
+          <div class="cl-activity__card">
+            <span class="cl-activity__category">Outdoor</span>
+            <h3>Canyon Lake Boating</h3>
+            <p>The 8,230-acre reservoir is the centerpiece of life here. With over 20 boat ramps, full-service marinas, and calm coves for anchoring, Canyon Lake is built for water sports — skiing, wakeboarding, fishing, pontoon cruising, and everything in between.</p>
+          </div>
+
+          <div class="cl-activity__card">
+            <span class="cl-activity__category">Outdoor</span>
+            <h3>Guadalupe River Whitewater</h3>
+            <p>Below Canyon Dam sits some of the best whitewater in Texas. The tailrace section of the Guadalupe offers Class II-III rapids for kayaking and tubing, along with crystal-clear swimming holes carved through limestone bluffs. A year-round draw for outdoor enthusiasts.</p>
+          </div>
+
+          <div class="cl-activity__card">
+            <span class="cl-activity__category">Nightlife</span>
+            <h3>Whitewater Amphitheater</h3>
+            <p>One of Texas' best outdoor live music venues, Whitewater Amphitheater hosts national touring acts and local favorites in a riverside setting. From country and rock to Texas singer-songwriters, it's the cultural anchor of the Canyon Lake nightlife scene.</p>
+          </div>
+
+          <div class="cl-activity__card">
+            <span class="cl-activity__category">Outdoor</span>
+            <h3>Overlook Park</h3>
+            <p>A public day-use park managed by the Army Corps of Engineers, Overlook Park offers panoramic views of Canyon Lake and a 1-mile hiking loop through native Hill Country terrain. Great for a quick hike, a picnic, or just taking in the scenery.</p>
+          </div>
+
+          <div class="cl-activity__card">
+            <span class="cl-activity__category">Culture</span>
+            <h3>Heritage Museum</h3>
+            <p>The Canyon Lake Heritage Museum preserves the history of the Hill Country region — from pioneer life and early settlements to the geological forces that shaped the landscape. A small but worthwhile stop for history buffs and newcomers alike.</p>
+          </div>
+
+          <div class="cl-activity__card">
+            <span class="cl-activity__category">Outdoor</span>
+            <h3>Canyon Lake Fishing</h3>
+            <p>Year-round fishing for largemouth bass, catfish, white bass, and striped bass makes Canyon Lake a destination for anglers. Multiple marinas offer boat rentals, bait, and guided trips. The lake's clear water and rocky structure create excellent conditions across all seasons.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background: #000; color: #fff; text-align: center;">
+      <div class="container">
+        <h2>Ready to Make <span class="accent">Canyon Lake</span> Home?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">There's a reason people fall in love with this area. If you're considering a move to Canyon Lake, I can help you find the right home near the activities that matter most to you.</p>
+        <div class="cl-cta__buttons">
+          <a href="/canyon-lake/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Ask About Canyon Lake</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I'd like to learn more about Canyon Lake..." />
+  <Footer />
+</Layout>
+
+<style>
+  .cl-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .cl-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .cl-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .cl-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .cl-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  .cl-page-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 800px;
+  }
+
+  .cl-page-intro--centered {
+    text-align: center;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0 auto;
+  }
+
+  /* Activity Cards */
+  .cl-activity__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cl-activity__card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .cl-activity__category {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #FF1616;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+
+  .cl-activity__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .cl-activity__card p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .cl-cta__buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .cl-activity__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

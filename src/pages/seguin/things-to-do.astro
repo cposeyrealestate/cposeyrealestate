@@ -1,0 +1,217 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
+---
+
+<Layout
+  title="Things to Do in Seguin, TX | Cody Posey Real Estate"
+  description="Explore the best things to do in Seguin, Texas — from Guadalupe River kayaking and Max Starcke Park to historic downtown and ZDT's Amusement Park."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="seg-hero">
+      <div class="seg-hero__overlay"></div>
+      <div class="seg-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/seguin/">Seguin</a> <span>/</span> <span>Things to Do</span>
+        </nav>
+        <h1>Things to <span style="color:#FF1616;">Do</span></h1>
+        <p>Parks, river life, history, and family fun in Seguin</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="seg-page-intro seg-page-intro--centered">Seguin offers a surprising amount to do for a city its size — from a 227-acre riverside park and scenic kayaking to a family amusement park and a walkable historic downtown.</p>
+      </div>
+    </section>
+
+    <!-- Activities -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Top <span class="accent">Activities</span></h2>
+        </div>
+
+        <div class="seg-activity">
+          <div class="seg-activity__header">
+            <h3>Max Starcke Park</h3>
+            <span class="seg-activity__tag">Outdoor</span>
+          </div>
+          <p>Seguin's crown jewel — a 227-acre park along the Guadalupe River with an 18-hole golf course, tennis courts, fishing spots, kayak launches, playgrounds, and the beloved Kids Kingdom play area. This park is the heart of outdoor life in Seguin and a major draw for families.</p>
+        </div>
+
+        <div class="seg-activity">
+          <div class="seg-activity__header">
+            <h3>Downtown Seguin & Main Street</h3>
+            <span class="seg-activity__tag">Culture</span>
+          </div>
+          <p>Seguin's downtown is a walkable stretch of vintage storefronts, boutique shops, local restaurants, and breweries. Main Street has been the center of community life for over a century, and ongoing revitalization has brought new energy while preserving the city's historic character.</p>
+        </div>
+
+        <div class="seg-activity">
+          <div class="seg-activity__header">
+            <h3>Seguin Heritage Museum</h3>
+            <span class="seg-activity__tag">Culture</span>
+          </div>
+          <p>Learn about the Texas Revolution, the life of Juan Seguin, and the city's rich history through exhibits and artifacts. The Heritage Museum offers a deeper understanding of how Seguin came to be and the people who shaped it.</p>
+        </div>
+
+        <div class="seg-activity">
+          <div class="seg-activity__header">
+            <h3>Guadalupe River Kayaking</h3>
+            <span class="seg-activity__tag">Outdoor</span>
+          </div>
+          <p>Launch from Max Starcke Park for scenic kayaking along the Guadalupe River. The Seguin stretch offers calm water, shaded banks, and wildlife — a more relaxed alternative to the busier tubing sections upstream in New Braunfels.</p>
+        </div>
+
+        <div class="seg-activity">
+          <div class="seg-activity__header">
+            <h3>ZDT's Amusement Park</h3>
+            <span class="seg-activity__tag">Family</span>
+          </div>
+          <p>A family-owned amusement park featuring go-karts, mini golf, a wooden roller coaster, and a variety of rides and attractions. ZDT's is a local favorite for families and a unique find for a city this size — fun for kids and adults alike.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background: #000; color: #fff; text-align: center;">
+      <div class="container">
+        <h2>Ready to Make Seguin <span class="accent">Home</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">There's plenty to love about life in Seguin. Let me help you find the right home in the right neighborhood.</p>
+        <div class="seg-cta__buttons">
+          <a href="/seguin/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Ask About Seguin</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I'd like to learn more about living in Seguin..." />
+  <Footer />
+</Layout>
+
+<style>
+  .seg-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .seg-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .seg-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .seg-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .seg-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  .seg-page-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 800px;
+  }
+
+  .seg-page-intro--centered {
+    text-align: center;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0 auto;
+  }
+
+  /* Activity Cards */
+  .seg-activity {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .seg-activity__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .seg-activity__header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .seg-activity__tag {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #FF1616;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: rgba(255,22,22,0.08);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+  }
+
+  .seg-activity p {
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  /* CTA Buttons */
+  .seg-cta__buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

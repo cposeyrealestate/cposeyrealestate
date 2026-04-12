@@ -12,13 +12,56 @@
         <li><a href="/" class="navbar__link">Home</a></li>
         <li><a href="/home-search/listings" class="navbar__link">Home Search</a></li>
         <li><a href="/home-valuation" class="navbar__link">Home Valuation</a></li>
-        <li class="navbar__dropdown">
+        <li class="navbar__dropdown navbar__dropdown--mega">
           <a href="/explorearea" class="navbar__link">Explore Area</a>
-          <ul class="navbar__sub">
-            <li><a href="/new-braunfels/">New Braunfels</a></li>
-            <li><a href="/new-braunfels/neighborhoods/">Neighborhoods</a></li>
-            <li><a href="/new-braunfels/new-construction/">New Construction</a></li>
-          </ul>
+          <div class="navbar__mega">
+            <div class="navbar__mega-col">
+              <h4><a href="/new-braunfels/">New Braunfels</a></h4>
+              <ul>
+                <li><a href="/new-braunfels/neighborhoods/">Neighborhoods</a></li>
+                <li><a href="/new-braunfels/homes-for-sale/">Homes for Sale</a></li>
+                <li><a href="/new-braunfels/restaurants/">Restaurants</a></li>
+                <li><a href="/new-braunfels/things-to-do/">Things to Do</a></li>
+                <li><a href="/new-braunfels/new-construction/">New Construction</a></li>
+              </ul>
+            </div>
+            <div class="navbar__mega-col">
+              <h4><a href="/canyon-lake/">Canyon Lake</a></h4>
+              <ul>
+                <li><a href="/canyon-lake/neighborhoods/">Neighborhoods</a></li>
+                <li><a href="/canyon-lake/homes-for-sale/">Homes for Sale</a></li>
+                <li><a href="/canyon-lake/restaurants/">Restaurants</a></li>
+                <li><a href="/canyon-lake/things-to-do/">Things to Do</a></li>
+              </ul>
+            </div>
+            <div class="navbar__mega-col">
+              <h4><a href="/seguin/">Seguin</a></h4>
+              <ul>
+                <li><a href="/seguin/neighborhoods/">Neighborhoods</a></li>
+                <li><a href="/seguin/homes-for-sale/">Homes for Sale</a></li>
+                <li><a href="/seguin/restaurants/">Restaurants</a></li>
+                <li><a href="/seguin/things-to-do/">Things to Do</a></li>
+              </ul>
+            </div>
+            <div class="navbar__mega-col">
+              <h4><a href="/cibolo-schertz/">Cibolo / Schertz</a></h4>
+              <ul>
+                <li><a href="/cibolo-schertz/neighborhoods/">Neighborhoods</a></li>
+                <li><a href="/cibolo-schertz/homes-for-sale/">Homes for Sale</a></li>
+                <li><a href="/cibolo-schertz/restaurants/">Restaurants</a></li>
+                <li><a href="/cibolo-schertz/things-to-do/">Things to Do</a></li>
+              </ul>
+            </div>
+            <div class="navbar__mega-col">
+              <h4><a href="/bulverde/">Bulverde</a></h4>
+              <ul>
+                <li><a href="/bulverde/neighborhoods/">Neighborhoods</a></li>
+                <li><a href="/bulverde/homes-for-sale/">Homes for Sale</a></li>
+                <li><a href="/bulverde/restaurants/">Restaurants</a></li>
+                <li><a href="/bulverde/things-to-do/">Things to Do</a></li>
+              </ul>
+            </div>
+          </div>
         </li>
         <li><a href="/blog" class="navbar__link">Blog</a></li>
         <li class="navbar__dropdown">
@@ -28,9 +71,7 @@
             <li><a href="/properties">Portfolio</a></li>
             <li><a href="/testimonials">Testimonials</a></li>
             <li><a href="/buyers-guide">Buyer's Guide</a></li>
-            <li><a href="/sellers-guide">Seller's Guide</a></li>
             <li><a href="/sellers-net-sheet">Seller's Net Sheet</a></li>
-            <li><a href="/mortgage-calculator">Mortgage Calculator</a></li>
           </ul>
         </li>
         <li><a href="#contact" class="navbar__link">Let's Connect</a></li>
@@ -88,13 +129,13 @@
 
   .navbar__links {
     display: flex;
-    gap: 2rem;
+    gap: 1.8rem;
     align-items: center;
   }
 
   .navbar__link {
     font-family: 'Poppins', sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -122,7 +163,7 @@
     color: #FF1616;
   }
 
-  /* Dropdown */
+  /* Standard Dropdown */
   .navbar__dropdown {
     position: relative;
   }
@@ -136,6 +177,7 @@
     min-width: 200px;
     padding: 0.5rem 0;
     box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    border-top: 2px solid #FF1616;
   }
 
   .navbar__dropdown:hover .navbar__sub {
@@ -146,7 +188,7 @@
     display: block;
     padding: 0.6rem 1.2rem;
     font-family: 'Poppins', sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -159,16 +201,71 @@
     padding-left: 1.6rem;
   }
 
-  .navbar__brokerage-logo {
-    height: 36px;
-    width: auto;
-    opacity: 0.55;
-    mix-blend-mode: screen;
-    transition: opacity 0.3s;
+  /* Mega Dropdown */
+  .navbar__mega {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #000;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    border-top: 2px solid #FF1616;
+    min-width: 700px;
+    gap: 0;
   }
 
-  .navbar__brokerage-logo:hover {
-    opacity: 0.85;
+  .navbar__dropdown--mega:hover .navbar__mega {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .navbar__mega-col {
+    padding: 0 0.75rem;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .navbar__mega-col:last-child {
+    border-right: none;
+  }
+
+  .navbar__mega-col h4 {
+    margin-bottom: 0.75rem;
+  }
+
+  .navbar__mega-col h4 a {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #FF1616;
+    transition: color 0.2s;
+  }
+
+  .navbar__mega-col h4 a:hover {
+    color: #fff;
+  }
+
+  .navbar__mega-col ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .navbar__mega-col ul li a {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.65);
+    transition: color 0.2s;
+    padding: 0.25rem 0;
+    display: block;
+  }
+
+  .navbar__mega-col ul li a:hover {
+    color: #fff;
   }
 
   .navbar__cta {
@@ -195,6 +292,20 @@
     transition: 0.3s;
   }
 
+  @media (max-width: 1100px) {
+    .navbar__links {
+      gap: 1.2rem;
+    }
+
+    .navbar__link {
+      font-size: 0.72rem;
+    }
+
+    .navbar__mega {
+      min-width: 600px;
+    }
+  }
+
   @media (max-width: 900px) {
     .navbar__nav {
       display: none;
@@ -204,6 +315,8 @@
       right: 0;
       background: #000;
       padding: 1.5rem;
+      max-height: 80vh;
+      overflow-y: auto;
     }
 
     .navbar__nav.open {
@@ -213,7 +326,7 @@
     .navbar__links {
       flex-direction: column;
       align-items: flex-start;
-      gap: 1.2rem;
+      gap: 1rem;
     }
 
     .navbar__sub {
@@ -222,13 +335,35 @@
       box-shadow: none;
       padding-left: 1rem;
       margin-top: 0.5rem;
+      border-top: none;
+    }
+
+    .navbar__mega {
+      position: static;
+      display: block !important;
+      transform: none;
+      min-width: auto;
+      box-shadow: none;
+      padding: 0.5rem 0 0 1rem;
+      border-top: none;
+    }
+
+    .navbar__dropdown--mega:hover .navbar__mega {
+      display: block;
+      grid-template-columns: 1fr;
+    }
+
+    .navbar__mega-col {
+      padding: 0.5rem 0;
+      border-right: none;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .navbar__mega-col:last-child {
+      border-bottom: none;
     }
 
     .navbar__cta {
-      display: none;
-    }
-
-    .navbar__brokerage-logo {
       display: none;
     }
 

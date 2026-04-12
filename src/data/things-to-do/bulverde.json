@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Guadalupe River State Park",
+    "category": "outdoor",
+    "description": "1,900-acre state park with swimming, tubing, fishing, hiking, and camping along 4 miles of Guadalupe River frontage.",
+    "tags": ["state-park", "swimming", "tubing", "hiking", "camping", "river"]
+  },
+  {
+    "name": "Honey Creek State Natural Area",
+    "category": "outdoor",
+    "description": "Pristine nature preserve accessible only by guided tour. Features a spring-fed creek, old-growth forest, and cave formations.",
+    "tags": ["nature-preserve", "guided-tour", "creek", "forest", "caves"]
+  },
+  {
+    "name": "JW Marriott Hill Country Resort",
+    "category": "entertainment",
+    "description": "World-class resort with restaurants, spa, golf course, and a lazy river. Locals visit for dining and day trips.",
+    "tags": ["resort", "spa", "golf", "dining", "lazy-river"]
+  },
+  {
+    "name": "Krawietz Park",
+    "category": "outdoor",
+    "description": "Newer community park with a 6-hole disc golf course, walking trails, and open green space.",
+    "tags": ["park", "disc-golf", "trails", "family-friendly"]
+  },
+  {
+    "name": "Spring Branch Icehouse",
+    "category": "nightlife",
+    "description": "Local watering hole with live music, food trucks, and a laid-back Hill Country atmosphere.",
+    "tags": ["live-music", "food-trucks", "bar", "casual", "hill-country"]
+  }
+]

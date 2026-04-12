@@ -1,0 +1,321 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
+---
+
+<Layout
+  title="Bulverde, TX Real Estate | Cody Posey"
+  description="Explore Bulverde, Texas — quiet Hill Country living on acreage. Neighborhoods, homes for sale, restaurants, and things to do in Bulverde."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="bv-hero">
+      <div class="bv-hero__overlay"></div>
+      <div class="bv-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <span>Bulverde</span>
+        </nav>
+        <h1>Bul<span style="color:#FF1616;">verde</span></h1>
+        <p>Quiet Hill Country Living on Acreage</p>
+      </div>
+    </div>
+
+    <!-- City Intro -->
+    <section class="section bv-intro">
+      <div class="container">
+        <div class="bv-intro__grid">
+          <div class="bv-intro__text">
+            <h2>A Rural Hill Country <span class="accent">Community</span></h2>
+            <p>Bulverde is a rural Hill Country community located about 25 miles north of downtown San Antonio. Known for larger lots, scenic views, and a quieter pace of life, it appeals to buyers who want space and privacy without being far from city conveniences.</p>
+            <p>The area is served by Comal ISD and offers easy access to Guadalupe River State Park and the JW Marriott Hill Country Resort. Whether you're looking for acreage, a family-friendly neighborhood, or a place to slow down — Bulverde delivers.</p>
+          </div>
+          <div class="bv-intro__stats">
+            <div class="bv-stat">
+              <span class="bv-stat__number">6,000+</span>
+              <span class="bv-stat__label">Population</span>
+            </div>
+            <div class="bv-stat">
+              <span class="bv-stat__number">25 min</span>
+              <span class="bv-stat__label">To San Antonio</span>
+            </div>
+            <div class="bv-stat">
+              <span class="bv-stat__number">25 min</span>
+              <span class="bv-stat__label">To New Braunfels</span>
+            </div>
+            <div class="bv-stat">
+              <span class="bv-stat__number">$406K</span>
+              <span class="bv-stat__label">Median Home Price</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why People Move Here -->
+    <section class="section bv-why" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Why People <span class="accent">Choose Bulverde</span></h2>
+          <p>The most common reasons buyers are drawn to this area</p>
+        </div>
+        <div class="bv-why__grid">
+          <div class="bv-why__card">
+            <h3>Space & Privacy</h3>
+            <p>Large lots, acreage properties, and open skies. Bulverde offers the room to spread out that's increasingly hard to find closer to the city.</p>
+          </div>
+          <div class="bv-why__card">
+            <h3>Hill Country Beauty</h3>
+            <p>Scenic views, rivers, and state parks at your doorstep. The natural landscape here is one of the most appealing in the greater San Antonio area.</p>
+          </div>
+          <div class="bv-why__card">
+            <h3>Quality Schools</h3>
+            <p>Served by Comal ISD, one of the most well-regarded school districts in the region — a major draw for families with school-age children.</p>
+          </div>
+          <div class="bv-why__card">
+            <h3>Close to Everything</h3>
+            <p>Just 25 minutes to both San Antonio and New Braunfels, with the JW Marriott Hill Country Resort nearby for dining, golf, and entertainment.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Cards -->
+    <section class="section bv-explore">
+      <div class="container">
+        <div class="section-title">
+          <h2>Explore <span class="accent">Bulverde</span></h2>
+          <p>Dig deeper into the areas, homes, and lifestyle that matter to you</p>
+        </div>
+        <div class="bv-explore__grid">
+          <a href="/bulverde/neighborhoods/" class="bv-explore__card">
+            <h3>Neighborhoods</h3>
+            <p>Explore the communities and subdivisions that make up the Bulverde area — from acreage properties to master-planned neighborhoods.</p>
+          </a>
+          <a href="/bulverde/homes-for-sale/" class="bv-explore__card">
+            <h3>Homes for Sale</h3>
+            <p>Search current listings in Bulverde. Filter by price, area, and home type to find what's available now.</p>
+          </a>
+          <a href="/bulverde/restaurants/" class="bv-explore__card">
+            <h3>Restaurants</h3>
+            <p>From local grills and BBQ joints to Hill Country dining — the best places to eat in and around Bulverde.</p>
+          </a>
+          <a href="/bulverde/things-to-do/" class="bv-explore__card">
+            <h3>Things to Do</h3>
+            <p>State parks, resorts, live music, and outdoor recreation — everything that makes Bulverde a great place to live.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section bv-cta" style="background: #000; color: #fff; text-align: center;">
+      <div class="container">
+        <h2>Ready to Explore <span class="accent">Bulverde</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Whether you're just starting your search or ready to schedule showings, I can help you navigate the market and find the right fit.</p>
+        <div class="bv-cta__buttons">
+          <a href="/bulverde/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Ask About Bulverde</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I'd like to learn more about Bulverde..." />
+  <Footer />
+</Layout>
+
+<style>
+  /* Hero */
+  .bv-hero {
+    position: relative;
+    height: 320px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .bv-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .bv-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .bv-hero__content h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .bv-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  /* Intro */
+  .bv-intro__grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .bv-intro__text p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .bv-intro__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .bv-stat {
+    background: var(--light-gray);
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 8px;
+  }
+
+  .bv-stat__number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #FF1616;
+  }
+
+  .bv-stat__label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--gray);
+    margin-top: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Why Section */
+  .bv-why__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .bv-why__card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .bv-why__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .bv-why__card p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  /* Explore Cards */
+  .bv-explore__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .bv-explore__card {
+    display: block;
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    padding: 2rem;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .bv-explore__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .bv-explore__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: #000;
+  }
+
+  .bv-explore__card:hover h3 {
+    color: #FF1616;
+  }
+
+  .bv-explore__card p {
+    color: var(--gray);
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  /* CTA */
+  .bv-cta__buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .bv-intro__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .bv-why__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .bv-explore__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Gennaro's Trattoria",
+    "cuisine": "Italian",
+    "description": "Fresh pasta and meats in a family-friendly setting.",
+    "priceRange": "$$",
+    "tags": ["italian", "pasta", "family-friendly", "casual"]
+  },
+  {
+    "name": "Wildflour Artisan Bakery & Grill",
+    "cuisine": "American",
+    "description": "Homemade baked goods, eggs benedict, chicken and waffles.",
+    "priceRange": "$$",
+    "tags": ["american", "bakery", "breakfast", "brunch"]
+  },
+  {
+    "name": "Baja Icehouse and Grill",
+    "cuisine": "Tex-Mex/Bar",
+    "description": "Only restaurant on Canyon Lake, live music.",
+    "priceRange": "$$",
+    "tags": ["tex-mex", "bar", "lakeside", "live-music"]
+  },
+  {
+    "name": "The Last Shot Bar & Grill",
+    "cuisine": "American/Bar",
+    "description": "Casual bar and grill, burgers and live music.",
+    "priceRange": "$",
+    "tags": ["american", "bar", "burgers", "live-music", "casual"]
+  },
+  {
+    "name": "Canyon Lake Smokehouse",
+    "cuisine": "BBQ",
+    "description": "Smoked meats with lake-area charm.",
+    "priceRange": "$$",
+    "tags": ["bbq", "smoked-meats", "casual", "local"]
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Screaming Goat Yard & Tap",
+    "cuisine": "American",
+    "description": "Fried green BLTs, all-you-can-eat catfish Thursdays.",
+    "priceRange": "$$",
+    "tags": ["american", "casual", "outdoor-seating", "local-favorite"]
+  },
+  {
+    "name": "Branch Neighborhood Grill",
+    "cuisine": "American",
+    "description": "Seafood, sandwiches, po'boys, family-friendly.",
+    "priceRange": "$$",
+    "tags": ["american", "seafood", "sandwiches", "family-friendly"]
+  },
+  {
+    "name": "Richter's Antler Cafe",
+    "cuisine": "American",
+    "description": "Texas cuisine with a twist in a Hill Country setting.",
+    "priceRange": "$$",
+    "tags": ["american", "texas-cuisine", "hill-country", "casual"]
+  },
+  {
+    "name": "Smokey Mo's BBQ",
+    "cuisine": "BBQ",
+    "description": "Smoking Texas BBQ for 25+ years.",
+    "priceRange": "$",
+    "tags": ["bbq", "casual", "established", "family-friendly"]
+  }
+]

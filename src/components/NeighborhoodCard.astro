@@ -1,0 +1,113 @@
+---
+interface Props {
+  name: string;
+  slug: string;
+  areaSlug: string;
+  summary: string;
+  priceRange: string;
+  schoolDistrict: string;
+  buyerType: string;
+  image?: string;
+}
+
+const { name, slug, areaSlug, summary, priceRange, schoolDistrict, buyerType, image } = Astro.props;
+const href = `/${areaSlug}/neighborhoods/#${slug}`;
+---
+
+<a href={href} class="nbhood-card">
+  <div class="nbhood-card__image" style={image ? `background-image: url(${image});` : undefined}>
+    {!image && <div class="nbhood-card__placeholder"></div>}
+  </div>
+  <div class="nbhood-card__body">
+    <h3 class="nbhood-card__name">{name}</h3>
+    <p class="nbhood-card__summary">{summary}</p>
+    <div class="nbhood-card__badges">
+      <span class="nbhood-card__badge">{priceRange}</span>
+      <span class="nbhood-card__badge">{schoolDistrict}</span>
+    </div>
+    <span class="nbhood-card__cta">Learn More &rarr;</span>
+  </div>
+</a>
+
+<style>
+  .nbhood-card {
+    display: block;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .nbhood-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .nbhood-card__image {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    background-color: #eee;
+  }
+
+  .nbhood-card__placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #222 0%, #444 50%, #333 100%);
+  }
+
+  .nbhood-card__body {
+    padding: 1.25rem;
+  }
+
+  .nbhood-card__name {
+    font-size: 1.1rem;
+    color: #000;
+    margin-bottom: 0.5rem;
+  }
+
+  .nbhood-card__summary {
+    font-size: 0.88rem;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .nbhood-card__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .nbhood-card__badge {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.3rem 0.7rem;
+    background: #f5f5f5;
+    border-radius: 4px;
+    color: #333;
+  }
+
+  .nbhood-card__cta {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #FF1616;
+    transition: letter-spacing 0.2s;
+  }
+
+  .nbhood-card:hover .nbhood-card__cta {
+    letter-spacing: 0.1em;
+  }
+</style>

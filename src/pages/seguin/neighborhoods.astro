@@ -1,0 +1,213 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
+---
+
+<Layout
+  title="Seguin Neighborhoods | Cody Posey Real Estate"
+  description="Explore Seguin, TX neighborhoods by area and price range. From historic downtown to new construction communities — find the right fit for your lifestyle."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="seg-hero">
+      <div class="seg-hero__overlay"></div>
+      <div class="seg-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/seguin/">Seguin</a> <span>/</span> <span>Neighborhoods</span>
+        </nav>
+        <h1>Seguin <span style="color:#FF1616;">Neighborhoods</span></h1>
+        <p>Find the area that fits your lifestyle and budget</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="seg-page-intro seg-page-intro--centered">Seguin offers a range of neighborhoods — from established family communities and historic downtown living to newer construction and large-lot properties along the Guadalupe River. Here's how the city breaks down.</p>
+      </div>
+    </section>
+
+    <!-- Neighborhoods -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Seguin <span class="accent">Neighborhoods</span></h2>
+        </div>
+
+        <div class="seg-area">
+          <div class="seg-area__header">
+            <h3>Nob Hill</h3>
+            <span class="seg-area__price">$250K - $350K</span>
+          </div>
+          <p>A well-established family neighborhood with spacious yards and tree-lined streets. Nob Hill is one of Seguin's most popular residential areas, offering a suburban feel with easy access to schools and shopping. Served by Seguin ISD.</p>
+        </div>
+
+        <div class="seg-area">
+          <div class="seg-area__header">
+            <h3>Village of Mill Creek</h3>
+            <span class="seg-area__price">$200K - $320K</span>
+          </div>
+          <p>A community-oriented neighborhood with a strong sense of belonging. Mill Creek offers affordable homes with a neighborhood feel, community events, and convenient access to local amenities. Served by Seguin ISD.</p>
+        </div>
+
+        <div class="seg-area">
+          <div class="seg-area__header">
+            <h3>Cordova Crossing</h3>
+            <span class="seg-area__price">$280K - $400K</span>
+          </div>
+          <p>One of Seguin's newer construction communities, Cordova Crossing features modern floor plans and updated finishes. Located near major highways for easy commuting to San Antonio or New Braunfels. Served by Seguin ISD.</p>
+        </div>
+
+        <div class="seg-area">
+          <div class="seg-area__header">
+            <h3>Downtown Seguin</h3>
+            <span class="seg-area__price">$150K - $300K</span>
+          </div>
+          <p>Walkable living in the heart of the city. Downtown Seguin offers proximity to Main Street shops, restaurants, breweries, and the Guadalupe River. Homes here range from historic properties to renovated bungalows — ideal for buyers who value character and convenience.</p>
+        </div>
+
+        <div class="seg-area">
+          <div class="seg-area__header">
+            <h3>Country Club Estates</h3>
+            <span class="seg-area__price">$250K - $450K</span>
+          </div>
+          <p>Situated near the Seguin golf course, Country Club Estates offers a quieter pace with mature landscaping and larger lots. A solid choice for buyers looking for an established neighborhood with recreational access. Served by Seguin ISD.</p>
+        </div>
+
+        <div class="seg-area">
+          <div class="seg-area__header">
+            <h3>River Oaks</h3>
+            <span class="seg-area__price">$300K - $500K</span>
+          </div>
+          <p>River Oaks offers larger lots with access to the Guadalupe River. Properties here tend to have more acreage and a rural feel while remaining close to town. A great option for buyers who want space, privacy, and river access.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background: #000; color: #fff; text-align: center;">
+      <div class="container">
+        <h2>Need Help <span class="accent">Narrowing It Down</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">I can walk you through the differences between Seguin neighborhoods and help you focus your search on areas that match your priorities.</p>
+        <a href="#contact" class="btn btn-outline">Get Help Choosing a Neighborhood</a>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I need help narrowing down Seguin neighborhoods..." />
+  <Footer />
+</Layout>
+
+<style>
+  .seg-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .seg-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .seg-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .seg-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .seg-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  .seg-page-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 800px;
+  }
+
+  .seg-page-intro--centered {
+    text-align: center;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0 auto;
+  }
+
+  /* Neighborhood Cards */
+  .seg-area {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .seg-area__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .seg-area__header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .seg-area__price {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #FF1616;
+    background: rgba(255,22,22,0.08);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+  }
+
+  .seg-area p {
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+</style>

@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Max Starcke Park",
+    "category": "outdoor",
+    "description": "227-acre park on the Guadalupe River with golf course, tennis, fishing, kayaking, walking trails, and Kids Kingdom Playscape.",
+    "tags": ["park", "golf", "kayaking", "fishing", "family-friendly", "trails"]
+  },
+  {
+    "name": "Downtown Seguin & Main Street",
+    "category": "culture",
+    "description": "Historic downtown with vintage storefronts, boutique shopping, restaurants, breweries, and cafes. The heart of the community.",
+    "tags": ["downtown", "shopping", "dining", "historic", "breweries"]
+  },
+  {
+    "name": "Seguin Heritage Museum",
+    "category": "culture",
+    "description": "Explore the history of Juan Seguín, the Texas Revolution, and the city's development from frontier town to modern community.",
+    "tags": ["museum", "history", "educational", "texas-revolution"]
+  },
+  {
+    "name": "Guadalupe River Kayaking",
+    "category": "outdoor",
+    "description": "Scenic kayaking through Seguin along the Guadalupe River with easy put-in at Max Starcke Park.",
+    "tags": ["kayaking", "river", "outdoor", "scenic"]
+  },
+  {
+    "name": "ZDT's Amusement Park",
+    "category": "family",
+    "description": "Family-owned amusement park with go-karts, batting cages, mini golf, and a wooden roller coaster.",
+    "tags": ["amusement-park", "go-karts", "mini-golf", "roller-coaster", "family-friendly"]
+  }
+]

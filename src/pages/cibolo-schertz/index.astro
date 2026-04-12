@@ -1,0 +1,321 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
+---
+
+<Layout
+  title="Cibolo & Schertz, TX Real Estate | Cody Posey"
+  description="Explore Cibolo and Schertz, Texas — family-friendly communities between San Antonio and New Braunfels. Top schools, safe neighborhoods, and convenient I-35 access."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="cs-hero">
+      <div class="cs-hero__overlay"></div>
+      <div class="cs-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <span>Cibolo / Schertz</span>
+        </nav>
+        <h1>Cibolo / <span style="color:#FF1616;">Schertz</span></h1>
+        <p>Family-Friendly Communities Between SA & New Braunfels</p>
+      </div>
+    </div>
+
+    <!-- City Intro -->
+    <section class="section cs-intro">
+      <div class="container">
+        <div class="cs-intro__grid">
+          <div class="cs-intro__text">
+            <h2>Two of the Most <span class="accent">Desirable Suburbs</span></h2>
+            <p>Cibolo and Schertz are two of the most desirable suburban communities in the I-35 corridor. With A-rated SCUCISD schools, safe neighborhoods, and proximity to Randolph AFB, these cities offer a strong sense of community with big-city access.</p>
+            <p>Located just 20 minutes from San Antonio and 15 minutes from New Braunfels, the Cibolo/Schertz area has grown into a combined population of over 75,000 — and continues to attract families, military personnel, and professionals looking for quality schools, affordable housing, and a convenient location along the I-35 corridor.</p>
+          </div>
+          <div class="cs-intro__stats">
+            <div class="cs-stat">
+              <span class="cs-stat__number">75,000+</span>
+              <span class="cs-stat__label">Population</span>
+            </div>
+            <div class="cs-stat">
+              <span class="cs-stat__number">20 min</span>
+              <span class="cs-stat__label">To San Antonio</span>
+            </div>
+            <div class="cs-stat">
+              <span class="cs-stat__number">15 min</span>
+              <span class="cs-stat__label">To New Braunfels</span>
+            </div>
+            <div class="cs-stat">
+              <span class="cs-stat__number">A-Rated</span>
+              <span class="cs-stat__label">Schools</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why People Move Here -->
+    <section class="section cs-why" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Why People <span class="accent">Choose Cibolo / Schertz</span></h2>
+          <p>The most common reasons buyers choose this area</p>
+        </div>
+        <div class="cs-why__grid">
+          <div class="cs-why__card">
+            <h3>Top Schools</h3>
+            <p>A-rated Schertz-Cibolo-Universal City ISD (SCUCISD) serves the area, anchored by Steele High School. Families consistently rank schools as a top reason for moving here.</p>
+          </div>
+          <div class="cs-why__card">
+            <h3>Military-Friendly</h3>
+            <p>Just 20 minutes from Randolph AFB, the area has a diverse and welcoming military community. Many active-duty and veteran families call Cibolo and Schertz home.</p>
+          </div>
+          <div class="cs-why__card">
+            <h3>Safe Communities</h3>
+            <p>Family-oriented neighborhoods with low crime rates, well-maintained parks, and a strong sense of community make this area ideal for raising a family.</p>
+          </div>
+          <div class="cs-why__card">
+            <h3>Convenient Location</h3>
+            <p>Positioned along the I-35 corridor between San Antonio and New Braunfels, with growing retail, dining, and services. Easy access to both metros for work and entertainment.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Cards -->
+    <section class="section cs-explore">
+      <div class="container">
+        <div class="section-title">
+          <h2>Explore <span class="accent">Cibolo / Schertz</span></h2>
+          <p>Dig deeper into the neighborhoods, homes, and lifestyle that matter to you</p>
+        </div>
+        <div class="cs-explore__grid">
+          <a href="/cibolo-schertz/neighborhoods/" class="cs-explore__card">
+            <h3>Neighborhoods</h3>
+            <p>Explore the top communities in Cibolo and Schertz — from established favorites to newer developments.</p>
+          </a>
+          <a href="/cibolo-schertz/homes-for-sale/" class="cs-explore__card">
+            <h3>Homes for Sale</h3>
+            <p>Search current listings in Cibolo and Schertz. Filter by price, area, and home type to find what's available now.</p>
+          </a>
+          <a href="/cibolo-schertz/restaurants/" class="cs-explore__card">
+            <h3>Restaurants</h3>
+            <p>From wings and Tex-Mex to authentic Thai — the best local spots to eat in the Cibolo/Schertz area.</p>
+          </a>
+          <a href="/cibolo-schertz/things-to-do/" class="cs-explore__card">
+            <h3>Things to Do</h3>
+            <p>Nature parks, wildlife safaris, live entertainment, and outdoor adventures in and around the area.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cs-cta" style="background: #000; color: #fff; text-align: center;">
+      <div class="container">
+        <h2>Ready to Explore <span class="accent">Cibolo / Schertz</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Whether you're just starting your search or ready to schedule showings, I can help you navigate the market and find the right fit.</p>
+        <div class="cs-cta__buttons">
+          <a href="/cibolo-schertz/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Ask About Cibolo / Schertz</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I'd like to learn more about Cibolo / Schertz..." />
+  <Footer />
+</Layout>
+
+<style>
+  /* Hero */
+  .cs-hero {
+    position: relative;
+    height: 320px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .cs-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .cs-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .cs-hero__content h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .cs-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  /* Intro */
+  .cs-intro__grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .cs-intro__text p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .cs-intro__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .cs-stat {
+    background: var(--light-gray);
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 8px;
+  }
+
+  .cs-stat__number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #FF1616;
+  }
+
+  .cs-stat__label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--gray);
+    margin-top: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Why Section */
+  .cs-why__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .cs-why__card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .cs-why__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .cs-why__card p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  /* Explore Cards */
+  .cs-explore__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cs-explore__card {
+    display: block;
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    padding: 2rem;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .cs-explore__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .cs-explore__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: #000;
+  }
+
+  .cs-explore__card:hover h3 {
+    color: #FF1616;
+  }
+
+  .cs-explore__card p {
+    color: var(--gray);
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  /* CTA */
+  .cs-cta__buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .cs-intro__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cs-why__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cs-explore__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

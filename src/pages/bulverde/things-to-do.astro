@@ -1,0 +1,223 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
+---
+
+<Layout
+  title="Things to Do in Bulverde, TX | Cody Posey Real Estate"
+  description="Explore things to do in Bulverde, Texas — state parks, resorts, live music, and outdoor recreation in the Hill Country."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="bv-hero">
+      <div class="bv-hero__overlay"></div>
+      <div class="bv-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/bulverde/">Bulverde</a> <span>/</span> <span>Things to Do</span>
+        </nav>
+        <h1>Things to <span style="color:#FF1616;">Do</span></h1>
+        <p>Outdoor recreation, resorts, and Hill Country entertainment</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="bv-page-intro bv-page-intro--centered">Bulverde sits in the heart of the Hill Country with easy access to state parks, rivers, resorts, and live music. Whether you're looking for weekend adventures or everyday outdoor access, here's what's nearby.</p>
+      </div>
+    </section>
+
+    <!-- Activities -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Local <span class="accent">Highlights</span></h2>
+        </div>
+
+        <div class="bv-activity">
+          <div class="bv-activity__header">
+            <h3>Guadalupe River State Park</h3>
+            <span class="bv-activity__tag">Outdoor</span>
+          </div>
+          <p>Nearly 1,900 acres of Hill Country terrain along four miles of the Guadalupe River. Swimming, tubing, fishing, and hiking are all accessible from the park's well-maintained trails and river access points. One of the most popular outdoor destinations in the region and a major draw for Bulverde residents.</p>
+        </div>
+
+        <div class="bv-activity">
+          <div class="bv-activity__header">
+            <h3>Honey Creek State Natural Area</h3>
+            <span class="bv-activity__tag">Outdoor</span>
+          </div>
+          <p>A guided-tours-only natural area adjacent to Guadalupe River State Park. Honey Creek features a spring-fed creek, old-growth forest, and caves — offering a more immersive and less crowded experience than the main park. Tours are led by park staff and provide a rare look at undeveloped Hill Country landscape.</p>
+        </div>
+
+        <div class="bv-activity">
+          <div class="bv-activity__header">
+            <h3>JW Marriott Hill Country Resort</h3>
+            <span class="bv-activity__tag">Entertainment</span>
+          </div>
+          <p>A world-class resort just minutes from Bulverde featuring multiple restaurants, a full-service spa, two golf courses, and a lazy river. While it's a destination for visitors, locals are welcome for dining and many of the resort's amenities — making it a convenient option for a night out or a weekend staycation.</p>
+        </div>
+
+        <div class="bv-activity">
+          <div class="bv-activity__header">
+            <h3>Krawietz Park</h3>
+            <span class="bv-activity__tag">Outdoor</span>
+          </div>
+          <p>Opened in 2025, Krawietz Park is one of the newest outdoor spaces in the Bulverde area. The park features a disc golf course and walking trails, giving residents a local option for recreation without needing to drive to a state park. A welcome addition to the community's growing list of outdoor amenities.</p>
+        </div>
+
+        <div class="bv-activity">
+          <div class="bv-activity__header">
+            <h3>Spring Branch Icehouse</h3>
+            <span class="bv-activity__tag">Nightlife</span>
+          </div>
+          <p>Live music, food trucks, and Hill Country vibes. Spring Branch Icehouse is the kind of laid-back spot that defines the area's social scene — a place to grab a drink, catch a local band, and enjoy the evening outdoors. A staple for residents looking for entertainment close to home.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background: #000; color: #fff; text-align: center;">
+      <div class="container">
+        <h2>Thinking About <span class="accent">Living Here</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Bulverde offers the Hill Country lifestyle with easy access to everything you need. If you're considering the area, I can help you find a home that fits.</p>
+        <div class="bv-cta__buttons">
+          <a href="/bulverde/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Ask About Bulverde</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I'd like to learn more about living in Bulverde..." />
+  <Footer />
+</Layout>
+
+<style>
+  .bv-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .bv-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .bv-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .bv-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .bv-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  .bv-page-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 800px;
+  }
+
+  .bv-page-intro--centered {
+    text-align: center;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0 auto;
+  }
+
+  /* Activity Cards */
+  .bv-activity {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .bv-activity__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .bv-activity__header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .bv-activity__tag {
+    font-size: 0.85rem;
+    color: var(--gray);
+    background: var(--light-gray);
+    padding: 0.15rem 0.6rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .bv-activity p {
+    color: var(--gray);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* CTA */
+  .bv-cta__buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .bv-activity__header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

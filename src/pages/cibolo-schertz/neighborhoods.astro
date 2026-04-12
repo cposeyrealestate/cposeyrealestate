@@ -1,0 +1,222 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
+---
+
+<Layout
+  title="Cibolo & Schertz Neighborhoods | Cody Posey Real Estate"
+  description="Explore the top neighborhoods in Cibolo and Schertz, TX. From Saddle Creek Ranch to Verde Ranch — find the right community for your family."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="cs-hero">
+      <div class="cs-hero__overlay"></div>
+      <div class="cs-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/cibolo-schertz/">Cibolo / Schertz</a> <span>/</span> <span>Neighborhoods</span>
+        </nav>
+        <h1>Cibolo / Schertz <span style="color:#FF1616;">Neighborhoods</span></h1>
+        <p>Find the community that fits your family and lifestyle</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="cs-page-intro cs-page-intro--centered">The Cibolo/Schertz area offers a variety of well-established and newer neighborhoods, all served by the highly rated SCUCISD school district. Whether you're looking for a starter home or an executive property, there's a community here for you.</p>
+      </div>
+    </section>
+
+    <!-- Neighborhoods -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Top <span class="accent">Neighborhoods</span></h2>
+        </div>
+
+        <div class="cs-hood">
+          <div class="cs-hood__header">
+            <h3>Saddle Creek Ranch</h3>
+            <span class="cs-hood__price">$300K - $450K</span>
+          </div>
+          <p>One of the most popular communities in the area, Saddle Creek Ranch features a dog park, golf course, community pool, and walking trails. Homes range from traditional to Hill Country-inspired designs. Served by SCUCISD schools, this neighborhood is a top choice for families seeking an active lifestyle with resort-style amenities.</p>
+        </div>
+
+        <div class="cs-hood">
+          <div class="cs-hood__header">
+            <h3>Falcon Ridge</h3>
+            <span class="cs-hood__price">$280K - $400K</span>
+          </div>
+          <p>An established neighborhood near FM 1103 with mature landscaping and a strong sense of community. Falcon Ridge offers a mix of single-story and two-story homes with generous lot sizes. Conveniently located near shopping, dining, and I-35 access, and served by SCUCISD schools.</p>
+        </div>
+
+        <div class="cs-hood">
+          <div class="cs-hood__header">
+            <h3>Bentwood Ranch</h3>
+            <span class="cs-hood__price">$280K - $380K</span>
+          </div>
+          <p>A community known for its neighborhood events and family-friendly atmosphere. Bentwood Ranch features well-maintained common areas, a community pool, and playgrounds. Homes are a mix of newer and established builds, all within the SCUCISD school district.</p>
+        </div>
+
+        <div class="cs-hood">
+          <div class="cs-hood__header">
+            <h3>Turning Stone</h3>
+            <span class="cs-hood__price">$350K - $450K</span>
+          </div>
+          <p>An executive-home community offering larger floor plans and premium finishes. Turning Stone is ideal for move-up buyers looking for more space and upgraded features. The neighborhood is well-kept with wide streets and mature trees, and is served by SCUCISD schools.</p>
+        </div>
+
+        <div class="cs-hood">
+          <div class="cs-hood__header">
+            <h3>Cibolo Valley Ranch</h3>
+            <span class="cs-hood__price">$250K - $350K</span>
+          </div>
+          <p>A newer, family-oriented community with modern home designs and community amenities. Cibolo Valley Ranch is popular with first-time buyers and young families looking for affordable options within the SCUCISD school district. The neighborhood features parks, walking paths, and a community pool.</p>
+        </div>
+
+        <div class="cs-hood">
+          <div class="cs-hood__header">
+            <h3>Verde Ranch</h3>
+            <span class="cs-hood__price">$300K - $420K</span>
+          </div>
+          <p>A growing community with a resort-style community pool, splash pad, and playground. Verde Ranch offers a range of floor plans from multiple builders, with homes designed for modern family living. Served by SCUCISD schools and conveniently located near retail and dining options.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background: #000; color: #fff; text-align: center;">
+      <div class="container">
+        <h2>Need Help <span class="accent">Choosing a Neighborhood</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">I can walk you through the differences between communities and help you focus your search on neighborhoods that match your priorities.</p>
+        <a href="#contact" class="btn btn-outline">Get Help Choosing a Neighborhood</a>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I need help choosing a neighborhood in Cibolo/Schertz..." />
+  <Footer />
+</Layout>
+
+<style>
+  .cs-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .cs-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .cs-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .cs-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .cs-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  .cs-page-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 800px;
+  }
+
+  .cs-page-intro--centered {
+    text-align: center;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0 auto;
+  }
+
+  /* Neighborhood Cards */
+  .cs-hood {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .cs-hood__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .cs-hood__header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+  }
+
+  .cs-hood__price {
+    display: inline-block;
+    background: #FF1616;
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.3rem 0.75rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .cs-hood p {
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .cs-hood__header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

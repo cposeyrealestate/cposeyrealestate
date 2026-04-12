@@ -1,0 +1,342 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
+---
+
+<Layout
+  title="Seguin, TX Real Estate | Cody Posey"
+  description="Explore Seguin, Texas — affordable living with small-town charm on the Guadalupe River. Neighborhoods, homes for sale, restaurants, and things to do."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="seg-hero">
+      <div class="seg-hero__overlay"></div>
+      <div class="seg-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <span>Seguin</span>
+        </nav>
+        <h1><span style="color:#FF1616;">Seguin</span></h1>
+        <p>Affordable Living with Small-Town Texas Charm</p>
+      </div>
+    </div>
+
+    <!-- City Intro -->
+    <section class="section seg-intro">
+      <div class="container">
+        <div class="seg-intro__grid">
+          <div class="seg-intro__text">
+            <h2>A Historic City on the <span class="accent">Guadalupe River</span></h2>
+            <p>Seguin is a historic city on the Guadalupe River, located about 35 miles east of San Antonio. Named after Texas Revolution hero Juan Seguin, the city combines affordable housing, a growing job market anchored by employers like Caterpillar and Tyson Foods, and a charming downtown that reflects its deep Texas roots.</p>
+            <p>With a lower cost of living than neighboring cities, Seguin offers one of the best-value housing markets in the region. Whether you're a first-time buyer, a growing family, or someone looking for more space without sacrificing convenience, Seguin delivers more home for your dollar.</p>
+            <p>The city's Main Street district, riverside parks, and strong sense of community make it a place where small-town character and modern growth coexist naturally.</p>
+          </div>
+          <div class="seg-intro__stats">
+            <div class="seg-stat">
+              <span class="seg-stat__number">33K+</span>
+              <span class="seg-stat__label">Population</span>
+            </div>
+            <div class="seg-stat">
+              <span class="seg-stat__number">35 min</span>
+              <span class="seg-stat__label">To San Antonio</span>
+            </div>
+            <div class="seg-stat">
+              <span class="seg-stat__number">20 min</span>
+              <span class="seg-stat__label">To New Braunfels</span>
+            </div>
+            <div class="seg-stat">
+              <span class="seg-stat__number">$313K</span>
+              <span class="seg-stat__label">Median Home Price</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why People Move Here -->
+    <section class="section seg-why" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Why People Choose <span class="accent">Seguin</span></h2>
+          <p>The most common reasons buyers are looking at Seguin</p>
+        </div>
+        <div class="seg-why__grid">
+          <div class="seg-why__card">
+            <h3>Affordability</h3>
+            <p>Seguin is one of the most affordable markets in the region. Buyers get more home per dollar here compared to San Antonio, New Braunfels, or Austin — making it ideal for first-time buyers and families stretching their budget further.</p>
+          </div>
+          <div class="seg-why__card">
+            <h3>Job Market</h3>
+            <p>Major employers like Caterpillar, Tyson Foods, and Continental Automotive have brought over 4,000 manufacturing jobs to the area. The local economy continues to grow with new investment and development.</p>
+          </div>
+          <div class="seg-why__card">
+            <h3>Historic Charm</h3>
+            <p>Downtown Seguin's Main Street is lined with local shops, restaurants, and breweries housed in vintage storefronts. The city's history runs deep, and the community takes pride in preserving its character.</p>
+          </div>
+          <div class="seg-why__card">
+            <h3>River Living</h3>
+            <p>The Guadalupe River runs through the heart of Seguin, with Max Starcke Park offering 227 acres of green space, kayaking, fishing, golf, and recreation right in the middle of town.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Cards -->
+    <section class="section seg-explore">
+      <div class="container">
+        <div class="section-title">
+          <h2>Explore <span class="accent">Seguin</span></h2>
+          <p>Dig deeper into the areas, homes, and lifestyle that matter to you</p>
+        </div>
+        <div class="seg-explore__grid">
+          <a href="/seguin/neighborhoods/" class="seg-explore__card">
+            <h3>Neighborhoods</h3>
+            <p>From established communities to new construction — find the Seguin neighborhood that fits your lifestyle and budget.</p>
+          </a>
+          <a href="/seguin/homes-for-sale/" class="seg-explore__card">
+            <h3>Homes for Sale</h3>
+            <p>Search current listings in Seguin. Filter by price, area, and home type to find what's available now.</p>
+          </a>
+          <a href="/seguin/restaurants/" class="seg-explore__card">
+            <h3>Restaurants</h3>
+            <p>From Michelin-recognized BBQ to local breweries and downtown cafes — the best places to eat in Seguin.</p>
+          </a>
+          <a href="/seguin/things-to-do/" class="seg-explore__card">
+            <h3>Things to Do</h3>
+            <p>River kayaking, historic downtown, amusement parks, and everything else that makes Seguin worth exploring.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA with Parallax -->
+    <section class="section seg-cta">
+      <div class="seg-cta__overlay"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <h2>Ready to Explore <span class="accent">Seguin</span>?</h2>
+        <p>Whether you're just starting your search or ready to schedule showings, I can help you navigate the market and find the right fit.</p>
+        <div class="seg-cta__buttons">
+          <a href="/seguin/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Ask About Seguin</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I'd like to learn more about Seguin..." />
+  <Footer />
+</Layout>
+
+<style>
+  /* Hero */
+  .seg-hero {
+    position: relative;
+    height: 320px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .seg-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .seg-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .seg-hero__content h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .seg-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  /* Intro */
+  .seg-intro__grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .seg-intro__text p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .seg-intro__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .seg-stat {
+    background: var(--light-gray);
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 8px;
+  }
+
+  .seg-stat__number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #FF1616;
+  }
+
+  .seg-stat__label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--gray);
+    margin-top: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Why Section */
+  .seg-why__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .seg-why__card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .seg-why__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .seg-why__card p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  /* Explore Cards */
+  .seg-explore__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .seg-explore__card {
+    display: block;
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    padding: 2rem;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .seg-explore__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .seg-explore__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: #000;
+  }
+
+  .seg-explore__card:hover h3 {
+    color: #FF1616;
+  }
+
+  .seg-explore__card p {
+    color: var(--gray);
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  /* CTA with Parallax */
+  .seg-cta {
+    position: relative;
+    background: url('/images/testimonials-hero.jpg') center/cover no-repeat fixed;
+    color: #fff;
+    text-align: center;
+  }
+
+  .seg-cta__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+  }
+
+  .seg-cta__buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .seg-cta p {
+    color: rgba(255,255,255,0.7);
+    max-width: 600px;
+    margin: 1rem auto 2rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .seg-intro__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .seg-why__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .seg-explore__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

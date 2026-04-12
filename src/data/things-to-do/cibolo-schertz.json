@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Crescent Bend Nature Park",
+    "category": "outdoor",
+    "description": "160-acre nature preserve with hiking and biking trails along Cibolo Creek. Great for bird watching.",
+    "tags": ["nature-park", "hiking", "biking", "bird-watching", "trails"]
+  },
+  {
+    "name": "Natural Bridge Wildlife Ranch",
+    "category": "family",
+    "description": "Drive-through safari park with 500+ exotic animals, just minutes from Cibolo.",
+    "tags": ["safari", "animals", "family-friendly", "drive-through", "wildlife"]
+  },
+  {
+    "name": "Retama Park",
+    "category": "entertainment",
+    "description": "Horse racing and event venue offering live racing, simulcast, and special events.",
+    "tags": ["horse-racing", "events", "entertainment", "venue"]
+  },
+  {
+    "name": "Ashley Furniture HomeStore Pavilion",
+    "category": "entertainment",
+    "description": "Outdoor concert venue hosting national touring acts throughout the year.",
+    "tags": ["concert-venue", "live-music", "outdoor", "entertainment"]
+  },
+  {
+    "name": "Cibolo Nature Center",
+    "category": "outdoor",
+    "description": "100+ acres of trails through marshes, prairies, and woodlands along Cibolo Creek. Educational programs and events.",
+    "tags": ["nature-center", "trails", "educational", "marshes", "woodlands"]
+  }
+]

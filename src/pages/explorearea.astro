@@ -3,11 +3,54 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
+
+const areas = [
+  {
+    name: 'New Braunfels',
+    slug: 'new-braunfels',
+    tagline: 'Where Texas Heritage Meets Hill Country Living',
+    description: "One of the fastest-growing cities in the nation. Spring-fed rivers, historic Gruene, top-rated schools, and a thriving local economy between Austin and San Antonio.",
+    stats: ['100K+ Pop.', '30 min to SA', '$370K Median'],
+    highlights: ['Comal & Guadalupe Rivers', 'Gruene Historic District', 'Schlitterbahn', 'Two Top School Districts'],
+  },
+  {
+    name: 'Canyon Lake',
+    slug: 'canyon-lake',
+    tagline: 'Hill Country Lakeside Living at Its Best',
+    description: "Scenic community built around the 8,230-acre Canyon Lake reservoir. Known for waterfront living, boating, fishing, and a laid-back Hill Country lifestyle.",
+    stats: ['33K+ Pop.', '20 min to NB', '$406K Median'],
+    highlights: ['8,230-Acre Lake', 'Whitewater Amphitheater', 'Boating & Fishing', 'Hill Country Views'],
+  },
+  {
+    name: 'Seguin',
+    slug: 'seguin',
+    tagline: 'Affordable Living with Small-Town Texas Charm',
+    description: "Historic city on the Guadalupe River with the most affordable housing in the region. Growing job market, charming downtown, and Michelin-recognized BBQ.",
+    stats: ['33K+ Pop.', '35 min to SA', '$313K Median'],
+    highlights: ['Most Affordable Area', 'Burnt Bean Co. BBQ', 'Max Starcke Park', 'Strong Job Market'],
+  },
+  {
+    name: 'Cibolo / Schertz',
+    slug: 'cibolo-schertz',
+    tagline: 'Family-Friendly Communities Between SA & NB',
+    description: "Two of the most desirable suburban communities in the I-35 corridor. A-rated schools, safe neighborhoods, and proximity to Randolph Air Force Base.",
+    stats: ['75K+ Pop.', '20 min to SA', '$372K Median'],
+    highlights: ['A-Rated SCUCISD', 'Near Randolph AFB', '85+ Acres of Parks', 'Military-Friendly'],
+  },
+  {
+    name: 'Bulverde',
+    slug: 'bulverde',
+    tagline: 'Quiet Hill Country Living on Acreage',
+    description: "Rural Hill Country community known for larger lots, scenic views, and a quieter pace. Close to Guadalupe River State Park and the JW Marriott Resort.",
+    stats: ['6K+ Pop.', '25 min to SA', '$406K Median'],
+    highlights: ['Large Lots & Acreage', 'Guadalupe River State Park', 'Hill Country Views', 'Comal ISD'],
+  },
+];
 ---
 
 <Layout
   title="Explore Area | New Braunfels & Texas Hill Country | Cody Posey Real Estate"
-  description="Explore neighborhoods, homes for sale, new construction, schools, and lifestyle in New Braunfels and the Texas Hill Country."
+  description="Explore neighborhoods, homes for sale, restaurants, things to do, and lifestyle across New Braunfels, Canyon Lake, Seguin, Cibolo/Schertz, and Bulverde."
 >
   <Navbar />
   <main style="padding-top: 80px;">
@@ -17,96 +60,66 @@ import Footer from '../components/Footer.astro';
       <div class="ea-hero__overlay"></div>
       <div class="ea-hero__content">
         <h1>Explore the <span style="color:#FF1616;">Area</span></h1>
-        <p>Your guide to neighborhoods, homes, and lifestyle in New Braunfels and the Texas Hill Country</p>
+        <p>Your guide to neighborhoods, homes, and lifestyle across the Texas Hill Country</p>
       </div>
     </div>
 
-    <!-- New Braunfels Section -->
+    <!-- Intro -->
     <section class="section">
       <div class="container">
-        <div class="ea-city">
-          <div class="ea-city__header">
-            <h2>New <span class="accent">Braunfels</span></h2>
-            <p>One of the fastest-growing cities in Texas, located between Austin and San Antonio along the I-35 corridor. Explore everything New Braunfels has to offer — from neighborhoods and schools to new construction and daily life.</p>
-            <a href="/new-braunfels/" class="btn btn-outline-dark">New Braunfels Overview</a>
-          </div>
-
-          <div class="ea-links__grid">
-            <a href="/new-braunfels/neighborhoods/" class="ea-link-card">
-              <div class="ea-link-card__icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-              </div>
-              <h3>Neighborhoods</h3>
-              <p>Gruene, Downtown, West of I-35, North NB, East of I-35 — understand how the city is laid out and where you might fit.</p>
-            </a>
-
-            <a href="/new-braunfels/new-construction/" class="ea-link-card">
-              <div class="ea-link-card__icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="22" height="16" rx="2"/><path d="M1 10h22"/><path d="M12 6V2"/><path d="M8 6V4"/><path d="M16 6V4"/></svg>
-              </div>
-              <h3>New Construction</h3>
-              <p>Veramendi, Vintage Oaks, Meyer Ranch, Mayfair, Legacy at Lake Dunlap — explore builder communities and what to know before buying new.</p>
-            </a>
-
-            <a href="/new-braunfels/homes-for-sale/" class="ea-link-card">
-              <div class="ea-link-card__icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              </div>
-              <h3>Homes for Sale</h3>
-              <p>Search current MLS listings in New Braunfels. Filter by location, price, and property type.</p>
-            </a>
-
-            <a href="/new-braunfels/living-in-new-braunfels/" class="ea-link-card">
-              <div class="ea-link-card__icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-              </div>
-              <h3>Living Here</h3>
-              <p>What daily life actually looks like — commutes, culture, growth, weather, and who New Braunfels is best for.</p>
-            </a>
-
-            <a href="/new-braunfels/schools/" class="ea-link-card">
-              <div class="ea-link-card__icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-              </div>
-              <h3>Schools</h3>
-              <p>New Braunfels ISD and Comal ISD overview. Understand how attendance boundaries affect your home search.</p>
-            </a>
-
-            <a href="/new-braunfels/faq/" class="ea-link-card">
-              <div class="ea-link-card__icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-              </div>
-              <h3>FAQ</h3>
-              <p>Answers to the most common questions buyers ask about moving to and living in New Braunfels.</p>
-            </a>
-          </div>
-        </div>
+        <p class="ea-intro">The Texas Hill Country offers something for everyone — from river towns and lakeside communities to family-friendly suburbs and quiet acreage. I cover five distinct areas, each with its own character, price points, and lifestyle. Explore below to find the one that fits you.</p>
       </div>
     </section>
 
-    <!-- Coming Soon -->
+    <!-- Area Cards -->
     <section class="section" style="background: var(--light-gray);">
-      <div class="container" style="text-align: center;">
-        <h2>More Areas <span class="accent">Coming Soon</span></h2>
-        <p style="color: var(--gray); max-width: 600px; margin: 1rem auto 0;">Guides for San Marcos, Seguin, Canyon Lake, and other Texas Hill Country communities are in the works. Check back soon or reach out if you have questions about a specific area.</p>
+      <div class="container">
+        {areas.map((area, i) => (
+          <div class={`ea-area ${i > 0 ? 'ea-area--spaced' : ''}`}>
+            <div class="ea-area__content">
+              <span class="ea-area__tagline">{area.tagline}</span>
+              <h2><a href={`/${area.slug}/`}>{area.name}</a></h2>
+              <p class="ea-area__desc">{area.description}</p>
+              <div class="ea-area__stats">
+                {area.stats.map(stat => (
+                  <span class="ea-area__stat">{stat}</span>
+                ))}
+              </div>
+              <div class="ea-area__highlights">
+                {area.highlights.map(h => (
+                  <span class="ea-area__highlight">&#10003; {h}</span>
+                ))}
+              </div>
+              <div class="ea-area__links">
+                <a href={`/${area.slug}/`}>Overview</a>
+                <a href={`/${area.slug}/neighborhoods/`}>Neighborhoods</a>
+                <a href={`/${area.slug}/homes-for-sale/`}>Homes for Sale</a>
+                <a href={`/${area.slug}/restaurants/`}>Restaurants</a>
+                <a href={`/${area.slug}/things-to-do/`}>Things to Do</a>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
 
     <!-- CTA -->
-    <section class="section" style="background: #000; color: #fff; text-align: center;">
-      <div class="container">
-        <h2>Not Sure Where to <span class="accent">Start</span>?</h2>
-        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Tell me what matters most — commute, schools, budget, lifestyle — and I'll help you narrow down the areas that make sense.</p>
-        <a href="#contact" class="btn btn-outline">Get Help Finding Your Area</a>
+    <section class="ea-cta">
+      <div class="ea-cta__overlay"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <h2>Not Sure Which Area Is <span class="accent">Right for You</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Tell me what matters most — schools, commute, budget, lifestyle — and I'll help you narrow it down.</p>
+        <a href="#contact" class="btn btn-primary">Let's Talk</a>
       </div>
     </section>
 
   </main>
-  <ContactForm context="I'm exploring areas in the Texas Hill Country..." />
+  <ContactForm context="I'm exploring areas in the Texas Hill Country and need guidance..." />
   <Footer />
 </Layout>
 
 <style>
+  /* Hero */
   .ea-hero {
     position: relative;
     height: 320px;
@@ -139,68 +152,151 @@ import Footer from '../components/Footer.astro';
   .ea-hero__content p {
     color: rgba(255,255,255,0.7);
     font-size: 1rem;
-    max-width: 600px;
+    max-width: 550px;
     margin: 0 auto;
   }
 
-  /* City Section */
-  .ea-city__header {
-    margin-bottom: 2.5rem;
-  }
-
-  .ea-city__header p {
+  /* Intro */
+  .ea-intro {
+    font-size: 1.05rem;
     color: var(--gray);
-    line-height: 1.7;
-    max-width: 700px;
-    margin: 1rem 0 1.5rem;
+    line-height: 1.8;
+    max-width: 800px;
+    text-align: center;
+    margin: 0 auto;
+    font-weight: 600;
   }
 
-  /* Link Cards Grid */
-  .ea-links__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-
-  .ea-link-card {
-    display: block;
+  /* Area Cards */
+  .ea-area {
     background: #fff;
-    border: 1px solid var(--light-gray);
-    padding: 2rem;
-    border-radius: 8px;
-    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
   }
 
-  .ea-link-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  .ea-area--spaced {
+    margin-top: 2rem;
   }
 
-  .ea-link-card__icon {
-    margin-bottom: 1rem;
-  }
-
-  .ea-link-card h3 {
-    font-family: var(--font-heading);
-    font-size: 1rem;
+  .ea-area__tagline {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #FF1616;
     margin-bottom: 0.5rem;
-    color: #000;
   }
 
-  .ea-link-card:hover h3 {
+  .ea-area__content h2 {
+    margin-bottom: 0.75rem;
+  }
+
+  .ea-area__content h2 a {
+    color: #000;
+    transition: color 0.2s;
+  }
+
+  .ea-area__content h2 a:hover {
     color: #FF1616;
   }
 
-  .ea-link-card p {
+  .ea-area__desc {
     color: var(--gray);
-    font-size: 0.85rem;
-    line-height: 1.6;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: 700px;
+    margin-bottom: 1.25rem;
   }
 
-  @media (max-width: 768px) {
-    .ea-links__grid {
-      grid-template-columns: 1fr;
+  .ea-area__stats {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .ea-area__stat {
+    background: var(--light-gray);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #333;
+  }
+
+  .ea-area__highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .ea-area__highlight {
+    font-size: 0.82rem;
+    color: var(--gray);
+  }
+
+  .ea-area__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .ea-area__links a {
+    padding: 0.5rem 1.25rem;
+    border: 2px solid #FF1616;
+    border-radius: 6px;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #FF1616;
+    transition: all 0.2s;
+  }
+
+  .ea-area__links a:hover {
+    background: #FF1616;
+    color: #fff;
+  }
+
+  /* CTA */
+  .ea-cta {
+    position: relative;
+    padding: 5rem 0;
+    color: #fff;
+    text-align: center;
+    background-image: url('/images/testimonials-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #333;
+  }
+
+  .ea-cta__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+  }
+
+  .ea-cta h2 { color: #fff; }
+
+  @media (max-width: 600px) {
+    .ea-area {
+      padding: 1.5rem;
     }
+
+    .ea-area__links {
+      flex-direction: column;
+    }
+
+    .ea-area__links a {
+      text-align: center;
+    }
+
+    .ea-cta { background-attachment: scroll; }
   }
 </style>

@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Burnt Bean Co.",
+    "cuisine": "BBQ",
+    "description": "Michelin Bib Gourmand and Texas Monthly ranked.",
+    "priceRange": "$$",
+    "tags": ["bbq", "michelin", "texas-monthly", "award-winning"]
+  },
+  {
+    "name": "Seguin Brewing Company",
+    "cuisine": "Brewery",
+    "description": "Pecan honey cream ale, brick oven pizzas.",
+    "priceRange": "$$",
+    "tags": ["brewery", "craft-beer", "pizza", "casual"]
+  },
+  {
+    "name": "The Oak Tavern",
+    "cuisine": "American",
+    "description": "Downtown gastropub, craft cocktails.",
+    "priceRange": "$$",
+    "tags": ["american", "gastropub", "cocktails", "downtown"]
+  },
+  {
+    "name": "Juan Seguin Brewing Co",
+    "cuisine": "Brewery",
+    "description": "Local craft brews in downtown Seguin.",
+    "priceRange": "$$",
+    "tags": ["brewery", "craft-beer", "downtown", "local"]
+  },
+  {
+    "name": "Court Street Coffee",
+    "cuisine": "Cafe",
+    "description": "Local coffee shop, pastries, downtown hangout.",
+    "priceRange": "$",
+    "tags": ["cafe", "coffee", "pastries", "downtown", "casual"]
+  }
+]

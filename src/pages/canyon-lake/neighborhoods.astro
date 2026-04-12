@@ -1,0 +1,234 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
+---
+
+<Layout
+  title="Canyon Lake Neighborhoods | Cody Posey Real Estate"
+  description="Explore Canyon Lake neighborhoods — from lakefront gated communities to Hill Country acreage. Find the right area for your lifestyle and budget."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="cl-hero">
+      <div class="cl-hero__overlay"></div>
+      <div class="cl-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/canyon-lake/">Canyon Lake</a> <span>/</span> <span>Neighborhoods</span>
+        </nav>
+        <h1>Canyon Lake <span style="color:#FF1616;">Neighborhoods</span></h1>
+        <p>Lakefront communities, gated estates, and Hill Country acreage</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="cl-page-intro cl-page-intro--centered">Canyon Lake is organized around a mix of lakefront and off-lake communities, each with a distinct character. Whether you want direct waterfront access, a gated neighborhood with resort-style amenities, or a quiet homesite on acreage with Hill Country views — there's an area here that fits.</p>
+      </div>
+    </section>
+
+    <!-- Neighborhoods -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Canyon Lake <span class="accent">Communities</span></h2>
+        </div>
+
+        <div class="cl-neighborhood__grid">
+          <div class="cl-neighborhood__card">
+            <h3>Canyon Lake Hills</h3>
+            <p>The oldest established area around Canyon Lake, Canyon Lake Hills offers direct lake access and an eclectic mix of housing — from original 1960s bungalows to contemporary custom estates. The neighborhood has a relaxed, lived-in character that appeals to long-time lake residents and buyers looking for waterfront properties with personality.</p>
+            <div class="cl-neighborhood__tags">
+              <span class="cl-neighborhood__tag">$300K - $800K</span>
+              <span class="cl-neighborhood__tag">Comal ISD</span>
+            </div>
+          </div>
+
+          <div class="cl-neighborhood__card">
+            <h3>Mystic Shores</h3>
+            <p>A large gated community with over 2,200 homesites, Mystic Shores is one of the most popular neighborhoods in the Canyon Lake area. The community features river views, world-class amenities including pools, parks, trails, and a clubhouse, making it a family favorite. Homes range from newer construction to custom builds on generous lots.</p>
+            <div class="cl-neighborhood__tags">
+              <span class="cl-neighborhood__tag">$350K - $700K</span>
+              <span class="cl-neighborhood__tag">Comal ISD</span>
+            </div>
+          </div>
+
+          <div class="cl-neighborhood__card">
+            <h3>Oak Shores Estates</h3>
+            <p>A private gated community with just 88 home sites, Oak Shores Estates is Canyon Lake's premier luxury lakefront neighborhood. Expect custom-built homes on large waterfront lots with private docks, mature trees, and exceptional lake views. This is the top of the market for Canyon Lake real estate.</p>
+            <div class="cl-neighborhood__tags">
+              <span class="cl-neighborhood__tag">$500K - $4M+</span>
+              <span class="cl-neighborhood__tag">Comal ISD</span>
+            </div>
+          </div>
+
+          <div class="cl-neighborhood__card">
+            <h3>Holiday Estates</h3>
+            <p>An established waterfront-access community with a neighborhood boat ramp and park area. Holiday Estates offers a more affordable entry point to lakeside living with a range of home styles from updated mid-century homes to newer builds. A solid choice for buyers who want lake access without the luxury price tag.</p>
+            <div class="cl-neighborhood__tags">
+              <span class="cl-neighborhood__tag">$250K - $500K</span>
+              <span class="cl-neighborhood__tag">Comal ISD</span>
+            </div>
+          </div>
+
+          <div class="cl-neighborhood__card">
+            <h3>Hancock Park</h3>
+            <p>One of the most accessible neighborhoods for entry-level buyers in the Canyon Lake area. Hancock Park is located near the marina and offers smaller homes and lots at lower price points. It's a practical option for first-time buyers, investors, or anyone looking to get into the Canyon Lake market without a premium.</p>
+            <div class="cl-neighborhood__tags">
+              <span class="cl-neighborhood__tag">$200K - $400K</span>
+              <span class="cl-neighborhood__tag">Comal ISD</span>
+            </div>
+          </div>
+
+          <div class="cl-neighborhood__card">
+            <h3>River Mountain Ranch</h3>
+            <p>For buyers looking for acreage and Hill Country views, River Mountain Ranch delivers. This community features larger lots with rolling terrain, native oaks, and panoramic views. Homes here tend to be custom builds on 1+ acre lots, appealing to buyers who want space and privacy while staying within reach of Canyon Lake and New Braunfels.</p>
+            <div class="cl-neighborhood__tags">
+              <span class="cl-neighborhood__tag">$400K - $800K</span>
+              <span class="cl-neighborhood__tag">Comal ISD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background: #000; color: #fff; text-align: center;">
+      <div class="container">
+        <h2>Need Help <span class="accent">Narrowing It Down</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">I can walk you through the differences between Canyon Lake communities and help you focus your search on neighborhoods that match your priorities.</p>
+        <a href="#contact" class="btn btn-outline">Get Help Choosing a Neighborhood</a>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I'd like to learn more about Canyon Lake neighborhoods..." />
+  <Footer />
+</Layout>
+
+<style>
+  .cl-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .cl-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .cl-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .cl-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .cl-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  .cl-page-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 800px;
+  }
+
+  .cl-page-intro--centered {
+    text-align: center;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0 auto;
+  }
+
+  /* Neighborhood Cards */
+  .cl-neighborhood__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cl-neighborhood__card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cl-neighborhood__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .cl-neighborhood__card p {
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    flex: 1;
+  }
+
+  .cl-neighborhood__tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .cl-neighborhood__tag {
+    display: inline-block;
+    background: var(--light-gray);
+    color: var(--gray);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  @media (max-width: 768px) {
+    .cl-neighborhood__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

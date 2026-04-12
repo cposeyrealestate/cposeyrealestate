@@ -1,0 +1,238 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
+---
+
+<Layout
+  title="Bulverde Restaurants | Cody Posey Real Estate"
+  description="The best restaurants in Bulverde, TX — from BBQ and American grills to Hill Country dining. Explore where locals eat in Bulverde."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="bv-hero">
+      <div class="bv-hero__overlay"></div>
+      <div class="bv-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/bulverde/">Bulverde</a> <span>/</span> <span>Restaurants</span>
+        </nav>
+        <h1>Bulverde <span style="color:#FF1616;">Restaurants</span></h1>
+        <p>Where the locals eat in the Hill Country</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="bv-page-intro bv-page-intro--centered">Bulverde may be a smaller community, but the dining scene punches above its weight. From scratch-made American fare to slow-smoked BBQ, these are the spots locals come back to again and again.</p>
+      </div>
+    </section>
+
+    <!-- Restaurant List -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Local <span class="accent">Favorites</span></h2>
+        </div>
+
+        <div class="bv-restaurant">
+          <div class="bv-restaurant__header">
+            <h3>Screaming Goat Yard & Tap</h3>
+            <div class="bv-restaurant__meta">
+              <span class="bv-restaurant__cuisine">American</span>
+              <span class="bv-restaurant__price">$$</span>
+            </div>
+          </div>
+          <p>A Bulverde favorite with a laid-back outdoor yard setting. Known for their fried green BLTs and catfish Thursdays, Screaming Goat delivers solid American food with Hill Country character. Great for families, groups, and anyone who wants to eat outside with a cold drink.</p>
+        </div>
+
+        <div class="bv-restaurant">
+          <div class="bv-restaurant__header">
+            <h3>Branch Neighborhood Grill</h3>
+            <div class="bv-restaurant__meta">
+              <span class="bv-restaurant__cuisine">American</span>
+              <span class="bv-restaurant__price">$$</span>
+            </div>
+          </div>
+          <p>A family-friendly neighborhood spot with a menu that spans from seafood to po'boys. Branch keeps things approachable with generous portions and a welcoming atmosphere. A reliable go-to for a casual dinner or weekend lunch with the family.</p>
+        </div>
+
+        <div class="bv-restaurant">
+          <div class="bv-restaurant__header">
+            <h3>Richter's Antler Cafe</h3>
+            <div class="bv-restaurant__meta">
+              <span class="bv-restaurant__cuisine">American</span>
+              <span class="bv-restaurant__price">$$</span>
+            </div>
+          </div>
+          <p>Texas cuisine with a twist. Richter's Antler Cafe brings creative takes on familiar dishes in a comfortable Hill Country setting. A solid pick when you want something a step above standard bar and grill without the drive into the city.</p>
+        </div>
+
+        <div class="bv-restaurant">
+          <div class="bv-restaurant__header">
+            <h3>Smokey Mo's BBQ</h3>
+            <div class="bv-restaurant__meta">
+              <span class="bv-restaurant__cuisine">BBQ</span>
+              <span class="bv-restaurant__price">$</span>
+            </div>
+          </div>
+          <p>Over 25 years of smoking meat the right way. Smokey Mo's is a no-frills BBQ joint that delivers on brisket, ribs, and all the classic sides. Fast, affordable, and consistently good — exactly what you want from a Texas BBQ spot.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background: #000; color: #fff; text-align: center;">
+      <div class="container">
+        <h2>Thinking About <span class="accent">Living Here</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Good food is part of daily life. If you're considering Bulverde, I can help you find a home near the places and lifestyle that matter to you.</p>
+        <div class="bv-cta__buttons">
+          <a href="/bulverde/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Ask About Bulverde</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I'd like to learn more about living in Bulverde..." />
+  <Footer />
+</Layout>
+
+<style>
+  .bv-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .bv-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .bv-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .bv-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .bv-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  .bv-page-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 800px;
+  }
+
+  .bv-page-intro--centered {
+    text-align: center;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0 auto;
+  }
+
+  /* Restaurant Cards */
+  .bv-restaurant {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .bv-restaurant__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .bv-restaurant__header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .bv-restaurant__meta {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .bv-restaurant__cuisine {
+    font-size: 0.85rem;
+    color: var(--gray);
+    background: var(--light-gray);
+    padding: 0.15rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  .bv-restaurant__price {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #FF1616;
+  }
+
+  .bv-restaurant p {
+    color: var(--gray);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* CTA */
+  .bv-cta__buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .bv-restaurant__header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

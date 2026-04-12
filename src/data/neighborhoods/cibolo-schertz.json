@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "saddle-creek-ranch",
+    "name": "Saddle Creek Ranch",
+    "summary": "A standout master-planned community in Cibolo featuring a dog park, golf course, and resort-style pool. One of the most amenity-rich neighborhoods in the I-35 corridor with SCUCISD schools.",
+    "priceRange": "$300K-$450K",
+    "schoolDistrict": "SCUCISD",
+    "buyerType": "move-up",
+    "features": ["Dog park", "Golf course", "Resort-style pool", "Walking trails", "SCUCISD schools"]
+  },
+  {
+    "slug": "falcon-ridge",
+    "name": "Falcon Ridge",
+    "summary": "An established neighborhood near FM 1103 with mature trees and a strong community identity. Falcon Ridge offers solid home values and convenient access to shopping and dining.",
+    "priceRange": "$280K-$400K",
+    "schoolDistrict": "SCUCISD",
+    "buyerType": "move-up",
+    "features": ["Established community", "Near FM 1103 corridor", "Mature landscaping", "Community pool", "SCUCISD schools"]
+  },
+  {
+    "slug": "bentwood-ranch",
+    "name": "Bentwood Ranch",
+    "summary": "A family-focused community known for its neighborhood events and welcoming atmosphere. Bentwood Ranch is a popular choice for military families near Randolph AFB.",
+    "priceRange": "$280K-$380K",
+    "schoolDistrict": "SCUCISD",
+    "buyerType": "entry-level",
+    "features": ["Community events", "Family-friendly", "Military-family popular", "Near Randolph AFB", "SCUCISD schools"]
+  },
+  {
+    "slug": "turning-stone",
+    "name": "Turning Stone",
+    "summary": "An executive-level neighborhood offering larger homes with upgraded finishes and generous lot sizes. Turning Stone attracts move-up buyers looking for premium homes in SCUCISD.",
+    "priceRange": "$350K-$450K",
+    "schoolDistrict": "SCUCISD",
+    "buyerType": "move-up",
+    "features": ["Executive homes", "Larger lot sizes", "Upgraded finishes", "Premium neighborhood", "SCUCISD schools"]
+  },
+  {
+    "slug": "cibolo-valley-ranch",
+    "name": "Cibolo Valley Ranch",
+    "summary": "A newer community offering affordable homes for families and first-time buyers. With modern floor plans and community amenities, it's one of the best values in the Cibolo area.",
+    "priceRange": "$250K-$350K",
+    "schoolDistrict": "SCUCISD",
+    "buyerType": "entry-level",
+    "features": ["Newer construction", "Affordable pricing", "Community amenities", "Family-friendly", "SCUCISD schools"]
+  },
+  {
+    "slug": "verde-ranch",
+    "name": "Verde Ranch",
+    "summary": "A newer master-planned community with a community pool, playground, and modern homes. Verde Ranch offers a fresh neighborhood feel with all the benefits of SCUCISD schools.",
+    "priceRange": "$300K-$420K",
+    "schoolDistrict": "SCUCISD",
+    "buyerType": "move-up",
+    "features": ["Newer master-planned", "Community pool", "Playground & green spaces", "Modern homes", "SCUCISD schools"]
+  }
+]

@@ -1,0 +1,86 @@
+---
+import Breadcrumb from './Breadcrumb.astro';
+
+interface BreadcrumbItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  title: string;
+  accentWord: string;
+  subtitle: string;
+  breadcrumbs: BreadcrumbItem[];
+  heroImage?: string;
+}
+
+const { title, accentWord, subtitle, breadcrumbs, heroImage } = Astro.props;
+
+const titleParts = title.split(accentWord);
+---
+
+<section
+  class="area-hero"
+  style={heroImage ? `background-image: url(${heroImage});` : undefined}
+  data-has-image={heroImage ? 'true' : undefined}
+>
+  <div class="area-hero__overlay"></div>
+  <div class="area-hero__inner container">
+    <Breadcrumb items={breadcrumbs} />
+    <h1 class="area-hero__title">
+      {titleParts[0]}<span class="area-hero__accent">{accentWord}</span>{titleParts[1] || ''}
+    </h1>
+    <p class="area-hero__subtitle">{subtitle}</p>
+  </div>
+</section>
+
+<style>
+  .area-hero {
+    position: relative;
+    height: 280px;
+    display: flex;
+    align-items: flex-end;
+    background: linear-gradient(135deg, #111 0%, #1a1a1a 50%, #222 100%);
+    overflow: hidden;
+  }
+
+  .area-hero[data-has-image] {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  .area-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 1;
+  }
+
+  .area-hero:not([data-has-image]) .area-hero__overlay {
+    background: transparent;
+  }
+
+  .area-hero__inner {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 2.5rem;
+    padding-top: 2rem;
+  }
+
+  .area-hero__title {
+    color: #fff;
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .area-hero__accent {
+    color: #FF1616;
+  }
+
+  .area-hero__subtitle {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 1.05rem;
+    max-width: 600px;
+  }
+</style>

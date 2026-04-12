@@ -1,0 +1,101 @@
+[
+  {
+    "slug": "gruene",
+    "name": "Gruene & River Area",
+    "summary": "The iconic Gruene Historic District and surrounding river neighborhoods offer a unique blend of Texas heritage and Hill Country beauty. Homes range from historic cottages to luxury riverfront estates with direct access to the Guadalupe River and Gruene Hall.",
+    "priceRange": "$400K-$1M+",
+    "schoolDistrict": "NBISD",
+    "buyerType": "luxury",
+    "features": ["Historic Gruene Hall", "Guadalupe River access", "Walkable to shops & dining", "Mature trees & character homes", "Strong vacation rental potential"]
+  },
+  {
+    "slug": "downtown",
+    "name": "Downtown & Central",
+    "summary": "The heart of New Braunfels with walkable streets, historic architecture, and proximity to the Comal River. A mix of charming bungalows, updated homes, and new infill construction at attainable price points.",
+    "priceRange": "$250K-$500K",
+    "schoolDistrict": "NBISD",
+    "buyerType": "entry-level",
+    "features": ["Walkable to Main Plaza", "Historic character homes", "Close to Comal River", "Local restaurants & shops", "Landa Park nearby"]
+  },
+  {
+    "slug": "river-chase",
+    "name": "River Chase",
+    "summary": "A popular master-planned community in northwest New Braunfels with resort-style amenities. Families love the community pool, splash pad, trails, and Comal ISD schools.",
+    "priceRange": "$350K-$550K",
+    "schoolDistrict": "Comal ISD",
+    "buyerType": "move-up",
+    "features": ["Master-planned community", "Resort-style pool & splash pad", "Hike & bike trails", "Playground & pavilion", "Comal ISD schools"]
+  },
+  {
+    "slug": "vintage-oaks",
+    "name": "Vintage Oaks",
+    "summary": "The premier luxury community in New Braunfels, offering 1-14 acre homesites with stunning Hill Country views. Amenities include a Tuscan clubhouse, pools, lazy river, and miles of trails.",
+    "priceRange": "$500K-$2M+",
+    "schoolDistrict": "Comal ISD",
+    "buyerType": "luxury",
+    "features": ["1-14 acre homesites", "Tuscan-style clubhouse", "Lazy river & resort pools", "Fitness center & trails", "Hill Country panoramic views"]
+  },
+  {
+    "slug": "copper-ridge",
+    "name": "Copper Ridge",
+    "summary": "An established and well-loved neighborhood in northwest New Braunfels with tree-lined streets and walking trails. A solid choice for families wanting Comal ISD schools at a moderate price point.",
+    "priceRange": "$300K-$450K",
+    "schoolDistrict": "Comal ISD",
+    "buyerType": "move-up",
+    "features": ["Established neighborhood", "Walking & biking trails", "Community pool", "Mature landscaping", "Comal ISD schools"]
+  },
+  {
+    "slug": "veramendi",
+    "name": "Veramendi",
+    "summary": "A massive 2,400-acre master-planned community that is one of the largest developments in the Hill Country. Multiple builders offer a wide range of home styles from starter homes to executive properties.",
+    "priceRange": "$290K-$600K",
+    "schoolDistrict": "NBISD",
+    "buyerType": "entry-level",
+    "features": ["2,400-acre master-planned", "Multiple builder options", "Future retail & commercial", "NBISD schools", "Trails & green spaces"]
+  },
+  {
+    "slug": "mayfair",
+    "name": "Mayfair",
+    "summary": "A newer SouthStar community in the Comal ISD area offering modern floor plans at competitive prices. Great for first-time buyers and young families looking for new construction.",
+    "priceRange": "$290K-$400K",
+    "schoolDistrict": "Comal ISD",
+    "buyerType": "entry-level",
+    "features": ["New construction homes", "SouthStar community", "Modern floor plans", "Community amenities", "Comal ISD schools"]
+  },
+  {
+    "slug": "legacy-lake-dunlap",
+    "name": "Legacy at Lake Dunlap",
+    "summary": "A sought-after community with lake access to Lake Dunlap on the Guadalupe River. Residents enjoy waterfront living, kayaking, and fishing with the convenience of being close to I-35.",
+    "priceRange": "$350K-$550K",
+    "schoolDistrict": "Comal ISD",
+    "buyerType": "move-up",
+    "features": ["Lake Dunlap access", "Waterfront homesites available", "Community boat ramp", "Kayaking & fishing", "Comal ISD schools"]
+  },
+  {
+    "slug": "voss-farms",
+    "name": "Voss Farms",
+    "summary": "A family-friendly master-planned community east of I-35 with a strong sense of community. Multiple builders and a range of price points make it accessible for many buyers.",
+    "priceRange": "$280K-$400K",
+    "schoolDistrict": "Comal ISD",
+    "buyerType": "entry-level",
+    "features": ["Master-planned community", "East of I-35", "Multiple builders", "Community pool & playground", "Comal ISD schools"]
+  },
+  {
+    "slug": "pecan-crossing",
+    "name": "Pecan Crossing",
+    "summary": "One of the most affordable newer communities in the New Braunfels area, located east of I-35. A great option for first-time buyers seeking new construction in Comal ISD.",
+    "priceRange": "$270K-$380K",
+    "schoolDistrict": "Comal ISD",
+    "buyerType": "entry-level",
+    "features": ["Affordable new construction", "East of I-35", "Community amenities", "First-time buyer friendly", "Comal ISD schools"]
+  },
+  {
+    "slug": "manor-creek",
+    "name": "Manor Creek",
+    "summary": "A premium neighborhood featuring Hill Country-sized lots and custom-quality homes. The rolling terrain and mature oaks give Manor Creek a more rural feel while still being minutes from town.",
+    "priceRange": "$400K-$600K",
+    "schoolDistrict": "Comal ISD",
+    "buyerType": "move-up",
+    "features": ["Hill Country-sized lots", "Mature oak trees", "Custom-quality homes", "Rolling terrain", "Comal ISD schools"]
+  }
+]

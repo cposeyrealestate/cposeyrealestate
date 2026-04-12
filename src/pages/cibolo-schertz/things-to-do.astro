@@ -1,0 +1,237 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
+---
+
+<Layout
+  title="Things to Do in Cibolo & Schertz, TX | Cody Posey Real Estate"
+  description="Discover the best things to do in and around Cibolo and Schertz, Texas — from nature parks and wildlife safaris to live entertainment."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="cs-hero">
+      <div class="cs-hero__overlay"></div>
+      <div class="cs-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/cibolo-schertz/">Cibolo / Schertz</a> <span>/</span> <span>Things to Do</span>
+        </nav>
+        <h1>Things to <span style="color:#FF1616;">Do</span></h1>
+        <p>Outdoor adventures, family fun, and entertainment in and around the area</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="cs-page-intro cs-page-intro--centered">The Cibolo/Schertz area offers more than just great neighborhoods. From 160-acre nature parks to wildlife safaris and live entertainment venues, there's plenty to do for families, outdoor enthusiasts, and everyone in between.</p>
+      </div>
+    </section>
+
+    <!-- Activities -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>What to <span class="accent">Experience</span></h2>
+        </div>
+
+        <div class="cs-activity__grid">
+          <div class="cs-activity">
+            <div class="cs-activity__header">
+              <h3>Crescent Bend Nature Park</h3>
+              <span class="cs-activity__tag">Outdoor</span>
+            </div>
+            <p>A 160-acre nature park along Cibolo Creek with hiking and biking trails, picnic areas, and scenic creek access. A local favorite for morning runs, family walks, and getting outdoors without leaving the area.</p>
+          </div>
+
+          <div class="cs-activity">
+            <div class="cs-activity__header">
+              <h3>Natural Bridge Wildlife Ranch</h3>
+              <span class="cs-activity__tag">Family</span>
+            </div>
+            <p>A 500-acre drive-through safari park with over 500 animals from around the world. One of the most popular family attractions in the region — kids and adults love the up-close animal encounters and walking exhibits.</p>
+          </div>
+
+          <div class="cs-activity">
+            <div class="cs-activity__header">
+              <h3>Retama Park</h3>
+              <span class="cs-activity__tag">Entertainment</span>
+            </div>
+            <p>A horse racing and entertainment venue that hosts live races, simulcast events, and community gatherings throughout the year. A unique local venue for a fun evening out.</p>
+          </div>
+
+          <div class="cs-activity">
+            <div class="cs-activity__header">
+              <h3>Ashley Furniture HomeStore Pavilion</h3>
+              <span class="cs-activity__tag">Entertainment</span>
+            </div>
+            <p>An outdoor concert and events venue that brings live music and entertainment to the Schertz area. Check their calendar for upcoming shows and community events throughout the season.</p>
+          </div>
+
+          <div class="cs-activity">
+            <div class="cs-activity__header">
+              <h3>Cibolo Nature Center</h3>
+              <span class="cs-activity__tag">Outdoor</span>
+            </div>
+            <p>Over 100 acres of preserved land with hiking trails, educational programs, and native wildlife. The nature center offers guided walks, volunteer opportunities, and a peaceful escape into the Texas landscape.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background: #000; color: #fff; text-align: center;">
+      <div class="container">
+        <h2>Ready to Call This Area <span class="accent">Home</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Great activities and outdoor access are just part of what makes Cibolo and Schertz special. Let me help you find the right home so you can enjoy it all as a local.</p>
+        <div class="cs-cta__buttons">
+          <a href="/cibolo-schertz/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Ask About the Area</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I'd like to learn more about living in Cibolo/Schertz..." />
+  <Footer />
+</Layout>
+
+<style>
+  .cs-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .cs-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .cs-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .cs-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .cs-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  .cs-page-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 800px;
+  }
+
+  .cs-page-intro--centered {
+    text-align: center;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0 auto;
+  }
+
+  /* Activity Grid */
+  .cs-activity__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cs-activity {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .cs-activity__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .cs-activity__header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+  }
+
+  .cs-activity__tag {
+    display: inline-block;
+    background: #FF1616;
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .cs-activity p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  /* CTA */
+  .cs-cta__buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .cs-activity__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cs-activity__header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Canyon Lake Boating",
+    "category": "outdoor",
+    "description": "8,230-acre reservoir with 20+ boat ramps. Popular for skiing, wakeboarding, fishing, and pontoon cruising.",
+    "tags": ["boating", "lake", "skiing", "wakeboarding", "fishing"]
+  },
+  {
+    "name": "Guadalupe River Whitewater",
+    "category": "outdoor",
+    "description": "Some of the best whitewater in Texas below Canyon Dam. Kayaking, tubing, and swimming through limestone bluffs.",
+    "tags": ["whitewater", "kayaking", "tubing", "river", "adventure"]
+  },
+  {
+    "name": "Whitewater Amphitheater",
+    "category": "nightlife",
+    "description": "One of Texas' best outdoor live music venues, drawing national acts in a beautiful riverside setting.",
+    "tags": ["live-music", "concert-venue", "outdoor", "riverside"]
+  },
+  {
+    "name": "Overlook Park",
+    "category": "outdoor",
+    "description": "Public day-use park with panoramic views of Canyon Lake and a 1-mile hiking loop trail.",
+    "tags": ["park", "hiking", "scenic-views", "free", "family-friendly"]
+  },
+  {
+    "name": "Heritage Museum of the Texas Hill Country",
+    "category": "culture",
+    "description": "Local history museum showcasing Hill Country heritage, pioneer life, and the area's geological history.",
+    "tags": ["museum", "history", "educational", "hill-country"]
+  },
+  {
+    "name": "Canyon Lake Fishing",
+    "category": "outdoor",
+    "description": "Year-round fishing for largemouth bass, catfish, and white bass. Multiple marina access points.",
+    "tags": ["fishing", "lake", "bass", "year-round", "marina"]
+  }
+]

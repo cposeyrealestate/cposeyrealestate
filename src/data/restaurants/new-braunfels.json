@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Cooper's Old Time Pit Bar-B-Que",
+    "cuisine": "BBQ",
+    "description": "Famous for Big Chop pork chop and pit-smoked brisket.",
+    "priceRange": "$$",
+    "tags": ["bbq", "family-friendly", "casual", "pit-smoked"]
+  },
+  {
+    "name": "Black's Barbecue",
+    "cuisine": "BBQ",
+    "description": "Legendary Lockhart family BBQ, rich smoky brisket and sausage.",
+    "priceRange": "$$",
+    "tags": ["bbq", "family-friendly", "Texas-legend", "brisket"]
+  },
+  {
+    "name": "Granzin Bar-B-Q",
+    "cuisine": "BBQ",
+    "description": "Local favorite meat-market style BBQ, pulled pork sandwiches.",
+    "priceRange": "$",
+    "tags": ["bbq", "local-favorite", "casual", "meat-market"]
+  },
+  {
+    "name": "Adobe Cafe",
+    "cuisine": "Tex-Mex",
+    "description": "Classic combo plates, enchiladas, and margaritas. Great for groups.",
+    "priceRange": "$$",
+    "tags": ["tex-mex", "margaritas", "family-friendly", "groups"]
+  },
+  {
+    "name": "El Tapatio",
+    "cuisine": "Tex-Mex",
+    "description": "Downtown staple since 2006, big portions of fajitas and enchiladas.",
+    "priceRange": "$",
+    "tags": ["tex-mex", "downtown", "casual", "big-portions"]
+  },
+  {
+    "name": "Lupe Tortilla",
+    "cuisine": "Tex-Mex",
+    "description": "Sizzling fajitas, scratch tortillas, and a lively bar.",
+    "priceRange": "$$",
+    "tags": ["tex-mex", "fajitas", "bar", "scratch-made"]
+  },
+  {
+    "name": "Alpine Haus",
+    "cuisine": "German",
+    "description": "Upscale German in a 160-year-old house. Schnitzel, bratwurst, sauerbraten.",
+    "priceRange": "$$$",
+    "tags": ["german", "upscale", "historic", "date-night"]
+  },
+  {
+    "name": "Krause's Cafe",
+    "cuisine": "German/Brewery",
+    "description": "Huge tap wall, jaeger schnitzel, beer garden with live music.",
+    "priceRange": "$$",
+    "tags": ["german", "brewery", "beer-garden", "live-music"]
+  },
+  {
+    "name": "Faust Brewing Company",
+    "cuisine": "Brewery",
+    "description": "On-site brewed lagers and IPAs with hearty pub fare.",
+    "priceRange": "$$",
+    "tags": ["brewery", "craft-beer", "pub-fare", "casual"]
+  },
+  {
+    "name": "NB Brewing Company",
+    "cuisine": "Brewery",
+    "description": "Sour wheat beers and experimental brews, cozy taproom.",
+    "priceRange": "$$",
+    "tags": ["brewery", "craft-beer", "taproom", "experimental"]
+  },
+  {
+    "name": "Huisache Grill",
+    "cuisine": "Fine Dining",
+    "description": "Contemporary American bistro with courtyard, solid wine list.",
+    "priceRange": "$$$",
+    "tags": ["fine-dining", "american", "wine", "courtyard", "date-night"]
+  },
+  {
+    "name": "McAdoo's Seafood",
+    "cuisine": "Fine Dining",
+    "description": "Gulf seafood in a historic post office building. Cocktails.",
+    "priceRange": "$$$",
+    "tags": ["fine-dining", "seafood", "cocktails", "historic-building"]
+  },
+  {
+    "name": "Myron's Prime Steakhouse",
+    "cuisine": "Fine Dining",
+    "description": "Prime steaks, white-tablecloth, special occasions.",
+    "priceRange": "$$$$",
+    "tags": ["fine-dining", "steakhouse", "special-occasion", "upscale"]
+  },
+  {
+    "name": "Gristmill River Restaurant",
+    "cuisine": "American",
+    "description": "Iconic riverside spot near Gruene Hall, chicken-fried steak.",
+    "priceRange": "$$",
+    "tags": ["american", "riverside", "gruene", "iconic", "family-friendly"]
+  },
+  {
+    "name": "Gruene River Grill",
+    "cuisine": "American",
+    "description": "River-view comfort food near Gruene Hall, family-friendly.",
+    "priceRange": "$$",
+    "tags": ["american", "river-view", "gruene", "comfort-food", "family-friendly"]
+  }
+]

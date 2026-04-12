@@ -1,0 +1,351 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
+---
+
+<Layout
+  title="Canyon Lake, TX Real Estate | Cody Posey"
+  description="Explore Canyon Lake, Texas — waterfront living, neighborhoods, homes for sale, and outdoor recreation. Your guide to Hill Country lakeside real estate."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="cl-hero">
+      <div class="cl-hero__overlay"></div>
+      <div class="cl-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <span>Canyon Lake</span>
+        </nav>
+        <h1>Canyon <span style="color:#FF1616;">Lake</span></h1>
+        <p>Hill Country Lakeside Living at Its Best</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section cl-intro">
+      <div class="container">
+        <div class="cl-intro__grid">
+          <div class="cl-intro__text">
+            <h2>A Scenic Hill Country <span class="accent">Community</span></h2>
+            <p>Canyon Lake is a scenic Hill Country community built around the 8,230-acre reservoir on the Guadalupe River. Known for waterfront living, outdoor recreation, and a laid-back lifestyle, it draws everyone from young families to retirees looking for a quieter pace without sacrificing access to city amenities.</p>
+            <p>Located just 20 minutes from New Braunfels and 45 minutes from San Antonio, Canyon Lake offers a rare combination of natural beauty and convenience. The area has a population of over 33,000 and is considered 48% safer than the Texas state average.</p>
+            <p>Whether you're looking for a lakefront retreat, acreage with Hill Country views, or a family-friendly neighborhood with community amenities, Canyon Lake has options across a wide range of price points and lifestyles.</p>
+          </div>
+          <div class="cl-intro__stats">
+            <div class="cl-stat">
+              <span class="cl-stat__number">33K+</span>
+              <span class="cl-stat__label">Population</span>
+            </div>
+            <div class="cl-stat">
+              <span class="cl-stat__number">45 min</span>
+              <span class="cl-stat__label">To San Antonio</span>
+            </div>
+            <div class="cl-stat">
+              <span class="cl-stat__number">20 min</span>
+              <span class="cl-stat__label">To New Braunfels</span>
+            </div>
+            <div class="cl-stat">
+              <span class="cl-stat__number">8,230</span>
+              <span class="cl-stat__label">Acre Lake</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why People Move Here -->
+    <section class="section cl-why" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Why People <span class="accent">Move Here</span></h2>
+          <p>The most common reasons buyers choose Canyon Lake</p>
+        </div>
+        <div class="cl-why__grid">
+          <div class="cl-why__card">
+            <h3>Waterfront Living</h3>
+            <p>Direct lake access, boating, fishing, and waterfront homesites make Canyon Lake one of the most desirable lakeside communities in the Texas Hill Country.</p>
+          </div>
+          <div class="cl-why__card">
+            <h3>Outdoor Recreation</h3>
+            <p>Hiking trails, river tubing on the Guadalupe, swimming, and live music at the Whitewater Amphitheater — all within minutes of home.</p>
+          </div>
+          <div class="cl-why__card">
+            <h3>Hill Country Privacy</h3>
+            <p>Larger lots, acreage properties, and scenic Hill Country views offer a level of space and privacy that's hard to find closer to the city.</p>
+          </div>
+          <div class="cl-why__card">
+            <h3>Value & Location</h3>
+            <p>More space per dollar compared to nearby metros, with easy access to New Braunfels and San Antonio for work, shopping, and healthcare.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Explore Cards -->
+    <section class="section cl-explore">
+      <div class="container">
+        <div class="section-title">
+          <h2>Explore <span class="accent">Canyon Lake</span></h2>
+          <p>Dig deeper into the neighborhoods, homes, and lifestyle that matter to you</p>
+        </div>
+        <div class="cl-explore__grid">
+          <a href="/canyon-lake/neighborhoods/" class="cl-explore__card">
+            <h3>Neighborhoods</h3>
+            <p>From lakefront gated communities to Hill Country acreage — find the area that fits your lifestyle and budget.</p>
+          </a>
+          <a href="/canyon-lake/homes-for-sale/" class="cl-explore__card">
+            <h3>Homes for Sale</h3>
+            <p>Search current listings in Canyon Lake. Filter by price, area, and home type to find what's available now.</p>
+          </a>
+          <a href="/canyon-lake/restaurants/" class="cl-explore__card">
+            <h3>Restaurants</h3>
+            <p>From lakeside hangouts and Tex-Mex joints to Italian trattorias — the best places to eat around Canyon Lake.</p>
+          </a>
+          <a href="/canyon-lake/things-to-do/" class="cl-explore__card">
+            <h3>Things to Do</h3>
+            <p>Boating, river tubing, live music, fishing, hiking, and everything else that makes Canyon Lake special.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA with Parallax -->
+    <section class="section cl-cta-parallax">
+      <div class="cl-cta-parallax__overlay"></div>
+      <div class="container cl-cta-parallax__content">
+        <h2>Ready to Explore <span class="accent">Canyon Lake</span>?</h2>
+        <p>Whether you're just starting your search or ready to schedule showings, I can help you navigate the market and find the right fit.</p>
+        <div class="cl-cta__buttons">
+          <a href="/canyon-lake/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Ask About Canyon Lake</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I'd like to learn more about Canyon Lake..." />
+  <Footer />
+</Layout>
+
+<style>
+  /* Hero */
+  .cl-hero {
+    position: relative;
+    height: 320px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .cl-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .cl-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .cl-hero__content h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .cl-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  /* Intro */
+  .cl-intro__grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .cl-intro__text p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .cl-intro__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .cl-stat {
+    background: var(--light-gray);
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 8px;
+  }
+
+  .cl-stat__number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #FF1616;
+  }
+
+  .cl-stat__label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--gray);
+    margin-top: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Why Section */
+  .cl-why__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .cl-why__card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .cl-why__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .cl-why__card p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  /* Explore Cards */
+  .cl-explore__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cl-explore__card {
+    display: block;
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    padding: 2rem;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .cl-explore__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .cl-explore__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: #000;
+  }
+
+  .cl-explore__card:hover h3 {
+    color: #FF1616;
+  }
+
+  .cl-explore__card p {
+    color: var(--gray);
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  /* CTA Parallax */
+  .cl-cta-parallax {
+    position: relative;
+    padding: 5rem 0;
+    color: #fff;
+    text-align: center;
+    background-image: url('/images/testimonials-hero.jpg');
+    background-size: cover;
+    background-position: center bottom;
+    background-attachment: fixed;
+  }
+
+  .cl-cta-parallax__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+  }
+
+  .cl-cta-parallax__content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cl-cta-parallax__content p {
+    color: rgba(255,255,255,0.7);
+    max-width: 600px;
+    margin: 1rem auto 2rem;
+  }
+
+  .cl-cta__buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .cl-intro__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cl-why__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cl-explore__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

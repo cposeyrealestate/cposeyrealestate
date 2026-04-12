@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "nob-hill",
+    "name": "Nob Hill",
+    "summary": "A family-friendly neighborhood with spacious yards and well-maintained homes. Nob Hill offers a quiet residential setting with easy access to Seguin's amenities and schools.",
+    "priceRange": "$250K-$350K",
+    "schoolDistrict": "Seguin ISD",
+    "buyerType": "entry-level",
+    "features": ["Spacious yards", "Family-friendly atmosphere", "Quiet residential streets", "Close to schools", "Seguin ISD"]
+  },
+  {
+    "slug": "village-of-mill-creek",
+    "name": "Village of Mill Creek",
+    "summary": "A welcoming community with a strong neighborhood feel and affordable homes. Mill Creek residents enjoy community events, nearby parks, and the convenience of Seguin's growing retail corridor.",
+    "priceRange": "$200K-$320K",
+    "schoolDistrict": "Seguin ISD",
+    "buyerType": "entry-level",
+    "features": ["Community feel", "Affordable pricing", "Nearby parks", "Growing retail access", "Seguin ISD"]
+  },
+  {
+    "slug": "cordova-crossing",
+    "name": "Cordova Crossing",
+    "summary": "A newer development featuring modern new construction homes at competitive prices. Cordova Crossing is attracting young families and first-time buyers looking for value in the Seguin market.",
+    "priceRange": "$280K-$400K",
+    "schoolDistrict": "Seguin ISD",
+    "buyerType": "move-up",
+    "features": ["New construction", "Modern floor plans", "Community amenities", "Growing neighborhood", "Seguin ISD"]
+  },
+  {
+    "slug": "downtown-seguin",
+    "name": "Downtown Seguin",
+    "summary": "The walkable historic core of Seguin with character homes, local restaurants, and boutique shops. Downtown living puts you steps from breweries, cafes, and the vibrant Main Street scene.",
+    "priceRange": "$150K-$300K",
+    "schoolDistrict": "Seguin ISD",
+    "buyerType": "entry-level",
+    "features": ["Walkable to restaurants & shops", "Historic character homes", "Brewery & cafe scene", "Most affordable area", "Investment potential"]
+  },
+  {
+    "slug": "country-club-estates",
+    "name": "Country Club Estates",
+    "summary": "An established neighborhood adjacent to the Seguin golf course, offering larger homes with mature landscaping. Popular with move-up buyers seeking a more upscale setting within Seguin.",
+    "priceRange": "$250K-$450K",
+    "schoolDistrict": "Seguin ISD",
+    "buyerType": "move-up",
+    "features": ["Golf course adjacent", "Larger homes", "Mature landscaping", "Established neighborhood", "Seguin ISD"]
+  },
+  {
+    "slug": "river-oaks",
+    "name": "River Oaks",
+    "summary": "A desirable neighborhood with river access and larger lots, offering a more spacious Hill Country feel within the Seguin city limits. Ideal for buyers wanting land and water access.",
+    "priceRange": "$300K-$500K",
+    "schoolDistrict": "Seguin ISD",
+    "buyerType": "move-up",
+    "features": ["River access", "Larger lots", "Mature oak trees", "Hill Country feel", "Close to Max Starcke Park"]
+  }
+]

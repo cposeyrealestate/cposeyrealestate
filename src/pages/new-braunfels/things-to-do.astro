@@ -1,0 +1,301 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import Footer from '../../components/Footer.astro';
+
+const activities = [
+  { name: 'Comal River Tubing', category: 'outdoor', description: "Float the crystal-clear, spring-fed Comal River — the shortest river in Texas. A relaxing 2-hour journey with access points throughout the city, perfect for a lazy afternoon.", icon: '🌊' },
+  { name: 'Guadalupe River Adventures', category: 'outdoor', description: "Kayaking, tubing, and paddleboarding on the Guadalupe River. Full-day trips through beautiful Hill Country scenery with outfitters ready to get you on the water.", icon: '🛶' },
+  { name: 'Schlitterbahn Waterpark', category: 'family', description: "One of the best waterparks in the country, powered by natural spring water from the Comal River. Multiple water coasters, lazy rivers, and slides for all ages.", icon: '🎢' },
+  { name: 'Gruene Hall', category: 'nightlife', description: "Texas' oldest continually operating dance hall, built in 1878. Live music every night — from up-and-coming Texas artists to national acts. A 6,000 sq ft dance floor with the original tin roof.", icon: '🎵' },
+  { name: 'Gruene Historic District', category: 'culture', description: "Shop, dine, and explore charming storefronts in this preserved 1800s German settlement. Wine tasting rooms, antique shops, and the famous Gristmill restaurant overlooking the river.", icon: '🏛️' },
+  { name: 'Natural Bridge Caverns', category: 'family', description: "The largest commercial caverns in Texas, 180 feet underground. Discovery Tour reveals massive formations, plus zip lines, a maze, and gem mining above ground.", icon: '⛰️' },
+  { name: 'Natural Bridge Wildlife Ranch', category: 'family', description: "A 500-acre drive-through safari park with over 500 animals. Feed giraffes from your car, see zebras, and explore walkabout exhibits with cheetahs and gibbons.", icon: '🦒' },
+  { name: 'Landa Park', category: 'outdoor', description: "A 51-acre city park along the Comal River with a spring-fed swimming pool, miniature train, paddle boats, disc golf, and walking trails. Free admission — a local favorite.", icon: '🌳' },
+  { name: 'The Cliff Carver Alpine Coaster', category: 'family', description: "Texas' first alpine coaster — a gravity-propelled sled that zooms through the Hill Country hillside at up to 25 mph. Fun for kids and adults alike.", icon: '🎿' },
+  { name: 'Wurstfest', category: 'seasonal', description: "The annual 10-day salute to sausage drawing 240,000+ visitors every November. German food, 40+ bands on 5 stages, carnival rides, and beer. A New Braunfels tradition.", icon: '🌭' },
+  { name: 'Gruene Music & Wine Festival', category: 'seasonal', description: "A four-day celebration featuring 50+ Texas wineries and breweries with live music in the Gruene Historic District. Held annually in the fall.", icon: '🍷' },
+];
+
+const categoryLabels = {
+  outdoor: 'Outdoor & Nature',
+  family: 'Family Fun',
+  nightlife: 'Nightlife & Music',
+  culture: 'Culture & History',
+  seasonal: 'Seasonal Events',
+};
+
+const categories = [...new Set(activities.map(a => a.category))];
+---
+
+<Layout
+  title="Things to Do in New Braunfels, TX | Cody Posey Real Estate"
+  description="Discover the best things to do in New Braunfels — river tubing, Gruene Hall, Schlitterbahn, seasonal festivals, and everything that makes this city special."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="act-hero">
+      <div class="act-hero__overlay"></div>
+      <div class="act-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/new-braunfels/">New Braunfels</a> <span>/</span> <span>Things to Do</span>
+        </nav>
+        <h1>Things to Do in <span style="color:#FF1616;">New Braunfels</span></h1>
+        <p>River adventures, live music, family fun, and Hill Country culture</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="act-intro">New Braunfels isn't just a great place to live — it's a destination. From floating the spring-fed rivers and dancing at the oldest dance hall in Texas to world-class waterparks and underground caverns, there's always something to do. And with events like Wurstfest drawing hundreds of thousands of visitors every year, the community knows how to have a good time.</p>
+      </div>
+    </section>
+
+    <!-- Filter Tabs -->
+    <section class="section" style="background: var(--light-gray); padding-top: 2rem; padding-bottom: 0;">
+      <div class="container">
+        <div class="act-filters" id="actFilters">
+          <button class="act-filter act-filter--active" data-filter="all">All</button>
+          {categories.map(cat => (
+            <button class="act-filter" data-filter={cat}>{categoryLabels[cat]}</button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Activity Cards -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="act-grid" id="actGrid">
+          {activities.map(a => (
+            <div class="act-card" data-category={a.category}>
+              <div class="act-card__icon">{a.icon}</div>
+              <span class="act-card__category">{categoryLabels[a.category]}</span>
+              <h3>{a.name}</h3>
+              <p>{a.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="act-cta">
+      <div class="act-cta__overlay"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <h2>Want to Live Where the <span class="accent">Fun Is</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">I can help you find a home close to the rivers, Gruene, downtown, and all the activities that make NB special.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="/new-braunfels/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Let's Connect</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ContactForm context="I'd like to find homes near the best things to do in NB..." />
+  <Footer />
+</Layout>
+
+<style>
+  .act-hero {
+    position: relative;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .act-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    opacity: 0.9;
+  }
+
+  .act-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .act-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .act-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .act-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 800px;
+    text-align: center;
+    margin: 0 auto;
+    font-weight: 600;
+  }
+
+  /* Filters */
+  .act-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    padding-bottom: 2rem;
+  }
+
+  .act-filter {
+    padding: 0.5rem 1.25rem;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    background: #fff;
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #333;
+  }
+
+  .act-filter:hover {
+    border-color: #FF1616;
+    color: #FF1616;
+  }
+
+  .act-filter--active {
+    background: #FF1616;
+    border-color: #FF1616;
+    color: #fff;
+  }
+
+  .act-filter--active:hover { color: #fff; }
+
+  /* Cards */
+  .act-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .act-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: center;
+  }
+
+  .act-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .act-card__icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .act-card__category {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #FF1616;
+    margin-bottom: 0.5rem;
+  }
+
+  .act-card h3 {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.75rem;
+  }
+
+  .act-card p {
+    color: var(--gray);
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+
+  /* CTA */
+  .act-cta {
+    position: relative;
+    padding: 5rem 0;
+    color: #fff;
+    text-align: center;
+    background-image: url('/images/testimonials-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #333;
+  }
+
+  .act-cta__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+  }
+
+  .act-cta h2 { color: #fff; }
+
+  @media (max-width: 900px) {
+    .act-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .act-grid { grid-template-columns: 1fr; }
+    .act-cta { background-attachment: scroll; }
+  }
+</style>
+
+<script is:inline>
+  const filters = document.querySelectorAll('.act-filter');
+  const cards = document.querySelectorAll('.act-card');
+
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      filters.forEach(f => f.classList.remove('act-filter--active'));
+      btn.classList.add('act-filter--active');
+
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
