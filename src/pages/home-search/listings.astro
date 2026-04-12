@@ -33,8 +33,13 @@ import ContactForm from '../../components/ContactForm.astro';
         </div>
 
         <div class="hs-tab-panel hs-tab-panel--active" id="panel-map">
-          <div class="idx-map-widget" id="idxMapWidget">
-            <script src="//cposeyrealestate.idxbroker.com/idx/mapwidgetjs.php?widgetid=151024" type="text/javascript"></script>
+          <div class="idx-embed idx-embed--map">
+            <iframe
+              src="https://cposeyrealestate.idxbroker.com/idx/map/mapsearch"
+              allowtransparency="true"
+              frameBorder="0"
+              title="Map Property Search"
+            ></iframe>
           </div>
         </div>
 
@@ -233,13 +238,11 @@ import ContactForm from '../../components/ContactForm.astro';
     display: block;
   }
 
-  /* Map Widget */
-  .idx-map-widget {
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  /* Map embed - taller for better experience */
+  .idx-embed--map iframe {
+    height: calc(100vh - 200px);
     min-height: 600px;
+    max-height: 900px;
   }
 
   /* Area Grid */
