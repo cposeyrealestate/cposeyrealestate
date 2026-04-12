@@ -1,0 +1,380 @@
+---
+// Load featured listings for map pins
+let listings: any[] = [];
+try {
+  const data = await import('../data/idx-featured.json');
+  listings = (data.default || data).filter((l: any) => l.latitude && l.longitude);
+} catch {}
+
+// Format price Zillow-style
+function formatPrice(price: number | null): string {
+  if (!price) return '';
+  if (price >= 1000000) {
+    const m = price / 1000000;
+    return '$' + m.toFixed(m >= 10 ? 1 : 2) + 'M';
+  }
+  if (price >= 1000) {
+    const k = price / 1000;
+    return '$' + (k % 1 === 0 ? k.toFixed(0) : k.toFixed(0)) + 'K';
+  }
+  return '$' + price.toLocaleString();
+}
+
+// Service areas with center coordinates, listing counts, and IDX links
+const areas = [
+  { name: 'New Braunfels', lat: 29.7030, lng: -98.1245, count: '1,600+', slug: 'new-braunfels', color: '#FF1616' },
+  { name: 'Canyon Lake', lat: 29.8752, lng: -98.1375, count: '430+', slug: 'canyon-lake', color: '#FF4444' },
+  { name: 'Seguin', lat: 29.5688, lng: -97.9647, count: '620+', slug: 'seguin', color: '#FF6666' },
+  { name: 'Cibolo / Schertz', lat: 29.5722, lng: -98.2268, count: '760+', slug: 'cibolo-schertz', color: '#CC1111' },
+  { name: 'Bulverde', lat: 29.7436, lng: -98.4531, count: '230+', slug: 'bulverde', color: '#DD2222' },
+];
+
+// Serialize for client-side JS
+const listingPins = listings.map((l: any) => ({
+  lat: l.latitude,
+  lng: l.longitude,
+  price: formatPrice(l.price),
+  rawPrice: l.price,
+  address: l.address,
+  city: l.cityName,
+  beds: l.bedrooms,
+  baths: l.totalBaths,
+  sqft: l.sqFt,
+  img: l.thumbnail || l.image,
+  url: l.fullDetailsURL,
+  status: l.propStatus,
+  type: l.propSubType,
+}));
+---
+
+<div class="map-search" id="mapSearch">
+  <div class="map-search__container" id="mapContainer"></div>
+  <div class="map-search__legend">
+    <div class="map-search__legend-item">
+      <span class="map-search__pin-sample map-search__pin-sample--listing"></span>
+      <span>Featured Listing</span>
+    </div>
+    <div class="map-search__legend-item">
+      <span class="map-search__pin-sample map-search__pin-sample--area"></span>
+      <span>Service Area</span>
+    </div>
+  </div>
+</div>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<style>
+  .map-search {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    background: #1a1a1a;
+  }
+
+  .map-search__container {
+    width: 100%;
+    height: 600px;
+  }
+
+  .map-search__legend {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.75rem 1.25rem;
+    background: #111;
+    justify-content: center;
+  }
+
+  .map-search__legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .map-search__pin-sample {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+  }
+
+  .map-search__pin-sample--listing {
+    background: #FF1616;
+  }
+
+  .map-search__pin-sample--area {
+    background: #000;
+    border: 2px solid #FF1616;
+  }
+
+  @media (max-width: 768px) {
+    .map-search__container {
+      height: 450px;
+    }
+  }
+
+  /* Leaflet popup overrides */
+  :global(.map-popup) {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  :global(.map-popup__price) {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #FF1616;
+    margin-bottom: 0.25rem;
+  }
+
+  :global(.map-popup__address) {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 0.15rem;
+  }
+
+  :global(.map-popup__city) {
+    font-size: 0.75rem;
+    color: #777;
+    margin-bottom: 0.4rem;
+  }
+
+  :global(.map-popup__details) {
+    font-size: 0.72rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+  }
+
+  :global(.map-popup__details span) {
+    margin-right: 0.6rem;
+  }
+
+  :global(.map-popup__link) {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background: #FF1616;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  :global(.map-popup__link:hover) {
+    background: #cc0000;
+  }
+
+  :global(.map-popup__img) {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+  }
+
+  :global(.area-popup) {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+  }
+
+  :global(.area-popup__name) {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 0.2rem;
+  }
+
+  :global(.area-popup__count) {
+    font-size: 0.78rem;
+    color: #FF1616;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  :global(.area-popup__link) {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background: #FF1616;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+
+  /* Price pin markers */
+  :global(.price-pin) {
+    background: #FF1616;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    text-align: center;
+    line-height: 1.3;
+    border: 2px solid #fff;
+    cursor: pointer;
+    transition: transform 0.15s, z-index 0s;
+  }
+
+  :global(.price-pin:hover) {
+    transform: scale(1.15);
+    z-index: 1000 !important;
+  }
+
+  :global(.price-pin::after) {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #fff;
+  }
+
+  :global(.area-pin) {
+    background: #000;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.35rem 0.6rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    text-align: center;
+    line-height: 1.2;
+    border: 2px solid #FF1616;
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+
+  :global(.area-pin:hover) {
+    transform: scale(1.1);
+    background: #1a0000;
+  }
+
+  :global(.area-pin__name) {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+  }
+
+  :global(.area-pin__count) {
+    display: block;
+    font-size: 0.62rem;
+    color: #FF1616;
+    font-weight: 600;
+    margin-top: 1px;
+  }
+</style>
+
+<script is:inline define:vars={{ listingPins, areas }}>
+  // Load Leaflet
+  const script = document.createElement('script');
+  script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+  script.onload = initMap;
+  document.head.appendChild(script);
+
+  function initMap() {
+    const map = L.map('mapContainer', {
+      center: [29.72, -98.15],
+      zoom: 10,
+      scrollWheelZoom: false,
+      zoomControl: true,
+    });
+
+    // Dark-themed tile layer
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 19,
+    }).addTo(map);
+
+    // Add area markers
+    areas.forEach(function(area) {
+      const icon = L.divIcon({
+        className: '',
+        html: '<div class="area-pin"><span class="area-pin__name">' + area.name + '</span><span class="area-pin__count">' + area.count + ' listings</span></div>',
+        iconSize: [0, 0],
+        iconAnchor: [60, 20],
+      });
+
+      const marker = L.marker([area.lat, area.lng], { icon: icon, zIndexOffset: 100 }).addTo(map);
+
+      const popupContent = '<div class="area-popup">' +
+        '<div class="area-popup__name">' + area.name + '</div>' +
+        '<div class="area-popup__count">' + area.count + ' active listings</div>' +
+        '<a href="/' + area.slug + '/homes-for-sale/" class="area-popup__link">View Homes</a>' +
+        '</div>';
+
+      marker.bindPopup(popupContent, { offset: [0, -5] });
+    });
+
+    // Add listing price pins
+    listingPins.forEach(function(listing) {
+      const icon = L.divIcon({
+        className: '',
+        html: '<div class="price-pin">' + listing.price + '</div>',
+        iconSize: [0, 0],
+        iconAnchor: [30, 30],
+      });
+
+      const marker = L.marker([listing.lat, listing.lng], { icon: icon, zIndexOffset: 200 }).addTo(map);
+
+      let details = '';
+      if (listing.beds) details += listing.beds + ' bd ';
+      if (listing.baths) details += listing.baths + ' ba ';
+      if (listing.sqft) details += listing.sqft + ' sqft';
+      if (!details && listing.type) details = listing.type;
+
+      let imgTag = '';
+      if (listing.img) {
+        imgTag = '<img src="' + listing.img + '" class="map-popup__img" alt="' + listing.address + '" />';
+      }
+
+      const popupContent = '<div class="map-popup" style="min-width:200px;">' +
+        imgTag +
+        '<div class="map-popup__price">' + listing.price + '</div>' +
+        '<div class="map-popup__address">' + listing.address + '</div>' +
+        '<div class="map-popup__city">' + listing.city + ', TX</div>' +
+        (details ? '<div class="map-popup__details">' + details + '</div>' : '') +
+        '<a href="' + listing.url + '" target="_blank" rel="noopener" class="map-popup__link">View Details</a>' +
+        '</div>';
+
+      marker.bindPopup(popupContent, { maxWidth: 260, offset: [0, -15] });
+    });
+
+    // Enable scroll zoom after first interaction
+    map.on('click', function() {
+      map.scrollWheelZoom.enable();
+    });
+
+    // Store map reference globally so parent page can invalidate size
+    window._leafletMap = map;
+
+    // If the map container is hidden (tab), watch for visibility
+    const observer = new MutationObserver(function() {
+      const container = document.getElementById('mapContainer');
+      if (container && container.offsetParent !== null) {
+        map.invalidateSize();
+      }
+    });
+    const panel = document.getElementById('panel-map');
+    if (panel) {
+      observer.observe(panel, { attributes: true, attributeFilter: ['class'] });
+    }
+  }
+</script>

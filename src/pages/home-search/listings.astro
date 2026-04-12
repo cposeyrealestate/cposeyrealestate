@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
+import MapSearch from '../../components/MapSearch.astro';
 import Footer from '../../components/Footer.astro';
 import ContactForm from '../../components/ContactForm.astro';
 ---
@@ -44,15 +45,7 @@ import ContactForm from '../../components/ContactForm.astro';
         </div>
 
         <div class="hs-tab-panel" id="panel-map">
-          <div class="idx-embed">
-            <iframe
-              src=""
-              data-src="https://cposeyrealestate.idxbroker.com/idx/map/mapsearch"
-              allowtransparency="true"
-              frameBorder="0"
-              title="Map Property Search"
-            ></iframe>
-          </div>
+          <MapSearch />
         </div>
       </div>
     </section>
@@ -67,22 +60,27 @@ import ContactForm from '../../components/ContactForm.astro';
         <div class="hs-area-grid">
           <a href="/new-braunfels/homes-for-sale/" class="hs-area-card">
             <span class="hs-area-card__name">New Braunfels</span>
+            <span class="hs-area-card__count">1,600+ homes</span>
             <span class="hs-area-card__arrow">&rarr;</span>
           </a>
           <a href="/canyon-lake/homes-for-sale/" class="hs-area-card">
             <span class="hs-area-card__name">Canyon Lake</span>
+            <span class="hs-area-card__count">430+ homes</span>
             <span class="hs-area-card__arrow">&rarr;</span>
           </a>
           <a href="/seguin/homes-for-sale/" class="hs-area-card">
             <span class="hs-area-card__name">Seguin</span>
+            <span class="hs-area-card__count">620+ homes</span>
             <span class="hs-area-card__arrow">&rarr;</span>
           </a>
           <a href="/cibolo-schertz/homes-for-sale/" class="hs-area-card">
             <span class="hs-area-card__name">Cibolo / Schertz</span>
+            <span class="hs-area-card__count">760+ homes</span>
             <span class="hs-area-card__arrow">&rarr;</span>
           </a>
           <a href="/bulverde/homes-for-sale/" class="hs-area-card">
             <span class="hs-area-card__name">Bulverde / Spring Branch</span>
+            <span class="hs-area-card__count">230+ homes</span>
             <span class="hs-area-card__arrow">&rarr;</span>
           </a>
         </div>
@@ -230,21 +228,20 @@ import ContactForm from '../../components/ContactForm.astro';
   /* Area Grid */
   .hs-area-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.25rem;
   }
 
   .hs-area-card {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 0.75rem;
     background: #fff;
     padding: 1.25rem 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     text-decoration: none;
     color: #111;
-    font-weight: 600;
     font-family: 'Poppins', sans-serif;
     transition: transform 0.2s, box-shadow 0.2s;
   }
@@ -254,10 +251,23 @@ import ContactForm from '../../components/ContactForm.astro';
     box-shadow: 0 6px 20px rgba(0,0,0,0.12);
   }
 
+  .hs-area-card__name {
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  .hs-area-card__count {
+    font-size: 0.75rem;
+    color: #FF1616;
+    font-weight: 600;
+    margin-left: auto;
+  }
+
   .hs-area-card__arrow {
     color: #FF1616;
     font-size: 1.25rem;
     transition: transform 0.2s;
+    flex-shrink: 0;
   }
 
   .hs-area-card:hover .hs-area-card__arrow {
@@ -280,20 +290,23 @@ import ContactForm from '../../components/ContactForm.astro';
     tab.addEventListener('click', () => {
       const target = tab.dataset.tab;
 
-      // Toggle active tab
       tabs.forEach(t => t.classList.remove('hs-tab--active'));
       tab.classList.add('hs-tab--active');
 
-      // Toggle active panel
       panels.forEach(p => p.classList.remove('hs-tab-panel--active'));
       const panel = document.getElementById('panel-' + target);
       if (panel) {
         panel.classList.add('hs-tab-panel--active');
 
-        // Lazy-load iframe if it has data-src
-        const iframe = panel.querySelector('iframe[data-src]');
-        if (iframe && iframe.dataset.src && iframe.getAttribute('src') !== iframe.dataset.src) {
-          iframe.src = iframe.dataset.src;
+        // Trigger Leaflet map resize when map tab is shown
+        if (target === 'map' && window.L) {
+          setTimeout(() => {
+            const mapEl = document.getElementById('mapContainer');
+            if (mapEl && mapEl._leaflet_id) {
+              // Force map to recalculate size
+              window.dispatchEvent(new Event('resize'));
+            }
+          }, 100);
         }
       }
     });
