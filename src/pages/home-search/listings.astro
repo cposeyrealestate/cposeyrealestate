@@ -292,7 +292,7 @@ import ContactForm from '../../components/ContactForm.astro';
 
         // Lazy-load iframe if it has data-src
         const iframe = panel.querySelector('iframe[data-src]');
-        if (iframe && !iframe.src) {
+        if (iframe && iframe.dataset.src && iframe.getAttribute('src') !== iframe.dataset.src) {
           iframe.src = iframe.dataset.src;
         }
       }
