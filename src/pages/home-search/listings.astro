@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
-import IDXSearchBar from '../../components/IDXSearchBar.astro';
 import Footer from '../../components/Footer.astro';
 import ContactForm from '../../components/ContactForm.astro';
 ---
@@ -25,55 +24,41 @@ import ContactForm from '../../components/ContactForm.astro';
       </div>
     </div>
 
-    <!-- Quick Search Widget -->
-    <section class="section">
-      <div class="container">
-        <div class="section-title">
-          <h2>Quick <span class="accent">Search</span></h2>
-          <p>Start your home search here</p>
-        </div>
-        <IDXSearchBar />
-      </div>
-    </section>
-
-    <!-- Advanced Search -->
+    <!-- Tabbed Search -->
     <section class="section" style="background: var(--light-gray);">
       <div class="container">
-        <div class="section-title">
-          <h2>Advanced <span class="accent">Search</span></h2>
-          <p>Narrow results by price, beds, baths, property type, and more</p>
+        <div class="hs-tabs" id="hsTabs">
+          <button class="hs-tab hs-tab--active" data-tab="advanced">Advanced Search</button>
+          <button class="hs-tab" data-tab="map">Map Search</button>
         </div>
-        <div class="idx-embed">
-          <iframe
-            src="https://cposeyrealestate.idxbroker.com/idx/search/advanced"
-            allowtransparency="true"
-            frameBorder="0"
-            title="Advanced Property Search"
-          ></iframe>
-        </div>
-      </div>
-    </section>
 
-    <!-- Map Search -->
-    <section class="section">
-      <div class="container">
-        <div class="section-title">
-          <h2>Map <span class="accent">Search</span></h2>
-          <p>Draw on the map to find homes in a specific area</p>
+        <div class="hs-tab-panel hs-tab-panel--active" id="panel-advanced">
+          <div class="idx-embed">
+            <iframe
+              src="https://cposeyrealestate.idxbroker.com/idx/search/advanced"
+              allowtransparency="true"
+              frameBorder="0"
+              title="Advanced Property Search"
+            ></iframe>
+          </div>
         </div>
-        <div class="idx-embed">
-          <iframe
-            src="https://cposeyrealestate.idxbroker.com/idx/map/mapsearch"
-            allowtransparency="true"
-            frameBorder="0"
-            title="Map Property Search"
-          ></iframe>
+
+        <div class="hs-tab-panel" id="panel-map">
+          <div class="idx-embed">
+            <iframe
+              src=""
+              data-src="https://cposeyrealestate.idxbroker.com/idx/map/mapsearch"
+              allowtransparency="true"
+              frameBorder="0"
+              title="Map Property Search"
+            ></iframe>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Browse by Area -->
-    <section class="section" style="background: var(--light-gray);">
+    <section class="section">
       <div class="container">
         <div class="section-title">
           <h2>Browse by <span class="accent">Area</span></h2>
@@ -172,6 +157,61 @@ import ContactForm from '../../components/ContactForm.astro';
     margin: 0 0.3rem;
   }
 
+  /* Tabs */
+  .hs-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #ddd;
+  }
+
+  .hs-tab {
+    padding: 0.85rem 2rem;
+    background: none;
+    border: none;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray);
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s;
+  }
+
+  .hs-tab::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: transparent;
+    transition: background 0.2s;
+  }
+
+  .hs-tab:hover {
+    color: #000;
+  }
+
+  .hs-tab--active {
+    color: #FF1616;
+  }
+
+  .hs-tab--active::after {
+    background: #FF1616;
+  }
+
+  /* Tab Panels */
+  .hs-tab-panel {
+    display: none;
+  }
+
+  .hs-tab-panel--active {
+    display: block;
+  }
+
   /* IDX Embed */
   .idx-embed {
     background: #fff;
@@ -223,4 +263,39 @@ import ContactForm from '../../components/ContactForm.astro';
   .hs-area-card:hover .hs-area-card__arrow {
     transform: translateX(4px);
   }
+
+  @media (max-width: 600px) {
+    .hs-tab {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.78rem;
+    }
+  }
 </style>
+
+<script is:inline>
+  const tabs = document.querySelectorAll('.hs-tab');
+  const panels = document.querySelectorAll('.hs-tab-panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+
+      // Toggle active tab
+      tabs.forEach(t => t.classList.remove('hs-tab--active'));
+      tab.classList.add('hs-tab--active');
+
+      // Toggle active panel
+      panels.forEach(p => p.classList.remove('hs-tab-panel--active'));
+      const panel = document.getElementById('panel-' + target);
+      if (panel) {
+        panel.classList.add('hs-tab-panel--active');
+
+        // Lazy-load iframe if it has data-src
+        const iframe = panel.querySelector('iframe[data-src]');
+        if (iframe && !iframe.src) {
+          iframe.src = iframe.dataset.src;
+        }
+      }
+    });
+  });
+</script>
