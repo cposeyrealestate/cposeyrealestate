@@ -1,6 +1,15 @@
 ---
-// BoldTrail IDX will populate this with real listings.
-// For now we show placeholder cards.
+// Try to load IDX featured listings data; fall back to placeholders if not available.
+let featuredListings: any[] = [];
+let usingPlaceholders = false;
+
+try {
+  const data = await import('../data/idx-featured.json');
+  featuredListings = data.default || data;
+} catch {
+  usingPlaceholders = true;
+}
+
 const placeholderListings = [
   {
     id: 1,
@@ -12,6 +21,7 @@ const placeholderListings = [
     baths: 3,
     sqft: '2,450',
     img: 'https://placehold.co/600x400/1a1a1a/FF1616?text=Property+Photo',
+    url: '/home-search/listings',
   },
   {
     id: 2,
@@ -23,6 +33,7 @@ const placeholderListings = [
     baths: 2,
     sqft: '1,890',
     img: 'https://placehold.co/600x400/1a1a1a/FF1616?text=Property+Photo',
+    url: '/home-search/listings',
   },
   {
     id: 3,
@@ -34,6 +45,7 @@ const placeholderListings = [
     baths: 4,
     sqft: '3,100',
     img: 'https://placehold.co/600x400/1a1a1a/FF1616?text=Property+Photo',
+    url: '/home-search/listings',
   },
   {
     id: 4,
@@ -45,8 +57,26 @@ const placeholderListings = [
     baths: 2,
     sqft: '1,650',
     img: 'https://placehold.co/600x400/1a1a1a/FF1616?text=Property+Photo',
+    url: '/home-search/listings',
   },
 ];
+
+// Normalise IDX data into the same shape the template expects
+const listings = usingPlaceholders
+  ? placeholderListings
+  : featuredListings.map((l: any) => ({
+      id: l.listingID || l.id,
+      status: l.propStatus || 'Active',
+      price: l.listingPrice || l.price,
+      address: l.address || '',
+      city: [l.cityName, l.state, l.zipcode].filter(Boolean).join(', ') || l.city,
+      beds: l.bedrooms ?? l.beds,
+      baths: l.totalBaths ?? l.baths,
+      sqft: l.sqFt || l.sqft || '',
+      img: (typeof l.image === 'string' ? l.image : l.image?.[0]?.url) || l.img || 'https://placehold.co/600x400/1a1a1a/FF1616?text=No+Photo',
+      propType: l.propSubType || '',
+      url: l.fullDetailsURL || l.url || '/home-search/listings',
+    }));
 ---
 
 <section class="properties section" id="featured-properties">
@@ -58,23 +88,24 @@ const placeholderListings = [
 
     <div class="swiper properties-swiper">
       <div class="swiper-wrapper">
-        {placeholderListings.map(listing => (
+        {listings.map(listing => (
           <div class="swiper-slide">
             <div class="prop-card">
               <div class="prop-card__img-wrap">
                 <img src={listing.img} alt={listing.address} class="prop-card__img" loading="lazy" />
-                <span class={`prop-card__status ${listing.status.toLowerCase()}`}>{listing.status}</span>
+                <span class={`prop-card__status ${String(listing.status).toLowerCase()}`}>{listing.status}</span>
               </div>
               <div class="prop-card__body">
                 <div class="prop-card__price">{listing.price}</div>
                 <div class="prop-card__address">{listing.address}</div>
                 <div class="prop-card__city">{listing.city}</div>
                 <div class="prop-card__details">
-                  <span>🛏 {listing.beds} Beds</span>
-                  <span>🛁 {listing.baths} Baths</span>
-                  <span>📐 {listing.sqft} sqft</span>
+                  {listing.beds && <span>{listing.beds} Beds</span>}
+                  {listing.baths && <span>{listing.baths} Baths</span>}
+                  {listing.sqft && <span>{listing.sqft} sqft</span>}
+                  {!listing.beds && !listing.baths && !listing.sqft && <span>{listing.propType || 'Land / Lot'}</span>}
                 </div>
-                <a href="/properties" class="btn btn-outline-dark prop-card__btn">View Details</a>
+                <a href={listing.url} class="btn btn-outline-dark prop-card__btn">View Details</a>
               </div>
             </div>
           </div>
@@ -86,7 +117,7 @@ const placeholderListings = [
     </div>
 
     <div class="properties__cta">
-      <a href="/properties" class="btn btn-primary">View All Listings</a>
+      <a href="/home-search/listings" class="btn btn-primary">View All Listings</a>
     </div>
   </div>
 </section>
