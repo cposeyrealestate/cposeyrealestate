@@ -1,7 +1,4 @@
-// Raw HTML endpoint for IDX Broker Wrappers → Includes → Footer URL
-// Injects scripts into every IDX page
-export function GET() {
-  const html = `<script>
+<script is:inline>
 (function(){
   function shortPrice(text) {
     var clean = text.replace(/[^0-9.]/g, '');
@@ -9,7 +6,7 @@ export function GET() {
     if (isNaN(num) || num === 0) return text;
     if (num >= 1000000) {
       var m = num / 1000000;
-      return '$' + (m >= 10 ? m.toFixed(1) : m.toFixed(2)).replace(/\\.?0+$/, '') + 'M';
+      return '$' + (m >= 10 ? m.toFixed(1) : m.toFixed(2)).replace(/\.?0+$/, '') + 'M';
     }
     if (num >= 1000) {
       var k = Math.round(num / 1000);
@@ -73,10 +70,4 @@ export function GET() {
     hideElements();
   }
 })();
-<` + `/script>`;
-
-
-  return new Response(html, {
-    headers: { 'Content-Type': 'text/html' },
-  });
-}
+</script>
