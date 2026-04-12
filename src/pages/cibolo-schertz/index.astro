@@ -111,6 +111,23 @@ import ContactForm from '../../components/ContactForm.astro';
       </div>
     </section>
 
+    <!-- School District -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>School <span class="accent">District</span></h2>
+          <p>One of the highest-rated school districts in the San Antonio metro</p>
+        </div>
+        <div class="cs-schools__grid">
+          <a href="https://www.scuc.txed.net" target="_blank" rel="noopener" class="cs-schools__card">
+            <h3>Schertz-Cibolo-Universal City ISD (SCUCISD)</h3>
+            <p>An A-rated district known for academic excellence, strong athletics, and community engagement. Steele High School and Byron P. Steele II are among the top-rated campuses. The district serves Schertz, Cibolo, and Universal City.</p>
+            <span class="cs-schools__link">Visit SCUCISD Website →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section class="section cs-cta" style="background: #000; color: #fff; text-align: center;">
       <div class="container">
@@ -294,6 +311,59 @@ import ContactForm from '../../components/ContactForm.astro';
     color: var(--gray);
     font-size: 0.85rem;
     line-height: 1.6;
+  }
+
+  /* Schools */
+  .cs-schools__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .cs-schools__card {
+    display: block;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: center;
+  }
+
+  .cs-schools__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .cs-schools__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.75rem;
+    color: #000;
+  }
+
+  .cs-schools__card:hover h3 {
+    color: #FF1616;
+  }
+
+  .cs-schools__card p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .cs-schools__link {
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #FF1616;
   }
 
   /* CTA */

@@ -128,11 +128,35 @@ import ContactForm from '../../components/ContactForm.astro';
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="section nb-cta" style="background: #000; color: #fff; text-align: center;">
+    <!-- School Districts -->
+    <section class="section" style="background: var(--light-gray);">
       <div class="container">
+        <div class="section-title">
+          <h2>School <span class="accent">Districts</span></h2>
+          <p>Two independent school districts serve the New Braunfels area</p>
+        </div>
+        <div class="nb-schools__grid">
+          <a href="https://www.nbisd.org" target="_blank" rel="noopener" class="nb-schools__card">
+            <h3>New Braunfels ISD</h3>
+            <p>Serves central, downtown, Gruene, and Veramendi areas. Strong community roots and a long-established presence in the city.</p>
+            <span class="nb-schools__link">Visit NBISD Website →</span>
+          </a>
+          <a href="https://www.comalisd.org" target="_blank" rel="noopener" class="nb-schools__card">
+            <h3>Comal ISD</h3>
+            <p>One of the fastest-growing districts in Texas. Serves the west, north, and south sides of the NB area including most new construction communities.</p>
+            <span class="nb-schools__link">Visit Comal ISD Website →</span>
+          </a>
+        </div>
+        <p class="nb-schools__note">School assignments are based on physical address. Always verify directly with the district before purchasing.</p>
+      </div>
+    </section>
+
+    <!-- CTA with Parallax -->
+    <section class="section nb-cta-parallax">
+      <div class="nb-cta-parallax__overlay"></div>
+      <div class="container nb-cta-parallax__content">
         <h2>Ready to Explore <span class="accent">New Braunfels</span>?</h2>
-        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Whether you're just starting your search or ready to schedule showings, I can help you navigate the market and find the right fit.</p>
+        <p>Whether you're just starting your search or ready to schedule showings, I can help you navigate the market and find the right fit.</p>
         <div class="nb-cta__buttons">
           <a href="/new-braunfels/homes-for-sale/" class="btn btn-primary">Search Homes</a>
           <a href="#contact" class="btn btn-outline">Ask About New Braunfels</a>
@@ -313,7 +337,86 @@ import ContactForm from '../../components/ContactForm.astro';
     line-height: 1.6;
   }
 
-  /* CTA */
+  /* Schools */
+  .nb-schools__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .nb-schools__card {
+    display: block;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .nb-schools__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .nb-schools__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .nb-schools__card p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .nb-schools__link {
+    display: inline-block;
+    color: #FF1616;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-top: 0.75rem;
+  }
+
+  .nb-schools__note {
+    text-align: center;
+    font-style: italic;
+    color: var(--gray);
+    font-size: 0.85rem;
+    margin-top: 1.5rem;
+  }
+
+  /* CTA Parallax */
+  .nb-cta-parallax {
+    position: relative;
+    padding: 5rem 0;
+    color: #fff;
+    text-align: center;
+    background-image: url('/images/testimonials-hero.jpg');
+    background-size: cover;
+    background-position: center bottom;
+    background-attachment: fixed;
+  }
+
+  .nb-cta-parallax__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+  }
+
+  .nb-cta-parallax__content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .nb-cta-parallax__content p {
+    color: rgba(255,255,255,0.7);
+    max-width: 600px;
+    margin: 1rem auto 2rem;
+  }
+
   .nb-cta__buttons {
     display: flex;
     gap: 1rem;
@@ -332,6 +435,10 @@ import ContactForm from '../../components/ContactForm.astro';
     }
 
     .nb-explore__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .nb-schools__grid {
       grid-template-columns: 1fr;
     }
   }
