@@ -130,6 +130,27 @@ import ContactForm from '../../components/ContactForm.astro';
       </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About New Construction</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Do I need my own agent when buying new construction?</summary>
+            <p>Yes, and it is free to you. The builder pays the agent commission whether you have representation or not. Without your own agent, the only person at the table working on your behalf is you. The builder's sales team represents the builder's interests — not yours. Your agent reviews contracts, monitors construction quality, negotiates on your behalf, and ensures the builder delivers what was promised.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What builder incentives are currently available in New Braunfels?</summary>
+            <p>Builder incentives change frequently and vary by community and builder. Common incentives include interest rate buydowns, closing cost contributions, free upgrades, and reduced lot premiums on inventory homes. Some builders offer more aggressive incentives on homes that are completed or near completion. I stay current on available incentives across all active communities and can help you identify the best deals.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How long does it take to build a new home?</summary>
+            <p>Build times in the New Braunfels area typically range from four to eight months from contract to closing, depending on the builder and the stage of construction when you purchase. Pre-construction homes that have not started building may take longer. If you need to move in quickly, many communities have inventory homes that are completed or nearly completed and ready for a faster closing timeline.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section class="section" style="background: #000; color: #fff; text-align: center;">
       <div class="container">
@@ -147,6 +168,39 @@ import ContactForm from '../../components/ContactForm.astro';
 
   <ContactForm context="I'm interested in touring new construction..." />
   <Footer />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do I need my own agent when buying new construction?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, and it is free to you. The builder pays the commission whether you have representation or not. Without your own agent, the only person working on your behalf is you."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What builder incentives are currently available in New Braunfels?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Common incentives include interest rate buydowns, closing cost contributions, free upgrades, and reduced lot premiums. Incentives change frequently and vary by community and builder."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does it take to build a new home?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Build times typically range from four to eight months from contract to closing. Inventory homes that are completed or near completion can close faster."
+        }
+      }
+    ]
+  }
+  </script>
 </Layout>
 
 <style>
@@ -314,6 +368,15 @@ import ContactForm from '../../components/ContactForm.astro';
     font-size: 0.9rem;
     line-height: 1.7;
   }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
   @media (max-width: 768px) {
     .nc-compare__grid,

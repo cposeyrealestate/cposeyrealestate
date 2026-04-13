@@ -266,6 +266,41 @@ import ParallaxBanner from '../components/ParallaxBanner.astro';
       </div>
     </section>
 
+    <!-- Educational Content -->
+    <section class="section">
+      <div class="container">
+        <div style="max-width:800px;margin:0 auto;">
+          <h2>Understanding <span class="accent">Closing Costs</span> in Texas</h2>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">Closing costs are the fees and expenses that buyers and sellers pay to complete a real estate transaction. In Texas, these costs are divided between the buyer and seller based on longstanding customs and the terms negotiated in the contract. Understanding these costs before you buy or sell helps you budget accurately and avoid surprises at the closing table.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">One of the largest closing costs in Texas is title insurance. Unlike most states, Texas has promulgated title insurance rates set by the Texas Department of Insurance. This means the cost of title insurance is the same regardless of which title company you use. The owner's title policy protects the buyer's ownership rights and is customarily paid by the seller. The lender's title policy protects the mortgage lender and is paid by the buyer.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">For buyers, closing costs typically include the lender's title policy, appraisal fee, home inspection, survey, loan origination fees, prepaid property taxes and insurance, and recording fees. Prepaid items — the taxes and insurance that your lender collects upfront to fund your escrow account — can be a significant cost that catches first-time buyers off guard. The calculator above estimates these based on the Comal County average tax rate of 1.75%.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">For sellers, closing costs include the owner's title policy, agent commissions, escrow fees, document preparation, and any negotiated repair credits or home warranty. Commission rates are negotiable and agreed upon in the listing agreement. In the current market, sellers should also be prepared for potential buyer requests for closing cost contributions, particularly on FHA and VA loans.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">This calculator provides a preliminary estimate based on standard Texas rates and typical transaction costs in the New Braunfels area. For an accurate estimate specific to your transaction, contact me and I can coordinate with a local title company to prepare a detailed closing cost worksheet.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About Closing Costs</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Who pays closing costs in Texas — the buyer or the seller?</summary>
+            <p>Both parties pay closing costs, but they are responsible for different items. The seller customarily pays the owner's title policy, agent commissions, and their share of escrow fees. The buyer pays the lender's title policy, inspection, appraisal, survey, loan origination fees, prepaid taxes and insurance, and recording fees. Some costs can be negotiated between the parties as part of the purchase contract.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can the seller pay the buyer's closing costs?</summary>
+            <p>Yes. Sellers can offer to contribute toward the buyer's closing costs as part of the negotiation. This is common with FHA and VA loans, where buyers may have limited cash reserves. The amount a seller can contribute is subject to limits set by the loan type — typically 3-6% of the purchase price. Seller contributions are a useful negotiating tool, especially in a buyer's market.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How accurate is this closing cost estimator?</summary>
+            <p>This calculator provides a reasonable estimate based on Texas Department of Insurance promulgated title rates and typical fees in the New Braunfels area. Actual costs will vary depending on your title company, lender, transaction terms, and closing date. Property tax prorations, in particular, depend on your exact closing date and whether taxes have already been paid for the year. For a precise estimate, I can coordinate with a local title company to prepare a detailed closing statement.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <ParallaxBanner image="/images/generated/home-nb-ranch.png" />
 
     <ContactForm />
@@ -297,6 +332,39 @@ import ParallaxBanner from '../components/ParallaxBanner.astro';
     </div>
   </main>
   <Footer />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Who pays closing costs in Texas — the buyer or the seller?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Both parties pay closing costs but for different items. The seller customarily pays the owner's title policy, agent commissions, and escrow fees. The buyer pays the lender's title policy, inspection, appraisal, survey, loan origination fees, prepaid taxes and insurance, and recording fees."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can the seller pay the buyer's closing costs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Sellers can contribute toward the buyer's closing costs as part of the negotiation. The amount is subject to limits set by the loan type — typically 3-6% of the purchase price."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How accurate is this closing cost estimator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This calculator provides a reasonable estimate based on Texas Department of Insurance promulgated title rates and typical fees. Actual costs will vary depending on your title company, lender, transaction terms, and closing date."
+        }
+      }
+    ]
+  }
+  </script>
 </Layout>
 
 <style>
@@ -622,6 +690,15 @@ import ParallaxBanner from '../components/ParallaxBanner.astro';
     font-size: 0.72rem;
     margin-top: 1rem;
   }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
   @media (max-width: 900px) {
     .cc-layout {

@@ -31,8 +31,13 @@ import ContactForm from '../../components/ContactForm.astro';
         <div class="bv-intro__grid">
           <div class="bv-intro__text">
             <h2>A Rural Hill Country <span class="accent">Community</span></h2>
-            <p>Bulverde is a rural Hill Country community located about 25 miles north of downtown San Antonio. Known for larger lots, scenic views, and a quieter pace of life, it appeals to buyers who want space and privacy without being far from city conveniences.</p>
-            <p>The area is served by Comal ISD and offers easy access to Guadalupe River State Park and the JW Marriott Hill Country Resort. Whether you're looking for acreage, a family-friendly neighborhood, or a place to slow down — Bulverde delivers.</p>
+            <p>Bulverde is a rural Hill Country community located about 25 miles north of downtown San Antonio along US-281. Known for larger lots, scenic views, and a quieter pace of life, it appeals to buyers who want space and privacy without being far from city conveniences. The area has maintained its rural character even as the surrounding region has grown, which is a big part of its appeal. Drive through Bulverde and you will see rolling hills, live oaks, grazing cattle, and winding roads that feel a world away from suburban sprawl — even though San Antonio is just down the highway.</p>
+            <p>The area is served by Comal ISD, one of the highest-rated school districts in the state, and offers easy access to Guadalupe River State Park and the JW Marriott Hill Country Resort. Whether you're looking for acreage, a family-friendly neighborhood, or a place to slow down, Bulverde delivers on all fronts.</p>
+            <p>The real estate market in Bulverde is unique compared to other communities in the New Braunfels and San Antonio metro areas. Properties here tend to sit on larger lots, and it is not uncommon to find homes on one to ten or more acres. This makes Bulverde especially attractive to buyers who want room for horses, workshops, gardens, or simply the peace that comes with not having neighbors right next door. Master-planned communities like Johnson Ranch and Singing Hills offer a more traditional suburban experience with community amenities, while custom-built homes on private acreage cater to buyers who want a fully personalized Hill Country retreat.</p>
+            <p>Home prices in Bulverde reflect the area's desirability and the larger lot sizes. The median home price tends to be higher than nearby communities like New Braunfels or Cibolo, but buyers are getting significantly more land and a premium Hill Country setting in return. Properties range from the mid-$300s in established neighborhoods to well over $1 million for custom homes on large acreage tracts with panoramic views. The market here tends to attract move-up buyers, families prioritizing school districts, and people relocating from larger metros who want a permanent change of pace.</p>
+            <p>Daily life in Bulverde revolves around the outdoors and community. Guadalupe River State Park is one of the most visited state parks in Texas, offering swimming, tubing, hiking, and fishing along the Guadalupe River. The nearby Honey Creek State Natural Area provides guided nature walks through some of the most pristine Hill Country habitat in the region. For golf and resort-style recreation, the JW Marriott Hill Country Resort and TPC San Antonio are both located within the Bulverde area, offering championship golf courses, spa facilities, and dining that attract visitors from across the country.</p>
+            <p>The Bulverde area also has a growing local commercial scene. Along US-281, you will find an increasing number of restaurants, shops, and services that make day-to-day life convenient without needing to drive to San Antonio or New Braunfels. Local favorites include family-owned BBQ joints, Hill Country cafes, and farm-to-table restaurants that source ingredients from nearby ranches and farms. The community hosts seasonal events, live music, and local markets that reinforce the tight-knit, neighborly atmosphere that residents value.</p>
+            <p>For families, the Comal ISD schools in the Bulverde area are a significant draw. The district has built several new campuses to accommodate growth, and schools in the Bulverde corridor consistently perform well in state assessments. The combination of excellent schools, safe neighborhoods, and a natural environment where kids can play outside and explore makes Bulverde one of the top choices for families moving to the Hill Country region.</p>
           </div>
           <div class="bv-intro__stats">
             <div class="bv-stat">
@@ -141,6 +146,27 @@ import ContactForm from '../../components/ContactForm.astro';
       </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About <span class="accent">Bulverde</span></h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is the average home price in Bulverde?</summary>
+            <p>The median home price in Bulverde typically falls around $400,000 to $450,000, though prices vary significantly based on lot size and location. Homes in master-planned communities like Johnson Ranch start in the mid-$300s, while custom-built properties on larger acreage tracts can range from $600,000 to well over $1 million. The higher price point relative to nearby cities reflects the larger lots, Hill Country views, and premium school district that come with buying in Bulverde. If you are looking at a specific price range, I can put together a list of current listings that match your criteria.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What school district serves Bulverde?</summary>
+            <p>Bulverde is served by Comal ISD, which is consistently rated as one of the top school districts in the state of Texas. The district has invested heavily in new campuses throughout the Bulverde corridor to keep pace with population growth. Schools in the area offer strong academics, competitive athletics, fine arts programs, and a range of extracurricular activities. Many families specifically choose Bulverde because of the Comal ISD reputation, and the school district is a major factor in the area's strong property values and resale potential.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can I find acreage properties in Bulverde?</summary>
+            <p>Yes, acreage is one of the things Bulverde is best known for. You can find properties ranging from one-acre lots in planned communities to ten or more acres of unrestricted Hill Country land. Many buyers come to Bulverde specifically because they want room for horses, livestock, workshops, or simply the privacy of not having close neighbors. Some tracts come with existing homes, while others are raw land ready for a custom build. Deed restrictions vary by area, so it is important to verify what is and is not allowed on a particular property before purchasing. I help buyers navigate those details regularly and can walk you through the options.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
   </main>
   <ParallaxBanner image="/images/generated/comal-river.png" />
 
@@ -148,7 +174,85 @@ import ContactForm from '../../components/ContactForm.astro';
   <Footer />
 </Layout>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the average home price in Bulverde?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The median home price in Bulverde typically falls around $400,000 to $450,000, though prices vary significantly based on lot size and location. Homes in master-planned communities like Johnson Ranch start in the mid-$300s, while custom-built properties on larger acreage tracts can range from $600,000 to well over $1 million."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What school district serves Bulverde?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bulverde is served by Comal ISD, which is consistently rated as one of the top school districts in the state of Texas. The district has invested heavily in new campuses throughout the Bulverde corridor to keep pace with population growth."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I find acreage properties in Bulverde?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, acreage is one of the things Bulverde is best known for. You can find properties ranging from one-acre lots in planned communities to ten or more acres of unrestricted Hill Country land. Many buyers come to Bulverde specifically because they want room for horses, livestock, workshops, or simply the privacy of not having close neighbors."
+      }
+    }
+  ]
+}
+</script>
+
 <style>
+  /* FAQ */
+  .faq-section {
+    padding: 4rem 0;
+    background: #f9f9f9;
+  }
+  .faq-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .faq-item {
+    background: #fff;
+    border: 1px solid #eee;
+    margin-bottom: 1rem;
+    padding: 0;
+  }
+  .faq-item summary {
+    padding: 1.25rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.3rem;
+    color: #FF1616;
+    font-weight: 700;
+  }
+  .faq-item[open] summary::after {
+    content: '\2212';
+  }
+  .faq-item p {
+    padding: 0 1.5rem 1.25rem;
+    color: #555;
+    line-height: 1.8;
+    font-size: 0.95rem;
+  }
+
   /* Hero */
   .bv-hero {
     position: relative;

@@ -31,9 +31,12 @@ import ContactForm from '../../components/ContactForm.astro';
         <div class="cl-intro__grid">
           <div class="cl-intro__text">
             <h2>A Scenic Hill Country <span class="accent">Community</span></h2>
-            <p>Canyon Lake is a scenic Hill Country community built around the 8,230-acre reservoir on the Guadalupe River. Known for waterfront living, outdoor recreation, and a laid-back lifestyle, it draws everyone from young families to retirees looking for a quieter pace without sacrificing access to city amenities.</p>
-            <p>Located just 20 minutes from New Braunfels and 45 minutes from San Antonio, Canyon Lake offers a rare combination of natural beauty and convenience. The area has a population of over 33,000 and is considered 48% safer than the Texas state average.</p>
-            <p>Whether you're looking for a lakefront retreat, acreage with Hill Country views, or a family-friendly neighborhood with community amenities, Canyon Lake has options across a wide range of price points and lifestyles.</p>
+            <p>Canyon Lake is a scenic Hill Country community built around the 8,230-acre reservoir on the Guadalupe River. Known for waterfront living, outdoor recreation, and a laid-back lifestyle, it draws everyone from young families to retirees looking for a quieter pace without sacrificing access to city amenities. The lake itself was created in 1964 when the U.S. Army Corps of Engineers completed Canyon Dam, and the surrounding community has grown steadily ever since into one of the most sought-after residential areas in the Texas Hill Country.</p>
+            <p>Located just 20 minutes from New Braunfels and 45 minutes from San Antonio, Canyon Lake offers a rare combination of natural beauty and convenience. The area has a population of over 33,000 and is considered 48% safer than the Texas state average. Residents enjoy a true Hill Country atmosphere with rolling terrain, mature oak trees, and stunning views of the lake and surrounding hills. The pace of life here is noticeably slower, which is exactly what most buyers are looking for when they start exploring the area.</p>
+            <p>Whether you're looking for a lakefront retreat, acreage with Hill Country views, or a family-friendly neighborhood with community amenities, Canyon Lake has options across a wide range of price points and lifestyles. Waterfront properties with direct lake access command premium prices, but there are also well-established neighborhoods like Mystic Shores, Canyon Lake Hills, and Hancock that offer more affordable entry points with community boat ramps, pools, and parks.</p>
+            <p>The real estate market at Canyon Lake tends to attract a mix of primary residents and vacation-home buyers. Many people initially purchase a weekend lake house and eventually transition to full-time living once they experience the quality of life here. The variety of housing stock ranges from modest cabins and older ranch-style homes to custom-built estates on waterfront lots. New construction has also picked up in recent years, with several builders developing communities that cater to families and retirees alike.</p>
+            <p>One of the things that sets Canyon Lake apart from other Hill Country destinations is its strong sense of community. Local organizations host regular events, from farmers markets and holiday parades to fishing tournaments and live music at the Whitewater Amphitheater. The area also benefits from a growing number of local businesses, restaurants, and services that make daily life comfortable without needing to drive into town for every errand.</p>
+            <p>For outdoor enthusiasts, Canyon Lake is hard to beat. The Guadalupe River below the dam is one of the most popular stretches for tubing and kayaking in the entire state. The lake itself offers world-class bass fishing, wakeboarding, and sailing. Numerous public parks and access points line the shoreline, and the Canyon Lake Gorge — a geological formation exposed by a 2002 flood — offers guided tours showcasing dinosaur tracks and rare rock formations. Hiking, cycling, and birdwatching are also popular pastimes in the surrounding Hill Country terrain.</p>
           </div>
           <div class="cl-intro__stats">
             <div class="cl-stat">
@@ -143,6 +146,27 @@ import ContactForm from '../../components/ContactForm.astro';
       </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About <span class="accent">Canyon Lake</span></h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is the average home price at Canyon Lake?</summary>
+            <p>Home prices at Canyon Lake vary widely depending on location and lake access. As of 2026, you can find homes starting in the mid-$200s in established neighborhoods away from the waterfront, while lakefront properties with direct water access typically range from $500,000 to well over $1 million. The median home price in the broader Canyon Lake area generally sits in the mid-$300s to low $400s. Factors like lot size, views, dock permits, and community amenities all play a significant role in pricing. If you want a current market snapshot for a specific neighborhood, reach out and I can pull the latest data for you.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What school district serves Canyon Lake?</summary>
+            <p>Canyon Lake is served by Comal ISD, one of the fastest-growing and highest-rated school districts in the state of Texas. Comal ISD consistently earns top marks from the Texas Education Agency and offers a wide range of academic, athletic, and extracurricular programs. The district operates several elementary and middle school campuses in the Canyon Lake area, with high school students attending Canyon Lake High School. Many families specifically target Canyon Lake because of the district's reputation for academic excellence and community involvement.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is Canyon Lake a good place to live full-time or just for vacations?</summary>
+            <p>Canyon Lake works well for both, but an increasing number of residents are choosing it as their full-time home. The area has grown significantly over the past decade, with new grocery stores, medical offices, restaurants, and services making it a fully functional community rather than just a weekend getaway. Many of my clients initially buy a vacation property here and end up making the move to full-time within a few years. The commute to San Antonio or New Braunfels is manageable for those who work in either city, and remote workers especially appreciate the peaceful surroundings and reliable internet infrastructure that newer developments provide.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
   </main>
   <ParallaxBanner image="/images/generated/canyon-lake-water.png" />
 
@@ -150,7 +174,85 @@ import ContactForm from '../../components/ContactForm.astro';
   <Footer />
 </Layout>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the average home price at Canyon Lake?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Home prices at Canyon Lake vary widely depending on location and lake access. As of 2026, you can find homes starting in the mid-$200s in established neighborhoods away from the waterfront, while lakefront properties with direct water access typically range from $500,000 to well over $1 million. The median home price in the broader Canyon Lake area generally sits in the mid-$300s to low $400s."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What school district serves Canyon Lake?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Canyon Lake is served by Comal ISD, one of the fastest-growing and highest-rated school districts in the state of Texas. Comal ISD consistently earns top marks from the Texas Education Agency and offers a wide range of academic, athletic, and extracurricular programs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Canyon Lake a good place to live full-time or just for vacations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Canyon Lake works well for both, but an increasing number of residents are choosing it as their full-time home. The area has grown significantly over the past decade, with new grocery stores, medical offices, restaurants, and services making it a fully functional community rather than just a weekend getaway."
+      }
+    }
+  ]
+}
+</script>
+
 <style>
+  /* FAQ */
+  .faq-section {
+    padding: 4rem 0;
+    background: #f9f9f9;
+  }
+  .faq-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .faq-item {
+    background: #fff;
+    border: 1px solid #eee;
+    margin-bottom: 1rem;
+    padding: 0;
+  }
+  .faq-item summary {
+    padding: 1.25rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.3rem;
+    color: #FF1616;
+    font-weight: 700;
+  }
+  .faq-item[open] summary::after {
+    content: '\2212';
+  }
+  .faq-item p {
+    padding: 0 1.5rem 1.25rem;
+    color: #555;
+    line-height: 1.8;
+    font-size: 0.95rem;
+  }
+
   /* Hero */
   .cl-hero {
     position: relative;

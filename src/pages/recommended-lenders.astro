@@ -108,6 +108,41 @@ const lenders = [
       </div>
     </section>
 
+    <!-- Educational Content -->
+    <section class="section">
+      <div class="container">
+        <div style="max-width:800px;margin:0 auto;">
+          <h2>Understanding the <span class="accent">Lending Process</span></h2>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">Choosing the right lender is one of the most important decisions you will make during the home buying process. Your lender determines your interest rate, loan terms, closing costs, and overall experience from application to closing. Working with someone experienced, communicative, and reliable can be the difference between a smooth transaction and a stressful one.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">The first step in the mortgage process is pre-approval. During pre-approval, the lender reviews your income, credit history, debt obligations, and assets to determine how much you can borrow and at what rate. A pre-approval letter tells sellers that you are a serious, qualified buyer — and in a competitive market, it can be the difference between getting your offer accepted and losing out to another buyer.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">There are several loan types available to buyers in Texas. Conventional loans are the most common and typically require a minimum of 3-5% down. FHA loans are popular with first-time buyers and require as little as 3.5% down with more flexible credit requirements. VA loans offer zero down payment for eligible veterans and active-duty service members — a significant benefit for the military families I frequently work with. USDA loans are available in certain rural areas and also offer zero down payment options.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">The lenders listed on this page are professionals I have personally worked with on transactions in the New Braunfels and San Antonio area. They are responsive, knowledgeable, and committed to helping buyers navigate the mortgage process with confidence. I encourage you to reach out to multiple lenders to compare rates and terms before making a decision.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">If you are unsure where to start or which loan type might be best for your situation, I am happy to help you think through your options and make an introduction to the lender who best fits your needs.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About Mortgage Lending</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>How do I know which loan type is right for me?</summary>
+            <p>The best loan type depends on your financial situation, down payment amount, credit score, and whether you qualify for special programs like VA or USDA loans. A good lender will walk you through the options and help you understand the trade-offs of each. I can also help you think through which loan types make sense before you start the application process.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Should I get pre-approved before I start looking at homes?</summary>
+            <p>Yes. Getting pre-approved before you start your home search is strongly recommended. Pre-approval tells you exactly how much you can afford, which helps focus your search and prevents you from falling in love with a home outside your budget. It also strengthens your offer when you find the right property — sellers take pre-approved buyers more seriously.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Does it cost anything to get pre-approved?</summary>
+            <p>Most lenders offer pre-approval at no cost. The lender will pull your credit and review your financial documents, but there is typically no fee unless you proceed to a full loan application. It is a smart first step that costs nothing and gives you a clear picture of your buying power.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section class="section" style="background: #000; color: #fff; text-align: center;">
       <div class="container">
@@ -125,6 +160,39 @@ const lenders = [
 
   <ContactForm context="I'd like to connect with a recommended lender..." />
   <Footer />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I know which loan type is right for me?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The best loan type depends on your financial situation, down payment amount, credit score, and whether you qualify for special programs like VA or USDA loans. A good lender will walk you through the options and help you understand the trade-offs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I get pre-approved before I start looking at homes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Getting pre-approved before you start your home search is strongly recommended. It tells you how much you can afford, focuses your search, and strengthens your offer with sellers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it cost anything to get pre-approved?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most lenders offer pre-approval at no cost. The lender will pull your credit and review your financial documents, but there is typically no fee unless you proceed to a full loan application."
+        }
+      }
+    ]
+  }
+  </script>
 </Layout>
 
 <style>
@@ -275,6 +343,15 @@ const lenders = [
     color: #92400e;
     line-height: 1.7;
   }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
   @media (max-width: 768px) {
     .rl-grid {

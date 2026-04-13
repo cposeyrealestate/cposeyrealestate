@@ -32,6 +32,30 @@ import ContactForm from '../../components/ContactForm.astro';
       </div>
     </section>
 
+    <!-- Expanded Dining Overview -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>The Bulverde <span class="accent">Dining Scene</span></h2>
+        </div>
+        <div class="bv-content-block">
+          <p>Bulverde and the surrounding Spring Branch area sit in one of the most scenic stretches of the Texas Hill Country, and the local restaurant scene reflects that laid-back, country-living atmosphere. Dining here is not about white tablecloths or Michelin stars — it is about good food served in relaxed settings by people who take pride in what they do. That unpretentious quality is exactly what residents love about eating out in Bulverde.</p>
+
+          <p>The culinary identity of the Bulverde area revolves around a few core strengths: Southern comfort food, classic Texas barbecue, and American grill fare. Screaming Goat Yard and Tap has emerged as the area's signature dining destination, drawing crowds from across the Hill Country with its Southern Louisiana-inspired menu featuring po'boys, gumbo, and etouffee. The outdoor yard setting, complete with live music and a strong tap selection, captures the spirit of Bulverde living perfectly.</p>
+
+          <p>Barbecue is, of course, a staple in any Texas community, and Bulverde is no exception. Smokey Mo's BBQ has been smoking meat for over 25 years and offers a fast, affordable, and consistently satisfying option for brisket, ribs, and classic sides. The no-frills approach works because the focus stays on the food itself rather than the atmosphere. For residents, having a reliable BBQ spot close to home is one of those everyday conveniences that makes a real difference in quality of life.</p>
+
+          <p>Branch Neighborhood Grill fills the role of the dependable family restaurant that every community needs. With a diverse menu spanning burgers, steaks, ribs, chicken dishes, and salads, it offers something for everyone in the family. The generous portions and welcoming atmosphere make it a go-to for casual weeknight dinners and weekend lunches alike. It is the kind of place where you always know what you are going to get, and it is always good.</p>
+
+          <p>Richter's Antler Cafe brings a slightly more creative approach to Hill Country comfort food, offering South Texas home-cooking favorites with occasional twists that keep things interesting. The comfortable setting and solid execution make it a step above standard bar and grill fare without requiring the drive into San Antonio or New Braunfels. For residents who want something a bit different on a weeknight, Richter's fills that niche nicely.</p>
+
+          <p>The Bulverde area is also within easy reach of dining options in New Braunfels and northern San Antonio. Highway 281 and Highway 46 provide convenient access to the restaurant scenes in both cities, meaning that residents get the best of both worlds: quiet Hill Country living with urban dining options just a short drive away. Many Bulverde residents describe this balance as one of the key advantages of living in the area.</p>
+
+          <p>As Bulverde continues to grow, with new neighborhoods and developments bringing more families to the community, the restaurant scene is poised to expand as well. The demand for diverse, quality dining is increasing, and the entrepreneurial spirit of the Hill Country means that new concepts will continue to emerge. For now, the existing restaurants offer a solid foundation that keeps locals well-fed and happy, and the community-oriented atmosphere at these establishments is something that newcomers quickly grow to appreciate.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- Restaurant List -->
     <section class="section" style="background: var(--light-gray);">
       <div class="container">
@@ -102,6 +126,60 @@ import ContactForm from '../../components/ContactForm.astro';
     </section>
 
   </main>
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions About Dining in Bulverde</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>What are the best restaurants in Bulverde, TX?</summary>
+          <p>The top restaurants in the Bulverde and Spring Branch area include Screaming Goat Yard and Tap for Southern Louisiana-style cuisine with live music, Branch Neighborhood Grill for family-friendly American fare, Richter's Antler Cafe for creative Hill Country comfort food, and Smokey Mo's BBQ for classic Texas barbecue. Each offers a distinct dining experience rooted in the relaxed Hill Country lifestyle.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Are there family-friendly places to eat in Bulverde?</summary>
+          <p>Yes, nearly every restaurant in the Bulverde area is family-friendly. Branch Neighborhood Grill is especially popular with families thanks to its diverse menu and generous portions. Screaming Goat Yard and Tap has an outdoor setting that works well for kids, and Smokey Mo's BBQ is a quick, affordable option for families on the go. The casual atmosphere throughout the area makes dining out with children easy and stress-free.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is there good BBQ near Bulverde?</summary>
+          <p>Smokey Mo's BBQ is the main barbecue option in the immediate Bulverde area, serving brisket, ribs, and classic sides with over 25 years of experience. For additional BBQ options, residents often make the short drive to New Braunfels, where spots like Cooper's Old Time Pit Bar-B-Que and Black's Barbecue offer legendary Texas barbecue just minutes away.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are the best restaurants in Bulverde, TX?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The top restaurants in the Bulverde and Spring Branch area include Screaming Goat Yard and Tap for Southern Louisiana-style cuisine with live music, Branch Neighborhood Grill for family-friendly American fare, Richter's Antler Cafe for creative Hill Country comfort food, and Smokey Mo's BBQ for classic Texas barbecue. Each offers a distinct dining experience rooted in the relaxed Hill Country lifestyle."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are there family-friendly places to eat in Bulverde?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, nearly every restaurant in the Bulverde area is family-friendly. Branch Neighborhood Grill is especially popular with families thanks to its diverse menu and generous portions. Screaming Goat Yard and Tap has an outdoor setting that works well for kids, and Smokey Mo's BBQ is a quick, affordable option for families on the go. The casual atmosphere throughout the area makes dining out with children easy and stress-free."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there good BBQ near Bulverde?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Smokey Mo's BBQ is the main barbecue option in the immediate Bulverde area, serving brisket, ribs, and classic sides with over 25 years of experience. For additional BBQ options, residents often make the short drive to New Braunfels, where spots like Cooper's Old Time Pit Bar-B-Que and Black's Barbecue offer legendary Texas barbecue just minutes away."
+        }
+      }
+    ]
+  }
+  </script>
+
   <ParallaxBanner image="/images/generated/comal-river.png" />
 
   <ContactForm context="I'd like to learn more about living in Bulverde..." />
@@ -245,6 +323,27 @@ import ContactForm from '../../components/ContactForm.astro';
     justify-content: center;
     flex-wrap: wrap;
   }
+
+  .bv-content-block {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .bv-content-block p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
   @media (max-width: 768px) {
     .bv-restaurant__header {

@@ -55,6 +55,17 @@ const terms = [
       <div class="container">
         <p class="page-intro">The real estate industry is known for having its own lingo. Before taking the plunge into homebuying, make sure you're familiar with these terms.</p>
 
+        <div class="terms-intro-detail">
+          <h2>Why Understanding Real Estate <span class="accent">Terminology</span> Matters</h2>
+          <p>Buying a home involves a significant amount of paperwork, and much of it is written in language that can be confusing if you are not familiar with the terminology. Understanding these terms before you begin the process helps you make better decisions, ask smarter questions, and feel more confident at every stage of the transaction. Knowledge is one of your strongest tools as a buyer.</p>
+          <p>In Texas, the real estate contract is a legally binding document prepared using forms approved by the Texas Real Estate Commission. These contracts contain specific terms and clauses that directly affect your rights and obligations as a buyer. For example, understanding the difference between earnest money and an option fee — and what happens to each if you decide to back out — can save you from costly misunderstandings.</p>
+          <p>The glossary below covers the most common terms you will encounter when buying a home in New Braunfels and the surrounding Hill Country area. While this list is not exhaustive, it covers the essentials that every buyer should know. Your REALTOR will explain each term as it comes up during your transaction, but having a foundation of knowledge before you start makes the entire experience less intimidating.</p>
+
+          <h3>How These Terms Apply to Your Purchase</h3>
+          <p>Each term in this glossary connects to a real step in the buying process. When you make an offer on a home, you will encounter terms like earnest money, option period, and contingencies. During the financing phase, you will deal with pre-approval, PMI, and closing costs. At the closing table, you will see references to title insurance, the seller's disclosure, and the final walk-through. Think of this glossary as a reference you can come back to whenever you need clarity on a specific part of the process.</p>
+          <p>If you come across a term during your home search that is not listed here, do not hesitate to ask your REALTOR. There is no such thing as a dumb question when hundreds of thousands of dollars are on the line. A good agent will always take the time to make sure you understand exactly what you are signing and agreeing to.</p>
+        </div>
+
         <div class="terms-grid">
           {terms.map((t) => (
             <div class="term-card">
@@ -81,8 +92,62 @@ const terms = [
       </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About Real Estate Terminology</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is the difference between earnest money and the option fee in Texas?</summary>
+            <p>Earnest money and the option fee serve different purposes in a Texas real estate transaction. The option fee is a relatively small payment, often between 100 and 500 dollars, that gives you the unrestricted right to terminate the contract during the option period for any reason. If you back out during this time, you lose the option fee but keep your earnest money. Earnest money is a larger deposit, typically one to two percent of the purchase price, that shows the seller you are serious about buying. Earnest money is applied toward your purchase at closing. If you back out after the option period without a valid contractual reason, you may forfeit your earnest money to the seller.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What are closing costs and how much should I expect to pay?</summary>
+            <p>Closing costs are the fees and expenses associated with completing your real estate transaction, beyond the purchase price of the home. They typically include lender fees, title insurance, appraisal fees, survey costs, recording fees, prepaid property taxes, and homeowner's insurance premiums. In Texas, buyers can generally expect closing costs to total between two and five percent of the purchase price. On a 350,000 dollar home, that means approximately 7,000 to 17,500 dollars. Your lender is required to provide a Loan Estimate within three business days of your application, which itemizes these costs. In some cases, you can negotiate for the seller to contribute toward your closing costs.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do I need title insurance when buying a home in Texas?</summary>
+            <p>Title insurance is not legally required in Texas, but virtually all lenders require a lender's title policy as a condition of the loan, and purchasing an owner's title policy is strongly recommended. Title insurance protects you against claims or liens that may exist against the property from before you purchased it — things like unpaid taxes, undisclosed heirs, forged documents, or errors in public records. Without title insurance, you could be held financially responsible for problems you did not create. In Texas, the seller customarily pays for the owner's title policy, while the buyer pays for the lender's policy. Your title company will handle the title search and issue the policies at closing.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
   </main>
   <ParallaxBanner image="/images/generated/guadalupe-river.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between earnest money and the option fee in Texas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Earnest money and the option fee serve different purposes in a Texas real estate transaction. The option fee is a relatively small payment, often between 100 and 500 dollars, that gives you the unrestricted right to terminate the contract during the option period for any reason. If you back out during this time, you lose the option fee but keep your earnest money. Earnest money is a larger deposit, typically one to two percent of the purchase price, that shows the seller you are serious about buying. Earnest money is applied toward your purchase at closing. If you back out after the option period without a valid contractual reason, you may forfeit your earnest money to the seller."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are closing costs and how much should I expect to pay?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Closing costs are the fees and expenses associated with completing your real estate transaction, beyond the purchase price of the home. They typically include lender fees, title insurance, appraisal fees, survey costs, recording fees, prepaid property taxes, and homeowner's insurance premiums. In Texas, buyers can generally expect closing costs to total between two and five percent of the purchase price. On a 350,000 dollar home, that means approximately 7,000 to 17,500 dollars. Your lender is required to provide a Loan Estimate within three business days of your application, which itemizes these costs. In some cases, you can negotiate for the seller to contribute toward your closing costs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need title insurance when buying a home in Texas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Title insurance is not legally required in Texas, but virtually all lenders require a lender's title policy as a condition of the loan, and purchasing an owner's title policy is strongly recommended. Title insurance protects you against claims or liens that may exist against the property from before you purchased it — things like unpaid taxes, undisclosed heirs, forged documents, or errors in public records. Without title insurance, you could be held financially responsible for problems you did not create. In Texas, the seller customarily pays for the owner's title policy, while the buyer pays for the lender's policy. Your title company will handle the title search and issue the policies at closing."
+        }
+      }
+    ]
+  }
+  </script>
 
   <ContactForm context="I have some questions about the home buying process..." />
   <Footer />
@@ -207,6 +272,41 @@ const terms = [
   }
 
   .sub-cta h2 { color: #fff; }
+
+  .terms-intro-detail {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+  }
+
+  .terms-intro-detail h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .terms-intro-detail h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 2rem 0 0.75rem;
+  }
+
+  .terms-intro-detail p {
+    color: var(--gray);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  /* FAQ */
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
   @media (max-width: 900px) {
     .terms-grid { grid-template-columns: 1fr 1fr; }

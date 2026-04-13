@@ -116,6 +116,40 @@ import ContactForm from '../../components/ContactForm.astro';
       </div>
     </section>
 
+    <!-- Additional Living Info -->
+    <section class="section">
+      <div class="container">
+        <div style="max-width:800px;">
+          <h2>Shopping, Dining, and <span class="accent">Daily Conveniences</span></h2>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">New Braunfels has grown significantly in terms of retail and dining options. The I-35 corridor through the city features major retailers including HEB, HEB Plus, Target, Walmart, Home Depot, Lowe's, and Costco. For dining, you will find everything from local favorites like Krause's Cafe and the Gristmill River Restaurant to national chains and fast-casual spots. The Gruene Historic District offers a more curated selection of local restaurants, wine tasting rooms, and unique shops.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">Healthcare access is solid and improving. Resolute Health Hospital is the primary full-service facility in New Braunfels, offering emergency services, surgical suites, and specialty care. For more specialized medical needs, the San Antonio Medical Center — one of the largest medical complexes in the country — is about 30 minutes south. New clinics and medical offices are opening regularly along the I-35 corridor to serve the growing population.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">One practical consideration that many newcomers appreciate is the utility setup. New Braunfels Utilities (NBU) provides electricity, water, and wastewater services for most of the city. Residents outside city limits may use GVEC Electric Cooperative or other providers. Internet service is available through Spectrum, AT&T, and GVTC Communications, with fiber options in many newer neighborhoods.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">Overall, daily life in New Braunfels strikes a balance between small-town charm and modern convenience. The city is large enough to have everything you need, but small enough that you will run into familiar faces at the grocery store. It is a community that values its history while actively building for the future.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About Living in New Braunfels</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is the cost of living in New Braunfels compared to Austin?</summary>
+            <p>New Braunfels is significantly more affordable than Austin. The median home price is lower, property taxes in Comal County are below Travis County rates, and everyday expenses like groceries and utilities are comparable or slightly lower. Many remote workers and commuters choose New Braunfels specifically because they can maintain a similar quality of life at a fraction of the housing cost of Austin.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How bad is the traffic on I-35?</summary>
+            <p>I-35 through New Braunfels carries heavy traffic, especially during rush hour and summer weekends. TxDOT has ongoing improvement projects to widen the highway and improve interchanges, but construction itself adds to congestion in the short term. If your daily routine avoids I-35, the traffic impact is minimal. For commuters, the south side of town provides the quickest highway access to San Antonio.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is New Braunfels safe?</summary>
+            <p>New Braunfels has a lower crime rate than both San Antonio and Austin. The city is served by the New Braunfels Police Department and the Comal County Sheriff's Office. As with any growing city, crime rates vary by neighborhood, but overall the area is considered safe and family-friendly. Gated communities and master-planned neighborhoods with HOA-managed security are available for buyers who prioritize that.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section class="section" style="background: #000; color: #fff; text-align: center;">
       <div class="container">
@@ -133,6 +167,39 @@ import ContactForm from '../../components/ContactForm.astro';
 
   <ContactForm context="I'd like to discuss which areas fit my lifestyle..." />
   <Footer />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the cost of living in New Braunfels compared to Austin?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "New Braunfels is significantly more affordable than Austin with lower median home prices, lower property taxes in Comal County, and comparable everyday expenses."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How bad is the traffic on I-35?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I-35 carries heavy traffic during rush hour and summer weekends. TxDOT has ongoing improvement projects. If your daily routine avoids I-35, the impact is minimal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is New Braunfels safe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "New Braunfels has a lower crime rate than both San Antonio and Austin. The area is considered safe and family-friendly, with gated communities available for buyers who prioritize security."
+        }
+      }
+    ]
+  }
+  </script>
 </Layout>
 
 <style>
@@ -274,6 +341,15 @@ import ContactForm from '../../components/ContactForm.astro';
     font-size: 0.9rem;
     line-height: 1.7;
   }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
   @media (max-width: 768px) {
     .living__grid,

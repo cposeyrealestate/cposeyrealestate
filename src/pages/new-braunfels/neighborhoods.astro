@@ -232,6 +232,59 @@ import ContactForm from '../../components/ContactForm.astro';
   </main>
   <ParallaxBanner image="/images/generated/guadalupe-river.png" />
 
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions About New Braunfels Neighborhoods</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>What are the best neighborhoods in New Braunfels for families?</summary>
+          <p>Veramendi and Voss Farms are two of the most popular choices for families in New Braunfels. Veramendi is a 2,400-acre master-planned community with resort-style pools, splash pads, playgrounds, parks, and miles of hiking and biking trails — all served by NBISD. Voss Farms east of I-35 offers a family-oriented atmosphere with parks, playgrounds, and a community pool at a more accessible price point within Comal ISD. For families with a larger budget, River Chase and Vintage Oaks provide Hill Country acreage with premium amenities including private river access and extensive trail systems.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is the difference between Comal ISD and New Braunfels ISD?</summary>
+          <p>New Braunfels is served by two independent school districts, and the one your home falls in depends entirely on its physical address. New Braunfels ISD covers the central, downtown, and Gruene areas and is a long-established district with deep community roots. Comal ISD serves the west, north, and south sides of the New Braunfels area and is one of the fastest-growing districts in Texas with modern facilities and strong academic programs. Both districts are well-regarded, so the choice often comes down to which neighborhoods and price points appeal to you. Always verify school zone assignments directly with the district before buying, as boundaries can shift when new campuses are built.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Where can I find affordable homes in New Braunfels?</summary>
+          <p>The most affordable neighborhoods in New Braunfels are generally located east of I-35 along the Highway 46 and FM 1044 corridors. Voss Farms and Pecan Crossing both offer newer construction starting in the mid to high $200Ks, which is significantly less than west-side communities like Vintage Oaks or Copper Ridge. Creekside in north New Braunfels also provides competitive pricing starting around $280K with easy access to the Creekside Town Center for shopping and dining. These east-side and north-side neighborhoods provide solid value for first-time buyers and families looking to enter the New Braunfels market without paying Hill Country premium prices.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are the best neighborhoods in New Braunfels for families?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Veramendi and Voss Farms are two of the most popular choices for families in New Braunfels. Veramendi is a 2,400-acre master-planned community with resort-style pools, splash pads, playgrounds, parks, and miles of hiking and biking trails. Voss Farms east of I-35 offers a family-oriented atmosphere with parks, playgrounds, and a community pool at a more accessible price point. For families with a larger budget, River Chase and Vintage Oaks provide Hill Country acreage with premium amenities."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between Comal ISD and New Braunfels ISD?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "New Braunfels is served by two independent school districts, and the one your home falls in depends entirely on its physical address. New Braunfels ISD covers the central, downtown, and Gruene areas. Comal ISD serves the west, north, and south sides and is one of the fastest-growing districts in Texas. Both districts are well-regarded. Always verify school zone assignments directly with the district before buying."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where can I find affordable homes in New Braunfels?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The most affordable neighborhoods in New Braunfels are generally located east of I-35 along the Highway 46 and FM 1044 corridors. Voss Farms and Pecan Crossing both offer newer construction starting in the mid to high $200Ks. Creekside in north New Braunfels also provides competitive pricing starting around $280K with easy access to shopping and dining."
+        }
+      }
+    ]
+  }
+  </script>
+
   <ContactForm context="I'd like to learn more about New Braunfels neighborhoods..." />
   <Footer />
 </Layout>
@@ -461,6 +514,16 @@ import ContactForm from '../../components/ContactForm.astro';
     margin: 0 auto 2rem;
     line-height: 1.7;
   }
+
+  /* FAQ */
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
   @media (max-width: 768px) {
     .nb-neighborhood__grid {

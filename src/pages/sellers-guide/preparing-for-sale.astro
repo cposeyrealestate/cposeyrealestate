@@ -89,6 +89,12 @@ const systems = [
             {systems.map((item) => <li>{item}</li>)}
           </ul>
 
+          <h2>Why Preparation Matters in the Hill Country Market</h2>
+          <p style="color: #555; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem;">The New Braunfels and Texas Hill Country real estate market attracts buyers from across the state and beyond. Many are relocating from Austin, San Antonio, or out of state entirely. These buyers are comparing your home not just to others in the neighborhood, but to every listing they have seen online. When your home is well-prepared, it immediately separates itself from the competition and creates the emotional connection that drives offers.</p>
+          <p style="color: #555; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem;">In my experience working with sellers across New Braunfels, Canyon Lake, Seguin, and Bulverde, the homes that sell fastest and for the highest price share common traits. They are clean, decluttered, well-lit, and free of obvious maintenance issues. They smell fresh and feel inviting. The sellers who put in the work before listing almost always see that effort reflected in stronger offers and smoother transactions.</p>
+          <p style="color: #555; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem;">One area that often gets overlooked is the garage. Buyers in Texas expect functional garage space, and a cluttered or disorganized garage can leave a negative impression. If your garage is being used primarily for storage, consider renting a temporary storage unit to clear it out before showings begin. The same applies to closets — organized, spacious-looking closets are a major selling point.</p>
+          <p style="color: #555; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem;">Another consideration specific to the Hill Country is outdoor living space. Patios, porches, decks, and outdoor kitchens are highly valued in this market. If you have outdoor living areas, make sure they are clean, furnished simply, and staged to show their full potential. A pressure-washed patio with a small seating arrangement can make a big difference in how buyers perceive your home.</p>
+
           <div class="sp-cta">
             <p>Need help deciding what to prioritize before listing? I can walk through your home and help you focus on the improvements that will make the biggest impact.</p>
             <a href="#contact" class="btn btn-primary">Get Personalized Advice</a>
@@ -97,10 +103,64 @@ const systems = [
       </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About Preparing Your Home for Sale</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>How far in advance should I start preparing my home for sale?</summary>
+            <p>Ideally, begin preparing your home at least four to six weeks before you plan to list. This gives you time to address repairs, declutter, deep clean, and handle any cosmetic updates like painting or carpet replacement. If you are dealing with larger projects such as roof repairs or HVAC servicing, you may want even more lead time. I offer a complimentary pre-listing walkthrough to help you create a timeline.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Should I repaint my home before selling?</summary>
+            <p>If your walls have bold or highly personalized colors, repainting in neutral tones is one of the best investments you can make. Warm whites, light grays, and soft creams appeal to the widest range of buyers and make rooms feel larger and brighter. You do not need to repaint every room — focus on the main living areas, kitchen, and primary bedroom. Touch-up paint on trim and baseboards also goes a long way.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is it worth replacing carpet before listing?</summary>
+            <p>In most cases, yes. Worn, stained, or dated carpet is one of the biggest turn-offs for buyers, and providing a carpet allowance instead of replacing it is far less effective. New carpet is relatively inexpensive and gives the home a fresh, clean feel that buyers respond to immediately. If your home has hardwood underneath, consider removing the carpet entirely — hardwood floors are a major selling point in the Hill Country market.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
   </main>
   <ParallaxBanner image="/images/generated/comal-river.png" />
   <ContactForm context="I'm preparing my home for sale and would like your advice..." />
   <Footer />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How far in advance should I start preparing my home for sale?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ideally, begin preparing your home at least four to six weeks before you plan to list. This gives you time to address repairs, declutter, deep clean, and handle any cosmetic updates like painting or carpet replacement."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I repaint my home before selling?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If your walls have bold or highly personalized colors, repainting in neutral tones is one of the best investments you can make. Warm whites, light grays, and soft creams appeal to the widest range of buyers and make rooms feel larger and brighter."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it worth replacing carpet before listing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In most cases, yes. Worn, stained, or dated carpet is one of the biggest turn-offs for buyers, and providing a carpet allowance instead of replacing it is far less effective. New carpet is relatively inexpensive and gives the home a fresh, clean feel."
+        }
+      }
+    ]
+  }
+  </script>
 </Layout>
 
 <style>
@@ -182,4 +242,13 @@ const systems = [
     line-height: 1.6;
     margin-bottom: 1.25rem;
   }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 </style>

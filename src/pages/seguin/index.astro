@@ -31,9 +31,13 @@ import ContactForm from '../../components/ContactForm.astro';
         <div class="seg-intro__grid">
           <div class="seg-intro__text">
             <h2>A Historic City on the <span class="accent">Guadalupe River</span></h2>
-            <p>Seguin is a historic city on the Guadalupe River, located about 35 miles east of San Antonio. Named after Texas Revolution hero Juan Seguin, the city combines affordable housing, a growing job market anchored by employers like Caterpillar and Tyson Foods, and a charming downtown that reflects its deep Texas roots.</p>
-            <p>With a lower cost of living than neighboring cities, Seguin offers one of the best-value housing markets in the region. Whether you're a first-time buyer, a growing family, or someone looking for more space without sacrificing convenience, Seguin delivers more home for your dollar.</p>
-            <p>The city's Main Street district, riverside parks, and strong sense of community make it a place where small-town character and modern growth coexist naturally.</p>
+            <p>Seguin is a historic city on the Guadalupe River, located about 35 miles east of San Antonio. Named after Texas Revolution hero Juan Seguin, the city combines affordable housing, a growing job market anchored by employers like Caterpillar and Tyson Foods, and a charming downtown that reflects its deep Texas roots. Founded in 1838, Seguin is one of the oldest cities in Texas, and that history is visible everywhere — from the pecan-lined streets to the beautifully restored Victorian and German-style homes in the historic district.</p>
+            <p>With a lower cost of living than neighboring cities, Seguin offers one of the best-value housing markets in the region. Whether you're a first-time buyer, a growing family, or someone looking for more space without sacrificing convenience, Seguin delivers more home for your dollar. The median home price here runs significantly below what you would pay in New Braunfels or San Antonio, making it an attractive option for buyers who want to stretch their budget without compromising on quality of life.</p>
+            <p>The city's Main Street district, riverside parks, and strong sense of community make it a place where small-town character and modern growth coexist naturally. Downtown Seguin has seen a revitalization in recent years, with local entrepreneurs opening craft breweries, coffee shops, and boutiques alongside the longstanding family-owned businesses that have served the community for decades.</p>
+            <p>The real estate landscape in Seguin is diverse. Buyers can find everything from historic homes in the original downtown neighborhoods to brand-new construction in master-planned communities on the outskirts of town. Several national builders have moved into the area, developing subdivisions with modern floor plans, community pools, and parks — all at price points that remain well below the regional average. Acreage properties are also available on the edges of town for buyers who want a more rural setting with room for livestock or a workshop.</p>
+            <p>The economic engine in Seguin continues to strengthen. Caterpillar's major manufacturing facility brought hundreds of jobs to the area, and Continental Automotive, Tyson Foods, and other employers have followed. Texas Lutheran University, a private liberal arts college, adds to the local economy and cultural offerings. The combination of steady employment, affordable housing, and proximity to larger metro areas has fueled consistent population growth over the past decade.</p>
+            <p>Recreation in Seguin centers around the Guadalupe River and Max Starcke Park, a 227-acre green space that includes a golf course, swimming areas, playgrounds, walking trails, and kayak launch points. The annual Texas Pecan Festival draws visitors from across the state, and the city's calendar is packed with community events, live music, and holiday celebrations throughout the year. ZDT's Amusement Park, a family-owned theme park in the heart of town, is a unique local attraction that features roller coasters, go-karts, and water rides — something you rarely find in a city this size.</p>
+            <p>For commuters, Seguin's location along I-10 provides a direct route to San Antonio in about 35 minutes, while New Braunfels is just a 20-minute drive north on TX-46. Many residents work in San Antonio or the surrounding area and appreciate the ability to come home to a quieter, more affordable community at the end of the day. The city has also invested in infrastructure improvements and new retail development, reducing the need to leave town for everyday shopping and services.</p>
           </div>
           <div class="seg-intro__stats">
             <div class="seg-stat">
@@ -143,6 +147,27 @@ import ContactForm from '../../components/ContactForm.astro';
       </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About <span class="accent">Seguin</span></h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Is Seguin a good place to buy a first home?</summary>
+            <p>Seguin is one of the best markets in the greater San Antonio region for first-time homebuyers. The median home price is significantly lower than in New Braunfels, San Marcos, or San Antonio proper, which means buyers can often get a newer, larger home for less money. Several master-planned communities in Seguin offer new construction in the low-to-mid $200s, and there are also established neighborhoods with well-maintained homes at even lower price points. Combined with low property tax rates relative to the area and a growing local economy, Seguin offers first-time buyers a strong combination of affordability and long-term value.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What are the major employers in Seguin?</summary>
+            <p>Seguin has a diverse and growing employment base. Caterpillar operates a large hydraulic excavator manufacturing plant in the city, which is one of the biggest employers in the area. Continental Automotive has a significant presence, as does Tyson Foods. The healthcare sector is also growing, with Guadalupe Regional Medical Center serving as both a major employer and a vital community resource. Texas Lutheran University contributes to the local economy as well. Many Seguin residents also commute to San Antonio, which is about 35 minutes away via I-10, giving them access to the full metro job market while enjoying a lower cost of living at home.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How far is Seguin from San Antonio and New Braunfels?</summary>
+            <p>Seguin is approximately 35 minutes east of downtown San Antonio via I-10, and about 20 minutes south of New Braunfels via TX-46. The I-10 corridor makes the commute to San Antonio straightforward, and many residents find it a manageable daily drive. New Braunfels is even closer, which gives Seguin residents easy access to the shops, restaurants, and entertainment options along the I-35 corridor. For day-to-day needs, Seguin has its own grocery stores, medical facilities, and retail, so you do not need to leave town for routine errands.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
   </main>
   <ParallaxBanner image="/images/generated/porch-view.png" />
 
@@ -150,7 +175,85 @@ import ContactForm from '../../components/ContactForm.astro';
   <Footer />
 </Layout>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Seguin a good place to buy a first home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Seguin is one of the best markets in the greater San Antonio region for first-time homebuyers. The median home price is significantly lower than in New Braunfels, San Marcos, or San Antonio proper, which means buyers can often get a newer, larger home for less money. Several master-planned communities in Seguin offer new construction in the low-to-mid $200s."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the major employers in Seguin?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Seguin has a diverse and growing employment base. Caterpillar operates a large hydraulic excavator manufacturing plant in the city. Continental Automotive has a significant presence, as does Tyson Foods. The healthcare sector is also growing, with Guadalupe Regional Medical Center serving as both a major employer and a vital community resource."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How far is Seguin from San Antonio and New Braunfels?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Seguin is approximately 35 minutes east of downtown San Antonio via I-10, and about 20 minutes south of New Braunfels via TX-46. The I-10 corridor makes the commute to San Antonio straightforward, and many residents find it a manageable daily drive."
+      }
+    }
+  ]
+}
+</script>
+
 <style>
+  /* FAQ */
+  .faq-section {
+    padding: 4rem 0;
+    background: #f9f9f9;
+  }
+  .faq-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .faq-item {
+    background: #fff;
+    border: 1px solid #eee;
+    margin-bottom: 1rem;
+    padding: 0;
+  }
+  .faq-item summary {
+    padding: 1.25rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.3rem;
+    color: #FF1616;
+    font-weight: 700;
+  }
+  .faq-item[open] summary::after {
+    content: '\2212';
+  }
+  .faq-item p {
+    padding: 0 1.5rem 1.25rem;
+    color: #555;
+    line-height: 1.8;
+    font-size: 0.95rem;
+  }
+
   /* Hero */
   .seg-hero {
     position: relative;

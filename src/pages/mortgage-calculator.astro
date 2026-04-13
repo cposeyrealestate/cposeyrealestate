@@ -248,11 +248,80 @@ import ParallaxBanner from '../components/ParallaxBanner.astro';
       </div>
     </div>
 
+    <!-- Educational Content -->
+    <section class="section" style="background:var(--light-gray);">
+      <div class="container">
+        <div style="max-width:800px;margin:0 auto;">
+          <h2>How to Use This <span class="accent">Mortgage Calculator</span></h2>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">This mortgage calculator gives you a comprehensive estimate of your monthly payment, including principal, interest, property taxes, homeowners insurance, PMI (if applicable), and HOA dues. Understanding these numbers before you start your home search helps you set a realistic budget and avoid overextending yourself financially.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">Start by entering the home price you are considering and your planned down payment. The calculator will automatically compute your loan amount. Then adjust the interest rate to reflect current market rates or the rate your lender has quoted. If you are not sure what rate to expect, check with one of my recommended lenders for a current quote based on your credit profile.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">The property tax rate is pre-set to 1.75%, which is the approximate average for Comal County. Tax rates vary by county, school district, and special taxing districts, so your actual rate may be higher or lower. Homes in Guadalupe County (Seguin) or Bexar County (Cibolo/Schertz) may have different rates. I can help you determine the exact tax rate for any specific property.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">PMI — private mortgage insurance — is automatically calculated for conventional loans with less than 20% down. FHA loans include mortgage insurance premium (MIP) regardless of down payment. VA loans do not require PMI, which is one of the major benefits for eligible veterans and active-duty service members.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">The amortization schedule shows how your payment is split between principal and interest over the first 12 months. Early in the loan, most of your payment goes toward interest. Over time, the balance shifts toward principal. Understanding this schedule helps you see how equity builds and plan for the long term.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">Keep in mind that this calculator provides estimates only. Your actual payment will depend on the specific loan terms, rate, and fees from your lender. Use these numbers as a starting point, then work with a licensed mortgage lender to get a precise pre-approval.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About Mortgage Payments</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is included in my monthly mortgage payment?</summary>
+            <p>Your monthly payment typically includes four components, often called PITI: principal (the amount that reduces your loan balance), interest (the cost of borrowing), property taxes (collected monthly and held in escrow), and homeowners insurance. If your down payment is less than 20%, you may also pay PMI. HOA dues, if applicable, are an additional monthly cost.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How much should I put down on a home?</summary>
+            <p>The ideal down payment depends on your financial situation and loan type. Conventional loans typically require 5-20% down, with 20% eliminating the need for PMI. FHA loans require as little as 3.5% down. VA loans offer zero down payment for eligible veterans. While a larger down payment reduces your monthly payment and total interest paid, it is also important to maintain cash reserves for closing costs, moving expenses, and emergencies.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What is the difference between a 15-year and 30-year mortgage?</summary>
+            <p>A 30-year mortgage has lower monthly payments but costs significantly more in total interest over the life of the loan. A 15-year mortgage has higher monthly payments but saves tens of thousands of dollars in interest and builds equity much faster. Use this calculator to compare the monthly payment and total cost for different loan terms to see which fits your budget and goals.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
   </main>
   <ParallaxBanner image="/images/generated/home-nb-modern.png" />
 
   <ContactForm context="I'd like help getting pre-approved for a mortgage..." />
   <Footer />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is included in my monthly mortgage payment?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your monthly payment typically includes principal, interest, property taxes, and homeowners insurance (PITI). You may also pay PMI if your down payment is less than 20%, plus HOA dues if applicable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much should I put down on a home?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The ideal down payment depends on your financial situation and loan type. Conventional loans require 5-20% down, FHA requires 3.5%, and VA loans offer zero down payment for eligible veterans."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between a 15-year and 30-year mortgage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A 30-year mortgage has lower monthly payments but costs more in total interest. A 15-year mortgage has higher payments but saves tens of thousands in interest and builds equity faster."
+        }
+      }
+    ]
+  }
+  </script>
 </Layout>
 
 <style>
@@ -453,6 +522,15 @@ import ParallaxBanner from '../components/ParallaxBanner.astro';
     font-size: 0.72rem;
     margin-top: 1rem;
   }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
   @media (max-width: 900px) {
     .mc-layout { grid-template-columns: 1fr; }

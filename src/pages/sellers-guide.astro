@@ -53,6 +53,22 @@ const sections = [
     <section class="section">
       <div class="container">
         <p class="sg-intro">Selling your home is a major decision, and preparation makes all the difference. From maximizing curb appeal to acing the inspection, these guides will help you get the most value from your home and ensure a smooth transaction from listing to closing.</p>
+
+        <div class="sg-body">
+          <p>As a New Braunfels REALTOR and retired Army First Sergeant, I have seen firsthand how proper planning can make or break a home sale. Whether you are selling a starter home in a subdivision along the I-35 corridor or a custom build on acreage in the Hill Country, the fundamentals remain the same: present your home in its best light, price it correctly, and stay ahead of potential issues before they become deal-breakers.</p>
+
+          <p>The Texas Hill Country market moves quickly when a property is priced right and shows well. Buyers today start their search online, which means your listing photos are your first showing. From there, the in-person experience needs to match or exceed what they saw on screen. That is why I put together these detailed guides — to walk you through every stage of the selling process so you feel confident and prepared.</p>
+
+          <h2>What Makes a Successful Home Sale</h2>
+          <p>A successful home sale is not just about putting a sign in the yard. It starts weeks or even months before listing day. Homes that sell faster and for more money share a few common traits: they are clean, decluttered, well-maintained, and priced based on real comparable data — not wishful thinking. Sellers who invest time in preparation almost always see a return on that effort.</p>
+
+          <p>The New Braunfels area attracts a wide range of buyers — military families relocating to Joint Base San Antonio, remote workers moving from Austin for a lower cost of living, retirees looking for Hill Country views, and first-time buyers entering the market. Each group has different priorities, but all of them respond to a well-prepared home.</p>
+
+          <h2>How These Guides Help</h2>
+          <p>I have organized my seller resources into four focused guides, each covering a critical phase of the selling process. The Preparing Your Home for Sale guide covers everything from curb appeal to interior staging and systems checks. The Preparing for Photographs guide ensures your listing photos make the strongest possible first impression. The Inspection Prep guide helps you avoid surprises and delays during the buyer's inspection. And the Home Sale Checklist provides a room-by-room evaluation so you can identify what needs attention before you list.</p>
+
+          <p>These guides are based on real experience working with sellers in New Braunfels, Canyon Lake, Seguin, Bulverde, and the surrounding Hill Country communities. The advice is practical and specific to this market — not generic tips pulled from a national template. If you have questions about any of these topics or want personalized guidance for your situation, reach out anytime.</p>
+        </div>
       </div>
     </section>
 
@@ -85,10 +101,64 @@ const sections = [
       </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About Selling a Home</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>How long does it take to sell a home in New Braunfels?</summary>
+            <p>The timeline varies depending on the price range, location, condition, and current market conditions. Well-prepared homes priced correctly often receive offers within the first two weeks on market. From contract to closing, the process typically takes 30 to 45 days. Homes that need repairs or are overpriced can sit much longer. I can provide a market analysis specific to your property to give you a realistic estimate.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What should I fix before listing my home?</summary>
+            <p>Focus on the items that buyers and inspectors will notice first: cosmetic issues like scuffed walls and worn carpet, functional problems like leaky faucets or burned-out bulbs, and safety items like smoke detectors and handrails. Not every repair needs to be made before listing, but addressing obvious issues signals to buyers that the home has been maintained. I can walk through your home and help you prioritize the repairs that will have the biggest impact.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do I need to stage my home before selling?</summary>
+            <p>Staging is not always necessary, but presenting your home in a clean, decluttered, and neutral way is essential. At a minimum, remove personal items, clear countertops, and ensure every room has a clear purpose. Professional staging can help in higher price points or when a home has been sitting on the market. The goal is to help buyers envision themselves living in the space.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
   </main>
   <ParallaxBanner image="/images/generated/comal-river.png" />
 
   <ContactForm context="I'm thinking about selling my home in the New Braunfels area..." />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How long does it take to sell a home in New Braunfels?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The timeline varies depending on the price range, location, condition, and current market conditions. Well-prepared homes priced correctly often receive offers within the first two weeks on market. From contract to closing, the process typically takes 30 to 45 days."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What should I fix before listing my home?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Focus on the items that buyers and inspectors will notice first: cosmetic issues like scuffed walls and worn carpet, functional problems like leaky faucets or burned-out bulbs, and safety items like smoke detectors and handrails. Not every repair needs to be made before listing, but addressing obvious issues signals to buyers that the home has been maintained."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to stage my home before selling?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Staging is not always necessary, but presenting your home in a clean, decluttered, and neutral way is essential. At a minimum, remove personal items, clear countertops, and ensure every room has a clear purpose. Professional staging can help in higher price points or when a home has been sitting on the market."
+        }
+      }
+    ]
+  }
+  </script>
   <Footer />
 </Layout>
 
@@ -219,6 +289,33 @@ const sections = [
   .sg-cta h2 {
     color: #fff;
   }
+
+  .sg-body {
+    max-width: 800px;
+    margin: 2rem auto 0;
+    text-align: left;
+  }
+
+  .sg-body p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .sg-body h2 {
+    font-size: 1.3rem;
+    margin: 2rem 0 1rem;
+  }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
   @media (max-width: 600px) {
     .sg-cards {

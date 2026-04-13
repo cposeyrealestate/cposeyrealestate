@@ -248,6 +248,38 @@ const totalPages = Math.ceil(testimonials.length / REVIEWS_PER_PAGE);
       </div>
     </section>
 
+    <!-- About Cody's Approach -->
+    <section style="padding:4rem 0;background:#fff;">
+      <div class="container" style="max-width:800px;">
+        <h2 style="text-align:center;margin-bottom:2rem;">Why Clients Trust <span class="accent">Cody Posey</span></h2>
+        <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">The reviews on this page reflect a consistent theme: genuine care, clear communication, deep market knowledge, and a willingness to go above and beyond. These are not just values I talk about — they are the foundation of how I operate in every transaction, whether you are buying your first home, selling a property you have owned for decades, or navigating a complex relocation from across the country.</p>
+        <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">My approach to real estate is rooted in 20 years of military service, where I learned that trust is earned through action, not words. Every client I work with receives the same level of attention and dedication, regardless of price point. I am responsive, transparent about market conditions, and honest about what to expect — even when the truth is not what people want to hear.</p>
+        <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">I also believe in education. Buying or selling a home is one of the largest financial decisions most people will ever make, and I want my clients to understand every step of the process. That means explaining contracts in plain language, walking through inspection reports in detail, and making sure you understand the numbers before you sign anything. An informed client is a confident client.</p>
+        <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">If you are considering working with me, I invite you to read these testimonials and then reach out for a conversation. No pressure, no sales pitch — just an honest discussion about your goals and how I can help you achieve them.</p>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About Working with Cody</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>How do I get started working with you?</summary>
+            <p>The best way to start is with a phone call or text. I am available at (830) 360-5569 and happy to have an initial conversation about your goals, timeline, and questions. There is no obligation and no pressure. If we are a good fit, we will set up a plan and move forward at your pace. You can also fill out the contact form on this page.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do you work with out-of-state buyers?</summary>
+            <p>Absolutely. A significant portion of my business comes from buyers relocating from other states — particularly California, the Northeast, and other parts of Texas. I am experienced in remote home searches, video tours, and coordinating the purchase process for clients who cannot be physically present for every step. Several of the testimonials on this page are from out-of-state clients.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Are these real reviews from actual clients?</summary>
+            <p>Yes. Every testimonial on this page comes from a verified client or professional I have worked with. Most of these reviews are publicly available on my Google Business Profile where you can read them directly. I am proud of the relationships I have built with my clients, and their feedback is the best measure of the service I provide.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section class="testi-cta">
       <div class="testi-cta__overlay"></div>
@@ -263,6 +295,39 @@ const totalPages = Math.ceil(testimonials.length / REVIEWS_PER_PAGE);
 
   <ContactForm context="I'd like to work with Cody..." />
   <Footer />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I get started working with you?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The best way to start is with a phone call or text at (830) 360-5569. There is no obligation and no pressure. You can also fill out the contact form on the website."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you work with out-of-state buyers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely. A significant portion of my business comes from buyers relocating from other states. I am experienced in remote home searches, video tours, and coordinating the purchase process for clients who cannot be present for every step."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are these real reviews from actual clients?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Every testimonial comes from a verified client or professional. Most are publicly available on my Google Business Profile."
+        }
+      }
+    ]
+  }
+  </script>
 </Layout>
 
 <style>
@@ -453,6 +518,15 @@ const totalPages = Math.ceil(testimonials.length / REVIEWS_PER_PAGE);
   .testi-cta h2 {
     color: #fff;
   }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
   @media (max-width: 600px) {
     .testi-cta {

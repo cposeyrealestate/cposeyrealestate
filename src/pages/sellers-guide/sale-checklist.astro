@@ -172,6 +172,13 @@ const categories = [
             ))}
           </div>
 
+          <h2 style="font-size:1.4rem;margin:2.5rem 0 1.25rem;padding-bottom:0.5rem;border-bottom:2px solid #FF1616;display:inline-block;">How to Use This Checklist</h2>
+          <p style="color: #555; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem;">Walk through your home with fresh eyes — as if you were seeing it for the first time as a potential buyer. Start at the curb and work your way through every room, making notes on anything that stands out. Be honest with yourself about what a buyer would notice. Small details like a scuffed baseboard, a dripping faucet, or a closet stuffed to overflowing can shape a buyer's perception of the entire home.</p>
+          <p style="color: #555; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem;">Not everything on this checklist needs to be perfect before listing. The goal is to identify issues, prioritize them, and address the ones that will have the greatest impact on buyer perception and inspection outcomes. Some items — like a new roof or major foundation work — may be beyond your budget to fix, and that is okay. What matters is that you are aware of the issues and can disclose them appropriately.</p>
+          <p style="color: #555; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem;">For sellers in the New Braunfels area, there are a few items worth extra attention. Hill Country homes often have limestone features, metal roofs, or pier-and-beam foundations that require specific maintenance. If your home has a septic system, confirm it has been pumped recently and is functioning properly. Water softeners and well systems should also be serviced and documented before listing.</p>
+          <p style="color: #555; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem;">I recommend going through this checklist and then scheduling a walkthrough with me. I will bring a different perspective — one shaped by working with hundreds of buyers and knowing exactly what they look for. Together we can create a plan that fits your budget and timeline while maximizing your home's appeal to the market.</p>
+          <p style="color: #555; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem;">Remember, the sellers who invest time in preparation consistently see better results. A clean, well-maintained home sells faster, commands higher offers, and encounters fewer issues during the transaction. The checklist above is your starting point — and I am here to help you every step of the way.</p>
+
           <div class="sp-cta">
             <p>Want a professional opinion on what to address before listing? I offer a complimentary pre-listing walkthrough to help you prioritize.</p>
             <a href="#contact" class="btn btn-primary">Request a Walkthrough</a>
@@ -180,10 +187,64 @@ const categories = [
       </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About Preparing to Sell</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What are the most important areas to address before listing?</summary>
+            <p>Focus on the areas buyers see first and care about most: the exterior and curb appeal, the kitchen, bathrooms, and flooring. These spaces have the biggest influence on buyer perception and offer price. A clean, well-maintained kitchen and updated bathrooms can offset other minor issues throughout the home. Curb appeal sets the tone before a buyer even walks through the door.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How much should I spend on pre-listing improvements?</summary>
+            <p>There is no one-size-fits-all answer, but a good rule of thumb is to focus on cost-effective improvements with a high return. Fresh paint, professional cleaning, new carpet, and landscaping cleanup are among the best investments. Major renovations like a kitchen remodel are rarely worth doing just to sell — you are unlikely to recoup the full cost. I can help you prioritize based on your specific home and price range.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do you offer a pre-listing walkthrough?</summary>
+            <p>Yes. I offer a complimentary pre-listing walkthrough for sellers in the New Braunfels and Hill Country area. During the walkthrough, I will evaluate each room and provide specific recommendations on what to address before listing. This service is designed to help you focus your time and budget on the improvements that will have the biggest impact on your sale price and time on market.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
   </main>
   <ParallaxBanner image="/images/generated/comal-river.png" />
   <ContactForm context="I'd like a pre-listing walkthrough of my home..." />
   <Footer />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are the most important areas to address before listing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Focus on the areas buyers see first and care about most: the exterior and curb appeal, the kitchen, bathrooms, and flooring. These spaces have the biggest influence on buyer perception and offer price."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much should I spend on pre-listing improvements?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "There is no one-size-fits-all answer, but focus on cost-effective improvements with a high return. Fresh paint, professional cleaning, new carpet, and landscaping cleanup are among the best investments. Major renovations like a kitchen remodel are rarely worth doing just to sell."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you offer a pre-listing walkthrough?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. I offer a complimentary pre-listing walkthrough for sellers in the New Braunfels and Hill Country area. During the walkthrough, I will evaluate each room and provide specific recommendations on what to address before listing."
+        }
+      }
+    ]
+  }
+  </script>
 </Layout>
 
 <style>
@@ -281,6 +342,15 @@ const categories = [
     line-height: 1.6;
     margin-bottom: 1.25rem;
   }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
   @media (max-width: 600px) {
     .cl-grid {

@@ -62,6 +62,14 @@ const interior = [
             {interior.map((item) => <li>{item}</li>)}
           </ul>
 
+          <h2>Why Professional Photos Matter</h2>
+          <p style="color: #555; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem;">According to the National Association of REALTORS, the vast majority of home buyers start their search online. That means your listing photos are not just part of the marketing — they are the marketing. A buyer scrolling through listings will spend only a few seconds on each one before deciding whether to click for more details or move on. High-quality photography grabs their attention and draws them in. Poor photos push them away, regardless of how nice the home actually is.</p>
+          <p style="color: #555; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem;">I coordinate professional photography for every listing I represent. My photographer uses wide-angle lenses, professional lighting, and careful composition to make your home look its best. But the photos can only capture what is there — and that is where your preparation comes in. The checklist above covers the most common issues that affect photo quality, but the general principle is simple: clean, clear, and well-lit wins every time.</p>
+          <p style="color: #555; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem;">Lighting deserves special attention. Open every blind and curtain to let in natural light. Turn on all interior lights, including under-cabinet lighting, closet lights, and bathroom vanity lights. Replace any burned-out bulbs with soft white LEDs of the same color temperature. Mismatched lighting — some yellow, some white — creates an inconsistent look in photos that buyers notice immediately.</p>
+          <p style="color: #555; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem;">For outdoor photos, timing matters. Most real estate photographers shoot exterior photos during the golden hour — early morning or late afternoon — when the light is warm and shadows are soft. Make sure your exterior preparation is complete well before the scheduled shoot so nothing is rushed. If you have a pool or water feature, confirm that it is clean and functioning the night before.</p>
+          <p style="color: #555; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem;">One detail many sellers overlook is the ceiling fan setting. Ceiling fans should be turned off during photography. The blades create a blur in photos and can look messy. The same applies to television screens — turn them off so they do not create a distracting glow or reflection in the images.</p>
+          <p style="color: #555; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem;">Finally, think about fresh touches that photograph well. A bowl of fresh fruit on the kitchen counter, a simple floral arrangement on the dining table, or neatly folded towels in the bathroom can add warmth and polish to your listing photos without looking staged or artificial.</p>
+
           <div class="sp-cta">
             <p>I coordinate professional photography for every listing. Let me help you get your home photo-ready.</p>
             <a href="#contact" class="btn btn-primary">Schedule a Consultation</a>
@@ -70,10 +78,64 @@ const interior = [
       </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About Listing Photos</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Do you provide professional photography with your listings?</summary>
+            <p>Yes. Professional photography is included with every listing I represent. My photographer uses professional equipment and techniques to showcase your home in its best light. I also offer drone photography and video walkthroughs for properties where aerial views add value, such as homes on acreage or with notable outdoor features.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How long does a typical photo shoot take?</summary>
+            <p>Most residential photo shoots take between one and two hours, depending on the size of the home and whether drone or twilight photography is included. I will work with you to schedule the shoot at a time that allows you to complete your preparation without feeling rushed. I recommend having everything ready the evening before so the morning of the shoot is stress-free.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Should I be home during the photo shoot?</summary>
+            <p>It is usually best if you are not home during the shoot. This allows the photographer to move freely through the home and make small adjustments to staging without interruption. If you have pets, plan to take them with you. The photographer and I will handle everything — you just need to have the home prepared according to the checklist above.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
   </main>
   <ParallaxBanner image="/images/generated/comal-river.png" />
   <ContactForm context="I'd like help preparing my home for listing photos..." />
   <Footer />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do you provide professional photography with your listings?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Professional photography is included with every listing I represent. My photographer uses professional equipment and techniques to showcase your home in its best light. I also offer drone photography and video walkthroughs for properties where aerial views add value."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does a typical photo shoot take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most residential photo shoots take between one and two hours, depending on the size of the home and whether drone or twilight photography is included."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I be home during the photo shoot?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It is usually best if you are not home during the shoot. This allows the photographer to move freely through the home and make small adjustments to staging without interruption. If you have pets, plan to take them with you."
+        }
+      }
+    ]
+  }
+  </script>
 </Layout>
 
 <style>
@@ -155,4 +217,13 @@ const interior = [
     line-height: 1.6;
     margin-bottom: 1.25rem;
   }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 </style>

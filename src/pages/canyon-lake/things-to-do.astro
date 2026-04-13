@@ -29,6 +29,19 @@ import ContactForm from '../../components/ContactForm.astro';
     <section class="section">
       <div class="container">
         <p class="cl-page-intro cl-page-intro--centered">Life at Canyon Lake centers on the water and the outdoors. From boating and fishing on the 8,230-acre reservoir to whitewater kayaking below the dam, live music at one of Texas' best outdoor venues, and hiking with panoramic views — there's no shortage of ways to spend your time here.</p>
+        <div class="cl-expanded-content">
+          <p>Canyon Lake is one of the most naturally beautiful areas in the Texas Hill Country, and the lifestyle here reflects that. Built in the 1960s by the Army Corps of Engineers as a flood-control project on the Guadalupe River, the lake quickly became a recreational destination for boaters, anglers, swimmers, and nature lovers. Today, the area surrounding Canyon Lake is home to a growing community of people who came for a weekend and decided to stay for good.</p>
+          <p>The lake itself stretches across 8,230 surface acres and holds some of the clearest water in the state. With more than 80 miles of shoreline, over 20 public boat ramps, and several full-service marinas, it is built for water recreation of every kind. Pontoon cruises through quiet coves, wakeboarding along open stretches, stand-up paddleboarding at sunrise, and kayaking through sheltered inlets are all part of everyday life here. Families gather at public swim beaches like Comal Park and Potters Creek Park on warm weekends, while fishermen launch before dawn to target largemouth bass, striped bass, white bass, and catfish in the deep, clear water.</p>
+          <p>Below Canyon Dam, the Guadalupe River takes on a completely different character. The tailrace section is known throughout Texas as a premier destination for whitewater kayaking and tubing. Cold, clear water released from the bottom of the dam creates Class II and III rapids that attract paddlers from across the state. The same stretch features deep swimming holes carved through limestone bluffs, rope swings, and shaded banks perfect for a picnic. River outfitters near the dam offer tube and kayak rentals, shuttle services, and guided trips for visitors and locals alike.</p>
+          <h3>Seasonal Events and Festivals</h3>
+          <p>Canyon Lake comes alive during the warmer months with community events and seasonal festivals. The Fourth of July fireworks over the lake draw thousands of spectators who watch from boats, shoreline parks, and private docks. The Canyon Lake Chamber of Commerce organizes regular events throughout the year, including holiday markets, community cookouts, and live music gatherings. Fall brings cooler temperatures and excellent fishing conditions, making it one of the best times of year to explore the area. During winter, the lake is quieter but no less beautiful, with clear skies and uncrowded trails offering a more peaceful outdoor experience.</p>
+          <h3>Family-Friendly Activities</h3>
+          <p>For families, Canyon Lake offers a wide range of activities beyond the water. The Canyon Lake Heritage Museum provides an educational look at the history of the Hill Country, from early settlers and ranching life to the construction of the dam itself. Several parks managed by the Army Corps of Engineers offer playgrounds, covered picnic pavilions, volleyball courts, and horseshoe pits. The area's proximity to Natural Bridge Caverns and Natural Bridge Wildlife Ranch means day trips to two of the region's most popular family attractions are easy and convenient.</p>
+          <h3>Hiking and Outdoor Recreation</h3>
+          <p>Hikers will find Overlook Park particularly rewarding, with a one-mile loop trail that climbs to panoramic views of the lake and surrounding hills. The Guadalupe River State Park is a short drive away and offers nearly 1,900 acres of trails, river access, and wildlife viewing. Mountain biking, birdwatching, and geocaching are all popular activities in the area. For golfers, several courses within a short drive offer challenging play with Hill Country scenery as the backdrop.</p>
+          <h3>Nightlife and Live Music</h3>
+          <p>When the sun goes down, Whitewater Amphitheater takes center stage. This iconic outdoor venue sits right along the Guadalupe River and hosts national touring acts as well as regional Texas music talent. The intimate, open-air setting has made it one of the most beloved live music destinations in the state. Beyond Whitewater, local restaurants and bars along the lake offer casual evening dining, craft beer, and the kind of relaxed atmosphere that defines Hill Country social life. The nearby town of Gruene, just a few miles downstream, adds even more options with Gruene Hall and the historic district's shops and restaurants.</p>
+        </div>
       </div>
     </section>
 
@@ -93,6 +106,60 @@ import ContactForm from '../../components/ContactForm.astro';
 
   </main>
   <ParallaxBanner image="/images/generated/canyon-lake-water.png" />
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About Things to Do in Canyon Lake</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What are the best outdoor activities at Canyon Lake?</summary>
+            <p>Canyon Lake offers a wide variety of outdoor activities year-round. Boating, fishing, swimming, and wakeboarding are the most popular on the 8,230-acre reservoir, which has over 20 public boat ramps and several full-service marinas. Below Canyon Dam, the Guadalupe River provides excellent whitewater kayaking and tubing through Class II-III rapids. Hiking at Overlook Park rewards visitors with panoramic lake views, and the nearby Guadalupe River State Park offers nearly 1,900 acres of trails. Stand-up paddleboarding, birdwatching, and disc golf are also popular choices for residents and visitors.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What family-friendly things are there to do near Canyon Lake?</summary>
+            <p>Families have plenty of options in and around Canyon Lake. Public parks managed by the Army Corps of Engineers offer playgrounds, picnic pavilions, swim beaches, and volleyball courts. The Canyon Lake Heritage Museum provides an educational experience about Hill Country history. For day trips, Natural Bridge Caverns and Natural Bridge Wildlife Ranch are both a short drive away and rank among the most popular family attractions in the region. Calm coves on the lake are perfect for families with younger children who want to swim, paddleboard, or fish from the shore.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Are there seasonal events or festivals at Canyon Lake?</summary>
+            <p>Yes, Canyon Lake hosts a number of seasonal events throughout the year. The Fourth of July fireworks display over the lake is one of the biggest annual events, drawing thousands of spectators to the water and surrounding parks. The Canyon Lake Chamber of Commerce organizes holiday markets, community cookouts, and live music events during the spring and summer months. Whitewater Amphitheater hosts concerts from spring through fall, featuring national touring acts and Texas singer-songwriters. Fall is considered one of the best seasons to visit thanks to cooler weather, excellent fishing, and quieter trails.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are the best outdoor activities at Canyon Lake?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Canyon Lake offers a wide variety of outdoor activities year-round. Boating, fishing, swimming, and wakeboarding are the most popular on the 8,230-acre reservoir, which has over 20 public boat ramps and several full-service marinas. Below Canyon Dam, the Guadalupe River provides excellent whitewater kayaking and tubing through Class II-III rapids. Hiking at Overlook Park rewards visitors with panoramic lake views, and the nearby Guadalupe River State Park offers nearly 1,900 acres of trails. Stand-up paddleboarding, birdwatching, and disc golf are also popular choices for residents and visitors."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What family-friendly things are there to do near Canyon Lake?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Families have plenty of options in and around Canyon Lake. Public parks managed by the Army Corps of Engineers offer playgrounds, picnic pavilions, swim beaches, and volleyball courts. The Canyon Lake Heritage Museum provides an educational experience about Hill Country history. For day trips, Natural Bridge Caverns and Natural Bridge Wildlife Ranch are both a short drive away and rank among the most popular family attractions in the region. Calm coves on the lake are perfect for families with younger children who want to swim, paddleboard, or fish from the shore."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are there seasonal events or festivals at Canyon Lake?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Canyon Lake hosts a number of seasonal events throughout the year. The Fourth of July fireworks display over the lake is one of the biggest annual events, drawing thousands of spectators to the water and surrounding parks. The Canyon Lake Chamber of Commerce organizes holiday markets, community cookouts, and live music events during the spring and summer months. Whitewater Amphitheater hosts concerts from spring through fall, featuring national touring acts and Texas singer-songwriters. Fall is considered one of the best seasons to visit thanks to cooler weather, excellent fishing, and quieter trails."
+          }
+        }
+      ]
+    }
+    </script>
 
   <ContactForm context="I'd like to learn more about Canyon Lake..." />
   <Footer />
@@ -216,6 +283,36 @@ import ContactForm from '../../components/ContactForm.astro';
     justify-content: center;
     flex-wrap: wrap;
   }
+
+  .cl-expanded-content {
+    max-width: 800px;
+    margin: 2rem auto 0;
+    text-align: left;
+  }
+
+  .cl-expanded-content p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .cl-expanded-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    margin: 2rem 0 0.75rem;
+    text-transform: uppercase;
+  }
+
+  /* FAQ */
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
   @media (max-width: 768px) {
     .cl-activity__grid {

@@ -31,6 +31,17 @@ import ParallaxBanner from '../../components/ParallaxBanner.astro';
         <div class="checklist-wrapper">
           <p class="page-intro">Providing a complete package to your mortgage lender initially allows them to validate your pre-approval. Missing items will cause a delay. Gather these documents before your first meeting with a lender to keep the process moving smoothly.</p>
 
+          <div class="mortgage-intro-detail">
+            <h2>Understanding the <span class="accent">Pre-Approval Process</span></h2>
+            <p>Getting pre-approved for a mortgage is one of the most important steps you will take before you start shopping for a home. Pre-approval is different from pre-qualification. Pre-qualification is a quick estimate based on information you provide verbally, while pre-approval involves a thorough review of your financial documents, a credit check, and a formal commitment from the lender stating the loan amount you qualify for.</p>
+            <p>In the New Braunfels market, sellers take pre-approved buyers more seriously. When you submit an offer with a pre-approval letter attached, it signals that you have already done your homework and that your financing is solid. In situations where multiple offers come in on a property, a strong pre-approval can be the deciding factor that gets your offer accepted.</p>
+            <p>The documents listed below are what most lenders will require to process your pre-approval. Gathering everything upfront saves time and prevents back-and-forth delays that can slow down your home search. If you are self-employed, own rental properties, or have non-traditional income sources, your lender may request additional documentation beyond what is listed here.</p>
+
+            <h3>Tips for a Smooth Pre-Approval</h3>
+            <p>Start by checking your credit score before you apply. You can get free credit reports from annualcreditreport.com. If there are errors on your report, dispute them early so they are resolved before you apply for your loan. Pay down credit card balances if possible, as your debt-to-income ratio is one of the most important factors lenders evaluate. Avoid opening any new credit accounts in the months leading up to your application.</p>
+            <p>Keep your documents organized in a single folder — digital or physical — so you can provide them quickly when your lender asks. Many lenders now accept electronic uploads through secure portals, which speeds up the process considerably. If you are buying with a spouse or partner, both parties will need to provide the full set of documents listed below.</p>
+          </div>
+
           <div class="checklist-group">
             <h2>Required <span class="accent">Documents</span></h2>
             <ul class="checklist">
@@ -176,8 +187,62 @@ import ParallaxBanner from '../../components/ParallaxBanner.astro';
       </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About Mortgage Pre-Approval</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What credit score do I need to buy a home in Texas?</summary>
+            <p>Credit score requirements vary by loan type. Conventional loans typically require a minimum score of 620, though a score of 740 or higher will get you the best interest rates. FHA loans are available with scores as low as 580 with a 3.5 percent down payment, or 500 with 10 percent down. VA loans do not have a minimum credit score set by the VA, but most lenders require at least 620. If your score is on the lower end, talk to a lender about steps you can take to improve it before applying. Even a small increase in your credit score can result in a significantly lower interest rate over the life of your loan.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How long does the mortgage pre-approval process take?</summary>
+            <p>If you have all your documents ready, many lenders can issue a pre-approval letter within one to three business days. Some lenders offer same-day pre-approval for straightforward applications. The process takes longer if documents are missing, if there are issues on your credit report that need to be addressed, or if you have a more complex financial situation such as self-employment income or multiple properties. Being organized and responsive to your lender's requests is the best way to keep the timeline short.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can I get pre-approved before I find a REALTOR?</summary>
+            <p>Yes, you can start the pre-approval process on your own by contacting a lender directly. However, many buyers find it helpful to connect with a REALTOR first, as experienced agents often have relationships with trusted local lenders and can recommend options based on your situation. Your REALTOR can also help you understand how your pre-approval amount translates to the types of homes available in your target neighborhoods in New Braunfels. Whether you start with a lender or a REALTOR, the key is to get pre-approved before you begin touring homes.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
   </main>
   <ParallaxBanner image="/images/generated/guadalupe-river.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What credit score do I need to buy a home in Texas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Credit score requirements vary by loan type. Conventional loans typically require a minimum score of 620, though a score of 740 or higher will get you the best interest rates. FHA loans are available with scores as low as 580 with a 3.5 percent down payment, or 500 with 10 percent down. VA loans do not have a minimum credit score set by the VA, but most lenders require at least 620. If your score is on the lower end, talk to a lender about steps you can take to improve it before applying. Even a small increase in your credit score can result in a significantly lower interest rate over the life of your loan."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does the mortgage pre-approval process take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If you have all your documents ready, many lenders can issue a pre-approval letter within one to three business days. Some lenders offer same-day pre-approval for straightforward applications. The process takes longer if documents are missing, if there are issues on your credit report that need to be addressed, or if you have a more complex financial situation such as self-employment income or multiple properties. Being organized and responsive to your lender's requests is the best way to keep the timeline short."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I get pre-approved before I find a REALTOR?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, you can start the pre-approval process on your own by contacting a lender directly. However, many buyers find it helpful to connect with a REALTOR first, as experienced agents often have relationships with trusted local lenders and can recommend options based on your situation. Your REALTOR can also help you understand how your pre-approval amount translates to the types of homes available in your target neighborhoods in New Braunfels. Whether you start with a lender or a REALTOR, the key is to get pre-approved before you begin touring homes."
+        }
+      }
+    ]
+  }
+  </script>
 
   <ContactForm context="I need help getting pre-approved for a mortgage..." />
   <Footer />
@@ -311,6 +376,41 @@ import ParallaxBanner from '../../components/ParallaxBanner.astro';
   }
 
   .sub-cta h2 { color: #fff; }
+
+  .mortgage-intro-detail {
+    margin-bottom: 2.5rem;
+  }
+
+  .mortgage-intro-detail h2 {
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #FF1616;
+  }
+
+  .mortgage-intro-detail h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 2rem 0 0.75rem;
+  }
+
+  .mortgage-intro-detail p {
+    color: var(--gray);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  /* FAQ */
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
   @media (max-width: 600px) {
     .sub-cta { background-attachment: scroll; }

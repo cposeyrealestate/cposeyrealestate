@@ -32,6 +32,30 @@ import ContactForm from '../../components/ContactForm.astro';
       </div>
     </section>
 
+    <!-- Expanded Dining Overview -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>The Cibolo / Schertz <span class="accent">Dining Scene</span></h2>
+        </div>
+        <div class="cs-content-block">
+          <p>Cibolo and Schertz have undergone a remarkable transformation over the past decade. What were once considered quiet bedroom communities northeast of San Antonio have developed into thriving cities with their own identity, and the restaurant scene has evolved right alongside them. Today, residents have access to a diverse and growing selection of dining options without ever needing to drive into San Antonio.</p>
+
+          <p>The anchor of the Cibolo dining scene is Main Street, where a cluster of independent restaurants has created a genuine downtown dining experience. Kindling Texas Kitchen leads the way, operating out of a beautifully restored 115-year-old home and serving regional heritage Texas cuisine cooked over open wood fire. It is the kind of restaurant that puts a small town on the map — thoughtful, ingredient-driven, and rooted in the traditions of Texas cooking. Right nearby, The Rooted Fork has become the go-to brunch destination, and Harmon's Barbecue provides no-frills smoked meats that deliver on quality.</p>
+
+          <p>Schertz contributes its own strengths to the area's dining landscape. The Magnolia Pancake Haus, a San Antonio institution, has a location here that draws weekend crowds for its famous fluffy pancakes and Banana Foster specialty. Abel's Diner has been a Schertz staple since 1991, serving the kind of homestyle breakfasts and chicken fried steak that define Texas comfort food. Garcia's Mexican Restaurant rounds out the options with reliable, affordable Tex-Mex that has served the community for years.</p>
+
+          <p>One of the most exciting developments in recent years has been the emergence of more diverse and elevated dining concepts. Mako's On The Creek stands out as a veteran- and family-owned restaurant that brings Caribbean and Trinidadian influences to its scratch-made menu. Situated along Cibolo Creek, it offers a dining experience unlike anything else in the immediate area and has quickly become a local favorite for both casual dinners and special occasions.</p>
+
+          <p>For families, the Cibolo/Schertz area is exceptionally convenient. Nearly every restaurant in the area is family-friendly, with approachable menus, reasonable prices, and casual atmospheres that make dining out with kids easy and enjoyable. The breakfast and brunch scene is particularly strong, giving families plenty of weekend options that range from classic diner fare to more modern, Instagram-worthy plates.</p>
+
+          <p>The proximity to San Antonio means residents also have easy access to the city's vast restaurant scene, but many locals find that they rarely need to make the drive. The combination of quality independent restaurants, reliable national chains along the FM 3009 and I-35 corridors, and a growing number of unique dining concepts means that Cibolo and Schertz can hold their own as a dining destination.</p>
+
+          <p>As both cities continue to attract new residents and commercial development, the restaurant scene is expected to keep expanding. New retail and mixed-use developments are bringing additional restaurant space to the area, and the entrepreneurial spirit that produced places like Kindling and Mako's shows no signs of slowing down. For anyone considering a move to Cibolo or Schertz, the dining options are a genuine quality-of-life benefit that continues to improve year over year.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- Restaurant List -->
     <section class="section" style="background: var(--light-gray);">
       <div class="container">
@@ -140,6 +164,60 @@ import ContactForm from '../../components/ContactForm.astro';
     </section>
 
   </main>
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions About Dining in Cibolo and Schertz</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>What are the best restaurants in Cibolo, TX?</summary>
+          <p>Kindling Texas Kitchen is widely regarded as the top restaurant in Cibolo, offering heritage Texas cuisine cooked over wood fire in a restored historic home. Mako's On The Creek serves Caribbean-influenced American fare along Cibolo Creek, and Harmon's Barbecue delivers authentic Texas smoked meats. The Rooted Fork is the area's go-to spot for breakfast and brunch.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Are there family-friendly dining options in Cibolo and Schertz?</summary>
+          <p>Yes, both Cibolo and Schertz are very family-friendly dining areas. The Magnolia Pancake Haus in Schertz is a beloved breakfast spot for families, Abel's Diner offers classic comfort food at affordable prices, and Garcia's Mexican Restaurant serves reliable Tex-Mex that kids and adults both enjoy. Most restaurants in the area have casual atmospheres and menus that accommodate children.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What kind of food scene do Cibolo and Schertz have?</summary>
+          <p>The Cibolo and Schertz food scene has grown significantly in recent years. You will find Texas heritage cuisine, Caribbean-influenced American cooking, authentic barbecue, brunch spots, classic Tex-Mex, and longtime American diners. The area has moved well beyond chain restaurants, with a growing number of independent, locally owned establishments that reflect the communities' evolving character.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are the best restaurants in Cibolo, TX?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Kindling Texas Kitchen is widely regarded as the top restaurant in Cibolo, offering heritage Texas cuisine cooked over wood fire in a restored historic home. Mako's On The Creek serves Caribbean-influenced American fare along Cibolo Creek, and Harmon's Barbecue delivers authentic Texas smoked meats. The Rooted Fork is the area's go-to spot for breakfast and brunch."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are there family-friendly dining options in Cibolo and Schertz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, both Cibolo and Schertz are very family-friendly dining areas. The Magnolia Pancake Haus in Schertz is a beloved breakfast spot for families, Abel's Diner offers classic comfort food at affordable prices, and Garcia's Mexican Restaurant serves reliable Tex-Mex that kids and adults both enjoy. Most restaurants in the area have casual atmospheres and menus that accommodate children."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What kind of food scene do Cibolo and Schertz have?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Cibolo and Schertz food scene has grown significantly in recent years. You will find Texas heritage cuisine, Caribbean-influenced American cooking, authentic barbecue, brunch spots, classic Tex-Mex, and longtime American diners. The area has moved well beyond chain restaurants, with a growing number of independent, locally owned establishments that reflect the communities' evolving character."
+        }
+      }
+    ]
+  }
+  </script>
+
   <ParallaxBanner image="/images/generated/cibolo-schertz-home.png" />
 
   <ContactForm context="I'd like to learn more about living in Cibolo/Schertz..." />
@@ -296,6 +374,27 @@ import ContactForm from '../../components/ContactForm.astro';
     justify-content: center;
     flex-wrap: wrap;
   }
+
+  .cs-content-block {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .cs-content-block p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
   @media (max-width: 768px) {
     .cs-restaurant__grid {

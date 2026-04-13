@@ -30,6 +30,16 @@ import ParallaxBanner from '../../components/ParallaxBanner.astro';
       <div class="container">
         <p class="page-intro">Moving into a new home means setting up utilities. Here is a complete list of providers serving New Braunfels and the surrounding Hill Country area. Which provider you use depends on your home's specific location.</p>
 
+        <div class="utility-intro-detail">
+          <h2>Setting Up Utilities in <span class="accent">New Braunfels</span></h2>
+          <p>One of the first things you will need to do after closing on your new home is set up your utility services. Unlike many Texas cities where you choose from deregulated electricity providers, New Braunfels has its own municipal utility — New Braunfels Utilities (NBU) — which provides electric, water, and wastewater service to homes within the city limits. This means a single provider handles most of your essential services, simplifying the setup process considerably.</p>
+          <p>If your new home is located outside the city limits, your utility providers will depend on your exact address. Areas around Canyon Lake, along FM 306, and in the surrounding Comal and Guadalupe County communities are served by different cooperatives and districts. Your REALTOR can help you identify which providers serve your specific property before you close, so you can plan ahead and have everything ready for move-in day.</p>
+
+          <h3>When to Contact Your Utility Providers</h3>
+          <p>It is best to call your utility providers at least one to two weeks before your closing date to schedule service activation. For New Braunfels Utilities, you can set up your account online or by calling their customer service line. You will need your name, new address, desired start date, and a form of identification. Some providers may require a deposit for new accounts, particularly if you are new to the area or do not have an established account history.</p>
+          <p>For internet and cable services, availability varies significantly by neighborhood. Newer subdivisions may have fiber optic options from GVTC or AT&T, while rural properties may be limited to satellite internet through providers like HughesNet or Starlink. Check availability at your specific address before closing so there are no surprises. Below is a comprehensive list of the providers serving the New Braunfels area.</p>
+        </div>
+
         <div class="utility-groups">
 
           <!-- Primary -->
@@ -214,8 +224,62 @@ import ParallaxBanner from '../../components/ParallaxBanner.astro';
       </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About Utilities in New Braunfels</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Is electricity deregulated in New Braunfels like other parts of Texas?</summary>
+            <p>No. New Braunfels is served by New Braunfels Utilities (NBU), a municipally-owned utility company. This means you do not choose your electricity provider — NBU is the sole provider for electric, water, and wastewater services within the city limits. The benefit of this arrangement is that NBU rates have historically been competitive, and you deal with one provider for most of your essential services. If your home is outside city limits, your electric provider will be either Guadalupe Valley Electric Cooperative or Pedernales Electric Cooperative depending on your location.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What internet options are available in New Braunfels?</summary>
+            <p>Internet availability in New Braunfels varies by location. Within the city, AT&T offers DSL and fiber service in many neighborhoods. Spectrum provides cable internet in parts of the area. GVTC, a local cooperative, offers fiber internet with very fast speeds in areas west of the city and in some newer subdivisions. For rural properties, HughesNet and Starlink provide satellite internet. Before purchasing a home, it is a good idea to check internet availability at the specific address, especially if you work from home or require high-speed connectivity.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How far in advance should I set up utilities before moving in?</summary>
+            <p>Plan to contact your utility providers at least one to two weeks before your closing date. For New Braunfels Utilities, you can schedule service activation to coincide with your closing day so that electric and water are ready when you get the keys. Internet installation may require a longer lead time, especially if a technician visit is needed. Trash and recycling service through the City of New Braunfels is typically tied to the property address and may transfer automatically, but it is worth confirming. Your REALTOR can provide a checklist of everything you need to set up before move-in day.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
   </main>
   <ParallaxBanner image="/images/generated/guadalupe-river.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is electricity deregulated in New Braunfels like other parts of Texas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. New Braunfels is served by New Braunfels Utilities (NBU), a municipally-owned utility company. This means you do not choose your electricity provider — NBU is the sole provider for electric, water, and wastewater services within the city limits. The benefit of this arrangement is that NBU rates have historically been competitive, and you deal with one provider for most of your essential services. If your home is outside city limits, your electric provider will be either Guadalupe Valley Electric Cooperative or Pedernales Electric Cooperative depending on your location."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What internet options are available in New Braunfels?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Internet availability in New Braunfels varies by location. Within the city, AT&T offers DSL and fiber service in many neighborhoods. Spectrum provides cable internet in parts of the area. GVTC, a local cooperative, offers fiber internet with very fast speeds in areas west of the city and in some newer subdivisions. For rural properties, HughesNet and Starlink provide satellite internet. Before purchasing a home, it is a good idea to check internet availability at the specific address, especially if you work from home or require high-speed connectivity."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How far in advance should I set up utilities before moving in?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Plan to contact your utility providers at least one to two weeks before your closing date. For New Braunfels Utilities, you can schedule service activation to coincide with your closing day so that electric and water are ready when you get the keys. Internet installation may require a longer lead time, especially if a technician visit is needed. Trash and recycling service through the City of New Braunfels is typically tied to the property address and may transfer automatically, but it is worth confirming. Your REALTOR can provide a checklist of everything you need to set up before move-in day."
+        }
+      }
+    ]
+  }
+  </script>
 
   <ContactForm context="I'm relocating to New Braunfels and need help getting set up..." />
   <Footer />
@@ -373,6 +437,41 @@ import ParallaxBanner from '../../components/ParallaxBanner.astro';
   }
 
   .sub-cta h2 { color: #fff; }
+
+  .utility-intro-detail {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+  }
+
+  .utility-intro-detail h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .utility-intro-detail h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 2rem 0 0.75rem;
+  }
+
+  .utility-intro-detail p {
+    color: var(--gray);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  /* FAQ */
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
   @media (max-width: 600px) {
     .sub-cta { background-attachment: scroll; }

@@ -94,6 +94,13 @@ const tips = [
             ))}
           </div>
 
+          <h2 style="font-size:1.4rem;margin:2.5rem 0 1.25rem;padding-bottom:0.5rem;border-bottom:2px solid #FF1616;display:inline-block;">Understanding the Inspection Process</h2>
+          <p style="color: #555; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem;">In Texas, the buyer typically hires a licensed home inspector during the option period — the negotiated window of time after the contract is executed when the buyer can terminate for any reason. The inspection is one of the most critical stages of a home sale, and it is where many transactions encounter friction if the seller is not prepared.</p>
+          <p style="color: #555; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem;">A typical home inspection in the New Braunfels area takes two to four hours and covers the structural components, roofing, electrical systems, plumbing, HVAC, appliances, and more. The inspector will produce a detailed report documenting any issues found, along with photos and recommendations. Buyers and their agents use this report to request repairs or negotiate credits.</p>
+          <p style="color: #555; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem;">Here is the key point: many inspection findings are minor and easily preventable. A burned-out light bulb can be flagged as an electrical concern. A dirty HVAC filter can raise questions about system maintenance. An inaccessible attic hatch can delay the inspection entirely. By completing the ten steps listed above, you are eliminating the low-hanging fruit that clutters inspection reports and creates unnecessary anxiety for buyers.</p>
+          <p style="color: #555; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem;">It is also worth understanding what inspectors cannot flag. They report on the current condition of systems and components — they do not assess cosmetic issues, evaluate design choices, or predict future failures. Their job is to give the buyer an honest assessment of the home's physical condition at the time of inspection. The better that condition is, the smoother your transaction will be.</p>
+          <p style="color: #555; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem;">One final recommendation: if your home has a septic system, a well, or is located in a flood zone, additional inspections or certifications may be required. Homes in the Hill Country with well water often need a water quality test. Septic systems should be pumped and inspected ahead of time if it has been more than three years since the last service. I can advise you on what applies to your specific property.</p>
+
           <div class="sp-cta">
             <p>I'll guide you through the entire inspection process and help you prepare ahead of time so there are no surprises.</p>
             <a href="#contact" class="btn btn-primary">Get In Touch</a>
@@ -102,10 +109,64 @@ const tips = [
       </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About Home Inspections</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Should the seller be present during the home inspection?</summary>
+            <p>No. It is standard practice for the seller to leave the home during the inspection. The buyer, their agent, and the inspector need to move freely through the property. Being present can make the situation uncomfortable and may give the impression that you are trying to influence the outcome. Plan to be away for three to four hours on inspection day.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What happens if the inspection reveals problems?</summary>
+            <p>The buyer will typically submit a repair request or amendment during the option period. Common requests include electrical issues, plumbing leaks, roof concerns, and HVAC problems. As your agent, I will review the request with you and advise on what is reasonable to address versus what falls within normal wear and tear. Many repair negotiations are resolved with a combination of completed repairs and closing cost credits.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Should I get a pre-listing inspection?</summary>
+            <p>A pre-listing inspection can be valuable, especially for older homes or properties that have not been updated recently. It gives you the opportunity to address issues on your own terms and timeline, rather than being caught off guard during the buyer's inspection. It also signals to buyers that you are a proactive, transparent seller — which builds confidence and can reduce negotiation friction.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
   </main>
   <ParallaxBanner image="/images/generated/comal-river.png" />
   <ContactForm context="I'd like help preparing for my home inspection..." />
   <Footer />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Should the seller be present during the home inspection?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. It is standard practice for the seller to leave the home during the inspection. The buyer, their agent, and the inspector need to move freely through the property. Plan to be away for three to four hours on inspection day."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if the inspection reveals problems?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The buyer will typically submit a repair request or amendment during the option period. Common requests include electrical issues, plumbing leaks, roof concerns, and HVAC problems. Many repair negotiations are resolved with a combination of completed repairs and closing cost credits."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I get a pre-listing inspection?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A pre-listing inspection can be valuable, especially for older homes or properties that have not been updated recently. It gives you the opportunity to address issues on your own terms and timeline, rather than being caught off guard during the buyer's inspection."
+        }
+      }
+    ]
+  }
+  </script>
 </Layout>
 
 <style>
@@ -201,4 +262,13 @@ const tips = [
     line-height: 1.6;
     margin-bottom: 1.25rem;
   }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 </style>

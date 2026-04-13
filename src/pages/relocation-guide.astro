@@ -187,6 +187,27 @@ const movingChecklist = [
       </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About Relocating to New Braunfels</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Is New Braunfels a good place to raise a family?</summary>
+            <p>New Braunfels is consistently rated as one of the best places to raise a family in Texas. The area offers strong school districts in both Comal ISD and New Braunfels ISD, safe neighborhoods with community amenities, and an abundance of outdoor recreation including rivers, parks, and trails. The small-town feel combined with proximity to San Antonio and Austin gives families the best of both worlds.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What is the job market like in New Braunfels?</summary>
+            <p>Major local employers include Comal ISD, Resolute Health Hospital, HEB, and the City of New Braunfels. However, many residents commute to San Antonio or Austin for work, particularly in healthcare, military, tech, and government sectors. Remote work has become increasingly popular, with many families choosing New Braunfels for its lower cost of living while earning higher metro salaries.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How do I start the relocation process?</summary>
+            <p>The first step is getting pre-approved for a mortgage so you know your budget. Then connect with a local agent — like me — who can help you understand the different areas, school districts, and neighborhoods. I specialize in helping families relocate to the Hill Country, including military PCS moves, and I can guide you through the entire process from initial research to closing day.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section class="section" style="background:var(--light-gray);">
       <div class="container" style="text-align:center;max-width:700px;">
@@ -206,6 +227,39 @@ const movingChecklist = [
     <ContactForm />
   </main>
   <Footer />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is New Braunfels a good place to raise a family?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "New Braunfels is consistently rated as one of the best places to raise a family in Texas, with strong school districts, safe neighborhoods, and abundant outdoor recreation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the job market like in New Braunfels?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Major local employers include Comal ISD, Resolute Health Hospital, HEB, and the City of New Braunfels. Many residents commute to San Antonio or Austin, and remote work is increasingly popular."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I start the relocation process?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Get pre-approved for a mortgage, then connect with a local agent who can help you understand the different areas, school districts, and neighborhoods. I specialize in military PCS moves and Hill Country relocations."
+        }
+      }
+    ]
+  }
+  </script>
 </Layout>
 
 <style>
@@ -378,6 +432,15 @@ const movingChecklist = [
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
   @media (max-width: 768px) {
     .rg-stats__grid {

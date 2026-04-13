@@ -29,6 +29,18 @@ import ContactForm from '../../components/ContactForm.astro';
     <section class="section">
       <div class="container">
         <p class="seg-page-intro seg-page-intro--centered">Seguin offers a surprising amount to do for a city its size — from a 227-acre riverside park and scenic kayaking to a family amusement park and a walkable historic downtown.</p>
+        <div class="seg-expanded-content">
+          <p>Founded in 1838 and named after Juan Seguin, a hero of the Texas Revolution, the city of Seguin carries a deep sense of history that blends seamlessly with a modern small-town lifestyle. Situated along the Guadalupe River between San Antonio and Austin, Seguin has long been a gathering place for families, outdoor enthusiasts, and anyone seeking a slower pace without sacrificing access to recreation and culture. The combination of affordable living, genuine community spirit, and year-round outdoor activities makes Seguin a standout among Texas Hill Country towns.</p>
+          <p>Max Starcke Park is the heart of outdoor life in Seguin and one of the most impressive city parks in the region. Stretching across 227 acres along the Guadalupe River, the park offers an 18-hole golf course, tennis and pickleball courts, multiple fishing access points, kayak and canoe launches, walking and jogging trails, and the popular Kids Kingdom playground. Families gather here on weekends for picnics under mature pecan trees, while golfers enjoy the well-maintained course that winds along the river. The park hosts community events throughout the year, from Easter egg hunts and Fourth of July celebrations to fall festivals and holiday lighting displays.</p>
+          <p>The Guadalupe River through Seguin offers a different experience than the busier tubing stretches upstream in New Braunfels. Here, the water is calmer and the banks are more secluded, making it ideal for kayaking, canoeing, and fishing. Local outfitters provide rental equipment and shuttle services for those looking to spend a morning or afternoon on the water. Anglers target bass, catfish, and sunfish along shaded stretches, while birdwatchers enjoy sightings of herons, kingfishers, and other river wildlife. The river corridor is a peaceful retreat that feels miles away from city life, even though it runs right through town.</p>
+          <h3>Family Fun and Entertainment</h3>
+          <p>ZDT's Amusement Park is one of the most unique family attractions in the area. This family-owned park features a wooden roller coaster, go-kart tracks, mini golf, bumper boats, and a variety of rides suitable for all ages. What sets ZDT's apart is its personal touch — built by a local family who poured years of effort into creating something special for the community. It regularly draws visitors from San Antonio and beyond, and it remains one of the best values for family entertainment in the region.</p>
+          <p>For culture and history, the Seguin Heritage Museum tells the story of the city's founding and its role in the Texas Revolution. Exhibits cover the life of Juan Seguin, early German and Mexican settlers, and the development of the community through the 19th and 20th centuries. Downtown Seguin itself is a living piece of history, with restored storefronts, local boutiques, and restaurants lining Main Street. The courthouse square anchors the district and serves as a gathering point for seasonal markets and community celebrations.</p>
+          <h3>Seasonal Events and Community Life</h3>
+          <p>Seguin maintains a full calendar of community events that bring residents together throughout the year. The Guadalupe County Fair is a major annual tradition featuring livestock shows, carnival rides, live music, and food vendors. Freedom Fiesta celebrates Independence Day with parades, fireworks, and family activities along the river. During the holiday season, the city hosts a lighted Christmas parade and tree lighting ceremony downtown. Farmers markets, art walks, and live music events fill the calendar during spring and fall, adding to the small-town character that makes Seguin feel like home.</p>
+          <h3>Nearby Day Trips</h3>
+          <p>Seguin's central location between San Antonio and Austin makes day trips easy and convenient. The San Marcos Premium Outlets are a short drive north, while Schlitterbahn Waterpark in New Braunfels is less than 30 minutes away. Palmetto State Park, located just southeast of Seguin, offers hiking trails through a unique dwarf palmetto ecosystem along the San Marcos River. For those who enjoy exploring small-town Texas, nearby Gonzales and Luling each have their own historic charm and are worth the drive.</p>
+        </div>
       </div>
     </section>
 
@@ -95,6 +107,60 @@ import ContactForm from '../../components/ContactForm.astro';
 
   </main>
   <ParallaxBanner image="/images/generated/porch-view.png" />
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About Things to Do in Seguin</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What are the best outdoor activities in Seguin, TX?</summary>
+            <p>Seguin offers excellent outdoor recreation centered around Max Starcke Park and the Guadalupe River. The 227-acre park features an 18-hole golf course, tennis and pickleball courts, fishing spots, kayak launches, walking trails, and the Kids Kingdom playground. Kayaking and canoeing on the Guadalupe River through Seguin provides a calm, scenic experience with shaded banks and good fishing. Palmetto State Park, located just southeast of town, offers hiking trails through a unique dwarf palmetto ecosystem. Birdwatching, cycling, and disc golf are also popular among residents.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What family-friendly attractions does Seguin have?</summary>
+            <p>Seguin is home to ZDT's Amusement Park, a family-owned attraction featuring a wooden roller coaster, go-kart tracks, mini golf, bumper boats, and rides for all ages. It is one of the best family entertainment values in the region. Max Starcke Park offers playgrounds, picnic areas, and river access for families. The Seguin Heritage Museum provides an educational experience about local history and the Texas Revolution. Downtown Seguin has walkable shops, restaurants, and seasonal events that the whole family can enjoy.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What seasonal events and festivals take place in Seguin?</summary>
+            <p>Seguin hosts community events year-round. The Guadalupe County Fair is one of the biggest annual traditions, featuring livestock shows, carnival rides, live music, and food. Freedom Fiesta on the Fourth of July includes parades, fireworks, and family activities along the river. The holiday season brings a lighted Christmas parade and downtown tree lighting ceremony. Throughout spring and fall, farmers markets, art walks, and live music events keep the community calendar full. These events reflect the strong small-town character that defines life in Seguin.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are the best outdoor activities in Seguin, TX?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Seguin offers excellent outdoor recreation centered around Max Starcke Park and the Guadalupe River. The 227-acre park features an 18-hole golf course, tennis and pickleball courts, fishing spots, kayak launches, walking trails, and the Kids Kingdom playground. Kayaking and canoeing on the Guadalupe River through Seguin provides a calm, scenic experience with shaded banks and good fishing. Palmetto State Park, located just southeast of town, offers hiking trails through a unique dwarf palmetto ecosystem. Birdwatching, cycling, and disc golf are also popular among residents."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What family-friendly attractions does Seguin have?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Seguin is home to ZDT's Amusement Park, a family-owned attraction featuring a wooden roller coaster, go-kart tracks, mini golf, bumper boats, and rides for all ages. It is one of the best family entertainment values in the region. Max Starcke Park offers playgrounds, picnic areas, and river access for families. The Seguin Heritage Museum provides an educational experience about local history and the Texas Revolution. Downtown Seguin has walkable shops, restaurants, and seasonal events that the whole family can enjoy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What seasonal events and festivals take place in Seguin?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Seguin hosts community events year-round. The Guadalupe County Fair is one of the biggest annual traditions, featuring livestock shows, carnival rides, live music, and food. Freedom Fiesta on the Fourth of July includes parades, fireworks, and family activities along the river. The holiday season brings a lighted Christmas parade and downtown tree lighting ceremony. Throughout spring and fall, farmers markets, art walks, and live music events keep the community calendar full. These events reflect the strong small-town character that defines life in Seguin."
+          }
+        }
+      ]
+    }
+    </script>
 
   <ContactForm context="I'd like to learn more about living in Seguin..." />
   <Footer />
@@ -224,4 +290,34 @@ import ContactForm from '../../components/ContactForm.astro';
     justify-content: center;
     flex-wrap: wrap;
   }
+
+  .seg-expanded-content {
+    max-width: 800px;
+    margin: 2rem auto 0;
+    text-align: left;
+  }
+
+  .seg-expanded-content p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .seg-expanded-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    margin: 2rem 0 0.75rem;
+    text-transform: uppercase;
+  }
+
+  /* FAQ */
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 </style>

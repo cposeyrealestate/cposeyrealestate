@@ -108,6 +108,40 @@ import ContactForm from '../../components/ContactForm.astro';
       </div>
     </section>
 
+    <!-- Detailed School Info -->
+    <section class="section">
+      <div class="container">
+        <div style="max-width:800px;">
+          <h2>A Closer Look at <span class="accent">Each District</span></h2>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">Comal ISD is one of the largest and fastest-growing school districts in Texas, serving approximately 27,000 students across more than 30 campuses. The district has earned numerous A ratings from the Texas Education Agency and is known for strong academic programs, competitive athletics, and a wide range of extracurricular activities. Major high schools include Canyon High School, Smithson Valley High School, and the newer Canyon Lake High School. The district is actively building new campuses to keep pace with the area's growth.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">New Braunfels ISD serves the central and downtown areas of the city with approximately 9,000 students across 14 campuses. The district's flagship is New Braunfels High School, which has a long tradition in the community. NBISD has invested in facility upgrades and academic programs, including Career and Technical Education pathways. The district's smaller size allows for a more community-oriented experience, and many families appreciate the connection to the historic core of the city.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">For families considering private education, the area offers several options. Faith-based schools including Cross Lutheran School, Sts. Peter and Paul Catholic School, and New Braunfels Christian Academy provide smaller class sizes and faith-centered curricula. Texas State University in nearby San Marcos (about 20 minutes north) and the University of Texas at San Antonio offer accessible higher education options.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">When searching for a home, I always help my clients verify the exact school assignments for any property they are considering. I can filter your home search by specific school attendance zones and keep you informed if boundary changes are being discussed that could affect a property. Schools are often the number one factor for families moving to the area, and I take that seriously.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About New Braunfels Schools</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Which school district is better — Comal ISD or New Braunfels ISD?</summary>
+            <p>Both districts offer quality education, and which is better depends on your family's priorities. Comal ISD is larger, growing rapidly, and has multiple A-rated campuses with extensive extracurricular programs. New Braunfels ISD is smaller and more community-oriented, with strong traditions and recent facility investments. I recommend visiting specific campuses and attending open houses to determine which environment is the best fit for your children.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can I choose which school my child attends?</summary>
+            <p>School assignments in Texas are based on the physical address of your home. You cannot choose a school outside your attendance zone unless the district offers an inter-district transfer program. Some districts allow transfers on a case-by-case basis if space is available, but this is not guaranteed. If a specific school is a priority, it is essential to verify the attendance zone for any home you are considering before making an offer.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How do school zones affect home values?</summary>
+            <p>School zones have a measurable impact on home values. Homes in highly rated school zones typically command higher prices and sell faster than comparable homes in lower-rated zones. In the New Braunfels area, homes zoned to popular Comal ISD campuses like Smithson Valley High School and Canyon High School often carry a premium. Understanding these dynamics is important whether you are buying or selling.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section class="section" style="background: #000; color: #fff; text-align: center;">
       <div class="container">
@@ -125,6 +159,39 @@ import ContactForm from '../../components/ContactForm.astro';
 
   <ContactForm context="I need help finding homes in a specific school zone..." />
   <Footer />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Which school district is better — Comal ISD or New Braunfels ISD?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Both districts offer quality education. Comal ISD is larger with multiple A-rated campuses. NBISD is smaller and more community-oriented. I recommend visiting specific campuses to determine the best fit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I choose which school my child attends?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "School assignments are based on the physical address of your home. You cannot choose a school outside your zone unless the district offers a transfer program. Verify attendance zones before making an offer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do school zones affect home values?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Homes in highly rated school zones typically command higher prices and sell faster. In New Braunfels, homes zoned to popular Comal ISD campuses like Smithson Valley High School often carry a premium."
+        }
+      }
+    ]
+  }
+  </script>
 </Layout>
 
 <style>
@@ -285,6 +352,15 @@ import ContactForm from '../../components/ContactForm.astro';
     font-size: 0.85rem;
     line-height: 1.5;
   }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
   @media (max-width: 768px) {
     .schools__info-grid,

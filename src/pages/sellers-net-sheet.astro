@@ -218,6 +218,41 @@ import ParallaxBanner from '../components/ParallaxBanner.astro';
       </div>
     </section>
 
+    <!-- Educational Content -->
+    <section class="section" style="background:var(--light-gray);">
+      <div class="container">
+        <div style="max-width:800px;margin:0 auto;">
+          <h2>Understanding Your <span class="accent">Seller's Net Sheet</span></h2>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">A seller's net sheet is one of the most important tools for anyone considering selling their home. It provides a clear picture of how much money you will actually walk away with after all costs are deducted from the sale price. Many sellers focus on the sale price alone, but the number that matters most is the net — what ends up in your bank account after closing.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">The largest deductions from your sale proceeds are typically the mortgage payoff and agent commissions. After those, you will see title insurance costs, escrow fees, property tax prorations, and various administrative fees. If you have negotiated repair credits or are providing a home warranty to the buyer, those will also be deducted.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">Property tax prorations deserve special attention. In Texas, property taxes are paid in arrears, meaning you pay for the current year at the end of the year. When you sell mid-year, the title company prorates the taxes from January 1 through your closing date, and that amount is deducted from your proceeds to cover your share of the current year's taxes. The earlier in the year you close, the smaller this proration will be.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">The owner's title policy is another significant cost. In Texas, the seller customarily pays for the owner's title policy, which protects the buyer's ownership rights. The rates are set by the Texas Department of Insurance and are based on the sale price. This calculator uses the current promulgated rate schedule to estimate this cost.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">Use this calculator to get a preliminary estimate of your net proceeds. Adjust the inputs to match your specific situation — your mortgage balance, expected sale price, and any negotiated costs. For a detailed, property-specific net sheet, reach out and I will prepare one for you in coordination with a local title company.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About Seller Proceeds</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>How much does it cost to sell a home in Texas?</summary>
+            <p>Total seller costs in Texas typically range from 7% to 9% of the sale price. This includes agent commissions (which are negotiable), title insurance, escrow fees, property tax prorations, and various administrative fees. The exact amount depends on your sale price, commission structure, and any negotiated buyer credits or repairs.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What is a property tax proration?</summary>
+            <p>In Texas, property taxes are paid in arrears — meaning you pay for the current year at the end of the year. When you sell, the title company calculates how much of the current year's taxes you owe based on your closing date. This prorated amount is deducted from your proceeds. For example, if you close on June 30 and your annual taxes are $8,000, your proration would be approximately $4,000.</p>
+          </details>
+          <details class="faq-item">
+            <summary>When do I receive my proceeds after closing?</summary>
+            <p>In most Texas transactions, the seller receives their net proceeds via wire transfer on the day of closing, or within one to two business days. The title company handles the disbursement after all documents are signed and recorded. If your mortgage has a prepayment penalty or if the closing falls on a Friday or before a holiday, there may be a slight delay.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section class="section" style="background: #000; color: #fff; text-align: center;">
       <div class="container">
@@ -258,6 +293,39 @@ import ParallaxBanner from '../components/ParallaxBanner.astro';
 
   <ContactForm context="I'd like a detailed seller's net sheet for my property..." />
   <Footer />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does it cost to sell a home in Texas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Total seller costs in Texas typically range from 7% to 9% of the sale price, including agent commissions, title insurance, escrow fees, property tax prorations, and administrative fees."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a property tax proration?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In Texas, property taxes are paid in arrears. When you sell, the title company calculates how much of the current year's taxes you owe based on your closing date, and that amount is deducted from your proceeds."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When do I receive my proceeds after closing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In most Texas transactions, the seller receives net proceeds via wire transfer on the day of closing or within one to two business days."
+        }
+      }
+    ]
+  }
+  </script>
 </Layout>
 
 <style>
@@ -588,6 +656,15 @@ import ParallaxBanner from '../components/ParallaxBanner.astro';
       padding-top: 0 !important;
     }
   }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
   @media (max-width: 600px) {
     .ns-form__row {

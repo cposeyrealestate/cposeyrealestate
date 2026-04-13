@@ -104,6 +104,40 @@ const areas = [
       </div>
     </section>
 
+    <!-- Educational Content -->
+    <section class="section">
+      <div class="container">
+        <div style="max-width:800px;margin:0 auto;">
+          <h2>Choosing the Right <span class="accent">Area</span></h2>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">The Texas Hill Country is one of the most diverse real estate markets in the state, and choosing the right area is about much more than price. Each community has its own character, school districts, commute patterns, and lifestyle. The five areas I serve — New Braunfels, Canyon Lake, Seguin, Cibolo/Schertz, and Bulverde — represent a wide range of options, from walkable downtown living to lakeside retreats to quiet acreage on a hilltop.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">When helping clients narrow down their search, I focus on a few key factors. First, commute: where do you work, and how far are you willing to drive? If you commute to San Antonio daily, the south side of New Braunfels or Cibolo/Schertz may be the best fit. If you work remotely, the options open up significantly. Second, schools: if you have school-age children, the specific school district and campus assignments can shape your search area. Third, lifestyle: do you want to be close to restaurants and entertainment, or do you prefer space and quiet? Each area offers something different.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">I have deep knowledge of all five areas and the neighborhoods within them. I can tell you which subdivisions are in which school zones, where the traffic bottlenecks are, which areas are likely to see the most appreciation, and where you get the best value for your budget. If you are relocating from out of the area, I can also help you understand the cultural differences between communities and what daily life actually looks like in each one.</p>
+          <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">Explore the area profiles above to get started, and reach out when you are ready to take the next step. I am happy to have a no-pressure conversation about which area fits your needs.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About the Texas Hill Country</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Which area has the most affordable homes?</summary>
+            <p>Seguin currently offers the most affordable housing in the region, with a median home price well below New Braunfels and Canyon Lake. The south side of New Braunfels along the I-35 corridor also offers newer construction at accessible price points, particularly in master-planned communities with builder incentives.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Where should military families look for homes?</summary>
+            <p>Cibolo and Schertz are popular with military families due to their proximity to Randolph Air Force Base and the A-rated Schertz-Cibolo-Universal City ISD. New Braunfels is also a strong option for families stationed at Fort Sam Houston or Lackland, with a 30-40 minute commute to JBSA installations. VA loans are widely accepted throughout all five areas.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What is the best area for retirees?</summary>
+            <p>All five areas attract retirees, but Bulverde and Canyon Lake are particularly popular for their quiet, scenic settings and larger lot sizes. New Braunfels offers the best combination of amenities, healthcare access, and community activities. Texas has no state income tax, and property tax exemptions for veterans and seniors can significantly reduce costs.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section class="ea-cta">
       <div class="ea-cta__overlay"></div>
@@ -119,6 +153,39 @@ const areas = [
 
   <ContactForm context="I'm exploring areas in the Texas Hill Country and need guidance..." />
   <Footer />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Which area has the most affordable homes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Seguin currently offers the most affordable housing in the region. The south side of New Braunfels along the I-35 corridor also offers newer construction at accessible price points."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where should military families look for homes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cibolo and Schertz are popular with military families due to their proximity to Randolph Air Force Base and A-rated SCUCISD. New Braunfels is also strong for families at Fort Sam Houston or Lackland."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the best area for retirees?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bulverde and Canyon Lake are popular for quiet, scenic settings. New Braunfels offers the best combination of amenities, healthcare access, and community activities. Texas has no state income tax."
+        }
+      }
+    ]
+  }
+  </script>
 </Layout>
 
 <style>
@@ -286,6 +353,15 @@ const areas = [
   }
 
   .ea-cta h2 { color: #fff; }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
   @media (max-width: 600px) {
     .ea-area {

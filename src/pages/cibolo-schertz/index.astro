@@ -31,8 +31,13 @@ import ContactForm from '../../components/ContactForm.astro';
         <div class="cs-intro__grid">
           <div class="cs-intro__text">
             <h2>Two of the Most <span class="accent">Desirable Suburbs</span></h2>
-            <p>Cibolo and Schertz are two of the most desirable suburban communities in the I-35 corridor. With A-rated SCUCISD schools, safe neighborhoods, and proximity to Randolph AFB, these cities offer a strong sense of community with big-city access.</p>
-            <p>Located just 20 minutes from San Antonio and 15 minutes from New Braunfels, the Cibolo/Schertz area has grown into a combined population of over 75,000 — and continues to attract families, military personnel, and professionals looking for quality schools, affordable housing, and a convenient location along the I-35 corridor.</p>
+            <p>Cibolo and Schertz are two of the most desirable suburban communities in the I-35 corridor. With A-rated SCUCISD schools, safe neighborhoods, and proximity to Randolph AFB, these cities offer a strong sense of community with big-city access. Over the past two decades, both cities have experienced rapid but well-managed growth, transforming from small towns into thriving suburban hubs that consistently rank among the best places to live in Texas.</p>
+            <p>Located just 20 minutes from San Antonio and 15 minutes from New Braunfels, the Cibolo/Schertz area has grown into a combined population of over 75,000 — and continues to attract families, military personnel, and professionals looking for quality schools, affordable housing, and a convenient location along the I-35 corridor. The area sits at the intersection of I-35 and FM 3009, making it easy to reach downtown San Antonio, the San Antonio International Airport, and the booming commercial corridor along I-35 between San Antonio and Austin.</p>
+            <p>What makes Cibolo and Schertz stand out from other San Antonio suburbs is the combination of top-rated schools, family-oriented neighborhoods, and a genuine community feel. Both cities have invested heavily in parks, trails, community centers, and public events. The Schertz Civic Center regularly hosts concerts, festivals, and farmers markets, while Cibolo has developed an impressive network of walking and biking trails that connect neighborhoods to parks and retail areas.</p>
+            <p>The housing market here offers strong value for buyers. You will find a mix of established neighborhoods built in the early 2000s with mature landscaping and larger lots, alongside newer master-planned communities with modern floor plans and community amenities like pools, playgrounds, and splash pads. Price points typically range from the low $200s for older homes to the mid-$400s for newer construction with upgraded finishes. Compared to neighborhoods on the north side of San Antonio with similar school ratings, Cibolo and Schertz often deliver more square footage per dollar.</p>
+            <p>The military community is a defining feature of the area. Randolph Air Force Base, now part of Joint Base San Antonio, is located just minutes away, and a significant percentage of residents are active-duty service members, veterans, or civilian employees of the Department of Defense. This creates a welcoming, diverse, and transient-friendly community where newcomers are easily integrated. As a veteran myself, I understand the unique needs of military families navigating PCS moves and VA loan purchases, and I work with a lot of buyers in that situation.</p>
+            <p>Retail and dining options have expanded significantly in both cities. The Schertz Parkway corridor and FM 3009 are lined with restaurants, shopping centers, and entertainment venues. H-E-B, Target, Home Depot, and dozens of local and chain restaurants are all within a short drive. For bigger outings, The Forum shopping center in Selma is right next door, and downtown San Antonio and the Pearl District are about 20 minutes away.</p>
+            <p>For families with children, the school district is often the deciding factor. SCUCISD has earned consistent A ratings from the Texas Education Agency, with strong academic programs, competitive athletics, and a wide range of extracurricular activities. The district's high schools — including Steele and Samuel Clemens — are well-regarded, and newer elementary and middle school campuses have been built to keep pace with the area's growth.</p>
           </div>
           <div class="cs-intro__stats">
             <div class="cs-stat">
@@ -141,6 +146,27 @@ import ContactForm from '../../components/ContactForm.astro';
       </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About <span class="accent">Cibolo and Schertz</span></h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What are home prices like in Cibolo and Schertz?</summary>
+            <p>Home prices in the Cibolo and Schertz area typically range from the low $200s for older resale homes to the mid-$400s for newer construction in master-planned communities. The median home price generally falls in the mid-$300s, which represents strong value compared to neighborhoods in north San Antonio with comparable school ratings. New construction communities like Deer Creek Ranch, Cibolo Canyons, and Verde Ranch offer modern floor plans with community amenities at competitive price points. If you are looking for a specific price range, I can set up a custom search to show you exactly what is available right now.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How are the schools in Cibolo and Schertz?</summary>
+            <p>The area is served by Schertz-Cibolo-Universal City ISD (SCUCISD), which consistently earns A ratings from the Texas Education Agency. The district is known for strong academics, competitive athletics, and a wide range of extracurricular programs. High schools in the district include Byron P. Steele II and Samuel Clemens, both of which have strong reputations. The district has also built several new elementary and middle school campuses in recent years to accommodate growth. Schools are one of the top reasons families choose this area, and the district's performance is a major factor in the strong resale values here.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is Cibolo/Schertz a good area for military families?</summary>
+            <p>Absolutely. The Cibolo and Schertz area is one of the most military-friendly communities in the San Antonio metro. Randolph Air Force Base, part of Joint Base San Antonio, is just minutes away, and a large percentage of residents are active-duty, retired military, or DoD civilians. The community is welcoming to newcomers, which is important for families who move frequently. VA loans are widely used and accepted here, and many of the newer neighborhoods were specifically designed to appeal to military families with features like community pools, parks, and proximity to base. As a veteran, I have firsthand experience helping military families navigate PCS moves and find the right home in this area.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
   </main>
   <ParallaxBanner image="/images/generated/cibolo-schertz-home.png" />
 
@@ -148,7 +174,85 @@ import ContactForm from '../../components/ContactForm.astro';
   <Footer />
 </Layout>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are home prices like in Cibolo and Schertz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Home prices in the Cibolo and Schertz area typically range from the low $200s for older resale homes to the mid-$400s for newer construction in master-planned communities. The median home price generally falls in the mid-$300s, which represents strong value compared to neighborhoods in north San Antonio with comparable school ratings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How are the schools in Cibolo and Schertz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The area is served by Schertz-Cibolo-Universal City ISD (SCUCISD), which consistently earns A ratings from the Texas Education Agency. The district is known for strong academics, competitive athletics, and a wide range of extracurricular programs. High schools in the district include Byron P. Steele II and Samuel Clemens."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Cibolo/Schertz a good area for military families?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely. The Cibolo and Schertz area is one of the most military-friendly communities in the San Antonio metro. Randolph Air Force Base, part of Joint Base San Antonio, is just minutes away, and a large percentage of residents are active-duty, retired military, or DoD civilians."
+      }
+    }
+  ]
+}
+</script>
+
 <style>
+  /* FAQ */
+  .faq-section {
+    padding: 4rem 0;
+    background: #f9f9f9;
+  }
+  .faq-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .faq-item {
+    background: #fff;
+    border: 1px solid #eee;
+    margin-bottom: 1rem;
+    padding: 0;
+  }
+  .faq-item summary {
+    padding: 1.25rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.3rem;
+    color: #FF1616;
+    font-weight: 700;
+  }
+  .faq-item[open] summary::after {
+    content: '\2212';
+  }
+  .faq-item p {
+    padding: 0 1.5rem 1.25rem;
+    color: #555;
+    line-height: 1.8;
+    font-size: 0.95rem;
+  }
+
   /* Hero */
   .cs-hero {
     position: relative;

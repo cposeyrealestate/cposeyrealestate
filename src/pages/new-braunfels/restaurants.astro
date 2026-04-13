@@ -103,6 +103,60 @@ const categories = [...new Set(restaurants.map(r => r.cuisine))];
     </section>
 
   </main>
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions About Dining in New Braunfels</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>What are the best restaurants in New Braunfels, TX?</summary>
+          <p>New Braunfels has an outstanding dining scene with top picks across several categories. For BBQ, Cooper's Old Time Pit Bar-B-Que and Black's Barbecue are legendary. Huisache Grill and McAdoo's Seafood Company lead the fine dining options. Krause's Cafe is the go-to for German food and craft beer, and Gristmill River Restaurant is an iconic riverside spot near Gruene Hall. The city offers something for every taste and budget.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Where should families eat in New Braunfels?</summary>
+          <p>New Braunfels has plenty of family-friendly restaurants. Krause's Cafe features a large outdoor beer garden with space for kids, and Gristmill River Restaurant offers multi-level riverside seating with a casual atmosphere. Gruene River Grill is another great family option near Gruene Historic District. For a quick and affordable meal, Granzin Bar-B-Q serves excellent pulled pork sandwiches and BBQ plates at approachable prices. Adobe Cafe and Las Fontanas are both solid Tex-Mex picks for groups.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does New Braunfels have German restaurants?</summary>
+          <p>Yes, New Braunfels has a strong German dining tradition that reflects the city's heritage as a German settlement founded in 1845. Alpine Haus Restaurant is an upscale German restaurant in a 160-year-old downtown building serving schnitzel, bratwurst, and sauerbraten. Krause's Cafe is a larger, more casual option with a massive beer-tap wall, German platters, and a family-friendly beer garden with live music. New Braunfels Brewing Company also contributes to the German-inspired craft beer culture in town.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are the best restaurants in New Braunfels, TX?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "New Braunfels has an outstanding dining scene with top picks across several categories. For BBQ, Cooper's Old Time Pit Bar-B-Que and Black's Barbecue are legendary. Huisache Grill and McAdoo's Seafood Company lead the fine dining options. Krause's Cafe is the go-to for German food and craft beer, and Gristmill River Restaurant is an iconic riverside spot near Gruene Hall. The city offers something for every taste and budget."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where should families eat in New Braunfels?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "New Braunfels has plenty of family-friendly restaurants. Krause's Cafe features a large outdoor beer garden with space for kids, and Gristmill River Restaurant offers multi-level riverside seating with a casual atmosphere. Gruene River Grill is another great family option near Gruene Historic District. For a quick and affordable meal, Granzin Bar-B-Q serves excellent pulled pork sandwiches and BBQ plates at approachable prices. Adobe Cafe and Las Fontanas are both solid Tex-Mex picks for groups."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does New Braunfels have German restaurants?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, New Braunfels has a strong German dining tradition that reflects the city's heritage as a German settlement founded in 1845. Alpine Haus Restaurant is an upscale German restaurant in a 160-year-old downtown building serving schnitzel, bratwurst, and sauerbraten. Krause's Cafe is a larger, more casual option with a massive beer-tap wall, German platters, and a family-friendly beer garden with live music. New Braunfels Brewing Company also contributes to the German-inspired craft beer culture in town."
+        }
+      }
+    ]
+  }
+  </script>
+
   <ParallaxBanner image="/images/generated/guadalupe-river.png" />
 
   <ContactForm context="I'd like to find homes near the best restaurants in NB..." />
@@ -324,6 +378,15 @@ const categories = [...new Set(restaurants.map(r => r.cuisine))];
   }
 
   .rest-cta h2 { color: #fff; }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
   @media (max-width: 768px) {
     .rest-grid { grid-template-columns: 1fr; }

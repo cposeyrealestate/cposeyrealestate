@@ -30,6 +30,14 @@ import ParallaxBanner from '../components/ParallaxBanner.astro';
           <p>I take an educational, straightforward approach with every client. Whether you're buying your first home, selling in a shifting market, or trying to make sense of local trends, my goal is to give you the clarity you need to move forward without stress or second-guessing.</p>
 
           <p>Today, I serve the New Braunfels and Greater Hill Country area with the same commitment and sense of duty that shaped my years in uniform. This community is home for my family, and helping others find their place here is something I truly value. If you're ready to take the next step or just want honest insight on what the market is doing, I'm here to help.</p>
+
+          <p>One of the things that sets my approach apart is a focus on education. I believe that informed clients make better decisions, and I invest significant time creating resources, market updates, and guides that help buyers and sellers understand the process from start to finish. From my seller's guide series to my neighborhood breakdowns and relocation resources, everything I produce is designed to give you clarity and confidence.</p>
+
+          <p>I also bring a tech-forward approach to real estate. My background before the military included technology and systems work, and I apply that same analytical mindset to marketing, data analysis, and client communication. Every listing I represent receives professional photography, targeted digital marketing, and a pricing strategy built on real comparable data — not guesswork.</p>
+
+          <p>My service area covers New Braunfels, Canyon Lake, Seguin, Cibolo, Schertz, Bulverde, Garden Ridge, and the surrounding Hill Country communities. Whether you are a first-time buyer, a military family on a PCS move, a retiree looking for Hill Country views, or a seller preparing your home for market, I bring the same level of dedication and attention to detail to every transaction.</p>
+
+          <p>When I am not helping clients, you will find me spending time with my family, exploring the Hill Country, or working on community initiatives. Giving back to the community that welcomed us is important to me, and I am actively involved in local veteran organizations and community events.</p>
         </div>
 
         <p class="about__motto"><em>Educating. Serving. Delivering Results.</em></p>
@@ -56,11 +64,65 @@ import ParallaxBanner from '../components/ParallaxBanner.astro';
       </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About Working with Cody</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What areas do you serve?</summary>
+            <p>I serve the New Braunfels area and the Greater Texas Hill Country, including Canyon Lake, Seguin, Cibolo, Schertz, Bulverde, Garden Ridge, and surrounding communities. My primary focus is the I-35 corridor between San Antonio and Austin, with deep knowledge of Comal, Guadalupe, and northern Bexar counties.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do you work with both buyers and sellers?</summary>
+            <p>Yes. I represent both buyers and sellers across the Hill Country. For sellers, I provide professional photography, targeted marketing, and a data-driven pricing strategy. For buyers, I offer personalized home searches, market education, and full representation through closing. I also specialize in military relocations, new construction, and first-time buyers.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What makes your approach different from other agents?</summary>
+            <p>My approach is built on education, transparency, and service. I do not pressure clients into decisions — I give them the information and guidance they need to make the right choice for their situation. My military background instilled a commitment to integrity and follow-through that I bring to every transaction. I also invest heavily in technology and marketing to ensure my clients' homes get maximum exposure and my buyers have access to the best tools and data available.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
   </main>
   <ParallaxBanner image="/images/generated/new-braunfels-downtown.png" />
 
   <ContactForm context="I'd like to connect with Cody..." />
   <Footer />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What areas do you serve?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I serve the New Braunfels area and the Greater Texas Hill Country, including Canyon Lake, Seguin, Cibolo, Schertz, Bulverde, Garden Ridge, and surrounding communities."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you work with both buyers and sellers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. I represent both buyers and sellers across the Hill Country. For sellers, I provide professional photography, targeted marketing, and a data-driven pricing strategy. For buyers, I offer personalized home searches, market education, and full representation through closing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What makes your approach different from other agents?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "My approach is built on education, transparency, and service. I do not pressure clients into decisions. My military background instilled a commitment to integrity and follow-through that I bring to every transaction."
+        }
+      }
+    ]
+  }
+  </script>
 </Layout>
 
 <style>
@@ -150,6 +212,15 @@ import ParallaxBanner from '../components/ParallaxBanner.astro';
     gap: 1rem;
     flex-wrap: wrap;
   }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
   @media (max-width: 900px) {
     .about {

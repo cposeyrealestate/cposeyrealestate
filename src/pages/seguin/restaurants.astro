@@ -32,6 +32,30 @@ import ContactForm from '../../components/ContactForm.astro';
       </div>
     </section>
 
+    <!-- Expanded Dining Overview -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>The Seguin <span class="accent">Dining Scene</span></h2>
+        </div>
+        <div class="seg-content-block">
+          <p>Seguin has quietly become one of the most interesting food destinations in the greater San Antonio and New Braunfels corridor. What was once a town known primarily for its pecan heritage and small-town charm now draws food lovers from across the region, largely thanks to Burnt Bean Co. earning a coveted Michelin Bib Gourmand distinction. But the story of Seguin dining goes well beyond barbecue.</p>
+
+          <p>The downtown area along Austin Street and Gonzales Street has developed into a walkable dining district where you can grab a morning coffee at Court Street Coffee, walk over to The Oak Tavern for a craft cocktail and elevated pub fare in the evening, and finish with a nightcap at Seguin Brewing Company. This kind of concentrated, pedestrian-friendly dining corridor is uncommon in smaller Texas cities, and it gives Seguin a distinctive feel that residents genuinely appreciate.</p>
+
+          <p>Barbecue remains the headline act. Burnt Bean Co. has been featured in Texas Monthly and recognized by the Michelin Guide, and lines start forming well before the doors open. Their brisket is smoked low and slow with a peppery bark that yields to incredibly tender, juicy meat. The handmade sausage and rotating specials like beef cheeks and pork belly burnt ends keep regulars coming back for more. If you are new to Seguin and have not tried it yet, plan to arrive early because they sell out most days.</p>
+
+          <p>Beyond barbecue, Seguin offers a growing variety of cuisines. You will find solid Tex-Mex options throughout town, classic American comfort food at various family-run establishments, and the craft beer scene centered around Seguin Brewing Company, which has built a loyal following with its rotating taps and brick-oven pizza. The brewery taproom has become a community gathering place, hosting trivia nights, live music, and special release events that bring residents together.</p>
+
+          <p>For families, Seguin is an easy place to eat out. Most restaurants are casual and affordable, with menus that accommodate kids without sacrificing quality for adults. Court Street Coffee is a great morning stop with pastries and specialty drinks, and the atmosphere is welcoming enough that parents can relax while kids enjoy a treat. The overall price point in Seguin tends to be more affordable than neighboring New Braunfels, which is another reason families appreciate the local dining options.</p>
+
+          <p>The food culture in Seguin is closely tied to its sense of community. Many of these restaurants are owned by people who grew up in the area or chose to put down roots here. You will notice that owners and staff know their customers, that seasonal menus reflect what is happening locally, and that there is a genuine pride in putting out quality food without pretension. It is the kind of dining environment where you feel like a regular after your second or third visit.</p>
+
+          <p>As Seguin continues to grow — with new housing developments, commercial construction, and an increasing population — the restaurant scene is expected to expand further. New concepts are in the works, and the downtown revitalization efforts have created an environment that supports small, independent restaurants. For anyone considering a move to the area, the dining options are a real quality-of-life advantage that adds to Seguin's overall appeal.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- Restaurant List -->
     <section class="section" style="background: var(--light-gray);">
       <div class="container">
@@ -102,6 +126,60 @@ import ContactForm from '../../components/ContactForm.astro';
     </section>
 
   </main>
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions About Dining in Seguin</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>What is the best BBQ in Seguin, TX?</summary>
+          <p>Burnt Bean Co. is widely considered the best BBQ in Seguin and one of the best in Texas. It has earned a Michelin Bib Gourmand distinction and consistently ranks among the top barbecue joints in the state according to Texas Monthly. Their brisket, handmade sausage, and rotating specials draw visitors from across the region. Arrive early, as they typically sell out each day.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Are there good family-friendly restaurants in Seguin?</summary>
+          <p>Yes, Seguin has several family-friendly dining options. Court Street Coffee is a great casual stop for morning pastries and drinks, Seguin Brewing Company offers a relaxed taproom with pizza and craft beer, and The Oak Tavern serves elevated American fare in a welcoming downtown setting. Most restaurants in Seguin are casual and affordable, making it easy to eat out with the whole family.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What types of restaurants are in downtown Seguin?</summary>
+          <p>Downtown Seguin has developed a walkable dining district along Austin Street and Gonzales Street. You will find award-winning barbecue at Burnt Bean Co., craft beer and brick-oven pizza at Seguin Brewing Company, specialty coffee at Court Street Coffee, and gastropub-style American cuisine at The Oak Tavern. The area continues to grow with new restaurant concepts joining the mix.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the best BBQ in Seguin, TX?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Burnt Bean Co. is widely considered the best BBQ in Seguin and one of the best in Texas. It has earned a Michelin Bib Gourmand distinction and consistently ranks among the top barbecue joints in the state according to Texas Monthly. Their brisket, handmade sausage, and rotating specials draw visitors from across the region. Arrive early, as they typically sell out each day."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are there good family-friendly restaurants in Seguin?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, Seguin has several family-friendly dining options. Court Street Coffee is a great casual stop for morning pastries and drinks, Seguin Brewing Company offers a relaxed taproom with pizza and craft beer, and The Oak Tavern serves elevated American fare in a welcoming downtown setting. Most restaurants in Seguin are casual and affordable, making it easy to eat out with the whole family."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What types of restaurants are in downtown Seguin?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Downtown Seguin has developed a walkable dining district along Austin Street and Gonzales Street. You will find award-winning barbecue at Burnt Bean Co., craft beer and brick-oven pizza at Seguin Brewing Company, specialty coffee at Court Street Coffee, and gastropub-style American cuisine at The Oak Tavern. The area continues to grow with new restaurant concepts joining the mix."
+        }
+      }
+    ]
+  }
+  </script>
+
   <ParallaxBanner image="/images/generated/porch-view.png" />
 
   <ContactForm context="I'd like to learn more about living in Seguin..." />
@@ -239,4 +317,25 @@ import ContactForm from '../../components/ContactForm.astro';
     justify-content: center;
     flex-wrap: wrap;
   }
+
+  .seg-content-block {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .seg-content-block p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 </style>
