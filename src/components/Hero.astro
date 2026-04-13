@@ -2,6 +2,13 @@
 ---
 
 <section class="hero" id="hero">
+  <div class="hero__video-wrap">
+    <video class="hero__video active" src="/videos/hero-1.mp4" muted playsinline autoplay></video>
+    <video class="hero__video" src="/videos/hero-2.mp4" muted playsinline preload="auto"></video>
+    <video class="hero__video" src="/videos/hero-3.mp4" muted playsinline preload="auto"></video>
+    <video class="hero__video" src="/videos/hero-4.mp4" muted playsinline preload="auto"></video>
+    <video class="hero__video" src="/videos/hero-5.mp4" muted playsinline preload="auto"></video>
+  </div>
   <div class="hero__overlay"></div>
 
   <div class="hero__content">
@@ -61,7 +68,31 @@
     justify-content: center;
     overflow: hidden;
     color: #fff;
-    background: url('/images/generated/hero-home-aerial.png') center/cover no-repeat;
+    background: #000;
+  }
+
+  .hero__video-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero__video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .hero__video.active {
+    opacity: 1;
   }
 
   .hero__overlay {
@@ -307,4 +338,28 @@
       });
     }
   });
+
+  // Video rotation
+  (function() {
+    const videos = document.querySelectorAll('.hero__video');
+    if (!videos.length) return;
+    let current = 0;
+
+    function playNext() {
+      const next = (current + 1) % videos.length;
+      videos[next].currentTime = 0;
+      videos[next].play();
+      videos[next].classList.add('active');
+      videos[current].classList.remove('active');
+      current = next;
+    }
+
+    // When current video ends, switch to next
+    videos.forEach((video) => {
+      video.addEventListener('ended', playNext);
+    });
+
+    // Start first video
+    videos[0].play().catch(() => {});
+  })();
 </script>
