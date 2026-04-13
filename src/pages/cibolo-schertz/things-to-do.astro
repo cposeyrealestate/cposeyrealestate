@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
 ---
 
@@ -39,45 +40,45 @@ import ContactForm from '../../components/ContactForm.astro';
         </div>
 
         <div class="cs-activity__grid">
-          <div class="cs-activity">
+          <a href="https://schertz.com/318/Crescent-Bend-Nature-Park" target="_blank" rel="noopener" class="cs-activity">
             <div class="cs-activity__header">
               <h3>Crescent Bend Nature Park</h3>
               <span class="cs-activity__tag">Outdoor</span>
             </div>
             <p>A 160-acre nature park along Cibolo Creek with hiking and biking trails, picnic areas, and scenic creek access. A local favorite for morning runs, family walks, and getting outdoors without leaving the area.</p>
-          </div>
+          </a>
 
-          <div class="cs-activity">
+          <a href="https://wildliferanchtexas.com/" target="_blank" rel="noopener" class="cs-activity">
             <div class="cs-activity__header">
               <h3>Natural Bridge Wildlife Ranch</h3>
               <span class="cs-activity__tag">Family</span>
             </div>
             <p>A 500-acre drive-through safari park with over 500 animals from around the world. One of the most popular family attractions in the region — kids and adults love the up-close animal encounters and walking exhibits.</p>
-          </div>
+          </a>
 
-          <div class="cs-activity">
+          <a href="https://www.retamapark.com/" target="_blank" rel="noopener" class="cs-activity">
             <div class="cs-activity__header">
               <h3>Retama Park</h3>
               <span class="cs-activity__tag">Entertainment</span>
             </div>
             <p>A horse racing and entertainment venue that hosts live races, simulcast events, and community gatherings throughout the year. A unique local venue for a fun evening out.</p>
-          </div>
+          </a>
 
-          <div class="cs-activity">
+          <a href="https://www.retamapark.com/" target="_blank" rel="noopener" class="cs-activity">
             <div class="cs-activity__header">
               <h3>Ashley Furniture HomeStore Pavilion</h3>
               <span class="cs-activity__tag">Entertainment</span>
             </div>
             <p>An outdoor concert and events venue that brings live music and entertainment to the Schertz area. Check their calendar for upcoming shows and community events throughout the season.</p>
-          </div>
+          </a>
 
-          <div class="cs-activity">
+          <a href="https://www.cibolo.org/" target="_blank" rel="noopener" class="cs-activity">
             <div class="cs-activity__header">
               <h3>Cibolo Nature Center</h3>
               <span class="cs-activity__tag">Outdoor</span>
             </div>
             <p>Over 100 acres of preserved land with hiking trails, educational programs, and native wildlife. The nature center offers guided walks, volunteer opportunities, and a peaceful escape into the Texas landscape.</p>
-          </div>
+          </a>
         </div>
       </div>
     </section>
@@ -88,13 +89,15 @@ import ContactForm from '../../components/ContactForm.astro';
         <h2>Ready to Call This Area <span class="accent">Home</span>?</h2>
         <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Great activities and outdoor access are just part of what makes Cibolo and Schertz special. Let me help you find the right home so you can enjoy it all as a local.</p>
         <div class="cs-cta__buttons">
-          <a href="/cibolo-schertz/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="/search" class="btn btn-primary">Search Homes</a>
           <a href="#contact" class="btn btn-outline">Ask About the Area</a>
         </div>
       </div>
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/cibolo-schertz-home.png" />
+
   <ContactForm context="I'd like to learn more about living in Cibolo/Schertz..." />
   <Footer />
 </Layout>
@@ -103,7 +106,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .cs-hero {
     position: relative;
     height: 280px;
-    background: #000;
+    background: url('/images/generated/cibolo-schertz-home.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -114,8 +117,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .cs-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .cs-hero__content {
@@ -179,6 +181,17 @@ import ContactForm from '../../components/ContactForm.astro';
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .cs-activity h3 {
+    transition: color 0.2s;
+  }
+
+  .cs-activity:hover h3 {
+    color: #FF1616;
   }
 
   .cs-activity__header {

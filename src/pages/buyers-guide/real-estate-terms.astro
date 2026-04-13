@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 
 const terms = [
   { term: 'Pre-Approval', definition: "A mortgage lender's written statement that the approved person(s) will be granted a loan for a set amount pending underwriting approval. A pre-approval letter can strengthen a buyer's offer, making it more attractive to a seller." },
@@ -81,6 +82,8 @@ const terms = [
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/guadalupe-river.png" />
+
   <ContactForm context="I have some questions about the home buying process..." />
   <Footer />
 </Layout>
@@ -89,7 +92,7 @@ const terms = [
   .sub-hero {
     position: relative;
     height: 280px;
-    background: #000;
+    background: url('/images/generated/hill-country-home-1.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -100,8 +103,7 @@ const terms = [
   .sub-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .sub-hero__content {

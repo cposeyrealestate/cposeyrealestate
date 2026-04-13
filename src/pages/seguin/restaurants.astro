@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
 ---
 
@@ -47,6 +48,7 @@ import ContactForm from '../../components/ContactForm.astro';
             </div>
           </div>
           <p>A Michelin Bib Gourmand recipient and Texas Monthly top-ranked BBQ joint. Burnt Bean Co. has put Seguin on the culinary map with exceptional brisket, handmade sausage, and sides that rival the meat. Get there early — they sell out.</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Burnt+Bean+Co.+108+South+Austin+Street+Seguin+TX+78155" target="_blank" rel="noopener" class="seg-restaurant__address">108 S Austin St, Seguin, TX 78155</a>
         </div>
 
         <div class="seg-restaurant">
@@ -58,6 +60,7 @@ import ContactForm from '../../components/ContactForm.astro';
             </div>
           </div>
           <p>A local favorite known for their pecan honey cream ale and brick oven pizzas. Seguin Brewing Company offers a laid-back taproom atmosphere with rotating craft beers and a solid food menu that goes beyond standard pub fare.</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Seguin+Brewing+Company+111+W+Gonzales+St+Seguin+TX+78155" target="_blank" rel="noopener" class="seg-restaurant__address">111 W Gonzales St, Seguin, TX 78155</a>
         </div>
 
         <div class="seg-restaurant">
@@ -69,17 +72,7 @@ import ContactForm from '../../components/ContactForm.astro';
             </div>
           </div>
           <p>A gastropub offering elevated American cuisine with craft cocktails. The Oak Tavern brings a modern dining experience to downtown Seguin with quality ingredients, creative dishes, and a curated drink menu.</p>
-        </div>
-
-        <div class="seg-restaurant">
-          <div class="seg-restaurant__header">
-            <div>
-              <h3>Juan Seguin Brewing Co.</h3>
-              <span class="seg-restaurant__type">Brewery</span>
-              <span class="seg-restaurant__price">$$</span>
-            </div>
-          </div>
-          <p>Named after the city's namesake, this local craft brewery serves up a rotating selection of beers brewed on-site. A great spot to enjoy a pint and soak in the local atmosphere.</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=The+Oak+Tavern+110+E+Gonzales+St+Seguin+TX+78155" target="_blank" rel="noopener" class="seg-restaurant__address">110 E Gonzales St, Suite B, Seguin, TX 78155</a>
         </div>
 
         <div class="seg-restaurant">
@@ -91,6 +84,7 @@ import ContactForm from '../../components/ContactForm.astro';
             </div>
           </div>
           <p>A cozy downtown hangout serving specialty coffee, fresh pastries, and light bites. Court Street Coffee is the kind of neighborhood cafe that becomes part of your morning routine — a community gathering spot with great drinks.</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Court+Street+Coffee+301+North+Austin+Street+Seguin+TX+78155" target="_blank" rel="noopener" class="seg-restaurant__address">301 N Austin St, Seguin, TX 78155</a>
         </div>
       </div>
     </section>
@@ -101,13 +95,15 @@ import ContactForm from '../../components/ContactForm.astro';
         <h2>Ready to Call Seguin <span class="accent">Home</span>?</h2>
         <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Great food is just one part of what makes Seguin special. Let me help you find the right home in the right neighborhood.</p>
         <div class="seg-cta__buttons">
-          <a href="/seguin/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="/search" class="btn btn-primary">Search Homes</a>
           <a href="#contact" class="btn btn-outline">Ask About Seguin</a>
         </div>
       </div>
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/porch-view.png" />
+
   <ContactForm context="I'd like to learn more about living in Seguin..." />
   <Footer />
 </Layout>
@@ -116,7 +112,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .seg-hero {
     position: relative;
     height: 280px;
-    background: #000;
+    background: url('/images/generated/hill-country-home-1.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -127,8 +123,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .seg-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .seg-hero__content {
@@ -223,7 +218,18 @@ import ContactForm from '../../components/ContactForm.astro';
   .seg-restaurant p {
     color: var(--gray);
     line-height: 1.7;
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .seg-restaurant__address {
+    display: block;
+    font-size: 0.82rem;
+    color: #FF1616;
+    transition: opacity 0.2s;
+  }
+
+  .seg-restaurant__address:hover {
+    opacity: 0.7;
   }
 
   /* CTA Buttons */

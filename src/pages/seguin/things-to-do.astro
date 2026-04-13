@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
 ---
 
@@ -38,45 +39,45 @@ import ContactForm from '../../components/ContactForm.astro';
           <h2>Top <span class="accent">Activities</span></h2>
         </div>
 
-        <div class="seg-activity">
+        <a href="https://www.seguintexas.gov/departments/parks_and_recreation/max_starcke_park.php" target="_blank" rel="noopener" class="seg-activity">
           <div class="seg-activity__header">
             <h3>Max Starcke Park</h3>
             <span class="seg-activity__tag">Outdoor</span>
           </div>
           <p>Seguin's crown jewel — a 227-acre park along the Guadalupe River with an 18-hole golf course, tennis courts, fishing spots, kayak launches, playgrounds, and the beloved Kids Kingdom play area. This park is the heart of outdoor life in Seguin and a major draw for families.</p>
-        </div>
+        </a>
 
-        <div class="seg-activity">
+        <a href="https://www.visitseguin.com/" target="_blank" rel="noopener" class="seg-activity">
           <div class="seg-activity__header">
             <h3>Downtown Seguin & Main Street</h3>
             <span class="seg-activity__tag">Culture</span>
           </div>
           <p>Seguin's downtown is a walkable stretch of vintage storefronts, boutique shops, local restaurants, and breweries. Main Street has been the center of community life for over a century, and ongoing revitalization has brought new energy while preserving the city's historic character.</p>
-        </div>
+        </a>
 
-        <div class="seg-activity">
+        <a href="https://seguinheritagemuseum.org/" target="_blank" rel="noopener" class="seg-activity">
           <div class="seg-activity__header">
             <h3>Seguin Heritage Museum</h3>
             <span class="seg-activity__tag">Culture</span>
           </div>
           <p>Learn about the Texas Revolution, the life of Juan Seguin, and the city's rich history through exhibits and artifacts. The Heritage Museum offers a deeper understanding of how Seguin came to be and the people who shaped it.</p>
-        </div>
+        </a>
 
-        <div class="seg-activity">
+        <a href="https://www.visitseguin.com/" target="_blank" rel="noopener" class="seg-activity">
           <div class="seg-activity__header">
             <h3>Guadalupe River Kayaking</h3>
             <span class="seg-activity__tag">Outdoor</span>
           </div>
           <p>Launch from Max Starcke Park for scenic kayaking along the Guadalupe River. The Seguin stretch offers calm water, shaded banks, and wildlife — a more relaxed alternative to the busier tubing sections upstream in New Braunfels.</p>
-        </div>
+        </a>
 
-        <div class="seg-activity">
+        <a href="https://www.zdtamusement.com/" target="_blank" rel="noopener" class="seg-activity">
           <div class="seg-activity__header">
             <h3>ZDT's Amusement Park</h3>
             <span class="seg-activity__tag">Family</span>
           </div>
           <p>A family-owned amusement park featuring go-karts, mini golf, a wooden roller coaster, and a variety of rides and attractions. ZDT's is a local favorite for families and a unique find for a city this size — fun for kids and adults alike.</p>
-        </div>
+        </a>
       </div>
     </section>
 
@@ -86,13 +87,15 @@ import ContactForm from '../../components/ContactForm.astro';
         <h2>Ready to Make Seguin <span class="accent">Home</span>?</h2>
         <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">There's plenty to love about life in Seguin. Let me help you find the right home in the right neighborhood.</p>
         <div class="seg-cta__buttons">
-          <a href="/seguin/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="/search" class="btn btn-primary">Search Homes</a>
           <a href="#contact" class="btn btn-outline">Ask About Seguin</a>
         </div>
       </div>
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/porch-view.png" />
+
   <ContactForm context="I'd like to learn more about living in Seguin..." />
   <Footer />
 </Layout>
@@ -101,7 +104,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .seg-hero {
     position: relative;
     height: 280px;
-    background: #000;
+    background: url('/images/generated/hill-country-home-1.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -112,8 +115,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .seg-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .seg-hero__content {
@@ -172,6 +174,9 @@ import ContactForm from '../../components/ContactForm.astro';
     border-radius: 8px;
     margin-bottom: 1.5rem;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    text-decoration: none;
+    color: inherit;
+    display: block;
   }
 
   .seg-activity__header {
@@ -188,6 +193,11 @@ import ContactForm from '../../components/ContactForm.astro';
     font-size: 1.2rem;
     text-transform: uppercase;
     margin: 0;
+    transition: color 0.2s;
+  }
+
+  .seg-activity:hover h3 {
+    color: #FF1616;
   }
 
   .seg-activity__tag {

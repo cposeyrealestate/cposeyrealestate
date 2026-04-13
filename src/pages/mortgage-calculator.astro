@@ -1,0 +1,682 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+import ParallaxBanner from '../components/ParallaxBanner.astro';
+---
+
+<Layout
+  title="Mortgage Calculator | Estimate Your Monthly Payment | Popby Realty"
+  description="Calculate your estimated monthly mortgage payment for a home in New Braunfels or the Texas Hill Country. Includes principal, interest, taxes, insurance, and PMI."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="mc-hero">
+      <div class="mc-hero__overlay"></div>
+      <div class="mc-hero__content">
+        <h1>Mortgage <span style="color:#FF1616;">Calculator</span></h1>
+        <p>Estimate your monthly payment and see a full breakdown of costs</p>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <section class="section">
+      <div class="container">
+        <div class="mc-layout">
+
+          <!-- Input Form -->
+          <div class="mc-form">
+            <h2>Loan <span class="accent">Details</span></h2>
+
+            <div class="mc-form__group">
+              <h3>Purchase Information</h3>
+              <div class="mc-form__field">
+                <label for="homePrice">Home Price</label>
+                <div class="mc-input-wrap">
+                  <span class="mc-input-prefix">$</span>
+                  <input type="number" id="homePrice" value="400000" min="0" step="5000" />
+                </div>
+              </div>
+              <div class="mc-form__field">
+                <label for="downPayment">Down Payment</label>
+                <div class="mc-input-row">
+                  <div class="mc-input-wrap" style="flex:1;">
+                    <span class="mc-input-prefix">$</span>
+                    <input type="number" id="downPayment" value="80000" min="0" step="1000" />
+                  </div>
+                  <div class="mc-input-wrap" style="width:90px;">
+                    <input type="number" id="downPaymentPct" value="20" min="0" max="100" step="0.5" />
+                    <span class="mc-input-suffix">%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mc-form__group">
+              <h3>Loan Terms</h3>
+              <div class="mc-form__row">
+                <div class="mc-form__field">
+                  <label for="interestRate">Interest Rate</label>
+                  <div class="mc-input-wrap">
+                    <input type="number" id="interestRate" value="6.5" min="0" max="20" step="0.125" />
+                    <span class="mc-input-suffix">%</span>
+                  </div>
+                </div>
+                <div class="mc-form__field">
+                  <label for="loanTerm">Loan Term</label>
+                  <select id="loanTerm">
+                    <option value="30" selected>30 years</option>
+                    <option value="20">20 years</option>
+                    <option value="15">15 years</option>
+                    <option value="10">10 years</option>
+                  </select>
+                </div>
+              </div>
+              <div class="mc-form__field">
+                <label for="loanType">Loan Type</label>
+                <select id="loanType">
+                  <option value="conventional" selected>Conventional</option>
+                  <option value="fha">FHA</option>
+                  <option value="va">VA</option>
+                  <option value="usda">USDA</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mc-form__group">
+              <h3>Additional Costs</h3>
+              <div class="mc-form__row">
+                <div class="mc-form__field">
+                  <label for="propertyTax">Property Tax Rate</label>
+                  <div class="mc-input-wrap">
+                    <input type="number" id="propertyTax" value="1.75" min="0" max="5" step="0.01" />
+                    <span class="mc-input-suffix">%</span>
+                  </div>
+                </div>
+                <div class="mc-form__field">
+                  <label for="insurance">Home Insurance</label>
+                  <div class="mc-input-wrap">
+                    <span class="mc-input-prefix">$</span>
+                    <input type="number" id="insurance" value="167" min="0" step="10" />
+                    <span class="mc-input-suffix">/mo</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mc-form__field">
+                <label for="hoa">HOA Dues (monthly)</label>
+                <div class="mc-input-wrap">
+                  <span class="mc-input-prefix">$</span>
+                  <input type="number" id="hoa" value="0" min="0" step="10" />
+                  <span class="mc-input-suffix">/mo</span>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-primary mc-calc-btn" id="calcBtn" style="width:100%; margin-top:1.5rem; font-size:1rem; padding:0.9rem;">Calculate My Payment</button>
+
+            <a href="/recommended-lenders" class="btn btn-outline-dark" style="width:100%; margin-top:0.75rem; font-size:0.9rem; padding:0.8rem; text-align:center; display:block;">Connect with a Lender</a>
+
+            <div class="mc-disclaimer__box" style="margin-top:1rem;">
+              <strong>Disclaimer:</strong> This calculator provides estimates only and is not a commitment to lend. Actual rates, payments, and costs may vary based on your credit profile, lender, loan program, and market conditions. Property taxes are estimated at 1.75% of home value annually (Comal County average). Homeowners insurance is estimated at 0.5% annually. Always consult with a licensed mortgage lender for accurate figures.
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div class="mc-results mc-results--locked" id="mcResults">
+            <div class="mc-results__card">
+              <div class="mc-results__total-label">Estimated Monthly Payment</div>
+              <div class="mc-results__total" id="totalPayment">$2,844</div>
+
+              <!-- Breakdown bars -->
+              <div class="mc-breakdown">
+                <div class="mc-breakdown__row">
+                  <span class="mc-breakdown__dot" style="background:#111;"></span>
+                  <span class="mc-breakdown__label">Principal & Interest</span>
+                  <span class="mc-breakdown__value" id="piPayment">$2,023</span>
+                </div>
+                <div class="mc-breakdown__row">
+                  <span class="mc-breakdown__dot" style="background:#FF1616;"></span>
+                  <span class="mc-breakdown__label">Property Tax</span>
+                  <span class="mc-breakdown__value" id="taxPayment">$583</span>
+                </div>
+                <div class="mc-breakdown__row">
+                  <span class="mc-breakdown__dot" style="background:#f97316;"></span>
+                  <span class="mc-breakdown__label">Home Insurance</span>
+                  <span class="mc-breakdown__value" id="insPayment">$167</span>
+                </div>
+                <div class="mc-breakdown__row" id="pmiRow" style="display:none;">
+                  <span class="mc-breakdown__dot" style="background:#8b5cf6;"></span>
+                  <span class="mc-breakdown__label">PMI</span>
+                  <span class="mc-breakdown__value" id="pmiPayment">$0</span>
+                </div>
+                <div class="mc-breakdown__row" id="hoaRow" style="display:none;">
+                  <span class="mc-breakdown__dot" style="background:#22c55e;"></span>
+                  <span class="mc-breakdown__label">HOA Dues</span>
+                  <span class="mc-breakdown__value" id="hoaPayment">$0</span>
+                </div>
+              </div>
+
+              <!-- Visual bar -->
+              <div class="mc-bar" id="paymentBar">
+                <div class="mc-bar__seg" id="barPI" style="background:#111;"></div>
+                <div class="mc-bar__seg" id="barTax" style="background:#FF1616;"></div>
+                <div class="mc-bar__seg" id="barIns" style="background:#f97316;"></div>
+                <div class="mc-bar__seg" id="barPMI" style="background:#8b5cf6;"></div>
+                <div class="mc-bar__seg" id="barHOA" style="background:#22c55e;"></div>
+              </div>
+            </div>
+
+            <!-- Loan Summary -->
+            <div class="mc-summary">
+              <h3>Loan Summary</h3>
+              <div class="mc-summary__grid">
+                <div class="mc-summary__item">
+                  <span class="mc-summary__label">Loan Amount</span>
+                  <span class="mc-summary__value" id="loanAmount">$320,000</span>
+                </div>
+                <div class="mc-summary__item">
+                  <span class="mc-summary__label">Down Payment</span>
+                  <span class="mc-summary__value" id="downPaymentSummary">$80,000 (20%)</span>
+                </div>
+                <div class="mc-summary__item">
+                  <span class="mc-summary__label">Total Interest Paid</span>
+                  <span class="mc-summary__value" id="totalInterest">$408,280</span>
+                </div>
+                <div class="mc-summary__item">
+                  <span class="mc-summary__label">Total Cost of Loan</span>
+                  <span class="mc-summary__value" id="totalCost">$728,280</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Amortization Preview -->
+            <div class="mc-amort">
+              <h3>Amortization Schedule <span class="mc-amort__toggle" id="amortToggle">Show first 12 months</span></h3>
+              <div class="mc-amort__table-wrap" id="amortTable" style="display:none;">
+                <table class="mc-amort__table">
+                  <thead>
+                    <tr>
+                      <th>Month</th>
+                      <th>Payment</th>
+                      <th>Principal</th>
+                      <th>Interest</th>
+                      <th>Balance</th>
+                    </tr>
+                  </thead>
+                  <tbody id="amortBody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="mc-cta">
+              <p>Ready to get pre-approved? Connect with trusted local lenders who specialize in the Hill Country market.</p>
+              <a href="/recommended-lenders" class="mc-cta__btn">Connect with a Lender</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Lead Gate Modal -->
+    <div class="mc-gate" id="mcGate" style="display:none;">
+      <div class="mc-gate__backdrop"></div>
+      <div class="mc-gate__modal">
+        <h2>See Your <span style="color:#FF1616;">Results</span></h2>
+        <p class="mc-gate__sub">Enter your info to unlock the calculator. You only need to do this once.</p>
+        <form id="mcGateForm" novalidate>
+          <div class="mc-gate__field">
+            <label for="mc-name">Name *</label>
+            <input type="text" id="mc-name" name="name" required placeholder="Your full name" />
+          </div>
+          <div class="mc-gate__field">
+            <label for="mc-email">Email *</label>
+            <input type="email" id="mc-email" name="email" required placeholder="you@example.com" />
+          </div>
+          <div class="mc-gate__field">
+            <label for="mc-phone">Phone *</label>
+            <input type="tel" id="mc-phone" name="phone" required placeholder="(555) 555-5555" />
+          </div>
+          <div class="mc-gate__error" id="mcGateError" style="display:none;">Something went wrong. Please try again.</div>
+          <button type="submit" class="btn btn-primary" style="width:100%;padding:0.85rem;margin-top:0.5rem;">Unlock Calculator</button>
+        </form>
+        <p class="mc-gate__privacy">Your information is never shared.</p>
+      </div>
+    </div>
+
+  </main>
+  <ParallaxBanner image="/images/generated/home-nb-modern.png" />
+
+  <ContactForm context="I'd like help getting pre-approved for a mortgage..." />
+  <Footer />
+</Layout>
+
+<style>
+  .mc-hero {
+    position: relative; height: 280px;
+    background: url('/images/generated/mortgage-calc-hero.jpg') center/cover no-repeat;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+  }
+  .mc-hero__overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.7)); }
+  .mc-hero__content { position: relative; z-index: 1; color: #fff; max-width: 600px; padding: 0 20px; }
+  .mc-hero__content h1 { font-size: 36px; font-weight: 800; margin-bottom: 8px; }
+  .mc-hero__content p { font-size: 16px; opacity: 0.9; }
+
+  .mc-disclaimer__box {
+    padding: 16px 20px;
+    background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px;
+    font-size: 12px; color: #92400e; line-height: 1.6;
+  }
+
+  .mc-layout { display: grid; grid-template-columns: 380px 1fr; gap: 40px; align-items: start; }
+  .accent { color: #FF1616; }
+
+  .mc-form {
+    background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+    padding: 28px 24px; position: sticky; top: 100px;
+  }
+  .mc-form h2 { font-size: 22px; font-weight: 700; margin-bottom: 20px; color: #111; }
+  .mc-form__group { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #f0f0f0; }
+  .mc-form__group:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .mc-form__group h3 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #999; margin-bottom: 12px; }
+  .mc-form__field { margin-bottom: 12px; }
+  .mc-form__field:last-child { margin-bottom: 0; }
+  .mc-form__field label { display: block; font-size: 13px; font-weight: 600; color: #444; margin-bottom: 4px; }
+  .mc-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .mc-input-wrap {
+    display: flex; align-items: center; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .mc-input-wrap:focus-within { border-color: #FF1616; }
+  .mc-input-prefix { padding: 0 0 0 12px; font-size: 14px; color: #999; }
+  .mc-input-suffix { padding: 0 12px 0 0; font-size: 12px; color: #999; white-space: nowrap; }
+  .mc-input-wrap input { border: none; outline: none; padding: 10px 8px; font-size: 14px; width: 100%; min-width: 0; }
+  .mc-input-row { display: flex; gap: 8px; }
+
+  .mc-form select {
+    width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px;
+    font-size: 14px; color: #333; background: #fff; cursor: pointer;
+  }
+  .mc-form select:focus { outline: none; border-color: #FF1616; }
+
+  .mc-results__card {
+    background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+    padding: 32px 28px; margin-bottom: 20px;
+  }
+  .mc-results__total-label { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #999; margin-bottom: 4px; }
+  .mc-results__total { font-size: 42px; font-weight: 800; color: #111; margin-bottom: 24px; }
+
+  .mc-breakdown { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .mc-breakdown__row { display: flex; align-items: center; gap: 10px; }
+  .mc-breakdown__dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .mc-breakdown__label { flex: 1; font-size: 14px; color: #555; }
+  .mc-breakdown__value { font-size: 14px; font-weight: 600; color: #111; }
+
+  .mc-bar { display: flex; height: 12px; border-radius: 6px; overflow: hidden; background: #f0f0f0; }
+  .mc-bar__seg { transition: width 0.3s ease; }
+
+  .mc-summary {
+    background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .mc-summary h3 { font-size: 16px; font-weight: 700; color: #111; margin-bottom: 16px; }
+  .mc-summary__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .mc-summary__item { display: flex; flex-direction: column; gap: 2px; }
+  .mc-summary__label { font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 0.06em; }
+  .mc-summary__value { font-size: 16px; font-weight: 700; color: #111; }
+
+  .mc-amort {
+    background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .mc-amort h3 { font-size: 16px; font-weight: 700; color: #111; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .mc-amort__toggle {
+    font-size: 13px; font-weight: 500; color: #FF1616; cursor: pointer;
+    text-decoration: underline; text-underline-offset: 2px;
+  }
+  .mc-amort__table-wrap { overflow-x: auto; margin-top: 16px; }
+  .mc-amort__table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .mc-amort__table th {
+    text-align: left; padding: 8px 12px; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.06em; color: #999; border-bottom: 2px solid #e5e7eb;
+  }
+  .mc-amort__table td { padding: 8px 12px; border-bottom: 1px solid #f0f0f0; color: #333; }
+  .mc-amort__table tr:last-child td { border-bottom: none; }
+
+  .mc-cta {
+    background: #111; border-radius: 12px; padding: 28px; text-align: center;
+  }
+  .mc-cta p { font-size: 15px; color: #aaa; line-height: 1.6; margin-bottom: 16px; }
+  .mc-cta__btn {
+    display: inline-block; padding: 12px 32px; background: #FF1616; color: #fff;
+    font-size: 14px; font-weight: 600; border-radius: 8px; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .mc-cta__btn:hover { background: #e01212; }
+
+  /* Locked results */
+  .mc-results--locked {
+    filter: blur(8px);
+    pointer-events: none;
+    user-select: none;
+    position: relative;
+    transition: filter 0.4s;
+  }
+  .mc-results--unlocked {
+    filter: none;
+    pointer-events: auto;
+    user-select: auto;
+  }
+
+  /* Lead Gate Modal */
+  .mc-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+  .mc-gate__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+  }
+  .mc-gate__modal {
+    position: relative;
+    z-index: 1;
+    background: #111;
+    border-radius: 10px;
+    padding: 2.5rem 2rem;
+    max-width: 460px;
+    width: 100%;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  }
+  .mc-gate__modal h2 {
+    color: #fff;
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .mc-gate__sub {
+    text-align: center;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .mc-gate__field {
+    margin-bottom: 1rem;
+  }
+  .mc-gate__field label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 0.35rem;
+  }
+  .mc-gate__field input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 0.9rem;
+    transition: border-color 0.2s;
+  }
+  .mc-gate__field input::placeholder { color: rgba(255,255,255,0.3); }
+  .mc-gate__field input:focus { outline: none; border-color: #FF1616; }
+  .mc-gate__field input.mc-err { border-color: #FF1616; }
+  .mc-gate__error {
+    padding: 0.6rem 1rem;
+    background: rgba(255,22,22,0.15);
+    border: 1px solid rgba(255,22,22,0.3);
+    border-radius: 6px;
+    color: #FF1616;
+    font-size: 0.85rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .mc-gate__privacy {
+    text-align: center;
+    color: rgba(255,255,255,0.35);
+    font-size: 0.72rem;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 900px) {
+    .mc-layout { grid-template-columns: 1fr; }
+    .mc-form { position: static; }
+    .mc-hero { height: 240px; }
+    .mc-hero__content h1 { font-size: 28px; }
+    .mc-results__total { font-size: 32px; }
+    .mc-summary__grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script is:inline>
+(function() {
+  var $ = function(id) { return document.getElementById(id); };
+  var fmt = function(n) { return '$' + Math.round(n).toLocaleString(); };
+
+  function calc() {
+    var price = parseFloat($('homePrice').value) || 0;
+    var downDollar = parseFloat($('downPayment').value) || 0;
+    var downPct = parseFloat($('downPaymentPct').value) || 0;
+    var rate = parseFloat($('interestRate').value) || 0;
+    var term = parseInt($('loanTerm').value) || 30;
+    var taxRate = parseFloat($('propertyTax').value) || 0;
+    var ins = parseFloat($('insurance').value) || 0;
+    var hoaVal = parseFloat($('hoa').value) || 0;
+    var loanType = $('loanType').value;
+
+    var loan = price - downDollar;
+    if (loan < 0) loan = 0;
+    var r = rate / 100 / 12;
+    var n = term * 12;
+    var pi = 0;
+    if (r > 0 && n > 0) {
+      pi = loan * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    } else if (n > 0) {
+      pi = loan / n;
+    }
+
+    var tax = (price * taxRate / 100) / 12;
+
+    // PMI: conventional with <20% down
+    var pmi = 0;
+    var ltv = price > 0 ? (loan / price) * 100 : 0;
+    if (loanType === 'conventional' && ltv > 80) {
+      pmi = (loan * 0.005) / 12; // ~0.5% annual
+    } else if (loanType === 'fha') {
+      pmi = (loan * 0.0055) / 12; // FHA MIP ~0.55%
+    }
+
+    var total = pi + tax + ins + pmi + hoaVal;
+
+    // Update display
+    $('totalPayment').textContent = fmt(total);
+    $('piPayment').textContent = fmt(pi);
+    $('taxPayment').textContent = fmt(tax);
+    $('insPayment').textContent = fmt(ins);
+    $('pmiPayment').textContent = fmt(pmi);
+    $('hoaPayment').textContent = fmt(hoaVal);
+
+    $('pmiRow').style.display = pmi > 0 ? 'flex' : 'none';
+    $('hoaRow').style.display = hoaVal > 0 ? 'flex' : 'none';
+
+    // Bar chart
+    if (total > 0) {
+      $('barPI').style.width = (pi / total * 100) + '%';
+      $('barTax').style.width = (tax / total * 100) + '%';
+      $('barIns').style.width = (ins / total * 100) + '%';
+      $('barPMI').style.width = (pmi / total * 100) + '%';
+      $('barHOA').style.width = (hoaVal / total * 100) + '%';
+    }
+
+    // Summary
+    var totalInterest = (pi * n) - loan;
+    $('loanAmount').textContent = fmt(loan);
+    $('downPaymentSummary').textContent = fmt(downDollar) + ' (' + downPct.toFixed(1) + '%)';
+    $('totalInterest').textContent = fmt(totalInterest > 0 ? totalInterest : 0);
+    $('totalCost').textContent = fmt(loan + (totalInterest > 0 ? totalInterest : 0));
+
+    // Amortization
+    buildAmort(loan, r, n, pi);
+  }
+
+  function buildAmort(loan, r, n, pi) {
+    var body = $('amortBody');
+    body.innerHTML = '';
+    var balance = loan;
+    var months = Math.min(n, 12);
+    for (var i = 1; i <= months; i++) {
+      var intPmt = balance * r;
+      var prinPmt = pi - intPmt;
+      balance -= prinPmt;
+      if (balance < 0) balance = 0;
+      var tr = document.createElement('tr');
+      tr.innerHTML = '<td>' + i + '</td><td>' + fmt(pi) + '</td><td>' + fmt(prinPmt) + '</td><td>' + fmt(intPmt) + '</td><td>' + fmt(balance) + '</td>';
+      body.appendChild(tr);
+    }
+  }
+
+  // Sync down payment dollar <-> percent
+  var syncing = false;
+  $('downPayment').addEventListener('input', function() {
+    if (syncing) return;
+    syncing = true;
+    var price = parseFloat($('homePrice').value) || 0;
+    if (price > 0) $('downPaymentPct').value = ((parseFloat(this.value) || 0) / price * 100).toFixed(1);
+    syncing = false;
+    calc();
+  });
+  $('downPaymentPct').addEventListener('input', function() {
+    if (syncing) return;
+    syncing = true;
+    var price = parseFloat($('homePrice').value) || 0;
+    $('downPayment').value = Math.round(price * (parseFloat(this.value) || 0) / 100);
+    syncing = false;
+    calc();
+  });
+  $('homePrice').addEventListener('input', function() {
+    var price = parseFloat(this.value) || 0;
+    var pct = parseFloat($('downPaymentPct').value) || 0;
+    $('downPayment').value = Math.round(price * pct / 100);
+    calc();
+  });
+
+  // All other inputs
+  ['interestRate', 'loanTerm', 'loanType', 'propertyTax', 'insurance', 'hoa'].forEach(function(id) {
+    $(id).addEventListener('input', calc);
+    $(id).addEventListener('change', calc);
+  });
+
+  // Amort toggle
+  $('amortToggle').addEventListener('click', function() {
+    var table = $('amortTable');
+    var showing = table.style.display !== 'none';
+    table.style.display = showing ? 'none' : 'block';
+    this.textContent = showing ? 'Show first 12 months' : 'Hide';
+  });
+
+  // --- Lead Gate Logic ---
+  var resultsEl = $('mcResults');
+  var gateEl = $('mcGate');
+  var gateForm = $('mcGateForm');
+  var gateError = $('mcGateError');
+  var calcBtn = $('calcBtn');
+  var unlocked = false;
+
+  function unlockResults() {
+    unlocked = true;
+    if (resultsEl) {
+      resultsEl.classList.remove('mc-results--locked');
+      resultsEl.classList.add('mc-results--unlocked');
+    }
+    if (gateEl) gateEl.style.display = 'none';
+    document.body.style.overflow = '';
+    calc();
+  }
+
+  // Check if already registered
+  if (localStorage.getItem('cpr_lead')) {
+    unlockResults();
+  }
+
+  // Calculate button click
+  calcBtn && calcBtn.addEventListener('click', function() {
+    if (unlocked || localStorage.getItem('cpr_lead')) {
+      unlockResults();
+      return;
+    }
+    // Show lead gate modal
+    if (gateEl) gateEl.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  });
+
+  // Gate form submit
+  gateForm && gateForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    gateForm.querySelectorAll('.mc-err').forEach(function(el) { el.classList.remove('mc-err'); });
+    if (gateError) gateError.style.display = 'none';
+
+    var nameIn = gateForm.querySelector('#mc-name');
+    var emailIn = gateForm.querySelector('#mc-email');
+    var phoneIn = gateForm.querySelector('#mc-phone');
+    var valid = true;
+
+    if (!nameIn.value.trim()) { nameIn.classList.add('mc-err'); valid = false; }
+    if (!emailIn.value.trim() || !emailIn.value.includes('@')) { emailIn.classList.add('mc-err'); valid = false; }
+    if (!phoneIn.value.trim()) { phoneIn.classList.add('mc-err'); valid = false; }
+    if (!valid) return;
+
+    var btn = gateForm.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; btn.textContent = 'Submitting...'; }
+
+    fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: nameIn.value.trim(),
+        email: emailIn.value.trim(),
+        phone: phoneIn.value.trim(),
+        source: 'Mortgage Calculator'
+      })
+    })
+    .then(function(res) {
+      if (!res.ok) throw new Error('fail');
+      return res.json();
+    })
+    .then(function() {
+      localStorage.setItem('cpr_lead', JSON.stringify({
+        name: nameIn.value.trim(),
+        email: emailIn.value.trim(),
+        phone: phoneIn.value.trim(),
+        registeredAt: Date.now()
+      }));
+      unlockResults();
+    })
+    .catch(function() {
+      // Still unlock on error so user isn't stuck, but log it
+      localStorage.setItem('cpr_lead', JSON.stringify({
+        name: nameIn.value.trim(),
+        email: emailIn.value.trim(),
+        phone: phoneIn.value.trim(),
+        registeredAt: Date.now()
+      }));
+      unlockResults();
+    });
+  });
+})();
+</script>

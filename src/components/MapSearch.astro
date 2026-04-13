@@ -317,7 +317,7 @@ const listingPins = listings.map((l: any) => ({
       const popupContent = '<div class="area-popup">' +
         '<div class="area-popup__name">' + area.name + '</div>' +
         '<div class="area-popup__count">' + area.count + ' active listings</div>' +
-        '<a href="/' + area.slug + '/homes-for-sale/" class="area-popup__link">View Homes</a>' +
+        '<a href="/search" class="area-popup__link">View Homes</a>' +
         '</div>';
 
       marker.bindPopup(popupContent, { offset: [0, -5] });

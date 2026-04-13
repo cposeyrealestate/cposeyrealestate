@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
 ---
 
@@ -95,8 +96,8 @@ import ContactForm from '../../components/ContactForm.astro';
             <h3>Neighborhoods</h3>
             <p>Explore the top communities in Cibolo and Schertz — from established favorites to newer developments.</p>
           </a>
-          <a href="/cibolo-schertz/homes-for-sale/" class="cs-explore__card">
-            <h3>Homes for Sale</h3>
+          <a href="/search" class="cs-explore__card">
+            <h3>Home Search</h3>
             <p>Search current listings in Cibolo and Schertz. Filter by price, area, and home type to find what's available now.</p>
           </a>
           <a href="/cibolo-schertz/restaurants/" class="cs-explore__card">
@@ -134,13 +135,15 @@ import ContactForm from '../../components/ContactForm.astro';
         <h2>Ready to Explore <span class="accent">Cibolo / Schertz</span>?</h2>
         <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Whether you're just starting your search or ready to schedule showings, I can help you navigate the market and find the right fit.</p>
         <div class="cs-cta__buttons">
-          <a href="/cibolo-schertz/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="/search" class="btn btn-primary">Search Homes</a>
           <a href="#contact" class="btn btn-outline">Ask About Cibolo / Schertz</a>
         </div>
       </div>
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/cibolo-schertz-home.png" />
+
   <ContactForm context="I'd like to learn more about Cibolo / Schertz..." />
   <Footer />
 </Layout>
@@ -150,7 +153,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .cs-hero {
     position: relative;
     height: 320px;
-    background: #000;
+    background: url('/images/generated/cibolo-schertz-home.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -161,8 +164,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .cs-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .cs-hero__content {

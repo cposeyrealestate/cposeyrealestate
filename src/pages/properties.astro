@@ -2,11 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import ParallaxBanner from '../components/ParallaxBanner.astro';
 ---
 
 <Layout
   title="Search Homes | Cody Posey Real Estate | New Braunfels, TX"
-  description="Search all homes for sale and lease in New Braunfels, TX. Browse MLS listings with Cody Posey Real Estate."
+  description="Search all homes for sale in New Braunfels, TX. Browse MLS listings with Cody Posey Real Estate."
 >
   <Navbar />
   <main style="padding-top: 80px;">
@@ -14,7 +15,7 @@ import Footer from '../components/Footer.astro';
       <div class="properties-hero__overlay"></div>
       <div class="properties-hero__content">
         <h1>Search <span style="color:#FF1616;">Properties</span></h1>
-        <p>Find homes for sale and lease in New Braunfels and the Texas Hill Country</p>
+        <p>Find homes for sale in New Braunfels and the Texas Hill Country</p>
       </div>
     </div>
 
@@ -22,7 +23,7 @@ import Footer from '../components/Footer.astro';
       <div class="container">
         <div class="section-title">
           <h2>Featured <span class="accent">Listings</span></h2>
-          <p>Browse our featured homes for sale and lease</p>
+          <p>Browse our featured homes for sale</p>
         </div>
 
         <div class="idx-embed">
@@ -36,6 +37,7 @@ import Footer from '../components/Footer.astro';
       </div>
     </section>
   </main>
+  <ParallaxBanner image="/images/generated/nb-neighborhood.png" />
   <Footer />
 </Layout>
 
@@ -43,7 +45,7 @@ import Footer from '../components/Footer.astro';
   .properties-hero {
     position: relative;
     height: 280px;
-    background: #000;
+    background: url('/images/generated/home-nb-modern.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,8 +56,7 @@ import Footer from '../components/Footer.astro';
   .properties-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .properties-hero__content {

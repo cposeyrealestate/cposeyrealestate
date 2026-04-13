@@ -1,0 +1,290 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
+
+const categories = [
+  {
+    title: 'Exterior',
+    items: [
+      'Does the house need painting? Are there any holes or cracks?',
+      'Are the walks and porches clean and in good repair?',
+      'Does the front of the home give a "welcome" appearance?',
+    ],
+  },
+  {
+    title: 'Landscaping',
+    items: [
+      'Does the yard look well-maintained?',
+      'Are the trees and bushes trimmed?',
+      'Is the lawn mowed and edged?',
+      'Is the yard free of weeds?',
+      'Are the decks and patios clean?',
+    ],
+  },
+  {
+    title: 'Roof',
+    items: [
+      'Does it leak?',
+      'Are there any shingles or tiles missing?',
+      'Does it sag?',
+      'Is the chimney in good shape?',
+    ],
+  },
+  {
+    title: 'Walls',
+    items: [
+      'Are there any cracks or holes?',
+      'Do they need painting?',
+      'What about wallpaper — is it dated or peeling?',
+    ],
+  },
+  {
+    title: 'Kitchen',
+    items: [
+      'Are the appliances clean and in working order?',
+      'Are the cabinets in good condition and tidy?',
+      'Are the countertops in good condition?',
+      'Is the tile grout clean?',
+      'Is the sink stained, chipped, or in need of recaulking?',
+    ],
+  },
+  {
+    title: 'Ceilings',
+    items: [
+      'Are there any water stains?',
+      'Are they cracked or peeling?',
+      'Do they need painting?',
+    ],
+  },
+  {
+    title: 'Carpets & Flooring',
+    items: [
+      'Are they clean?',
+      'Are they worn?',
+      'Do they need stretching?',
+      'Are there any spots or faded areas?',
+    ],
+  },
+  {
+    title: 'Bathrooms',
+    items: [
+      'Do the faucets shut off completely?',
+      'Do the sinks drain freely?',
+      'Are the toilets in good condition?',
+      'Are the shower doors shiny?',
+      'Do the tubs need caulking?',
+      'Is the floor in good condition?',
+      'Are the vanities and mirrors in good condition?',
+    ],
+  },
+  {
+    title: 'Windows',
+    items: [
+      'Are the drapes, shutters, and/or shades working properly?',
+      'Are they clean and attractive?',
+      'Are any screens bent?',
+      'Do the windows open and close easily?',
+      'Do you need to replace storm windows?',
+      'Are the windowsills clean? Is there any rot or rust?',
+    ],
+  },
+  {
+    title: 'Doors',
+    items: [
+      'Are they in good condition?',
+      'Are they sagging or sticking?',
+      'Do the locks work?',
+      'Is the paint in good condition?',
+      'Do the doors seal tightly?',
+      'Do you need to replace storm doors?',
+    ],
+  },
+  {
+    title: 'Fireplace',
+    items: [
+      'Is it clean?',
+      'Is the screen in good shape?',
+      'Does it make an attractive display?',
+    ],
+  },
+  {
+    title: 'Garage',
+    items: [
+      'Is it organized?',
+      'Is there sufficient lighting?',
+      'Is the floor swept?',
+      'Are there oil spots or other stains on the concrete?',
+    ],
+  },
+  {
+    title: 'Attic',
+    items: [
+      'Is it organized?',
+      'Is there sufficient lighting?',
+      'Is it clean?',
+      'Are the stairs in good repair?',
+      'Do the doors open and close easily?',
+      'Are there any signs of insects or rodents?',
+    ],
+  },
+];
+---
+
+<Layout
+  title="Home Sale Checklist | Seller's Guide | Popby Realty"
+  description="A room-by-room checklist to evaluate your home's condition before listing. Identify what needs attention to maximize your sale price."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <div class="sp-hero">
+      <div class="sp-hero__overlay"></div>
+      <div class="sp-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/sellers-guide">Seller's Guide</a> <span>/</span> <span>Sale Checklist</span>
+        </nav>
+        <h1>Home Sale <span style="color:#FF1616;">Checklist</span></h1>
+        <p>A room-by-room evaluation to get your home ready for market</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="sp-content">
+          <p class="sp-lead">Walk through each area of your home and honestly evaluate its condition. This checklist will help you identify what needs attention before listing so you can present your home in the best possible light and avoid surprises during the buyer's inspection.</p>
+
+          <div class="cl-grid">
+            {categories.map((cat) => (
+              <div class="cl-card">
+                <h3>{cat.title}</h3>
+                <ul>
+                  {cat.items.map((item) => (
+                    <li>
+                      <span class="cl-checkbox"></span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div class="sp-cta">
+            <p>Want a professional opinion on what to address before listing? I offer a complimentary pre-listing walkthrough to help you prioritize.</p>
+            <a href="#contact" class="btn btn-primary">Request a Walkthrough</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ParallaxBanner image="/images/generated/comal-river.png" />
+  <ContactForm context="I'd like a pre-listing walkthrough of my home..." />
+  <Footer />
+</Layout>
+
+<style>
+  .sp-hero {
+    position: relative;
+    height: 280px;
+    background: url('/images/generated/sellers-guide-hero.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .sp-hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
+  .sp-hero__content { position: relative; z-index: 1; padding: 0 1.5rem; }
+  .sp-hero__content h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 0.5rem; }
+  .sp-hero__content p { color: rgba(255,255,255,0.7); font-size: 0.95rem; max-width: 550px; margin: 0 auto; }
+
+  .breadcrumb { font-size: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.5); }
+  .breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .sp-content { max-width: 900px; margin: 0 auto; }
+
+  .sp-lead {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .cl-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cl-card {
+    background: var(--light-gray);
+    border-radius: 8px;
+    padding: 1.75rem;
+  }
+
+  .cl-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #111;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #FF1616;
+  }
+
+  .cl-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .cl-card li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.88rem;
+    color: #555;
+    line-height: 1.6;
+    padding: 0.4rem 0;
+  }
+
+  .cl-checkbox {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .sp-cta {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: #111;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .sp-cta p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  @media (max-width: 600px) {
+    .cl-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

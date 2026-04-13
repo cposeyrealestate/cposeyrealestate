@@ -1,0 +1,232 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+import ParallaxBanner from '../components/ParallaxBanner.astro';
+
+const sections = [
+  {
+    title: 'Preparing Your Home for Sale',
+    description: 'A comprehensive guide to getting your home market-ready — from curb appeal to interior staging and system checks.',
+    href: '/sellers-guide/preparing-for-sale',
+    icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>`,
+  },
+  {
+    title: 'Preparing for Photographs',
+    description: 'Tips to make your home look its best for listing photos — the first impression most buyers will have of your property.',
+    href: '/sellers-guide/preparing-for-photos',
+    icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>`,
+  },
+  {
+    title: '10 Ways to Prepare for Inspection',
+    description: 'Simple steps to help your home inspection go smoothly and avoid unnecessary delays or surprises.',
+    href: '/sellers-guide/inspection-prep',
+    icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
+  },
+  {
+    title: 'Home Sale Checklist',
+    description: 'A room-by-room checklist to evaluate your home\'s condition before listing — identify what needs attention.',
+    href: '/sellers-guide/sale-checklist',
+    icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>`,
+  },
+];
+---
+
+<Layout
+  title="Seller's Guide | Preparing Your Home for Sale | Popby Realty"
+  description="Your complete guide to selling a home in New Braunfels and the Texas Hill Country. Learn how to prepare your home for sale, photos, inspections, and more."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="sg-hero">
+      <div class="sg-hero__overlay"></div>
+      <div class="sg-hero__content">
+        <h1>Seller's <span style="color:#FF1616;">Guide</span></h1>
+        <p>Everything you need to know to prepare your home for a successful sale in the Texas Hill Country</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="sg-intro">Selling your home is a major decision, and preparation makes all the difference. From maximizing curb appeal to acing the inspection, these guides will help you get the most value from your home and ensure a smooth transaction from listing to closing.</p>
+      </div>
+    </section>
+
+    <!-- Section Cards -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="sg-cards">
+          {sections.map((s) => (
+            <a href={s.href} class="sg-card">
+              <div class="sg-card__icon" set:html={s.icon} />
+              <h3>{s.title}</h3>
+              <p>{s.description}</p>
+              <span class="sg-card__link">Learn More &rarr;</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="sg-cta">
+      <div class="sg-cta__overlay"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <h2>Thinking About <span class="accent">Selling</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Whether you're ready to list or just exploring your options, I'll help you understand your home's value and create a strategy to get the best results.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="/home-value" class="btn btn-primary">Get Your Home Value</a>
+          <a href="#contact" class="btn btn-outline">Let's Connect</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ParallaxBanner image="/images/generated/comal-river.png" />
+
+  <ContactForm context="I'm thinking about selling my home in the New Braunfels area..." />
+  <Footer />
+</Layout>
+
+<style>
+  .sg-hero {
+    position: relative;
+    height: 320px;
+    background: url('/images/generated/sellers-guide-hero.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .sg-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+  }
+
+  .sg-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .sg-hero__content h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .sg-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+    max-width: 550px;
+    margin: 0 auto;
+  }
+
+  .sg-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 750px;
+    text-align: center;
+    margin: 0 auto;
+    font-weight: 600;
+  }
+
+  .sg-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .sg-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    padding: 2.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .sg-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+  }
+
+  .sg-card__icon {
+    margin: 0 auto 1.25rem;
+  }
+
+  .sg-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.75rem;
+    color: #000;
+  }
+
+  .sg-card p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    flex-grow: 1;
+  }
+
+  .sg-card__link {
+    display: inline-block;
+    margin-top: 1.25rem;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #FF1616;
+    transition: letter-spacing 0.2s;
+  }
+
+  .sg-card:hover .sg-card__link {
+    letter-spacing: 0.14em;
+  }
+
+  .sg-cta {
+    position: relative;
+    padding: 5rem 0;
+    color: #fff;
+    text-align: center;
+    background-image: url('/images/generated/sellers-guide-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #333;
+  }
+
+  .sg-cta__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+  }
+
+  .sg-cta h2 {
+    color: #fff;
+  }
+
+  @media (max-width: 600px) {
+    .sg-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .sg-cta {
+      background-attachment: scroll;
+    }
+  }
+</style>

@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
+import ParallaxBanner from '../components/ParallaxBanner.astro';
 
 const testimonials = [
   {
@@ -258,6 +259,8 @@ const totalPages = Math.ceil(testimonials.length / REVIEWS_PER_PAGE);
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/home-interior-hc.png" />
+
   <ContactForm context="I'd like to work with Cody..." />
   <Footer />
 </Layout>

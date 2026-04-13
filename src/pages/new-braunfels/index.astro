@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
 ---
 
@@ -96,8 +97,8 @@ import ContactForm from '../../components/ContactForm.astro';
             <h3>Neighborhoods</h3>
             <p>Understand how the city is laid out — from Gruene to the I-35 corridor — and find the area that fits your lifestyle.</p>
           </a>
-          <a href="/new-braunfels/homes-for-sale/" class="nb-explore__card">
-            <h3>Homes for Sale</h3>
+          <a href="/search" class="nb-explore__card">
+            <h3>Home Search</h3>
             <p>Search current listings in New Braunfels. Filter by price, area, and home type to find what's available now.</p>
           </a>
           <a href="/new-braunfels/new-construction/" class="nb-explore__card">
@@ -158,13 +159,15 @@ import ContactForm from '../../components/ContactForm.astro';
         <h2>Ready to Explore <span class="accent">New Braunfels</span>?</h2>
         <p>Whether you're just starting your search or ready to schedule showings, I can help you navigate the market and find the right fit.</p>
         <div class="nb-cta__buttons">
-          <a href="/new-braunfels/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="/search" class="btn btn-primary">Search Homes</a>
           <a href="#contact" class="btn btn-outline">Ask About New Braunfels</a>
         </div>
       </div>
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/guadalupe-river.png" />
+
   <ContactForm context="I'd like to learn more about New Braunfels..." />
   <Footer />
 </Layout>
@@ -174,7 +177,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .nb-hero {
     position: relative;
     height: 320px;
-    background: #000;
+    background: url('/images/generated/comal-river.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -185,8 +188,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .nb-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .nb-hero__content {

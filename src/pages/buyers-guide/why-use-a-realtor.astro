@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 ---
 
 <Layout
@@ -103,6 +104,8 @@ import Footer from '../../components/Footer.astro';
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/guadalupe-river.png" />
+
   <ContactForm context="I'd like to work with a REALTOR for my home search..." />
   <Footer />
 </Layout>
@@ -111,7 +114,7 @@ import Footer from '../../components/Footer.astro';
   .sub-hero {
     position: relative;
     height: 280px;
-    background: #000;
+    background: url('/images/generated/hill-country-home-1.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -122,8 +125,7 @@ import Footer from '../../components/Footer.astro';
   .sub-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .sub-hero__content {

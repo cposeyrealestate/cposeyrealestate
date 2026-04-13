@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
 ---
 
@@ -39,48 +40,53 @@ import ContactForm from '../../components/ContactForm.astro';
         </div>
 
         <div class="bv-area">
+          <img src="/images/generated/neighborhoods/bv-indian-springs.png" alt="Estates at Indian Springs homes" class="bv-hood__img" loading="lazy" />
           <h3>Estates at Indian Springs</h3>
           <div class="bv-area__meta">
             <span class="bv-area__price">$400K - $700K</span>
             <span class="bv-area__district">Comal ISD</span>
           </div>
-          <p>Large lots and custom-style homes define this established community. Estates at Indian Springs appeals to buyers looking for space, privacy, and a Hill Country setting with room to spread out. Lot sizes here are generous compared to more densely developed neighborhoods closer to the city.</p>
+          <p>A tranquil, family-oriented gated community nestled in the Hill Country, Estates at Indian Springs offers a quiet atmosphere with beautiful views and deep 80-foot wide lots lined with mature oak trees. Residents enjoy an amenity center, pool, playgrounds, and green belts with walking trails. This is a great fit for buyers looking for space, privacy, and a true Hill Country setting.</p>
         </div>
 
         <div class="bv-area">
+          <img src="/images/generated/neighborhoods/bv-bulverde-village.png" alt="Bulverde Village homes" class="bv-hood__img" loading="lazy" />
           <h3>Bulverde Village</h3>
           <div class="bv-area__meta">
             <span class="bv-area__price">$350K - $550K</span>
             <span class="bv-area__district">Comal ISD</span>
           </div>
-          <p>Conveniently located near schools and local services, Bulverde Village offers a family-friendly environment with easy access to the essentials. The community balances a neighborhood feel with proximity to Bulverde's main corridors.</p>
+          <p>Bulverde Village offers a serene suburban lifestyle with genuine Hill Country charm, featuring mature oak-lined streets and rolling terrain throughout the community. Amenities include a community park with walking and jogging paths, basketball and sand volleyball courts, playgrounds, a splash pad, a luxurious clubhouse, and a pool. The peaceful, friendly atmosphere makes it a popular choice for families looking for convenience near schools and local services.</p>
         </div>
 
         <div class="bv-area">
+          <img src="/images/generated/neighborhoods/bv-hidden-trails.png" alt="Hidden Trails homes" class="bv-hood__img" loading="lazy" />
           <h3>Hidden Trails</h3>
           <div class="bv-area__meta">
             <span class="bv-area__price">$200K - $400K</span>
             <span class="bv-area__district">Comal ISD</span>
           </div>
-          <p>A more accessible price point with well-built brick homes and a quiet, established feel. Hidden Trails is a solid option for first-time buyers and families looking for value in the Bulverde area without sacrificing the Hill Country lifestyle.</p>
+          <p>Hidden Trails is a master-planned community offering a relaxed, family-oriented lifestyle with resort-level amenities including multiple swimming pools (infinity-edge, beach-entry, and Junior Olympic), a 24/7 fitness center, clubhouse, playgrounds, basketball courts, and a catch-and-release fishing pond. An extensive trail network provides options for walking, hiking, and biking. It is a solid option for first-time buyers and families looking for value in the Bulverde area without sacrificing amenities or the Hill Country lifestyle.</p>
         </div>
 
         <div class="bv-area">
+          <img src="/images/generated/neighborhoods/bv-johnson-ranch.png" alt="Johnson Ranch homes" class="bv-hood__img" loading="lazy" />
           <h3>Johnson Ranch</h3>
           <div class="bv-area__meta">
             <span class="bv-area__price">$350K - $600K</span>
             <span class="bv-area__district">Comal ISD</span>
           </div>
-          <p>A master-planned community with resort-style amenities including pools, parks, and trails. Johnson Ranch attracts families and move-up buyers who want a neighborhood with built-in lifestyle features and a strong sense of community.</p>
+          <p>A distinctive master-planned community spanning 767 acres, with one-third dedicated to natural open space, Johnson Ranch features scenic views, mature oak trees, and extensive trails throughout. Ten distinct neighborhoods offer various home sizes and lot options, from standard to estate-sized properties. This community attracts families and move-up buyers who want built-in lifestyle features and a strong sense of community.</p>
         </div>
 
         <div class="bv-area">
+          <img src="/images/generated/neighborhoods/bv-singing-hills.png" alt="Singing Hills homes" class="bv-hood__img" loading="lazy" />
           <h3>Singing Hills</h3>
           <div class="bv-area__meta">
             <span class="bv-area__price">$300K - $500K</span>
             <span class="bv-area__district">Comal ISD</span>
           </div>
-          <p>Hill Country views and a peaceful setting make Singing Hills a popular choice for buyers who prioritize scenery and a quieter pace. The community offers a mix of home styles with the rolling terrain that defines the Bulverde landscape.</p>
+          <p>Also known as The Preserve at Singing Hills, this serene, family-friendly community in the Bulverde/Spring Branch area features rolling hills and lush greenery throughout. Residents enjoy convenient access to the Guadalupe River and Canyon Lake, with homes typically offering 3 to 5 bedrooms. The peaceful setting and natural scenery make Singing Hills a popular choice for buyers who prioritize a quieter pace of life.</p>
         </div>
       </div>
     </section>
@@ -112,6 +118,8 @@ import ContactForm from '../../components/ContactForm.astro';
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/comal-river.png" />
+
   <ContactForm context="I need help narrowing down Bulverde neighborhoods..." />
   <Footer />
 </Layout>
@@ -120,7 +128,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .bv-hero {
     position: relative;
     height: 280px;
-    background: #000;
+    background: url('/images/generated/home-nb-modern.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -131,8 +139,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .bv-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .bv-hero__content {
@@ -187,10 +194,16 @@ import ContactForm from '../../components/ContactForm.astro';
   /* Area Cards */
   .bv-area {
     background: #fff;
-    padding: 2rem;
     border-radius: 8px;
     margin-bottom: 1.5rem;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+
+  .bv-hood__img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
   }
 
   .bv-area h3 {
@@ -198,6 +211,7 @@ import ContactForm from '../../components/ContactForm.astro';
     font-size: 1.2rem;
     text-transform: uppercase;
     margin-bottom: 0.5rem;
+    padding: 1.5rem 2rem 0 2rem;
   }
 
   .bv-area__meta {
@@ -205,6 +219,8 @@ import ContactForm from '../../components/ContactForm.astro';
     gap: 1rem;
     margin-bottom: 0.75rem;
     flex-wrap: wrap;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .bv-area__price {
@@ -226,10 +242,13 @@ import ContactForm from '../../components/ContactForm.astro';
     color: var(--gray);
     line-height: 1.7;
     margin-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .bv-area p:last-child {
     margin-bottom: 0;
+    padding-bottom: 2rem;
   }
 
   /* Schools */

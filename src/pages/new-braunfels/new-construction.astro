@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
 ---
 
@@ -142,6 +143,8 @@ import ContactForm from '../../components/ContactForm.astro';
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/guadalupe-river.png" />
+
   <ContactForm context="I'm interested in touring new construction..." />
   <Footer />
 </Layout>
@@ -150,7 +153,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .nb-hero {
     position: relative;
     height: 280px;
-    background: #000;
+    background: url('/images/generated/home-nb-modern.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -161,8 +164,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .nb-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .nb-hero__content {

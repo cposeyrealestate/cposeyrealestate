@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
+import ParallaxBanner from '../components/ParallaxBanner.astro';
 
 const areas = [
   {
@@ -56,7 +57,7 @@ const areas = [
   <main style="padding-top: 80px;">
 
     <!-- Hero -->
-    <div class="ea-hero">
+    <div class="ea-hero" style="background-image:url('/images/generated/hill-country-aerial.png');">
       <div class="ea-hero__overlay"></div>
       <div class="ea-hero__content">
         <h1>Explore the <span style="color:#FF1616;">Area</span></h1>
@@ -93,7 +94,7 @@ const areas = [
               <div class="ea-area__links">
                 <a href={`/${area.slug}/`}>Overview</a>
                 <a href={`/${area.slug}/neighborhoods/`}>Neighborhoods</a>
-                <a href={`/${area.slug}/homes-for-sale/`}>Homes for Sale</a>
+                <a href="/search">Home Search</a>
                 <a href={`/${area.slug}/restaurants/`}>Restaurants</a>
                 <a href={`/${area.slug}/things-to-do/`}>Things to Do</a>
               </div>
@@ -114,6 +115,8 @@ const areas = [
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/hill-country-sunset.png" />
+
   <ContactForm context="I'm exploring areas in the Texas Hill Country and need guidance..." />
   <Footer />
 </Layout>
@@ -123,7 +126,8 @@ const areas = [
   .ea-hero {
     position: relative;
     height: 320px;
-    background: #000;
+    background-size: cover;
+    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -134,8 +138,7 @@ const areas = [
   .ea-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .ea-hero__content {

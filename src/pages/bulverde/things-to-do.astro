@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
 ---
 
@@ -38,45 +39,45 @@ import ContactForm from '../../components/ContactForm.astro';
           <h2>Local <span class="accent">Highlights</span></h2>
         </div>
 
-        <div class="bv-activity">
+        <a href="https://tpwd.texas.gov/state-parks/guadalupe-river" target="_blank" rel="noopener" class="bv-activity">
           <div class="bv-activity__header">
             <h3>Guadalupe River State Park</h3>
             <span class="bv-activity__tag">Outdoor</span>
           </div>
           <p>Nearly 1,900 acres of Hill Country terrain along four miles of the Guadalupe River. Swimming, tubing, fishing, and hiking are all accessible from the park's well-maintained trails and river access points. One of the most popular outdoor destinations in the region and a major draw for Bulverde residents.</p>
-        </div>
+        </a>
 
-        <div class="bv-activity">
+        <a href="https://tpwd.texas.gov/state-parks/guadalupe-river" target="_blank" rel="noopener" class="bv-activity">
           <div class="bv-activity__header">
             <h3>Honey Creek State Natural Area</h3>
             <span class="bv-activity__tag">Outdoor</span>
           </div>
           <p>A guided-tours-only natural area adjacent to Guadalupe River State Park. Honey Creek features a spring-fed creek, old-growth forest, and caves — offering a more immersive and less crowded experience than the main park. Tours are led by park staff and provide a rare look at undeveloped Hill Country landscape.</p>
-        </div>
+        </a>
 
-        <div class="bv-activity">
+        <a href="https://www.marriott.com/en-us/hotels/satjw-jw-marriott-san-antonio-hill-country-resort-and-spa/overview/" target="_blank" rel="noopener" class="bv-activity">
           <div class="bv-activity__header">
             <h3>JW Marriott Hill Country Resort</h3>
             <span class="bv-activity__tag">Entertainment</span>
           </div>
           <p>A world-class resort just minutes from Bulverde featuring multiple restaurants, a full-service spa, two golf courses, and a lazy river. While it's a destination for visitors, locals are welcome for dining and many of the resort's amenities — making it a convenient option for a night out or a weekend staycation.</p>
-        </div>
+        </a>
 
-        <div class="bv-activity">
+        <a href="https://www.bulverdetx.gov/" target="_blank" rel="noopener" class="bv-activity">
           <div class="bv-activity__header">
             <h3>Krawietz Park</h3>
             <span class="bv-activity__tag">Outdoor</span>
           </div>
           <p>Opened in 2025, Krawietz Park is one of the newest outdoor spaces in the Bulverde area. The park features a disc golf course and walking trails, giving residents a local option for recreation without needing to drive to a state park. A welcome addition to the community's growing list of outdoor amenities.</p>
-        </div>
+        </a>
 
-        <div class="bv-activity">
+        <a href="https://springbranchicehouse.com/" target="_blank" rel="noopener" class="bv-activity">
           <div class="bv-activity__header">
             <h3>Spring Branch Icehouse</h3>
             <span class="bv-activity__tag">Nightlife</span>
           </div>
           <p>Live music, food trucks, and Hill Country vibes. Spring Branch Icehouse is the kind of laid-back spot that defines the area's social scene — a place to grab a drink, catch a local band, and enjoy the evening outdoors. A staple for residents looking for entertainment close to home.</p>
-        </div>
+        </a>
       </div>
     </section>
 
@@ -86,13 +87,15 @@ import ContactForm from '../../components/ContactForm.astro';
         <h2>Thinking About <span class="accent">Living Here</span>?</h2>
         <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Bulverde offers the Hill Country lifestyle with easy access to everything you need. If you're considering the area, I can help you find a home that fits.</p>
         <div class="bv-cta__buttons">
-          <a href="/bulverde/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="/search" class="btn btn-primary">Search Homes</a>
           <a href="#contact" class="btn btn-outline">Ask About Bulverde</a>
         </div>
       </div>
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/comal-river.png" />
+
   <ContactForm context="I'd like to learn more about living in Bulverde..." />
   <Footer />
 </Layout>
@@ -101,7 +104,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .bv-hero {
     position: relative;
     height: 280px;
-    background: #000;
+    background: url('/images/generated/hill-country-home-2.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -112,8 +115,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .bv-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .bv-hero__content {
@@ -172,6 +174,9 @@ import ContactForm from '../../components/ContactForm.astro';
     border-radius: 8px;
     margin-bottom: 1.5rem;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    text-decoration: none;
+    color: inherit;
+    display: block;
   }
 
   .bv-activity__header {
@@ -188,6 +193,11 @@ import ContactForm from '../../components/ContactForm.astro';
     font-size: 1.2rem;
     text-transform: uppercase;
     margin: 0;
+    transition: color 0.2s;
+  }
+
+  .bv-activity:hover h3 {
+    color: #FF1616;
   }
 
   .bv-activity__tag {

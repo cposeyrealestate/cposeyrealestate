@@ -215,10 +215,10 @@
         phone: phoneInput.value.trim()
       };
 
-      fetch('/api/lead-capture', {
+      fetch('/api/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: JSON.stringify({ name: data.name, email: data.email, phone: data.phone, source: 'Lead Gate' })
       })
       .then(function(res) {
         if (!res.ok) throw new Error('Server error');

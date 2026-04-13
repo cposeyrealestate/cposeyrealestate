@@ -216,8 +216,29 @@ const { context = "I'm interested in learning more about New Braunfels real esta
     if (!message.value.trim()) { message.classList.add('error'); valid = false; }
 
     if (valid) {
-      form.style.display = 'none';
-      success.style.display = 'flex';
+      var submitBtn = form.querySelector('.contact-form__submit');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name.value.trim(),
+          email: email.value.trim(),
+          phone: (form.querySelector('#cf-phone') || {}).value || '',
+          message: message.value.trim(),
+          source: 'Contact Form'
+        })
+      })
+      .then(function() {
+        form.style.display = 'none';
+        success.style.display = 'flex';
+      })
+      .catch(function() {
+        form.style.display = 'none';
+        success.style.display = 'flex';
+      });
     }
   });
 </script>

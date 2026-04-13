@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
 ---
 
@@ -40,17 +41,19 @@ import ContactForm from '../../components/ContactForm.astro';
 
         <div class="nb-neighborhood__grid">
           <div class="nb-neighborhood__card">
+            <img src="/images/generated/neighborhoods/nb-river-chase.png" alt="River Chase neighborhood homes" class="nb-neighborhood__img" loading="lazy" />
             <h3>River Chase</h3>
-            <p>Master-planned community with pool, splash pad, and trails. Popular with families seeking newer construction and community amenities.</p>
+            <p>Private, peaceful Hill Country living with resort-style amenities including a clubhouse, fitness center, swimming pools, sports courts, butterfly garden, leisure pond, and walking trails. Custom-built homes sit on spacious lots, and the community features a private NBRC River Park with exclusive Guadalupe River access. Served by Comal ISD.</p>
             <div class="nb-neighborhood__tags">
-              <span class="nb-neighborhood__tag">$350K - $550K</span>
+              <span class="nb-neighborhood__tag">$550K - $1.5M</span>
               <span class="nb-neighborhood__tag">Comal ISD</span>
             </div>
           </div>
 
           <div class="nb-neighborhood__card">
+            <img src="/images/generated/neighborhoods/nb-vintage-oaks.png" alt="Vintage Oaks neighborhood homes" class="nb-neighborhood__img" loading="lazy" />
             <h3>Vintage Oaks</h3>
-            <p>3,900-acre luxury build-on-your-lot community in the Hill Country. Large homesites, resort-style amenities, and panoramic views.</p>
+            <p>A 3,900-acre luxury Hill Country community featuring spacious custom homes on generous lots ranging from 1 to 14+ acres. Resort-style amenities include a Tuscan-style clubhouse, multiple pools with an Olympic-sized pool and lazy river, fitness center, sports courts, and miles of nature trails. Known for panoramic Hill Country views throughout the community.</p>
             <div class="nb-neighborhood__tags">
               <span class="nb-neighborhood__tag">$500K - $2M+</span>
               <span class="nb-neighborhood__tag">Comal ISD</span>
@@ -58,37 +61,41 @@ import ContactForm from '../../components/ContactForm.astro';
           </div>
 
           <div class="nb-neighborhood__card">
+            <img src="/images/generated/neighborhoods/nb-copper-ridge.png" alt="Copper Ridge neighborhood homes" class="nb-neighborhood__img" loading="lazy" />
             <h3>Copper Ridge</h3>
-            <p>Established neighborhood with mature trees, walking trails, and a strong sense of community. Popular move-up option.</p>
+            <p>A premier, gated and guarded community featuring expansive custom-built homes on 1-3 acre estate lots in a serene Hill Country setting with mature trees. Resort-style amenities include 24/7 gated entry, a community pool, clubhouse, and tennis courts. Served by Comal ISD.</p>
             <div class="nb-neighborhood__tags">
-              <span class="nb-neighborhood__tag">$300K - $450K</span>
+              <span class="nb-neighborhood__tag">$700K - $2M</span>
               <span class="nb-neighborhood__tag">Comal ISD</span>
             </div>
           </div>
 
           <div class="nb-neighborhood__card">
+            <img src="/images/generated/neighborhoods/nb-manor-creek.png" alt="Manor Creek neighborhood homes" class="nb-neighborhood__img" loading="lazy" />
             <h3>Manor Creek</h3>
-            <p>Hill Country lots with custom homes and scenic views. Smaller community with a private, secluded feel.</p>
+            <p>A gated community with a family-friendly atmosphere, featuring a community clubhouse, pool, and playground. Homes sit on generous ~1/3 acre lots with mature trees and offer various floor plans with a mix of stone, brick, and stucco exteriors in Hill Country traditional style.</p>
             <div class="nb-neighborhood__tags">
-              <span class="nb-neighborhood__tag">$400K - $600K</span>
+              <span class="nb-neighborhood__tag">$500K - $750K</span>
               <span class="nb-neighborhood__tag">Comal ISD</span>
             </div>
           </div>
 
           <div class="nb-neighborhood__card">
+            <img src="/images/generated/neighborhoods/nb-veramendi.png" alt="Veramendi neighborhood homes" class="nb-neighborhood__img" loading="lazy" />
             <h3>Veramendi</h3>
-            <p>2,400-acre master-planned community with parks, trails, and mixed-use development. One of NB's largest new communities.</p>
+            <p>A 2,400-acre master-planned community blending Hill Country tranquility with modern convenience. Amenities include resort-style pools, splash pads, playgrounds, parks, sports courts, and miles of hiking and biking trails. Homes feature open-concept floor plans with stone and brick exteriors, primarily single-story options. Served by NBISD.</p>
             <div class="nb-neighborhood__tags">
-              <span class="nb-neighborhood__tag">$290K - $600K</span>
+              <span class="nb-neighborhood__tag">$350K - $800K</span>
               <span class="nb-neighborhood__tag">NBISD</span>
             </div>
           </div>
 
           <div class="nb-neighborhood__card">
+            <img src="/images/generated/neighborhoods/nb-mayfair.png" alt="Mayfair neighborhood homes" class="nb-neighborhood__img" loading="lazy" />
             <h3>Mayfair</h3>
-            <p>SouthStar Communities development with newer homes starting in the high $200Ks. Entry-level to move-up pricing.</p>
+            <p>A SouthStar Communities development spanning 300+ acres of parks with a 35-mile trail and bike lane network and a community lake. Amenities include Fairway Park, playscapes, a disc golf course, and a planned Midtown retail area. The community offers a modern small-town aesthetic.</p>
             <div class="nb-neighborhood__tags">
-              <span class="nb-neighborhood__tag">$290K - $400K</span>
+              <span class="nb-neighborhood__tag">$300K - $800K</span>
               <span class="nb-neighborhood__tag">Comal ISD</span>
             </div>
           </div>
@@ -105,19 +112,21 @@ import ContactForm from '../../components/ContactForm.astro';
 
         <div class="nb-neighborhood__grid">
           <div class="nb-neighborhood__card">
+            <img src="/images/generated/neighborhoods/nb-gruene.png" alt="Gruene Historic District homes" class="nb-neighborhood__img" loading="lazy" />
             <h3>Gruene & River Area</h3>
-            <p>Historic area near Gruene Hall and the Guadalupe River. Older homes with character, river access, and walkability to shops and restaurants.</p>
+            <p>Historic charm meets a vibrant cultural scene, with walking distance to Gruene Hall, boutique shops, and restaurants. The area offers proximity to the Guadalupe River for tubing, kayaking, and fishing. Housing includes a diverse mix of renovated historic structures, cottages, and newer custom builds.</p>
             <div class="nb-neighborhood__tags">
-              <span class="nb-neighborhood__tag">$400K - $1M+</span>
+              <span class="nb-neighborhood__tag">$400K - $2M+</span>
               <span class="nb-neighborhood__tag">NBISD</span>
             </div>
           </div>
 
           <div class="nb-neighborhood__card">
+            <img src="/images/generated/neighborhoods/nb-downtown.png" alt="Downtown New Braunfels homes" class="nb-neighborhood__img" loading="lazy" />
             <h3>Downtown & Central</h3>
             <p>Walkable neighborhoods near Main Plaza, local shops, and restaurants. Mix of historic homes and newer infill.</p>
             <div class="nb-neighborhood__tags">
-              <span class="nb-neighborhood__tag">$250K - $500K</span>
+              <span class="nb-neighborhood__tag">Varies</span>
               <span class="nb-neighborhood__tag">NBISD</span>
             </div>
           </div>
@@ -134,10 +143,21 @@ import ContactForm from '../../components/ContactForm.astro';
 
         <div class="nb-neighborhood__grid">
           <div class="nb-neighborhood__card">
+            <img src="/images/generated/neighborhoods/nb-legacy-lake-dunlap.png" alt="Legacy at Lake Dunlap homes" class="nb-neighborhood__img" loading="lazy" />
             <h3>Legacy at Lake Dunlap</h3>
-            <p>Toll Brothers, Pulte, and other national builders. Lake Dunlap access, community amenities, from the high $300Ks.</p>
+            <p>Perry Homes, Toll Brothers, and Dreese Homes are building in this master-planned community with Lake Dunlap access and resort-style community amenities.</p>
             <div class="nb-neighborhood__tags">
               <span class="nb-neighborhood__tag">$350K - $550K</span>
+              <span class="nb-neighborhood__tag">Comal ISD</span>
+            </div>
+          </div>
+
+          <div class="nb-neighborhood__card">
+            <img src="/images/generated/neighborhoods/nb-creekside.png" alt="Creekside neighborhood homes" class="nb-neighborhood__img" loading="lazy" />
+            <h3>Creekside</h3>
+            <p>A rapidly growing community in north New Braunfels with a variety of housing options from builders like Centex Homes, Liberty Home Builders, KB Home, and Value Builders. Residents enjoy community pools, parks, and easy access to the Creekside Town Center for shopping, dining, and entertainment. Served by Comal ISD.</p>
+            <div class="nb-neighborhood__tags">
+              <span class="nb-neighborhood__tag">$280K - $500K</span>
               <span class="nb-neighborhood__tag">Comal ISD</span>
             </div>
           </div>
@@ -154,6 +174,7 @@ import ContactForm from '../../components/ContactForm.astro';
 
         <div class="nb-neighborhood__grid">
           <div class="nb-neighborhood__card">
+            <img src="/images/generated/neighborhoods/nb-voss-farms.png" alt="Voss Farms homes" class="nb-neighborhood__img" loading="lazy" />
             <h3>Voss Farms</h3>
             <p>Large family-oriented community east of I-35. Multiple builders, parks, playgrounds, and community pool.</p>
             <div class="nb-neighborhood__tags">
@@ -163,10 +184,11 @@ import ContactForm from '../../components/ContactForm.astro';
           </div>
 
           <div class="nb-neighborhood__card">
+            <img src="/images/generated/neighborhoods/nb-pecan-crossing.png" alt="Pecan Crossing homes" class="nb-neighborhood__img" loading="lazy" />
             <h3>Pecan Crossing</h3>
             <p>Affordable entry-level community east of I-35. Newer construction with easy highway access.</p>
             <div class="nb-neighborhood__tags">
-              <span class="nb-neighborhood__tag">$270K - $380K</span>
+              <span class="nb-neighborhood__tag">$270K - $500K</span>
               <span class="nb-neighborhood__tag">Comal ISD</span>
             </div>
           </div>
@@ -208,6 +230,8 @@ import ContactForm from '../../components/ContactForm.astro';
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/guadalupe-river.png" />
+
   <ContactForm context="I'd like to learn more about New Braunfels neighborhoods..." />
   <Footer />
 </Layout>
@@ -217,7 +241,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .nb-hero {
     position: relative;
     height: 280px;
-    background: #000;
+    background: url('/images/generated/home-nb-ranch.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -228,8 +252,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .nb-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .nb-hero__content {
@@ -292,11 +315,28 @@ import ContactForm from '../../components/ContactForm.astro';
 
   .nb-neighborhood__card {
     background: #fff;
-    padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+  }
+
+  .nb-neighborhood__img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .nb-neighborhood__card h3,
+  .nb-neighborhood__card p,
+  .nb-neighborhood__tags {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .nb-neighborhood__tags {
+    padding-bottom: 2rem;
   }
 
   .nb-neighborhood__card h3 {
@@ -304,6 +344,7 @@ import ContactForm from '../../components/ContactForm.astro';
     font-size: 1.2rem;
     text-transform: uppercase;
     margin-bottom: 0.75rem;
+    padding-top: 1.5rem;
   }
 
   .nb-neighborhood__card p {

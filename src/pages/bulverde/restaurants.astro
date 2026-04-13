@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
 ---
 
@@ -42,11 +43,12 @@ import ContactForm from '../../components/ContactForm.astro';
           <div class="bv-restaurant__header">
             <h3>Screaming Goat Yard & Tap</h3>
             <div class="bv-restaurant__meta">
-              <span class="bv-restaurant__cuisine">American</span>
+              <span class="bv-restaurant__cuisine">Southern / American</span>
               <span class="bv-restaurant__price">$$</span>
             </div>
           </div>
-          <p>A Bulverde favorite with a laid-back outdoor yard setting. Known for their fried green BLTs and catfish Thursdays, Screaming Goat delivers solid American food with Hill Country character. Great for families, groups, and anyone who wants to eat outside with a cold drink.</p>
+          <p>A local favorite with a laid-back outdoor yard setting. Known for Southern Louisiana-style cuisine including po'boys, gumbo, and etouffee, plus live music and a great tap selection. Perfect for families, groups, and anyone who wants to eat outside with a cold drink.</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Screaming+Goat+Yard+%26+Tap+4+Sun+Valley+Spring+Branch+TX+78070" target="_blank" rel="noopener" class="bv-restaurant__address">4 Sun Valley, Spring Branch, TX 78070</a>
         </div>
 
         <div class="bv-restaurant">
@@ -57,7 +59,8 @@ import ContactForm from '../../components/ContactForm.astro';
               <span class="bv-restaurant__price">$$</span>
             </div>
           </div>
-          <p>A family-friendly neighborhood spot with a menu that spans from seafood to po'boys. Branch keeps things approachable with generous portions and a welcoming atmosphere. A reliable go-to for a casual dinner or weekend lunch with the family.</p>
+          <p>A family-friendly neighborhood spot with a diverse menu of burgers, steaks, ribs, chicken dishes, and salads. Branch keeps things approachable with generous portions and a welcoming atmosphere. A reliable go-to for a casual dinner or weekend lunch with the family.</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Branch+Neighborhood+Grill+17130+State+Highway+46+W+Spring+Branch+TX+78070" target="_blank" rel="noopener" class="bv-restaurant__address">17130 State Hwy 46 W, Spring Branch, TX 78070</a>
         </div>
 
         <div class="bv-restaurant">
@@ -68,7 +71,8 @@ import ContactForm from '../../components/ContactForm.astro';
               <span class="bv-restaurant__price">$$</span>
             </div>
           </div>
-          <p>Texas cuisine with a twist. Richter's Antler Cafe brings creative takes on familiar dishes in a comfortable Hill Country setting. A solid pick when you want something a step above standard bar and grill without the drive into the city.</p>
+          <p>Classic Texas comfort food and South Texas home-cooking favorites. Richter's Antler Cafe brings creative takes on familiar dishes in a comfortable Hill Country setting. A solid pick when you want something a step above standard bar and grill without the drive into the city.</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Richter%27s+Antler+Cafe+1+Sun+Valley+Drive+Spring+Branch+TX+78070" target="_blank" rel="noopener" class="bv-restaurant__address">1 Sun Valley Dr, Spring Branch, TX 78070</a>
         </div>
 
         <div class="bv-restaurant">
@@ -80,6 +84,7 @@ import ContactForm from '../../components/ContactForm.astro';
             </div>
           </div>
           <p>Over 25 years of smoking meat the right way. Smokey Mo's is a no-frills BBQ joint that delivers on brisket, ribs, and all the classic sides. Fast, affordable, and consistently good — exactly what you want from a Texas BBQ spot.</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Smokey+Mo%27s+BBQ+22106+Bulverde+Road+San+Antonio+TX+78259" target="_blank" rel="noopener" class="bv-restaurant__address">22106 Bulverde Rd, San Antonio, TX 78259</a>
         </div>
       </div>
     </section>
@@ -90,13 +95,15 @@ import ContactForm from '../../components/ContactForm.astro';
         <h2>Thinking About <span class="accent">Living Here</span>?</h2>
         <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Good food is part of daily life. If you're considering Bulverde, I can help you find a home near the places and lifestyle that matter to you.</p>
         <div class="bv-cta__buttons">
-          <a href="/bulverde/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="/search" class="btn btn-primary">Search Homes</a>
           <a href="#contact" class="btn btn-outline">Ask About Bulverde</a>
         </div>
       </div>
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/comal-river.png" />
+
   <ContactForm context="I'd like to learn more about living in Bulverde..." />
   <Footer />
 </Layout>
@@ -105,7 +112,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .bv-hero {
     position: relative;
     height: 280px;
-    background: #000;
+    background: url('/images/generated/hill-country-home-2.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -116,8 +123,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .bv-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .bv-hero__content {
@@ -218,7 +224,18 @@ import ContactForm from '../../components/ContactForm.astro';
   .bv-restaurant p {
     color: var(--gray);
     line-height: 1.7;
-    margin: 0;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .bv-restaurant__address {
+    display: block;
+    font-size: 0.82rem;
+    color: #FF1616;
+    transition: opacity 0.2s;
+  }
+
+  .bv-restaurant__address:hover {
+    opacity: 0.7;
   }
 
   /* CTA */

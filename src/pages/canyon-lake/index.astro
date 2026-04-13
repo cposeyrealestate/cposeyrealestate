@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
 ---
 
@@ -96,8 +97,8 @@ import ContactForm from '../../components/ContactForm.astro';
             <h3>Neighborhoods</h3>
             <p>From lakefront gated communities to Hill Country acreage — find the area that fits your lifestyle and budget.</p>
           </a>
-          <a href="/canyon-lake/homes-for-sale/" class="cl-explore__card">
-            <h3>Homes for Sale</h3>
+          <a href="/search" class="cl-explore__card">
+            <h3>Home Search</h3>
             <p>Search current listings in Canyon Lake. Filter by price, area, and home type to find what's available now.</p>
           </a>
           <a href="/canyon-lake/restaurants/" class="cl-explore__card">
@@ -136,13 +137,15 @@ import ContactForm from '../../components/ContactForm.astro';
         <h2>Ready to Explore <span class="accent">Canyon Lake</span>?</h2>
         <p>Whether you're just starting your search or ready to schedule showings, I can help you navigate the market and find the right fit.</p>
         <div class="cl-cta__buttons">
-          <a href="/canyon-lake/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="/search" class="btn btn-primary">Search Homes</a>
           <a href="#contact" class="btn btn-outline">Ask About Canyon Lake</a>
         </div>
       </div>
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/canyon-lake-water.png" />
+
   <ContactForm context="I'd like to learn more about Canyon Lake..." />
   <Footer />
 </Layout>
@@ -152,7 +155,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .cl-hero {
     position: relative;
     height: 320px;
-    background: #000;
+    background: url('/images/generated/canyon-lake-water.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -163,8 +166,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .cl-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .cl-hero__content {

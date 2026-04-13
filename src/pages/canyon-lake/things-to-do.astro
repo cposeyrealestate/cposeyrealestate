@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
 ---
 
@@ -39,41 +40,41 @@ import ContactForm from '../../components/ContactForm.astro';
         </div>
 
         <div class="cl-activity__grid">
-          <div class="cl-activity__card">
+          <a href="https://www.canyonlakechamber.org/" target="_blank" rel="noopener" class="cl-activity__card">
             <span class="cl-activity__category">Outdoor</span>
             <h3>Canyon Lake Boating</h3>
             <p>The 8,230-acre reservoir is the centerpiece of life here. With over 20 boat ramps, full-service marinas, and calm coves for anchoring, Canyon Lake is built for water sports — skiing, wakeboarding, fishing, pontoon cruising, and everything in between.</p>
-          </div>
+          </a>
 
-          <div class="cl-activity__card">
+          <a href="https://rockinr.com/" target="_blank" rel="noopener" class="cl-activity__card">
             <span class="cl-activity__category">Outdoor</span>
             <h3>Guadalupe River Whitewater</h3>
             <p>Below Canyon Dam sits some of the best whitewater in Texas. The tailrace section of the Guadalupe offers Class II-III rapids for kayaking and tubing, along with crystal-clear swimming holes carved through limestone bluffs. A year-round draw for outdoor enthusiasts.</p>
-          </div>
+          </a>
 
-          <div class="cl-activity__card">
+          <a href="https://www.whitewaterrocks.com/" target="_blank" rel="noopener" class="cl-activity__card">
             <span class="cl-activity__category">Nightlife</span>
             <h3>Whitewater Amphitheater</h3>
             <p>One of Texas' best outdoor live music venues, Whitewater Amphitheater hosts national touring acts and local favorites in a riverside setting. From country and rock to Texas singer-songwriters, it's the cultural anchor of the Canyon Lake nightlife scene.</p>
-          </div>
+          </a>
 
-          <div class="cl-activity__card">
+          <a href="https://www.swf.usace.army.mil/Locations/District-Lakes/Canyon-Lake/Overlook-Park/" target="_blank" rel="noopener" class="cl-activity__card">
             <span class="cl-activity__category">Outdoor</span>
             <h3>Overlook Park</h3>
             <p>A public day-use park managed by the Army Corps of Engineers, Overlook Park offers panoramic views of Canyon Lake and a 1-mile hiking loop through native Hill Country terrain. Great for a quick hike, a picnic, or just taking in the scenery.</p>
-          </div>
+          </a>
 
-          <div class="cl-activity__card">
+          <a href="https://canyonlakeheritagemuseum.com/" target="_blank" rel="noopener" class="cl-activity__card">
             <span class="cl-activity__category">Culture</span>
             <h3>Heritage Museum</h3>
             <p>The Canyon Lake Heritage Museum preserves the history of the Hill Country region — from pioneer life and early settlements to the geological forces that shaped the landscape. A small but worthwhile stop for history buffs and newcomers alike.</p>
-          </div>
+          </a>
 
-          <div class="cl-activity__card">
+          <a href="https://www.canyonlakechamber.org/" target="_blank" rel="noopener" class="cl-activity__card">
             <span class="cl-activity__category">Outdoor</span>
             <h3>Canyon Lake Fishing</h3>
             <p>Year-round fishing for largemouth bass, catfish, white bass, and striped bass makes Canyon Lake a destination for anglers. Multiple marinas offer boat rentals, bait, and guided trips. The lake's clear water and rocky structure create excellent conditions across all seasons.</p>
-          </div>
+          </a>
         </div>
       </div>
     </section>
@@ -84,13 +85,15 @@ import ContactForm from '../../components/ContactForm.astro';
         <h2>Ready to Make <span class="accent">Canyon Lake</span> Home?</h2>
         <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">There's a reason people fall in love with this area. If you're considering a move to Canyon Lake, I can help you find the right home near the activities that matter most to you.</p>
         <div class="cl-cta__buttons">
-          <a href="/canyon-lake/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="/search" class="btn btn-primary">Search Homes</a>
           <a href="#contact" class="btn btn-outline">Ask About Canyon Lake</a>
         </div>
       </div>
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/canyon-lake-water.png" />
+
   <ContactForm context="I'd like to learn more about Canyon Lake..." />
   <Footer />
 </Layout>
@@ -99,7 +102,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .cl-hero {
     position: relative;
     height: 280px;
-    background: #000;
+    background: url('/images/generated/canyon-lake-water.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -110,8 +113,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .cl-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .cl-hero__content {
@@ -175,6 +177,9 @@ import ContactForm from '../../components/ContactForm.astro';
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    text-decoration: none;
+    color: inherit;
+    display: block;
   }
 
   .cl-activity__category {
@@ -192,6 +197,11 @@ import ContactForm from '../../components/ContactForm.astro';
     font-size: 1.1rem;
     text-transform: uppercase;
     margin-bottom: 0.75rem;
+    transition: color 0.2s;
+  }
+
+  .cl-activity__card:hover h3 {
+    color: #FF1616;
   }
 
   .cl-activity__card p {

@@ -3,23 +3,23 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 
 const restaurants = [
-  { name: "Cooper's Old Time Pit Bar-B-Que", cuisine: 'BBQ', description: "Classic Texas BBQ joint famous for its giant Big Chop pork chop and pit-smoked brisket, sausage, and ribs in a casual counter-service setting.", price: '$$', tags: ['bbq', 'casual'] },
-  { name: "Black's Barbecue", cuisine: 'BBQ', description: "Outpost of the legendary Lockhart family spot, known for rich, smoky brisket, sausage, and classic sides. Real Texas barbecue.", price: '$$', tags: ['bbq', 'iconic'] },
-  { name: "Granzin Bar-B-Q", cuisine: 'BBQ', description: "Local favorite meat-market style BBQ known for tender pulled pork sandwiches, sausage, and no-frills plates at approachable prices.", price: '$', tags: ['bbq', 'local-favorite'] },
-  { name: 'Adobe Cafe', cuisine: 'Tex-Mex', description: "Colorful neighborhood restaurant known for classic Tex-Mex combo plates, enchiladas, and margaritas. Great for groups and after-river dinners.", price: '$$', tags: ['tex-mex', 'groups'] },
-  { name: 'El Tapatio Mexican Restaurant', cuisine: 'Tex-Mex', description: "Downtown staple since 2006 known for big portions of fajitas, enchiladas, caldo, and combo plates in a casual family atmosphere.", price: '$', tags: ['tex-mex', 'family'] },
-  { name: 'Lupe Tortilla', cuisine: 'Tex-Mex', description: "Regional Tex-Mex chain's NB location, known for sizzling fajitas, made-from-scratch tortillas, and a lively bar for brunch, lunch, and dinner.", price: '$$', tags: ['tex-mex', 'lively'] },
-  { name: 'Alpine Haus Restaurant', cuisine: 'German', description: "Upscale, intimate German restaurant in a 160-year-old downtown house. Known for schnitzel, bratwurst, sauerbraten, and a strong German beer and wine list.", price: '$$$', tags: ['german', 'date-night'] },
-  { name: "Krause's Cafe", cuisine: 'German / Brewery', description: "Large beer-garden restaurant known for its huge German and local beer tap wall, jaeger schnitzel, bratwurst platters, and live music. Family-friendly with a big outdoor space.", price: '$$', tags: ['german', 'brewery', 'live-music', 'family'] },
-  { name: 'Faust Brewing Company', cuisine: 'Brewery', description: "Microbrewery and pub known for on-site brewed lagers, IPAs, and stouts paired with hearty American pub fare in a relaxed historic setting.", price: '$$', tags: ['brewery', 'craft-beer'] },
-  { name: 'New Braunfels Brewing Company', cuisine: 'Brewery', description: "Small brewery known for sour wheat beers and experimental brews, with a cozy taproom and beer garden popular with craft-beer enthusiasts.", price: '$$', tags: ['brewery', 'craft-beer'] },
-  { name: 'Huisache Grill', cuisine: 'Fine Dining', description: "Intimate bistro-style restaurant known for contemporary American and Southwestern-leaning dishes, a solid wine list, and a cozy courtyard. One of NB's top date night spots.", price: '$$$', tags: ['fine-dining', 'date-night'] },
-  { name: "McAdoo's Seafood Company", cuisine: 'Fine Dining', description: "Upscale seafood and Southern-influenced restaurant in a historic post office building. Gulf-focused seafood plates, craft cocktails, and a polished but lively atmosphere.", price: '$$$', tags: ['fine-dining', 'seafood'] },
-  { name: "Myron's Prime Steakhouse", cuisine: 'Fine Dining', description: "Classic steakhouse known for prime steaks, big sides, and white-tablecloth service. One of NB's go-to special-occasion restaurants.", price: '$$$$', tags: ['fine-dining', 'steakhouse'] },
-  { name: 'Gristmill River Restaurant & Bar', cuisine: 'American', description: "Iconic multi-level riverside spot next to Gruene Hall. Known for chicken-fried steak, burgers, and salads with spectacular river views and plenty of seating.", price: '$$', tags: ['american', 'river-views', 'iconic'] },
-  { name: 'Gruene River Grill', cuisine: 'American', description: "River-view restaurant near Gruene Hall serving American and Tex-Mex comfort dishes, burgers, and salads in a casual, family-friendly setting.", price: '$$', tags: ['american', 'family', 'river-views'] },
+  { name: "Cooper's Old Time Pit Bar-B-Que", cuisine: 'BBQ', description: "Classic Texas BBQ joint famous for its giant Big Chop pork chop and pit-smoked brisket, sausage, and ribs in a casual counter-service setting.", price: '$$', tags: ['bbq', 'casual'], address: '1125 TX-337 Loop, New Braunfels, TX 78130' },
+  { name: "Black's Barbecue", cuisine: 'BBQ', description: "Outpost of the legendary Lockhart family spot, known for rich, smoky brisket, sausage, and classic sides. Real Texas barbecue.", price: '$$', tags: ['bbq', 'iconic'], address: '936 TX-337 Loop, New Braunfels, TX 78130' },
+  { name: "Granzin Bar-B-Q", cuisine: 'BBQ', description: "Local favorite meat-market style BBQ known for tender pulled pork sandwiches, sausage, and no-frills plates at approachable prices.", price: '$', tags: ['bbq', 'local-favorite'], address: '660 W San Antonio St, New Braunfels, TX 78130' },
+  { name: 'Adobe Cafe', cuisine: 'Tex-Mex', description: "Colorful neighborhood restaurant known for classic Tex-Mex combo plates, enchiladas, and margaritas. Great for groups and after-river dinners.", price: '$$', tags: ['tex-mex', 'groups'], address: '124 S Business IH 35, New Braunfels, TX 78130' },
+  { name: 'Las Fontanas', cuisine: 'Tex-Mex', description: "An extensive menu mixing authentic Mexican flavors with South Texas flair — fajitas, fresh fish, quail, ribs, and Mexican street fare in a vibrant setting.", price: '$$', tags: ['tex-mex', 'family'], address: '1551 N Walnut Ave, Suite 10, New Braunfels, TX 78130' },
+  { name: 'La Cosecha Mexican Table', cuisine: 'Mexican', description: "Interior Mexican cuisine blending traditional flavors with a modern touch. A refined take on Mexican dining that sets it apart from standard Tex-Mex.", price: '$$', tags: ['mexican', 'modern'], address: '505 N Business IH 35, New Braunfels, TX 78130' },
+  { name: 'Alpine Haus Restaurant', cuisine: 'German', description: "Upscale, intimate German restaurant in a 160-year-old downtown house. Known for schnitzel, bratwurst, sauerbraten, and a strong German beer and wine list.", price: '$$$', tags: ['german', 'date-night'], address: '251 S Seguin Ave, New Braunfels, TX 78130' },
+  { name: "Krause's Cafe", cuisine: 'German / Brewery', description: "Large beer-garden restaurant known for its huge German and local beer tap wall, jaeger schnitzel, bratwurst platters, and live music. Family-friendly with a big outdoor space.", price: '$$', tags: ['german', 'brewery', 'live-music', 'family'], address: '148 S Castell Ave, New Braunfels, TX 78130' },
+  { name: 'New Braunfels Brewing Company', cuisine: 'Brewery', description: "Small brewery known for sour wheat beers and experimental brews, with a cozy taproom and beer garden popular with craft-beer enthusiasts.", price: '$$', tags: ['brewery', 'craft-beer'], address: '180 W Mill St, New Braunfels, TX 78130' },
+  { name: 'Huisache Grill', cuisine: 'Fine Dining', description: "Intimate bistro-style restaurant known for contemporary American and Southwestern-leaning dishes, a solid wine list, and a cozy courtyard. One of NB's top date night spots.", price: '$$$', tags: ['fine-dining', 'date-night'], address: '303 W San Antonio St, New Braunfels, TX 78130' },
+  { name: "McAdoo's Seafood Company", cuisine: 'Fine Dining', description: "Upscale seafood and Southern-influenced restaurant in a historic post office building. Gulf-focused seafood plates, craft cocktails, and a polished but lively atmosphere.", price: '$$$', tags: ['fine-dining', 'seafood'], address: '196 N Castell Ave, New Braunfels, TX 78130' },
+  { name: "Myron's Prime Steakhouse", cuisine: 'Fine Dining', description: "Classic steakhouse known for prime steaks, big sides, and white-tablecloth service. One of NB's go-to special-occasion restaurants.", price: '$$$$', tags: ['fine-dining', 'steakhouse'], address: '136 N Castell Ave, New Braunfels, TX 78130' },
+  { name: 'Gristmill River Restaurant & Bar', cuisine: 'American', description: "Iconic multi-level riverside spot next to Gruene Hall. Known for chicken-fried steak, burgers, and salads with spectacular river views and plenty of seating.", price: '$$', tags: ['american', 'river-views', 'iconic'], address: '1287 Gruene Rd, New Braunfels, TX 78130' },
+  { name: 'Gruene River Grill', cuisine: 'American', description: "River-view restaurant near Gruene Hall serving American and Tex-Mex comfort dishes, burgers, and salads in a casual, family-friendly setting.", price: '$$', tags: ['american', 'family', 'river-views'], address: '1259 Gruene Rd, New Braunfels, TX 78130' },
 ];
 
 const categories = [...new Set(restaurants.map(r => r.cuisine))];
@@ -74,6 +74,7 @@ const categories = [...new Set(restaurants.map(r => r.cuisine))];
                 <span class="rest-card__cuisine">{r.cuisine}</span>
               </div>
               <p class="rest-card__desc">{r.description}</p>
+              <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.name + ', ' + r.address)}`} target="_blank" rel="noopener" class="rest-card__address">{r.address}</a>
               <div class="rest-card__footer">
                 <span class="rest-card__price">{r.price}</span>
                 <div class="rest-card__tags">
@@ -95,13 +96,15 @@ const categories = [...new Set(restaurants.map(r => r.cuisine))];
         <h2>Looking for a Home Near Your <span class="accent">Favorite Spots</span>?</h2>
         <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">I can help you find homes in the neighborhoods closest to the restaurants, shops, and nightlife you love.</p>
         <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-          <a href="/new-braunfels/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="/search" class="btn btn-primary">Search Homes</a>
           <a href="#contact" class="btn btn-outline">Let's Connect</a>
         </div>
       </div>
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/guadalupe-river.png" />
+
   <ContactForm context="I'd like to find homes near the best restaurants in NB..." />
   <Footer />
 </Layout>
@@ -110,7 +113,7 @@ const categories = [...new Set(restaurants.map(r => r.cuisine))];
   .rest-hero {
     position: relative;
     height: 280px;
-    background: #000;
+    background: url('/images/generated/comal-river.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -121,8 +124,7 @@ const categories = [...new Set(restaurants.map(r => r.cuisine))];
   .rest-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .rest-hero__content {
@@ -257,6 +259,18 @@ const categories = [...new Set(restaurants.map(r => r.cuisine))];
     font-size: 0.88rem;
     line-height: 1.7;
     margin-bottom: 1rem;
+  }
+
+  .rest-card__address {
+    display: block;
+    font-size: 0.82rem;
+    color: #FF1616;
+    margin-bottom: 1rem;
+    transition: opacity 0.2s;
+  }
+
+  .rest-card__address:hover {
+    opacity: 0.7;
   }
 
   .rest-card__footer {

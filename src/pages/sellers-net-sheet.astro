@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
+import ParallaxBanner from '../components/ParallaxBanner.astro';
 ---
 
 <Layout
@@ -13,22 +14,13 @@ import Footer from '../components/Footer.astro';
   <main style="padding-top: 80px;">
 
     <!-- Hero -->
-    <div class="ns-hero">
+    <div class="ns-hero" style="background-image:url('/images/generated/home-sold.png');">
       <div class="ns-hero__overlay"></div>
       <div class="ns-hero__content">
         <h1>Seller's <span style="color:#FF1616;">Net Sheet</span></h1>
         <p>Estimate your net proceeds from selling your home</p>
       </div>
     </div>
-
-    <!-- Disclaimer -->
-    <section class="ns-disclaimer">
-      <div class="container">
-        <div class="ns-disclaimer__box">
-          <strong>Disclaimer:</strong> This calculator provides a preliminary estimate only and is not a guarantee of actual closing costs or net proceeds. Actual costs vary by title company, lender, transaction terms, and closing date. Title insurance rates are based on the Texas Department of Insurance promulgated rates and may change. Property tax prorations, HOA dues, and other line items are estimates and should be verified with your title company prior to closing. This tool is for informational purposes only and does not constitute financial, legal, or tax advice. Always consult with your title company, lender, and/or tax professional for accurate closing figures.
-        </div>
-      </div>
-    </section>
 
     <!-- Calculator -->
     <section class="section">
@@ -182,6 +174,10 @@ import Footer from '../components/Footer.astro';
             </div>
 
             <button type="button" id="calcBtn" class="btn btn-primary ns-form__btn">Calculate Net Sheet</button>
+
+            <div class="ns-disclaimer__box" style="margin-top:1rem;">
+              <strong>Disclaimer:</strong> This calculator provides a preliminary estimate only and is not a guarantee of actual closing costs or net proceeds. Actual costs vary by title company, lender, transaction terms, and closing date. Title insurance rates are based on the Texas Department of Insurance promulgated rates and may change. Property tax prorations, HOA dues, and other line items are estimates and should be verified with your title company prior to closing. This tool is for informational purposes only and does not constitute financial, legal, or tax advice. Always consult with your title company, lender, and/or tax professional for accurate closing figures.
+            </div>
           </div>
 
           <!-- Results -->
@@ -231,7 +227,35 @@ import Footer from '../components/Footer.astro';
       </div>
     </section>
 
+    <!-- Lead Gate Modal -->
+    <div class="ns-gate" id="nsGate" style="display:none;">
+      <div class="ns-gate__backdrop"></div>
+      <div class="ns-gate__modal">
+        <h2>See Your <span style="color:#FF1616;">Results</span></h2>
+        <p class="ns-gate__sub">Enter your info to unlock the calculator. You only need to do this once.</p>
+        <form id="nsGateForm" novalidate>
+          <div class="ns-gate__field">
+            <label for="ns-gate-name">Name *</label>
+            <input type="text" id="ns-gate-name" name="name" required placeholder="Your full name" />
+          </div>
+          <div class="ns-gate__field">
+            <label for="ns-gate-email">Email *</label>
+            <input type="email" id="ns-gate-email" name="email" required placeholder="you@example.com" />
+          </div>
+          <div class="ns-gate__field">
+            <label for="ns-gate-phone">Phone *</label>
+            <input type="tel" id="ns-gate-phone" name="phone" required placeholder="(555) 555-5555" />
+          </div>
+          <div class="ns-gate__error" id="nsGateError" style="display:none;">Something went wrong. Please try again.</div>
+          <button type="submit" class="btn btn-primary" style="width:100%;padding:0.85rem;margin-top:0.5rem;">Unlock Calculator</button>
+        </form>
+        <p class="ns-gate__privacy">Your information is never shared.</p>
+      </div>
+    </div>
+
   </main>
+  <ParallaxBanner image="/images/generated/porch-view.png" />
+
   <ContactForm context="I'd like a detailed seller's net sheet for my property..." />
   <Footer />
 </Layout>
@@ -240,7 +264,7 @@ import Footer from '../components/Footer.astro';
   .ns-hero {
     position: relative;
     height: 280px;
-    background: #000;
+    background: url('/images/generated/home-sold.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -251,7 +275,7 @@ import Footer from '../components/Footer.astro';
   .ns-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
+    background: rgba(0,0,0,0.6);
     opacity: 0.9;
   }
 
@@ -470,6 +494,87 @@ import Footer from '../components/Footer.astro';
     text-align: center;
   }
 
+  /* Lead Gate Modal */
+  .ns-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+  .ns-gate__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+  }
+  .ns-gate__modal {
+    position: relative;
+    z-index: 1;
+    background: #111;
+    border-radius: 10px;
+    padding: 2.5rem 2rem;
+    max-width: 460px;
+    width: 100%;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  }
+  .ns-gate__modal h2 {
+    color: #fff;
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .ns-gate__sub {
+    text-align: center;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .ns-gate__field {
+    margin-bottom: 1rem;
+  }
+  .ns-gate__field label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 0.35rem;
+  }
+  .ns-gate__field input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 0.9rem;
+    transition: border-color 0.2s;
+  }
+  .ns-gate__field input::placeholder { color: rgba(255,255,255,0.3); }
+  .ns-gate__field input:focus { outline: none; border-color: #FF1616; }
+  .ns-gate__field input.ns-err { border-color: #FF1616; }
+  .ns-gate__error {
+    padding: 0.6rem 1rem;
+    background: rgba(255,22,22,0.15);
+    border: 1px solid rgba(255,22,22,0.3);
+    border-radius: 6px;
+    color: #FF1616;
+    font-size: 0.85rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .ns-gate__privacy {
+    text-align: center;
+    color: rgba(255,255,255,0.35);
+    font-size: 0.72rem;
+    margin-top: 1rem;
+  }
+
   @media print {
     .navbar, .ns-hero, .ns-form, .ns-print, .ns-disclaimer, footer, .contact-form, section[style*="background: #000"] {
       display: none !important;
@@ -516,7 +621,10 @@ import Footer from '../components/Footer.astro';
   d.setDate(d.getDate() + 30);
   dateInput.value = d.toISOString().split('T')[0];
 
-  document.getElementById('calcBtn')?.addEventListener('click', () => {
+  var nsGateEl = document.getElementById('nsGate');
+  var nsGateForm = document.getElementById('nsGateForm');
+
+  function runCalculation() {
     const salePrice = getVal('salePrice');
     const closingDate = document.getElementById('closingDate').value;
     const listingPct = getVal('listingCommission');
@@ -651,6 +759,67 @@ import Footer from '../components/Footer.astro';
     // Show results
     document.getElementById('nsResults').style.display = 'block';
     document.getElementById('nsResults').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    if (localStorage.getItem('cpr_lead')) {
+      runCalculation();
+      return;
+    }
+    if (nsGateEl) nsGateEl.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  });
+
+  // Gate form submit
+  nsGateForm && nsGateForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    nsGateForm.querySelectorAll('.ns-err').forEach(function(el) { el.classList.remove('ns-err'); });
+
+    var nameIn = nsGateForm.querySelector('#ns-gate-name');
+    var emailIn = nsGateForm.querySelector('#ns-gate-email');
+    var phoneIn = nsGateForm.querySelector('#ns-gate-phone');
+    var valid = true;
+
+    if (!nameIn.value.trim()) { nameIn.classList.add('ns-err'); valid = false; }
+    if (!emailIn.value.trim() || !emailIn.value.includes('@')) { emailIn.classList.add('ns-err'); valid = false; }
+    if (!phoneIn.value.trim()) { phoneIn.classList.add('ns-err'); valid = false; }
+    if (!valid) return;
+
+    var btn = nsGateForm.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; btn.textContent = 'Submitting...'; }
+
+    fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: nameIn.value.trim(),
+        email: emailIn.value.trim(),
+        phone: phoneIn.value.trim(),
+        source: 'Sellers Net Sheet'
+      })
+    })
+    .then(function() {
+      localStorage.setItem('cpr_lead', JSON.stringify({
+        name: nameIn.value.trim(),
+        email: emailIn.value.trim(),
+        phone: phoneIn.value.trim(),
+        registeredAt: Date.now()
+      }));
+      if (nsGateEl) nsGateEl.style.display = 'none';
+      document.body.style.overflow = '';
+      runCalculation();
+    })
+    .catch(function() {
+      localStorage.setItem('cpr_lead', JSON.stringify({
+        name: nameIn.value.trim(),
+        email: emailIn.value.trim(),
+        phone: phoneIn.value.trim(),
+        registeredAt: Date.now()
+      }));
+      if (nsGateEl) nsGateEl.style.display = 'none';
+      document.body.style.overflow = '';
+      runCalculation();
+    });
   });
 
   // Print

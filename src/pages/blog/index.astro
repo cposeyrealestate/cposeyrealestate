@@ -55,7 +55,7 @@ import blogPosts from '../../data/blog-posts.json';
   .blog-hero {
     position: relative;
     height: 280px;
-    background: #000;
+    background: url('/images/generated/porch-view.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,8 +66,7 @@ import blogPosts from '../../data/blog-posts.json';
   .blog-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .blog-hero__content {

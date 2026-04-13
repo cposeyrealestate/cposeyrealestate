@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
 ---
 
@@ -40,8 +41,9 @@ import ContactForm from '../../components/ContactForm.astro';
 
         <div class="cl-neighborhood__grid">
           <div class="cl-neighborhood__card">
+            <img src="/images/generated/neighborhoods/cl-canyon-lake-hills.png" alt="Canyon Lake Hills homes" class="cl-neighborhood__img" loading="lazy" />
             <h3>Canyon Lake Hills</h3>
-            <p>The oldest established area around Canyon Lake, Canyon Lake Hills offers direct lake access and an eclectic mix of housing — from original 1960s bungalows to contemporary custom estates. The neighborhood has a relaxed, lived-in character that appeals to long-time lake residents and buyers looking for waterfront properties with personality.</p>
+            <p>An established, active community with waterfront on three sides, Canyon Lake Hills offers a peaceful, rural, lake-centric lifestyle. Amenities include a swimming pool, children's park, tennis courts, and a boat ramp. The neighborhood features a mix of full-time residents and vacation homes.</p>
             <div class="cl-neighborhood__tags">
               <span class="cl-neighborhood__tag">$300K - $800K</span>
               <span class="cl-neighborhood__tag">Comal ISD</span>
@@ -49,8 +51,9 @@ import ContactForm from '../../components/ContactForm.astro';
           </div>
 
           <div class="cl-neighborhood__card">
+            <img src="/images/generated/neighborhoods/cl-mystic-shores.png" alt="Mystic Shores homes" class="cl-neighborhood__img" loading="lazy" />
             <h3>Mystic Shores</h3>
-            <p>A large gated community with over 2,200 homesites, Mystic Shores is one of the most popular neighborhoods in the Canyon Lake area. The community features river views, world-class amenities including pools, parks, trails, and a clubhouse, making it a family favorite. Homes range from newer construction to custom builds on generous lots.</p>
+            <p>Nestled between the Guadalupe River and the north shore of Canyon Lake, Mystic Shores offers a tranquil, luxurious Hill Country lifestyle. Resort-like amenities include a community center, multiple pools, walking trails, sports courts, and parks. Properties range from 1 to 20+ acres with water or Hill Country views.</p>
             <div class="cl-neighborhood__tags">
               <span class="cl-neighborhood__tag">$350K - $700K</span>
               <span class="cl-neighborhood__tag">Comal ISD</span>
@@ -58,8 +61,9 @@ import ContactForm from '../../components/ContactForm.astro';
           </div>
 
           <div class="cl-neighborhood__card">
+            <img src="/images/generated/neighborhoods/cl-oak-shores.png" alt="Oak Shores Estates homes" class="cl-neighborhood__img" loading="lazy" />
             <h3>Oak Shores Estates</h3>
-            <p>A private gated community with just 88 home sites, Oak Shores Estates is Canyon Lake's premier luxury lakefront neighborhood. Expect custom-built homes on large waterfront lots with private docks, mature trees, and exceptional lake views. This is the top of the market for Canyon Lake real estate.</p>
+            <p>An exclusive gated lakefront community on the south side of Canyon Lake, Oak Shores Estates features crystal-clear water views and custom homes on generous lots. Amenities include a homeowner's park with playscape and pool. The neighborhood is predominantly full-time residents.</p>
             <div class="cl-neighborhood__tags">
               <span class="cl-neighborhood__tag">$500K - $4M+</span>
               <span class="cl-neighborhood__tag">Comal ISD</span>
@@ -67,8 +71,9 @@ import ContactForm from '../../components/ContactForm.astro';
           </div>
 
           <div class="cl-neighborhood__card">
-            <h3>Holiday Estates</h3>
-            <p>An established waterfront-access community with a neighborhood boat ramp and park area. Holiday Estates offers a more affordable entry point to lakeside living with a range of home styles from updated mid-century homes to newer builds. A solid choice for buyers who want lake access without the luxury price tag.</p>
+            <img src="/images/generated/neighborhoods/cl-canyon-lake-estates.png" alt="Canyon Lake Estates homes" class="cl-neighborhood__img" loading="lazy" />
+            <h3>Canyon Lake Estates</h3>
+            <p>A well-established community around Canyon Lake, Canyon Lake Estates offers homeowner amenities including a pool and regular community events. The neighborhood features various home styles set among established landscaping, providing an accessible entry point to lake-area living.</p>
             <div class="cl-neighborhood__tags">
               <span class="cl-neighborhood__tag">$250K - $500K</span>
               <span class="cl-neighborhood__tag">Comal ISD</span>
@@ -76,8 +81,9 @@ import ContactForm from '../../components/ContactForm.astro';
           </div>
 
           <div class="cl-neighborhood__card">
-            <h3>Hancock Park</h3>
-            <p>One of the most accessible neighborhoods for entry-level buyers in the Canyon Lake area. Hancock Park is located near the marina and offers smaller homes and lots at lower price points. It's a practical option for first-time buyers, investors, or anyone looking to get into the Canyon Lake market without a premium.</p>
+            <img src="/images/generated/neighborhoods/cl-hancock.png" alt="Hancock Area homes" class="cl-neighborhood__img" loading="lazy" />
+            <h3>Hancock Area</h3>
+            <p>Properties along Hancock Road in the historical Hancock Canyon area, which takes its name from the original Hancock community that was submerged when Canyon Lake was created in the 1960s. The area maintains a rural character with individual properties and land parcels.</p>
             <div class="cl-neighborhood__tags">
               <span class="cl-neighborhood__tag">$200K - $400K</span>
               <span class="cl-neighborhood__tag">Comal ISD</span>
@@ -85,8 +91,9 @@ import ContactForm from '../../components/ContactForm.astro';
           </div>
 
           <div class="cl-neighborhood__card">
+            <img src="/images/generated/neighborhoods/cl-river-mountain-ranch.png" alt="River Mountain Ranch homes" class="cl-neighborhood__img" loading="lazy" />
             <h3>River Mountain Ranch</h3>
-            <p>For buyers looking for acreage and Hill Country views, River Mountain Ranch delivers. This community features larger lots with rolling terrain, native oaks, and panoramic views. Homes here tend to be custom builds on 1+ acre lots, appealing to buyers who want space and privacy while staying within reach of Canyon Lake and New Braunfels.</p>
+            <p>A luxurious acreage community along the Guadalupe River, River Mountain Ranch offers serene country living on spacious private lots. Residents enjoy two gated river parks with hiking, grilling, and river access for kayaking, tubing, and fishing. The community is horse-friendly, making it ideal for buyers seeking both space and a riverfront lifestyle.</p>
             <div class="cl-neighborhood__tags">
               <span class="cl-neighborhood__tag">$400K - $800K</span>
               <span class="cl-neighborhood__tag">Comal ISD</span>
@@ -123,6 +130,8 @@ import ContactForm from '../../components/ContactForm.astro';
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/canyon-lake-water.png" />
+
   <ContactForm context="I'd like to learn more about Canyon Lake neighborhoods..." />
   <Footer />
 </Layout>
@@ -131,7 +140,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .cl-hero {
     position: relative;
     height: 280px;
-    background: #000;
+    background: url('/images/generated/canyon-lake-water.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -142,8 +151,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .cl-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .cl-hero__content {
@@ -204,11 +212,17 @@ import ContactForm from '../../components/ContactForm.astro';
 
   .cl-neighborhood__card {
     background: #fff;
-    padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+  }
+
+  .cl-neighborhood__img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
   }
 
   .cl-neighborhood__card h3 {
@@ -216,6 +230,9 @@ import ContactForm from '../../components/ContactForm.astro';
     font-size: 1.2rem;
     text-transform: uppercase;
     margin-bottom: 0.75rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1.5rem;
   }
 
   .cl-neighborhood__card p {
@@ -223,12 +240,17 @@ import ContactForm from '../../components/ContactForm.astro';
     line-height: 1.7;
     margin-bottom: 1rem;
     flex: 1;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .cl-neighborhood__tags {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
   }
 
   .cl-neighborhood__tag {

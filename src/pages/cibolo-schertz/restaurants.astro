@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
 ---
 
@@ -41,57 +42,86 @@ import ContactForm from '../../components/ContactForm.astro';
         <div class="cs-restaurant__grid">
           <div class="cs-restaurant">
             <div class="cs-restaurant__header">
-              <h3>Main Street Social</h3>
+              <h3>Kindling Texas Kitchen</h3>
               <div class="cs-restaurant__meta">
-                <span class="cs-restaurant__cuisine">American</span>
+                <span class="cs-restaurant__cuisine">Texas Heritage</span>
+                <span class="cs-restaurant__price">$$$</span>
+              </div>
+            </div>
+            <p>Regional heritage Texas cuisine cooked over wood fire using local ingredients from farms, ranches, and the Gulf Coast. Housed in a restored 115-year-old home, Kindling brings a refined dining experience to downtown Cibolo.</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Kindling+Texas+Kitchen+209+N+Main+St+Cibolo+TX+78108" target="_blank" rel="noopener" class="cs-restaurant__address">209 N Main St, Cibolo, TX 78108</a>
+          </div>
+
+          <div class="cs-restaurant">
+            <div class="cs-restaurant__header">
+              <h3>Mako's On The Creek</h3>
+              <div class="cs-restaurant__meta">
+                <span class="cs-restaurant__cuisine">American / Caribbean</span>
                 <span class="cs-restaurant__price">$$</span>
               </div>
             </div>
-            <p>Upscale casual dining with a curated American menu. Great atmosphere for date nights or catching up with friends over craft cocktails and elevated comfort food.</p>
+            <p>Family- and veteran-owned restaurant serving elevated American cuisine with Caribbean and Trinidadian influences. A scratch-made, seasonally inspired menu along Cibolo Creek makes this a standout local gem.</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Mako%27s+On+The+Creek+169+Buffalo+Pl+Cibolo+TX+78108" target="_blank" rel="noopener" class="cs-restaurant__address">169 Buffalo Pl, Cibolo, TX 78108</a>
           </div>
 
           <div class="cs-restaurant">
             <div class="cs-restaurant__header">
-              <h3>Sauced Wings & Bar</h3>
+              <h3>Harmon's Barbecue</h3>
               <div class="cs-restaurant__meta">
-                <span class="cs-restaurant__cuisine">Wings / Bar</span>
-                <span class="cs-restaurant__price">$</span>
+                <span class="cs-restaurant__cuisine">BBQ</span>
+                <span class="cs-restaurant__price">$$</span>
               </div>
             </div>
-            <p>Creative wing flavors and a lively bar atmosphere. A go-to spot for game day, casual hangouts, and trying some of the most inventive wing sauces in the area.</p>
+            <p>Authentic Texas barbecue serving brisket, sausage, chicken, pork, turkey, and classic sides. A no-frills spot on Main Street that lets the slow-smoked meat do the talking.</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Harmon%27s+Barbecue+102+S+Main+St+Cibolo+TX+78108" target="_blank" rel="noopener" class="cs-restaurant__address">102 S Main St, Cibolo, TX 78108</a>
           </div>
 
           <div class="cs-restaurant">
             <div class="cs-restaurant__header">
-              <h3>Nacho Daddy</h3>
+              <h3>The Rooted Fork</h3>
+              <div class="cs-restaurant__meta">
+                <span class="cs-restaurant__cuisine">Brunch / American</span>
+                <span class="cs-restaurant__price">$$</span>
+              </div>
+            </div>
+            <p>Modern breakfast and brunch spot serving dishes like biscuits and gravy, pancakes, eggs Benedict, and sandwiches with a twist on comfort-food traditions. A go-to for weekend mornings in Cibolo.</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=The+Rooted+Fork+201+N+Main+St+Cibolo+TX+78108" target="_blank" rel="noopener" class="cs-restaurant__address">201 N Main St, Cibolo, TX 78108</a>
+          </div>
+
+          <div class="cs-restaurant">
+            <div class="cs-restaurant__header">
+              <h3>The Magnolia Pancake Haus</h3>
+              <div class="cs-restaurant__meta">
+                <span class="cs-restaurant__cuisine">Breakfast / Brunch</span>
+                <span class="cs-restaurant__price">$$</span>
+              </div>
+            </div>
+            <p>Beloved breakfast and brunch restaurant famous for its fluffy pancakes — especially the Banana Foster — waffles, and classic American breakfast plates. A San Antonio-area institution with a Schertz location.</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=The+Magnolia+Pancake+Haus+17730+I-35+N+Schertz+TX+78154" target="_blank" rel="noopener" class="cs-restaurant__address">17730 I-35 N, Schertz, TX 78154</a>
+          </div>
+
+          <div class="cs-restaurant">
+            <div class="cs-restaurant__header">
+              <h3>Garcia's Mexican Restaurant</h3>
               <div class="cs-restaurant__meta">
                 <span class="cs-restaurant__cuisine">Tex-Mex</span>
                 <span class="cs-restaurant__price">$</span>
               </div>
             </div>
-            <p>Known for their loaded nachos and family-friendly vibe. Nacho Daddy serves up generous portions of Tex-Mex favorites in a casual, welcoming setting the whole family can enjoy.</p>
+            <p>Traditional Tex-Mex and Mexican food including enchiladas, tacos, fajitas, and breakfast plates. A longtime local favorite that's been serving the Schertz community for years.</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Garcia%27s+Mexican+Restaurant+3820+FM+3009+Schertz+TX+78154" target="_blank" rel="noopener" class="cs-restaurant__address">3820 FM 3009, Schertz, TX 78154</a>
           </div>
 
           <div class="cs-restaurant">
             <div class="cs-restaurant__header">
-              <h3>Thai Lao Cuisine</h3>
+              <h3>Abel's Diner</h3>
               <div class="cs-restaurant__meta">
-                <span class="cs-restaurant__cuisine">Thai</span>
-                <span class="cs-restaurant__price">$$</span>
-              </div>
-            </div>
-            <p>Authentic Thai dishes and a local favorite. From curries and pad thai to specialty dishes, Thai Lao Cuisine delivers consistent quality and flavors that keep regulars coming back.</p>
-          </div>
-
-          <div class="cs-restaurant">
-            <div class="cs-restaurant__header">
-              <h3>Wild Wings N' Things</h3>
-              <div class="cs-restaurant__meta">
-                <span class="cs-restaurant__cuisine">Wings / American</span>
+                <span class="cs-restaurant__cuisine">American Diner</span>
                 <span class="cs-restaurant__price">$</span>
               </div>
             </div>
-            <p>A popular spot for wings and American favorites. Wild Wings N' Things is a neighborhood staple with generous portions, cold drinks, and a laid-back atmosphere.</p>
+            <p>Classic American diner established in 1991 serving homestyle breakfasts, chicken fried steak, burgers, and Tex-Mex favorites like migas. A Schertz staple for comfort food.</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Abel%27s+Diner+17327+N+Interstate+35+Frontage+Rd+Schertz+TX+78154" target="_blank" rel="noopener" class="cs-restaurant__address">17327 N I-35 Frontage Rd #200, Schertz, TX 78154</a>
           </div>
         </div>
       </div>
@@ -103,13 +133,15 @@ import ContactForm from '../../components/ContactForm.astro';
         <h2>Thinking About <span class="accent">Moving Here</span>?</h2>
         <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Great food is just the start. Let me help you find the right home in the Cibolo/Schertz area so you can enjoy these spots as a local.</p>
         <div class="cs-cta__buttons">
-          <a href="/cibolo-schertz/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="/search" class="btn btn-primary">Search Homes</a>
           <a href="#contact" class="btn btn-outline">Ask About the Area</a>
         </div>
       </div>
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/cibolo-schertz-home.png" />
+
   <ContactForm context="I'd like to learn more about living in Cibolo/Schertz..." />
   <Footer />
 </Layout>
@@ -118,7 +150,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .cs-hero {
     position: relative;
     height: 280px;
-    background: #000;
+    background: url('/images/generated/cibolo-schertz-home.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -129,8 +161,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .cs-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .cs-hero__content {
@@ -244,7 +275,18 @@ import ContactForm from '../../components/ContactForm.astro';
     color: var(--gray);
     font-size: 0.9rem;
     line-height: 1.7;
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .cs-restaurant__address {
+    display: block;
+    font-size: 0.82rem;
+    color: #FF1616;
+    transition: opacity 0.2s;
+  }
+
+  .cs-restaurant__address:hover {
+    opacity: 0.7;
   }
 
   /* CTA */

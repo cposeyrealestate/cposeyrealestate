@@ -1,0 +1,35 @@
+---
+interface Props {
+  image: string;
+  alt?: string;
+  height?: string;
+}
+
+const { image, alt = '', height = '300px' } = Astro.props;
+---
+
+<div class="parallax-banner" style={`background-image: url('${image}'); height: ${height};`}>
+  <div class="parallax-banner__overlay"></div>
+</div>
+
+<style>
+  .parallax-banner {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+
+  .parallax-banner__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+  }
+
+  @media (max-width: 768px) {
+    .parallax-banner {
+      background-attachment: scroll;
+    }
+  }
+</style>

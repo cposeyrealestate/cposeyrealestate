@@ -1,0 +1,406 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+import ParallaxBanner from '../components/ParallaxBanner.astro';
+
+const faqCategories = [
+  {
+    title: 'Buying a Home',
+    id: 'buying',
+    questions: [
+      {
+        q: 'How much does it cost to buy a home in New Braunfels, TX?',
+        a: 'Median home prices in New Braunfels generally range from the mid-$300s to the low $400s, though prices vary significantly by neighborhood and property type. The broader San Antonio metro remains more affordable than Austin, making the I-35 corridor an attractive option for buyers.',
+      },
+      {
+        q: 'Do I need a real estate agent to buy a home in Texas?',
+        a: 'You are not legally required to use an agent, but it is strongly recommended. A knowledgeable local agent provides expert guidance on pricing, negotiations, inspections, and contracts — and recent industry changes mean commission structures may vary, so discuss this upfront with your agent.',
+      },
+      {
+        q: 'What are the steps to buying a home in Texas?',
+        a: 'The typical process includes getting pre-approved for a mortgage, searching for homes, making an offer using TREC promulgated contract forms, completing inspections during the option period, securing financing, and closing at a title company. From accepted offer to closing usually takes 30 to 45 days.',
+      },
+      {
+        q: 'What is the option period in Texas, and why does it matter?',
+        a: 'The option period is a negotiated window — typically 7 to 10 days — during which the buyer can terminate the contract for any reason in exchange for a non-refundable option fee paid to the seller. This is your opportunity to conduct inspections and make a fully informed decision.',
+      },
+      {
+        q: 'How much earnest money do I need in Texas?',
+        a: 'Earnest money is typically 1% to 2% of the purchase price, deposited with the title company within a few days of the executed contract. It shows the seller you are serious and is applied toward your closing costs or down payment at closing.',
+      },
+      {
+        q: 'What credit score do I need to buy a home in Texas?',
+        a: 'Most conventional loans require a minimum credit score of 620, while FHA loans may accept scores as low as 580 with a 3.5% down payment. VA loans generally look for scores of 620 or above. A higher score typically means a better interest rate.',
+      },
+      {
+        q: 'Are there first-time home buyer programs in Texas?',
+        a: 'Yes. The Texas State Affordable Housing Corporation (TSAHC) and TDHCA offer programs that include down payment assistance, mortgage credit certificates, and below-market interest rates for eligible first-time buyers. Many have income limits and require a homebuyer education course.',
+      },
+      {
+        q: 'What should I look for during a home inspection in Texas?',
+        a: 'Pay special attention to the foundation (Texas clay soils cause significant shifting), the roof, HVAC systems, plumbing (including slab leaks), and pest damage. In the Hill Country, also check well and septic system condition if the home is not on city utilities.',
+      },
+      {
+        q: 'How does property tax work in Texas?',
+        a: 'Texas has no state income tax, but property taxes typically range from 1.8% to 2.5% of assessed value depending on the county. Comal County rates are generally lower than Bexar or Travis County. You can file a homestead exemption to reduce your taxable value on your primary residence.',
+      },
+      {
+        q: 'What is a homestead exemption and how do I file one?',
+        a: 'A homestead exemption reduces the taxable value of your primary residence, saving you hundreds or thousands per year. In Texas, you file with your county appraisal district — it is not automatic. Additional exemptions are available for those over 65 or disabled.',
+      },
+      {
+        q: 'What are HOA fees and are they common in New Braunfels?',
+        a: 'Many newer subdivisions have homeowners associations with fees typically ranging from $30 to $150 per month, though master-planned communities may charge more. HOAs maintain common areas and enforce deed restrictions. Always review HOA documents before purchasing.',
+      },
+    ],
+  },
+  {
+    title: 'Selling a Home',
+    id: 'selling',
+    questions: [
+      {
+        q: 'How do I determine the right listing price for my home?',
+        a: 'A local agent will prepare a Comparative Market Analysis (CMA) examining recent sales, current competition, and market trends. Pricing correctly from the start is the single most important factor in selling quickly — overpricing leads to extended days on market.',
+      },
+      {
+        q: 'What do I need to disclose when selling a home in Texas?',
+        a: 'Texas law requires sellers to complete a Seller\'s Disclosure Notice detailing known defects, past repairs, flooding history, and other material facts. Failing to disclose known issues can expose you to legal liability after closing.',
+      },
+      {
+        q: 'How long does it take to sell a home in New Braunfels?',
+        a: 'Average days on market typically range from 45 to 75 days depending on price point, condition, and season. Well-priced homes in desirable neighborhoods can sell in under 30 days. Spring and early summer are the strongest selling seasons.',
+      },
+      {
+        q: 'What repairs should I make before listing?',
+        a: 'Focus on high-impact, low-cost improvements: fresh neutral paint, clean landscaping, and addressing deferred maintenance. In Texas, a well-functioning HVAC and solid roof are especially important to buyers. Your agent can advise on which updates yield the best return.',
+      },
+      {
+        q: 'What are the costs of selling a home in Texas?',
+        a: 'Typical seller costs include agent commissions (negotiable), title insurance for the buyer, prorated property taxes, agreed-upon repairs, and closing fees. Plan for total selling costs of roughly 7% to 9% of the sale price, though this varies by situation.',
+      },
+      {
+        q: 'Should I accept the first offer I receive?',
+        a: 'Not necessarily, but don\'t dismiss it either — the first offer is often one of the strongest. Evaluate each offer based on price, financing strength, option period terms, closing timeline, and contingencies. Your agent will help negotiate the best outcome.',
+      },
+      {
+        q: 'Can I sell my home as-is in Texas?',
+        a: 'Yes, but you are still required to complete the Seller\'s Disclosure Notice. Selling as-is signals you will not make repairs, which may result in lower offers. It can be a good strategy for a fast sale or a property needing significant work.',
+      },
+      {
+        q: 'Do I need to stage my home to sell it?',
+        a: 'Staging consistently helps homes sell faster and for higher prices. At a minimum, declutter, depersonalize, and thoroughly clean every room. Professional staging can make a significant difference in online photos, where the vast majority of buyers start their search.',
+      },
+    ],
+  },
+  {
+    title: 'Financing & Mortgages',
+    id: 'financing',
+    questions: [
+      {
+        q: 'What is the difference between pre-qualification and pre-approval?',
+        a: 'Pre-qualification is a quick, informal estimate based on self-reported information. Pre-approval involves a lender verifying your income, assets, and credit, resulting in a conditional commitment letter. Sellers strongly prefer pre-approval letters with offers.',
+      },
+      {
+        q: 'What types of mortgage loans are available in Texas?',
+        a: 'Common options include conventional loans (3-20% down), FHA loans (3.5% down), VA loans (zero down for eligible military), and USDA loans (zero down for eligible rural areas). Many areas surrounding New Braunfels qualify for USDA financing.',
+      },
+      {
+        q: 'What is PMI and how can I avoid it?',
+        a: 'Private Mortgage Insurance is required on conventional loans when your down payment is less than 20%, typically costing 0.5% to 1% of the loan annually. You can avoid PMI by putting 20% down, using a VA loan, or requesting cancellation once you reach 20% equity.',
+      },
+      {
+        q: 'Can I use a VA loan in Texas?',
+        a: 'Absolutely. VA loans offer zero down payment, no PMI, competitive rates, and limited closing costs. The New Braunfels area, near JBSA and multiple military bases, has a large veteran community and sellers who are very familiar with VA transactions.',
+      },
+      {
+        q: 'What are typical closing costs for buyers in Texas?',
+        a: 'Buyer closing costs typically range from 2% to 4% of the purchase price, including lender fees, appraisal, survey, title insurance, escrow setup, and prepaid items like taxes and insurance. Some costs may be negotiable or seller-paid.',
+      },
+      {
+        q: 'Can I buy a home with no money down in Texas?',
+        a: 'Yes, through VA loans (for eligible military) and USDA loans (for eligible rural areas). Some Texas down payment assistance programs can also cover your entire down payment, though zero-down options may come with higher monthly payments.',
+      },
+      {
+        q: 'How much should I budget for monthly homeownership costs?',
+        a: 'Beyond principal and interest, budget for property taxes (significant in Texas), homeowners insurance, HOA fees, utilities, and a maintenance reserve of roughly 1% of your home\'s value per year. In the Hill Country, also consider flood insurance and well/septic maintenance for rural properties.',
+      },
+    ],
+  },
+  {
+    title: 'New Braunfels & Hill Country',
+    id: 'local',
+    questions: [
+      {
+        q: 'What makes New Braunfels a good place to live?',
+        a: 'New Braunfels combines small-town charm with easy access to San Antonio (30 min) and Austin (45 min). The city is known for the Comal and Guadalupe Rivers, strong schools, a vibrant downtown, and a growing economy. It consistently ranks among the best places to live in Texas.',
+      },
+      {
+        q: 'What school districts serve the New Braunfels area?',
+        a: 'Comal ISD is the primary district and is highly regarded with multiple recognized campuses. Parts of the area fall within New Braunfels ISD. School performance data is available through the Texas Education Agency accountability ratings.',
+      },
+      {
+        q: 'Do I need flood insurance in the Hill Country?',
+        a: 'The Hill Country is known for flash flooding, especially near the Comal River, Guadalupe River, and Dry Comal Creek. If your property is in a FEMA flood zone with a federally backed mortgage, flood insurance is required. Many homeowners carry it as a precaution.',
+      },
+      {
+        q: 'What should I know about well and septic systems?',
+        a: 'Many rural Hill Country properties use private wells and septic systems. Buyers should have the well water tested and septic inspected before purchase. Ongoing maintenance includes periodic septic pumping (every 3-5 years) and water quality monitoring.',
+      },
+      {
+        q: 'What are the best neighborhoods in New Braunfels?',
+        a: 'Popular neighborhoods include Vintage Oaks (master-planned community), Gruene (historic riverside area), River Chase, Westpointe, and the historic downtown district. Each offers different lifestyles and price points. A local agent can match your priorities to the right area.',
+      },
+      {
+        q: 'How far is New Braunfels from San Antonio and Austin?',
+        a: 'New Braunfels is about 30 miles northeast of downtown San Antonio (30-40 min) and roughly 50 miles south of downtown Austin (45-60 min), both via I-35. Commute times vary with traffic, especially during rush hours and the ongoing I-35 expansion.',
+      },
+      {
+        q: 'Are there property tax advantages in Comal County?',
+        a: 'Comal County tax rates are competitive compared to Bexar and Travis counties, which appeals to buyers from those metros. Filing a homestead exemption is essential, and homeowners over 65 can lock in their school district tax amount. Always verify the total rate for a specific property.',
+      },
+    ],
+  },
+  {
+    title: 'Closing & Legal',
+    id: 'closing',
+    questions: [
+      {
+        q: 'What happens at closing in Texas?',
+        a: 'Closings take place at a title company. The buyer and seller sign all documents, funds are disbursed, and the deed is recorded with the county. Closings are typically scheduled 30 to 45 days after an offer is accepted.',
+      },
+      {
+        q: 'What is title insurance, and do I need it?',
+        a: 'Title insurance protects against claims or defects in the property\'s title history. In Texas, the seller customarily pays for the owner\'s policy and the buyer pays for the lender\'s policy. Rates are set by the state and are the same at every title company.',
+      },
+      {
+        q: 'What is a survey, and do I need one?',
+        a: 'A survey shows property boundaries, easements, and improvements. Most Texas lenders require one, and it is recommended even for cash purchases. A new survey typically costs $400 to $700 depending on lot size.',
+      },
+      {
+        q: 'Who pays for what at closing in Texas?',
+        a: 'Customarily, the seller pays for the owner\'s title policy, prorated taxes, and commissions. The buyer pays for the lender\'s title policy, appraisal, survey, loan fees, and prepaid escrow items. However, everything is negotiable in the contract.',
+      },
+      {
+        q: 'Can I back out of a home purchase in Texas?',
+        a: 'During the option period, you can terminate for any reason and only forfeit the option fee (typically $100-$500). After the option period, backing out may result in forfeiture of earnest money. Certain contingencies may provide additional termination rights.',
+      },
+      {
+        q: 'What is the timeline from contract to close?',
+        a: 'A typical transaction takes 30 to 45 days. Key milestones include the option period (days 1-10), appraisal (weeks 1-2), loan underwriting (weeks 2-4), clear to close, and final walkthrough. Cash transactions can close in as few as 10-14 days.',
+      },
+    ],
+  },
+];
+---
+
+<Layout
+  title="Real Estate FAQ | Buying & Selling a Home in New Braunfels, TX | Cody Posey Real Estate"
+  description="Answers to the most common questions about buying and selling a home in New Braunfels and the Texas Hill Country. Expert local real estate guidance from Cody Posey."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="faq-hero" style="background-image:url('/images/generated/faq-hero.png');">
+      <div class="faq-hero__overlay"></div>
+      <div class="faq-hero__content">
+        <h1>Frequently Asked <span style="color:#FF1616;">Questions</span></h1>
+        <p>Expert answers to common questions about buying and selling a home in New Braunfels &amp; the Texas Hill Country</p>
+      </div>
+    </div>
+
+    <!-- Category Nav -->
+    <div class="faq-nav">
+      <div class="container">
+        <div class="faq-nav__inner">
+          {faqCategories.map((cat) => (
+            <a href={`#${cat.id}`} class="faq-nav__link">{cat.title}</a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Sections -->
+    <section class="section">
+      <div class="container">
+        <div class="faq-wrap">
+          {faqCategories.map((cat) => (
+            <div class="faq-category" id={cat.id}>
+              <h2 class="faq-category__title">{cat.title}</h2>
+              <div class="faq-list">
+                {cat.questions.map((item) => (
+                  <details class="faq-item">
+                    <summary class="faq-item__q">{item.q}</summary>
+                    <div class="faq-item__a">{item.a}</div>
+                  </details>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background:#000;color:#fff;text-align:center;">
+      <div class="container" style="max-width:700px;">
+        <h2 style="color:#fff;">Still Have <span class="accent">Questions?</span></h2>
+        <p style="color:#aaa;margin-bottom:2rem;">
+          Every real estate situation is unique. Whether you're a first-time buyer, experienced investor, or thinking about selling, Cody Posey is here to provide personalized guidance.
+        </p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <a href="#contact" class="btn btn-primary">Ask Cody Directly</a>
+          <a href="tel:+18303605569" class="btn btn-outline-light">(830) 360-5569</a>
+        </div>
+      </div>
+    </section>
+
+    <ParallaxBanner image="/images/generated/home-nb-twostory.png" />
+
+    <ContactForm />
+  </main>
+  <Footer />
+</Layout>
+
+<!-- FAQ Schema for SEO -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqCategories.flatMap(cat => cat.questions.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a,
+    },
+  }))),
+})} />
+
+<style>
+  .faq-hero {
+    position: relative;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+  }
+  .faq-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+  }
+  .faq-hero__content {
+    position: relative;
+    z-index: 2;
+    padding: 3rem 1.5rem;
+  }
+  .faq-hero__content h1 {
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+  .faq-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Category Nav */
+  .faq-nav {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+  }
+  .faq-nav__inner {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .faq-nav__link {
+    padding: 1rem 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #555;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .faq-nav__link:hover {
+    color: #FF1616;
+    border-bottom-color: #FF1616;
+  }
+
+  /* FAQ Content */
+  .faq-wrap {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .faq-category {
+    margin-bottom: 3rem;
+    scroll-margin-top: 140px;
+  }
+  .faq-category__title {
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #FF1616;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #eee;
+  }
+  .faq-item__q {
+    padding: 1.1rem 2.5rem 1.1rem 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #222;
+    cursor: pointer;
+    position: relative;
+    list-style: none;
+  }
+  .faq-item__q::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item__q::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: #FF1616;
+    transition: transform 0.2s;
+  }
+  .faq-item[open] .faq-item__q::after {
+    content: '\2212';
+  }
+  .faq-item__a {
+    padding: 0 0 1.25rem;
+    font-size: 0.88rem;
+    color: #555;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 768px) {
+    .faq-nav__link {
+      padding: 0.75rem 1rem;
+      font-size: 0.68rem;
+    }
+    .faq-category {
+      scroll-margin-top: 120px;
+    }
+  }
+</style>

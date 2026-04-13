@@ -1,0 +1,860 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+import ParallaxBanner from '../components/ParallaxBanner.astro';
+---
+
+<Layout
+  title="Closing Cost Estimator | Texas Home Closing Costs | Cody Posey Real Estate"
+  description="Estimate your closing costs for buying or selling a home in Texas. Includes title insurance, survey, inspections, lender fees, and more based on Texas promulgated rates."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="cc-hero" style="background-image:url('/images/generated/closing-table.png');">
+      <div class="cc-hero__overlay"></div>
+      <div class="cc-hero__content">
+        <h1>Closing Cost <span style="color:#FF1616;">Estimator</span></h1>
+        <p>Understand the costs involved in buying or selling a home in Texas</p>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <section class="section">
+      <div class="container">
+        <div class="cc-layout">
+
+          <!-- Input Form -->
+          <div class="cc-form">
+            <h2>Transaction <span class="accent">Details</span></h2>
+
+            <div class="cc-form__group">
+              <h3>I am a...</h3>
+              <div class="cc-toggle">
+                <button class="cc-toggle__btn cc-toggle__btn--active" data-role="buyer" id="toggleBuyer">Buyer</button>
+                <button class="cc-toggle__btn" data-role="seller" id="toggleSeller">Seller</button>
+              </div>
+            </div>
+
+            <div class="cc-form__group">
+              <h3>Sale Information</h3>
+              <div class="cc-form__field">
+                <label for="salePrice">Sale Price *</label>
+                <div class="cc-input-wrap">
+                  <span class="cc-input-prefix">$</span>
+                  <input type="number" id="salePrice" value="400000" min="0" step="5000" />
+                </div>
+              </div>
+              <div class="cc-form__field" id="loanAmountGroup">
+                <label for="loanAmount">Loan Amount</label>
+                <div class="cc-input-wrap">
+                  <span class="cc-input-prefix">$</span>
+                  <input type="number" id="loanAmount" value="320000" min="0" step="5000" />
+                </div>
+              </div>
+            </div>
+
+            <div class="cc-form__group" id="buyerOptionsGroup">
+              <h3>Buyer Options</h3>
+              <div class="cc-form__field">
+                <label for="homeInspection">Home Inspection</label>
+                <div class="cc-input-wrap">
+                  <span class="cc-input-prefix">$</span>
+                  <input type="number" id="homeInspection" value="500" min="0" step="50" />
+                </div>
+              </div>
+              <div class="cc-form__field">
+                <label for="survey">Survey</label>
+                <div class="cc-input-wrap">
+                  <span class="cc-input-prefix">$</span>
+                  <input type="number" id="survey" value="500" min="0" step="50" />
+                </div>
+              </div>
+              <div class="cc-form__field">
+                <label for="appraisal">Appraisal Fee</label>
+                <div class="cc-input-wrap">
+                  <span class="cc-input-prefix">$</span>
+                  <input type="number" id="appraisal" value="550" min="0" step="50" />
+                </div>
+              </div>
+              <div class="cc-form__field">
+                <label for="optionFee">Option Fee</label>
+                <div class="cc-input-wrap">
+                  <span class="cc-input-prefix">$</span>
+                  <input type="number" id="optionFee" value="300" min="0" step="50" />
+                </div>
+              </div>
+              <div class="cc-form__field">
+                <label>Prepaid Items (est.)</label>
+                <div class="cc-input-wrap">
+                  <span class="cc-input-prefix">$</span>
+                  <input type="number" id="prepaids" value="0" min="0" step="100" disabled />
+                </div>
+                <small style="color:#777;font-size:0.7rem;">Auto-calculated: ~14 months taxes + 14 months insurance</small>
+              </div>
+            </div>
+
+            <div class="cc-form__group" id="sellerOptionsGroup" style="display:none;">
+              <h3>Seller Options</h3>
+              <div class="cc-form__row">
+                <div class="cc-form__field">
+                  <label for="listingComm">Listing Agent (%)</label>
+                  <div class="cc-input-wrap">
+                    <input type="number" id="listingComm" value="3" min="0" max="10" step="0.1" />
+                    <span class="cc-input-suffix">%</span>
+                  </div>
+                </div>
+                <div class="cc-form__field">
+                  <label for="buyerComm">Buyer Agent (%)</label>
+                  <div class="cc-input-wrap">
+                    <input type="number" id="buyerComm" value="3" min="0" max="10" step="0.1" />
+                    <span class="cc-input-suffix">%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="cc-form__field">
+                <label for="repairCredit">Repair Credits</label>
+                <div class="cc-input-wrap">
+                  <span class="cc-input-prefix">$</span>
+                  <input type="number" id="repairCredit" value="0" min="0" step="100" />
+                </div>
+              </div>
+              <div class="cc-form__field">
+                <label for="homeWarranty">Home Warranty</label>
+                <div class="cc-input-wrap">
+                  <span class="cc-input-prefix">$</span>
+                  <input type="number" id="homeWarranty" value="550" min="0" step="50" />
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-primary cc-calculate" id="calculateBtn">Calculate Closing Costs</button>
+
+            <div class="cc-disclaimer__box" style="margin-top:1rem;">
+              <strong>Disclaimer:</strong> This calculator provides preliminary estimates only. Actual closing costs vary by title company, lender, transaction terms, and closing date. Title insurance rates are based on Texas Department of Insurance promulgated rates and may change. All figures are estimates and should be verified with your title company and lender prior to closing. This tool is for informational purposes only and does not constitute financial, legal, or tax advice.
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div class="cc-results cc-results--locked" id="ccResults">
+            <h2>Cost <span class="accent">Breakdown</span></h2>
+
+            <div class="cc-result-card">
+              <h3>Title Insurance</h3>
+              <div class="cc-result-line">
+                <span id="titleLabel">Owner's Title Policy (Seller Pays)</span>
+                <span id="titleInsurance">$0</span>
+              </div>
+              <div class="cc-result-line" id="lenderTitleRow">
+                <span>Lender's Title Policy (Buyer Pays)</span>
+                <span id="lenderTitle">$0</span>
+              </div>
+              <small style="color:#777;font-size:0.7rem;">Based on TX Dept. of Insurance promulgated rates</small>
+            </div>
+
+            <div class="cc-result-card">
+              <h3>Escrow & Title Fees</h3>
+              <div class="cc-result-line">
+                <span>Escrow/Settlement Fee</span>
+                <span id="escrowFee">$0</span>
+              </div>
+              <div class="cc-result-line">
+                <span>Document Preparation</span>
+                <span id="docPrep">$0</span>
+              </div>
+              <div class="cc-result-line">
+                <span>Recording Fees</span>
+                <span id="recordingFees">$0</span>
+              </div>
+            </div>
+
+            <div class="cc-result-card" id="buyerFeesCard">
+              <h3>Buyer Fees</h3>
+              <div class="cc-result-line">
+                <span>Home Inspection</span>
+                <span id="resInspection">$0</span>
+              </div>
+              <div class="cc-result-line">
+                <span>Survey</span>
+                <span id="resSurvey">$0</span>
+              </div>
+              <div class="cc-result-line">
+                <span>Appraisal</span>
+                <span id="resAppraisal">$0</span>
+              </div>
+              <div class="cc-result-line">
+                <span>Option Fee (credited at closing)</span>
+                <span id="resOption">$0</span>
+              </div>
+              <div class="cc-result-line">
+                <span>Lender Origination Fee (~1%)</span>
+                <span id="origFee">$0</span>
+              </div>
+              <div class="cc-result-line">
+                <span>Prepaid Taxes & Insurance</span>
+                <span id="resPrepaids">$0</span>
+              </div>
+            </div>
+
+            <div class="cc-result-card" id="sellerFeesCard" style="display:none;">
+              <h3>Seller Fees</h3>
+              <div class="cc-result-line">
+                <span>Listing Agent Commission</span>
+                <span id="resListComm">$0</span>
+              </div>
+              <div class="cc-result-line">
+                <span>Buyer Agent Commission</span>
+                <span id="resBuyerComm">$0</span>
+              </div>
+              <div class="cc-result-line">
+                <span>Repair Credits</span>
+                <span id="resRepair">$0</span>
+              </div>
+              <div class="cc-result-line">
+                <span>Home Warranty</span>
+                <span id="resWarranty">$0</span>
+              </div>
+            </div>
+
+            <div class="cc-result-card cc-result-card--total">
+              <div class="cc-result-line cc-result-line--total">
+                <span>Estimated Total Closing Costs</span>
+                <span id="totalCosts">$0</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="section" style="background:var(--light-gray);">
+      <div class="container">
+        <div class="cc-info-grid">
+          <div class="cc-info-card">
+            <h3>What Buyers Typically Pay</h3>
+            <ul>
+              <li>Lender's title insurance policy</li>
+              <li>Appraisal and inspection fees</li>
+              <li>Survey costs</li>
+              <li>Loan origination fees</li>
+              <li>Prepaid taxes and insurance escrow</li>
+              <li>Option fee and earnest money</li>
+              <li>Recording fees</li>
+            </ul>
+            <p class="cc-info-range">Typical range: <strong>2% - 4%</strong> of purchase price</p>
+          </div>
+          <div class="cc-info-card">
+            <h3>What Sellers Typically Pay</h3>
+            <ul>
+              <li>Owner's title insurance policy</li>
+              <li>Agent commissions (negotiable)</li>
+              <li>Escrow and settlement fees</li>
+              <li>Document preparation</li>
+              <li>Home warranty (if offered)</li>
+              <li>Repair credits (if negotiated)</li>
+              <li>Prorated property taxes</li>
+            </ul>
+            <p class="cc-info-range">Typical range: <strong>7% - 9%</strong> of sale price</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <ParallaxBanner image="/images/generated/home-nb-ranch.png" />
+
+    <ContactForm />
+
+    <!-- Lead Gate Modal -->
+    <div class="cc-gate" id="ccGate" style="display:none;">
+      <div class="cc-gate__backdrop"></div>
+      <div class="cc-gate__modal">
+        <h2>See Your <span style="color:#FF1616;">Results</span></h2>
+        <p class="cc-gate__sub">Enter your info to unlock the calculator. You only need to do this once.</p>
+        <form id="ccGateForm" novalidate>
+          <div class="cc-gate__field">
+            <label for="cc-gate-name">Name *</label>
+            <input type="text" id="cc-gate-name" name="name" required placeholder="Your full name" />
+          </div>
+          <div class="cc-gate__field">
+            <label for="cc-gate-email">Email *</label>
+            <input type="email" id="cc-gate-email" name="email" required placeholder="you@example.com" />
+          </div>
+          <div class="cc-gate__field">
+            <label for="cc-gate-phone">Phone *</label>
+            <input type="tel" id="cc-gate-phone" name="phone" required placeholder="(555) 555-5555" />
+          </div>
+          <div class="cc-gate__error" id="ccGateError" style="display:none;">Something went wrong. Please try again.</div>
+          <button type="submit" class="btn btn-primary" style="width:100%;padding:0.85rem;margin-top:0.5rem;">Unlock Calculator</button>
+        </form>
+        <p class="cc-gate__privacy">Your information is never shared.</p>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .cc-hero {
+    position: relative;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+  }
+  .cc-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+  }
+  .cc-hero__content {
+    position: relative;
+    z-index: 2;
+    padding: 3rem 1.5rem;
+  }
+  .cc-hero__content h1 {
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+  .cc-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+  }
+
+  .cc-disclaimer {
+    padding: 2rem 0 0;
+  }
+  .cc-disclaimer__box {
+    background: #fffbe6;
+    border-left: 4px solid #e6c200;
+    padding: 1rem 1.5rem;
+    font-size: 0.75rem;
+    line-height: 1.7;
+    color: #555;
+  }
+
+  .cc-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .cc-form h2, .cc-results h2 {
+    margin-bottom: 1.5rem;
+  }
+  .cc-form__group {
+    margin-bottom: 1.5rem;
+  }
+  .cc-form__group h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #333;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+  }
+  .cc-form__field {
+    margin-bottom: 0.75rem;
+  }
+  .cc-form__field label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #555;
+    margin-bottom: 0.35rem;
+  }
+  .cc-form__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .cc-input-wrap {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    background: #fff;
+    transition: border-color 0.2s;
+  }
+  .cc-input-wrap:focus-within {
+    border-color: #FF1616;
+  }
+  .cc-input-prefix, .cc-input-suffix {
+    padding: 0 0.75rem;
+    font-size: 0.85rem;
+    color: #999;
+    flex-shrink: 0;
+  }
+  .cc-input-wrap input {
+    flex: 1;
+    border: none;
+    padding: 0.7rem 0.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    background: transparent;
+    min-width: 0;
+  }
+
+  .cc-toggle {
+    display: flex;
+    gap: 0;
+    border: 1px solid #ddd;
+    overflow: hidden;
+  }
+  .cc-toggle__btn {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border: none;
+    background: #fff;
+    color: #555;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .cc-toggle__btn--active {
+    background: #FF1616;
+    color: #fff;
+  }
+
+  .cc-calculate {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .cc-result-card {
+    background: #fafafa;
+    border: 1px solid #eee;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .cc-result-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #333;
+    margin-bottom: 0.75rem;
+  }
+  .cc-result-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0;
+    font-size: 0.85rem;
+    color: #555;
+    border-bottom: 1px dotted #e5e5e5;
+  }
+  .cc-result-line:last-child {
+    border-bottom: none;
+  }
+  .cc-result-line span:last-child {
+    font-weight: 600;
+    color: #222;
+  }
+  .cc-result-card--total {
+    background: #111;
+    border-color: #111;
+  }
+  .cc-result-line--total {
+    border-bottom: none;
+    padding: 0.25rem 0;
+  }
+  .cc-result-line--total span {
+    color: #fff !important;
+    font-size: 1rem;
+  }
+  .cc-result-line--total span:last-child {
+    font-size: 1.4rem;
+    color: #FF1616 !important;
+    font-weight: 800;
+  }
+
+  .cc-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .cc-info-card {
+    background: #fff;
+    padding: 2rem;
+    border: 1px solid #eee;
+  }
+  .cc-info-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  .cc-info-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .cc-info-card li {
+    padding: 0.4rem 0;
+    padding-left: 1.25rem;
+    position: relative;
+    font-size: 0.85rem;
+    color: #555;
+  }
+  .cc-info-card li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: #FF1616;
+    font-weight: 700;
+  }
+  .cc-info-range {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    font-size: 0.9rem;
+    color: #333;
+  }
+
+  /* Locked results */
+  .cc-results--locked {
+    filter: blur(8px);
+    pointer-events: none;
+    user-select: none;
+    transition: filter 0.4s;
+  }
+  .cc-results--unlocked {
+    filter: none;
+    pointer-events: auto;
+    user-select: auto;
+  }
+
+  /* Lead Gate Modal */
+  .cc-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+  .cc-gate__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+  }
+  .cc-gate__modal {
+    position: relative;
+    z-index: 1;
+    background: #111;
+    border-radius: 10px;
+    padding: 2.5rem 2rem;
+    max-width: 460px;
+    width: 100%;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  }
+  .cc-gate__modal h2 {
+    color: #fff;
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .cc-gate__sub {
+    text-align: center;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .cc-gate__field {
+    margin-bottom: 1rem;
+  }
+  .cc-gate__field label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 0.35rem;
+  }
+  .cc-gate__field input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 0.9rem;
+    transition: border-color 0.2s;
+  }
+  .cc-gate__field input::placeholder { color: rgba(255,255,255,0.3); }
+  .cc-gate__field input:focus { outline: none; border-color: #FF1616; }
+  .cc-gate__field input.cc-err { border-color: #FF1616; }
+  .cc-gate__error {
+    padding: 0.6rem 1rem;
+    background: rgba(255,22,22,0.15);
+    border: 1px solid rgba(255,22,22,0.3);
+    border-radius: 6px;
+    color: #FF1616;
+    font-size: 0.85rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .cc-gate__privacy {
+    text-align: center;
+    color: rgba(255,255,255,0.35);
+    font-size: 0.72rem;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 900px) {
+    .cc-layout {
+      grid-template-columns: 1fr;
+    }
+    .cc-form__row {
+      grid-template-columns: 1fr;
+    }
+    .cc-info-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script is:inline>
+(function() {
+  var role = 'buyer';
+  var toggleBuyer = document.getElementById('toggleBuyer');
+  var toggleSeller = document.getElementById('toggleSeller');
+  var buyerOpts = document.getElementById('buyerOptionsGroup');
+  var sellerOpts = document.getElementById('sellerOptionsGroup');
+  var loanGroup = document.getElementById('loanAmountGroup');
+  var buyerFeesCard = document.getElementById('buyerFeesCard');
+  var sellerFeesCard = document.getElementById('sellerFeesCard');
+  var lenderTitleRow = document.getElementById('lenderTitleRow');
+  var titleLabel = document.getElementById('titleLabel');
+
+  function setRole(r) {
+    role = r;
+    if (r === 'buyer') {
+      toggleBuyer.classList.add('cc-toggle__btn--active');
+      toggleSeller.classList.remove('cc-toggle__btn--active');
+      buyerOpts.style.display = '';
+      sellerOpts.style.display = 'none';
+      loanGroup.style.display = '';
+      buyerFeesCard.style.display = '';
+      sellerFeesCard.style.display = 'none';
+      lenderTitleRow.style.display = '';
+      titleLabel.textContent = "Owner's Title Policy (Seller Pays)";
+    } else {
+      toggleSeller.classList.add('cc-toggle__btn--active');
+      toggleBuyer.classList.remove('cc-toggle__btn--active');
+      buyerOpts.style.display = 'none';
+      sellerOpts.style.display = '';
+      loanGroup.style.display = 'none';
+      buyerFeesCard.style.display = 'none';
+      sellerFeesCard.style.display = '';
+      lenderTitleRow.style.display = 'none';
+      titleLabel.textContent = "Owner's Title Policy";
+    }
+    calculate();
+  }
+
+  toggleBuyer && toggleBuyer.addEventListener('click', function() { setRole('buyer'); });
+  toggleSeller && toggleSeller.addEventListener('click', function() { setRole('seller'); });
+
+  // Texas promulgated title insurance rates (simplified schedule)
+  function texasTitleInsurance(price) {
+    if (price <= 0) return 0;
+    if (price <= 100000) return price * 0.00567;
+    if (price <= 200000) return 567 + (price - 100000) * 0.00491;
+    if (price <= 500000) return 567 + 491 + (price - 200000) * 0.00441;
+    if (price <= 1000000) return 567 + 491 + 1323 + (price - 500000) * 0.00378;
+    return 567 + 491 + 1323 + 1890 + (price - 1000000) * 0.00315;
+  }
+
+  // Lender's title policy (simultaneous issue discount)
+  function lenderTitlePolicy(loanAmt, salePrice) {
+    var ownerPremium = texasTitleInsurance(salePrice);
+    if (loanAmt <= 0) return 0;
+    var fullLender = texasTitleInsurance(loanAmt);
+    // Simultaneous issue: reduced rate
+    return Math.max(fullLender * 0.40, 100);
+  }
+
+  function val(id) {
+    var el = document.getElementById(id);
+    return el ? parseFloat(el.value) || 0 : 0;
+  }
+  function fmt(n) {
+    return '$' + Math.round(n).toLocaleString();
+  }
+  function set(id, v) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = v;
+  }
+
+  function calculate() {
+    var salePrice = val('salePrice');
+    var loanAmount = val('loanAmount');
+
+    // Title insurance
+    var ownerTitle = texasTitleInsurance(salePrice);
+    var lenderTitle = lenderTitlePolicy(loanAmount, salePrice);
+
+    // Escrow fees
+    var escrow = Math.max(salePrice * 0.001, 350);
+    var docPrep = 250;
+    var recording = 150;
+
+    set('titleInsurance', fmt(ownerTitle));
+    set('lenderTitle', fmt(lenderTitle));
+    set('escrowFee', fmt(escrow));
+    set('docPrep', fmt(docPrep));
+    set('recordingFees', fmt(recording));
+
+    var total = 0;
+
+    if (role === 'buyer') {
+      var inspection = val('homeInspection');
+      var survey = val('survey');
+      var appraisal = val('appraisal');
+      var option = val('optionFee');
+      var origination = loanAmount * 0.01;
+
+      // Prepaids: 14 months taxes + 14 months insurance
+      var annualTax = salePrice * 0.0175;
+      var annualIns = salePrice * 0.005;
+      var prepaids = (annualTax / 12 * 14) + (annualIns / 12 * 14);
+      var prepaidEl = document.getElementById('prepaids');
+      if (prepaidEl) prepaidEl.value = Math.round(prepaids);
+
+      set('resInspection', fmt(inspection));
+      set('resSurvey', fmt(survey));
+      set('resAppraisal', fmt(appraisal));
+      set('resOption', fmt(option));
+      set('origFee', fmt(origination));
+      set('resPrepaids', fmt(prepaids));
+
+      // Buyer pays: lender title, escrow (split), doc prep, recording, buyer fees, prepaids
+      total = lenderTitle + (escrow / 2) + docPrep + recording + inspection + survey + appraisal + option + origination + prepaids;
+    } else {
+      var listComm = salePrice * (val('listingComm') / 100);
+      var buyerCommVal = salePrice * (val('buyerComm') / 100);
+      var repair = val('repairCredit');
+      var warranty = val('homeWarranty');
+
+      set('resListComm', fmt(listComm));
+      set('resBuyerComm', fmt(buyerCommVal));
+      set('resRepair', fmt(repair));
+      set('resWarranty', fmt(warranty));
+
+      // Seller pays: owner title, escrow (split), commissions, warranty, repairs
+      total = ownerTitle + (escrow / 2) + listComm + buyerCommVal + repair + warranty;
+    }
+
+    set('totalCosts', fmt(total));
+  }
+
+  // --- Lead Gate Logic ---
+  var resultsEl = document.getElementById('ccResults');
+  var gateEl = document.getElementById('ccGate');
+  var gateForm = document.getElementById('ccGateForm');
+  var calcBtn = document.getElementById('calculateBtn');
+  var unlocked = false;
+
+  function unlockResults() {
+    unlocked = true;
+    if (resultsEl) {
+      resultsEl.classList.remove('cc-results--locked');
+      resultsEl.classList.add('cc-results--unlocked');
+    }
+    if (gateEl) gateEl.style.display = 'none';
+    document.body.style.overflow = '';
+    calculate();
+
+    // After unlock, enable auto-calculate
+    document.querySelectorAll('.cc-form input').forEach(function(input) {
+      input.addEventListener('input', calculate);
+    });
+  }
+
+  // Check if already registered
+  if (localStorage.getItem('cpr_lead')) {
+    unlockResults();
+  }
+
+  // Calculate button click
+  calcBtn && calcBtn.addEventListener('click', function() {
+    if (unlocked || localStorage.getItem('cpr_lead')) {
+      unlockResults();
+      return;
+    }
+    if (gateEl) gateEl.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  });
+
+  // Gate form submit
+  gateForm && gateForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    gateForm.querySelectorAll('.cc-err').forEach(function(el) { el.classList.remove('cc-err'); });
+
+    var nameIn = gateForm.querySelector('#cc-gate-name');
+    var emailIn = gateForm.querySelector('#cc-gate-email');
+    var phoneIn = gateForm.querySelector('#cc-gate-phone');
+    var valid = true;
+
+    if (!nameIn.value.trim()) { nameIn.classList.add('cc-err'); valid = false; }
+    if (!emailIn.value.trim() || !emailIn.value.includes('@')) { emailIn.classList.add('cc-err'); valid = false; }
+    if (!phoneIn.value.trim()) { phoneIn.classList.add('cc-err'); valid = false; }
+    if (!valid) return;
+
+    var btn = gateForm.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; btn.textContent = 'Submitting...'; }
+
+    fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: nameIn.value.trim(),
+        email: emailIn.value.trim(),
+        phone: phoneIn.value.trim(),
+        source: 'Closing Cost Calculator'
+      })
+    })
+    .then(function() {
+      localStorage.setItem('cpr_lead', JSON.stringify({
+        name: nameIn.value.trim(),
+        email: emailIn.value.trim(),
+        phone: phoneIn.value.trim(),
+        registeredAt: Date.now()
+      }));
+      unlockResults();
+    })
+    .catch(function() {
+      localStorage.setItem('cpr_lead', JSON.stringify({
+        name: nameIn.value.trim(),
+        email: emailIn.value.trim(),
+        phone: phoneIn.value.trim(),
+        registeredAt: Date.now()
+      }));
+      unlockResults();
+    });
+  });
+})();
+</script>

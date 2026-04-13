@@ -1,0 +1,158 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
+
+const exterior = [
+  'Move all cars out of the driveway and down the street so they will not be captured in any photos.',
+  'Close garage doors.',
+  'Move or put away garden hoses and tuck trash and recycle bins out of sight.',
+  'Remove any empty flowerpots and consider adding fresh flowers.',
+  'Clean the swimming pool if applicable.',
+  'Mow the yard, bag leaves, and trim bushes and trees — especially if they obstruct the house.',
+  'Do not schedule workmen, landscaping crews, or maintenance to be present on picture day.',
+  'Pick up newspapers from the driveway and walkways.',
+];
+
+const interior = [
+  'Make beds and wash or put away dishes — do not leave them in the sink or drying rack.',
+  'Pick up any clothes on the floor and put away robes, slippers, etc.',
+  'Clear kitchen counters — remove extra cookbooks, bowls, and small appliances. Counters should have almost nothing on them.',
+  'Pick up toys, piles of magazines, and other clutter throughout the house.',
+  'Check bathroom counters and put away lotions, shampoo, electric toothbrushes, and bath toys.',
+  'Ensure all pets are out of the house and food dishes and pet beds are put away.',
+  'Put away mail, magazines, and newspapers so nothing is on a counter or table.',
+  'Stow media remote controls out of sight.',
+  'If the study or home office will be photographed, remove or neatly stack all paperwork.',
+];
+---
+
+<Layout
+  title="Preparing Your Home for Photographs | Seller's Guide | Popby Realty"
+  description="Tips to make your home look its best for listing photos. First impressions matter — here's how to prepare for picture day."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <div class="sp-hero">
+      <div class="sp-hero__overlay"></div>
+      <div class="sp-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/sellers-guide">Seller's Guide</a> <span>/</span> <span>Preparing for Photos</span>
+        </nav>
+        <h1>Preparing for <span style="color:#FF1616;">Photographs</span></h1>
+        <p>First impressions start online — make your listing photos count</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="sp-content">
+          <p class="sp-lead">Your listing photos are the first thing most buyers will see. These simple steps will help showcase the features of your home and attract more qualified buyers. A little preparation on picture day goes a long way.</p>
+
+          <h2>Exterior</h2>
+          <ul class="sp-list">
+            {exterior.map((item) => <li>{item}</li>)}
+          </ul>
+
+          <h2>Interior</h2>
+          <ul class="sp-list">
+            {interior.map((item) => <li>{item}</li>)}
+          </ul>
+
+          <div class="sp-cta">
+            <p>I coordinate professional photography for every listing. Let me help you get your home photo-ready.</p>
+            <a href="#contact" class="btn btn-primary">Schedule a Consultation</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ParallaxBanner image="/images/generated/comal-river.png" />
+  <ContactForm context="I'd like help preparing my home for listing photos..." />
+  <Footer />
+</Layout>
+
+<style>
+  .sp-hero {
+    position: relative;
+    height: 280px;
+    background: url('/images/generated/sellers-guide-hero.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .sp-hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
+  .sp-hero__content { position: relative; z-index: 1; padding: 0 1.5rem; }
+  .sp-hero__content h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 0.5rem; }
+  .sp-hero__content p { color: rgba(255,255,255,0.7); font-size: 0.95rem; max-width: 550px; margin: 0 auto; }
+
+  .breadcrumb { font-size: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.5); }
+  .breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .sp-content { max-width: 800px; margin: 0 auto; }
+
+  .sp-lead {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .sp-content h2 {
+    font-size: 1.4rem;
+    margin: 2.5rem 0 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #FF1616;
+    display: inline-block;
+  }
+
+  .sp-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .sp-list li {
+    position: relative;
+    padding: 0.65rem 0 0.65rem 1.5rem;
+    font-size: 0.92rem;
+    color: #555;
+    line-height: 1.7;
+    border-bottom: 1px solid #eee;
+  }
+
+  .sp-list li:last-child { border-bottom: none; }
+
+  .sp-list li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: #FF1616;
+    font-weight: 700;
+  }
+
+  .sp-cta {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: #111;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .sp-cta p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+</style>

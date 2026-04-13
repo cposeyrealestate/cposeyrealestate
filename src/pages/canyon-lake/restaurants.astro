@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
 ---
 
@@ -38,12 +39,13 @@ import ContactForm from '../../components/ContactForm.astro';
           <h2>Where to <span class="accent">Eat</span></h2>
         </div>
 
-        <div class="cl-restaurant__list">
+        <div class="cl-restaurant__list" id="clRestaurants">
           <div class="cl-restaurant__card">
             <div class="cl-restaurant__info">
               <h3>Gennaro's Trattoria</h3>
               <span class="cl-restaurant__cuisine">Italian</span>
               <p>Fresh pasta and quality meats in a warm, family-friendly setting. Gennaro's brings authentic Italian cooking to the Hill Country with a menu that changes seasonally and a wine list to match.</p>
+              <a href="https://www.google.com/maps/search/?api=1&query=Gennaro%27s+Trattoria+10018+Startz+Rd+Canyon+Lake+TX+78133" target="_blank" rel="noopener" class="cl-restaurant__address">10018 Startz Rd, Canyon Lake, TX 78133</a>
               <span class="cl-restaurant__price">$$</span>
             </div>
           </div>
@@ -51,35 +53,59 @@ import ContactForm from '../../components/ContactForm.astro';
           <div class="cl-restaurant__card">
             <div class="cl-restaurant__info">
               <h3>Wildflour Artisan Bakery & Grill</h3>
-              <span class="cl-restaurant__cuisine">American</span>
+              <span class="cl-restaurant__cuisine">American / Bakery</span>
               <p>Homemade baked goods, eggs benedict, chicken and waffles, and one of the best brunch spots in the area. Wildflour is a local favorite for weekend mornings and a great grab-and-go option during the week.</p>
+              <a href="https://www.google.com/maps/search/?api=1&query=Wildflour+Artisan+Bakery+%26+Grill+2000+FM+2673+Canyon+Lake+TX+78133" target="_blank" rel="noopener" class="cl-restaurant__address">2000 FM 2673, Canyon Lake, TX 78133</a>
               <span class="cl-restaurant__price">$$</span>
             </div>
           </div>
 
           <div class="cl-restaurant__card">
             <div class="cl-restaurant__info">
-              <h3>Baja Icehouse and Grill</h3>
-              <span class="cl-restaurant__cuisine">Tex-Mex / Bar</span>
-              <p>The only restaurant actually on Canyon Lake. Baja Icehouse offers waterfront dining, cold drinks, Tex-Mex favorites, and live music on the weekends. It's the kind of place you boat up to.</p>
+              <h3>Breakwater Grill & Cantina</h3>
+              <span class="cl-restaurant__cuisine">Tex-Mex / American</span>
+              <p>Lakeside Tex-Mex and American grill with waterfront views on Canyon Lake. Tacos, burgers, and cantina favorites with cold drinks — the kind of place you boat up to on a summer afternoon.</p>
+              <a href="https://www.google.com/maps/search/?api=1&query=Breakwater+Grill+%26+Cantina+280+Marina+Canyon+Lake+TX+78133" target="_blank" rel="noopener" class="cl-restaurant__address">280 Marina, Canyon Lake, TX 78133</a>
               <span class="cl-restaurant__price">$$</span>
             </div>
           </div>
 
           <div class="cl-restaurant__card">
             <div class="cl-restaurant__info">
-              <h3>The Last Shot Bar & Grill</h3>
+              <h3>Elio's Pizzeria</h3>
+              <span class="cl-restaurant__cuisine">Italian / Pizza</span>
+              <p>Wood-fired pizzeria and Italian osteria offering authentic pizzas, pastas, and Italian dishes. A hidden gem near the lake that draws crowds on weekends. Open Wednesday through Sunday.</p>
+              <a href="https://www.google.com/maps/search/?api=1&query=Elio%27s+Pizzeria+1834+FM+2673+Canyon+Lake+TX+78133" target="_blank" rel="noopener" class="cl-restaurant__address">1834 FM 2673, Canyon Lake, TX 78133</a>
+              <span class="cl-restaurant__price">$$</span>
+            </div>
+          </div>
+
+          <div class="cl-restaurant__card">
+            <div class="cl-restaurant__info">
+              <h3>Canyon City Grill</h3>
+              <span class="cl-restaurant__cuisine">American</span>
+              <p>American comfort food near the Canyon Lake Dam. Burgers, steaks, and classic grill fare in a casual, laid-back setting that captures the lake-area vibe.</p>
+              <a href="https://www.google.com/maps/search/?api=1&query=Canyon+City+Grill+14601+FM+306+Canyon+Lake+TX+78133" target="_blank" rel="noopener" class="cl-restaurant__address">14601 FM 306, Canyon Lake, TX 78133</a>
+              <span class="cl-restaurant__price">$$</span>
+            </div>
+          </div>
+
+          <div class="cl-restaurant__card">
+            <div class="cl-restaurant__info">
+              <h3>Lucky's Sports Bar & Grill</h3>
               <span class="cl-restaurant__cuisine">American / Bar</span>
-              <p>A casual bar and grill with solid burgers, cold beer, and live music. The Last Shot is a go-to for locals looking for a laid-back night out without leaving the lake area.</p>
+              <p>Casual sports bar with a lakeview patio serving American pub fare — burgers, chicken fried steak, catfish, and weekend breakfast. A go-to for locals and lake visitors alike.</p>
+              <a href="https://www.google.com/maps/search/?api=1&query=Lucky%27s+Sports+Bar+%26+Grill+18100+FM+306+Canyon+Lake+TX+78133" target="_blank" rel="noopener" class="cl-restaurant__address">18100 FM 306, Canyon Lake, TX 78133</a>
               <span class="cl-restaurant__price">$</span>
             </div>
           </div>
 
           <div class="cl-restaurant__card">
             <div class="cl-restaurant__info">
-              <h3>Canyon Lake Smokehouse</h3>
-              <span class="cl-restaurant__cuisine">BBQ</span>
-              <p>Smoked meats done right with lake-area charm. Canyon Lake Smokehouse serves up brisket, ribs, sausage, and all the classic sides in a no-frills setting that lets the food do the talking.</p>
+              <h3>Maven's Inn & Grill</h3>
+              <span class="cl-restaurant__cuisine">American</span>
+              <p>American grill and full bar in a boutique inn setting. Features burgers, brunch, and weekly specials in a relaxed atmosphere that makes it a neighborhood favorite.</p>
+              <a href="https://www.google.com/maps/search/?api=1&query=Maven%27s+Inn+%26+Grill+10530+FM+2673+Canyon+Lake+TX+78133" target="_blank" rel="noopener" class="cl-restaurant__address">10530 FM 2673, Canyon Lake, TX 78133</a>
               <span class="cl-restaurant__price">$$</span>
             </div>
           </div>
@@ -93,13 +119,15 @@ import ContactForm from '../../components/ContactForm.astro';
         <h2>Thinking About <span class="accent">Canyon Lake</span>?</h2>
         <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Great food is just one part of what makes Canyon Lake special. If you're considering a move to the area, I can help you find the right home in the right neighborhood.</p>
         <div class="cl-cta__buttons">
-          <a href="/canyon-lake/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="/search" class="btn btn-primary">Search Homes</a>
           <a href="#contact" class="btn btn-outline">Ask About Canyon Lake</a>
         </div>
       </div>
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/canyon-lake-water.png" />
+
   <ContactForm context="I'd like to learn more about Canyon Lake..." />
   <Footer />
 </Layout>
@@ -108,7 +136,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .cl-hero {
     position: relative;
     height: 280px;
-    background: #000;
+    background: url('/images/generated/canyon-lake-water.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -119,8 +147,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .cl-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .cl-hero__content {
@@ -215,6 +242,18 @@ import ContactForm from '../../components/ContactForm.astro';
     font-size: 0.9rem;
     line-height: 1.7;
     margin-bottom: 0.75rem;
+  }
+
+  .cl-restaurant__address {
+    display: block;
+    font-size: 0.82rem;
+    color: #FF1616;
+    margin-bottom: 0.75rem;
+    transition: opacity 0.2s;
+  }
+
+  .cl-restaurant__address:hover {
+    opacity: 0.7;
   }
 
   .cl-restaurant__price {

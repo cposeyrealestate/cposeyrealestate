@@ -3,19 +3,20 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 
 const activities = [
-  { name: 'Comal River Tubing', category: 'outdoor', description: "Float the crystal-clear, spring-fed Comal River — the shortest river in Texas. A relaxing 2-hour journey with access points throughout the city, perfect for a lazy afternoon.", icon: '🌊' },
-  { name: 'Guadalupe River Adventures', category: 'outdoor', description: "Kayaking, tubing, and paddleboarding on the Guadalupe River. Full-day trips through beautiful Hill Country scenery with outfitters ready to get you on the water.", icon: '🛶' },
-  { name: 'Schlitterbahn Waterpark', category: 'family', description: "One of the best waterparks in the country, powered by natural spring water from the Comal River. Multiple water coasters, lazy rivers, and slides for all ages.", icon: '🎢' },
-  { name: 'Gruene Hall', category: 'nightlife', description: "Texas' oldest continually operating dance hall, built in 1878. Live music every night — from up-and-coming Texas artists to national acts. A 6,000 sq ft dance floor with the original tin roof.", icon: '🎵' },
-  { name: 'Gruene Historic District', category: 'culture', description: "Shop, dine, and explore charming storefronts in this preserved 1800s German settlement. Wine tasting rooms, antique shops, and the famous Gristmill restaurant overlooking the river.", icon: '🏛️' },
-  { name: 'Natural Bridge Caverns', category: 'family', description: "The largest commercial caverns in Texas, 180 feet underground. Discovery Tour reveals massive formations, plus zip lines, a maze, and gem mining above ground.", icon: '⛰️' },
-  { name: 'Natural Bridge Wildlife Ranch', category: 'family', description: "A 500-acre drive-through safari park with over 500 animals. Feed giraffes from your car, see zebras, and explore walkabout exhibits with cheetahs and gibbons.", icon: '🦒' },
-  { name: 'Landa Park', category: 'outdoor', description: "A 51-acre city park along the Comal River with a spring-fed swimming pool, miniature train, paddle boats, disc golf, and walking trails. Free admission — a local favorite.", icon: '🌳' },
-  { name: 'The Cliff Carver Alpine Coaster', category: 'family', description: "Texas' first alpine coaster — a gravity-propelled sled that zooms through the Hill Country hillside at up to 25 mph. Fun for kids and adults alike.", icon: '🎿' },
-  { name: 'Wurstfest', category: 'seasonal', description: "The annual 10-day salute to sausage drawing 240,000+ visitors every November. German food, 40+ bands on 5 stages, carnival rides, and beer. A New Braunfels tradition.", icon: '🌭' },
-  { name: 'Gruene Music & Wine Festival', category: 'seasonal', description: "A four-day celebration featuring 50+ Texas wineries and breweries with live music in the Gruene Historic District. Held annually in the fall.", icon: '🍷' },
+  { name: 'Comal River Tubing', category: 'outdoor', description: "Float the crystal-clear, spring-fed Comal River — the shortest river in Texas. A relaxing 2-hour journey with access points throughout the city, perfect for a lazy afternoon.", url: 'https://texastubes.com/' },
+  { name: 'Guadalupe River Adventures', category: 'outdoor', description: "Kayaking, tubing, and paddleboarding on the Guadalupe River. Full-day trips through beautiful Hill Country scenery with outfitters ready to get you on the water.", url: 'https://rockinr.com/' },
+  { name: 'Schlitterbahn Waterpark', category: 'family', description: "One of the best waterparks in the country, powered by natural spring water from the Comal River. Multiple water coasters, lazy rivers, and slides for all ages.", url: 'https://www.schlitterbahn.com/new-braunfels/' },
+  { name: 'Gruene Hall', category: 'nightlife', description: "Texas' oldest continually operating dance hall, built in 1878. Live music every night — from up-and-coming Texas artists to national acts. A 6,000 sq ft dance floor with the original tin roof.", url: 'https://gruenehall.com/' },
+  { name: 'Gruene Historic District', category: 'culture', description: "Shop, dine, and explore charming storefronts in this preserved 1800s German settlement. Wine tasting rooms, antique shops, and the famous Gristmill restaurant overlooking the river.", url: 'https://www.gruenetexas.com/' },
+  { name: 'Natural Bridge Caverns', category: 'family', description: "The largest commercial caverns in Texas, 180 feet underground. Discovery Tour reveals massive formations, plus zip lines, a maze, and gem mining above ground.", url: 'https://naturalbridgecaverns.com/' },
+  { name: 'Natural Bridge Wildlife Ranch', category: 'family', description: "A 500-acre drive-through safari park with over 500 animals. Feed giraffes from your car, see zebras, and explore walkabout exhibits with cheetahs and gibbons.", url: 'https://wildliferanchtexas.com/' },
+  { name: 'Landa Park', category: 'outdoor', description: "A 51-acre city park along the Comal River with a spring-fed swimming pool, miniature train, paddle boats, disc golf, and walking trails. Free admission — a local favorite.", url: 'https://www.newbraunfels.gov/270/Landa-Park' },
+  { name: 'The Cliff Carver Alpine Coaster', category: 'family', description: "Texas' first alpine coaster — a gravity-propelled sled that zooms through the Hill Country hillside at up to 25 mph. Fun for kids and adults alike.", url: 'https://cliffcarver.com/' },
+  { name: 'Wurstfest', category: 'seasonal', description: "The annual 10-day salute to sausage drawing 240,000+ visitors every November. German food, 40+ bands on 5 stages, carnival rides, and beer. A New Braunfels tradition.", url: 'https://wurstfest.com/' },
+  { name: 'Gruene Music & Wine Festival', category: 'seasonal', description: "A four-day celebration featuring 50+ Texas wineries and breweries with live music in the Gruene Historic District. Held annually in the fall.", url: 'https://www.gruenemusicandwinefest.org/' },
 ];
 
 const categoryLabels = {
@@ -72,12 +73,11 @@ const categories = [...new Set(activities.map(a => a.category))];
       <div class="container">
         <div class="act-grid" id="actGrid">
           {activities.map(a => (
-            <div class="act-card" data-category={a.category}>
-              <div class="act-card__icon">{a.icon}</div>
+            <a href={a.url} target="_blank" rel="noopener" class="act-card" data-category={a.category}>
               <span class="act-card__category">{categoryLabels[a.category]}</span>
               <h3>{a.name}</h3>
               <p>{a.description}</p>
-            </div>
+            </a>
           ))}
         </div>
       </div>
@@ -90,13 +90,15 @@ const categories = [...new Set(activities.map(a => a.category))];
         <h2>Want to Live Where the <span class="accent">Fun Is</span>?</h2>
         <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">I can help you find a home close to the rivers, Gruene, downtown, and all the activities that make NB special.</p>
         <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-          <a href="/new-braunfels/homes-for-sale/" class="btn btn-primary">Search Homes</a>
+          <a href="/search" class="btn btn-primary">Search Homes</a>
           <a href="#contact" class="btn btn-outline">Let's Connect</a>
         </div>
       </div>
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/guadalupe-river.png" />
+
   <ContactForm context="I'd like to find homes near the best things to do in NB..." />
   <Footer />
 </Layout>
@@ -105,7 +107,7 @@ const categories = [...new Set(activities.map(a => a.category))];
   .act-hero {
     position: relative;
     height: 280px;
-    background: #000;
+    background: url('/images/generated/comal-river.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -116,8 +118,7 @@ const categories = [...new Set(activities.map(a => a.category))];
   .act-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .act-hero__content {
@@ -211,16 +212,14 @@ const categories = [...new Set(activities.map(a => a.category))];
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     transition: transform 0.2s, box-shadow 0.2s;
     text-align: center;
+    text-decoration: none;
+    color: inherit;
+    display: block;
   }
 
   .act-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  }
-
-  .act-card__icon {
-    font-size: 2.5rem;
-    margin-bottom: 0.75rem;
   }
 
   .act-card__category {
@@ -239,6 +238,11 @@ const categories = [...new Set(activities.map(a => a.category))];
     text-transform: uppercase;
     letter-spacing: 0.04em;
     margin-bottom: 0.75rem;
+    transition: color 0.2s;
+  }
+
+  .act-card:hover h3 {
+    color: #FF1616;
   }
 
   .act-card p {

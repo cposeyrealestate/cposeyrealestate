@@ -2,12 +2,13 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
 ---
 
 <Layout
   title="Cibolo & Schertz Neighborhoods | Cody Posey Real Estate"
-  description="Explore the top neighborhoods in Cibolo and Schertz, TX. From Saddle Creek Ranch to Verde Ranch — find the right community for your family."
+  description="Explore the top neighborhoods in Cibolo and Schertz, TX. From Saddle Creek Ranch to Cibolo Valley Ranch — find the right community for your family."
 >
   <Navbar />
   <main style="padding-top: 80px;">
@@ -39,51 +40,48 @@ import ContactForm from '../../components/ContactForm.astro';
         </div>
 
         <div class="cs-hood">
+          <img src="/images/generated/neighborhoods/cs-saddle-creek.png" alt="Saddle Creek Ranch homes" class="cs-hood__img" loading="lazy" />
           <div class="cs-hood__header">
             <h3>Saddle Creek Ranch</h3>
             <span class="cs-hood__price">$300K - $450K</span>
           </div>
-          <p>One of the most popular communities in the area, Saddle Creek Ranch features a dog park, golf course, community pool, and walking trails. Homes range from traditional to Hill Country-inspired designs. Served by SCUCISD schools, this neighborhood is a top choice for families seeking an active lifestyle with resort-style amenities.</p>
+          <p>Saddle Creek Ranch is a welcoming community offering a peaceful suburban lifestyle in the heart of the Cibolo/Schertz area. Residents enjoy family-friendly amenities including a community pool, clubhouse, playgrounds, sports courts, picnic areas, and walking and jogging trails. Homes feature modern open-concept layouts with stylish interiors, and the neighborhood is served by SCUCISD schools.</p>
         </div>
 
         <div class="cs-hood">
+          <img src="/images/generated/neighborhoods/cs-falcon-ridge.png" alt="Falcon Ridge homes" class="cs-hood__img" loading="lazy" />
           <div class="cs-hood__header">
             <h3>Falcon Ridge</h3>
             <span class="cs-hood__price">$280K - $400K</span>
           </div>
-          <p>An established neighborhood near FM 1103 with mature landscaping and a strong sense of community. Falcon Ridge offers a mix of single-story and two-story homes with generous lot sizes. Conveniently located near shopping, dining, and I-35 access, and served by SCUCISD schools.</p>
+          <p>Falcon Ridge is an established, family-oriented community known for its mature landscaping and strong neighborhood identity. Amenities include a community park, playground, BBQ grills, a large outdoor pool with lap lanes, clubhouse, pickleball and tennis courts, and sand volleyball. Homes come in one and two-story options with spacious backyards, and the neighborhood is served by SCUCISD schools.</p>
         </div>
 
         <div class="cs-hood">
+          <img src="/images/generated/neighborhoods/cs-bentwood-ranch.png" alt="Bentwood Ranch homes" class="cs-hood__img" loading="lazy" />
           <div class="cs-hood__header">
             <h3>Bentwood Ranch</h3>
             <span class="cs-hood__price">$280K - $380K</span>
           </div>
-          <p>A community known for its neighborhood events and family-friendly atmosphere. Bentwood Ranch features well-maintained common areas, a community pool, and playgrounds. Homes are a mix of newer and established builds, all within the SCUCISD school district.</p>
+          <p>Bentwood Ranch is a sought-after suburban community with a strong neighborhood feel, featuring well-kept streets, mature trees, and beautifully landscaped yards. Residents enjoy a community pool, playground, and walking trails throughout the neighborhood. Homes offer spacious floorplans on ample lots, making it an ideal choice for families within the SCUCISD school district.</p>
         </div>
 
         <div class="cs-hood">
+          <img src="/images/generated/neighborhoods/cs-turning-stone.png" alt="Turning Stone homes" class="cs-hood__img" loading="lazy" />
           <div class="cs-hood__header">
             <h3>Turning Stone</h3>
             <span class="cs-hood__price">$350K - $450K</span>
           </div>
-          <p>An executive-home community offering larger floor plans and premium finishes. Turning Stone is ideal for move-up buyers looking for more space and upgraded features. The neighborhood is well-kept with wide streets and mature trees, and is served by SCUCISD schools.</p>
+          <p>Turning Stone offers upscale, peaceful suburban living with an impressive array of community amenities including parks, walking trails, green spaces, an onsite elementary school, volleyball, basketball, and tennis courts, a cabana, and a beach entry pool. Homes are well-maintained and spacious with contemporary finishes, and the neighborhood is served by SCUCISD schools.</p>
         </div>
 
         <div class="cs-hood">
+          <img src="/images/generated/neighborhoods/cs-cibolo-valley.png" alt="Cibolo Valley Ranch homes" class="cs-hood__img" loading="lazy" />
           <div class="cs-hood__header">
             <h3>Cibolo Valley Ranch</h3>
             <span class="cs-hood__price">$250K - $350K</span>
           </div>
-          <p>A newer, family-oriented community with modern home designs and community amenities. Cibolo Valley Ranch is popular with first-time buyers and young families looking for affordable options within the SCUCISD school district. The neighborhood features parks, walking paths, and a community pool.</p>
-        </div>
-
-        <div class="cs-hood">
-          <div class="cs-hood__header">
-            <h3>Verde Ranch</h3>
-            <span class="cs-hood__price">$300K - $420K</span>
-          </div>
-          <p>A growing community with a resort-style community pool, splash pad, and playground. Verde Ranch offers a range of floor plans from multiple builders, with homes designed for modern family living. Served by SCUCISD schools and conveniently located near retail and dining options.</p>
+          <p>Cibolo Valley Ranch is a well-established master-planned community with a family-oriented atmosphere that appeals to a wide range of buyers. Residents enjoy resort-style pool access, a fitness center, and miles of hiking and biking trails throughout the neighborhood. Homes range from midsize single-family options to larger estates on spacious lots, all within the SCUCISD school district.</p>
         </div>
       </div>
     </section>
@@ -115,6 +113,8 @@ import ContactForm from '../../components/ContactForm.astro';
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/cibolo-schertz-home.png" />
+
   <ContactForm context="I need help choosing a neighborhood in Cibolo/Schertz..." />
   <Footer />
 </Layout>
@@ -123,7 +123,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .cs-hero {
     position: relative;
     height: 280px;
-    background: #000;
+    background: url('/images/generated/cibolo-schertz-home.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -134,8 +134,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .cs-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .cs-hero__content {
@@ -190,13 +189,21 @@ import ContactForm from '../../components/ContactForm.astro';
   /* Neighborhood Cards */
   .cs-hood {
     background: #fff;
-    padding: 2rem;
     border-radius: 8px;
     margin-bottom: 1.5rem;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+
+  .cs-hood__img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
   }
 
   .cs-hood__header {
+    padding: 2rem 2rem 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -228,6 +235,7 @@ import ContactForm from '../../components/ContactForm.astro';
     color: var(--gray);
     line-height: 1.7;
     margin-bottom: 0;
+    padding: 0 2rem 2rem;
   }
 
   /* Schools */

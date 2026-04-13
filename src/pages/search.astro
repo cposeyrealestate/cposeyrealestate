@@ -1,0 +1,895 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+
+// Listing data loaded client-side for live results
+---
+
+<Layout
+  title="Home Search | Cody Posey Real Estate"
+  description="Search all homes for sale in the New Braunfels, TX area. Browse listings on an interactive map with filters."
+>
+  <Navbar />
+
+  <main class="search-page">
+    <!-- Top bar: filters -->
+    <div class="search-bar">
+      <div class="search-bar__left">
+        <div class="search-mode-toggle">
+          <button class="mode-btn mode-btn--active" data-mode="buy" id="modeBuy">Buy</button>
+          <button class="mode-btn" data-mode="lease" id="modeLease">Lease</button>
+        </div>
+        <div class="search-input-wrap">
+          <svg class="search-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8.5" cy="8.5" r="6"/><path d="M13 13l4.5 4.5"/></svg>
+          <input type="text" id="searchInput" class="search-input" placeholder="City, neighborhood, ZIP code..." />
+        </div>
+      </div>
+      <div class="search-bar__filters">
+        <div class="filter-group">
+          <select id="filterPrice" class="filter-select">
+            <option value="">Any price</option>
+            <option value="0-200000">Under $200K</option>
+            <option value="200000-300000">$200K–$300K</option>
+            <option value="300000-400000">$300K–$400K</option>
+            <option value="400000-500000">$400K–$500K</option>
+            <option value="500000-750000">$500K–$750K</option>
+            <option value="750000-1000000">$750K–$1M</option>
+            <option value="1000000-99999999">$1M+</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <select id="filterType" class="filter-select">
+            <option value="">All types</option>
+            <option value="sfr">Houses</option>
+            <option value="condo">Condos/Townhomes</option>
+            <option value="land">Land</option>
+            <option value="farm">Farm/Ranch</option>
+            <option value="multi">Multi-Family</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <select id="filterBeds" class="filter-select">
+            <option value="">All beds</option>
+            <option value="1">1+ bed</option>
+            <option value="2">2+ beds</option>
+            <option value="3">3+ beds</option>
+            <option value="4">4+ beds</option>
+            <option value="5">5+ beds</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <select id="filterBaths" class="filter-select">
+            <option value="">All baths</option>
+            <option value="1">1+ bath</option>
+            <option value="2">2+ baths</option>
+            <option value="3">3+ baths</option>
+            <option value="4">4+ baths</option>
+          </select>
+        </div>
+        <button id="btnAISearch" class="btn-ai-search" title="AI Smart Search">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M10 2a1 1 0 011 1v1.323l3.954 1.582 1.599-.8a1 1 0 01.894 1.79l-1.233.616 1.738 5.42a1 1 0 01-.285 1.05A3.989 3.989 0 0115 15a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.715-5.349L11 6.477V16h2a1 1 0 110 2H7a1 1 0 110-2h2V6.477L6.237 7.582l1.715 5.349a1 1 0 01-.285 1.05A3.989 3.989 0 015 15a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.738-5.42-1.233-.617a1 1 0 01.894-1.789l1.599.799L9 4.323V3a1 1 0 011-1z"/></svg>
+          AI Search
+        </button>
+      </div>
+      <div class="search-bar__right">
+        <span id="resultCount" class="result-count">0 results</span>
+        <select id="sortBy" class="filter-select">
+          <option value="newest">Newest</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+          <option value="sqft">Largest</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Split view -->
+    <div class="split-view">
+      <!-- Listing cards -->
+      <div class="listings-panel" id="listingsPanel">
+        <div class="listings-grid" id="listingsGrid">
+          <!-- Cards rendered by JS -->
+        </div>
+        <div class="listings-empty" id="listingsEmpty" style="display:none;">
+          <p>No listings match your filters. Try adjusting your search criteria.</p>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="map-panel" id="mapPanel">
+        <div id="map"></div>
+      </div>
+    </div>
+
+    <!-- AI Search Modal -->
+    <div class="ai-modal" id="aiModal" style="display:none;">
+      <div class="ai-modal__backdrop" id="aiModalClose"></div>
+      <div class="ai-modal__content">
+        <button class="ai-modal__close" id="aiModalCloseBtn">&times;</button>
+        <iframe
+          id="aiFrame"
+          src=""
+          title="AI Smart Search"
+          style="width:100%;height:100%;border:none;"
+        ></iframe>
+      </div>
+    </div>
+  </main>
+
+  <!-- Listing data loaded dynamically -->
+  <script is:inline>
+    window.__LISTINGS__ = [];
+    window.__LISTINGS_LOADED__ = false;
+  </script>
+
+  <!-- Leaflet CSS + JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script is:inline>
+  (function() {
+    var ALL = [];
+    var filtered = [];
+    var markers = [];
+    var activeCardId = null;
+    var map;
+
+    function run() {
+
+    // Show loading state
+    var grid = document.getElementById('listingsGrid');
+    var countEl = document.getElementById('resultCount');
+    if (grid) grid.innerHTML = '<div style="padding:40px;text-align:center;color:#888;grid-column:1/-1;">Loading listings...</div>';
+    if (countEl) countEl.textContent = 'Loading...';
+
+    // Fetch live listing data
+    fetch('/data/idx-map-listings.json')
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        ALL = data;
+        window.__LISTINGS__ = data;
+        window.__LISTINGS_LOADED__ = true;
+        initPage();
+      })
+      .catch(function(err) {
+        console.error('Failed to load listings:', err);
+        if (grid) grid.innerHTML = '<div style="padding:40px;text-align:center;color:#c00;grid-column:1/-1;">Failed to load listings. Please refresh the page.</div>';
+      });
+
+    function initPage() {
+
+    // ── DOM ──
+    var grid = document.getElementById('listingsGrid');
+    var empty = document.getElementById('listingsEmpty');
+    var countEl = document.getElementById('resultCount');
+    var searchInput = document.getElementById('searchInput');
+    var filterPrice = document.getElementById('filterPrice');
+    var filterType = document.getElementById('filterType');
+    var filterBeds = document.getElementById('filterBeds');
+    var filterBaths = document.getElementById('filterBaths');
+    var sortBy = document.getElementById('sortBy');
+
+    // ── Helpers ──
+    function shortPrice(num) {
+      if (num >= 1000000) {
+        var m = num / 1000000;
+        return '$' + (m >= 10 ? m.toFixed(1) : m.toFixed(2)).replace(/\.?0+$/, '') + 'M';
+      }
+      if (num >= 1000) return '$' + Math.round(num / 1000) + 'K';
+      return '$' + num.toLocaleString();
+    }
+
+    function fullPrice(num) {
+      return '$' + num.toLocaleString();
+    }
+
+    function debounce(fn, ms) {
+      var t;
+      return function() {
+        clearTimeout(t);
+        t = setTimeout(fn, ms);
+      };
+    }
+
+    // ── Buy/Lease Mode ──
+    var currentMode = 'buy';
+    var modeBuyBtn = document.getElementById('modeBuy');
+    var modeLeaseBtn = document.getElementById('modeLease');
+
+    function setMode(mode) {
+      currentMode = mode;
+      if (mode === 'lease') {
+        modeBuyBtn.classList.remove('mode-btn--active');
+        modeLeaseBtn.classList.add('mode-btn--active');
+        searchInput.placeholder = 'Search rentals by city, neighborhood, ZIP...';
+      } else {
+        modeLeaseBtn.classList.remove('mode-btn--active');
+        modeBuyBtn.classList.add('mode-btn--active');
+        searchInput.placeholder = 'City, neighborhood, ZIP code...';
+      }
+      applyFilters();
+    }
+
+    modeBuyBtn.addEventListener('click', function() { setMode('buy'); });
+    modeLeaseBtn.addEventListener('click', function() { setMode('lease'); });
+
+    // ── Filter & Sort ──
+    function applyFilters() {
+      var q = searchInput.value.toLowerCase().trim();
+      var price = filterPrice.value;
+      var type = filterType.value;
+      var beds = parseInt(filterBeds.value) || 0;
+      var baths = parseInt(filterBaths.value) || 0;
+
+      var pMin = 0, pMax = Infinity;
+      if (price) { var parts = price.split('-'); pMin = Number(parts[0]); pMax = Number(parts[1]); }
+
+      filtered = ALL.filter(function(l) {
+        // Buy/Lease filter
+        if (currentMode === 'lease') {
+          if (l.propType !== 'Residential Rental') return false;
+        } else {
+          if (l.propType === 'Residential Rental') return false;
+        }
+        if (q) {
+          var haystack = (l.address + ' ' + l.city + ' ' + l.zip + ' ' + (l.propType || '') + ' ' + (l.subdivision || '') + ' ' + (l.county || '')).toLowerCase();
+          if (haystack.indexOf(q) === -1) return false;
+        }
+        if (l.price < pMin || l.price > pMax) return false;
+        if (type) {
+          var match = false;
+          if (type === 'sfr') match = l.propType === 'Single Family Residential';
+          else if (type === 'condo') match = l.propType === 'Condominium/Townhome';
+          else if (type === 'land') match = l.propType === 'Lots and Land';
+          else if (type === 'farm') match = l.propType === 'Farm/Ranch';
+          else if (type === 'multi') match = l.propType === 'Multi-Family';
+          if (!match) return false;
+        }
+        if (beds && l.beds < beds) return false;
+        if (baths && l.baths < baths) return false;
+        return true;
+      });
+
+      // Sort
+      var sort = sortBy.value;
+      if (sort === 'price-asc') filtered.sort(function(a, b) { return a.price - b.price; });
+      else if (sort === 'price-desc') filtered.sort(function(a, b) { return b.price - a.price; });
+      else if (sort === 'sqft') filtered.sort(function(a, b) { return b.sqft - a.sqft; });
+      else filtered.sort(function(a, b) { return new Date(b.dateAdded || 0) - new Date(a.dateAdded || 0); });
+
+      countEl.textContent = filtered.length.toLocaleString() + ' result' + (filtered.length !== 1 ? 's' : '');
+      renderCards();
+      renderMap();
+    }
+
+    // ── Cards ──
+    function renderCards() {
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+      }
+      empty.style.display = 'none';
+
+      // Only render cards for listings visible on the map
+      var visibleListings = filtered;
+      if (map) {
+        var bounds = map.getBounds();
+        if (bounds) {
+          visibleListings = filtered.filter(function(l) {
+            return l.lat && l.lng && bounds.contains(L.latLng(l.lat, l.lng));
+          });
+        }
+      }
+
+      // Cap at 200 cards for performance
+      var toShow = visibleListings.slice(0, 200);
+
+      countEl.textContent = visibleListings.length.toLocaleString() + ' result' + (visibleListings.length !== 1 ? 's' : '') +
+        (visibleListings.length < filtered.length ? ' in view' : '');
+
+      var html = '';
+      for (var i = 0; i < toShow.length; i++) {
+        var l = toShow[i];
+        var isActive = activeCardId === l.id;
+        html += '<a class="listing-card' + (isActive ? ' listing-card--active' : '') + '" data-id="' + l.id + '" href="/listing/' + l.id + '">' +
+          '<div class="listing-card__img">' +
+            (l.photo ? '<img src="' + l.photo + '" alt="' + l.address + '" loading="lazy" />' : '<div class="listing-card__noimg">No Photo</div>') +
+            '<span class="listing-card__badge">' + (l.status || 'Active') + '</span>' +
+            (l.photoCount > 1 ? '<span class="listing-card__count">' + l.photoCount + ' photos</span>' : '') +
+          '</div>' +
+          '<div class="listing-card__body">' +
+            '<div class="listing-card__price">' + fullPrice(l.price) + '</div>' +
+            '<div class="listing-card__meta">' +
+              (l.beds ? l.beds + ' bd' : '') +
+              (l.baths ? ' · ' + l.baths + ' ba' : '') +
+              (l.sqft ? ' · ' + l.sqft.toLocaleString() + ' sqft' : '') +
+              (l.acres && l.propTypeId === 4 ? ' · ' + l.acres + ' acres' : '') +
+            '</div>' +
+            '<div class="listing-card__address">' + l.address + ', ' + l.city + ' ' + l.zip + '</div>' +
+          '</div>' +
+        '</a>';
+      }
+      grid.innerHTML = html;
+
+      // Card hover → highlight pin
+      grid.querySelectorAll('.listing-card').forEach(function(card) {
+        card.addEventListener('mouseenter', function() {
+          highlightPin(card.dataset.id);
+        });
+        card.addEventListener('mouseleave', function() {
+          unhighlightPin(card.dataset.id);
+        });
+      });
+    }
+
+    // ── Map ──
+    function initMap() {
+      map = L.map('map', {
+        center: [29.7030, -98.1245],
+        zoom: 11,
+        zoomControl: true,
+        attributionControl: false,
+      });
+
+      // CartoDB Voyager — clean, Google Maps-style tiles
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        maxZoom: 19,
+        subdomains: 'abcd',
+      }).addTo(map);
+
+      // Small attribution in bottom-right
+      L.control.attribution({ position: 'bottomright', prefix: false })
+        .addAttribution('&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>')
+        .addTo(map);
+
+      map.on('moveend', renderCards);
+
+      renderMap();
+    }
+
+    function renderMap() {
+      if (!map) return;
+      // Clear existing markers
+      for (var i = 0; i < markers.length; i++) {
+        map.removeLayer(markers[i]);
+      }
+      markers = [];
+
+      // Only show filtered listings with coordinates
+      var withCoords = filtered.filter(function(l) { return l.lat && l.lng; });
+
+      // Cap markers for performance
+      var toPin = withCoords.slice(0, 500);
+
+      for (var i = 0; i < toPin.length; i++) {
+        var l = toPin[i];
+        var label = shortPrice(l.price);
+
+        var icon = L.divIcon({
+          className: 'price-pin',
+          html: '<div class="price-pin__label" data-id="' + l.id + '">' + label + '</div>',
+          iconSize: null,
+          iconAnchor: [0, 0],
+        });
+
+        var marker = L.marker([l.lat, l.lng], { icon: icon });
+
+        (function(listing) {
+          marker.on('click', function() {
+            activeCardId = listing.id;
+            var card = grid.querySelector('[data-id="' + listing.id + '"]');
+            if (card) {
+              card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              card.classList.add('listing-card--active');
+              setTimeout(function() { card.classList.remove('listing-card--active'); }, 2000);
+            }
+            window.location.href = '/listing/' + listing.id;
+          });
+        })(l);
+
+        marker.addTo(map);
+        markers.push(marker);
+      }
+    }
+
+    function highlightPin(id) {
+      var pin = document.querySelector('.price-pin__label[data-id="' + id + '"]');
+      if (pin) pin.classList.add('price-pin__label--hover');
+    }
+
+    function unhighlightPin(id) {
+      var pin = document.querySelector('.price-pin__label[data-id="' + id + '"]');
+      if (pin) pin.classList.remove('price-pin__label--hover');
+    }
+
+    // ── AI Modal ──
+    var aiModal = document.getElementById('aiModal');
+    var aiFrame = document.getElementById('aiFrame');
+    document.getElementById('btnAISearch').addEventListener('click', function() {
+      aiModal.style.display = 'flex';
+      if (!aiFrame.src || aiFrame.src === '') {
+        aiFrame.src = 'https://cposeyrealestate.idxbroker.com/idx/search/smart';
+      }
+    });
+    document.getElementById('aiModalClose').addEventListener('click', function() {
+      aiModal.style.display = 'none';
+    });
+    document.getElementById('aiModalCloseBtn').addEventListener('click', function() {
+      aiModal.style.display = 'none';
+    });
+
+    // ── Events ──
+    searchInput.addEventListener('input', debounce(applyFilters, 300));
+    filterPrice.addEventListener('change', applyFilters);
+    filterType.addEventListener('change', applyFilters);
+    filterBeds.addEventListener('change', applyFilters);
+    filterBaths.addEventListener('change', applyFilters);
+    sortBy.addEventListener('change', applyFilters);
+
+    // ── Read URL params and pre-fill filters ──
+    var params = new URLSearchParams(window.location.search);
+    var isLeaseMode = params.get('mode') === 'lease';
+    if (params.get('q')) {
+      searchInput.value = params.get('q');
+    }
+    if (params.get('price')) {
+      filterPrice.value = params.get('price');
+    }
+    if (params.get('type')) {
+      filterType.value = params.get('type');
+    }
+    if (params.get('beds')) {
+      filterBeds.value = params.get('beds');
+    }
+    if (params.get('baths')) {
+      filterBaths.value = params.get('baths');
+    }
+
+    // If lease mode from URL, activate lease toggle
+    if (isLeaseMode) {
+      setMode('lease');
+    }
+
+    // ── Init ──
+    applyFilters();
+    initMap();
+    } // end initPage()
+    } // end run()
+
+    run();
+  })();
+  </script>
+</Layout>
+
+<style is:global>
+  /* ── Search Page Layout ── */
+  .search-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding-top: 70px;
+    overflow: hidden;
+  }
+
+  /* ── Search Bar ── */
+  .search-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    z-index: 100;
+  }
+
+  .search-bar__left {
+    flex: 0 0 auto;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .search-mode-toggle {
+    display: flex;
+    border: 1px solid #d0d0d0;
+    border-radius: 20px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .mode-btn {
+    padding: 7px 16px;
+    border: none;
+    background: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+
+  .mode-btn--active {
+    background: #FF1616;
+    color: #fff;
+  }
+
+  .mode-btn:hover:not(.mode-btn--active) {
+    background: #f0f0f0;
+  }
+
+  .search-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 10px;
+    width: 16px;
+    height: 16px;
+    color: #888;
+    pointer-events: none;
+  }
+
+  .search-input {
+    padding: 8px 12px 8px 32px;
+    border: 1px solid #d0d0d0;
+    border-radius: 20px;
+    font-size: 14px;
+    width: 240px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .search-input:focus {
+    border-color: #FF1616;
+  }
+
+  .search-bar__filters {
+    display: flex;
+    gap: 6px;
+    flex: 1;
+    flex-wrap: wrap;
+  }
+
+  .filter-select {
+    padding: 7px 28px 7px 12px;
+    border: 1px solid #d0d0d0;
+    border-radius: 20px;
+    font-size: 13px;
+    background: #fff;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' fill='none' stroke='%23666' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    outline: none;
+  }
+
+  .filter-select:focus {
+    border-color: #FF1616;
+  }
+
+  .btn-ai-search {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 7px 14px;
+    background: linear-gradient(135deg, #FF1616, #d40000);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform 0.1s;
+  }
+
+  .btn-ai-search:hover {
+    transform: scale(1.03);
+  }
+
+  .search-bar__right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+  }
+
+  .result-count {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    white-space: nowrap;
+  }
+
+  /* ── Split View ── */
+  .split-view {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .listings-panel {
+    width: 50%;
+    max-width: 600px;
+    overflow-y: auto;
+    background: #f8f8f8;
+    border-right: 1px solid #e0e0e0;
+  }
+
+  .listings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .listings-empty {
+    padding: 60px 20px;
+    text-align: center;
+    color: #888;
+    font-size: 15px;
+  }
+
+  .map-panel {
+    flex: 1;
+    position: relative;
+  }
+
+  #map {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ── Listing Card ── */
+  .listing-card {
+    display: block;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    transition: box-shadow 0.2s, transform 0.15s;
+    cursor: pointer;
+  }
+
+  .listing-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+  }
+
+  .listing-card--active {
+    box-shadow: 0 0 0 3px #FF1616, 0 4px 16px rgba(0,0,0,0.15);
+  }
+
+  .listing-card__img {
+    position: relative;
+    width: 100%;
+    padding-top: 65%;
+    background: #e8e8e8;
+    overflow: hidden;
+  }
+
+  .listing-card__img img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .listing-card__noimg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    font-size: 13px;
+  }
+
+  .listing-card__badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .listing-card__count {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  .listing-card__body {
+    padding: 10px 12px 12px;
+  }
+
+  .listing-card__price {
+    font-size: 17px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 2px;
+  }
+
+  .listing-card__meta {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 4px;
+  }
+
+  .listing-card__address {
+    font-size: 12px;
+    color: #888;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ── Price Pins ── */
+  .price-pin {
+    background: transparent !important;
+    border: none !important;
+  }
+
+  .price-pin__label {
+    background: #fff;
+    color: #111;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 7px;
+    border-radius: 4px;
+    border: 1.5px solid #ccc;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, transform 0.15s, box-shadow 0.15s;
+    position: relative;
+    transform: translate(-50%, -100%);
+  }
+
+  .price-pin__label::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-right: 1.5px solid #ccc;
+    border-bottom: 1.5px solid #ccc;
+  }
+
+  .price-pin__label:hover,
+  .price-pin__label--hover {
+    background: #FF1616;
+    color: #fff;
+    border-color: #FF1616;
+    transform: translate(-50%, -100%) scale(1.15);
+    box-shadow: 0 3px 10px rgba(255,22,22,0.4);
+    z-index: 9999 !important;
+  }
+
+  .price-pin__label:hover::after,
+  .price-pin__label--hover::after {
+    background: #FF1616;
+    border-color: #FF1616;
+  }
+
+  /* Hide default Leaflet marker icon styling */
+  .leaflet-div-icon {
+    background: transparent !important;
+    border: none !important;
+  }
+
+  /* ── AI Modal ── */
+  .ai-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-modal__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+  }
+
+  .ai-modal__content {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    height: 80vh;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+
+  .ai-modal__close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    border: none;
+    font-size: 22px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .search-bar {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 6px;
+    }
+
+    .search-bar__left { min-width: auto; }
+    .search-input { width: 100%; }
+    .search-bar__filters { justify-content: center; }
+    .search-bar__right { justify-content: center; }
+
+    .split-view {
+      flex-direction: column;
+    }
+
+    .listings-panel {
+      width: 100%;
+      max-width: none;
+      max-height: 50vh;
+      border-right: none;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .map-panel {
+      min-height: 50vh;
+    }
+
+    .listings-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+</style>

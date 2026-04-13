@@ -1,0 +1,284 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+import ParallaxBanner from '../components/ParallaxBanner.astro';
+
+const lenders = [
+  {
+    name: 'Jason Layh',
+    title: 'Loan Officer',
+    company: 'Bear Creek Mortgage / Edge Home Finance',
+    nmls: '891464',
+    phone: '(210) 279-1779',
+    email: 'Jason.Layh@edgehomefinance.com',
+    website: 'https://bearcreektexas.com/',
+  },
+  {
+    name: 'Todd Forbes',
+    title: 'Loan Officer',
+    company: 'CMG Home Loans',
+    nmls: '208825',
+    phone: '(210) 885-3192',
+    email: 'tforbes@cmghomeloans.com',
+    website: 'https://www.cmghomeloans.com/mysite/todd-forbes',
+  },
+  {
+    name: 'Lacey Bond',
+    title: 'Loan Officer',
+    company: 'First Community Mortgage',
+    nmls: '2378100',
+    phone: '(254) 304-1206',
+    email: 'Lacey.Bond@1stnb.com',
+    website: 'https://www.fcmloans4u.com/lacey-bond',
+  },
+  {
+    name: 'Pilgrim Mortgage',
+    title: 'Mortgage Company',
+    company: 'Pilgrim Mortgage',
+    nmls: '225091',
+    phone: '(210) 499-4200',
+    email: 'customercare@pilgrimmtg.com',
+    website: 'https://pilgrimmtg.com/',
+  },
+  {
+    name: 'Sandra Browning',
+    title: 'Vice President, Mortgage Lending',
+    company: 'Jefferson Bank',
+    nmls: '757423',
+    phone: '(830) 608-2213',
+    email: 'sbrowning@jeffersonbank.com',
+    website: 'https://www.jeffersonbank.com/',
+  },
+];
+---
+
+<Layout
+  title="Recommended Mortgage Lenders | Trusted Local Professionals | Popby Realty"
+  description="Trusted mortgage lenders in the New Braunfels and San Antonio area. These are professionals Cody Posey has worked with and personally recommends."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="rl-hero">
+      <div class="rl-hero__overlay"></div>
+      <div class="rl-hero__content">
+        <h1>Recommended <span style="color:#FF1616;">Lenders</span></h1>
+        <p>Finding the right lender is just as important as finding the right home. The professionals listed below are people I have personally worked with or have established relationships with in the local real estate community. Each one brings experience, reliability, and a commitment to helping buyers navigate the mortgage process with confidence.</p>
+      </div>
+    </div>
+
+    <!-- Lender Cards -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="rl-grid">
+          {lenders.map((l) => (
+            <div class="rl-card">
+              <div class="rl-card__header">
+                <h3>{l.name}</h3>
+                <span class="rl-card__title">{l.title}</span>
+              </div>
+              <div class="rl-card__company">{l.company}</div>
+              {l.nmls && <div class="rl-card__nmls">NMLS# {l.nmls}</div>}
+              <div class="rl-card__details">
+                <a href={`tel:${l.phone.replace(/[^0-9+]/g, '')}`} class="rl-card__detail">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                  {l.phone}
+                </a>
+                <a href={`mailto:${l.email}`} class="rl-card__detail">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                  {l.email}
+                </a>
+              </div>
+              <a href={l.website} target="_blank" rel="noopener" class="rl-card__btn">Visit Website</a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="section">
+      <div class="container">
+        <div class="rl-disclaimer">
+          <strong>Disclosure:</strong> The mortgage professionals listed on this page are individuals and companies that Cody Posey has personally worked with or developed professional relationships with in the local real estate community. These recommendations are provided solely as a courtesy to help buyers connect with experienced lenders. Cody Posey and Popby Realty do not receive any compensation, referral fees, or financial benefit of any kind for featuring these lenders. Inclusion on this list does not constitute an endorsement of any specific loan product or guarantee of service. Buyers are encouraged to compare rates, terms, and services from multiple lenders before making a financing decision.
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background: #000; color: #fff; text-align: center;">
+      <div class="container">
+        <h2>Need Help Getting <span class="accent">Pre-Approved</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">I can connect you directly with any of these lenders and help coordinate the process from pre-approval to closing.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <a href="#contact" class="btn btn-primary">Get In Touch</a>
+          <a href="/mortgage-calculator" class="btn btn-outline">Mortgage Calculator</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ParallaxBanner image="/images/generated/home-nb-modern.png" />
+
+  <ContactForm context="I'd like to connect with a recommended lender..." />
+  <Footer />
+</Layout>
+
+<style>
+  .rl-hero {
+    position: relative;
+    min-height: 340px;
+    background: url('/images/generated/mortgage-lending-hero.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .rl-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.7));
+  }
+
+  .rl-hero__content {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    max-width: 90%;
+    width: 700px;
+    padding: 2rem 1.5rem;
+  }
+
+  .rl-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .rl-hero__content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .accent { color: #FF1616; }
+
+  /* Lender Grid */
+  .rl-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .rl-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rl-card__header {
+    margin-bottom: 0.5rem;
+  }
+
+  .rl-card__header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    color: #111;
+    margin: 0 0 0.25rem;
+  }
+
+  .rl-card__title {
+    font-size: 0.85rem;
+    color: #FF1616;
+    font-weight: 600;
+  }
+
+  .rl-card__company {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 0.25rem;
+  }
+
+  .rl-card__nmls {
+    font-size: 0.75rem;
+    color: #999;
+    letter-spacing: 0.03em;
+    margin-bottom: 1rem;
+  }
+
+  .rl-card__details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    flex: 1;
+  }
+
+  .rl-card__detail {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    color: #444;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .rl-card__detail:hover {
+    color: #FF1616;
+  }
+
+  .rl-card__detail svg {
+    flex-shrink: 0;
+    color: #FF1616;
+  }
+
+  .rl-card__btn {
+    display: inline-block;
+    text-align: center;
+    padding: 0.7rem 1.5rem;
+    background: #111;
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .rl-card__btn:hover {
+    background: #FF1616;
+  }
+
+  /* Disclaimer */
+  .rl-disclaimer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    color: #92400e;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 768px) {
+    .rl-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

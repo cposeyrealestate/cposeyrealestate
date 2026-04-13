@@ -2,7 +2,7 @@
 ---
 
 <section class="valuation section" id="home-valuation"
-  style="background-image: url('https://media-production.lp-cdn.com/cdn-cgi/image/format=auto,quality=85,fit=scale-down,width=1280/https://media-production.lp-cdn.com/media/af3a9c82-49c6-45e8-b435-55b84d7549c2');">
+  style="background-image: url('/images/generated/hill-country-home-2.png');">
   <div class="valuation__overlay"></div>
 
   <div class="container valuation__inner">
@@ -323,11 +323,37 @@
     e.preventDefault();
     const form = e.target;
     const data = new FormData(form);
-    // TODO: Connect to your CRM / email service / n8n webhook
-    console.log('Valuation form submitted:', Object.fromEntries(data));
-    alert('Thank you! Cody will be in touch shortly with your home valuation.');
-    if (modal) modal.style.display = 'none';
-    document.body.style.overflow = '';
-    form.reset();
+    const btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+
+    fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: data.get('name'),
+        email: data.get('email'),
+        phone: data.get('phone'),
+        address: data.get('address'),
+        message: 'Home Valuation Request — ' + (data.get('beds') ? data.get('beds') + ' bed, ' : '') + (data.get('baths') ? data.get('baths') + ' bath, ' : '') + (data.get('sqft') ? data.get('sqft') + ' sqft' : ''),
+        source: 'Home Valuation Modal'
+      })
+    })
+    .then(function() {
+      if (modal) modal.style.display = 'none';
+      document.body.style.overflow = '';
+      form.reset();
+      btn.disabled = false;
+      btn.textContent = 'Request My Free Valuation';
+      alert('Thank you! Cody will be in touch shortly with your home valuation.');
+    })
+    .catch(function() {
+      if (modal) modal.style.display = 'none';
+      document.body.style.overflow = '';
+      form.reset();
+      btn.disabled = false;
+      btn.textContent = 'Request My Free Valuation';
+      alert('Thank you! Cody will be in touch shortly with your home valuation.');
+    });
   });
 </script>

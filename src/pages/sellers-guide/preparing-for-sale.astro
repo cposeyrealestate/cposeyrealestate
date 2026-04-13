@@ -1,0 +1,185 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
+
+const exterior = [
+  'Creating great curb appeal is essential — first impressions are everything.',
+  'Manicure your landscaping. Mow, edge, trim bushes and trees so they don\'t obstruct the home.',
+  'Pressure wash hard surfaces including driveways, walkways, and patios.',
+  'Sweep porches and patios. Remove cobwebs and dirt from corners, shutters, and outdoor furniture.',
+  'Repair any rotten wood on trim, fascia, fencing, or decking.',
+  'Paint exterior, fascia, and shutters if necessary.',
+  'Front door appeal — clean, re-stain, and add new hardware if needed.',
+  'Check that address numbers and letters look good and are visible from the street.',
+  'If you have a pool, make sure it\'s functioning (lights, fountains, spa) and looking great. Add colorful pots around the pool if necessary.',
+  'Ensure the roof and gutters are clean and clear of debris.',
+  'Playscapes, trampolines, basketball hoops, and soccer goals — can they be removed? If not, are they looking good and inconspicuous?',
+];
+
+const interior = [
+  'Clean, clutter-free, neutral, light, and open is the goal. Open drapes and blinds to let in natural light.',
+  'Change bold wall colors to light and neutral tones. Usually a warm white or cream works great.',
+  'Remove personal items such as mounted family photos. Buyers need to imagine themselves living there.',
+  'Diplomas, articles, religious items, and political statements can negatively affect sales — remove them.',
+  'Replace any fogged or cracked windows.',
+  'Have windows professionally cleaned. Remove window screens to let more light in and store them in the garage.',
+  'Kitchen: Are appliances and counters appropriate for the price range? Touch up paint on cabinets and trim if needed.',
+  'Clear kitchen counters — remove extra cookbooks, bowls, and appliances. Counters should have almost nothing on them.',
+  'Replace any worn or dirty carpet. This turns a huge negative into a positive. Providing an allowance to buyers instead is not as effective.',
+  'Closets should be well organized to look as large as possible. Matching coat hangers (not white) and no plastic dry cleaner bags helps a lot.',
+  'Use a "Magic Eraser" to remove scuff marks on walls.',
+  'Bathrooms: Check tile grout — is it dirty or cracked? Are countertops, fixtures, and shower glass appropriate for the price range?',
+  'Put away lotions, shampoo, electric toothbrushes, and bath toys from bathroom counters.',
+  'Pay close attention to baseboards — they often show wear and collect dust.',
+  'Check corners and mouldings for small separation gaps. These are from normal settling and easily fixed with caulk.',
+  'Lightbulbs matter: Are they all working? Soft white LED bulbs over 1000 lumens give the best quality of light. Don\'t have mismatched bulbs (some yellow, some white).',
+  'Garage: Clean and clutter-free if possible. Items should be well organized. Consider epoxy on the floor.',
+  'Ensure all pets are out of the house during showings, and food dishes and pet beds are put away.',
+];
+
+const systems = [
+  'HVAC — Replace air filters and consider having units professionally serviced.',
+  'Audio/Visual systems — Confirm everything is working properly.',
+  'Hot Water Heater — Check for leaks and ensure it\'s functioning.',
+  'Fireplaces — Clean and confirm they\'re operational.',
+  'Water Softener — Verify it\'s maintained and working.',
+  'Central Vacuum — Test and confirm it works.',
+];
+---
+
+<Layout
+  title="Preparing Your Home for Sale | Seller's Guide | Popby Realty"
+  description="A comprehensive guide to getting your home market-ready. Curb appeal, interior staging, systems checks, and more."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <div class="sp-hero">
+      <div class="sp-hero__overlay"></div>
+      <div class="sp-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/sellers-guide">Seller's Guide</a> <span>/</span> <span>Preparing for Sale</span>
+        </nav>
+        <h1>Preparing Your Home for <span style="color:#FF1616;">Sale</span></h1>
+        <p>Make the clear impression that you are a diligent homeowner who has maintained and improved the home</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="sp-content">
+          <p class="sp-lead">Use these suggestions to showcase the features of your home that will attract more qualified buyers. Consider providing a list of features and amenities you enjoy about the house and neighborhood — buyers love to hear what makes a home special from the people who lived there.</p>
+
+          <h2>Exterior</h2>
+          <ul class="sp-list">
+            {exterior.map((item) => <li>{item}</li>)}
+          </ul>
+
+          <h2>Interior</h2>
+          <ul class="sp-list">
+            {interior.map((item) => <li>{item}</li>)}
+          </ul>
+
+          <h2>Systems</h2>
+          <p style="color: var(--gray); margin-bottom: 1rem;">Are all of your home's systems in good working condition?</p>
+          <ul class="sp-list">
+            {systems.map((item) => <li>{item}</li>)}
+          </ul>
+
+          <div class="sp-cta">
+            <p>Need help deciding what to prioritize before listing? I can walk through your home and help you focus on the improvements that will make the biggest impact.</p>
+            <a href="#contact" class="btn btn-primary">Get Personalized Advice</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ParallaxBanner image="/images/generated/comal-river.png" />
+  <ContactForm context="I'm preparing my home for sale and would like your advice..." />
+  <Footer />
+</Layout>
+
+<style>
+  .sp-hero {
+    position: relative;
+    height: 280px;
+    background: url('/images/generated/sellers-guide-hero.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .sp-hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
+  .sp-hero__content { position: relative; z-index: 1; padding: 0 1.5rem; }
+  .sp-hero__content h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 0.5rem; }
+  .sp-hero__content p { color: rgba(255,255,255,0.7); font-size: 0.95rem; max-width: 550px; margin: 0 auto; }
+
+  .breadcrumb { font-size: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.5); }
+  .breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .sp-content { max-width: 800px; margin: 0 auto; }
+
+  .sp-lead {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .sp-content h2 {
+    font-size: 1.4rem;
+    margin: 2.5rem 0 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #FF1616;
+    display: inline-block;
+  }
+
+  .sp-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .sp-list li {
+    position: relative;
+    padding: 0.65rem 0 0.65rem 1.5rem;
+    font-size: 0.92rem;
+    color: #555;
+    line-height: 1.7;
+    border-bottom: 1px solid #eee;
+  }
+
+  .sp-list li:last-child { border-bottom: none; }
+
+  .sp-list li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: #FF1616;
+    font-weight: 700;
+  }
+
+  .sp-cta {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: #111;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .sp-cta p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+</style>

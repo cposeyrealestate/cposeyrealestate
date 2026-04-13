@@ -1,0 +1,204 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
+
+const tips = [
+  {
+    num: '1',
+    title: 'Turn On Utilities',
+    desc: 'Confirm that the gas, water, and electricity are turned on and that the gas pilot lights are burning.',
+  },
+  {
+    num: '2',
+    title: 'Trim Back Vegetation',
+    desc: 'Trim tree limbs back from the roof and shrubs away from the house to allow the inspector clear access.',
+  },
+  {
+    num: '3',
+    title: 'Replace Burned Out Bulbs',
+    desc: 'Replace all burned out light bulbs throughout the home. A non-working light can be flagged as an electrical issue.',
+  },
+  {
+    num: '4',
+    title: 'Provide Access',
+    desc: 'Unlock or remove locks from any items the inspector must access — fence gates, attic access hatches, electrical service panels, special closets, and crawl space access for pier-and-beam homes. Remove items that block access to electrical panels, HVAC equipment, and water heaters.',
+  },
+  {
+    num: '5',
+    title: 'Clean or Replace HVAC Filters',
+    desc: 'Clean or replace dirty HVAC air filters and verify that the filters fit properly and are secured in place.',
+  },
+  {
+    num: '6',
+    title: 'Test Safety Detectors',
+    desc: 'Test all smoke and carbon monoxide detectors. Replace the batteries if necessary.',
+  },
+  {
+    num: '7',
+    title: 'Clear the Foundation',
+    desc: 'Move wood, stored items, or debris away from the foundation walls so the inspector can examine them.',
+  },
+  {
+    num: '8',
+    title: 'Clear the Garage',
+    desc: 'Remove autos from the garage to give the inspector full access to the space, electrical panel, and water heater.',
+  },
+  {
+    num: '9',
+    title: 'Fix Small Issues',
+    desc: 'Repair or replace broken, damaged, or missing items such as doorknobs, door stops, locks and latches, window locks, glass, and window screens.',
+  },
+  {
+    num: '10',
+    title: 'Clean the Fireplace',
+    desc: 'Clean ashes from the fireplace and remove items from the fireplace frontal areas.',
+  },
+];
+---
+
+<Layout
+  title="10 Ways to Prepare for Inspection | Seller's Guide | Popby Realty"
+  description="Simple steps to help your home inspection go smoothly. Prepare ahead to avoid unnecessary delays or surprises."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <div class="sp-hero">
+      <div class="sp-hero__overlay"></div>
+      <div class="sp-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/sellers-guide">Seller's Guide</a> <span>/</span> <span>Inspection Prep</span>
+        </nav>
+        <h1>10 Ways to Prepare for <span style="color:#FF1616;">Inspection</span></h1>
+        <p>Simple steps to help your home inspection go smoothly</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="sp-content">
+          <p class="sp-lead">A home inspection doesn't have to be stressful. Most of these items take just a few minutes but can prevent unnecessary red flags, delays, or re-inspections. Complete this list before your inspection date.</p>
+
+          <div class="ip-grid">
+            {tips.map((tip) => (
+              <div class="ip-card">
+                <div class="ip-card__num">{tip.num}</div>
+                <div class="ip-card__body">
+                  <h3>{tip.title}</h3>
+                  <p>{tip.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div class="sp-cta">
+            <p>I'll guide you through the entire inspection process and help you prepare ahead of time so there are no surprises.</p>
+            <a href="#contact" class="btn btn-primary">Get In Touch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ParallaxBanner image="/images/generated/comal-river.png" />
+  <ContactForm context="I'd like help preparing for my home inspection..." />
+  <Footer />
+</Layout>
+
+<style>
+  .sp-hero {
+    position: relative;
+    height: 280px;
+    background: url('/images/generated/sellers-guide-hero.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .sp-hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
+  .sp-hero__content { position: relative; z-index: 1; padding: 0 1.5rem; }
+  .sp-hero__content h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 0.5rem; }
+  .sp-hero__content p { color: rgba(255,255,255,0.7); font-size: 0.95rem; max-width: 550px; margin: 0 auto; }
+
+  .breadcrumb { font-size: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.5); }
+  .breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .sp-content { max-width: 800px; margin: 0 auto; }
+
+  .sp-lead {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .ip-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .ip-card {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background: var(--light-gray);
+    border-radius: 8px;
+  }
+
+  .ip-card__num {
+    width: 44px;
+    height: 44px;
+    background: #FF1616;
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .ip-card__body h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.35rem;
+    color: #111;
+  }
+
+  .ip-card__body p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .sp-cta {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: #111;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .sp-cta p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+</style>

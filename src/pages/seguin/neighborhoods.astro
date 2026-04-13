@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
 ---
 
@@ -39,51 +40,57 @@ import ContactForm from '../../components/ContactForm.astro';
         </div>
 
         <div class="seg-area">
+          <img src="/images/generated/neighborhoods/seg-nob-hill.png" alt="Nob Hill homes" class="seg-area__img" loading="lazy" />
           <div class="seg-area__header">
             <h3>Nob Hill</h3>
             <span class="seg-area__price">$250K - $350K</span>
           </div>
-          <p>A well-established family neighborhood with spacious yards and tree-lined streets. Nob Hill is one of Seguin's most popular residential areas, offering a suburban feel with easy access to schools and shopping. Served by Seguin ISD.</p>
+          <p>Primarily anchored by Nob Hill Condominiums, this established community offers a budget-friendly entry into homeownership in Seguin. The neighborhood features a tranquil atmosphere with mature trees and calmer streets, plus a community pool and clubhouse. Especially appealing to first-time buyers, Nob Hill is served by Seguin ISD.</p>
         </div>
 
         <div class="seg-area">
+          <img src="/images/generated/neighborhoods/seg-mill-creek.png" alt="Village of Mill Creek homes" class="seg-area__img" loading="lazy" />
           <div class="seg-area__header">
             <h3>Village of Mill Creek</h3>
             <span class="seg-area__price">$200K - $320K</span>
           </div>
-          <p>A community-oriented neighborhood with a strong sense of belonging. Mill Creek offers affordable homes with a neighborhood feel, community events, and convenient access to local amenities. Served by Seguin ISD.</p>
+          <p>A quiet, family-friendly neighborhood with a close-knit vibe and larger lots than many surrounding communities. Village of Mill Creek offers easy access to New Braunfels, Randolph AFB, the Tesla factory, the Guadalupe River, and Lake McQueeney. Some sections have no HOA, and homes include a mix of one and two-story layouts. Served by Seguin ISD.</p>
         </div>
 
         <div class="seg-area">
+          <img src="/images/generated/neighborhoods/seg-cordova-crossing.png" alt="Cordova Crossing homes" class="seg-area__img" loading="lazy" />
           <div class="seg-area__header">
             <h3>Cordova Crossing</h3>
             <span class="seg-area__price">$280K - $400K</span>
           </div>
-          <p>One of Seguin's newer construction communities, Cordova Crossing features modern floor plans and updated finishes. Located near major highways for easy commuting to San Antonio or New Braunfels. Served by Seguin ISD.</p>
+          <p>A modern, family-friendly community with a relaxed neighborly atmosphere, wide streets, and sidewalks. Cordova Crossing features a playground, private dog park, and trails throughout the neighborhood. Homes showcase contemporary designs with open layouts, smart home technology, and energy-efficient construction. Served by Seguin ISD.</p>
         </div>
 
         <div class="seg-area">
+          <img src="/images/generated/neighborhoods/seg-downtown.png" alt="Downtown Seguin homes" class="seg-area__img" loading="lazy" />
           <div class="seg-area__header">
             <h3>Downtown Seguin</h3>
             <span class="seg-area__price">$150K - $300K</span>
           </div>
-          <p>Walkable living in the heart of the city. Downtown Seguin offers proximity to Main Street shops, restaurants, breweries, and the Guadalupe River. Homes here range from historic properties to renovated bungalows — ideal for buyers who value character and convenience.</p>
+          <p>Charming, walkable living in the heart of the city with access to boutiques, cafes, and restaurants along Main Street. Properties in the historic district include Victorian-era houses, bungalows, and mid-century ranches — each with its own character. Downtown Seguin is steeped in rich Texas history and is ideal for buyers who value character and convenience.</p>
         </div>
 
         <div class="seg-area">
+          <img src="/images/generated/neighborhoods/seg-country-club.png" alt="Country Club Estates homes" class="seg-area__img" loading="lazy" />
           <div class="seg-area__header">
             <h3>Country Club Estates</h3>
             <span class="seg-area__price">$250K - $450K</span>
           </div>
-          <p>Situated near the Seguin golf course, Country Club Estates offers a quieter pace with mature landscaping and larger lots. A solid choice for buyers looking for an established neighborhood with recreational access. Served by Seguin ISD.</p>
+          <p>Located near Seguin Country Club, this neighborhood offers an "open vista community" feel with pool and clubhouse amenities. An Architectural Review Committee maintains neighborhood standards, ensuring a well-kept and cohesive streetscape. Country Club Estates is a solid choice for buyers seeking an established neighborhood with recreational access. Served by Seguin ISD.</p>
         </div>
 
         <div class="seg-area">
+          <img src="/images/generated/neighborhoods/seg-river-oaks.png" alt="River Oaks homes" class="seg-area__img" loading="lazy" />
           <div class="seg-area__header">
             <h3>River Oaks</h3>
             <span class="seg-area__price">$300K - $500K</span>
           </div>
-          <p>River Oaks offers larger lots with access to the Guadalupe River. Properties here tend to have more acreage and a rural feel while remaining close to town. A great option for buyers who want space, privacy, and river access.</p>
+          <p>A quiet, family-friendly neighborhood where some homes have waterfront access to Lake Seguin and the Guadalupe River, including boat docks. River Oaks features a diverse mix of properties — from vintage bungalows and postwar mid-century ranches to newer modern farmhouse and contemporary builds. A great option for buyers who want variety, water access, and a relaxed pace close to town.</p>
         </div>
       </div>
     </section>
@@ -115,6 +122,8 @@ import ContactForm from '../../components/ContactForm.astro';
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/porch-view.png" />
+
   <ContactForm context="I need help narrowing down Seguin neighborhoods..." />
   <Footer />
 </Layout>
@@ -123,7 +132,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .seg-hero {
     position: relative;
     height: 280px;
-    background: #000;
+    background: url('/images/generated/home-nb-ranch.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -134,8 +143,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .seg-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .seg-hero__content {
@@ -190,10 +198,16 @@ import ContactForm from '../../components/ContactForm.astro';
   /* Neighborhood Cards */
   .seg-area {
     background: #fff;
-    padding: 2rem;
     border-radius: 8px;
     margin-bottom: 1.5rem;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+
+  .seg-area__img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
   }
 
   .seg-area__header {
@@ -203,6 +217,8 @@ import ContactForm from '../../components/ContactForm.astro';
     margin-bottom: 0.75rem;
     flex-wrap: wrap;
     gap: 0.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .seg-area__header h3 {
@@ -210,6 +226,7 @@ import ContactForm from '../../components/ContactForm.astro';
     font-size: 1.2rem;
     text-transform: uppercase;
     margin: 0;
+    padding-top: 1.5rem;
   }
 
   .seg-area__price {
@@ -226,6 +243,9 @@ import ContactForm from '../../components/ContactForm.astro';
     color: var(--gray);
     line-height: 1.7;
     margin-bottom: 0;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
   }
 
   /* Schools */

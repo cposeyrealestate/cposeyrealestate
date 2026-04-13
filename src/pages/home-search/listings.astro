@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
 ---
 
@@ -65,27 +66,27 @@ import ContactForm from '../../components/ContactForm.astro';
           <p>Jump directly to listings in a specific community</p>
         </div>
         <div class="hs-area-grid">
-          <a href="/new-braunfels/homes-for-sale/" class="hs-area-card">
+          <a href="/search" class="hs-area-card">
             <span class="hs-area-card__name">New Braunfels</span>
             <span class="hs-area-card__count">1,600+ homes</span>
             <span class="hs-area-card__arrow">&rarr;</span>
           </a>
-          <a href="/canyon-lake/homes-for-sale/" class="hs-area-card">
+          <a href="/search" class="hs-area-card">
             <span class="hs-area-card__name">Canyon Lake</span>
             <span class="hs-area-card__count">430+ homes</span>
             <span class="hs-area-card__arrow">&rarr;</span>
           </a>
-          <a href="/seguin/homes-for-sale/" class="hs-area-card">
+          <a href="/search" class="hs-area-card">
             <span class="hs-area-card__name">Seguin</span>
             <span class="hs-area-card__count">620+ homes</span>
             <span class="hs-area-card__arrow">&rarr;</span>
           </a>
-          <a href="/cibolo-schertz/homes-for-sale/" class="hs-area-card">
+          <a href="/search" class="hs-area-card">
             <span class="hs-area-card__name">Cibolo / Schertz</span>
             <span class="hs-area-card__count">760+ homes</span>
             <span class="hs-area-card__arrow">&rarr;</span>
           </a>
-          <a href="/bulverde/homes-for-sale/" class="hs-area-card">
+          <a href="/search" class="hs-area-card">
             <span class="hs-area-card__name">Bulverde / Spring Branch</span>
             <span class="hs-area-card__count">230+ homes</span>
             <span class="hs-area-card__arrow">&rarr;</span>
@@ -104,6 +105,8 @@ import ContactForm from '../../components/ContactForm.astro';
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/hill-country-home-1.png" />
+
   <ContactForm context="I'm looking for a home in..." />
   <Footer />
 </Layout>
@@ -112,7 +115,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .hs-hero {
     position: relative;
     height: 260px;
-    background: #000;
+    background: url('/images/generated/hill-country-sunset.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -123,8 +126,7 @@ import ContactForm from '../../components/ContactForm.astro';
   .hs-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .hs-hero__content {

@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import blogPosts from '../../data/blog-posts.json';
 
 export function getStaticPaths() {
@@ -55,6 +56,8 @@ const { post } = Astro.props;
     </section>
 
   </main>
+  <ParallaxBanner image="/images/generated/hill-country-home-2.png" />
+
   <ContactForm context="I have a question about this article..." />
   <Footer />
 </Layout>
@@ -63,7 +66,7 @@ const { post } = Astro.props;
   .post-hero {
     position: relative;
     min-height: 320px;
-    background: #000;
+    background: url('/images/generated/porch-view.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -75,8 +78,7 @@ const { post } = Astro.props;
   .post-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #000 0%, #1a0000 100%);
-    opacity: 0.9;
+    background: rgba(0,0,0,0.55);
   }
 
   .post-hero__content {

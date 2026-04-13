@@ -1,0 +1,391 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+import ParallaxBanner from '../components/ParallaxBanner.astro';
+
+const highlights = [
+  { num: '90K+', label: 'Population & Growing', desc: 'One of the fastest-growing cities in the U.S. for over a decade.' },
+  { num: '30 min', label: 'To San Antonio', desc: 'Easy commute south on I-35 to downtown SA and military bases.' },
+  { num: '45 min', label: 'To Austin', desc: 'Quick drive north to the state capital and tech corridor.' },
+  { num: '$380K', label: 'Median Home Price', desc: 'More affordable than Austin with excellent quality of life.' },
+];
+
+const sections = [
+  {
+    title: 'Cost of Living',
+    content: [
+      'Texas has no state income tax, which means more of your paycheck stays with you.',
+      'Property taxes in Comal County average around 1.75% — lower than Bexar County (San Antonio) and significantly lower than Travis County (Austin).',
+      'Overall cost of living in New Braunfels is below the national average, with affordable groceries, utilities, and transportation.',
+      'Housing costs are well below Austin prices, making the NB area attractive for families and remote workers priced out of larger metros.',
+    ],
+  },
+  {
+    title: 'Schools & Education',
+    content: [
+      'Comal Independent School District (ISD) is highly rated and serves most of the New Braunfels area with multiple A-rated campuses.',
+      'New Braunfels ISD also serves parts of the city and is well-regarded for its community involvement.',
+      'Private and charter school options are available, including several faith-based schools.',
+      'Higher education is accessible via Texas State University (San Marcos, 20 min), UTSA, and multiple community colleges nearby.',
+    ],
+  },
+  {
+    title: 'Employment & Economy',
+    content: [
+      'Major employers include Comal ISD, Resolute Health Hospital, HEB, and the City of New Braunfels.',
+      'The I-35 corridor between SA and Austin is a rapidly growing economic hub with tech, healthcare, and military jobs.',
+      'Joint Base San Antonio (JBSA) — including Fort Sam Houston, Lackland, and Randolph — is one of the largest military installations in the U.S.',
+      'Remote workers increasingly choose New Braunfels for its lower cost of living while earning Austin or SA salaries.',
+    ],
+  },
+  {
+    title: 'Outdoor Recreation & Lifestyle',
+    content: [
+      'The Comal River (shortest navigable river in the U.S.) and Guadalupe River offer world-class tubing, kayaking, and swimming.',
+      'Canyon Lake, just 20 minutes north, provides boating, fishing, and lakeside living.',
+      'Landa Park is a 51-acre gem in the heart of the city with spring-fed pools, trails, a miniature train, and golf.',
+      'The Hill Country is home to dozens of wineries, breweries, dance halls, and scenic drives — including Gruene Historic District, one of the most visited small towns in Texas.',
+    ],
+  },
+  {
+    title: 'Neighborhoods & Communities',
+    content: [
+      'Vintage Oaks — Master-planned Hill Country community with resort amenities, 1-3 acre lots, and stunning views.',
+      'Gruene — Historic area near the Guadalupe River, walkable to Gruene Hall and local shops.',
+      'River Chase & Westpointe — Family-friendly subdivisions with pools, parks, and newer construction.',
+      'Downtown New Braunfels — Charming historic homes, walkable to restaurants and the Comal River.',
+      'Rural acreage is available throughout the Hill Country for those wanting space and privacy.',
+    ],
+  },
+  {
+    title: 'Climate & Weather',
+    content: [
+      'Central Texas enjoys over 220 sunny days per year — mild winters with temperatures rarely dropping below freezing.',
+      'Summers are hot (June–September highs in the mid-to-upper 90s°F), but the rivers and spring-fed pools provide natural cooling.',
+      'Fall and spring are beautiful seasons with comfortable temperatures in the 60s-80s — ideal for outdoor activities.',
+      'Flash flooding can occur in the Hill Country, particularly along rivers and low-water crossings. Flood zone awareness is important when buying.',
+    ],
+  },
+  {
+    title: 'Healthcare',
+    content: [
+      'Resolute Health Hospital is a full-service facility right in New Braunfels.',
+      'The San Antonio Medical Center — one of the largest in the country — is about 30 minutes away with world-class specialists.',
+      'Multiple urgent care clinics, dental offices, and specialty practices serve the growing community.',
+      'VA healthcare for veterans is available through the South Texas Veterans Health Care System in San Antonio.',
+    ],
+  },
+  {
+    title: 'Military & Veteran Community',
+    content: [
+      'New Braunfels has a thriving veteran community, supported by VFW Post 7110, American Legion, and veteran-focused nonprofits.',
+      'Proximity to JBSA makes it popular with active-duty families and military retirees.',
+      'Texas offers significant property tax exemptions for disabled veterans — up to 100% exemption for 100% disability.',
+      'VA home loans are widely accepted throughout the area, and many agents (including Cody Posey) specialize in military relocations.',
+    ],
+  },
+];
+
+const movingChecklist = [
+  { task: 'Research neighborhoods and school districts', timeline: '8-12 weeks before' },
+  { task: 'Get pre-approved for a mortgage', timeline: '8-10 weeks before' },
+  { task: 'Connect with a local REALTOR (call Cody!)', timeline: '8-10 weeks before' },
+  { task: 'Tour homes and make an offer', timeline: '6-8 weeks before' },
+  { task: 'Schedule home inspection and appraisal', timeline: '4-6 weeks before' },
+  { task: 'Set up utilities (NBU, GVEC, Spectrum)', timeline: '2-3 weeks before' },
+  { task: 'Forward mail and update your address', timeline: '2 weeks before' },
+  { task: 'File for homestead exemption (after closing)', timeline: 'Within 1 year' },
+  { task: 'Get a Texas driver\'s license', timeline: 'Within 90 days' },
+  { task: 'Register to vote in Comal County', timeline: 'Within 30 days' },
+];
+---
+
+<Layout
+  title="New Braunfels Relocation Guide | Moving to the Hill Country | Cody Posey Real Estate"
+  description="Everything you need to know about relocating to New Braunfels and the Texas Hill Country. Cost of living, schools, neighborhoods, employment, lifestyle, and a moving checklist."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="rg-hero" style="background-image:url('/images/generated/modern-home-nb.png');">
+      <div class="rg-hero__overlay"></div>
+      <div class="rg-hero__content">
+        <p class="rg-hero__eyebrow">Your Complete Guide</p>
+        <h1>Relocating to <span style="color:#FF1616;">New Braunfels</span></h1>
+        <p>Everything you need to know about moving to the Texas Hill Country</p>
+      </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <section class="rg-stats">
+      <div class="container">
+        <div class="rg-stats__grid">
+          {highlights.map((h) => (
+            <div class="rg-stat">
+              <div class="rg-stat__num">{h.num}</div>
+              <div class="rg-stat__label">{h.label}</div>
+              <div class="rg-stat__desc">{h.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <div class="rg-intro">
+          <h2>Why <span class="accent">New Braunfels?</span></h2>
+          <p>
+            Nestled between San Antonio and Austin along the I-35 corridor, New Braunfels offers the perfect blend of small-town charm and big-city access. With a rich German heritage, spring-fed rivers, top-rated schools, and a booming local economy, it's no wonder thousands of families choose to call this area home every year. Whether you're relocating for work, retirement, or a better quality of life, this guide will help you make an informed move.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sections -->
+    {sections.map((s, i) => (
+      <section class={`section ${i % 2 === 0 ? '' : 'rg-section--alt'}`}>
+        <div class="container">
+          <div class="rg-section">
+            <div class="rg-section__header">
+              <h2>{s.title}</h2>
+            </div>
+            <div class="rg-section__content">
+              <ul>
+                {s.content.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <!-- Moving Checklist -->
+    <section class="section" style="background:#000;color:#fff;">
+      <div class="container">
+        <div class="section-title" style="margin-bottom:2rem;">
+          <h2 style="color:#fff;">Moving <span class="accent">Checklist</span></h2>
+          <p style="color:#aaa;">Your timeline for a smooth relocation to New Braunfels</p>
+        </div>
+        <div class="rg-checklist">
+          {movingChecklist.map((item) => (
+            <div class="rg-check-item">
+              <div class="rg-check-item__check">&#10003;</div>
+              <div class="rg-check-item__content">
+                <div class="rg-check-item__task">{item.task}</div>
+                <div class="rg-check-item__timeline">{item.timeline}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background:var(--light-gray);">
+      <div class="container" style="text-align:center;max-width:700px;">
+        <h2>Ready to Make the <span class="accent">Move?</span></h2>
+        <p style="color:#555;margin-bottom:2rem;">
+          As a retired Army First Sergeant and New Braunfels local, Cody Posey understands what it takes to relocate. Whether you're PCSing to JBSA, moving for work, or choosing the Hill Country for retirement, Cody will help you find the perfect home.
+        </p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <a href="#contact" class="btn btn-primary">Get In Touch</a>
+          <a href="/search" class="btn btn-outline-dark">Browse Homes</a>
+        </div>
+      </div>
+    </section>
+
+    <ParallaxBanner image="/images/generated/comal-river.png" />
+
+    <ContactForm />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .rg-hero {
+    position: relative;
+    min-height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+  }
+  .rg-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+  }
+  .rg-hero__content {
+    position: relative;
+    z-index: 2;
+    padding: 3rem 1.5rem;
+  }
+  .rg-hero__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #FF1616;
+    margin-bottom: 0.75rem;
+  }
+  .rg-hero__content h1 {
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+  .rg-hero__content > p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+  }
+
+  /* Stats */
+  .rg-stats {
+    background: #111;
+    padding: 3rem 0;
+  }
+  .rg-stats__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .rg-stat {
+    text-align: center;
+    padding: 1rem;
+  }
+  .rg-stat__num {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #FF1616;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .rg-stat__label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .rg-stat__desc {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.5;
+  }
+
+  /* Intro */
+  .rg-intro {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .rg-intro h2 {
+    margin-bottom: 1.25rem;
+  }
+  .rg-intro p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.8;
+  }
+
+  /* Sections */
+  .rg-section--alt {
+    background: var(--light-gray);
+  }
+  .rg-section {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .rg-section__header {
+    margin-bottom: 1.5rem;
+  }
+  .rg-section__header h2 {
+    margin: 0;
+  }
+  .rg-section__content ul {
+    list-style: none;
+    padding: 0;
+  }
+  .rg-section__content li {
+    position: relative;
+    padding: 0.6rem 0 0.6rem 1.5rem;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.7;
+    border-bottom: 1px solid #eee;
+  }
+  .rg-section--alt .rg-section__content li {
+    border-color: #e0e0e0;
+  }
+  .rg-section__content li:last-child {
+    border-bottom: none;
+  }
+  .rg-section__content li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: #FF1616;
+    font-weight: 700;
+  }
+
+  /* Checklist */
+  .rg-checklist {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .rg-check-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .rg-check-item:last-child {
+    border-bottom: none;
+  }
+  .rg-check-item__check {
+    width: 28px;
+    height: 28px;
+    background: #FF1616;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+  .rg-check-item__task {
+    font-size: 0.9rem;
+    color: #fff;
+    margin-bottom: 0.2rem;
+  }
+  .rg-check-item__timeline {
+    font-size: 0.72rem;
+    color: #FF1616;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 768px) {
+    .rg-stats__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .rg-section__header {
+      text-align: center;
+    }
+  }
+</style>

@@ -10,7 +10,7 @@ const { areaSlug, areaName, currentPage } = Astro.props;
 const pages = [
   { label: 'Overview', slug: '' },
   { label: 'Neighborhoods', slug: 'neighborhoods' },
-  { label: 'Homes for Sale', slug: 'homes-for-sale' },
+  { label: 'Home Search', slug: '__search__' },
   { label: 'Restaurants', slug: 'restaurants' },
   { label: 'Things to Do', slug: 'things-to-do' },
 ];
@@ -19,7 +19,7 @@ const pages = [
 <nav class="area-nav" aria-label={`${areaName} pages`}>
   <div class="area-nav__inner container">
     {pages.map((page) => {
-      const href = page.slug ? `/${areaSlug}/${page.slug}/` : `/${areaSlug}/`;
+      const href = page.slug === '__search__' ? '/search' : (page.slug ? `/${areaSlug}/${page.slug}/` : `/${areaSlug}/`);
       const isActive = currentPage === page.slug || (currentPage === 'overview' && page.slug === '');
       return (
         <a

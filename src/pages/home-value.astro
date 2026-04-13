@@ -1,0 +1,421 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import ParallaxBanner from '../components/ParallaxBanner.astro';
+---
+
+<Layout
+  title="What's My Home Worth? | Free Home Valuation | Popby Realty"
+  description="Request a free home valuation for your property in New Braunfels, San Antonio, and the Texas Hill Country. Get a personalized market report from a local expert."
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <section class="valuation-hero">
+      <div class="valuation-hero__overlay"></div>
+      <div class="valuation-hero__content">
+        <h1>What's Your Home <span class="accent">Worth?</span></h1>
+        <p>Request a free, personalized home valuation from a local expert who knows your neighborhood.</p>
+      </div>
+    </section>
+
+    <!-- Valuation Form -->
+    <section class="valuation-form-section">
+      <div class="valuation-form__container">
+        <div class="valuation-form__card">
+          <h2>Request Your Free Valuation</h2>
+          <p class="valuation-form__subtitle">Fill out the form below and I'll send you a comprehensive market report for your property as soon as possible — typically within 24 hours.</p>
+
+          <form class="valuation-form" id="valuationForm" novalidate>
+            <div class="valuation-form__field">
+              <label for="vf-name">Full Name <span class="req">*</span></label>
+              <input type="text" id="vf-name" name="name" required placeholder="Your full name" />
+            </div>
+            <div class="valuation-form__field">
+              <label for="vf-address">Property Address <span class="req">*</span></label>
+              <input type="text" id="vf-address" name="address" required placeholder="123 Main St, New Braunfels, TX 78130" />
+            </div>
+            <div class="valuation-form__row">
+              <div class="valuation-form__field">
+                <label for="vf-email">Email <span class="req">*</span></label>
+                <input type="email" id="vf-email" name="email" required placeholder="you@example.com" />
+              </div>
+              <div class="valuation-form__field">
+                <label for="vf-phone">Phone <span class="req">*</span></label>
+                <input type="tel" id="vf-phone" name="phone" required placeholder="(555) 555-5555" />
+              </div>
+            </div>
+            <button type="submit" class="valuation-form__submit">Get My Home Value</button>
+          </form>
+
+          <div class="valuation-form__success" id="valuationSuccess" style="display: none;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <div>
+              <p class="valuation-form__success-title">Request received!</p>
+              <p class="valuation-form__success-text">Thank you — I'll get back to you as soon as I can with a full, personalized home valuation report for your property.</p>
+            </div>
+          </div>
+
+          <p class="valuation-form__disclaimer">By submitting, you agree to be contacted by Cody Posey at Popby Realty. We respect your privacy and will never share your information.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Get a Valuation -->
+    <section class="valuation-why">
+      <div class="valuation-why__container">
+        <h2>Why Get a Home Valuation?</h2>
+        <div class="valuation-why__grid">
+          <div class="valuation-why__item">
+            <div class="valuation-why__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <h3>Know Your Equity</h3>
+            <p>Understand how much equity you've built and how it fits into your financial picture.</p>
+          </div>
+          <div class="valuation-why__item">
+            <div class="valuation-why__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 3v18h18"/>
+                <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+              </svg>
+            </div>
+            <h3>Track Market Trends</h3>
+            <p>See how your local market is performing and whether it's a good time to sell.</p>
+          </div>
+          <div class="valuation-why__item">
+            <div class="valuation-why__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <h3>Personalized Report</h3>
+            <p>Not an algorithm — a real, comprehensive market analysis prepared by a local REALTOR who knows your area.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="valuation-cta">
+      <div class="valuation-cta__container">
+        <h2>Prefer to Talk Directly?</h2>
+        <p>Call or text me anytime — I'm happy to discuss your home's value and answer any questions about the current market.</p>
+        <a href="tel:+18303605569" class="valuation-cta__btn">Call (830) 360-5569</a>
+      </div>
+    </section>
+
+  </main>
+  <ParallaxBanner image="/images/generated/home-nb-ranch.png" />
+  <Footer />
+</Layout>
+
+<style>
+  /* ── Hero ── */
+  .valuation-hero {
+    position: relative;
+    height: 320px;
+    background: url('/images/generated/home-valuation-hero.png') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .valuation-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.7));
+  }
+  .valuation-hero__content {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    max-width: 600px;
+    padding: 0 20px;
+  }
+  .valuation-hero__content h1 {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .valuation-hero__content p {
+    font-size: 16px;
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+  .accent { color: #FF1616; }
+
+  /* ── Form Section ── */
+  .valuation-form-section {
+    padding: 60px 20px;
+    background: #f9f9f9;
+  }
+  .valuation-form__container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .valuation-form__card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 40px 32px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  }
+  .valuation-form__card h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #111;
+    text-align: center;
+  }
+  .valuation-form__subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 28px;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .valuation-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .valuation-form__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .valuation-form__field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #555;
+    margin-bottom: 6px;
+  }
+  .req { color: #FF1616; }
+  .valuation-form__field input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    color: #111;
+    transition: border-color 0.2s;
+    background: #fff;
+  }
+  .valuation-form__field input::placeholder {
+    color: #aaa;
+  }
+  .valuation-form__field input:focus {
+    outline: none;
+    border-color: #FF1616;
+  }
+  .valuation-form__field input.error {
+    border-color: #FF1616;
+  }
+
+  .valuation-form__submit {
+    width: 100%;
+    padding: 14px;
+    background: #111;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 4px;
+  }
+  .valuation-form__submit:hover {
+    background: #333;
+    transform: translateY(-1px);
+  }
+
+  .valuation-form__success {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 20px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 10px;
+    margin-top: 8px;
+  }
+  .valuation-form__success svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .valuation-form__success-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 4px;
+  }
+  .valuation-form__success-text {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .valuation-form__disclaimer {
+    font-size: 11px;
+    color: #999;
+    text-align: center;
+    margin-top: 16px;
+    line-height: 1.5;
+  }
+
+  /* ── Why Section ── */
+  .valuation-why {
+    padding: 72px 20px;
+    background: #fff;
+  }
+  .valuation-why__container {
+    max-width: 960px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .valuation-why__container h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #111;
+  }
+  .valuation-why__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    text-align: center;
+  }
+  .valuation-why__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #fef2f2;
+    color: #FF1616;
+    margin-bottom: 16px;
+  }
+  .valuation-why__item h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #111;
+  }
+  .valuation-why__item p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* ── CTA ── */
+  .valuation-cta {
+    padding: 60px 20px;
+    background: #111;
+    text-align: center;
+  }
+  .valuation-cta__container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .valuation-cta__container h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .valuation-cta__container p {
+    font-size: 15px;
+    color: #aaa;
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+  .valuation-cta__btn {
+    display: inline-block;
+    padding: 14px 36px;
+    background: #FF1616;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .valuation-cta__btn:hover {
+    background: #e01212;
+    transform: translateY(-1px);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .valuation-hero { height: 260px; }
+    .valuation-hero__content h1 { font-size: 28px; }
+    .valuation-why__grid { grid-template-columns: 1fr; gap: 24px; }
+    .valuation-form__card { padding: 28px 20px; }
+    .valuation-form__row { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script is:inline>
+  const form = document.getElementById('valuationForm');
+  const success = document.getElementById('valuationSuccess');
+
+  form?.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Clear previous errors
+    form.querySelectorAll('.error').forEach(function(el) { el.classList.remove('error'); });
+
+    var name = form.querySelector('#vf-name');
+    var address = form.querySelector('#vf-address');
+    var email = form.querySelector('#vf-email');
+    var phone = form.querySelector('#vf-phone');
+    var valid = true;
+
+    if (!name.value.trim()) { name.classList.add('error'); valid = false; }
+    if (!address.value.trim()) { address.classList.add('error'); valid = false; }
+    if (!email.value.trim() || !email.value.includes('@')) { email.classList.add('error'); valid = false; }
+    if (!phone.value.trim()) { phone.classList.add('error'); valid = false; }
+
+    if (valid) {
+      var submitBtn = form.querySelector('.valuation-form__submit');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+
+      fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name.value.trim(),
+          email: email.value.trim(),
+          phone: phone.value.trim(),
+          address: address.value.trim(),
+          message: 'Home Valuation Request for: ' + address.value.trim(),
+          source: 'Home Valuation Page'
+        })
+      })
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        form.style.display = 'none';
+        success.style.display = 'flex';
+      })
+      .catch(function() {
+        // Still show success to user — lead may have gone through
+        form.style.display = 'none';
+        success.style.display = 'flex';
+      });
+    }
+  });
+</script>
