@@ -2,7 +2,7 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 
-const BOLDTRAIL_API_KEY = import.meta.env.BOLDTRAIL_API_KEY || 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIwMzYxODYsImlhdCI6MTc3NjA1Njk5NCwiZXhwIjoxODA3NTkyOTk0LCJuYmYiOjE3NzYwNTY5OTQsImF1ZCI6IioiLCJhY3QiOjE0MjgwLCJqdGkiOiIxZjM1Zjk4ZjQ2ZWU5ZDU1MTA0ZmUxMWE2MmQ4Y2QwNSJ9.HcWtuRzuDlKa7J7yY-cIUEEI6Dj1bNwZvc1bhhkZXFk';
+const BOLDTRAIL_API_KEY = import.meta.env.BOLDTRAIL_API_KEY;
 const BOLDTRAIL_URL = 'https://kvcore.com/api/leads';
 
 export const POST: APIRoute = async ({ request }) => {

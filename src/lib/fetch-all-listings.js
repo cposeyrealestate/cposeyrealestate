@@ -7,7 +7,7 @@ const PROJECT_ROOT = path.resolve(__dirname, '..', '..');
 const DATA_DIR = path.join(PROJECT_ROOT, 'src', 'data');
 
 const BASE_URL = 'https://api.idxbroker.com';
-const API_KEY = process.env.IDX_API_KEY || '51L9tLs3-y-U4mgc6p7970';
+const API_KEY = process.env.IDX_API_KEY;
 const MLS_ID = 'a023';
 
 const HEADERS = {
