@@ -36,6 +36,36 @@ import ParallaxBanner from '../components/ParallaxBanner.astro';
         </div>
       </div>
     </section>
+    <!-- My Active Listings -->
+    <section class="portfolio section" id="my-listings">
+      <div class="container">
+        <div class="section-title">
+          <h2>My <span class="accent">Listings</span></h2>
+          <p>Properties I currently have listed for sale</p>
+        </div>
+
+        <div class="portfolio__grid">
+
+          <div class="portfolio__card">
+            <div class="portfolio__img-wrap">
+              <img src="/images/portfolio/0-county-road-3390.jpg" alt="0 County Road 3390, Kempner, TX" loading="lazy" />
+              <span class="portfolio__badge portfolio__badge--active">Active</span>
+            </div>
+            <div class="portfolio__info">
+              <h3>0 County Road 3390</h3>
+              <p class="portfolio__location">Kempner, TX 76539</p>
+              <div class="portfolio__details">
+                <span>5.25 Acres</span>
+                <span>Unimproved Land</span>
+              </div>
+              <a href="https://www.zillow.com/homedetails/0-County-Road-3390-Kempner-TX-76539/460567981_zpid/" target="_blank" rel="noopener" class="portfolio__link">View on Zillow →</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <!-- Past Sales Portfolio -->
     <section class="portfolio section" id="portfolio">
       <div class="container">
@@ -474,6 +504,25 @@ import ParallaxBanner from '../components/ParallaxBanner.astro';
 
   .portfolio__badge--leased {
     background: #333;
+  }
+
+  .portfolio__badge--active {
+    background: #28a745;
+  }
+
+  .portfolio__link {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #FF1616;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .portfolio__link:hover {
+    color: #cc0000;
+    text-decoration: underline;
   }
 
   .portfolio__info {
