@@ -387,6 +387,17 @@ import ParallaxBanner from '../components/ParallaxBanner.astro';
           </div>
 
         </div>
+
+        <div class="pagination" id="portfolioPagination">
+          <button class="pagination__btn pagination__prev" id="pagePrev" aria-label="Previous page">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="pagination__pages" id="pageNumbers"></div>
+          <button class="pagination__btn pagination__next" id="pageNext" aria-label="Next page">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+
       </div>
     </section>
   </main>
@@ -550,6 +561,73 @@ import ParallaxBanner from '../components/ParallaxBanner.astro';
     padding-top: 0.75rem;
   }
 
+  /* Pagination */
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+  }
+
+  .pagination__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .pagination__btn:hover:not(:disabled) {
+    background: #FF1616;
+    border-color: #FF1616;
+    color: #fff;
+  }
+
+  .pagination__btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .pagination__pages {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  :global(.pagination__num) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #555;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  :global(.pagination__num:hover) {
+    border-color: #FF1616;
+    color: #FF1616;
+  }
+
+  :global(.pagination__num.active) {
+    background: #FF1616;
+    border-color: #FF1616;
+    color: #fff;
+  }
+
   @media (max-width: 900px) {
     .portfolio__grid {
       grid-template-columns: repeat(2, 1fr);
@@ -562,3 +640,64 @@ import ParallaxBanner from '../components/ParallaxBanner.astro';
     }
   }
 </style>
+
+<script is:inline>
+  (function() {
+    const grid = document.querySelector('#portfolio .portfolio__grid');
+    if (!grid) return;
+
+    const cards = Array.from(grid.querySelectorAll('.portfolio__card'));
+    const perPage = 6;
+    const totalPages = Math.ceil(cards.length / perPage);
+    let currentPage = 1;
+
+    const prevBtn = document.getElementById('pagePrev');
+    const nextBtn = document.getElementById('pageNext');
+    const pageNumbers = document.getElementById('pageNumbers');
+
+    // Build page number buttons
+    for (let i = 1; i <= totalPages; i++) {
+      const btn = document.createElement('button');
+      btn.className = 'pagination__num' + (i === 1 ? ' active' : '');
+      btn.textContent = i;
+      btn.addEventListener('click', () => goToPage(i));
+      pageNumbers.appendChild(btn);
+    }
+
+    function goToPage(page) {
+      currentPage = page;
+      const start = (page - 1) * perPage;
+      const end = start + perPage;
+
+      cards.forEach((card, i) => {
+        card.style.display = (i >= start && i < end) ? '' : 'none';
+      });
+
+      // Update active button
+      pageNumbers.querySelectorAll('.pagination__num').forEach((btn, i) => {
+        btn.classList.toggle('active', i + 1 === page);
+      });
+
+      // Update prev/next
+      prevBtn.disabled = page === 1;
+      nextBtn.disabled = page === totalPages;
+
+      // Scroll to portfolio section
+      const section = document.getElementById('portfolio');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 1) goToPage(currentPage - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentPage < totalPages) goToPage(currentPage + 1);
+    });
+
+    // Initialize — show first page
+    goToPage(1);
+  })();
+</script>
