@@ -1,9 +1,9 @@
 name: Refresh IDX Listings
 
 on:
-  schedule:
-    # Run every 4 hours
-    - cron: '0 */4 * * *'
+  # schedule:
+  #   # Run every 4 hours — disabled until IDX_API_KEY secret is verified
+  #   - cron: '0 */4 * * *'
   workflow_dispatch: # Allow manual trigger
 
 jobs:
