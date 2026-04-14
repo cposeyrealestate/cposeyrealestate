@@ -37,4 +37,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add src/data/idx-map-listings.json src/data/idx-all-listings.json src/data/idx-stats.json public/data/idx-map-listings.json
           git commit -m "chore: refresh IDX listing data [automated]"
+          git pull --rebase
           git push
