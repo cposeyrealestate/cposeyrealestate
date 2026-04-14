@@ -19,25 +19,8 @@ import ParallaxBanner from '../components/ParallaxBanner.astro';
       </div>
     </div>
 
-    <section class="idx-section section" id="idx-search">
-      <div class="container">
-        <div class="section-title">
-          <h2>Featured <span class="accent">Listings</span></h2>
-          <p>Browse our featured homes for sale</p>
-        </div>
-
-        <div class="idx-embed">
-          <iframe
-            src="https://cposeyrealestate.idxbroker.com/idx/featured"
-            allowtransparency="true"
-            frameBorder="0"
-            title="Featured Property Listings"
-          ></iframe>
-        </div>
-      </div>
-    </section>
     <!-- My Active Listings -->
-    <section class="portfolio section" id="my-listings">
+    <section class="my-listings section" id="my-listings">
       <div class="container">
         <div class="section-title">
           <h2>My <span class="accent">Listings</span></h2>
@@ -62,6 +45,10 @@ import ParallaxBanner from '../components/ParallaxBanner.astro';
             </div>
           </div>
 
+        </div>
+
+        <div class="search-cta">
+          <a href="/search" class="btn btn-primary">Search All Properties →</a>
         </div>
       </div>
     </section>
@@ -439,22 +426,14 @@ import ParallaxBanner from '../components/ParallaxBanner.astro';
     font-size: 0.95rem;
   }
 
-  .idx-section {
+  /* My Listings */
+  .my-listings {
     background: var(--light-gray);
   }
 
-  .idx-embed {
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  }
-
-  .idx-embed iframe {
-    width: 100%;
-    height: 800px;
-    border: none;
-    display: block;
+  .search-cta {
+    text-align: center;
+    margin-top: 2.5rem;
   }
 
   /* Portfolio */
