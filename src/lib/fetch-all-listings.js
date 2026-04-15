@@ -70,16 +70,36 @@ const PROP_TYPES = [1, 2, 3, 4, 5, 8]; // Residential, Condo, Multi, Land, Renta
 
 async function apiFetch(endpoint, options = {}) {
   const url = `${BASE_URL}${endpoint}`;
-  const res = await fetch(url, { headers: HEADERS, ...options });
-  if (!res.ok) {
-    const body = await res.text().catch(() => '');
-    throw new Error(`HTTP ${res.status} from ${endpoint}: ${body.slice(0, 200)}`);
-  }
-  const text = await res.text();
-  try {
-    return JSON.parse(text);
-  } catch {
-    return text;
+  let attempts = 0;
+  while (true) {
+    attempts++;
+    const res = await fetch(url, { headers: HEADERS, ...options });
+
+    // Handle rate limiting — IDX returns 401/429 when over 500/hour limit
+    // Inspect response for hourly-limit hint
+    if (res.status === 429 || res.status === 401) {
+      const body = await res.text().catch(() => '');
+      if (attempts <= 3 && (res.status === 429 || body.toLowerCase().includes('limit'))) {
+        // Check headers for retry hint
+        const retryAfter = parseInt(res.headers.get('retry-after') || '0');
+        const waitMs = retryAfter > 0 ? retryAfter * 1000 : 60000;
+        console.log(`  Rate limited (HTTP ${res.status}). Waiting ${Math.round(waitMs/1000)}s before retry ${attempts}/3...`);
+        await sleep(waitMs);
+        continue;
+      }
+      throw new Error(`HTTP ${res.status} from ${endpoint}: ${body.slice(0, 200)}`);
+    }
+
+    if (!res.ok) {
+      const body = await res.text().catch(() => '');
+      throw new Error(`HTTP ${res.status} from ${endpoint}: ${body.slice(0, 200)}`);
+    }
+    const text = await res.text();
+    try {
+      return JSON.parse(text);
+    } catch {
+      return text;
+    }
   }
 }
 
@@ -94,17 +114,34 @@ async function createSavedLink(name, lowPrice, highPrice, propType) {
     'queryString[hp]': String(highPrice),
   });
 
-  const res = await fetch(`${BASE_URL}/clients/savedlinks`, {
-    method: 'PUT',
-    headers: HEADERS,
-    body: body.toString(),
-  });
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`Failed to create saved link: ${res.status} ${text.slice(0, 200)}`);
+  let attempts = 0;
+  while (true) {
+    attempts++;
+    const res = await fetch(`${BASE_URL}/clients/savedlinks`, {
+      method: 'PUT',
+      headers: HEADERS,
+      body: body.toString(),
+    });
+
+    if (res.status === 429 || res.status === 401) {
+      const text = await res.text().catch(() => '');
+      if (attempts <= 3 && (res.status === 429 || text.toLowerCase().includes('limit'))) {
+        const retryAfter = parseInt(res.headers.get('retry-after') || '0');
+        const waitMs = retryAfter > 0 ? retryAfter * 1000 : 60000;
+        console.log(`  Rate limited creating link (HTTP ${res.status}). Waiting ${Math.round(waitMs/1000)}s...`);
+        await sleep(waitMs);
+        continue;
+      }
+      throw new Error(`Failed to create saved link: ${res.status} ${text.slice(0, 200)}`);
+    }
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(`Failed to create saved link: ${res.status} ${text.slice(0, 200)}`);
+    }
+    const data = await res.json();
+    return data.newID;
   }
-  const data = await res.json();
-  return data.newID;
 }
 
 async function deleteSavedLink(id) {
@@ -198,22 +235,60 @@ async function cleanupOldLinks() {
 }
 
 async function main() {
-  console.log('=== IDX Broker — Fetching ALL active listings ===\n');
+  console.log('=== IDX Broker — Fetching listings (incremental) ===\n');
 
   if (!fs.existsSync(DATA_DIR)) {
     fs.mkdirSync(DATA_DIR, { recursive: true });
   }
 
+  // Determine which property type(s) to fetch this run.
+  // IDX Broker is rate-limited to 500/hr; ~84 calls per type means we can
+  // safely do 1-2 types per run. Cycle through types daily via env var.
+  // Pass FETCH_PT_INDEX (0-5) to fetch a specific type, or leave unset to use day-of-year.
+  let typesToFetch = PROP_TYPES;
+  if (process.env.FETCH_PT_INDEX !== undefined) {
+    const idx = parseInt(process.env.FETCH_PT_INDEX);
+    if (!isNaN(idx) && idx >= 0 && idx < PROP_TYPES.length) {
+      typesToFetch = [PROP_TYPES[idx]];
+      console.log(`FETCH_PT_INDEX=${idx} → fetching only property type ${typesToFetch[0]}`);
+    }
+  } else if (process.env.FETCH_ROTATE === 'true') {
+    // Rotate based on day of year so each type gets refreshed every 6 days
+    const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);
+    const idx = dayOfYear % PROP_TYPES.length;
+    typesToFetch = [PROP_TYPES[idx]];
+    console.log(`FETCH_ROTATE=true, day=${dayOfYear} → fetching only property type ${typesToFetch[0]}`);
+  }
+
+  // Load existing listings to merge with
+  const existingPath = path.join(DATA_DIR, 'idx-all-listings.json');
+  const allListings = new Map();
+  if (fs.existsSync(existingPath)) {
+    try {
+      const existing = JSON.parse(fs.readFileSync(existingPath, 'utf8'));
+      for (const l of existing) {
+        if (l.id) allListings.set(l.id, l);
+      }
+      console.log(`Loaded ${allListings.size} existing listings to merge with\n`);
+    } catch (err) {
+      console.warn(`Could not load existing listings: ${err.message}\n`);
+    }
+  }
+
+  // Track which IDs were freshly fetched per property type so we can
+  // remove stale ones (sold/expired) from that type without touching others
+  const freshlyFetchedByType = new Map(); // propTypeId -> Set of IDs
+
   // Clean up any leftover temp links from previous runs
   await cleanupOldLinks();
 
-  const allListings = new Map(); // dedup by listing ID
   const createdLinks = [];
   let totalApiCalls = 0;
 
   try {
     // For each property type, create saved links by price range
-    for (const pt of PROP_TYPES) {
+    for (const pt of typesToFetch) {
+      freshlyFetchedByType.set(pt, new Set());
       console.log(`\n--- Property type ${pt} ---`);
 
       for (const [low, high] of PRICE_RANGES) {
@@ -235,17 +310,21 @@ async function main() {
           await sleep(800);
 
           let fetched = 0;
+          const fresh = freshlyFetchedByType.get(pt);
           if (Array.isArray(results)) {
             for (const item of results) {
               if (item.listingID) {
                 allListings.set(item.listingID, parseListing(item));
+                fresh.add(item.listingID);
                 fetched++;
               }
             }
           } else if (typeof results === 'object' && results !== null) {
             for (const [key, item] of Object.entries(results)) {
               if (item && typeof item === 'object' && (item.listingID || item.price)) {
-                allListings.set(item.listingID || key, parseListing(item));
+                const id = item.listingID || key;
+                allListings.set(id, parseListing(item));
+                fresh.add(id);
                 fetched++;
               }
             }
@@ -258,6 +337,23 @@ async function main() {
           await sleep(1000);
         }
       }
+    }
+
+    // Prune stale listings: for each property type we successfully fetched,
+    // remove any old listings of that type that weren't returned in the fresh
+    // fetch (likely sold/expired). Listings of OTHER types are kept untouched.
+    let prunedCount = 0;
+    for (const [pt, freshIds] of freshlyFetchedByType.entries()) {
+      if (freshIds.size === 0) continue; // skip if fetch failed entirely for this type
+      for (const [id, listing] of allListings.entries()) {
+        if (listing.propTypeId === pt && !freshIds.has(id)) {
+          allListings.delete(id);
+          prunedCount++;
+        }
+      }
+    }
+    if (prunedCount > 0) {
+      console.log(`Pruned ${prunedCount} stale listings (sold/expired) for fetched types`);
     }
 
     // Convert to array and sort by date added (newest first)

@@ -1,9 +1,10 @@
 name: Refresh IDX Listings
 
 on:
-  # schedule:
-  #   # Run every 4 hours — disabled until IDX_API_KEY secret is verified
-  #   - cron: '0 */4 * * *'
+  schedule:
+    # Run daily at 6 AM UTC (1 AM CT). Rotates through one property type
+    # per day to stay under IDX Broker's 500-call/hour rate limit.
+    - cron: '0 6 * * *'
   workflow_dispatch: # Allow manual trigger
 
 jobs:
@@ -24,6 +25,8 @@ jobs:
         run: node src/lib/fetch-all-listings.js
         env:
           IDX_API_KEY: ${{ secrets.IDX_API_KEY }}
+          # Rotate through property types daily (Mon=0, Tue=1, ... Sun=6 mod 6)
+          FETCH_ROTATE: 'true'
 
       - name: Check for changes
         id: changes
