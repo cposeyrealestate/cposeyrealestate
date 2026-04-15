@@ -2,9 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-
-// IDX results endpoint — accepts ccz/zipcode/city/hp/lp/bd/tb/pt query params.
-const IDX_RESULTS = 'https://cposeyrealestate.idxbroker.com/idx/results/listings';
 ---
 
 <Layout
@@ -21,193 +18,17 @@ const IDX_RESULTS = 'https://cposeyrealestate.idxbroker.com/idx/results/listings
       </div>
     </section>
 
-    <!-- Filter bar — submits to IDX results -->
-    <section class="search-filters">
-      <form class="filters" id="filterForm" action={IDX_RESULTS} method="get" target="_self">
-        <div class="filters__field filters__field--wide">
-          <label for="f-loc">City / Zip</label>
-          <input
-            id="f-loc"
-            type="text"
-            placeholder="Type a city or zip"
-            autocomplete="off"
-          />
-        </div>
-
-        <div class="filters__field">
-          <label for="f-min">Min Price</label>
-          <select id="f-min" name="lp">
-            <option value="">No min</option>
-            <option value="100000">$100K</option>
-            <option value="200000">$200K</option>
-            <option value="300000">$300K</option>
-            <option value="400000">$400K</option>
-            <option value="500000">$500K</option>
-            <option value="750000">$750K</option>
-            <option value="1000000">$1M</option>
-            <option value="1500000">$1.5M</option>
-            <option value="2000000">$2M</option>
-          </select>
-        </div>
-
-        <div class="filters__field">
-          <label for="f-max">Max Price</label>
-          <select id="f-max" name="hp">
-            <option value="">No max</option>
-            <option value="200000">$200K</option>
-            <option value="300000">$300K</option>
-            <option value="400000">$400K</option>
-            <option value="500000">$500K</option>
-            <option value="750000">$750K</option>
-            <option value="1000000">$1M</option>
-            <option value="1500000">$1.5M</option>
-            <option value="2000000">$2M</option>
-            <option value="3000000">$3M</option>
-            <option value="5000000">$5M</option>
-          </select>
-        </div>
-
-        <div class="filters__field filters__field--sm">
-          <label for="f-bd">Beds</label>
-          <select id="f-bd" name="bd">
-            <option value="">Any</option>
-            <option value="1">1+</option>
-            <option value="2">2+</option>
-            <option value="3">3+</option>
-            <option value="4">4+</option>
-            <option value="5">5+</option>
-          </select>
-        </div>
-
-        <div class="filters__field filters__field--sm">
-          <label for="f-tb">Baths</label>
-          <select id="f-tb" name="tb">
-            <option value="">Any</option>
-            <option value="1">1+</option>
-            <option value="2">2+</option>
-            <option value="3">3+</option>
-            <option value="4">4+</option>
-          </select>
-        </div>
-
-        <div class="filters__field filters__field--sm">
-          <label for="f-pt">Type</label>
-          <select id="f-pt" name="pt">
-            <option value="1">Any</option>
-            <option value="1">Residential</option>
-            <option value="2">Land</option>
-            <option value="3">Multi-Family</option>
-            <option value="4">Commercial</option>
-          </select>
-        </div>
-
-        <button type="submit" class="filters__submit">Search</button>
-
-        <!-- Advanced filters (expandable) -->
-        <div class="filters__advanced" id="advancedPanel" hidden>
-          <div class="filters__field">
-            <label for="f-sqft">Min SqFt</label>
-            <select id="f-sqft" name="a_totalSqFt">
-              <option value="">Any</option>
-              <option value="1000">1,000+</option>
-              <option value="1500">1,500+</option>
-              <option value="2000">2,000+</option>
-              <option value="2500">2,500+</option>
-              <option value="3000">3,000+</option>
-              <option value="4000">4,000+</option>
-              <option value="5000">5,000+</option>
-            </select>
-          </div>
-          <div class="filters__field">
-            <label for="f-year">Year Built (Min)</label>
-            <select id="f-year" name="a_yearBuilt">
-              <option value="">Any</option>
-              <option value="1980">1980+</option>
-              <option value="1990">1990+</option>
-              <option value="2000">2000+</option>
-              <option value="2010">2010+</option>
-              <option value="2015">2015+</option>
-              <option value="2020">2020+</option>
-            </select>
-          </div>
-          <div class="filters__field">
-            <label for="f-acres">Min Acres</label>
-            <select id="f-acres" name="a_acres">
-              <option value="">Any</option>
-              <option value="0.25">0.25+</option>
-              <option value="0.5">0.5+</option>
-              <option value="1">1+</option>
-              <option value="2">2+</option>
-              <option value="5">5+</option>
-              <option value="10">10+</option>
-              <option value="25">25+</option>
-              <option value="50">50+</option>
-            </select>
-          </div>
-          <div class="filters__field">
-            <label for="f-gar">Garage</label>
-            <select id="f-gar" name="a_totalGarage">
-              <option value="">Any</option>
-              <option value="1">1+</option>
-              <option value="2">2+</option>
-              <option value="3">3+</option>
-            </select>
-          </div>
-          <div class="filters__field">
-            <label for="f-pool">Pool</label>
-            <select id="f-pool" name="a_pool">
-              <option value="">Any</option>
-              <option value="yes">Yes</option>
-            </select>
-          </div>
-          <div class="filters__field">
-            <label for="f-water">Waterfront</label>
-            <select id="f-water" name="a_waterfront">
-              <option value="">Any</option>
-              <option value="yes">Yes</option>
-            </select>
-          </div>
-          <div class="filters__field">
-            <label for="f-status">Status</label>
-            <select id="f-status" name="a_propStatus">
-              <option value="active">Active</option>
-              <option value="active,pending">Active + Pending</option>
-              <option value="active,pending,sold">All</option>
-            </select>
-          </div>
-          <div class="filters__field filters__field--wide">
-            <label for="f-kw">Keywords (pool, acreage, barn, view...)</label>
-            <input id="f-kw" type="text" placeholder="Comma-separated keywords" autocomplete="off" />
-          </div>
-        </div>
-
-        <button type="button" class="filters__toggle" id="advToggle" aria-expanded="false">
-          <span id="advToggleText">+ Advanced Filters</span>
-        </button>
-      </form>
-    </section>
-
-    <!-- Quick links into IDX-hosted search experiences -->
+    <!-- IDX split-view widget (map + listings) -->
     <section class="search-widget-section">
-      <div class="container">
-        <div class="search-shortcuts">
-          <a class="search-shortcut" href="https://cposeyrealestate.idxbroker.com/idx/map/mapsearch">
-            <h3>Map Search</h3>
-            <p>Browse every active listing on an interactive map.</p>
-          </a>
-          <a class="search-shortcut" href="https://cposeyrealestate.idxbroker.com/idx/results/listings?ccz=city&city[]=newbraunfels&pt=1&per=100">
-            <h3>New Braunfels Homes</h3>
-            <p>All active listings in New Braunfels.</p>
-          </a>
-          <a class="search-shortcut" href="https://cposeyrealestate.idxbroker.com/idx/results/listings?ccz=city&city[]=canyonlake&pt=1&per=100">
-            <h3>Canyon Lake Homes</h3>
-            <p>Lakeside and Hill Country living.</p>
-          </a>
-          <a class="search-shortcut" href="https://cposeyrealestate.idxbroker.com/idx/results/listings?pt=2&per=100">
-            <h3>Land &amp; Lots</h3>
-            <p>Acreage and vacant land across the region.</p>
-          </a>
-        </div>
+      <div id="idx-widget-mount">
+        <!-- IDX Broker Widget #151024 (split map + results) -->
+        <script
+          charset="UTF-8"
+          type="text/javascript"
+          id="idxwidgetsrc-151024"
+          src="//cposeyrealestate.idxbroker.com/idx/widgets/151024"
+          is:inline
+        ></script>
       </div>
     </section>
   </main>
@@ -220,242 +41,158 @@ const IDX_RESULTS = 'https://cposeyrealestate.idxbroker.com/idx/results/listings
     background: #000;
     color: #fff;
     text-align: center;
-    padding: 1.75rem 1.5rem;
+    padding: 1.25rem 1.5rem;
   }
   .search-hero__content { max-width: 800px; margin: 0 auto; }
   .search-hero h1 {
     font-family: 'Poppins', sans-serif;
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    margin: 0 0 .25rem;
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    margin: 0 0 .2rem;
     text-transform: uppercase;
     letter-spacing: .05em;
     line-height: 1;
   }
   .search-hero p {
     font-family: 'Open Sans', sans-serif;
-    font-size: .85rem;
+    font-size: .8rem;
     color: rgba(255,255,255,.7);
     margin: 0;
   }
 
-  /* ---------- Filter bar ---------- */
-  .search-filters {
-    background: #fff;
-    border-bottom: 1px solid #e5e5e5;
-    padding: 1rem 1.5rem;
-    position: sticky;
-    top: 80px;
-    z-index: 50;
-    box-shadow: 0 2px 8px rgba(0,0,0,.04);
-  }
-  .filters {
-    max-width: 1300px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 2fr repeat(5, 1fr) auto;
-    gap: .75rem;
-    align-items: end;
-  }
-  .filters__field { display: flex; flex-direction: column; min-width: 0; }
-  .filters__field label {
-    font-family: 'Poppins', sans-serif;
-    font-size: .65rem;
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    color: #555;
-    margin-bottom: .25rem;
-  }
-  .filters input[type="text"],
-  .filters select {
-    font-family: 'Open Sans', sans-serif;
-    font-size: .85rem;
-    padding: .55rem .65rem;
-    border: 1px solid #ccc;
-    background: #fff;
-    color: #000;
-    border-radius: 0;
-    height: 40px;
-    width: 100%;
-  }
-  .filters input[type="text"]:focus,
-  .filters select:focus {
-    outline: none;
-    border-color: #FF1616;
-  }
-  .filters__submit {
-    height: 40px;
-    padding: 0 1.5rem;
-    background: #FF1616;
-    color: #fff;
-    border: 0;
-    font-family: 'Poppins', sans-serif;
-    font-size: .8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    cursor: pointer;
-    transition: background .2s;
-  }
-  .filters__submit:hover { background: #cc0000; }
-
-  .filters__toggle {
-    grid-column: 1 / -1;
-    justify-self: start;
-    background: transparent;
-    border: none;
-    color: #FF1616;
-    font-family: 'Poppins', sans-serif;
-    font-size: .72rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    cursor: pointer;
-    padding: .25rem 0;
-    margin-top: .25rem;
-  }
-  .filters__toggle:hover { color: #cc0000; text-decoration: underline; }
-
-  .filters__advanced {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: .75rem;
-    padding: 1rem 0 .25rem;
-    border-top: 1px dashed #e5e5e5;
-    margin-top: .5rem;
-  }
-  .filters__advanced .filters__field--wide { grid-column: 1 / -1; }
-
-  @media (max-width: 1100px) {
-    .filters { grid-template-columns: 1fr 1fr 1fr; }
-    .filters__field--wide { grid-column: 1 / -1; }
-    .filters__submit { grid-column: 1 / -1; }
-  }
-  @media (max-width: 600px) {
-    .filters { grid-template-columns: 1fr 1fr; }
-    .filters__advanced { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 900px) {
-    .filters__advanced { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  /* ---------- IDX widget ---------- */
+  /* ---------- IDX widget container (full-bleed for split view) ---------- */
   .search-widget-section {
-    padding: 1.5rem 0 4rem;
-    background: #fafafa;
+    background: #fff;
+    min-height: calc(100vh - 200px);
   }
-  .container {
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
+  #idx-widget-mount { width: 100%; }
+
+  /* ===== ZILLOW-STYLE PILL FILTER BAR (inside widget) ===== */
+  #idx-widget-mount :global(.IDX-searchBar),
+  #idx-widget-mount :global(.IDX-searchForm),
+  #idx-widget-mount :global(.IDX-advSearch-headerBar),
+  #idx-widget-mount :global(#IDX-refineSearch),
+  #idx-widget-mount :global(.IDX-quickSearch) {
+    background: #fff !important;
+    border-bottom: 1px solid #e5e5e5 !important;
+    padding: .75rem 1rem !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: .5rem !important;
+    align-items: center !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,.05) !important;
   }
 
-  .search-shortcuts {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1rem;
+  #idx-widget-mount :global(.IDX-searchBar select),
+  #idx-widget-mount :global(.IDX-searchBar input[type="text"]),
+  #idx-widget-mount :global(.IDX-searchForm select),
+  #idx-widget-mount :global(.IDX-searchForm input[type="text"]),
+  #idx-widget-mount :global(#IDX-refineSearch select),
+  #idx-widget-mount :global(#IDX-refineSearch input[type="text"]),
+  #idx-widget-mount :global(.IDX-advSearch-field select),
+  #idx-widget-mount :global(.IDX-advSearch-field input[type="text"]) {
+    border: 1px solid #d6d6d6 !important;
+    border-radius: 999px !important;
+    padding: .4rem 1rem !important;
+    font-size: .85rem !important;
+    font-family: 'Open Sans', sans-serif !important;
+    background: #fff !important;
+    height: 36px !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right .8rem center !important;
+    padding-right: 2rem !important;
   }
-  .search-shortcut {
-    display: block;
-    padding: 1.5rem;
-    background: #fff;
-    border: 1px solid #e5e5e5;
-    text-decoration: none;
-    color: #000;
-    transition: border-color .2s, transform .2s, box-shadow .2s;
+  #idx-widget-mount :global(.IDX-searchBar input[type="text"]),
+  #idx-widget-mount :global(.IDX-searchForm input[type="text"]),
+  #idx-widget-mount :global(.IDX-advSearch-field input[type="text"]) {
+    background-image: none !important;
+    padding-right: 1rem !important;
   }
-  .search-shortcut:hover {
-    border-color: #FF1616;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+  #idx-widget-mount :global(.IDX-searchBar select:hover),
+  #idx-widget-mount :global(.IDX-searchBar select:focus),
+  #idx-widget-mount :global(.IDX-searchForm select:hover),
+  #idx-widget-mount :global(.IDX-searchForm select:focus) {
+    border-color: #000 !important;
+    outline: none !important;
   }
-  .search-shortcut h3 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
+
+  /* Buttons in filter bar */
+  #idx-widget-mount :global(.IDX-button),
+  #idx-widget-mount :global(.IDX-submit),
+  #idx-widget-mount :global(button.IDX-showAllFilters),
+  #idx-widget-mount :global(.IDX-saveSearchButton),
+  #idx-widget-mount :global(.IDX-advSearch-submitButton) {
+    background: #FF1616 !important;
+    border-color: #FF1616 !important;
+    color: #fff !important;
+    font-family: 'Poppins', sans-serif !important;
     text-transform: uppercase;
     letter-spacing: .05em;
-    margin: 0 0 .5rem;
-    color: #FF1616;
+    border-radius: 999px !important;
+    padding: .4rem 1rem !important;
+    font-size: .8rem !important;
+    height: 36px !important;
+    font-weight: 600 !important;
   }
-  .search-shortcut p {
-    font-family: 'Open Sans', sans-serif;
-    font-size: .85rem;
-    color: #555;
-    margin: 0;
-    line-height: 1.4;
+  #idx-widget-mount :global(.IDX-button:hover),
+  #idx-widget-mount :global(.IDX-submit:hover) {
+    background: #cc0000 !important;
+    border-color: #cc0000 !important;
+  }
+
+  /* Shrink prices inside the widget */
+  #idx-widget-mount :global(.IDX-resultsPrice),
+  #idx-widget-mount :global(.IDX-resultsCellPrice),
+  #idx-widget-mount :global(.IDX-resultsCell .IDX-resultsPrice),
+  #idx-widget-mount :global(.IDX-resultsListCell .IDX-resultsPrice),
+  #idx-widget-mount :global(span.IDX-resultsPrice),
+  #idx-widget-mount :global(div.IDX-resultsPrice) {
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0 !important;
+  }
+
+  /* Tighter listing cards */
+  #idx-widget-mount :global(.IDX-resultsCell),
+  #idx-widget-mount :global(.IDX-resultsCell--card) {
+    border-radius: 6px !important;
+    overflow: hidden !important;
+    border: 1px solid #e5e5e5 !important;
+    transition: box-shadow .2s, transform .2s !important;
+  }
+  #idx-widget-mount :global(.IDX-resultsCell:hover),
+  #idx-widget-mount :global(.IDX-resultsCell--card:hover) {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(0,0,0,.1) !important;
+  }
+  #idx-widget-mount :global(.IDX-resultsAddress),
+  #idx-widget-mount :global(.IDX-resultsDescription) {
+    font-size: .8rem !important;
+    color: #555 !important;
+    line-height: 1.3 !important;
+  }
+  #idx-widget-mount :global(.IDX-resultsCellStatus),
+  #idx-widget-mount :global(.IDX-resultsStatus) {
+    background: rgba(0,0,0,.75) !important;
+    color: #fff !important;
+    font-size: .65rem !important;
+    padding: .2rem .5rem !important;
+    border-radius: 3px !important;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+  }
+
+  /* Sticky map on desktop for the split view */
+  @media (min-width: 900px) {
+    #idx-widget-mount :global(.IDX-mapWrap),
+    #idx-widget-mount :global(#IDX-mapWrap),
+    #idx-widget-mount :global(.IDX-map) {
+      position: sticky !important;
+      top: 100px !important;
+      height: calc(100vh - 140px) !important;
+    }
   }
 </style>
-
-<script is:inline>
-  // Advanced filter toggle
-  (function() {
-    var btn = document.getElementById('advToggle');
-    var panel = document.getElementById('advancedPanel');
-    var label = document.getElementById('advToggleText');
-    if (!btn || !panel) return;
-    btn.addEventListener('click', function() {
-      var open = !panel.hasAttribute('hidden');
-      if (open) {
-        panel.setAttribute('hidden', '');
-        btn.setAttribute('aria-expanded', 'false');
-        label.textContent = '+ Advanced Filters';
-      } else {
-        panel.removeAttribute('hidden');
-        btn.setAttribute('aria-expanded', 'true');
-        label.textContent = '– Hide Advanced Filters';
-      }
-    });
-  })();
-
-  // Build a proper IDX results URL on submit.
-  (function() {
-    var form = document.getElementById('filterForm');
-    if (!form) return;
-
-    function val(id) { return (document.getElementById(id)?.value || '').trim(); }
-    function add(params, key, v) { if (v) params.append(key, v); }
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      var loc = val('f-loc');
-      var params = new URLSearchParams();
-
-      if (loc) {
-        if (/^\d{5}$/.test(loc)) {
-          params.append('ccz', 'zipcode');
-          params.append('zipcode[]', loc);
-        } else {
-          var slug = loc.toLowerCase().replace(/[^a-z0-9]+/g, '');
-          if (slug) {
-            params.append('ccz', 'city');
-            params.append('city[]', slug);
-          }
-        }
-      }
-
-      // Core filters
-      add(params, 'lp', val('f-min'));
-      add(params, 'hp', val('f-max'));
-      add(params, 'bd', val('f-bd'));
-      add(params, 'tb', val('f-tb'));
-      params.append('pt', val('f-pt') || '1');
-
-      // Advanced filters (IDX a_* fields)
-      add(params, 'a_totalSqFt',   val('f-sqft'));
-      add(params, 'a_yearBuilt',   val('f-year'));
-      add(params, 'a_acres',       val('f-acres'));
-      add(params, 'a_totalGarage', val('f-gar'));
-      add(params, 'a_pool',        val('f-pool'));
-      add(params, 'a_waterfront',  val('f-water'));
-      add(params, 'a_propStatus',  val('f-status'));
-      add(params, 'a_keywords',    val('f-kw'));
-
-      // Show more listings per page
-      params.append('per', '100');
-
-      window.location.href =
-        'https://cposeyrealestate.idxbroker.com/idx/results/listings?' + params.toString();
-    });
-  })();
-</script>
