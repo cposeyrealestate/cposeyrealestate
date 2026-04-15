@@ -1,23 +1,95 @@
 ---
-// /search redirects to the IDX-hosted live search.
-// IDX wraps that URL with our site nav/footer, so the user sees a native experience.
-// Once `search.cposeyrealestate.com` CNAME is configured, update this URL.
-const IDX_SEARCH_URL = 'https://cposeyrealestate.idxbroker.com/idx/search/advanced';
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content={`0; url=${IDX_SEARCH_URL}`} />
-  <link rel="canonical" href={IDX_SEARCH_URL} />
-  <title>Home Search | Cody Posey Real Estate</title>
-  <script is:inline define:vars={{ url: IDX_SEARCH_URL }}>
-    window.location.replace(url);
-  </script>
-</head>
-<body>
-  <p style="font-family:sans-serif;text-align:center;padding:4rem;">
-    Loading home search&hellip; If you aren't redirected, <a href={IDX_SEARCH_URL}>click here</a>.
-  </p>
-</body>
-</html>
+
+<Layout
+  title="Home Search | Cody Posey Real Estate | New Braunfels, TX"
+  description="Search all MLS listings for sale in New Braunfels, Canyon Lake, Seguin, Cibolo / Schertz, Bulverde, and the Texas Hill Country."
+>
+  <Navbar />
+  <main class="search-page" style="padding-top: 80px;">
+    <section class="search-hero">
+      <div class="search-hero__overlay"></div>
+      <div class="search-hero__content">
+        <h1>Home <span style="color:#FF1616;">Search</span></h1>
+        <p>All active MLS listings across the New Braunfels area & Texas Hill Country</p>
+      </div>
+    </section>
+
+    <section class="search-widget-section">
+      <div class="container">
+        <!-- IDX Broker Widget #151024 -->
+        <div id="idx-widget-mount">
+          <script
+            charset="UTF-8"
+            type="text/javascript"
+            id="idxwidgetsrc-151024"
+            src="//cposeyrealestate.idxbroker.com/idx/widgets/151024"
+            is:inline
+          ></script>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .search-hero {
+    position: relative;
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+      url('/images/hero-poster.jpg') center/cover no-repeat,
+      #000;
+    color: #fff;
+    text-align: center;
+    padding: 4rem 1.5rem;
+  }
+  .search-hero__overlay { position: absolute; inset: 0; }
+  .search-hero__content { position: relative; z-index: 1; max-width: 800px; }
+  .search-hero h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin: 0 0 .75rem;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+  .search-hero p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    color: rgba(255,255,255,.85);
+    margin: 0;
+  }
+
+  .search-widget-section {
+    padding: 3rem 0 5rem;
+    background: #fafafa;
+  }
+  .container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* IDX widget reset so it inherits site fonts/colors */
+  #idx-widget-mount :global(.IDX-button),
+  #idx-widget-mount :global(.IDX-submit) {
+    background: #FF1616 !important;
+    border-color: #FF1616 !important;
+    color: #fff !important;
+    font-family: 'Poppins', sans-serif !important;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+  }
+  #idx-widget-mount :global(.IDX-button:hover),
+  #idx-widget-mount :global(.IDX-submit:hover) {
+    background: #cc0000 !important;
+    border-color: #cc0000 !important;
+  }
+</style>

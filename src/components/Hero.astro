@@ -44,7 +44,7 @@
 
       <!-- Quick links below search -->
       <div class="hero__quick-links">
-        <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="hero__quick-link">Homes for Sale</a>
+        <a href="/search" class="hero__quick-link">Homes for Sale</a>
         <a href="https://a.nhb.app/u/cposeyrealestate" target="_blank" rel="noopener" class="hero__quick-link">New Construction</a>
         <a href="/home-value" class="hero__quick-link">What's My Home Worth?</a>
       </div>
@@ -313,7 +313,7 @@
   // Search button — sends user to live IDX search.
   // IDX doesn't take a free-text query in the URL, so we just hand off
   // to advanced search where they can refine.
-  var IDX_SEARCH = 'https://cposeyrealestate.idxbroker.com/idx/search/advanced';
+  var IDX_SEARCH = '/search';
 
   document.getElementById('heroSearchBtn')?.addEventListener('click', () => {
     window.location.href = IDX_SEARCH;
