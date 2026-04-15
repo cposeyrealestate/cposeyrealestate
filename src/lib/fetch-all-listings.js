@@ -75,12 +75,12 @@ async function apiFetch(endpoint, options = {}) {
     attempts++;
     const res = await fetch(url, { headers: HEADERS, ...options });
 
-    // Handle rate limiting — IDX returns 401/429 when over 500/hour limit
-    // Inspect response for hourly-limit hint
-    if (res.status === 429 || res.status === 401) {
+    // Handle rate limiting — IDX returns 401/412/429 when over 500/hour limit
+    // 412 Precondition Failed is IDX's typical hourly-quota response
+    if (res.status === 429 || res.status === 401 || res.status === 412) {
       const body = await res.text().catch(() => '');
-      if (attempts <= 3 && (res.status === 429 || body.toLowerCase().includes('limit'))) {
-        // Check headers for retry hint
+      const isLimit = res.status === 429 || res.status === 412 || body.toLowerCase().includes('limit');
+      if (attempts <= 3 && isLimit) {
         const retryAfter = parseInt(res.headers.get('retry-after') || '0');
         const waitMs = retryAfter > 0 ? retryAfter * 1000 : 60000;
         console.log(`  Rate limited (HTTP ${res.status}). Waiting ${Math.round(waitMs/1000)}s before retry ${attempts}/3...`);
@@ -123,9 +123,10 @@ async function createSavedLink(name, lowPrice, highPrice, propType) {
       body: body.toString(),
     });
 
-    if (res.status === 429 || res.status === 401) {
+    if (res.status === 429 || res.status === 401 || res.status === 412) {
       const text = await res.text().catch(() => '');
-      if (attempts <= 3 && (res.status === 429 || text.toLowerCase().includes('limit'))) {
+      const isLimit = res.status === 429 || res.status === 412 || text.toLowerCase().includes('limit');
+      if (attempts <= 3 && isLimit) {
         const retryAfter = parseInt(res.headers.get('retry-after') || '0');
         const waitMs = retryAfter > 0 ? retryAfter * 1000 : 60000;
         console.log(`  Rate limited creating link (HTTP ${res.status}). Waiting ${Math.round(waitMs/1000)}s...`);
@@ -278,6 +279,7 @@ async function main() {
   // Track which IDs were freshly fetched per property type so we can
   // remove stale ones (sold/expired) from that type without touching others
   const freshlyFetchedByType = new Map(); // propTypeId -> Set of IDs
+  const fetchErrorsByType = new Map(); // propTypeId -> error count
 
   // Clean up any leftover temp links from previous runs
   await cleanupOldLinks();
@@ -289,6 +291,7 @@ async function main() {
     // For each property type, create saved links by price range
     for (const pt of typesToFetch) {
       freshlyFetchedByType.set(pt, new Set());
+      fetchErrorsByType.set(pt, 0);
       console.log(`\n--- Property type ${pt} ---`);
 
       for (const [low, high] of PRICE_RANGES) {
@@ -334,6 +337,7 @@ async function main() {
 
         } catch (err) {
           console.error(`  Error for pt=${pt} $${low}-$${high}: ${err.message}`);
+          fetchErrorsByType.set(pt, fetchErrorsByType.get(pt) + 1);
           await sleep(1000);
         }
       }
@@ -345,6 +349,11 @@ async function main() {
     let prunedCount = 0;
     for (const [pt, freshIds] of freshlyFetchedByType.entries()) {
       if (freshIds.size === 0) continue; // skip if fetch failed entirely for this type
+      const errCount = fetchErrorsByType.get(pt) || 0;
+      if (errCount > 0) {
+        console.log(`Skipping prune for pt=${pt}: ${errCount} bucket(s) failed — would lose valid listings`);
+        continue;
+      }
       for (const [id, listing] of allListings.entries()) {
         if (listing.propTypeId === pt && !freshIds.has(id)) {
           allListings.delete(id);
