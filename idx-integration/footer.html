@@ -1,0 +1,105 @@
+  </div>
+</main>
+
+<!-- ============ SITE FOOTER ============ -->
+<footer class="cp-footer">
+  <div class="cp-footer__bottom">
+    <p class="cp-footer__disclaimer">
+      Popby Realty | Office: (830) 321-0051 | 323 Arendes Dr, New Braunfels, TX 78130<br />
+      All information is deemed reliable but not guaranteed and should be independently reviewed and verified.<br />
+      <a href="https://cposeyrealestate.com/docs/trec-consumer-protection-notice.pdf" target="_blank" rel="noopener" class="cp-footer__legal-link">TREC Consumer Protection Notice</a> | <a href="https://cposeyrealestate.com/docs/trec-iabs.pdf" target="_blank" rel="noopener" class="cp-footer__legal-link">TREC Information About Brokerage Services</a>
+    </p>
+    <p class="cp-footer__copy">
+      &copy; <span id="cp-year"></span> Cody Posey Real Estate. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<!-- Mobile contact bar -->
+<div class="cp-mobile-bar">
+  <a href="tel:+18303605569">📞 Call</a>
+  <a href="sms:+18303605569">💬 Text</a>
+  <a href="mailto:codyposey@cposeyrealestate.com">✉ Email</a>
+</div>
+
+<script>
+  document.getElementById('cp-year').textContent = new Date().getFullYear();
+  var hb = document.getElementById('cpHamburger');
+  var nm = document.getElementById('cpNavMenu');
+  if (hb && nm) hb.addEventListener('click', function() { nm.classList.toggle('open'); });
+  window.addEventListener('scroll', function() {
+    var nav = document.getElementById('cp-navbar');
+    if (!nav) return;
+    if (window.scrollY > 50) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  /* ============================================================
+     LEAD CAPTURE OVERRIDE
+     On listing detail pages, replace IDX's "Contact Agent" form
+     with a CTA button that sends the user to our own contact form
+     pre-filled with the listing address & MLS#.
+     ============================================================ */
+  function injectLeadCTA() {
+    if (!/\/idx\/details\//i.test(window.location.pathname)) return;
+    if (document.querySelector('.cp-cta-button[data-cp-injected]')) return;
+
+    // Pull listing context from the page
+    var addressEl = document.querySelector(
+      '.IDX-detailsHeaderAddress, [itemprop="streetAddress"], h1.IDX-detailsHeader, .IDX-resultsAddress'
+    );
+    var mlsEl = document.querySelector('.IDX-listingID, [itemprop="mlsNumber"], .IDX-mlsNumber');
+    var address = addressEl ? addressEl.textContent.trim() : '';
+    var mls = mlsEl ? mlsEl.textContent.replace(/[^\w-]/g, '').trim() : '';
+
+    var params = new URLSearchParams();
+    params.set('source', 'idx-detail');
+    if (address) params.set('listing', address);
+    if (mls) params.set('mls', mls);
+    params.set('url', window.location.href);
+    var contactUrl = 'https://cposeyrealestate.com/contact?' + params.toString();
+
+    // Build the CTA block
+    var wrap = document.createElement('div');
+    wrap.className = 'cp-cta-block';
+    wrap.style.cssText = 'margin:1.5rem 0;padding:1.5rem;background:#fff;border:1px solid #e5e5e5;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.06);';
+    wrap.innerHTML =
+      '<h3 style="font-family:Poppins,sans-serif;text-transform:uppercase;letter-spacing:.05em;font-size:1.1rem;margin:0 0 .5rem;color:#000;">Interested In This Property?</h3>' +
+      '<p style="font-size:.9rem;color:#555;margin:0 0 1rem;line-height:1.5;">Get more details, schedule a private showing, or ask Cody anything about this listing.</p>' +
+      '<a href="' + contactUrl + '" class="cp-cta-button" data-cp-injected="1">Request More Info / Schedule Showing</a>' +
+      '<a href="tel:+18303605569" class="cp-cta-button cp-cta-button--secondary">Call Cody: (830) 360-5569</a>';
+
+    // Place the CTA next to the listing photos / above the description.
+    // Try several anchor points in order of preference.
+    var anchor =
+      document.querySelector('#IDX-detailsContactWrapper') ||
+      document.querySelector('.IDX-detailsContact') ||
+      document.querySelector('.IDX-detailsSidebar') ||
+      document.querySelector('#IDX-detailsRightCol') ||
+      document.querySelector('.IDX-detailsHeader') ||
+      document.querySelector('#IDX-main');
+
+    if (!anchor) return;
+    if (anchor.parentNode && anchor.id === 'IDX-detailsContactWrapper') {
+      anchor.parentNode.insertBefore(wrap, anchor);
+    } else {
+      anchor.insertBefore(wrap, anchor.firstChild);
+    }
+  }
+
+  // IDX renders content async — observe and re-run until injected.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', injectLeadCTA);
+  } else {
+    injectLeadCTA();
+  }
+  var attempts = 0;
+  var poll = setInterval(function() {
+    attempts++;
+    injectLeadCTA();
+    if (document.querySelector('.cp-cta-button[data-cp-injected]') || attempts > 20) {
+      clearInterval(poll);
+    }
+  }, 500);
+</script>
+

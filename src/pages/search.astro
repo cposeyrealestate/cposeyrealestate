@@ -102,6 +102,88 @@ const IDX_RESULTS = 'https://cposeyrealestate.idxbroker.com/idx/results/listings
         </div>
 
         <button type="submit" class="filters__submit">Search</button>
+
+        <!-- Advanced filters (expandable) -->
+        <div class="filters__advanced" id="advancedPanel" hidden>
+          <div class="filters__field">
+            <label for="f-sqft">Min SqFt</label>
+            <select id="f-sqft" name="a_totalSqFt">
+              <option value="">Any</option>
+              <option value="1000">1,000+</option>
+              <option value="1500">1,500+</option>
+              <option value="2000">2,000+</option>
+              <option value="2500">2,500+</option>
+              <option value="3000">3,000+</option>
+              <option value="4000">4,000+</option>
+              <option value="5000">5,000+</option>
+            </select>
+          </div>
+          <div class="filters__field">
+            <label for="f-year">Year Built (Min)</label>
+            <select id="f-year" name="a_yearBuilt">
+              <option value="">Any</option>
+              <option value="1980">1980+</option>
+              <option value="1990">1990+</option>
+              <option value="2000">2000+</option>
+              <option value="2010">2010+</option>
+              <option value="2015">2015+</option>
+              <option value="2020">2020+</option>
+            </select>
+          </div>
+          <div class="filters__field">
+            <label for="f-acres">Min Acres</label>
+            <select id="f-acres" name="a_acres">
+              <option value="">Any</option>
+              <option value="0.25">0.25+</option>
+              <option value="0.5">0.5+</option>
+              <option value="1">1+</option>
+              <option value="2">2+</option>
+              <option value="5">5+</option>
+              <option value="10">10+</option>
+              <option value="25">25+</option>
+              <option value="50">50+</option>
+            </select>
+          </div>
+          <div class="filters__field">
+            <label for="f-gar">Garage</label>
+            <select id="f-gar" name="a_totalGarage">
+              <option value="">Any</option>
+              <option value="1">1+</option>
+              <option value="2">2+</option>
+              <option value="3">3+</option>
+            </select>
+          </div>
+          <div class="filters__field">
+            <label for="f-pool">Pool</label>
+            <select id="f-pool" name="a_pool">
+              <option value="">Any</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+          <div class="filters__field">
+            <label for="f-water">Waterfront</label>
+            <select id="f-water" name="a_waterfront">
+              <option value="">Any</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+          <div class="filters__field">
+            <label for="f-status">Status</label>
+            <select id="f-status" name="a_propStatus">
+              <option value="active">Active</option>
+              <option value="active,pending">Active + Pending</option>
+              <option value="active,pending,sold">All</option>
+            </select>
+          </div>
+          <div class="filters__field filters__field--wide">
+            <label for="f-kw">Keywords (pool, acreage, barn, view...)</label>
+            <input id="f-kw" type="text" placeholder="Comma-separated keywords" autocomplete="off" />
+          </div>
+        </div>
+
+        <button type="button" class="filters__toggle" id="advToggle" aria-expanded="false">
+          <span id="advToggleText">+ Advanced Filters</span>
+        </button>
       </form>
     </section>
 
@@ -113,15 +195,15 @@ const IDX_RESULTS = 'https://cposeyrealestate.idxbroker.com/idx/results/listings
             <h3>Map Search</h3>
             <p>Browse every active listing on an interactive map.</p>
           </a>
-          <a class="search-shortcut" href="https://cposeyrealestate.idxbroker.com/idx/results/listings?ccz=city&city[]=newbraunfels&pt=1">
+          <a class="search-shortcut" href="https://cposeyrealestate.idxbroker.com/idx/results/listings?ccz=city&city[]=newbraunfels&pt=1&per=100">
             <h3>New Braunfels Homes</h3>
             <p>All active listings in New Braunfels.</p>
           </a>
-          <a class="search-shortcut" href="https://cposeyrealestate.idxbroker.com/idx/results/listings?ccz=city&city[]=canyonlake&pt=1">
+          <a class="search-shortcut" href="https://cposeyrealestate.idxbroker.com/idx/results/listings?ccz=city&city[]=canyonlake&pt=1&per=100">
             <h3>Canyon Lake Homes</h3>
             <p>Lakeside and Hill Country living.</p>
           </a>
-          <a class="search-shortcut" href="https://cposeyrealestate.idxbroker.com/idx/results/listings?pt=2">
+          <a class="search-shortcut" href="https://cposeyrealestate.idxbroker.com/idx/results/listings?pt=2&per=100">
             <h3>Land &amp; Lots</h3>
             <p>Acreage and vacant land across the region.</p>
           </a>
@@ -216,6 +298,34 @@ const IDX_RESULTS = 'https://cposeyrealestate.idxbroker.com/idx/results/listings
   }
   .filters__submit:hover { background: #cc0000; }
 
+  .filters__toggle {
+    grid-column: 1 / -1;
+    justify-self: start;
+    background: transparent;
+    border: none;
+    color: #FF1616;
+    font-family: 'Poppins', sans-serif;
+    font-size: .72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    cursor: pointer;
+    padding: .25rem 0;
+    margin-top: .25rem;
+  }
+  .filters__toggle:hover { color: #cc0000; text-decoration: underline; }
+
+  .filters__advanced {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: .75rem;
+    padding: 1rem 0 .25rem;
+    border-top: 1px dashed #e5e5e5;
+    margin-top: .5rem;
+  }
+  .filters__advanced .filters__field--wide { grid-column: 1 / -1; }
+
   @media (max-width: 1100px) {
     .filters { grid-template-columns: 1fr 1fr 1fr; }
     .filters__field--wide { grid-column: 1 / -1; }
@@ -223,6 +333,10 @@ const IDX_RESULTS = 'https://cposeyrealestate.idxbroker.com/idx/results/listings
   }
   @media (max-width: 600px) {
     .filters { grid-template-columns: 1fr 1fr; }
+    .filters__advanced { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 900px) {
+    .filters__advanced { grid-template-columns: repeat(2, 1fr); }
   }
 
   /* ---------- IDX widget ---------- */
@@ -273,22 +387,38 @@ const IDX_RESULTS = 'https://cposeyrealestate.idxbroker.com/idx/results/listings
 </style>
 
 <script is:inline>
+  // Advanced filter toggle
+  (function() {
+    var btn = document.getElementById('advToggle');
+    var panel = document.getElementById('advancedPanel');
+    var label = document.getElementById('advToggleText');
+    if (!btn || !panel) return;
+    btn.addEventListener('click', function() {
+      var open = !panel.hasAttribute('hidden');
+      if (open) {
+        panel.setAttribute('hidden', '');
+        btn.setAttribute('aria-expanded', 'false');
+        label.textContent = '+ Advanced Filters';
+      } else {
+        panel.removeAttribute('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+        label.textContent = '– Hide Advanced Filters';
+      }
+    });
+  })();
+
   // Build a proper IDX results URL on submit.
-  // IDX expects ccz=city&city[]=slug  OR  ccz=zipcode&zipcode[]=78130.
   (function() {
     var form = document.getElementById('filterForm');
     if (!form) return;
 
+    function val(id) { return (document.getElementById(id)?.value || '').trim(); }
+    function add(params, key, v) { if (v) params.append(key, v); }
+
     form.addEventListener('submit', function(e) {
       e.preventDefault();
 
-      var loc = (document.getElementById('f-loc')?.value || '').trim();
-      var lp  = document.getElementById('f-min')?.value || '';
-      var hp  = document.getElementById('f-max')?.value || '';
-      var bd  = document.getElementById('f-bd')?.value  || '';
-      var tb  = document.getElementById('f-tb')?.value  || '';
-      var pt  = document.getElementById('f-pt')?.value  || '1';
-
+      var loc = val('f-loc');
       var params = new URLSearchParams();
 
       if (loc) {
@@ -304,11 +434,25 @@ const IDX_RESULTS = 'https://cposeyrealestate.idxbroker.com/idx/results/listings
         }
       }
 
-      if (lp) params.append('lp', lp);
-      if (hp) params.append('hp', hp);
-      if (bd) params.append('bd', bd);
-      if (tb) params.append('tb', tb);
-      params.append('pt', pt || '1');
+      // Core filters
+      add(params, 'lp', val('f-min'));
+      add(params, 'hp', val('f-max'));
+      add(params, 'bd', val('f-bd'));
+      add(params, 'tb', val('f-tb'));
+      params.append('pt', val('f-pt') || '1');
+
+      // Advanced filters (IDX a_* fields)
+      add(params, 'a_totalSqFt',   val('f-sqft'));
+      add(params, 'a_yearBuilt',   val('f-year'));
+      add(params, 'a_acres',       val('f-acres'));
+      add(params, 'a_totalGarage', val('f-gar'));
+      add(params, 'a_pool',        val('f-pool'));
+      add(params, 'a_waterfront',  val('f-water'));
+      add(params, 'a_propStatus',  val('f-status'));
+      add(params, 'a_keywords',    val('f-kw'));
+
+      // Show more listings per page
+      params.append('per', '100');
 
       window.location.href =
         'https://cposeyrealestate.idxbroker.com/idx/results/listings?' + params.toString();

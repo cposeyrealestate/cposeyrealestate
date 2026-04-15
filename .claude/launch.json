@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "dev",
-      "runtimeExecutable": "cmd",
-      "runtimeArgs": ["/c", "cd /d C:\\Users\\txcod\\Projects\\cposeyrealestate && npm run dev"],
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["C:\\Users\\txcod\\Projects\\cposeyrealestate\\node_modules\\astro\\astro.js", "dev", "--host", "--root", "C:\\Users\\txcod\\Projects\\cposeyrealestate"],
       "port": 4321
     }
   ]

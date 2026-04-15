@@ -140,6 +140,68 @@
       setTimeout(function() { reformatPins(); hideElements(); }, 100);
     }).observe(mapEl, { childList: true, subtree: true });
   }
+
+  // ===== AUTO "SEARCH THIS AREA" ON MAP PAN/ZOOM =====
+  // Whenever the user moves or zooms the map, trigger IDX's redo-search
+  // so the listings repopulate for the visible area (Zillow-style).
+  function enableAutoMapRefresh() {
+    // 1) Auto-check the "redo search when map moves" toggle if IDX renders one.
+    var autoCheckboxes = document.querySelectorAll(
+      'input[name="redoOnMove"], input#IDX-redoOnMove, input.IDX-redoOnMove, input[name="autoRedo"]'
+    );
+    for (var i = 0; i < autoCheckboxes.length; i++) {
+      var cb = autoCheckboxes[i];
+      if (!cb.checked) {
+        cb.checked = true;
+        cb.dispatchEvent(new Event('change', { bubbles: true }));
+        cb.dispatchEvent(new Event('click', { bubbles: true }));
+      }
+    }
+
+    // 2) Hook Leaflet map events directly so we can click the redo button.
+    try {
+      var map = window.IDX && window.IDX.map ? window.IDX.map : null;
+      if (!map && window.L && mapEl && mapEl._leaflet_id) {
+        // Some themes stash the map under different globals; try common ones.
+        map = window.mapSearch || window.IDXmap || null;
+      }
+      if (map && !map._cpAutoRedoBound) {
+        map._cpAutoRedoBound = true;
+        var debounce;
+        var trigger = function() {
+          clearTimeout(debounce);
+          debounce = setTimeout(clickRedo, 600);
+        };
+        map.on('moveend', trigger);
+        map.on('zoomend', trigger);
+      }
+    } catch (err) {}
+  }
+
+  function clickRedo() {
+    var btn =
+      document.querySelector('#IDX-redoSearchButton') ||
+      document.querySelector('.IDX-redoSearchButton') ||
+      document.querySelector('.IDX-mapSearchRedo') ||
+      document.querySelector('button.IDX-searchThisArea') ||
+      document.querySelector('[data-idx-action="redoSearch"]');
+    if (btn) {
+      btn.click();
+      return;
+    }
+    // Fallback: call IDX API if exposed
+    if (window.IDX && typeof window.IDX.redoSearch === 'function') {
+      try { window.IDX.redoSearch(); } catch (e) {}
+    }
+  }
+
+  // Try to bind shortly after load, and re-try as IDX finishes injecting.
+  var bindAttempts = 0;
+  var bindPoll = setInterval(function() {
+    bindAttempts++;
+    enableAutoMapRefresh();
+    if (bindAttempts > 40) clearInterval(bindPoll);
+  }, 500);
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', hideElements);
   } else {
