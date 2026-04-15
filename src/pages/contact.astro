@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+
+<Layout
+  title="Contact Cody Posey | New Braunfels Real Estate"
+  description="Get in touch with Cody Posey for help buying or selling a home in New Braunfels, Canyon Lake, Seguin, Cibolo, Schertz, or Bulverde."
+>
+  <Navbar />
+
+  <main class="contact-page">
+    <section class="contact-hero">
+      <div class="container">
+        <h1>Get In <span class="accent">Touch</span></h1>
+        <p>Questions about a property? Ready to start looking? Want a free home valuation? Drop me a note and I'll get back to you fast.</p>
+      </div>
+    </section>
+
+    <ContactForm />
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .contact-page {
+    padding-top: 76px;
+  }
+  .contact-hero {
+    background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+    color: #fff;
+    padding: 5rem 0 3rem;
+    text-align: center;
+  }
+  .contact-hero h1 {
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  .contact-hero .accent {
+    color: #FF1616;
+  }
+  .contact-hero p {
+    color: rgba(255,255,255,0.7);
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+  }
+</style>

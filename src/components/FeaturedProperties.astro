@@ -1,14 +1,9 @@
 ---
-// Try to load IDX featured listings data; fall back to placeholders if not available.
-let featuredListings: any[] = [];
-let usingPlaceholders = false;
-
-try {
-  const data = await import('../data/idx-featured.json');
-  featuredListings = data.default || data;
-} catch {
-  usingPlaceholders = true;
-}
+// Featured Listings — these are illustrative cards on the homepage.
+// Live MLS search is handled by IDX Broker; the "View All Listings" CTA
+// sends users to /search which redirects to the wrapped IDX search.
+const usingPlaceholders = true;
+const featuredListings: any[] = [];
 
 const placeholderListings = [
   {
@@ -21,7 +16,7 @@ const placeholderListings = [
     baths: 3,
     sqft: '2,450',
     img: 'https://placehold.co/600x400/1a1a1a/FF1616?text=Property+Photo',
-    url: '/home-search/listings',
+    url: '/search',
   },
   {
     id: 2,
@@ -33,7 +28,7 @@ const placeholderListings = [
     baths: 2,
     sqft: '1,890',
     img: 'https://placehold.co/600x400/1a1a1a/FF1616?text=Property+Photo',
-    url: '/home-search/listings',
+    url: '/search',
   },
   {
     id: 3,
@@ -45,7 +40,7 @@ const placeholderListings = [
     baths: 4,
     sqft: '3,100',
     img: 'https://placehold.co/600x400/1a1a1a/FF1616?text=Property+Photo',
-    url: '/home-search/listings',
+    url: '/search',
   },
   {
     id: 4,
@@ -57,7 +52,7 @@ const placeholderListings = [
     baths: 2,
     sqft: '1,650',
     img: 'https://placehold.co/600x400/1a1a1a/FF1616?text=Property+Photo',
-    url: '/home-search/listings',
+    url: '/search',
   },
 ];
 
@@ -75,7 +70,7 @@ const listings = usingPlaceholders
       sqft: l.sqFt || l.sqft || '',
       img: (typeof l.image === 'string' ? l.image : l.image?.[0]?.url) || l.img || 'https://placehold.co/600x400/1a1a1a/FF1616?text=No+Photo',
       propType: l.propSubType || '',
-      url: l.fullDetailsURL || l.url || '/home-search/listings',
+      url: l.fullDetailsURL || l.url || '/search',
     }));
 ---
 
@@ -117,7 +112,7 @@ const listings = usingPlaceholders
     </div>
 
     <div class="properties__cta">
-      <a href="/home-search/listings" class="btn btn-primary">View All Listings</a>
+      <a href="/search" class="btn btn-primary">View All Listings</a>
     </div>
   </div>
 </section>

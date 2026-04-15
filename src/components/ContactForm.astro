@@ -8,6 +8,14 @@ const { context = "I'm interested in learning more about New Braunfels real esta
 
 <section class="contact-form section" id="contact">
   <div class="container">
+    <div class="contact-form__listing-banner" id="cfListingBanner" style="display:none;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <div>
+        <div class="contact-form__listing-label">You're inquiring about:</div>
+        <div class="contact-form__listing-address" id="cfListingAddress"></div>
+      </div>
+    </div>
+
     <div class="contact-form__inner">
       <div class="contact-form__info">
         <h2>Let's <span class="accent">Connect</span></h2>
@@ -185,6 +193,36 @@ const { context = "I'm interested in learning more about New Braunfels real esta
     font-size: 0.9rem;
   }
 
+  /* Listing context banner (when arriving from an IDX listing detail page) */
+  .contact-form__listing-banner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: rgba(255, 22, 22, 0.08);
+    border: 1px solid rgba(255, 22, 22, 0.3);
+    border-left: 4px solid #FF1616;
+    border-radius: 6px;
+    margin-bottom: 2rem;
+  }
+
+  .contact-form__listing-label {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 0.25rem;
+  }
+
+  .contact-form__listing-address {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
   @media (max-width: 768px) {
     .contact-form__inner {
       grid-template-columns: 1fr;
@@ -197,6 +235,38 @@ const { context = "I'm interested in learning more about New Braunfels real esta
 </style>
 
 <script is:inline>
+  // ── Pre-fill from URL params (when arriving from IDX listing detail) ──
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var listing = params.get('listing');
+    var mls = params.get('mls');
+    var sourceUrl = params.get('url');
+    var source = params.get('source');
+
+    if (listing) {
+      var banner = document.getElementById('cfListingBanner');
+      var addr = document.getElementById('cfListingAddress');
+      if (banner && addr) {
+        addr.textContent = listing + (mls ? ' (MLS# ' + mls + ')' : '');
+        banner.style.display = 'flex';
+      }
+      var msg = document.getElementById('cf-message');
+      if (msg && !msg.value) {
+        msg.value = "I'm interested in " + listing +
+          (mls ? ' (MLS# ' + mls + ')' : '') +
+          '. Please send me more information or help me schedule a showing.';
+      }
+    }
+
+    // Stash for the lead submission
+    window.__leadContext = {
+      listing: listing || '',
+      mls: mls || '',
+      listingUrl: sourceUrl || '',
+      source: source === 'idx-detail' ? 'IDX Listing Detail' : 'Contact Form'
+    };
+  })();
+
   const form = document.getElementById('contactForm');
   const success = document.getElementById('contactSuccess');
 
@@ -220,6 +290,7 @@ const { context = "I'm interested in learning more about New Braunfels real esta
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
 
+      var ctx = window.__leadContext || {};
       fetch('/api/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -228,7 +299,10 @@ const { context = "I'm interested in learning more about New Braunfels real esta
           email: email.value.trim(),
           phone: (form.querySelector('#cf-phone') || {}).value || '',
           message: message.value.trim(),
-          source: 'Contact Form'
+          source: ctx.source || 'Contact Form',
+          listing: ctx.listing || '',
+          mls: ctx.mls || '',
+          listingUrl: ctx.listingUrl || ''
         })
       })
       .then(function() {
