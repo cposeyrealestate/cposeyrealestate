@@ -265,13 +265,33 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: 9px !important;
 }
 .marker-cluster span { line-height: 24px !important; font-size: 9px !important; }
+
+/* ============ IDX OVERRIDE GUARDS (defeat IDX's global a{} rules) ============ */
+header.cp-navbar a,
+header.cp-navbar a:link,
+header.cp-navbar a:visited { color: #fff !important; text-decoration: none !important; }
+header.cp-navbar .cp-navbar__link,
+header.cp-navbar .cp-navbar__sub li a,
+header.cp-navbar .cp-navbar__mega-col ul li a { color: #fff !important; }
+header.cp-navbar .cp-navbar__link:hover,
+header.cp-navbar .cp-navbar__link--active,
+header.cp-navbar .cp-navbar__sub li a:hover,
+header.cp-navbar .cp-navbar__mega-col h4 a { color: var(--cp-red) !important; }
+header.cp-navbar .cp-navbar__mega-col h4 a:hover { color: #fff !important; }
+header.cp-navbar .cp-navbar__mega-col ul li a { color: rgba(255,255,255,.65) !important; }
+header.cp-navbar .cp-navbar__mega-col ul li a:hover { color: #fff !important; }
+header.cp-navbar .cp-btn-primary,
+header.cp-navbar .cp-navbar__cta { color: #fff !important; background: var(--cp-red) !important; }
+header.cp-navbar .cp-btn-primary:hover { background: var(--cp-red-dark) !important; }
+footer.cp-footer a { color: var(--cp-red) !important; }
+.cp-mobile-bar a { color: #fff !important; }
 </style>
 </head>
 <body>
 <header class="cp-navbar" id="cp-navbar">
   <div class="cp-navbar__inner">
     <a href="https://cposeyrealestate.com/" class="cp-navbar__logo">
-      <img src="https://cposeyrealestate.com/images/popby-logo.png" alt="Popby Realty" class="cp-navbar__logo-img" />
+      <img src="https://cdn.jsdelivr.net/gh/cposeyrealestate/cposeyrealestate@master/public/images/popby-logo.png" alt="Popby Realty" class="cp-navbar__logo-img" />
     </a>
     <nav class="cp-navbar__nav" id="cpNavMenu">
       <ul class="cp-navbar__links">
