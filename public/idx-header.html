@@ -211,6 +211,109 @@ img { max-width: 100%; height: auto; display: block; }
 #IDX-main .IDX-resultsPriceStatus,
 #IDX-main .IDX-resultsPriceChange { font-size: .75rem !important; }
 
+/* ===== ZILLOW-STYLE FILTER BAR ===== */
+/* Target IDX's search/filter strip at top of results pages */
+#IDX-main .IDX-searchBar,
+#IDX-main .IDX-searchForm,
+#IDX-main .IDX-advSearch-headerBar,
+#IDX-main #IDX-refineSearch {
+  background: #fff !important;
+  border-bottom: 1px solid #e5e5e5 !important;
+  padding: .75rem 1rem !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: .5rem !important;
+  align-items: center !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,.05) !important;
+}
+
+/* Filter pill buttons */
+#IDX-main .IDX-searchBar select,
+#IDX-main .IDX-searchBar input[type="text"],
+#IDX-main .IDX-searchForm select,
+#IDX-main .IDX-searchForm input[type="text"],
+#IDX-main #IDX-refineSearch select,
+#IDX-main #IDX-refineSearch input[type="text"],
+#IDX-main .IDX-advSearch-field select,
+#IDX-main .IDX-advSearch-field input[type="text"] {
+  border: 1px solid #d6d6d6 !important;
+  border-radius: 999px !important;
+  padding: .4rem 1rem !important;
+  font-size: .85rem !important;
+  font-family: var(--cp-font-sans) !important;
+  background: #fff !important;
+  height: 36px !important;
+  transition: border-color .2s, box-shadow .2s !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right .8rem center !important;
+  padding-right: 2rem !important;
+}
+#IDX-main .IDX-searchBar input[type="text"],
+#IDX-main .IDX-searchForm input[type="text"],
+#IDX-main .IDX-advSearch-field input[type="text"] {
+  background-image: none !important;
+  padding-right: 1rem !important;
+}
+#IDX-main .IDX-searchBar select:hover,
+#IDX-main .IDX-searchBar select:focus,
+#IDX-main .IDX-searchForm select:hover,
+#IDX-main .IDX-searchForm select:focus {
+  border-color: #000 !important;
+  box-shadow: 0 0 0 2px rgba(0,0,0,.05) !important;
+  outline: none !important;
+}
+
+/* "Save search" / "All filters" pill buttons */
+#IDX-main .IDX-saveSearchButton,
+#IDX-main .IDX-advSearch-submitButton,
+#IDX-main button.IDX-showAllFilters {
+  border-radius: 999px !important;
+  padding: .4rem 1rem !important;
+  font-size: .8rem !important;
+  height: 36px !important;
+  font-weight: 600 !important;
+}
+
+/* ===== SPLIT VIEW (Mapped Search Results template) ===== */
+/* Pin the map to the right and let listings scroll on the left */
+#IDX-main .IDX-mapWrap,
+#IDX-main #IDX-mapWrap,
+#IDX-main .IDX-map {
+  position: sticky !important;
+  top: 100px !important;
+  height: calc(100vh - 140px) !important;
+}
+#IDX-main .IDX-resultsText,
+#IDX-main #IDX-resultsCell {
+  background: #fff !important;
+}
+
+/* Tighter listing cards for a denser grid like Zillow */
+#IDX-main .IDX-resultsCell,
+#IDX-main .IDX-resultsCell--card {
+  border-radius: 6px !important;
+  overflow: hidden !important;
+  border: 1px solid #e5e5e5 !important;
+  transition: box-shadow .2s, transform .2s !important;
+}
+#IDX-main .IDX-resultsCell:hover,
+#IDX-main .IDX-resultsCell--card:hover { transform: translateY(-2px) !important; }
+#IDX-main .IDX-resultsAddress,
+#IDX-main .IDX-resultsDescription { font-size: .8rem !important; color: #555 !important; line-height: 1.3 !important; }
+#IDX-main .IDX-resultsCellStatus,
+#IDX-main .IDX-resultsStatus {
+  background: rgba(0,0,0,.75) !important;
+  color: #fff !important;
+  font-size: .65rem !important;
+  padding: .2rem .5rem !important;
+  border-radius: 3px !important;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
 #IDX-main .IDX-detailsContact,
 #IDX-main .IDX-contactWrapper,
 #IDX-main #IDX-detailsContactWrapper,
