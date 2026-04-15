@@ -44,7 +44,7 @@
 
       <!-- Quick links below search -->
       <div class="hero__quick-links">
-        <a href="/search?status=active" class="hero__quick-link">Homes for Sale</a>
+        <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="hero__quick-link">Homes for Sale</a>
         <a href="https://a.nhb.app/u/cposeyrealestate" target="_blank" rel="noopener" class="hero__quick-link">New Construction</a>
         <a href="/home-value" class="hero__quick-link">What's My Home Worth?</a>
       </div>
@@ -310,16 +310,13 @@
     });
   });
 
-  // Search button — redirects to search page with active tab
+  // Search button — sends user to live IDX search.
+  // IDX doesn't take a free-text query in the URL, so we just hand off
+  // to advanced search where they can refine.
+  var IDX_SEARCH = 'https://cposeyrealestate.idxbroker.com/idx/search/advanced';
+
   document.getElementById('heroSearchBtn')?.addEventListener('click', () => {
-    const input = document.getElementById('heroSearch');
-    const query = input ? input.value.trim() : '';
-    const activeTab = document.querySelector('.hero__tab.active');
-    const mode = activeTab ? activeTab.dataset.tab : 'buy';
-    const params = new URLSearchParams();
-    if (query) params.set('q', query);
-    const qs = params.toString();
-    window.location.href = '/search' + (qs ? '?' + qs : '');
+    window.location.href = IDX_SEARCH;
   });
 
   // Enter key on search
@@ -329,14 +326,9 @@
     }
   });
 
-  // Near me
+  // Near me — IDX has its own map search; send users there
   document.getElementById('heroNearMe')?.addEventListener('click', () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        const { latitude: lat, longitude: lng } = pos.coords;
-        window.location.href = `/search?lat=${lat}&lng=${lng}`;
-      });
-    }
+    window.location.href = 'https://cposeyrealestate.idxbroker.com/idx/map/mapsearch';
   });
 
   // Video rotation
