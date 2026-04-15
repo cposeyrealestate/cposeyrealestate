@@ -105,18 +105,26 @@ const IDX_RESULTS = 'https://cposeyrealestate.idxbroker.com/idx/results/listings
       </form>
     </section>
 
-    <!-- IDX widget (map + listings) -->
+    <!-- Quick links into IDX-hosted search experiences -->
     <section class="search-widget-section">
       <div class="container">
-        <div id="idx-widget-mount">
-          <!-- IDX Broker Widget #151024 -->
-          <script
-            charset="UTF-8"
-            type="text/javascript"
-            id="idxwidgetsrc-151024"
-            src="//cposeyrealestate.idxbroker.com/idx/widgets/151024"
-            is:inline
-          ></script>
+        <div class="search-shortcuts">
+          <a class="search-shortcut" href="https://cposeyrealestate.idxbroker.com/idx/map/mapsearch">
+            <h3>Map Search</h3>
+            <p>Browse every active listing on an interactive map.</p>
+          </a>
+          <a class="search-shortcut" href="https://cposeyrealestate.idxbroker.com/idx/results/listings?ccz=city&city[]=newbraunfels&pt=1">
+            <h3>New Braunfels Homes</h3>
+            <p>All active listings in New Braunfels.</p>
+          </a>
+          <a class="search-shortcut" href="https://cposeyrealestate.idxbroker.com/idx/results/listings?ccz=city&city[]=canyonlake&pt=1">
+            <h3>Canyon Lake Homes</h3>
+            <p>Lakeside and Hill Country living.</p>
+          </a>
+          <a class="search-shortcut" href="https://cposeyrealestate.idxbroker.com/idx/results/listings?pt=2">
+            <h3>Land &amp; Lots</h3>
+            <p>Acreage and vacant land across the region.</p>
+          </a>
         </div>
       </div>
     </section>
@@ -228,19 +236,39 @@ const IDX_RESULTS = 'https://cposeyrealestate.idxbroker.com/idx/results/listings
     padding: 0 1.5rem;
   }
 
-  #idx-widget-mount :global(.IDX-button),
-  #idx-widget-mount :global(.IDX-submit) {
-    background: #FF1616 !important;
-    border-color: #FF1616 !important;
-    color: #fff !important;
-    font-family: 'Poppins', sans-serif !important;
+  .search-shortcuts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+  .search-shortcut {
+    display: block;
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    text-decoration: none;
+    color: #000;
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+  }
+  .search-shortcut:hover {
+    border-color: #FF1616;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+  }
+  .search-shortcut h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: .05em;
+    margin: 0 0 .5rem;
+    color: #FF1616;
   }
-  #idx-widget-mount :global(.IDX-button:hover),
-  #idx-widget-mount :global(.IDX-submit:hover) {
-    background: #cc0000 !important;
-    border-color: #cc0000 !important;
+  .search-shortcut p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: .85rem;
+    color: #555;
+    margin: 0;
+    line-height: 1.4;
   }
 </style>
 
