@@ -1,0 +1,350 @@
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --cp-red: #FF1616;
+  --cp-red-dark: #cc0000;
+  --cp-black: #000000;
+  --cp-white: #ffffff;
+  --cp-font-heading: 'Poppins', sans-serif;
+  --cp-font-sans: 'Open Sans', sans-serif;
+}
+.cp-navbar *, .cp-footer *, .cp-mobile-bar *,
+.cp-navbar *::before, .cp-footer *::before {
+  box-sizing: border-box; margin: 0; padding: 0;
+}
+body {
+  font-family: var(--cp-font-sans);
+  font-size: 16px;
+  color: var(--cp-black);
+  background: var(--cp-white);
+  margin: 0;
+  padding-top: 76px;
+}
+img { max-width: 100%; height: auto; display: block; }
+.cp-navbar ul, .cp-footer ul, .cp-mobile-bar ul { list-style: none; }
+.cp-navbar a, .cp-footer a, .cp-mobile-bar a { color: inherit; text-decoration: none; }
+
+.cp-navbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 9999;
+  padding: 1rem 1.5rem;
+  background: #000;
+  transition: background .3s ease, box-shadow .3s ease;
+}
+.cp-navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,.4); }
+.cp-navbar__inner {
+  max-width: 1400px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+.cp-navbar__logo { display: flex; flex-direction: column; line-height: 1; color: #fff; }
+.cp-navbar__logo-img { height: 44px; width: auto; display: block; }
+.cp-navbar__links { display: flex; gap: 1.8rem; align-items: center; }
+.cp-navbar__link {
+  font-family: var(--cp-font-heading);
+  font-size: .78rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .1em;
+  color: #fff; position: relative; transition: color .3s;
+}
+.cp-navbar__link::after {
+  content: ''; position: absolute;
+  bottom: -4px; left: 0; width: 0; height: 2px;
+  background: var(--cp-red); transition: width .3s;
+}
+.cp-navbar__link:hover::after, .cp-navbar__link--active::after { width: 100%; }
+.cp-navbar__link:hover, .cp-navbar__link--active { color: var(--cp-red); }
+
+.cp-navbar__dropdown { position: relative; }
+.cp-navbar__sub {
+  display: none; position: absolute;
+  top: 100%; left: 0; background: #000;
+  min-width: 200px; padding: .5rem 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,.5);
+  border-top: 2px solid var(--cp-red);
+}
+.cp-navbar__dropdown:hover .cp-navbar__sub { display: block; }
+.cp-navbar__sub li a {
+  display: block; padding: .6rem 1.2rem;
+  font-family: var(--cp-font-heading);
+  font-size: .72rem; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .08em;
+  color: #fff; transition: color .2s, padding-left .2s;
+}
+.cp-navbar__sub li a:hover { color: var(--cp-red); padding-left: 1.6rem; }
+
+.cp-navbar__mega {
+  display: none; position: absolute;
+  top: 100%; left: 50%; transform: translateX(-50%);
+  background: #000; padding: 1.5rem 2rem;
+  box-shadow: 0 12px 40px rgba(0,0,0,.6);
+  border-top: 2px solid var(--cp-red);
+  min-width: 700px;
+}
+.cp-navbar__dropdown--mega:hover .cp-navbar__mega {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+}
+.cp-navbar__mega-col { padding: 0 .75rem; border-right: 1px solid rgba(255,255,255,.08); }
+.cp-navbar__mega-col:last-child { border-right: none; }
+.cp-navbar__mega-col h4 { margin-bottom: .75rem; }
+.cp-navbar__mega-col h4 a {
+  font-family: var(--cp-font-heading);
+  font-size: .78rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em;
+  color: var(--cp-red);
+}
+.cp-navbar__mega-col h4 a:hover { color: #fff; }
+.cp-navbar__mega-col ul { display: flex; flex-direction: column; gap: .15rem; }
+.cp-navbar__mega-col ul li a {
+  font-family: var(--cp-font-heading);
+  font-size: .68rem; color: rgba(255,255,255,.65);
+  padding: .25rem 0; display: block;
+}
+.cp-navbar__mega-col ul li a:hover { color: #fff; }
+
+.cp-btn {
+  display: inline-block; padding: .6rem 1.4rem;
+  font-family: var(--cp-font-sans);
+  font-size: .75rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .1em;
+  cursor: pointer; transition: all .3s;
+  border: none; white-space: nowrap;
+}
+.cp-btn-primary { background: var(--cp-red); color: #fff; }
+.cp-btn-primary:hover { background: var(--cp-red-dark); color: #fff; }
+
+.cp-navbar__hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.cp-navbar__hamburger span {
+  display: block; width: 24px; height: 2px; background: #fff; transition: .3s;
+}
+@media (max-width: 1100px) {
+  .cp-navbar__links { gap: 1.2rem; }
+  .cp-navbar__link { font-size: .72rem; }
+  .cp-navbar__mega { min-width: 600px; }
+}
+@media (max-width: 900px) {
+  .cp-navbar__nav {
+    display: none; position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: #000; padding: 1.5rem;
+    max-height: 80vh; overflow-y: auto;
+  }
+  .cp-navbar__nav.open { display: block; }
+  .cp-navbar__links { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .cp-navbar__sub {
+    position: static; display: block; box-shadow: none;
+    padding-left: 1rem; margin-top: .5rem; border-top: none;
+  }
+  .cp-navbar__mega {
+    position: static; display: block !important;
+    transform: none; min-width: auto; box-shadow: none;
+    padding: .5rem 0 0 1rem; border-top: none;
+  }
+  .cp-navbar__dropdown--mega:hover .cp-navbar__mega {
+    display: block; grid-template-columns: 1fr;
+  }
+  .cp-navbar__mega-col {
+    padding: .5rem 0; border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .cp-navbar__mega-col:last-child { border-bottom: none; }
+  .cp-navbar__cta { display: none; }
+  .cp-navbar__hamburger { display: flex; }
+}
+
+.cp-idx-main { min-height: calc(100vh - 200px); background: #fafafa; }
+.cp-idx-container { max-width: 1400px; margin: 0 auto; padding: 1.5rem; }
+
+#IDX-main, #IDX-main * { font-family: var(--cp-font-sans) !important; }
+#IDX-main h1, #IDX-main h2, #IDX-main h3, #IDX-main h4, #IDX-main h5, #IDX-main h6 {
+  font-family: var(--cp-font-heading) !important;
+  text-transform: uppercase; letter-spacing: .02em;
+}
+#IDX-main .IDX-button,
+#IDX-main button.IDX-btn,
+#IDX-main .IDX-controlButton,
+#IDX-main .IDX-detailsContactButton,
+#IDX-main .IDX-saveSearchSubmit,
+#IDX-main input[type="submit"],
+#IDX-main button[type="submit"] {
+  background: var(--cp-red) !important;
+  color: #fff !important; border: none !important;
+  border-radius: 0 !important;
+  text-transform: uppercase !important; letter-spacing: .1em !important;
+  font-weight: 600 !important;
+  font-family: var(--cp-font-sans) !important;
+  transition: background .3s !important;
+}
+#IDX-main .IDX-button:hover,
+#IDX-main button.IDX-btn:hover,
+#IDX-main .IDX-controlButton:hover,
+#IDX-main input[type="submit"]:hover,
+#IDX-main button[type="submit"]:hover { background: var(--cp-red-dark) !important; }
+#IDX-main a:not(.IDX-button):not(.cp-cta-button) { color: var(--cp-red); }
+#IDX-main a:not(.IDX-button):not(.cp-cta-button):hover { color: var(--cp-red-dark); text-decoration: underline; }
+#IDX-main .IDX-resultsCell:hover,
+#IDX-main .IDX-resultsCell--card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.15) !important; }
+
+#IDX-main .IDX-detailsContact,
+#IDX-main .IDX-contactWrapper,
+#IDX-main #IDX-detailsContactWrapper,
+#IDX-main .IDX-detailsContactForm { display: none !important; }
+
+.cp-cta-button {
+  display: block; width: 100%; text-align: center;
+  background: var(--cp-red) !important; color: #fff !important;
+  font-family: var(--cp-font-sans);
+  font-size: 1rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .1em;
+  padding: 1rem 1.5rem; border: none; cursor: pointer;
+  transition: background .3s; margin: 1rem 0;
+  text-decoration: none !important;
+}
+.cp-cta-button:hover { background: var(--cp-red-dark) !important; color: #fff !important; }
+.cp-cta-button--secondary {
+  background: transparent !important; color: var(--cp-red) !important;
+  border: 2px solid var(--cp-red) !important;
+}
+.cp-cta-button--secondary:hover { background: var(--cp-red) !important; color: #fff !important; }
+
+.cp-footer { background: #000; color: #fff; }
+.cp-footer__bottom { max-width: 1400px; margin: 0 auto; padding: 1.5rem; text-align: center; }
+.cp-footer__disclaimer { font-size: .7rem; color: #666; max-width: 800px; margin: 0 auto .8rem; line-height: 1.6; }
+.cp-footer__legal-link { color: #888; text-decoration: underline; transition: color .3s; }
+.cp-footer__legal-link:hover { color: var(--cp-red); }
+.cp-footer__copy { font-size: .75rem; color: #555; }
+
+.cp-mobile-bar {
+  display: none; position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: #000; border-top: 2px solid var(--cp-red);
+  padding: .5rem; z-index: 9998;
+  justify-content: space-around;
+}
+.cp-mobile-bar a { color: #fff; font-size: .75rem; font-weight: 600; text-decoration: none; padding: .5rem; }
+@media (max-width: 768px) {
+  .cp-mobile-bar { display: flex; }
+  body { padding-bottom: 60px; }
+}
+
+/* Zillow-style compact map pins */
+.leaflet-label {
+  font-size: 9px !important; font-weight: 600 !important;
+  padding: 1px 3px !important; border-radius: 3px !important;
+  border: 1px solid #fff !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
+  line-height: 14px !important; margin: 0 0 0 -4px !important;
+  letter-spacing: -0.3px !important;
+}
+.leaflet-label:after {
+  height: 5px !important; width: 5px !important;
+  bottom: -3px !important; left: 40% !important;
+  border-width: 0 1px 1px 0 !important;
+  box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.2) !important;
+}
+.leaflet-label--active { background: rgba(80, 160, 30, 0.95) !important; }
+.leaflet-label:hover {
+  background: var(--cp-red) !important;
+  z-index: 9999 !important;
+  transform: scale(1.15);
+  border-color: var(--cp-red) !important;
+}
+.marker-cluster div {
+  width: 24px !important; height: 24px !important;
+  margin-left: 4px !important; margin-top: 4px !important;
+  font-size: 9px !important;
+}
+.marker-cluster span { line-height: 24px !important; font-size: 9px !important; }
+</style>
+<header class="cp-navbar" id="cp-navbar">
+  <div class="cp-navbar__inner">
+    <a href="https://cposeyrealestate.com/" class="cp-navbar__logo">
+      <img src="https://cposeyrealestate.com/images/popby-logo.png" alt="Popby Realty" class="cp-navbar__logo-img" />
+    </a>
+    <nav class="cp-navbar__nav" id="cpNavMenu">
+      <ul class="cp-navbar__links">
+        <li><a href="https://cposeyrealestate.com/" class="cp-navbar__link">Home</a></li>
+        <li><a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="cp-navbar__link cp-navbar__link--active">Home Search</a></li>
+        <li><a href="https://cposeyrealestate.com/home-value" class="cp-navbar__link">Home Valuation</a></li>
+        <li class="cp-navbar__dropdown cp-navbar__dropdown--mega">
+          <a href="https://cposeyrealestate.com/explorearea" class="cp-navbar__link">Explore Area</a>
+          <div class="cp-navbar__mega">
+            <div class="cp-navbar__mega-col">
+              <h4><a href="https://cposeyrealestate.com/new-braunfels/">New Braunfels</a></h4>
+              <ul>
+                <li><a href="https://cposeyrealestate.com/new-braunfels/neighborhoods/">Neighborhoods</a></li>
+                <li><a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced">Home Search</a></li>
+                <li><a href="https://cposeyrealestate.com/new-braunfels/restaurants/">Restaurants</a></li>
+                <li><a href="https://cposeyrealestate.com/new-braunfels/things-to-do/">Things to Do</a></li>
+                <li><a href="https://cposeyrealestate.com/new-braunfels/new-construction/">New Construction</a></li>
+              </ul>
+            </div>
+            <div class="cp-navbar__mega-col">
+              <h4><a href="https://cposeyrealestate.com/canyon-lake/">Canyon Lake</a></h4>
+              <ul>
+                <li><a href="https://cposeyrealestate.com/canyon-lake/neighborhoods/">Neighborhoods</a></li>
+                <li><a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced">Home Search</a></li>
+                <li><a href="https://cposeyrealestate.com/canyon-lake/restaurants/">Restaurants</a></li>
+                <li><a href="https://cposeyrealestate.com/canyon-lake/things-to-do/">Things to Do</a></li>
+              </ul>
+            </div>
+            <div class="cp-navbar__mega-col">
+              <h4><a href="https://cposeyrealestate.com/seguin/">Seguin</a></h4>
+              <ul>
+                <li><a href="https://cposeyrealestate.com/seguin/neighborhoods/">Neighborhoods</a></li>
+                <li><a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced">Home Search</a></li>
+                <li><a href="https://cposeyrealestate.com/seguin/restaurants/">Restaurants</a></li>
+                <li><a href="https://cposeyrealestate.com/seguin/things-to-do/">Things to Do</a></li>
+              </ul>
+            </div>
+            <div class="cp-navbar__mega-col">
+              <h4><a href="https://cposeyrealestate.com/cibolo-schertz/">Cibolo / Schertz</a></h4>
+              <ul>
+                <li><a href="https://cposeyrealestate.com/cibolo-schertz/neighborhoods/">Neighborhoods</a></li>
+                <li><a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced">Home Search</a></li>
+                <li><a href="https://cposeyrealestate.com/cibolo-schertz/restaurants/">Restaurants</a></li>
+                <li><a href="https://cposeyrealestate.com/cibolo-schertz/things-to-do/">Things to Do</a></li>
+              </ul>
+            </div>
+            <div class="cp-navbar__mega-col">
+              <h4><a href="https://cposeyrealestate.com/bulverde/">Bulverde</a></h4>
+              <ul>
+                <li><a href="https://cposeyrealestate.com/bulverde/neighborhoods/">Neighborhoods</a></li>
+                <li><a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced">Home Search</a></li>
+                <li><a href="https://cposeyrealestate.com/bulverde/restaurants/">Restaurants</a></li>
+                <li><a href="https://cposeyrealestate.com/bulverde/things-to-do/">Things to Do</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li><a href="https://cposeyrealestate.com/blog" class="cp-navbar__link">Blog</a></li>
+        <li class="cp-navbar__dropdown">
+          <a href="#" class="cp-navbar__link">Resources</a>
+          <ul class="cp-navbar__sub">
+            <li><a href="https://cposeyrealestate.com/about">About Cody</a></li>
+            <li><a href="https://cposeyrealestate.com/properties">Portfolio</a></li>
+            <li><a href="https://cposeyrealestate.com/testimonials">Testimonials</a></li>
+            <li><a href="https://cposeyrealestate.com/buyers-guide">Buyer's Guide</a></li>
+            <li><a href="https://cposeyrealestate.com/sellers-guide">Seller's Guide</a></li>
+            <li><a href="https://cposeyrealestate.com/sellers-net-sheet">Seller's Net Sheet</a></li>
+            <li><a href="https://cposeyrealestate.com/mortgage-calculator">Mortgage Calculator</a></li>
+            <li><a href="https://cposeyrealestate.com/closing-costs">Closing Cost Estimator</a></li>
+            <li><a href="https://cposeyrealestate.com/relocation-guide">Relocation Guide</a></li>
+            <li><a href="https://cposeyrealestate.com/recommended-lenders">Recommended Lenders</a></li>
+            <li><a href="https://cposeyrealestate.com/faq">FAQ</a></li>
+          </ul>
+        </li>
+        <li><a href="https://cposeyrealestate.com/#contact" class="cp-navbar__link">Let's Connect</a></li>
+      </ul>
+    </nav>
+    <a href="tel:+18303605569" class="cp-btn cp-btn-primary cp-navbar__cta">(830) 360-5569</a>
+    <button class="cp-navbar__hamburger" id="cpHamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<main class="cp-idx-main">
+  <div class="cp-idx-container">
