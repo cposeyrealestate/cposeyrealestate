@@ -24,13 +24,10 @@ const IDX_RESULTS = 'https://cposeyrealestate.idxbroker.com/idx/results/listings
     <!-- Filter bar — submits to IDX results -->
     <section class="search-filters">
       <form class="filters" id="filterForm" action={IDX_RESULTS} method="get" target="_self">
-        <input type="hidden" name="pt" value="1" />
-
         <div class="filters__field filters__field--wide">
           <label for="f-loc">City / Zip</label>
           <input
             id="f-loc"
-            name="city[]"
             type="text"
             placeholder="Type a city or zip"
             autocomplete="off"
@@ -248,13 +245,45 @@ const IDX_RESULTS = 'https://cposeyrealestate.idxbroker.com/idx/results/listings
 </style>
 
 <script is:inline>
-  // Strip empty fields before submit so the IDX URL stays clean.
-  document.getElementById('filterForm')?.addEventListener('submit', function(e) {
-    var form = e.currentTarget;
-    Array.from(form.elements).forEach(function(el) {
-      if (el.name && (el.value === '' || el.value === null)) {
-        el.disabled = true;
+  // Build a proper IDX results URL on submit.
+  // IDX expects ccz=city&city[]=slug  OR  ccz=zipcode&zipcode[]=78130.
+  (function() {
+    var form = document.getElementById('filterForm');
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      var loc = (document.getElementById('f-loc')?.value || '').trim();
+      var lp  = document.getElementById('f-min')?.value || '';
+      var hp  = document.getElementById('f-max')?.value || '';
+      var bd  = document.getElementById('f-bd')?.value  || '';
+      var tb  = document.getElementById('f-tb')?.value  || '';
+      var pt  = document.getElementById('f-pt')?.value  || '1';
+
+      var params = new URLSearchParams();
+
+      if (loc) {
+        if (/^\d{5}$/.test(loc)) {
+          params.append('ccz', 'zipcode');
+          params.append('zipcode[]', loc);
+        } else {
+          var slug = loc.toLowerCase().replace(/[^a-z0-9]+/g, '');
+          if (slug) {
+            params.append('ccz', 'city');
+            params.append('city[]', slug);
+          }
+        }
       }
+
+      if (lp) params.append('lp', lp);
+      if (hp) params.append('hp', hp);
+      if (bd) params.append('bd', bd);
+      if (tb) params.append('tb', tb);
+      params.append('pt', pt || '1');
+
+      window.location.href =
+        'https://cposeyrealestate.idxbroker.com/idx/results/listings?' + params.toString();
     });
-  });
+  })();
 </script>
