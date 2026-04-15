@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+
+// IDX results endpoint — accepts ccz/zipcode/city/hp/lp/bd/tb/pt query params.
+const IDX_RESULTS = 'https://cposeyrealestate.idxbroker.com/idx/results/listings';
 ---
 
 <Layout
@@ -10,18 +13,119 @@ import Footer from '../components/Footer.astro';
 >
   <Navbar />
   <main class="search-page" style="padding-top: 80px;">
+    <!-- Compact title strip -->
     <section class="search-hero">
-      <div class="search-hero__overlay"></div>
       <div class="search-hero__content">
         <h1>Home <span style="color:#FF1616;">Search</span></h1>
-        <p>All active MLS listings across the New Braunfels area & Texas Hill Country</p>
+        <p>All active MLS listings — New Braunfels &amp; the Texas Hill Country</p>
       </div>
     </section>
 
+    <!-- Filter bar — submits to IDX results -->
+    <section class="search-filters">
+      <form class="filters" id="filterForm" action={IDX_RESULTS} method="get" target="_self">
+        <input type="hidden" name="pt" value="1" />
+
+        <div class="filters__field filters__field--wide">
+          <label for="f-loc">City / Zip</label>
+          <input
+            id="f-loc"
+            name="city[]"
+            type="text"
+            list="cityList"
+            placeholder="Any city or zip"
+            autocomplete="off"
+          />
+          <datalist id="cityList">
+            <option value="New Braunfels"></option>
+            <option value="Canyon Lake"></option>
+            <option value="Seguin"></option>
+            <option value="Cibolo"></option>
+            <option value="Schertz"></option>
+            <option value="Bulverde"></option>
+            <option value="San Antonio"></option>
+            <option value="Spring Branch"></option>
+            <option value="Wimberley"></option>
+            <option value="Boerne"></option>
+          </datalist>
+        </div>
+
+        <div class="filters__field">
+          <label for="f-min">Min Price</label>
+          <select id="f-min" name="lp">
+            <option value="">No min</option>
+            <option value="100000">$100K</option>
+            <option value="200000">$200K</option>
+            <option value="300000">$300K</option>
+            <option value="400000">$400K</option>
+            <option value="500000">$500K</option>
+            <option value="750000">$750K</option>
+            <option value="1000000">$1M</option>
+            <option value="1500000">$1.5M</option>
+            <option value="2000000">$2M</option>
+          </select>
+        </div>
+
+        <div class="filters__field">
+          <label for="f-max">Max Price</label>
+          <select id="f-max" name="hp">
+            <option value="">No max</option>
+            <option value="200000">$200K</option>
+            <option value="300000">$300K</option>
+            <option value="400000">$400K</option>
+            <option value="500000">$500K</option>
+            <option value="750000">$750K</option>
+            <option value="1000000">$1M</option>
+            <option value="1500000">$1.5M</option>
+            <option value="2000000">$2M</option>
+            <option value="3000000">$3M</option>
+            <option value="5000000">$5M</option>
+          </select>
+        </div>
+
+        <div class="filters__field filters__field--sm">
+          <label for="f-bd">Beds</label>
+          <select id="f-bd" name="bd">
+            <option value="">Any</option>
+            <option value="1">1+</option>
+            <option value="2">2+</option>
+            <option value="3">3+</option>
+            <option value="4">4+</option>
+            <option value="5">5+</option>
+          </select>
+        </div>
+
+        <div class="filters__field filters__field--sm">
+          <label for="f-tb">Baths</label>
+          <select id="f-tb" name="tb">
+            <option value="">Any</option>
+            <option value="1">1+</option>
+            <option value="2">2+</option>
+            <option value="3">3+</option>
+            <option value="4">4+</option>
+          </select>
+        </div>
+
+        <div class="filters__field filters__field--sm">
+          <label for="f-pt">Type</label>
+          <select id="f-pt" name="pt">
+            <option value="1">Any</option>
+            <option value="1">Residential</option>
+            <option value="2">Land</option>
+            <option value="3">Multi-Family</option>
+            <option value="4">Commercial</option>
+          </select>
+        </div>
+
+        <button type="submit" class="filters__submit">Search</button>
+      </form>
+    </section>
+
+    <!-- IDX widget (map + listings) -->
     <section class="search-widget-section">
       <div class="container">
-        <!-- IDX Broker Widget #151024 -->
         <div id="idx-widget-mount">
+          <!-- IDX Broker Widget #151024 -->
           <script
             charset="UTF-8"
             type="text/javascript"
@@ -37,38 +141,101 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <style>
+  /* ---------- Compact title strip ---------- */
   .search-hero {
-    position: relative;
-    min-height: 320px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background:
-      linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
-      url('/images/hero-poster.jpg') center/cover no-repeat,
-      #000;
+    background: #000;
     color: #fff;
     text-align: center;
-    padding: 4rem 1.5rem;
+    padding: 1.75rem 1.5rem;
   }
-  .search-hero__overlay { position: absolute; inset: 0; }
-  .search-hero__content { position: relative; z-index: 1; max-width: 800px; }
+  .search-hero__content { max-width: 800px; margin: 0 auto; }
   .search-hero h1 {
     font-family: 'Poppins', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    margin: 0 0 .75rem;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin: 0 0 .25rem;
     text-transform: uppercase;
-    letter-spacing: .04em;
+    letter-spacing: .05em;
+    line-height: 1;
   }
   .search-hero p {
     font-family: 'Open Sans', sans-serif;
-    font-size: 1rem;
-    color: rgba(255,255,255,.85);
+    font-size: .85rem;
+    color: rgba(255,255,255,.7);
     margin: 0;
   }
 
+  /* ---------- Filter bar ---------- */
+  .search-filters {
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 1rem 1.5rem;
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+    box-shadow: 0 2px 8px rgba(0,0,0,.04);
+  }
+  .filters {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr repeat(5, 1fr) auto;
+    gap: .75rem;
+    align-items: end;
+  }
+  .filters__field { display: flex; flex-direction: column; min-width: 0; }
+  .filters__field label {
+    font-family: 'Poppins', sans-serif;
+    font-size: .65rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #555;
+    margin-bottom: .25rem;
+  }
+  .filters input[type="text"],
+  .filters select {
+    font-family: 'Open Sans', sans-serif;
+    font-size: .85rem;
+    padding: .55rem .65rem;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #000;
+    border-radius: 0;
+    height: 40px;
+    width: 100%;
+  }
+  .filters input[type="text"]:focus,
+  .filters select:focus {
+    outline: none;
+    border-color: #FF1616;
+  }
+  .filters__submit {
+    height: 40px;
+    padding: 0 1.5rem;
+    background: #FF1616;
+    color: #fff;
+    border: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: .8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .filters__submit:hover { background: #cc0000; }
+
+  @media (max-width: 1100px) {
+    .filters { grid-template-columns: 1fr 1fr 1fr; }
+    .filters__field--wide { grid-column: 1 / -1; }
+    .filters__submit { grid-column: 1 / -1; }
+  }
+  @media (max-width: 600px) {
+    .filters { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ---------- IDX widget ---------- */
   .search-widget-section {
-    padding: 3rem 0 5rem;
+    padding: 1.5rem 0 4rem;
     background: #fafafa;
   }
   .container {
@@ -77,7 +244,6 @@ import Footer from '../components/Footer.astro';
     padding: 0 1.5rem;
   }
 
-  /* IDX widget reset so it inherits site fonts/colors */
   #idx-widget-mount :global(.IDX-button),
   #idx-widget-mount :global(.IDX-submit) {
     background: #FF1616 !important;
@@ -93,3 +259,15 @@ import Footer from '../components/Footer.astro';
     border-color: #cc0000 !important;
   }
 </style>
+
+<script is:inline>
+  // Strip empty fields before submit so the IDX URL stays clean.
+  document.getElementById('filterForm')?.addEventListener('submit', function(e) {
+    var form = e.currentTarget;
+    Array.from(form.elements).forEach(function(el) {
+      if (el.name && (el.value === '' || el.value === null)) {
+        el.disabled = true;
+      }
+    });
+  });
+</script>
