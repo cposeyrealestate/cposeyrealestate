@@ -20,6 +20,7 @@
     <div class="hero__search-wrap">
       <div class="hero__search-tabs">
         <button class="hero__tab active" data-tab="buy">Buy</button>
+        <button class="hero__tab" data-tab="lease">Lease</button>
       </div>
 
       <div class="hero__search-bar">
@@ -310,20 +311,95 @@
     });
   });
 
-  // Search button — sends user to live IDX search.
-  // IDX doesn't take a free-text query in the URL, so we just hand off
-  // to advanced search where they can refine.
-  var IDX_SEARCH = '/search';
+  // Hill Country city + county IDX IDs — kept in sync with
+  // public/idx-footer.html (the in-IDX search bar uses the same data).
+  var HERO_CITIES = {
+    newbraunfels: 32367, nb: 32367,
+    canyonlake: 7164, seguin: 42106, cibolo: 8778, schertz: 41744,
+    bulverde: 6303, gardenridge: 17473, springbranch: 44143,
+    marion: 28543, mcqueeney: 29420, sanantonio: 41201, sa: 41201,
+    boerne: 4804, comfort: 9893, fischer: 16015, wimberley: 52110,
+    blanco: 4392, kingsbury: 24309, geronimo: 17801, fairoaksranch: 15362,
+    universalcity: 47518, converse: 10106, selma: 42149, liveoak: 26812,
+    helotes: 20782, leonvalley: 26162, castlehills: 7629,
+    terrellhills: 46085, alamoheights: 436, windcrest: 52145, kirby: 24411
+  };
+  var HERO_COUNTIES = {
+    comal: 2247, guadalupe: 2693, bexar: 416, hays: 1461,
+    kendall: 1936, travis: 1460, wilson: 2914, bandera: 1598,
+    blanco: 2105, caldwell: 2873, gonzales: 1798, kerr: 2535
+  };
 
-  document.getElementById('heroSearchBtn')?.addEventListener('click', () => {
-    window.location.href = IDX_SEARCH;
-  });
+  function heroNormalize(s) {
+    return (s || '')
+      .toLowerCase()
+      .trim()
+      .replace(/[,\s]+(texas|tx)\b.*$/i, '')
+      .replace(/[^a-z0-9]/g, '');
+  }
 
-  // Enter key on search
-  document.getElementById('heroSearch')?.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      document.getElementById('heroSearchBtn')?.click();
+  // SABOR/LERA property type codes (verified):
+  //   1 = Single Family Residential (Buy)
+  //   5 = Residential Rental (Lease)
+  function heroActivePt() {
+    var activeTab = document.querySelector('.hero__tab.active');
+    var mode = activeTab ? activeTab.getAttribute('data-tab') : 'buy';
+    return mode === 'lease' ? '5' : '1';
+  }
+
+  function heroBuildUrl(ccz, field, id, pt) {
+    var qs = 'pt=' + encodeURIComponent(pt) +
+             '&ccz=' + encodeURIComponent(ccz) +
+             '&' + field + '[]=' + encodeURIComponent(id);
+    return '/search?' + qs;
+  }
+
+  function heroRunSearch() {
+    var input = document.getElementById('heroSearch');
+    if (!input) return;
+    var q = (input.value || '').trim();
+    var pt = heroActivePt();
+
+    // Empty input — just land on /search with the right pt (Buy vs Lease)
+    if (!q) {
+      window.location.href = '/search?pt=' + encodeURIComponent(pt);
+      return;
     }
+
+    // 5-digit zip
+    if (/^\d{5}$/.test(q)) {
+      window.location.href = heroBuildUrl('zipcode', 'zipcode', q, pt);
+      return;
+    }
+
+    var hasCountyWord = /\bcounty\b/i.test(q);
+    var key = heroNormalize(q.replace(/\s*county\s*$/i, ''));
+
+    if (hasCountyWord && HERO_COUNTIES[key]) {
+      window.location.href = heroBuildUrl('county', 'county', HERO_COUNTIES[key], pt);
+      return;
+    }
+    if (HERO_CITIES[key]) {
+      window.location.href = heroBuildUrl('city', 'city', HERO_CITIES[key], pt);
+      return;
+    }
+    if (HERO_COUNTIES[key]) {
+      window.location.href = heroBuildUrl('county', 'county', HERO_COUNTIES[key], pt);
+      return;
+    }
+
+    // No match — show a native inline hint and keep them on the page
+    input.setCustomValidity("Try a city or county in the Hill Country, or a 5-digit ZIP");
+    input.reportValidity();
+    input.addEventListener('input', function clear() {
+      input.setCustomValidity('');
+      input.removeEventListener('input', clear);
+    });
+  }
+
+  document.getElementById('heroSearchBtn')?.addEventListener('click', heroRunSearch);
+  document.getElementById('heroSearch')?.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { e.preventDefault(); heroRunSearch(); }
   });
 
   // Near me — IDX has its own map search; send users there

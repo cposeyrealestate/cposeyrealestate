@@ -1,4 +1,22 @@
 ---
 export const prerender = false;
-return Astro.redirect('https://cposeyrealestate.idxbroker.com/idx/results/listings?idxID=a023&ccz=city&pt=1&srt=newest', 302);
+
+// Forward incoming query params to IDX Broker, filling in sensible defaults
+// where the caller didn't specify. Lets the Hero search (and any other
+// internal link) pass through specific filters like pt, city[], zipcode[],
+// etc. while still working as a bare /search redirect.
+const params = new URLSearchParams(Astro.url.search);
+if (!params.get('idxID')) params.set('idxID', 'a023');
+if (!params.get('ccz')) params.set('ccz', 'city');
+if (!params.get('pt')) params.set('pt', '1');
+if (!params.get('srt')) params.set('srt', 'newest');
+
+// URLSearchParams percent-encodes brackets; restore literal [] so IDX
+// parses zipcode[]=, city[]=, county[]= correctly.
+const qs = params.toString().replace(/%5B/g, '[').replace(/%5D/g, ']');
+
+return Astro.redirect(
+  `https://cposeyrealestate.idxbroker.com/idx/results/listings?${qs}`,
+  302,
+);
 ---
