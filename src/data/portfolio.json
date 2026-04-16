@@ -124,6 +124,16 @@
       "sqft": "1,172",
       "role": "Buyer's Agent",
       "img": "/images/sold/1936-logans-pass.jpg"
+    },
+    {
+      "status": "Sold",
+      "address": "3150 Bee Hill",
+      "city": "Schertz, TX 78108",
+      "beds": 4,
+      "baths": 3,
+      "sqft": "2,738",
+      "role": "Buyer's Agent",
+      "img": "/images/sold/3150-bee-hill.jpg"
     }
   ]
 }
