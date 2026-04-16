@@ -104,6 +104,16 @@
       "sqft": "2,473",
       "role": "Buyer's Agent",
       "img": "/images/sold/1608-agave-cellar.jpg"
+    },
+    {
+      "status": "Sold",
+      "address": "920 N Union Ave",
+      "city": "New Braunfels, TX 78130",
+      "beds": 3,
+      "baths": 2,
+      "sqft": "1,847",
+      "role": "Listing Agent",
+      "img": "/images/sold/920-n-union-ave.jpg"
     }
   ]
 }
