@@ -37,6 +37,7 @@ type Past = {
   sqft?: string;
   acres?: string;
   highlight?: string;
+  role?: string;
   img: string;
 };
 
@@ -138,6 +139,7 @@ function fmtSoldDate(iso: string) {
                     {l.sqft && <span>{l.sqft} sqft</span>}
                     {l.acres && <span>{l.acres} Acres</span>}
                   </div>
+                  {l.role && <div class="p-card__role">Represented as {l.role}</div>}
                 </div>
               </div>
             ))}
@@ -311,6 +313,17 @@ function fmtSoldDate(iso: string) {
     text-transform: uppercase;
     letter-spacing: 0.04em;
     margin-bottom: 0.4rem;
+  }
+  .p-card__role {
+    margin-top: 0.25rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid #eee;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
   .p-card__address { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
   .p-card__city { font-size: 0.8rem; color: #777; margin-bottom: 1rem; }

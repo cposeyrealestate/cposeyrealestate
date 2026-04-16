@@ -52,6 +52,7 @@
       "address": "2034 San Jose Way",
       "city": "Canyon Lake, TX 78133",
       "acres": "1.54",
+      "role": "Buyer's Agent",
       "img": "/images/sold/2034-san-jose-way.jpg"
     },
     {
@@ -61,6 +62,7 @@
       "beds": 3,
       "baths": 2,
       "sqft": "2,199",
+      "role": "Buyer's Agent",
       "img": "/images/sold/7022-comanche-cave.jpg"
     },
     {
@@ -70,7 +72,28 @@
       "beds": 3,
       "baths": 1.5,
       "sqft": "1,445",
+      "role": "Buyer's Agent",
       "img": "/images/sold/216-prospect-street.jpg"
+    },
+    {
+      "status": "Sold",
+      "address": "6038 Ballast Trail",
+      "city": "New Braunfels, TX 78132",
+      "beds": 4,
+      "baths": 2,
+      "sqft": "1,820",
+      "role": "Listing Agent",
+      "img": "/images/sold/6038-ballast-trail.jpg"
+    },
+    {
+      "status": "Sold",
+      "address": "4009 Legend Pond",
+      "city": "New Braunfels, TX 78130",
+      "beds": 4,
+      "baths": 2,
+      "sqft": "2,498",
+      "role": "Listing Agent",
+      "img": "/images/sold/4009-legend-pond.jpg"
     }
   ]
 }
