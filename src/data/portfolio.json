@@ -94,6 +94,16 @@
       "sqft": "2,498",
       "role": "Listing Agent",
       "img": "/images/sold/4009-legend-pond.jpg"
+    },
+    {
+      "status": "Sold",
+      "address": "1608 Agave Cellar",
+      "city": "New Braunfels, TX 78130",
+      "beds": 4,
+      "baths": 3,
+      "sqft": "2,473",
+      "role": "Buyer's Agent",
+      "img": "/images/sold/1608-agave-cellar.jpg"
     }
   ]
 }
