@@ -67,13 +67,13 @@
     },
     {
       "status": "Sold",
-      "address": "216 Prospect Street",
-      "city": "Seguin, TX 78155",
+      "address": "8136 Ridge North",
+      "city": "Garden Ridge, TX 78266",
       "beds": 3,
-      "baths": 1.5,
-      "sqft": "1,445",
+      "baths": 2,
+      "sqft": "2,963",
       "role": "Buyer's Agent",
-      "img": "/images/sold/216-prospect-street.jpg"
+      "img": "/images/sold/8136-ridge-north.jpg"
     },
     {
       "status": "Sold",
@@ -144,6 +144,16 @@
       "sqft": "1,185",
       "role": "Listing Agent",
       "img": "/images/sold/763-hill-ave.jpg"
+    },
+    {
+      "status": "Sold",
+      "address": "216 Prospect Street",
+      "city": "Seguin, TX 78155",
+      "beds": 3,
+      "baths": 1.5,
+      "sqft": "1,445",
+      "role": "Buyer's Agent",
+      "img": "/images/sold/216-prospect-street.jpg"
     }
   ]
 }
