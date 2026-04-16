@@ -25,17 +25,24 @@
       "img": "/images/listings/1948761.jpg"
     },
     {
-      "placeholder": true,
-      "mlsId": "0000003",
-      "slug": "Placeholder-Listing-Three",
-      "status": "Pending",
-      "price": "$395,000",
-      "address": "Your Listing Address",
-      "city": "Seguin, TX 78155",
-      "beds": 3,
-      "baths": 2,
-      "sqft": "1,850",
-      "img": "https://placehold.co/800x600/1a1a1a/FF1616?text=Current+Listing"
+      "source": "internal",
+      "slug": "CR-3390-Kempner-TX",
+      "status": "Active",
+      "price": "$139,000",
+      "address": "0000 CR 3390",
+      "city": "Kempner, TX 76539",
+      "acres": "5.25",
+      "propertyType": "Land",
+      "img": "/images/listings/604073-1.jpg",
+      "gallery": [
+        "/images/listings/604073-1.jpg",
+        "/images/listings/604073-2.jpg",
+        "/images/listings/604073-3.jpg",
+        "/images/listings/604073-4.jpg",
+        "/images/listings/604073-5.jpg",
+        "/images/listings/604073-6.jpg"
+      ],
+      "description": "5.25-acre tract on CR 3390 with paved county road frontage and available water/electric. Generally flat terrain with light tree coverage offering multiple build sites. Fenced perimeter, no HOA, no known deed restrictions. Approximately 3 miles to Highway 190 with direct access to Copperas Cove and Lampasas. About 20 miles to Fort Hood. Suitable for residential construction, barndominium, manufactured home, workshop, RV storage, or small agricultural use. Survey available."
     }
   ],
 

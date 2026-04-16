@@ -8,7 +8,8 @@ const IDX_BASE = 'https://cposeyrealestate.idxbroker.com/idx/details/listing/a02
 
 type Current = {
   placeholder?: boolean;
-  mlsId: string;
+  source?: 'idx' | 'internal';
+  mlsId?: string;
   slug: string;
   status: string;
   price: string;
@@ -18,7 +19,10 @@ type Current = {
   baths?: number;
   sqft?: string;
   acres?: string;
+  propertyType?: string;
   img: string;
+  gallery?: string[];
+  description?: string;
 };
 
 type Past = {
@@ -36,7 +40,8 @@ type Past = {
 
 const currentListings = (data.currentListings as Current[]).map((l) => ({
   ...l,
-  url: `${IDX_BASE}/${l.mlsId}/${l.slug}`,
+  url: l.source === 'internal' ? `/portfolio/${l.slug}` : `${IDX_BASE}/${l.mlsId}/${l.slug}`,
+  external: l.source !== 'internal',
 }));
 
 // Past sales sorted newest-first
@@ -78,7 +83,7 @@ function fmtSoldDate(iso: string) {
         ) : (
           <div class="portfolio-grid">
             {currentListings.map((l) => (
-              <a href={l.url} target="_blank" rel="noopener" class="p-card">
+              <a href={l.url} target={l.external ? '_blank' : '_self'} rel={l.external ? 'noopener' : undefined} class="p-card">
                 <div class="p-card__img-wrap">
                   <img src={l.img} alt={l.address} class="p-card__img" loading="lazy" />
                   <span class={`p-card__status ${String(l.status).toLowerCase()}`}>{l.status}</span>

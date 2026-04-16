@@ -10,8 +10,9 @@ import data from '../data/portfolio.json';
 
 type Current = {
   placeholder?: boolean;
-  mlsId: string;
-  slug: string;
+  source?: 'idx' | 'internal';   // defaults to 'idx' when omitted
+  mlsId?: string;                // required for source='idx'
+  slug: string;                  // IDX URL slug OR internal route slug
   status: string;
   price: string;
   address: string;
@@ -20,7 +21,10 @@ type Current = {
   baths?: number;
   sqft?: string;
   acres?: string;
+  propertyType?: string;
   img: string;
+  gallery?: string[];
+  description?: string;
 };
 
 type Past = {
@@ -38,6 +42,11 @@ type Past = {
 
 const IDX_BASE = 'https://cposeyrealestate.idxbroker.com/idx/details/listing/a023';
 
+function resolveCurrentUrl(l: Current) {
+  if (l.source === 'internal') return `/portfolio/${l.slug}`;
+  return `${IDX_BASE}/${l.mlsId}/${l.slug}`;
+}
+
 const current = (data.currentListings as Current[]).map((l) => ({
   kind: 'current' as const,
   status: l.status,
@@ -49,7 +58,8 @@ const current = (data.currentListings as Current[]).map((l) => ({
   sqft: l.sqft,
   acres: l.acres,
   img: l.img,
-  url: `${IDX_BASE}/${l.mlsId}/${l.slug}`,
+  url: resolveCurrentUrl(l),
+  external: l.source !== 'internal',   // open IDX links in a new tab; internal in same tab
   placeholder: !!l.placeholder,
 }));
 
@@ -95,7 +105,7 @@ function fmtSoldDate(iso: string) {
       <div class="swiper-wrapper">
         {slides.map((s) => (
           <div class="swiper-slide">
-            <a href={s.url} class="prop-card" target={s.kind === 'current' ? '_blank' : '_self'} rel={s.kind === 'current' ? 'noopener' : undefined}>
+            <a href={s.url} class="prop-card" target={s.kind === 'current' && 'external' in s && s.external ? '_blank' : '_self'} rel={s.kind === 'current' && 'external' in s && s.external ? 'noopener' : undefined}>
               <div class="prop-card__img-wrap">
                 <img src={s.img} alt={s.address} class="prop-card__img" loading="lazy" />
                 <span class={`prop-card__status ${String(s.status).toLowerCase()}`}>{s.status}</span>
