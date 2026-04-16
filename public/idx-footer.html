@@ -444,6 +444,12 @@
   }
 
   function cpInjectAddressSearch() {
+    // Only render our custom bar on the Results page. Other IDX pages
+    // (Advanced/Basic Search, Details, etc.) have their own native UI
+    // and their Custom CSS lives under different categories, so our
+    // unstyled bar would look broken there.
+    if (!/^\/idx\/results\/listings/i.test(window.location.pathname)) return true;
+
     if (document.querySelector('.cp-address-bar')) return true;
     // Inject into our own wrapper container (always exists) so the search
     // input renders consistently whether IDX shows the refinement bar or not.
