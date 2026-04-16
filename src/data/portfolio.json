@@ -114,6 +114,16 @@
       "sqft": "1,847",
       "role": "Listing Agent",
       "img": "/images/sold/920-n-union-ave.jpg"
+    },
+    {
+      "status": "Sold",
+      "address": "1936 Logans Pass",
+      "city": "New Braunfels, TX 78130",
+      "beds": 3,
+      "baths": 2,
+      "sqft": "1,172",
+      "role": "Buyer's Agent",
+      "img": "/images/sold/1936-logans-pass.jpg"
     }
   ]
 }
