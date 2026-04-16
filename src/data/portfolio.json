@@ -251,6 +251,16 @@
       "propertyType": "Condo",
       "role": "Leasing Agent",
       "img": "/images/sold/2918-ranch-rd-620-c122.jpg"
+    },
+    {
+      "status": "Leased",
+      "address": "1136 Thea Cove",
+      "city": "New Braunfels, TX 78130",
+      "beds": 3,
+      "baths": 2,
+      "sqft": "1,236",
+      "role": "Leasing Agent",
+      "img": "/images/sold/1136-thea-cove.jpg"
     }
   ]
 }
