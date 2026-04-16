@@ -301,12 +301,15 @@
   // Hide IDX's Save Search / New Search / Modify Search buttons wherever
   // they render. CSS selectors don't catch them all because IDX uses
   // different class names on different page variants — match by text.
-  var CP_HIDE_BY_TEXT = ['save search', 'save this search', 'new search', 'modify search'];
+  // Broad selector set covers <button>, <a>, role="button", and common
+  // IDX button classes. Whitespace is normalized (line breaks, nbsp).
+  var CP_HIDE_TEXT_RE = /^(save(\s+this)?|new|modify)\s+search$/i;
   function cpHideDefaultActions() {
-    document.querySelectorAll('button, a').forEach(function(el) {
+    var els = document.querySelectorAll('button, a, [role="button"], [class*="IDX-btn"], [class*="idx-btn"]');
+    els.forEach(function(el) {
       if (el._cpHidden) return;
-      var t = (el.textContent || '').trim().toLowerCase();
-      if (CP_HIDE_BY_TEXT.indexOf(t) !== -1) {
+      var t = (el.textContent || '').replace(/\s+/g, ' ').trim();
+      if (CP_HIDE_TEXT_RE.test(t)) {
         el.style.setProperty('display', 'none', 'important');
         el._cpHidden = true;
       }
