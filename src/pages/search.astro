@@ -64,13 +64,24 @@ import Footer from '../components/Footer.astro';
   }
 
   .search-widget {
-    padding: 2.5rem 1.5rem 4rem;
+    padding: 1.5rem 0 4rem;
     background: #fff;
-    min-height: 60vh;
+    min-height: 80vh;
   }
 
   #idx-widget-wrap {
-    max-width: 1200px;
+    width: 100%;
+    max-width: 100%;
     margin: 0 auto;
+  }
+
+  /* Force IDX widget iframe/elements to fill available width */
+  #idx-widget-wrap :global(iframe) {
+    width: 100% !important;
+    min-height: 80vh !important;
+  }
+
+  #idx-widget-wrap :global(div) {
+    max-width: 100% !important;
   }
 </style>
