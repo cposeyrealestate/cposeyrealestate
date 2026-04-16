@@ -133,7 +133,57 @@
     }
   }, true);
 
-  // Replace IDX's hover-to-zoom with hover-to-highlight on the map.
+  // ── Leaflet map capture + default view ──────────────────────────────
+  // Capture the Leaflet map instance on creation so downstream code can
+  // interact with it. Also override the initial view: if the URL has no
+  // city/zipcode/county filter, force the map to open centered on the
+  // New Braunfels / San Antonio area (zoom 10) instead of IDX's default
+  // US-wide fit-to-bounds.
+  var cpMap = null;
+  var cpOrigSetView = null;
+  var cpDefaultViewApplied = false;
+
+  function cpApplyDefaultView() {
+    if (cpDefaultViewApplied || !cpMap || !cpOrigSetView) return;
+    var q = window.location.search;
+    var hasLocationFilter = /(?:city|zipcode|county)(?:%5B|\[)/i.test(q);
+    if (hasLocationFilter) { cpDefaultViewApplied = true; return; }
+    cpDefaultViewApplied = true;
+    // Centered between New Braunfels and San Antonio
+    cpOrigSetView.call(cpMap, [29.7, -98.13], 10);
+  }
+
+  function cpPatchLeaflet() {
+    if (!window.L || !window.L.Map) return false;
+    // Capture map on construction (fires before setView)
+    var origInit = L.Map.prototype.initialize;
+    L.Map.prototype.initialize = function() {
+      cpMap = this;
+      return origInit.apply(this, arguments);
+    };
+    // Track setView calls; fire our default-view override once after a quiet
+    // period (lets IDX finish its own initialization bounds-fitting first).
+    cpOrigSetView = L.Map.prototype.setView;
+    var viewDebounce = null;
+    L.Map.prototype.setView = function() {
+      cpMap = this;
+      var r = cpOrigSetView.apply(this, arguments);
+      if (!cpDefaultViewApplied) {
+        clearTimeout(viewDebounce);
+        viewDebounce = setTimeout(cpApplyDefaultView, 1500);
+      }
+      return r;
+    };
+    return true;
+  }
+  if (!cpPatchLeaflet()) {
+    var leafletPoll = 0;
+    var leafletInt = setInterval(function() {
+      if (cpPatchLeaflet() || ++leafletPoll > 50) clearInterval(leafletInt);
+    }, 200);
+  }
+
+  // ── Hover-to-highlight (replaces IDX's hover-to-zoom) ───────────────
   // When a sidebar card is hovered, prevent the zoom and highlight the
   // matching map pin + price label instead.
   var cpHighlighted = [];
@@ -155,15 +205,15 @@
       '[data-listingid="' + id + '"].leaflet-tooltip'
     );
 
-    // Fallback: match by coordinates if IDX doesn't put data-listingid on pins.
-    // Leaflet positions markers via transform: translate3d(px,px,0) so we can't
-    // coord-match from the DOM alone — we rely on Leaflet's internal map ref
-    // if it was exposed globally. Common globals IDX uses:
-    if (!matches.length && window.IDX && window.IDX.map && typeof window.IDX.map.eachLayer === 'function') {
+    // Fallback: match by coordinates via the captured Leaflet map instance.
+    // Leaflet positions markers via transform: translate3d(px,px,0) so we
+    // can't coord-match from the DOM alone — we iterate the map's layers.
+    var mapRef = cpMap || (window.IDX && window.IDX.map) || null;
+    if (!matches.length && mapRef && typeof mapRef.eachLayer === 'function') {
       var lat = parseFloat(card.getAttribute('data-lat'));
       var lng = parseFloat(card.getAttribute('data-lng'));
       if (!isNaN(lat) && !isNaN(lng)) {
-        window.IDX.map.eachLayer(function(layer) {
+        mapRef.eachLayer(function(layer) {
           if (layer.getLatLng && layer.getElement) {
             var ll = layer.getLatLng();
             if (Math.abs(ll.lat - lat) < 1e-5 && Math.abs(ll.lng - lng) < 1e-5) {
