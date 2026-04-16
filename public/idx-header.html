@@ -165,245 +165,40 @@ img { max-width: 100%; height: auto; display: block; }
 .cp-idx-main { min-height: calc(100vh - 200px); background: #fafafa; }
 .cp-idx-container { max-width: 1400px; margin: 0 auto; padding: 1.5rem; }
 
-#IDX-main, #IDX-main * { font-family: var(--cp-font-sans) !important; }
-#IDX-main h1, #IDX-main h2, #IDX-main h3, #IDX-main h4, #IDX-main h5, #IDX-main h6 {
-  font-family: var(--cp-font-heading) !important;
-  text-transform: uppercase; letter-spacing: .02em;
-}
-#IDX-main .IDX-button,
-#IDX-main button.IDX-btn,
-#IDX-main .IDX-controlButton,
-#IDX-main .IDX-detailsContactButton,
-#IDX-main .IDX-saveSearchSubmit,
-#IDX-main input[type="submit"],
-#IDX-main button[type="submit"] {
-  background: var(--cp-red) !important;
-  color: #fff !important; border: none !important;
-  border-radius: 0 !important;
-  text-transform: uppercase !important; letter-spacing: .1em !important;
-  font-weight: 600 !important;
-  font-family: var(--cp-font-sans) !important;
-  transition: background .3s !important;
-}
-#IDX-main .IDX-button:hover,
-#IDX-main button.IDX-btn:hover,
-#IDX-main .IDX-controlButton:hover,
-#IDX-main input[type="submit"]:hover,
-#IDX-main button[type="submit"]:hover { background: var(--cp-red-dark) !important; }
-#IDX-main a:not(.IDX-button):not(.cp-cta-button) { color: var(--cp-red); }
-#IDX-main a:not(.IDX-button):not(.cp-cta-button):hover { color: var(--cp-red-dark); text-decoration: underline; }
-#IDX-main .IDX-resultsCell:hover,
-#IDX-main .IDX-resultsCell--card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.15) !important; }
-
-/* Shrink listing prices on results pages */
-#IDX-main .IDX-resultsPrice,
-#IDX-main .IDX-resultsCell .IDX-resultsPrice,
-#IDX-main .IDX-resultsCell--card .IDX-resultsPrice,
-#IDX-main .IDX-resultsListCell .IDX-resultsPrice,
-#IDX-main .IDX-resultsCellPrice,
-#IDX-main span.IDX-resultsPrice,
-#IDX-main div.IDX-resultsPrice {
-  font-size: 1rem !important;
-  font-weight: 700 !important;
-  line-height: 1.2 !important;
-  letter-spacing: 0 !important;
-}
-#IDX-main .IDX-resultsPriceStatus,
-#IDX-main .IDX-resultsPriceChange { font-size: .75rem !important; }
-
-/* ===== ZILLOW-STYLE FILTER BAR ===== */
-/* Target IDX's search/filter strip at top of results pages */
-#IDX-main .IDX-searchBar,
-#IDX-main .IDX-searchForm,
-#IDX-main .IDX-advSearch-headerBar,
-#IDX-main #IDX-refineSearch {
-  background: #fff !important;
-  border-bottom: 1px solid #e5e5e5 !important;
-  padding: .75rem 1rem !important;
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: .5rem !important;
-  align-items: center !important;
-  box-shadow: 0 1px 4px rgba(0,0,0,.05) !important;
-}
-
-/* Filter pill buttons */
-#IDX-main .IDX-searchBar select,
-#IDX-main .IDX-searchBar input[type="text"],
-#IDX-main .IDX-searchForm select,
-#IDX-main .IDX-searchForm input[type="text"],
-#IDX-main #IDX-refineSearch select,
-#IDX-main #IDX-refineSearch input[type="text"],
-#IDX-main .IDX-advSearch-field select,
-#IDX-main .IDX-advSearch-field input[type="text"] {
-  border: 1px solid #d6d6d6 !important;
-  border-radius: 999px !important;
-  padding: .4rem 1rem !important;
-  font-size: .85rem !important;
-  font-family: var(--cp-font-sans) !important;
-  background: #fff !important;
-  height: 36px !important;
-  transition: border-color .2s, box-shadow .2s !important;
-  appearance: none !important;
-  -webkit-appearance: none !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") !important;
-  background-repeat: no-repeat !important;
-  background-position: right .8rem center !important;
-  padding-right: 2rem !important;
-}
-#IDX-main .IDX-searchBar input[type="text"],
-#IDX-main .IDX-searchForm input[type="text"],
-#IDX-main .IDX-advSearch-field input[type="text"] {
-  background-image: none !important;
-  padding-right: 1rem !important;
-}
-#IDX-main .IDX-searchBar select:hover,
-#IDX-main .IDX-searchBar select:focus,
-#IDX-main .IDX-searchForm select:hover,
-#IDX-main .IDX-searchForm select:focus {
-  border-color: #000 !important;
-  box-shadow: 0 0 0 2px rgba(0,0,0,.05) !important;
-  outline: none !important;
-}
-
-/* "Save search" / "All filters" pill buttons */
-#IDX-main .IDX-saveSearchButton,
-#IDX-main .IDX-advSearch-submitButton,
-#IDX-main button.IDX-showAllFilters {
-  border-radius: 999px !important;
-  padding: .4rem 1rem !important;
-  font-size: .8rem !important;
-  height: 36px !important;
-  font-weight: 600 !important;
-}
-
-/* ===== SPLIT VIEW (Mapped Search Results template) ===== */
-/* Pin the map to the right and let listings scroll on the left */
-#IDX-main .IDX-mapWrap,
-#IDX-main #IDX-mapWrap,
-#IDX-main .IDX-map {
-  position: sticky !important;
-  top: 100px !important;
-  height: calc(100vh - 140px) !important;
-}
-#IDX-main .IDX-resultsText,
-#IDX-main #IDX-resultsCell {
-  background: #fff !important;
-}
-
-/* Tighter listing cards for a denser grid like Zillow */
-#IDX-main .IDX-resultsCell,
-#IDX-main .IDX-resultsCell--card {
-  border-radius: 6px !important;
-  overflow: hidden !important;
-  border: 1px solid #e5e5e5 !important;
-  transition: box-shadow .2s, transform .2s !important;
-}
-#IDX-main .IDX-resultsCell:hover,
-#IDX-main .IDX-resultsCell--card:hover { transform: translateY(-2px) !important; }
-#IDX-main .IDX-resultsAddress,
-#IDX-main .IDX-resultsDescription { font-size: .8rem !important; color: #555 !important; line-height: 1.3 !important; }
-#IDX-main .IDX-resultsCellStatus,
-#IDX-main .IDX-resultsStatus {
-  background: rgba(0,0,0,.75) !important;
-  color: #fff !important;
-  font-size: .65rem !important;
-  padding: .2rem .5rem !important;
-  border-radius: 3px !important;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-}
-
-#IDX-main .IDX-detailsContact,
-#IDX-main .IDX-contactWrapper,
-#IDX-main #IDX-detailsContactWrapper,
-#IDX-main .IDX-detailsContactForm { display: none !important; }
-
-.cp-cta-button {
-  display: block; width: 100%; text-align: center;
-  background: var(--cp-red) !important; color: #fff !important;
+/* Footer */
+.cp-footer {
+  background: #000; color: #fff;
+  padding: 2rem 1.5rem 1rem;
   font-family: var(--cp-font-sans);
-  font-size: 1rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: .1em;
-  padding: 1rem 1.5rem; border: none; cursor: pointer;
-  transition: background .3s; margin: 1rem 0;
-  text-decoration: none !important;
+  font-size: .8rem;
 }
-.cp-cta-button:hover { background: var(--cp-red-dark) !important; color: #fff !important; }
-.cp-cta-button--secondary {
-  background: transparent !important; color: var(--cp-red) !important;
-  border: 2px solid var(--cp-red) !important;
+.cp-footer__bottom { max-width: 1400px; margin: 0 auto; text-align: center; }
+.cp-footer__disclaimer {
+  font-size: .75rem; color: rgba(255,255,255,.6);
+  line-height: 1.6; margin-bottom: .75rem;
 }
-.cp-cta-button--secondary:hover { background: var(--cp-red) !important; color: #fff !important; }
+.cp-footer__legal-link { color: var(--cp-red); text-decoration: underline; }
+.cp-footer__copy { font-size: .7rem; color: rgba(255,255,255,.4); }
 
-.cp-footer { background: #000; color: #fff; }
-.cp-footer__bottom { max-width: 1400px; margin: 0 auto; padding: 1.5rem; text-align: center; }
-.cp-footer__disclaimer { font-size: .7rem; color: #666; max-width: 800px; margin: 0 auto .8rem; line-height: 1.6; }
-.cp-footer__legal-link { color: #888; text-decoration: underline; transition: color .3s; }
-.cp-footer__legal-link:hover { color: var(--cp-red); }
-.cp-footer__copy { font-size: .75rem; color: #555; }
-
+/* Mobile bar */
 .cp-mobile-bar {
-  display: none; position: fixed;
-  bottom: 0; left: 0; right: 0;
-  background: #000; border-top: 2px solid var(--cp-red);
-  padding: .5rem; z-index: 9998;
-  justify-content: space-around;
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: #000; padding: .6rem;
+  z-index: 9998;
+  border-top: 1px solid rgba(255,255,255,.1);
 }
-.cp-mobile-bar a { color: #fff; font-size: .75rem; font-weight: 600; text-decoration: none; padding: .5rem; }
-@media (max-width: 768px) {
-  .cp-mobile-bar { display: flex; }
+.cp-mobile-bar a {
+  flex: 1; text-align: center;
+  font-family: var(--cp-font-heading);
+  font-size: .7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .08em;
+  color: #fff; padding: .5rem;
+}
+@media (max-width: 600px) {
+  .cp-mobile-bar { display: flex; gap: .5rem; }
   body { padding-bottom: 60px; }
 }
-
-/* Zillow-style compact map pins */
-.leaflet-label {
-  font-size: 9px !important; font-weight: 600 !important;
-  padding: 1px 3px !important; border-radius: 3px !important;
-  border: 1px solid #fff !important;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
-  line-height: 14px !important; margin: 0 0 0 -4px !important;
-  letter-spacing: -0.3px !important;
-}
-.leaflet-label:after {
-  height: 5px !important; width: 5px !important;
-  bottom: -3px !important; left: 40% !important;
-  border-width: 0 1px 1px 0 !important;
-  box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.2) !important;
-}
-.leaflet-label--active { background: rgba(80, 160, 30, 0.95) !important; }
-.leaflet-label:hover {
-  background: var(--cp-red) !important;
-  z-index: 9999 !important;
-  transform: scale(1.15);
-  border-color: var(--cp-red) !important;
-}
-.marker-cluster div {
-  width: 24px !important; height: 24px !important;
-  margin-left: 4px !important; margin-top: 4px !important;
-  font-size: 9px !important;
-}
-.marker-cluster span { line-height: 24px !important; font-size: 9px !important; }
-
-/* ============ IDX OVERRIDE GUARDS (defeat IDX's global a{} rules) ============ */
-header.cp-navbar a,
-header.cp-navbar a:link,
-header.cp-navbar a:visited { color: #fff !important; text-decoration: none !important; }
-header.cp-navbar .cp-navbar__link,
-header.cp-navbar .cp-navbar__sub li a,
-header.cp-navbar .cp-navbar__mega-col ul li a { color: #fff !important; }
-header.cp-navbar .cp-navbar__link:hover,
-header.cp-navbar .cp-navbar__link--active,
-header.cp-navbar .cp-navbar__sub li a:hover,
-header.cp-navbar .cp-navbar__mega-col h4 a { color: var(--cp-red) !important; }
-header.cp-navbar .cp-navbar__mega-col h4 a:hover { color: #fff !important; }
-header.cp-navbar .cp-navbar__mega-col ul li a { color: rgba(255,255,255,.65) !important; }
-header.cp-navbar .cp-navbar__mega-col ul li a:hover { color: #fff !important; }
-header.cp-navbar .cp-btn-primary,
-header.cp-navbar .cp-navbar__cta { color: #fff !important; background: var(--cp-red) !important; }
-header.cp-navbar .cp-btn-primary:hover { background: var(--cp-red-dark) !important; }
-footer.cp-footer a { color: var(--cp-red) !important; }
-.cp-mobile-bar a { color: #fff !important; }
 </style>
 </head>
 <body>
@@ -473,7 +268,6 @@ footer.cp-footer a { color: var(--cp-red) !important; }
           <a href="#" class="cp-navbar__link">Resources</a>
           <ul class="cp-navbar__sub">
             <li><a href="https://cposeyrealestate.codyposey.workers.dev/about">About Cody</a></li>
-            <li><a href="https://cposeyrealestate.codyposey.workers.dev/properties">Portfolio</a></li>
             <li><a href="https://cposeyrealestate.codyposey.workers.dev/testimonials">Testimonials</a></li>
             <li><a href="https://cposeyrealestate.codyposey.workers.dev/buyers-guide">Buyer's Guide</a></li>
             <li><a href="https://cposeyrealestate.codyposey.workers.dev/sellers-guide">Seller's Guide</a></li>
