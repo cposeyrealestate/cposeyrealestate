@@ -164,6 +164,16 @@
       "sqft": "3,063",
       "role": "Buyer's Agent",
       "img": "/images/sold/4313-willow-oak.jpg"
+    },
+    {
+      "status": "Sold",
+      "address": "2457 Ranger Pass",
+      "city": "Seguin, TX 78155",
+      "beds": 3,
+      "baths": 2.5,
+      "sqft": "1,822",
+      "role": "Buyer's Agent",
+      "img": "/images/sold/2457-ranger-pass.jpg"
     }
   ]
 }
