@@ -322,6 +322,9 @@
     var els = document.querySelectorAll('button, a, [role="button"], [class*="IDX-btn"], [class*="idx-btn"]');
     els.forEach(function(el) {
       if (el._cpHidden) return;
+      // Never hide anything inside our own custom bar — the Save Search
+      // button there ("Save search") otherwise matches the regex too.
+      if (el.closest && el.closest('.cp-address-bar')) return;
       var t = (el.textContent || '').replace(/\s+/g, ' ').trim();
       if (CP_HIDE_TEXT_RE.test(t)) {
         el.style.setProperty('display', 'none', 'important');
