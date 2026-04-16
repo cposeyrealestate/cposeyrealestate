@@ -1,3 +1,76 @@
 ---
-return Astro.redirect('https://cposeyrealestate.idxbroker.com/idx/map/mapsearch', 302);
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
 ---
+
+<Layout
+  title="Home Search | Cody Posey Real Estate"
+  description="Search homes for sale in New Braunfels and the Texas Hill Country."
+>
+  <Navbar />
+  <main class="search-main">
+    <section class="search-hero">
+      <div class="container">
+        <h1>Home <span class="accent">Search</span></h1>
+        <p>Browse active listings across New Braunfels and the Texas Hill Country.</p>
+      </div>
+    </section>
+
+    <section class="search-widget">
+      <div class="container">
+        <div id="idx-widget-wrap">
+          <script
+            is:inline
+            charset="UTF-8"
+            type="text/javascript"
+            id="idxwidgetsrc-151024"
+            src="//cposeyrealestate.idxbroker.com/idx/widgets/151024"
+          ></script>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .search-main {
+    padding-top: 80px;
+    background: #0b0b0b;
+  }
+
+  .search-hero {
+    background: #000;
+    color: #fff;
+    padding: 3rem 1.5rem 2rem;
+    text-align: center;
+  }
+
+  .search-hero h1 {
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .search-hero .accent {
+    color: #FF1616;
+  }
+
+  .search-hero p {
+    color: #aaa;
+    font-size: 0.95rem;
+  }
+
+  .search-widget {
+    padding: 2.5rem 1.5rem 4rem;
+    background: #fff;
+    min-height: 60vh;
+  }
+
+  #idx-widget-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+</style>
