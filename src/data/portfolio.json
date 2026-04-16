@@ -64,16 +64,13 @@
       "img": "/images/sold/7022-comanche-cave.jpg"
     },
     {
-      "placeholder": true,
       "status": "Sold",
-      "soldPrice": "$725,000",
-      "soldDate": "2025-06-20",
-      "address": "Past Sale Address",
-      "city": "Bulverde, TX 78163",
-      "beds": 5,
-      "baths": 4,
-      "sqft": "3,200",
-      "img": "https://placehold.co/800x600/333/FF1616?text=Past+Sale"
+      "address": "216 Prospect Street",
+      "city": "Seguin, TX 78155",
+      "beds": 3,
+      "baths": 1.5,
+      "sqft": "1,445",
+      "img": "/images/sold/216-prospect-street.jpg"
     }
   ]
 }
