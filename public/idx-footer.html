@@ -221,7 +221,7 @@
       if (/^\d{5}$/.test(q)) {
         params.set('ccz', 'zipcode');
         params.append('zipcode[]', q);
-        window.location.href = '/idx/results/listings?' + params.toString();
+        window.location.href = '/idx/map/mapsearch?' + params.toString();
         return;
       }
 
@@ -232,7 +232,7 @@
       if (hasCountyWord && CP_COUNTIES[key]) {
         params.set('ccz', 'county');
         params.append('county[]', CP_COUNTIES[key]);
-        window.location.href = '/idx/results/listings?' + params.toString();
+        window.location.href = '/idx/map/mapsearch?' + params.toString();
         return;
       }
 
@@ -240,13 +240,13 @@
       if (CP_CITIES[key]) {
         params.set('ccz', 'city');
         params.append('city[]', CP_CITIES[key]);
-        window.location.href = '/idx/results/listings?' + params.toString();
+        window.location.href = '/idx/map/mapsearch?' + params.toString();
         return;
       }
       if (CP_COUNTIES[key]) {
         params.set('ccz', 'county');
         params.append('county[]', CP_COUNTIES[key]);
-        window.location.href = '/idx/results/listings?' + params.toString();
+        window.location.href = '/idx/map/mapsearch?' + params.toString();
         return;
       }
 
