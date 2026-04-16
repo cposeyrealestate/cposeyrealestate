@@ -15,17 +15,14 @@
       "img": "/images/listings/1945785.jpg"
     },
     {
-      "placeholder": true,
-      "mlsId": "0000002",
-      "slug": "Placeholder-Listing-Two",
+      "mlsId": "1948761",
+      "slug": "531-Eden-Ranch-Dr-Canyon-Lake-TX-78133",
       "status": "Active",
-      "price": "$675,000",
-      "address": "Your Listing Address",
+      "price": "$449,000",
+      "address": "531 Eden Ranch Dr",
       "city": "Canyon Lake, TX 78133",
-      "beds": 4,
-      "baths": 3,
-      "sqft": "2,800",
-      "img": "https://placehold.co/800x600/1a1a1a/FF1616?text=Current+Listing"
+      "acres": "8.01",
+      "img": "/images/listings/1948761.jpg"
     },
     {
       "placeholder": true,

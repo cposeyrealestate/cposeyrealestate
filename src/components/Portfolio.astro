@@ -19,6 +19,7 @@ type Current = {
   beds?: number;
   baths?: number;
   sqft?: string;
+  acres?: string;
   img: string;
 };
 
@@ -46,6 +47,7 @@ const current = (data.currentListings as Current[]).map((l) => ({
   beds: l.beds,
   baths: l.baths,
   sqft: l.sqft,
+  acres: l.acres,
   img: l.img,
   url: `${IDX_BASE}/${l.mlsId}/${l.slug}`,
   placeholder: !!l.placeholder,
@@ -109,6 +111,7 @@ function fmtSoldDate(iso: string) {
                   {s.beds && <span>{s.beds} Beds</span>}
                   {s.baths && <span>{s.baths} Baths</span>}
                   {s.sqft && <span>{s.sqft} sqft</span>}
+                  {'acres' in s && s.acres && <span>{s.acres} Acres</span>}
                 </div>
                 <span class="prop-card__cta">
                   {s.kind === 'current' ? 'View Listing →' : 'See My Portfolio →'}

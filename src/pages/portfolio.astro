@@ -17,6 +17,7 @@ type Current = {
   beds?: number;
   baths?: number;
   sqft?: string;
+  acres?: string;
   img: string;
 };
 
@@ -90,6 +91,7 @@ function fmtSoldDate(iso: string) {
                     {l.beds && <span>{l.beds} Beds</span>}
                     {l.baths && <span>{l.baths} Baths</span>}
                     {l.sqft && <span>{l.sqft} sqft</span>}
+                    {'acres' in l && l.acres && <span>{l.acres} Acres</span>}
                   </div>
                   <span class="p-card__cta">View Listing →</span>
                 </div>
@@ -127,6 +129,7 @@ function fmtSoldDate(iso: string) {
                     {l.beds && <span>{l.beds} Beds</span>}
                     {l.baths && <span>{l.baths} Baths</span>}
                     {l.sqft && <span>{l.sqft} sqft</span>}
+                    {'acres' in l && l.acres && <span>{l.acres} Acres</span>}
                   </div>
                 </div>
               </div>
