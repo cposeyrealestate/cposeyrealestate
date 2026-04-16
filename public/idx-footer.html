@@ -272,6 +272,133 @@
   // IDX loads cards asynchronously; re-attach whenever the DOM changes.
   var cpObs = new MutationObserver(cpAttachCardHover);
   cpObs.observe(document.body, { childList: true, subtree: true });
+
+  // ── Custom City / Zip / County address search in refinement bar ──────
+  // IDX Broker requires numeric IDs (not names) for city[] and county[]
+  // params, so we ship a lookup table of cities/counties in the service
+  // area. Zip codes (5-digit) pass straight through.
+  var CP_CITIES = {
+    'newbraunfels': 32367, 'nb': 32367,
+    'canyonlake': 7164,
+    'seguin': 42106,
+    'cibolo': 8778,
+    'schertz': 41744,
+    'bulverde': 6303,
+    'gardenridge': 17473,
+    'springbranch': 44143,
+    'marion': 28543,
+    'mcqueeney': 29420,
+    'sanantonio': 41201, 'sa': 41201,
+    'boerne': 4804,
+    'comfort': 9893,
+    'fischer': 16015,
+    'wimberley': 52110,
+    'blanco': 4392,
+    'kingsbury': 24309,
+    'geronimo': 17801,
+    'fairoaksranch': 15362,
+    'universalcity': 47518,
+    'converse': 10106,
+    'selma': 42149,
+    'liveoak': 26812,
+    'helotes': 20782,
+    'leonvalley': 26162,
+    'castlehills': 7629,
+    'terrellhills': 46085,
+    'alamoheights': 436,
+    'windcrest': 52145,
+    'kirby': 24411
+  };
+  var CP_COUNTIES = {
+    'comal': 2247, 'guadalupe': 2693, 'bexar': 416, 'hays': 1461,
+    'kendall': 1936, 'travis': 1460, 'wilson': 2914, 'bandera': 1598,
+    'blanco': 2105, 'caldwell': 2873, 'gonzales': 1798, 'kerr': 2535
+  };
+  function cpSearchNormalize(s) {
+    return (s || '')
+      .toLowerCase()
+      .trim()
+      .replace(/[,\s]+(texas|tx)\b.*$/i, '')
+      .replace(/[^a-z0-9]/g, '');
+  }
+
+  function cpInjectAddressSearch() {
+    if (document.querySelector('.cp-address-search')) return true;
+    var refinement = document.querySelector('.idx-results__refinement');
+    if (!refinement) return false;
+
+    var wrap = document.createElement('div');
+    wrap.className = 'cp-address-search';
+    wrap.innerHTML =
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
+      '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
+      '<input type="text" id="cpAddrInput" placeholder="City, Zip Code, or County" autocomplete="off" />' +
+      '<button type="button" id="cpAddrGo">Search</button>';
+
+    refinement.insertBefore(wrap, refinement.firstChild);
+
+    function runSearch() {
+      var input = document.getElementById('cpAddrInput');
+      if (!input) return;
+      var q = (input.value || '').trim();
+      if (!q) { input.focus(); return; }
+
+      var params = new URLSearchParams();
+      params.set('idxID', 'a023');
+      params.set('pt', '1');
+      params.set('srt', 'newest');
+
+      if (/^\d{5}$/.test(q)) {
+        params.set('ccz', 'zipcode');
+        params.append('zipcode[]', q);
+        window.location.href = '/idx/results/listings?' + params.toString();
+        return;
+      }
+
+      var hasCountyWord = /\bcounty\b/i.test(q);
+      var key = cpSearchNormalize(q.replace(/\s*county\s*$/i, ''));
+
+      if (hasCountyWord && CP_COUNTIES[key]) {
+        params.set('ccz', 'county');
+        params.append('county[]', CP_COUNTIES[key]);
+        window.location.href = '/idx/results/listings?' + params.toString();
+        return;
+      }
+      if (CP_CITIES[key]) {
+        params.set('ccz', 'city');
+        params.append('city[]', CP_CITIES[key]);
+        window.location.href = '/idx/results/listings?' + params.toString();
+        return;
+      }
+      if (CP_COUNTIES[key]) {
+        params.set('ccz', 'county');
+        params.append('county[]', CP_COUNTIES[key]);
+        window.location.href = '/idx/results/listings?' + params.toString();
+        return;
+      }
+
+      input.setCustomValidity("Try a city or county in the Hill Country, or a 5-digit ZIP");
+      input.reportValidity();
+      input.addEventListener('input', function clear() {
+        input.setCustomValidity('');
+        input.removeEventListener('input', clear);
+      });
+    }
+
+    document.getElementById('cpAddrGo').addEventListener('click', runSearch);
+    document.getElementById('cpAddrInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { e.preventDefault(); runSearch(); }
+    });
+    return true;
+  }
+
+  // Retry until the refinement bar is in the DOM
+  if (!cpInjectAddressSearch()) {
+    var addrRetry = 0;
+    var addrInt = setInterval(function() {
+      if (cpInjectAddressSearch() || ++addrRetry > 40) clearInterval(addrInt);
+    }, 500);
+  }
 })();
 </script>
 </body>
