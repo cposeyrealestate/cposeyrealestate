@@ -22,14 +22,17 @@
 
 <script>
 (function() {
-  // Force newest-first sort on the Results page when no sort param is set.
-  // IDX's Advanced Search form submits without srt=, which defaults to an
-  // arbitrary order; this redirect (once, via location.replace) ensures
-  // every landing on /idx/results/listings shows newest listings first.
+  // Force newest-first sort + 30 results per page on the Results page when
+  // those params aren't already set. IDX's Advanced Search form submits
+  // without srt/per, which defaults to arbitrary sort + IDX's default page
+  // size; this redirect (once, via location.replace) ensures every landing
+  // on /idx/results/listings shows newest listings first, 30 at a time.
   if (/^\/idx\/results\/listings/i.test(window.location.pathname)) {
     var srtParams = new URLSearchParams(window.location.search);
-    if (!srtParams.get('srt')) {
-      srtParams.set('srt', 'newest');
+    var changed = false;
+    if (!srtParams.get('srt')) { srtParams.set('srt', 'newest'); changed = true; }
+    if (!srtParams.get('per')) { srtParams.set('per', '30'); changed = true; }
+    if (changed) {
       var qs = srtParams.toString().replace(/%5B/g, '[').replace(/%5D/g, ']');
       window.location.replace(window.location.pathname + '?' + qs);
       return; // stop executing the rest of the wrapper — we're about to reload
