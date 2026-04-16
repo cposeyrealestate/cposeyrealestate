@@ -261,6 +261,15 @@
       "sqft": "1,236",
       "role": "Leasing Agent",
       "img": "/images/sold/1136-thea-cove.jpg"
+    },
+    {
+      "status": "Leased",
+      "address": "1025 Elegance Drive",
+      "city": "New Braunfels, TX 78130",
+      "beds": 4,
+      "baths": 2,
+      "sqft": "1,667",
+      "img": "/images/sold/1025-elegance-drive.jpg"
     }
   ]
 }
