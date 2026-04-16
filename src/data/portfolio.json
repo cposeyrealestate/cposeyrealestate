@@ -214,6 +214,14 @@
       "sqft": "2,198",
       "role": "Listing Agent",
       "img": "/images/sold/857-fair-lane.jpg"
+    },
+    {
+      "status": "Sold",
+      "address": "2600-2602 Pahmeyer Road",
+      "city": "New Braunfels, TX 78130",
+      "propertyType": "Duplex",
+      "role": "Buyer's Agent",
+      "img": "/images/sold/2600-pahmeyer-road.jpg"
     }
   ]
 }

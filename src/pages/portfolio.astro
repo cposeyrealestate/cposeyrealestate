@@ -36,6 +36,7 @@ type Past = {
   baths?: number;
   sqft?: string;
   acres?: string;
+  propertyType?: string;
   highlight?: string;
   role?: string;
   img: string;
@@ -134,6 +135,7 @@ function fmtSoldDate(iso: string) {
                   <div class="p-card__address">{l.address}</div>
                   <div class="p-card__city">{l.city}</div>
                   <div class="p-card__details">
+                    {l.propertyType && <span>{l.propertyType}</span>}
                     {l.beds && <span>{l.beds} Beds</span>}
                     {l.baths && <span>{l.baths} Baths</span>}
                     {l.sqft && <span>{l.sqft} sqft</span>}

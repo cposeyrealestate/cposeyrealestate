@@ -38,6 +38,7 @@ type Past = {
   baths?: number;
   sqft?: string;
   acres?: string;
+  propertyType?: string; // e.g. "Duplex" — shown in details row
   highlight?: string;   // short descriptive badge (e.g. "Guadalupe River")
   role?: string;        // "Listing Agent" / "Buyer's Agent"
   img: string;
@@ -76,6 +77,7 @@ const past = (data.pastSales as Past[]).map((l) => ({
   baths: l.baths,
   sqft: l.sqft,
   acres: l.acres,
+  propertyType: l.propertyType,
   highlight: l.highlight,
   role: l.role,
   img: l.img,
@@ -155,6 +157,7 @@ function fmtSoldDate(iso: string) {
                   <div class="prop-card__address">{s.address}</div>
                   <div class="prop-card__city">{s.city}</div>
                   <div class="prop-card__details">
+                    {'propertyType' in s && s.propertyType && <span>{s.propertyType}</span>}
                     {s.beds && <span>{s.beds} Beds</span>}
                     {s.baths && <span>{s.baths} Baths</span>}
                     {s.sqft && <span>{s.sqft} sqft</span>}
