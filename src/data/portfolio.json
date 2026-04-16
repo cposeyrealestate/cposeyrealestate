@@ -270,6 +270,16 @@
       "baths": 2,
       "sqft": "1,667",
       "img": "/images/sold/1025-elegance-drive.jpg"
+    },
+    {
+      "status": "Sold",
+      "address": "127 Red Deer Place",
+      "city": "Cibolo, TX 78108",
+      "beds": 4,
+      "baths": 3.5,
+      "sqft": "2,672",
+      "role": "Buyer's Agent",
+      "img": "/images/sold/127-red-deer-place.jpg"
     }
   ]
 }
