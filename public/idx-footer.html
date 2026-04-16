@@ -190,21 +190,38 @@
     });
   }
 
-  // Delegated listeners — capture phase + stopImmediatePropagation to block
-  // IDX's own hover-zoom handler on the same element.
-  document.addEventListener('mouseenter', function(e) {
-    var card = e.target && e.target.closest && e.target.closest('.idx-listing-card, .listing-card__wrap, .listing-card__parent');
-    if (!card) return;
-    e.stopImmediatePropagation();
-    cpHighlightForCard(card);
-  }, true);
+  // Attach hover handlers directly to each card. mouseenter/mouseleave don't
+  // bubble, so delegation on document doesn't work — we have to bind per-card
+  // and re-bind for cards added dynamically as the user scrolls/paginates.
+  function cpAttachCardHover() {
+    var cards = document.querySelectorAll('.idx-listing-card, .listing-card__wrap, .listing-card__parent');
+    cards.forEach(function(card) {
+      if (card._cpHoverBound) return;
+      card._cpHoverBound = true;
+      card.addEventListener('mouseenter', function(e) {
+        e.stopImmediatePropagation();
+        cpHighlightForCard(card);
+      }, true);
+      card.addEventListener('mouseleave', function(e) {
+        e.stopImmediatePropagation();
+        cpClearHighlight();
+      }, true);
+      // mouseover/mouseout also fire when crossing child boundaries inside
+      // the card. IDX may listen on those — stop them at the card edge so
+      // their zoom handler doesn't fire.
+      card.addEventListener('mouseover', function(e) {
+        if (e.target === card || card.contains(e.target)) e.stopPropagation();
+      }, true);
+      card.addEventListener('mouseout', function(e) {
+        if (e.target === card || card.contains(e.target)) e.stopPropagation();
+      }, true);
+    });
+  }
 
-  document.addEventListener('mouseleave', function(e) {
-    var card = e.target && e.target.closest && e.target.closest('.idx-listing-card, .listing-card__wrap, .listing-card__parent');
-    if (!card) return;
-    e.stopImmediatePropagation();
-    cpClearHighlight();
-  }, true);
+  cpAttachCardHover();
+  // IDX loads cards asynchronously; re-attach whenever the DOM changes.
+  var cpObs = new MutationObserver(cpAttachCardHover);
+  cpObs.observe(document.body, { childList: true, subtree: true });
 })();
 </script>
 </body>
