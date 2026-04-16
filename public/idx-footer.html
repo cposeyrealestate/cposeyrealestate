@@ -132,6 +132,68 @@
       window.location.href = link.href;
     }
   }, true);
+
+  // Inject custom City / Zip / County address search into IDX refinement bar
+  function injectAddressSearch() {
+    if (document.querySelector('.cp-address-search')) return true;
+    var refinement = document.querySelector('.idx-results__refinement');
+    if (!refinement) return false;
+
+    var wrap = document.createElement('div');
+    wrap.className = 'cp-address-search';
+    wrap.innerHTML =
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
+      '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
+      '<input type="text" id="cpAddrInput" placeholder="City, Zip Code, or County" autocomplete="off" />' +
+      '<button type="button" id="cpAddrGo">Search</button>';
+
+    // Put it at the start of the refinement bar so it sits before the filter dropdowns
+    refinement.insertBefore(wrap, refinement.firstChild);
+
+    function runSearch() {
+      var input = document.getElementById('cpAddrInput');
+      if (!input) return;
+      var q = (input.value || '').trim();
+      if (!q) { input.focus(); return; }
+
+      var params = new URLSearchParams();
+      params.set('idxID', 'a023');
+      params.set('pt', '1');
+      params.set('srt', 'newest');
+
+      if (/^\d{5}$/.test(q)) {
+        // 5-digit zip
+        params.set('ccz', 'zipcode');
+        params.append('zipcode[]', q);
+      } else if (/\bcounty\b/i.test(q)) {
+        // Contains "county" — strip the word and route as county
+        var county = q.replace(/\s*county\s*$/i, '').trim();
+        params.set('ccz', 'county');
+        params.append('county[]', county);
+      } else {
+        // Default: city
+        params.set('ccz', 'city');
+        params.append('city[]', q);
+      }
+
+      window.location.href = '/idx/results/listings?' + params.toString();
+    }
+
+    document.getElementById('cpAddrGo').addEventListener('click', runSearch);
+    document.getElementById('cpAddrInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { e.preventDefault(); runSearch(); }
+    });
+
+    return true;
+  }
+
+  // IDX renders the refinement bar asynchronously — retry until it exists
+  if (!injectAddressSearch()) {
+    var addrRetry = 0;
+    var addrInterval = setInterval(function() {
+      if (injectAddressSearch() || ++addrRetry > 40) clearInterval(addrInterval);
+    }, 500);
+  }
 })();
 </script>
 </body>
