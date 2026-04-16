@@ -240,6 +240,17 @@
       "baths": 2,
       "sqft": "2,016",
       "img": "/images/sold/513-foxbrook-way.jpg"
+    },
+    {
+      "status": "Leased",
+      "address": "2918 Ranch Rd 620 N #C122",
+      "city": "Austin, TX 78734",
+      "beds": 3,
+      "baths": 3,
+      "sqft": "1,556",
+      "propertyType": "Condo",
+      "role": "Leasing Agent",
+      "img": "/images/sold/2918-ranch-rd-620-c122.jpg"
     }
   ]
 }
