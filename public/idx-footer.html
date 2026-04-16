@@ -143,13 +143,38 @@
   var cpOrigSetView = null;
   var cpDefaultViewApplied = false;
 
+  function cpFitToCardBounds() {
+    if (!cpMap || !window.L) return false;
+    var cards = document.querySelectorAll('.idx-listing-card[data-lat][data-lng]');
+    var coords = [];
+    cards.forEach(function(c) {
+      var lat = parseFloat(c.getAttribute('data-lat'));
+      var lng = parseFloat(c.getAttribute('data-lng'));
+      if (!isNaN(lat) && !isNaN(lng)) coords.push([lat, lng]);
+    });
+    if (coords.length === 0) return false;
+    cpMap.fitBounds(L.latLngBounds(coords), { padding: [40, 40], maxZoom: 14 });
+    return true;
+  }
+
   function cpApplyDefaultView() {
     if (cpDefaultViewApplied || !cpMap || !cpOrigSetView) return;
     var q = window.location.search;
     var hasLocationFilter = /(?:city|zipcode|county)(?:%5B|\[)/i.test(q);
-    if (hasLocationFilter) { cpDefaultViewApplied = true; return; }
     cpDefaultViewApplied = true;
-    // Centered between New Braunfels and San Antonio
+    if (hasLocationFilter) {
+      // Fit the map to the actual search results so the user sees the area
+      // they searched, not IDX's default (often US-wide) bounds.
+      if (!cpFitToCardBounds()) {
+        // Cards haven't loaded yet — retry a couple times
+        var fitRetry = 0;
+        var fitInt = setInterval(function() {
+          if (cpFitToCardBounds() || ++fitRetry > 10) clearInterval(fitInt);
+        }, 500);
+      }
+      return;
+    }
+    // Default: centered between New Braunfels and San Antonio
     cpOrigSetView.call(cpMap, [29.7, -98.13], 10);
   }
 
@@ -337,21 +362,22 @@
 
     refinement.insertBefore(wrap, refinement.firstChild);
 
+    // Build a results URL with literal [] in the bracketed param name —
+    // URLSearchParams percent-encodes brackets which IDX sometimes ignores.
+    function cpBuildResultsUrl(ccz, bracketParam, id) {
+      return '/idx/results/listings?idxID=a023&pt=1&srt=newest' +
+        '&ccz=' + encodeURIComponent(ccz) +
+        '&' + bracketParam + '[]=' + encodeURIComponent(id);
+    }
+
     function runSearch() {
       var input = document.getElementById('cpAddrInput');
       if (!input) return;
       var q = (input.value || '').trim();
       if (!q) { input.focus(); return; }
 
-      var params = new URLSearchParams();
-      params.set('idxID', 'a023');
-      params.set('pt', '1');
-      params.set('srt', 'newest');
-
       if (/^\d{5}$/.test(q)) {
-        params.set('ccz', 'zipcode');
-        params.append('zipcode[]', q);
-        window.location.href = '/idx/results/listings?' + params.toString();
+        window.location.href = cpBuildResultsUrl('zipcode', 'zipcode', q);
         return;
       }
 
@@ -359,21 +385,15 @@
       var key = cpSearchNormalize(q.replace(/\s*county\s*$/i, ''));
 
       if (hasCountyWord && CP_COUNTIES[key]) {
-        params.set('ccz', 'county');
-        params.append('county[]', CP_COUNTIES[key]);
-        window.location.href = '/idx/results/listings?' + params.toString();
+        window.location.href = cpBuildResultsUrl('county', 'county', CP_COUNTIES[key]);
         return;
       }
       if (CP_CITIES[key]) {
-        params.set('ccz', 'city');
-        params.append('city[]', CP_CITIES[key]);
-        window.location.href = '/idx/results/listings?' + params.toString();
+        window.location.href = cpBuildResultsUrl('city', 'city', CP_CITIES[key]);
         return;
       }
       if (CP_COUNTIES[key]) {
-        params.set('ccz', 'county');
-        params.append('county[]', CP_COUNTIES[key]);
-        window.location.href = '/idx/results/listings?' + params.toString();
+        window.location.href = cpBuildResultsUrl('county', 'county', CP_COUNTIES[key]);
         return;
       }
 
