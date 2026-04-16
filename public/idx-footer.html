@@ -400,18 +400,22 @@
     }).join('');
   }
 
-  // Property type options — pt codes are IDX Broker's standard SABOR
-  // mapping. If any look off in practice, update the code here.
+  // Property type options — verified against SABOR/LERA's propTypes table
+  // on /idx/search/advanced. Codes match the Advanced Search dropdown:
+  //   1 Single Family Residential · 2 Condominium/Townhome · 3 Multi-Family
+  //   4 Lots and Land · 5 Residential Rental · 6 Commercial Improved
+  //   7 Commercial Land/Unimproved · 8 Farm/Ranch
+  // (Condo and Townhome share a single MLS category in SABOR.)
   var CP_PTYPES = [
     { code: '',  label: 'All property types', icon: 'home' },
-    { code: '1', label: 'Residential',        icon: 'home' },
-    { code: '2', label: 'Condos',             icon: 'build' },
-    { code: '3', label: 'Townhomes',          icon: 'home' },
-    { code: '4', label: 'Multi-family',       icon: 'build' },
-    { code: '5', label: 'Land',               icon: 'land' },
-    { code: '7', label: 'Commercial',         icon: 'build' },
-    { code: '8', label: 'Manufactured',       icon: 'home' },
-    { code: '9', label: 'Farm/Ranch',         icon: 'land' }
+    { code: '1', label: 'Single Family',      icon: 'home' },
+    { code: '2', label: 'Condo / Townhome',   icon: 'build' },
+    { code: '3', label: 'Multi-Family',       icon: 'build' },
+    { code: '4', label: 'Lots & Land',        icon: 'land' },
+    { code: '5', label: 'Rental',             icon: 'home' },
+    { code: '6', label: 'Commercial',         icon: 'build' },
+    { code: '7', label: 'Commercial Land',    icon: 'land' },
+    { code: '8', label: 'Farm / Ranch',       icon: 'land' }
   ];
   var CP_PTYPE_ICONS = {
     home:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 11l9-8 9 8"/><path d="M5 9v11h14V9"/></svg>',
