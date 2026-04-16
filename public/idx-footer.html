@@ -478,8 +478,15 @@
     var curPt = urlParams.get('pt') || '';
     var isListView = /(?:^|[;\s])cp-view-list(?:[;\s]|$)/.test(document.body.className);
 
-    // "All filters" deep-links into IDX's Modify Search with current params preserved
-    var modifyUrl = '/idx/search/advanced?' + urlParams.toString().replace(/%5B/g, '[').replace(/%5D/g, ']');
+    // "All filters" deep-links into IDX's Modify Search with current params
+    // preserved — BUT strip internal routing/sort params that cause the
+    // Advanced Search route to 404 when carried over from Results.
+    var modifyParams = new URLSearchParams(window.location.search);
+    modifyParams.delete('page');   // IDX routing directive — breaks /idx/search/advanced
+    modifyParams.delete('srt');    // sort order — not a search-form input
+    modifyParams.delete('per');    // page size — not a search-form input
+    modifyParams.delete('pg');     // pagination — not a search-form input
+    var modifyUrl = '/idx/search/advanced?' + modifyParams.toString().replace(/%5B/g, '[').replace(/%5D/g, ']');
 
     // Property-type cards (3-col grid inside popup)
     var ptypeCardsHtml = CP_PTYPES.filter(function(p) { return p.code !== ''; }).map(function(p) {
