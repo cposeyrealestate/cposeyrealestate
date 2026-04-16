@@ -9,15 +9,76 @@ import Footer from '../components/Footer.astro';
   description="Search homes for sale in New Braunfels and the Texas Hill Country."
 >
   <Navbar />
-  <main style="padding-top: 100px; min-height: 60vh;">
-    <div style="max-width: 900px; margin: 0 auto; padding: 4rem 1.5rem; text-align: center;">
-      <h1 style="font-family: 'Poppins', sans-serif; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 1rem;">
-        Home Search
-      </h1>
-      <p style="color: #555; font-size: 1rem;">
-        Coming soon.
-      </p>
-    </div>
+  <main class="search-main">
+    <section class="search-hero">
+      <div class="container">
+        <h1>Home <span class="accent">Search</span></h1>
+        <p>Browse active listings across New Braunfels and the Texas Hill Country.</p>
+      </div>
+    </section>
+
+    <section class="search-embed">
+      <div class="container">
+        <div class="search-embed__frame">
+          <iframe
+            src="https://codyposey.popbyrealty.com/embed.php"
+            title="Home Search"
+            allowtransparency="true"
+            frameborder="0"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </section>
   </main>
   <Footer />
 </Layout>
+
+<style>
+  .search-main {
+    padding-top: 80px;
+    background: #0b0b0b;
+  }
+
+  .search-hero {
+    background: #000;
+    color: #fff;
+    padding: 3rem 1.5rem 2rem;
+    text-align: center;
+  }
+
+  .search-hero h1 {
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .search-hero .accent {
+    color: #FF1616;
+  }
+
+  .search-hero p {
+    color: #aaa;
+    font-size: 0.95rem;
+  }
+
+  .search-embed {
+    padding: 2.5rem 1.5rem 4rem;
+    background: #0b0b0b;
+  }
+
+  .search-embed__frame {
+    display: flex;
+    justify-content: center;
+  }
+
+  .search-embed iframe {
+    width: 280px;
+    height: 680px;
+    border: 0;
+    background: transparent;
+    border-radius: 8px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  }
+</style>
