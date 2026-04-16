@@ -132,6 +132,79 @@
       window.location.href = link.href;
     }
   }, true);
+
+  // Replace IDX's hover-to-zoom with hover-to-highlight on the map.
+  // When a sidebar card is hovered, prevent the zoom and highlight the
+  // matching map pin + price label instead.
+  var cpHighlighted = [];
+  function cpClearHighlight() {
+    cpHighlighted.forEach(function(el) { el.classList.remove('cp-pin-highlight'); });
+    cpHighlighted = [];
+  }
+  function cpHighlightForCard(card) {
+    cpClearHighlight();
+    var id = card.getAttribute('data-listingid');
+    if (!id) return;
+
+    // Try a direct match on the marker/tooltip by data-listingid
+    var matches = document.querySelectorAll(
+      '[data-listingid="' + id + '"].leaflet-marker-icon,' +
+      '[data-listingid="' + id + '"] .leaflet-marker-icon,' +
+      '.leaflet-marker-icon[data-listingid="' + id + '"],' +
+      '.leaflet-tooltip[data-listingid="' + id + '"],' +
+      '[data-listingid="' + id + '"].leaflet-tooltip'
+    );
+
+    // Fallback: match by coordinates if IDX doesn't put data-listingid on pins.
+    // Leaflet positions markers via transform: translate3d(px,px,0) so we can't
+    // coord-match from the DOM alone — we rely on Leaflet's internal map ref
+    // if it was exposed globally. Common globals IDX uses:
+    if (!matches.length && window.IDX && window.IDX.map && typeof window.IDX.map.eachLayer === 'function') {
+      var lat = parseFloat(card.getAttribute('data-lat'));
+      var lng = parseFloat(card.getAttribute('data-lng'));
+      if (!isNaN(lat) && !isNaN(lng)) {
+        window.IDX.map.eachLayer(function(layer) {
+          if (layer.getLatLng && layer.getElement) {
+            var ll = layer.getLatLng();
+            if (Math.abs(ll.lat - lat) < 1e-5 && Math.abs(ll.lng - lng) < 1e-5) {
+              var el = layer.getElement();
+              if (el) {
+                el.classList.add('cp-pin-highlight');
+                cpHighlighted.push(el);
+                // Also highlight its tooltip if present
+                var tip = layer.getTooltip && layer.getTooltip();
+                if (tip && tip.getElement && tip.getElement()) {
+                  tip.getElement().classList.add('cp-pin-highlight');
+                  cpHighlighted.push(tip.getElement());
+                }
+              }
+            }
+          }
+        });
+      }
+    }
+
+    matches.forEach(function(el) {
+      el.classList.add('cp-pin-highlight');
+      cpHighlighted.push(el);
+    });
+  }
+
+  // Delegated listeners — capture phase + stopImmediatePropagation to block
+  // IDX's own hover-zoom handler on the same element.
+  document.addEventListener('mouseenter', function(e) {
+    var card = e.target && e.target.closest && e.target.closest('.idx-listing-card, .listing-card__wrap, .listing-card__parent');
+    if (!card) return;
+    e.stopImmediatePropagation();
+    cpHighlightForCard(card);
+  }, true);
+
+  document.addEventListener('mouseleave', function(e) {
+    var card = e.target && e.target.closest && e.target.closest('.idx-listing-card, .listing-card__wrap, .listing-card__parent');
+    if (!card) return;
+    e.stopImmediatePropagation();
+    cpClearHighlight();
+  }, true);
 })();
 </script>
 </body>
