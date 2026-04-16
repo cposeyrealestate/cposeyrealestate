@@ -231,6 +231,15 @@
       "baths": 2,
       "sqft": "1,552",
       "img": "/images/sold/1911-kalli-jo-ln.jpg"
+    },
+    {
+      "status": "Leased",
+      "address": "513 Foxbrook Way",
+      "city": "Cibolo, TX 78108",
+      "beds": 3,
+      "baths": 2,
+      "sqft": "2,016",
+      "img": "/images/sold/513-foxbrook-way.jpg"
     }
   ]
 }
