@@ -298,6 +298,23 @@
   var cpObs = new MutationObserver(cpAttachCardHover);
   cpObs.observe(document.body, { childList: true, subtree: true });
 
+  // Hide IDX's Save Search / New Search / Modify Search buttons wherever
+  // they render. CSS selectors don't catch them all because IDX uses
+  // different class names on different page variants — match by text.
+  var CP_HIDE_BY_TEXT = ['save search', 'save this search', 'new search', 'modify search'];
+  function cpHideDefaultActions() {
+    document.querySelectorAll('button, a').forEach(function(el) {
+      if (el._cpHidden) return;
+      var t = (el.textContent || '').trim().toLowerCase();
+      if (CP_HIDE_BY_TEXT.indexOf(t) !== -1) {
+        el.style.setProperty('display', 'none', 'important');
+        el._cpHidden = true;
+      }
+    });
+  }
+  cpHideDefaultActions();
+  new MutationObserver(cpHideDefaultActions).observe(document.body, { childList: true, subtree: true });
+
   // ── Custom City / Zip / County address search in refinement bar ──────
   // IDX Broker requires numeric IDs (not names) for city[] and county[]
   // params, so we ship a lookup table of cities/counties in the service
