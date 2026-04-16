@@ -94,31 +94,6 @@
     }, 1000);
   }
 
-  // Default sort to Newest Listings
-  function setDefaultSort() {
-    var sortSelects = document.querySelectorAll('select');
-    sortSelects.forEach(function(sel) {
-      var hasNewest = false;
-      for (var i = 0; i < sel.options.length; i++) {
-        if (sel.options[i].value === 'newest') { hasNewest = true; break; }
-      }
-      if (hasNewest && sel.value !== 'newest') {
-        sel.value = 'newest';
-        sel.dispatchEvent(new Event('change', { bubbles: true }));
-      }
-    });
-  }
-
-  var sortRetry = 0;
-  var sortInterval = setInterval(function() {
-    var sel = document.querySelector('select');
-    if (sel) {
-      setDefaultSort();
-      clearInterval(sortInterval);
-    }
-    if (++sortRetry > 30) clearInterval(sortInterval);
-  }, 1000);
-
   // Default TYPE filter to Single Family Residential (value="1")
   function setDefaultPropertyType() {
     var selects = document.querySelectorAll('select');
