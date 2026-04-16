@@ -1,6 +1,7 @@
 ---
 import allPosts from '../data/blog-posts.json';
-const blogs = allPosts.slice(0, 9).map(post => ({
+const sortedPosts = [...allPosts].sort((a, b) => (b.dateRaw || '').localeCompare(a.dateRaw || ''));
+const blogs = sortedPosts.slice(0, 9).map(post => ({
   title: post.title,
   category: post.category,
   date: post.date,

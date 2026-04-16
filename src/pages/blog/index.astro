@@ -3,6 +3,10 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import blogPosts from '../../data/blog-posts.json';
+
+const POSTS_PER_PAGE = 12;
+const posts = [...blogPosts].sort((a, b) => (b.dateRaw || '').localeCompare(a.dateRaw || ''));
+const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
 ---
 
 <Layout
@@ -25,11 +29,11 @@ import blogPosts from '../../data/blog-posts.json';
     </div>
 
     <!-- Blog Grid -->
-    <section class="section">
+    <section class="section" id="blog-list">
       <div class="container">
-        <div class="blog-grid">
-          {blogPosts.map(post => (
-            <article class="blog-card">
+        <div class="blog-grid" data-blog-grid>
+          {posts.map((post, i) => (
+            <article class="blog-card" data-page={Math.floor(i / POSTS_PER_PAGE) + 1}>
               <a href={`/blog/${post.slug}`} class="blog-card__img-link">
                 <img src={post.featuredImage} alt={post.title} class="blog-card__img" loading="lazy" />
               </a>
@@ -44,6 +48,7 @@ import blogPosts from '../../data/blog-posts.json';
             </article>
           ))}
         </div>
+        {totalPages > 1 && <nav class="blog-pagination" data-blog-pagination aria-label="Blog pages"></nav>}
       </div>
     </section>
 
@@ -201,4 +206,90 @@ import blogPosts from '../../data/blog-posts.json';
       grid-template-columns: 1fr;
     }
   }
+
+  /* Pagination */
+  .blog-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+  .blog-pagination:empty { display: none; }
+  .blog-pagination button {
+    min-width: 38px;
+    height: 38px;
+    padding: 0 12px;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #111;
+    cursor: pointer;
+    transition: border-color .15s, background .15s, color .15s;
+  }
+  .blog-pagination button:hover:not(:disabled):not(.active) { border-color: #111; }
+  .blog-pagination button.active {
+    background: #FF1616;
+    border-color: #FF1616;
+    color: #fff;
+  }
+  .blog-pagination button:disabled { opacity: 0.35; cursor: default; }
+  .blog-pagination button[data-dir] { font-weight: 600; }
 </style>
+
+<script is:inline>
+  (function () {
+    var grid = document.querySelector('[data-blog-grid]');
+    var pagination = document.querySelector('[data-blog-pagination]');
+    if (!grid || !pagination) return;
+
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('[data-page]'));
+    if (cards.length === 0) return;
+    var totalPages = cards.reduce(function (m, c) {
+      var p = parseInt(c.getAttribute('data-page'), 10);
+      return p > m ? p : m;
+    }, 1);
+    if (totalPages <= 1) return;
+
+    function showPage(page) {
+      cards.forEach(function (c) {
+        c.style.display = parseInt(c.getAttribute('data-page'), 10) === page ? '' : 'none';
+      });
+      pagination.querySelectorAll('button[data-goto]').forEach(function (b) {
+        b.classList.toggle('active', parseInt(b.getAttribute('data-goto'), 10) === page);
+      });
+      var prev = pagination.querySelector('button[data-dir="prev"]');
+      var next = pagination.querySelector('button[data-dir="next"]');
+      if (prev) prev.disabled = page === 1;
+      if (next) next.disabled = page === totalPages;
+      pagination._currentPage = page;
+    }
+
+    var html = '<button type="button" data-dir="prev" aria-label="Previous page">‹</button>';
+    for (var p = 1; p <= totalPages; p++) {
+      html += '<button type="button" data-goto="' + p + '">' + p + '</button>';
+    }
+    html += '<button type="button" data-dir="next" aria-label="Next page">›</button>';
+    pagination.innerHTML = html;
+
+    pagination.addEventListener('click', function (e) {
+      var btn = e.target.closest('button');
+      if (!btn) return;
+      var current = pagination._currentPage || 1;
+      if (btn.hasAttribute('data-goto')) {
+        showPage(parseInt(btn.getAttribute('data-goto'), 10));
+      } else if (btn.getAttribute('data-dir') === 'prev' && current > 1) {
+        showPage(current - 1);
+      } else if (btn.getAttribute('data-dir') === 'next' && current < totalPages) {
+        showPage(current + 1);
+      }
+      var section = document.getElementById('blog-list');
+      if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    showPage(1);
+  })();
+</script>
