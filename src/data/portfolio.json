@@ -1,0 +1,84 @@
+{
+  "_comment": "Portfolio data — current listings pull from IDX detail pages via mlsId + slug; past sales are manually maintained. Replace placeholder entries with real data. Keep the shape of each object identical.",
+
+  "currentListings": [
+    {
+      "placeholder": true,
+      "mlsId": "0000001",
+      "slug": "Placeholder-Listing-One",
+      "status": "Active",
+      "price": "$425,000",
+      "address": "Your Listing Address",
+      "city": "New Braunfels, TX 78130",
+      "beds": 3,
+      "baths": 2,
+      "sqft": "2,100",
+      "img": "https://placehold.co/800x600/1a1a1a/FF1616?text=Current+Listing"
+    },
+    {
+      "placeholder": true,
+      "mlsId": "0000002",
+      "slug": "Placeholder-Listing-Two",
+      "status": "Active",
+      "price": "$675,000",
+      "address": "Your Listing Address",
+      "city": "Canyon Lake, TX 78133",
+      "beds": 4,
+      "baths": 3,
+      "sqft": "2,800",
+      "img": "https://placehold.co/800x600/1a1a1a/FF1616?text=Current+Listing"
+    },
+    {
+      "placeholder": true,
+      "mlsId": "0000003",
+      "slug": "Placeholder-Listing-Three",
+      "status": "Pending",
+      "price": "$395,000",
+      "address": "Your Listing Address",
+      "city": "Seguin, TX 78155",
+      "beds": 3,
+      "baths": 2,
+      "sqft": "1,850",
+      "img": "https://placehold.co/800x600/1a1a1a/FF1616?text=Current+Listing"
+    }
+  ],
+
+  "pastSales": [
+    {
+      "placeholder": true,
+      "status": "Sold",
+      "soldPrice": "$510,000",
+      "soldDate": "2025-11-15",
+      "address": "Past Sale Address",
+      "city": "New Braunfels, TX 78130",
+      "beds": 4,
+      "baths": 3,
+      "sqft": "2,450",
+      "img": "https://placehold.co/800x600/333/FF1616?text=Past+Sale"
+    },
+    {
+      "placeholder": true,
+      "status": "Sold",
+      "soldPrice": "$340,000",
+      "soldDate": "2025-09-02",
+      "address": "Past Sale Address",
+      "city": "Cibolo, TX 78108",
+      "beds": 3,
+      "baths": 2,
+      "sqft": "1,780",
+      "img": "https://placehold.co/800x600/333/FF1616?text=Past+Sale"
+    },
+    {
+      "placeholder": true,
+      "status": "Sold",
+      "soldPrice": "$725,000",
+      "soldDate": "2025-06-20",
+      "address": "Past Sale Address",
+      "city": "Bulverde, TX 78163",
+      "beds": 5,
+      "baths": 4,
+      "sqft": "3,200",
+      "img": "https://placehold.co/800x600/333/FF1616?text=Past+Sale"
+    }
+  ]
+}

@@ -1,0 +1,329 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import data from '../data/portfolio.json';
+
+const IDX_BASE = 'https://cposeyrealestate.idxbroker.com/idx/details/listing/a023';
+
+type Current = {
+  placeholder?: boolean;
+  mlsId: string;
+  slug: string;
+  status: string;
+  price: string;
+  address: string;
+  city: string;
+  beds?: number;
+  baths?: number;
+  sqft?: string;
+  img: string;
+};
+
+type Past = {
+  placeholder?: boolean;
+  status: string;
+  soldPrice: string;
+  soldDate: string;
+  address: string;
+  city: string;
+  beds?: number;
+  baths?: number;
+  sqft?: string;
+  img: string;
+};
+
+const currentListings = (data.currentListings as Current[]).map((l) => ({
+  ...l,
+  url: `${IDX_BASE}/${l.mlsId}/${l.slug}`,
+}));
+
+// Past sales sorted newest-first
+const pastSales = [...(data.pastSales as Past[])].sort(
+  (a, b) => new Date(b.soldDate).getTime() - new Date(a.soldDate).getTime(),
+);
+
+function fmtSoldDate(iso: string) {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return '';
+  return d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+}
+---
+
+<Layout
+  title="Portfolio | Cody Posey Real Estate"
+  description="Cody Posey's current listings and recent sales across New Braunfels and the Texas Hill Country."
+>
+  <Navbar />
+
+  <main class="portfolio-page">
+    <header class="portfolio-page__hero">
+      <div class="container">
+        <h1>My <span class="accent">Portfolio</span></h1>
+        <p>Current listings and recent closings across the Texas Hill Country.</p>
+      </div>
+    </header>
+
+    <!-- Current Listings -->
+    <section class="portfolio-page__section">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Current Listings</h2>
+          <span class="section-heading__count">{currentListings.length}</span>
+        </div>
+
+        {currentListings.length === 0 ? (
+          <p class="portfolio-page__empty">No active listings at the moment.</p>
+        ) : (
+          <div class="portfolio-grid">
+            {currentListings.map((l) => (
+              <a href={l.url} target="_blank" rel="noopener" class="p-card">
+                <div class="p-card__img-wrap">
+                  <img src={l.img} alt={l.address} class="p-card__img" loading="lazy" />
+                  <span class={`p-card__status ${String(l.status).toLowerCase()}`}>{l.status}</span>
+                </div>
+                <div class="p-card__body">
+                  <div class="p-card__price">{l.price}</div>
+                  <div class="p-card__address">{l.address}</div>
+                  <div class="p-card__city">{l.city}</div>
+                  <div class="p-card__details">
+                    {l.beds && <span>{l.beds} Beds</span>}
+                    {l.baths && <span>{l.baths} Baths</span>}
+                    {l.sqft && <span>{l.sqft} sqft</span>}
+                  </div>
+                  <span class="p-card__cta">View Listing →</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- Past Sales -->
+    <section class="portfolio-page__section portfolio-page__section--dark">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Recent Sales</h2>
+          <span class="section-heading__count">{pastSales.length}</span>
+        </div>
+
+        {pastSales.length === 0 ? (
+          <p class="portfolio-page__empty">Past sales will appear here.</p>
+        ) : (
+          <div class="portfolio-grid">
+            {pastSales.map((l) => (
+              <div class="p-card p-card--sold">
+                <div class="p-card__img-wrap">
+                  <img src={l.img} alt={l.address} class="p-card__img" loading="lazy" />
+                  <span class={`p-card__status ${String(l.status).toLowerCase()}`}>Sold</span>
+                  {l.soldDate && <span class="p-card__sold-date">Closed {fmtSoldDate(l.soldDate)}</span>}
+                </div>
+                <div class="p-card__body">
+                  <div class="p-card__price">{l.soldPrice}</div>
+                  <div class="p-card__address">{l.address}</div>
+                  <div class="p-card__city">{l.city}</div>
+                  <div class="p-card__details">
+                    {l.beds && <span>{l.beds} Beds</span>}
+                    {l.baths && <span>{l.baths} Baths</span>}
+                    {l.sqft && <span>{l.sqft} sqft</span>}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+
+    <section class="portfolio-page__cta">
+      <div class="container">
+        <h2>Looking for your next home — or thinking of selling?</h2>
+        <div class="portfolio-page__cta-buttons">
+          <a href="/search" class="btn btn-primary">Search Homes</a>
+          <a href="/home-value" class="btn btn-outline-dark">Get Your Home's Value</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .portfolio-page {
+    padding-top: 76px;
+    background: #fafafa;
+  }
+
+  /* Hero */
+  .portfolio-page__hero {
+    background: #000;
+    color: #fff;
+    padding: 4rem 0 3rem;
+    text-align: center;
+  }
+  .portfolio-page__hero h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+  .portfolio-page__hero p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  /* Sections */
+  .portfolio-page__section {
+    padding: 3rem 0;
+  }
+  .portfolio-page__section--dark {
+    background: #f0f0f0;
+  }
+
+  .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .section-heading h2 {
+    font-size: 1.6rem;
+    color: #111;
+  }
+  .section-heading__count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 26px;
+    padding: 0 10px;
+    background: #FF1616;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 999px;
+  }
+
+  .portfolio-page__empty {
+    color: #777;
+    font-style: italic;
+  }
+
+  /* Grid */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 960px) {
+    .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .portfolio-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Cards */
+  .p-card {
+    background: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+  a.p-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  }
+  .p-card--sold { cursor: default; }
+
+  .p-card__img-wrap {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .p-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+  a.p-card:hover .p-card__img { transform: scale(1.05); }
+
+  .p-card__status {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 0.3rem 0.8rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #fff;
+  }
+  .p-card__status.active { background: #FF1616; }
+  .p-card__status.pending { background: #e07b00; }
+  .p-card__status.sold { background: #111; }
+
+  .p-card__sold-date {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    padding: 0.25rem 0.7rem;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .p-card__body { padding: 1.25rem; }
+  .p-card__price {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #FF1616;
+    margin-bottom: 0.3rem;
+  }
+  .p-card__address { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
+  .p-card__city { font-size: 0.8rem; color: #777; margin-bottom: 1rem; }
+  .p-card__details {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    font-size: 0.78rem; color: #555; margin-bottom: 1rem;
+  }
+  .p-card__cta {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #FF1616;
+  }
+
+  /* Bottom CTA */
+  .portfolio-page__cta {
+    background: #000;
+    color: #fff;
+    padding: 4rem 0;
+    text-align: center;
+  }
+  .portfolio-page__cta h2 {
+    color: #fff;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    margin-bottom: 2rem;
+  }
+  .portfolio-page__cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

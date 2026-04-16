@@ -1,0 +1,285 @@
+---
+// Portfolio — auto-scrolling carousel on the homepage combining Cody's
+// current MLS listings and past sales.
+//
+// Data lives in src/data/portfolio.json. To add real listings, replace
+// entries with placeholder: true. Current listings link to IDX detail
+// pages; past sales link to the full /portfolio page.
+
+import data from '../data/portfolio.json';
+
+type Current = {
+  placeholder?: boolean;
+  mlsId: string;
+  slug: string;
+  status: string;
+  price: string;
+  address: string;
+  city: string;
+  beds?: number;
+  baths?: number;
+  sqft?: string;
+  img: string;
+};
+
+type Past = {
+  placeholder?: boolean;
+  status: string;
+  soldPrice: string;
+  soldDate: string;
+  address: string;
+  city: string;
+  beds?: number;
+  baths?: number;
+  sqft?: string;
+  img: string;
+};
+
+const IDX_BASE = 'https://cposeyrealestate.idxbroker.com/idx/details/listing/a023';
+
+const current = (data.currentListings as Current[]).map((l) => ({
+  kind: 'current' as const,
+  status: l.status,
+  price: l.price,
+  address: l.address,
+  city: l.city,
+  beds: l.beds,
+  baths: l.baths,
+  sqft: l.sqft,
+  img: l.img,
+  url: `${IDX_BASE}/${l.mlsId}/${l.slug}`,
+  placeholder: !!l.placeholder,
+}));
+
+const past = (data.pastSales as Past[]).map((l) => ({
+  kind: 'past' as const,
+  status: l.status,
+  price: l.soldPrice,
+  address: l.address,
+  city: l.city,
+  beds: l.beds,
+  baths: l.baths,
+  sqft: l.sqft,
+  img: l.img,
+  url: '/portfolio',
+  soldDate: l.soldDate,
+  placeholder: !!l.placeholder,
+}));
+
+// Interleave a little so the carousel opens on a current listing
+// and then alternates. If either list is empty, the other takes over.
+const slides: Array<typeof current[number] | typeof past[number]> = [];
+const maxLen = Math.max(current.length, past.length);
+for (let i = 0; i < maxLen; i++) {
+  if (current[i]) slides.push(current[i]);
+  if (past[i]) slides.push(past[i]);
+}
+
+function fmtSoldDate(iso: string) {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return '';
+  return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+}
+---
+
+<section class="portfolio section" id="portfolio">
+  <div class="container">
+    <div class="section-title">
+      <h2>My <span class="accent">Portfolio</span></h2>
+      <p>Current listings and recent sales across the Texas Hill Country</p>
+    </div>
+
+    <div class="swiper portfolio-swiper">
+      <div class="swiper-wrapper">
+        {slides.map((s) => (
+          <div class="swiper-slide">
+            <a href={s.url} class="prop-card" target={s.kind === 'current' ? '_blank' : '_self'} rel={s.kind === 'current' ? 'noopener' : undefined}>
+              <div class="prop-card__img-wrap">
+                <img src={s.img} alt={s.address} class="prop-card__img" loading="lazy" />
+                <span class={`prop-card__status ${String(s.status).toLowerCase()}`}>{s.status}</span>
+                {s.kind === 'past' && 'soldDate' in s && s.soldDate && (
+                  <span class="prop-card__sold-date">Sold {fmtSoldDate(s.soldDate)}</span>
+                )}
+              </div>
+              <div class="prop-card__body">
+                <div class="prop-card__price">{s.price}</div>
+                <div class="prop-card__address">{s.address}</div>
+                <div class="prop-card__city">{s.city}</div>
+                <div class="prop-card__details">
+                  {s.beds && <span>{s.beds} Beds</span>}
+                  {s.baths && <span>{s.baths} Baths</span>}
+                  {s.sqft && <span>{s.sqft} sqft</span>}
+                </div>
+                <span class="prop-card__cta">
+                  {s.kind === 'current' ? 'View Listing →' : 'See My Portfolio →'}
+                </span>
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+    <div class="portfolio__cta">
+      <a href="/portfolio" class="btn btn-primary">See Full Portfolio</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .portfolio {
+    background: var(--light-gray);
+  }
+
+  .section-title p {
+    color: var(--gray);
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+  }
+
+  .portfolio-swiper {
+    padding-bottom: 3.5rem !important;
+    margin-bottom: 2rem;
+  }
+
+  .prop-card {
+    background: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .prop-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  }
+
+  .prop-card__img-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+  }
+
+  .prop-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+
+  .prop-card:hover .prop-card__img {
+    transform: scale(1.05);
+  }
+
+  .prop-card__status {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 0.3rem 0.8rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #fff;
+  }
+  .prop-card__status.active { background: #FF1616; }
+  .prop-card__status.pending { background: #e07b00; }
+  .prop-card__status.sold { background: #111; }
+
+  .prop-card__sold-date {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    padding: 0.25rem 0.7rem;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .prop-card__body {
+    padding: 1.25rem;
+  }
+
+  .prop-card__price {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #FF1616;
+    margin-bottom: 0.3rem;
+  }
+
+  .prop-card__address {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .prop-card__city {
+    font-size: 0.8rem;
+    color: #777;
+    margin-bottom: 1rem;
+  }
+
+  .prop-card__details {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.78rem;
+    color: #555;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .prop-card__cta {
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #FF1616;
+  }
+
+  .portfolio__cta {
+    text-align: center;
+    margin-top: 1rem;
+  }
+</style>
+
+<script>
+  import Swiper from 'swiper/bundle';
+  new Swiper('.portfolio-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 24,
+    loop: true,
+    autoplay: {
+      delay: 3500,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+    },
+    speed: 700,
+    navigation: {
+      nextEl: '.portfolio-swiper .swiper-button-next',
+      prevEl: '.portfolio-swiper .swiper-button-prev',
+    },
+    pagination: {
+      el: '.portfolio-swiper .swiper-pagination',
+      clickable: true,
+    },
+    breakpoints: {
+      640: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
+    },
+  });
+</script>
