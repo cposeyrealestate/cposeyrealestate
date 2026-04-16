@@ -348,19 +348,23 @@
   }
 
   function cpInjectAddressSearch() {
-    if (document.querySelector('.cp-address-search')) return true;
-    var refinement = document.querySelector('.idx-results__refinement');
-    if (!refinement) return false;
+    if (document.querySelector('.cp-address-bar')) return true;
+    // Inject into our own wrapper container (always exists) so the search
+    // input renders consistently whether IDX shows the refinement bar or not.
+    var host = document.querySelector('.cp-idx-container') || document.querySelector('#IDX-main') || document.querySelector('.IDX-wrapper-standard');
+    if (!host) return false;
 
-    var wrap = document.createElement('div');
-    wrap.className = 'cp-address-search';
-    wrap.innerHTML =
+    var bar = document.createElement('div');
+    bar.className = 'cp-address-bar';
+    bar.innerHTML =
+      '<div class="cp-address-search">' +
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
       '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
       '<input type="text" id="cpAddrInput" placeholder="City, Zip Code, or County" autocomplete="off" />' +
-      '<button type="button" id="cpAddrGo">Search</button>';
+      '<button type="button" id="cpAddrGo">Search</button>' +
+      '</div>';
 
-    refinement.insertBefore(wrap, refinement.firstChild);
+    host.insertBefore(bar, host.firstChild);
 
     // Build a results URL with literal [] in the bracketed param name —
     // URLSearchParams percent-encodes brackets which IDX sometimes ignores.
