@@ -94,6 +94,32 @@
     }, 1000);
   }
 
+  // Default TYPE filter to Single Family Residential (value="1")
+  function setDefaultPropertyType() {
+    var selects = document.querySelectorAll('select');
+    selects.forEach(function(sel) {
+      var hasType = false;
+      for (var i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].text === 'All Property Types') { hasType = true; break; }
+      }
+      if (hasType && sel.value !== '1') {
+        sel.value = '1';
+        sel.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    });
+  }
+
+  // Wait for IDX to render, then set default
+  var typeRetry = 0;
+  var typeInterval = setInterval(function() {
+    var sel = document.querySelector('select');
+    if (sel) {
+      setDefaultPropertyType();
+      clearInterval(typeInterval);
+    }
+    if (++typeRetry > 30) clearInterval(typeInterval);
+  }, 1000);
+
   // Fix: listing cards in Prime Map Search have a collapsed <a> link.
   // This delegate catches clicks anywhere on a card and navigates to the details page.
   document.addEventListener('click', function(e) {
