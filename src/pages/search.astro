@@ -21,7 +21,7 @@ import Footer from '../components/Footer.astro';
       <div class="container">
         <div class="search-embed__frame">
           <iframe
-            src="https://codyposey.popbyrealty.com/embed.php"
+            src="https://codyposey.popbyrealty.com/wide.php"
             title="Home Search"
             allowtransparency="true"
             frameborder="0"
@@ -74,8 +74,9 @@ import Footer from '../components/Footer.astro';
   }
 
   .search-embed iframe {
-    width: 280px;
-    height: 680px;
+    width: 100%;
+    max-width: 960px;
+    height: 300px;
     border: 0;
     background: transparent;
     border-radius: 8px;
