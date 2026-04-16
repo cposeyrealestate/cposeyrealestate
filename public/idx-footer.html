@@ -35,6 +35,19 @@
     if (window.scrollY > 50) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
   });
+
+  // Fix: listing cards in Prime Map Search have a collapsed <a> link.
+  // This delegate catches clicks anywhere on a card and navigates to the details page.
+  document.addEventListener('click', function(e) {
+    var card = e.target.closest('.listing-card__wrap, .listing-card__parent');
+    if (!card) return;
+    var link = card.querySelector('a.listing-card__image--link, a[href*="/idx/details/"]');
+    if (link && link.href) {
+      e.preventDefault();
+      e.stopPropagation();
+      window.location.href = link.href;
+    }
+  }, true);
 })();
 </script>
 </body>
