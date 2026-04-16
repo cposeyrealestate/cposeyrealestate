@@ -202,6 +202,32 @@
     enableAutoMapRefresh();
     if (bindAttempts > 40) clearInterval(bindPoll);
   }, 500);
+
+  // ===== CLICKABLE LISTING CARDS =====
+  // Prime Map Search's listing-card__image--link collapses to 14px tall,
+  // letting the image overlay and "Active" banner eat clicks.
+  // Delegate clicks on the whole card to the first /idx/details/ link inside it.
+  document.addEventListener('click', function(e) {
+    var card = e.target.closest('.listing-card__parent, article.listing-card__wrap');
+    if (!card) return;
+    // If user already clicked an <a>, let it handle itself.
+    if (e.target.closest('a[href]')) return;
+    var detailLink = card.querySelector('a[href*="/idx/details/listing/"]');
+    if (detailLink && detailLink.href) {
+      e.preventDefault();
+      window.location.href = detailLink.href;
+    }
+  }, true);
+  // Also mark cards as cursor:pointer and give them keyboard affordance.
+  function markCardsClickable() {
+    var cards = document.querySelectorAll('.listing-card__parent:not([data-cp-clickable])');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].setAttribute('data-cp-clickable', '1');
+      cards[i].style.cursor = 'pointer';
+    }
+  }
+  setInterval(markCardsClickable, 1000);
+  markCardsClickable();
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', hideElements);
   } else {
