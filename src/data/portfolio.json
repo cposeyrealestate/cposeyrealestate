@@ -154,6 +154,16 @@
       "sqft": "1,445",
       "role": "Buyer's Agent",
       "img": "/images/sold/216-prospect-street.jpg"
+    },
+    {
+      "status": "Sold",
+      "address": "4313 Willow Oak",
+      "city": "Schertz, TX 78154",
+      "beds": 4,
+      "baths": 2.5,
+      "sqft": "3,063",
+      "role": "Buyer's Agent",
+      "img": "/images/sold/4313-willow-oak.jpg"
     }
   ]
 }
