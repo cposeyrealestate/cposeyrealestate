@@ -55,16 +55,13 @@
       "img": "/images/sold/2034-san-jose-way.jpg"
     },
     {
-      "placeholder": true,
       "status": "Sold",
-      "soldPrice": "$340,000",
-      "soldDate": "2025-09-02",
-      "address": "Past Sale Address",
-      "city": "Cibolo, TX 78108",
+      "address": "7022 Comanche Cave",
+      "city": "San Antonio, TX 78247",
       "beds": 3,
       "baths": 2,
-      "sqft": "1,780",
-      "img": "https://placehold.co/800x600/333/FF1616?text=Past+Sale"
+      "sqft": "2,199",
+      "img": "/images/sold/7022-comanche-cave.jpg"
     },
     {
       "placeholder": true,
