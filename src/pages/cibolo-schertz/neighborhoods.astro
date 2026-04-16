@@ -4,11 +4,24 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = 'Cibolo & Schertz Neighborhoods | Cody Posey';
+const pageDescription = 'Explore the top neighborhoods in Cibolo and Schertz, TX — from Saddle Creek Ranch and Cibolo Valley Ranch to master-planned communities and new construction.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/cibolo-schertz/neighborhoods' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Cibolo & Schertz', url: '/cibolo-schertz' },
+    { name: 'Neighborhoods', url: '/cibolo-schertz/neighborhoods' },
+  ]),
+];
 ---
 
 <Layout
-  title="Cibolo & Schertz Neighborhoods | Cody Posey Real Estate"
-  description="Explore the top neighborhoods in Cibolo and Schertz, TX. From Saddle Creek Ranch to Cibolo Valley Ranch — find the right community for your family."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

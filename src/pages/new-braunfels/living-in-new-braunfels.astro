@@ -4,11 +4,24 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = 'Living in New Braunfels, TX | What to Expect';
+const pageDescription = 'What life in New Braunfels, TX is really like — commutes to San Antonio and Austin, weather, cost of living, culture, growth, and who this Hill Country city suits.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/new-braunfels/living-in-new-braunfels' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'New Braunfels', url: '/new-braunfels' },
+    { name: 'Living in New Braunfels', url: '/new-braunfels/living-in-new-braunfels' },
+  ]),
+];
 ---
 
 <Layout
-  title="Living in New Braunfels, TX | What to Expect | Cody Posey Real Estate"
-  description="What daily life in New Braunfels is really like — commutes, culture, growth, weather, and who this city is best for."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

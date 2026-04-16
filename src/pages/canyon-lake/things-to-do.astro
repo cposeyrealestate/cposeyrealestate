@@ -4,11 +4,24 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = 'Things to Do in Canyon Lake, TX | Cody Posey';
+const pageDescription = 'The best things to do in Canyon Lake, TX — boating, Guadalupe River tubing, live music, hiking, fishing, and Hill Country day trips around the lake.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/canyon-lake/things-to-do' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Canyon Lake', url: '/canyon-lake' },
+    { name: 'Things to Do', url: '/canyon-lake/things-to-do' },
+  ]),
+];
 ---
 
 <Layout
-  title="Things to Do in Canyon Lake, TX | Cody Posey Real Estate"
-  description="Discover the best things to do in Canyon Lake, Texas — boating, river tubing, live music, hiking, fishing, and more in the Texas Hill Country."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

@@ -3,11 +3,23 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import ParallaxBanner from '../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema } from '../lib/schema';
+
+const pageTitle = "What's My Home Worth? | Free Home Valuation | Cody Posey";
+const pageDescription = 'Request a free, personalized home valuation in New Braunfels, San Antonio, and the Texas Hill Country — a real comparative market analysis from a local agent.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/home-value' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Home Value', url: '/home-value' },
+  ]),
+];
 ---
 
 <Layout
-  title="What's My Home Worth? | Free Home Valuation | Popby Realty"
-  description="Request a free home valuation for your property in New Braunfels, San Antonio, and the Texas Hill Country. Get a personalized market report from a local expert."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

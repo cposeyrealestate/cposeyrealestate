@@ -4,6 +4,17 @@ import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 import ParallaxBanner from '../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema } from '../lib/schema';
+
+const pageTitle = 'New Braunfels Relocation Guide | Moving to the Hill Country | Cody Posey';
+const pageDescription = 'The complete relocation guide to New Braunfels, TX and the Texas Hill Country — cost of living, schools, neighborhoods, employment, lifestyle, and a moving checklist.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/relocation-guide' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Relocation Guide', url: '/relocation-guide' },
+  ]),
+];
 
 const highlights = [
   { num: '90K+', label: 'Population & Growing', desc: 'One of the fastest-growing cities in the U.S. for over a decade.' },
@@ -103,8 +114,9 @@ const movingChecklist = [
 ---
 
 <Layout
-  title="New Braunfels Relocation Guide | Moving to the Hill Country | Cody Posey Real Estate"
-  description="Everything you need to know about relocating to New Braunfels and the Texas Hill Country. Cost of living, schools, neighborhoods, employment, lifestyle, and a moving checklist."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

@@ -4,11 +4,24 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = 'New Construction Homes in New Braunfels, TX | Cody Posey';
+const pageDescription = 'Explore new construction homes and builder communities in New Braunfels, TX. Learn builder incentives, timelines, upgrades, and what to know before you sign.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/new-braunfels/new-construction' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'New Braunfels', url: '/new-braunfels' },
+    { name: 'New Construction', url: '/new-braunfels/new-construction' },
+  ]),
+];
 ---
 
 <Layout
-  title="New Construction in New Braunfels, TX | Cody Posey Real Estate"
-  description="Explore new construction homes and builder communities in New Braunfels, Texas. Learn what to know before buying a new build."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

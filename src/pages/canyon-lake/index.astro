@@ -4,11 +4,33 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import { placeSchema, collectionPageSchema, breadcrumbSchema } from '../../lib/schema';
+
+const clDescription = 'Explore Canyon Lake, Texas — waterfront living, neighborhoods, homes for sale, and outdoor recreation. Your guide to Hill Country lakeside real estate.';
+const pageSchema = [
+  placeSchema({ name: 'Canyon Lake, TX', description: clDescription, url: '/canyon-lake' }),
+  collectionPageSchema({
+    name: 'Canyon Lake Area Guide',
+    description: clDescription,
+    url: '/canyon-lake',
+    hasPart: [
+      { name: 'Neighborhoods', url: '/canyon-lake/neighborhoods' },
+      { name: 'Restaurants', url: '/canyon-lake/restaurants' },
+      { name: 'Things to Do', url: '/canyon-lake/things-to-do' },
+    ],
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Explore Area', url: '/explorearea' },
+    { name: 'Canyon Lake', url: '/canyon-lake' },
+  ]),
+];
 ---
 
 <Layout
   title="Canyon Lake, TX Real Estate | Cody Posey"
-  description="Explore Canyon Lake, Texas — waterfront living, neighborhoods, homes for sale, and outdoor recreation. Your guide to Hill Country lakeside real estate."
+  description={clDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

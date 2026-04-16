@@ -4,11 +4,24 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = 'Things to Do in Seguin, TX | Cody Posey';
+const pageDescription = "The best things to do in Seguin, TX — Guadalupe River kayaking, Max Starcke Park, historic downtown squares, ZDT's Amusement Park, and Hill Country events.";
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/seguin/things-to-do' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Seguin', url: '/seguin' },
+    { name: 'Things to Do', url: '/seguin/things-to-do' },
+  ]),
+];
 ---
 
 <Layout
-  title="Things to Do in Seguin, TX | Cody Posey Real Estate"
-  description="Explore the best things to do in Seguin, Texas — from Guadalupe River kayaking and Max Starcke Park to historic downtown and ZDT's Amusement Park."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

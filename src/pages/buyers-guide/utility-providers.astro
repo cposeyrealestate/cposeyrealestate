@@ -4,11 +4,24 @@ import Navbar from '../../components/Navbar.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = "New Braunfels Utility Providers | Buyer's Guide | Cody Posey";
+const pageDescription = 'Contact info for New Braunfels, TX utility providers — electric, water, sewer, gas, trash, internet, and phone companies serving the Hill Country area.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/buyers-guide/utility-providers' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: "Buyer's Guide", url: '/buyers-guide' },
+    { name: 'Utility Providers', url: '/buyers-guide/utility-providers' },
+  ]),
+];
 ---
 
 <Layout
-  title="New Braunfels Utility Providers | Buyer's Guide | Cody Posey Real Estate"
-  description="Contact information for electric, water, sewer, gas, trash, internet, and phone providers in New Braunfels and the surrounding Hill Country area."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

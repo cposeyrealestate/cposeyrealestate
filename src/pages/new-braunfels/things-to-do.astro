@@ -4,6 +4,18 @@ import Navbar from '../../components/Navbar.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = 'Things to Do in New Braunfels, TX | Cody Posey';
+const pageDescription = 'Discover the best things to do in New Braunfels, TX — Comal and Guadalupe river tubing, Gruene Hall, Schlitterbahn, Wurstfest, and Hill Country festivals.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/new-braunfels/things-to-do' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'New Braunfels', url: '/new-braunfels' },
+    { name: 'Things to Do', url: '/new-braunfels/things-to-do' },
+  ]),
+];
 
 const activities = [
   { name: 'Comal River Tubing', category: 'outdoor', description: "Float the crystal-clear, spring-fed Comal River — the shortest river in Texas. A relaxing 2-hour journey with access points throughout the city, perfect for a lazy afternoon.", url: 'https://texastubes.com/' },
@@ -31,8 +43,9 @@ const categories = [...new Set(activities.map(a => a.category))];
 ---
 
 <Layout
-  title="Things to Do in New Braunfels, TX | Cody Posey Real Estate"
-  description="Discover the best things to do in New Braunfels — river tubing, Gruene Hall, Schlitterbahn, seasonal festivals, and everything that makes this city special."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

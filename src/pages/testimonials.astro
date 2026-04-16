@@ -4,6 +4,17 @@ import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 import ParallaxBanner from '../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema } from '../lib/schema';
+
+const pageTitle = 'Client Testimonials | Cody Posey Real Estate | New Braunfels, TX';
+const pageDescription = 'Real client reviews for Cody Posey, a New Braunfels, TX REALTOR dedicated to educating, serving, and delivering results — 5.0 stars from Google Reviews.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/testimonials' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Testimonials', url: '/testimonials' },
+  ]),
+];
 
 const testimonials = [
   {
@@ -202,8 +213,9 @@ const totalPages = Math.ceil(testimonials.length / REVIEWS_PER_PAGE);
 ---
 
 <Layout
-  title="Testimonials | Cody Posey Real Estate | New Braunfels, TX"
-  description="Read what clients say about working with Cody Posey — a New Braunfels REALTOR dedicated to educating, serving, and delivering results. 5.0 stars from 29 Google Reviews."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

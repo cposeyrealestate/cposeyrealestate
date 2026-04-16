@@ -4,11 +4,24 @@ import Navbar from '../../components/Navbar.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = "The Home Buying Process | Buyer's Guide | Cody Posey";
+const pageDescription = 'A step-by-step guide to buying a home in New Braunfels, TX — from choosing a REALTOR and getting pre-approved to making an offer, inspection, and closing day.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/buyers-guide/home-buying-process' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: "Buyer's Guide", url: '/buyers-guide' },
+    { name: 'Home Buying Process', url: '/buyers-guide/home-buying-process' },
+  ]),
+];
 ---
 
 <Layout
-  title="The Home Buying Process | Buyer's Guide | Cody Posey Real Estate"
-  description="A step-by-step guide to buying a home in New Braunfels, TX — from finding a REALTOR to closing day."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

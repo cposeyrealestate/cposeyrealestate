@@ -4,11 +4,34 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import { placeSchema, collectionPageSchema, breadcrumbSchema } from '../../lib/schema';
+
+const csDescription = 'Explore Cibolo and Schertz, Texas — family-friendly communities between San Antonio and New Braunfels. Top schools, safe neighborhoods, and I-35 access.';
+const pageSchema = [
+  placeSchema({ name: 'Cibolo, TX', description: csDescription, url: '/cibolo-schertz' }),
+  placeSchema({ name: 'Schertz, TX', description: csDescription, url: '/cibolo-schertz' }),
+  collectionPageSchema({
+    name: 'Cibolo & Schertz Area Guide',
+    description: csDescription,
+    url: '/cibolo-schertz',
+    hasPart: [
+      { name: 'Neighborhoods', url: '/cibolo-schertz/neighborhoods' },
+      { name: 'Restaurants', url: '/cibolo-schertz/restaurants' },
+      { name: 'Things to Do', url: '/cibolo-schertz/things-to-do' },
+    ],
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Explore Area', url: '/explorearea' },
+    { name: 'Cibolo & Schertz', url: '/cibolo-schertz' },
+  ]),
+];
 ---
 
 <Layout
   title="Cibolo & Schertz, TX Real Estate | Cody Posey"
-  description="Explore Cibolo and Schertz, Texas — family-friendly communities between San Antonio and New Braunfels. Top schools, safe neighborhoods, and convenient I-35 access."
+  description={csDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

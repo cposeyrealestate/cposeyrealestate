@@ -4,11 +4,24 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = 'Things to Do in Bulverde, TX | Cody Posey';
+const pageDescription = 'Explore the best things to do in Bulverde, TX — Hill Country state parks, resorts, live music venues, outdoor recreation, and local family attractions.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/bulverde/things-to-do' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Bulverde', url: '/bulverde' },
+    { name: 'Things to Do', url: '/bulverde/things-to-do' },
+  ]),
+];
 ---
 
 <Layout
-  title="Things to Do in Bulverde, TX | Cody Posey Real Estate"
-  description="Explore things to do in Bulverde, Texas — state parks, resorts, live music, and outdoor recreation in the Hill Country."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

@@ -4,6 +4,18 @@ import Navbar from '../../components/Navbar.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = "Preparing Your Home for Sale | Seller's Guide | Cody Posey";
+const pageDescription = 'A comprehensive guide to getting your New Braunfels, TX home market-ready — curb appeal, interior staging, deep cleaning, repairs, and systems checks that add value.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/sellers-guide/preparing-for-sale' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: "Seller's Guide", url: '/sellers-guide' },
+    { name: 'Preparing for Sale', url: '/sellers-guide/preparing-for-sale' },
+  ]),
+];
 
 const exterior = [
   'Creating great curb appeal is essential — first impressions are everything.',
@@ -51,8 +63,9 @@ const systems = [
 ---
 
 <Layout
-  title="Preparing Your Home for Sale | Seller's Guide | Popby Realty"
-  description="A comprehensive guide to getting your home market-ready. Curb appeal, interior staging, systems checks, and more."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

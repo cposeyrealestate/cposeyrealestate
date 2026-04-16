@@ -4,6 +4,18 @@ import Navbar from '../../components/Navbar.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = "Preparing Your Home for Listing Photos | Seller's Guide | Cody Posey";
+const pageDescription = "Interior and exterior checklists to get your New Braunfels, TX home ready for listing photography — because buyers' first impression comes from the photos.";
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/sellers-guide/preparing-for-photos' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: "Seller's Guide", url: '/sellers-guide' },
+    { name: 'Preparing for Photos', url: '/sellers-guide/preparing-for-photos' },
+  ]),
+];
 
 const exterior = [
   'Move all cars out of the driveway and down the street so they will not be captured in any photos.',
@@ -30,8 +42,9 @@ const interior = [
 ---
 
 <Layout
-  title="Preparing Your Home for Photographs | Seller's Guide | Popby Realty"
-  description="Tips to make your home look its best for listing photos. First impressions matter — here's how to prepare for picture day."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

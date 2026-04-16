@@ -4,11 +4,24 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = 'Seguin Neighborhoods | Cody Posey Real Estate';
+const pageDescription = 'Explore Seguin, TX neighborhoods by area and price range — historic downtown, new construction subdivisions, acreage, and family-friendly communities.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/seguin/neighborhoods' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Seguin', url: '/seguin' },
+    { name: 'Neighborhoods', url: '/seguin/neighborhoods' },
+  ]),
+];
 ---
 
 <Layout
-  title="Seguin Neighborhoods | Cody Posey Real Estate"
-  description="Explore Seguin, TX neighborhoods by area and price range. From historic downtown to new construction communities — find the right fit for your lifestyle."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

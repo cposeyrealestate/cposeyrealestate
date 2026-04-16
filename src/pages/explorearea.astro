@@ -4,6 +4,17 @@ import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 import ParallaxBanner from '../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema } from '../lib/schema';
+
+const pageTitle = 'Explore Area | New Braunfels & Texas Hill Country | Cody Posey';
+const pageDescription = 'Explore neighborhoods, homes, restaurants, and things to do across New Braunfels, Canyon Lake, Seguin, Cibolo, Schertz, and Bulverde in the Texas Hill Country.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/explorearea' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Explore Area', url: '/explorearea' },
+  ]),
+];
 
 const areas = [
   {
@@ -50,8 +61,9 @@ const areas = [
 ---
 
 <Layout
-  title="Explore Area | New Braunfels & Texas Hill Country | Cody Posey Real Estate"
-  description="Explore neighborhoods, homes for sale, restaurants, things to do, and lifestyle across New Braunfels, Canyon Lake, Seguin, Cibolo/Schertz, and Bulverde."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

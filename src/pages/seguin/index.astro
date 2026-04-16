@@ -4,11 +4,33 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import { placeSchema, collectionPageSchema, breadcrumbSchema } from '../../lib/schema';
+
+const sgDescription = 'Explore Seguin, Texas — affordable living with small-town charm on the Guadalupe River. Neighborhoods, homes for sale, restaurants, and things to do.';
+const pageSchema = [
+  placeSchema({ name: 'Seguin, TX', description: sgDescription, url: '/seguin' }),
+  collectionPageSchema({
+    name: 'Seguin Area Guide',
+    description: sgDescription,
+    url: '/seguin',
+    hasPart: [
+      { name: 'Neighborhoods', url: '/seguin/neighborhoods' },
+      { name: 'Restaurants', url: '/seguin/restaurants' },
+      { name: 'Things to Do', url: '/seguin/things-to-do' },
+    ],
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Explore Area', url: '/explorearea' },
+    { name: 'Seguin', url: '/seguin' },
+  ]),
+];
 ---
 
 <Layout
   title="Seguin, TX Real Estate | Cody Posey"
-  description="Explore Seguin, Texas — affordable living with small-town charm on the Guadalupe River. Neighborhoods, homes for sale, restaurants, and things to do."
+  description={sgDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

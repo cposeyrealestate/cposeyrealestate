@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 import ParallaxBanner from '../components/ParallaxBanner.astro';
+import { collectionPageSchema, breadcrumbSchema } from '../lib/schema';
 
 const sections = [
   {
@@ -37,11 +38,33 @@ const sections = [
     icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
   },
 ];
+
+const pageTitle = "Buyer's Guide | New Braunfels Home Buying | Cody Posey";
+const pageDescription = 'The complete guide to buying a home in New Braunfels, TX — step-by-step process, mortgage checklist, real estate terms, and local utility provider contacts.';
+const pageSchema = [
+  collectionPageSchema({
+    name: "New Braunfels Buyer's Guide",
+    description: pageDescription,
+    url: '/buyers-guide',
+    hasPart: [
+      { name: 'The Home Buying Process', url: '/buyers-guide/home-buying-process' },
+      { name: 'Why Work with a REALTOR', url: '/buyers-guide/why-use-a-realtor' },
+      { name: 'Mortgage Checklist', url: '/buyers-guide/mortgage-checklist' },
+      { name: 'Common Real Estate Terms', url: '/buyers-guide/real-estate-terms' },
+      { name: 'New Braunfels Utility Providers', url: '/buyers-guide/utility-providers' },
+    ],
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: "Buyer's Guide", url: '/buyers-guide' },
+  ]),
+];
 ---
 
 <Layout
-  title="Buyer's Guide | New Braunfels Home Buying | Cody Posey Real Estate"
-  description="Your complete guide to buying a home in New Braunfels, TX. Learn the home buying process, mortgage checklist, common real estate terms, and local utility providers."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

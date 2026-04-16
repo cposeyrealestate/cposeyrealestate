@@ -4,11 +4,33 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import { placeSchema, collectionPageSchema, breadcrumbSchema } from '../../lib/schema';
+
+const bvDescription = 'Explore Bulverde, Texas — quiet Hill Country living on acreage. Neighborhoods, homes for sale, restaurants, and things to do in Bulverde.';
+const pageSchema = [
+  placeSchema({ name: 'Bulverde, TX', description: bvDescription, url: '/bulverde' }),
+  collectionPageSchema({
+    name: 'Bulverde Area Guide',
+    description: bvDescription,
+    url: '/bulverde',
+    hasPart: [
+      { name: 'Neighborhoods', url: '/bulverde/neighborhoods' },
+      { name: 'Restaurants', url: '/bulverde/restaurants' },
+      { name: 'Things to Do', url: '/bulverde/things-to-do' },
+    ],
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Explore Area', url: '/explorearea' },
+    { name: 'Bulverde', url: '/bulverde' },
+  ]),
+];
 ---
 
 <Layout
   title="Bulverde, TX Real Estate | Cody Posey"
-  description="Explore Bulverde, Texas — quiet Hill Country living on acreage. Neighborhoods, homes for sale, restaurants, and things to do in Bulverde."
+  description={bvDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

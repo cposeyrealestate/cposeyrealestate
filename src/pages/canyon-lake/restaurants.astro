@@ -4,11 +4,24 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = 'Best Restaurants in Canyon Lake, TX | Cody Posey';
+const pageDescription = 'Discover the best restaurants in Canyon Lake, TX — lakeside patios, Hill Country BBQ, Italian trattorias, artisan bakeries, and local breakfast favorites.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/canyon-lake/restaurants' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Canyon Lake', url: '/canyon-lake' },
+    { name: 'Restaurants', url: '/canyon-lake/restaurants' },
+  ]),
+];
 ---
 
 <Layout
-  title="Best Restaurants in Canyon Lake, TX | Cody Posey Real Estate"
-  description="Discover the best restaurants in Canyon Lake, Texas — from lakeside hangouts and BBQ joints to Italian trattorias and artisan bakeries."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

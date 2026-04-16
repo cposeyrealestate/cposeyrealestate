@@ -230,6 +230,101 @@ export function blogPostingSchema(post: {
   };
 }
 
+/* ── Place schema for area/city hub pages ───────────────────────── */
+export function placeSchema(place: {
+  name: string;          // e.g. "New Braunfels, TX"
+  description: string;
+  url: string;           // relative path, e.g. "/new-braunfels"
+  image?: string;
+  state?: string;        // default "TX"
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Place',
+    name: place.name,
+    description: place.description,
+    url: new URL(place.url, SITE).toString(),
+    ...(place.image && {
+      image: place.image.startsWith('http') ? place.image : new URL(place.image, SITE).toString(),
+    }),
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: place.name.split(',')[0].trim(),
+      addressRegion: place.state || 'TX',
+      addressCountry: 'US',
+    },
+  };
+}
+
+/* ── Article schema for guide/resource pages ─────────────────────── */
+export function articleSchema(article: {
+  title: string;
+  description: string;
+  url: string;
+  image?: string;
+  datePublished?: string;
+  dateModified?: string;
+}) {
+  const url = new URL(article.url, SITE).toString();
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${url}#article`,
+    headline: article.title,
+    description: article.description,
+    url,
+    ...(article.image && {
+      image: article.image.startsWith('http') ? article.image : new URL(article.image, SITE).toString(),
+    }),
+    author: { '@id': PERSON_ID },
+    publisher: { '@id': BUSINESS_ID },
+    ...(article.datePublished && { datePublished: article.datePublished }),
+    ...(article.dateModified && { dateModified: article.dateModified || article.datePublished }),
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    inLanguage: seo.site.locale.replace('_', '-'),
+  };
+}
+
+/* ── CollectionPage for area hubs listing sub-pages ──────────────── */
+export function collectionPageSchema(collection: {
+  name: string;
+  description: string;
+  url: string;
+  hasPart?: Array<{ name: string; url: string }>;
+}) {
+  const url = new URL(collection.url, SITE).toString();
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${url}#collection`,
+    name: collection.name,
+    description: collection.description,
+    url,
+    isPartOf: { '@id': WEBSITE_ID },
+    about: { '@id': BUSINESS_ID },
+    ...(collection.hasPart && {
+      hasPart: collection.hasPart.map((part) => ({
+        '@type': 'WebPage',
+        name: part.name,
+        url: new URL(part.url, SITE).toString(),
+      })),
+    }),
+  };
+}
+
+/* ── ContactPage schema ──────────────────────────────────────────── */
+export function contactPageSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    '@id': `${SITE}/contact#contactpage`,
+    name: `Contact ${seo.person.name} — ${seo.site.name}`,
+    url: `${SITE}/contact`,
+    about: { '@id': BUSINESS_ID },
+    mainEntity: { '@id': BUSINESS_ID },
+  };
+}
+
 /* ── RealEstateListing for /portfolio/[id] detail pages ───────────── */
 export function listingSchema(listing: {
   address: string;

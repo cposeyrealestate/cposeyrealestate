@@ -4,6 +4,18 @@ import Navbar from '../../components/Navbar.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = "Home Sale Checklist | Seller's Guide | Cody Posey";
+const pageDescription = 'A room-by-room home sale checklist for New Braunfels, TX sellers — evaluate exterior, interior, kitchen, bath, and mechanicals to maximize your final sale price.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/sellers-guide/sale-checklist' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: "Seller's Guide", url: '/sellers-guide' },
+    { name: 'Sale Checklist', url: '/sellers-guide/sale-checklist' },
+  ]),
+];
 
 const categories = [
   {
@@ -134,8 +146,9 @@ const categories = [
 ---
 
 <Layout
-  title="Home Sale Checklist | Seller's Guide | Popby Realty"
-  description="A room-by-room checklist to evaluate your home's condition before listing. Identify what needs attention to maximize your sale price."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

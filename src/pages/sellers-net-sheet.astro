@@ -4,11 +4,23 @@ import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 import ParallaxBanner from '../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema } from '../lib/schema';
+
+const pageTitle = "Seller's Net Sheet Calculator | New Braunfels, TX | Cody Posey";
+const pageDescription = "Estimate your net proceeds from selling a home in New Braunfels, TX with this free seller's net sheet — commissions, title fees, taxes, and standard Texas closing costs.";
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/sellers-net-sheet' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: "Seller's Net Sheet", url: '/sellers-net-sheet' },
+  ]),
+];
 ---
 
 <Layout
-  title="Seller's Net Sheet Calculator | Cody Posey Real Estate | New Braunfels, TX"
-  description="Estimate your net proceeds from selling your home in New Braunfels, TX. Free seller's net sheet calculator with standard Texas closing costs."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

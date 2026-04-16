@@ -4,6 +4,17 @@ import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 import ParallaxBanner from '../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema } from '../lib/schema';
+
+const pageTitle = 'Recommended Mortgage Lenders in New Braunfels & San Antonio | Cody Posey';
+const pageDescription = 'Trusted mortgage lenders serving New Braunfels, San Antonio, and the Texas Hill Country — local loan officers Cody Posey has worked with and personally recommends.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/recommended-lenders' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Recommended Lenders', url: '/recommended-lenders' },
+  ]),
+];
 
 const lenders = [
   {
@@ -55,8 +66,9 @@ const lenders = [
 ---
 
 <Layout
-  title="Recommended Mortgage Lenders | Trusted Local Professionals | Popby Realty"
-  description="Trusted mortgage lenders in the New Braunfels and San Antonio area. These are professionals Cody Posey has worked with and personally recommends."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

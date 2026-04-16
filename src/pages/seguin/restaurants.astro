@@ -4,11 +4,24 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = 'Best Restaurants in Seguin, TX | Cody Posey';
+const pageDescription = 'The best restaurants in Seguin, TX — Michelin-recognized BBQ, local breweries, historic downtown cafes, Tex-Mex favorites, and family-friendly dining.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/seguin/restaurants' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Seguin', url: '/seguin' },
+    { name: 'Restaurants', url: '/seguin/restaurants' },
+  ]),
+];
 ---
 
 <Layout
-  title="Best Restaurants in Seguin, TX | Cody Posey Real Estate"
-  description="The best restaurants in Seguin, Texas — from Michelin-recognized BBQ to local breweries and downtown cafes."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

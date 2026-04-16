@@ -4,11 +4,24 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = 'Best Restaurants in Cibolo & Schertz, TX | Cody Posey';
+const pageDescription = 'The best restaurants in Cibolo and Schertz, TX — upscale American, authentic Thai, Tex-Mex, BBQ, and family-friendly spots locals love in the NE San Antonio area.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/cibolo-schertz/restaurants' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Cibolo & Schertz', url: '/cibolo-schertz' },
+    { name: 'Restaurants', url: '/cibolo-schertz/restaurants' },
+  ]),
+];
 ---
 
 <Layout
-  title="Best Restaurants in Cibolo & Schertz, TX | Cody Posey Real Estate"
-  description="Discover the best restaurants in Cibolo and Schertz, Texas — from upscale American to authentic Thai and Tex-Mex favorites."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

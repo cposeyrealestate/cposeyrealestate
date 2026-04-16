@@ -4,6 +4,18 @@ import Navbar from '../../components/Navbar.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = "10 Ways to Prepare for a Home Inspection | Seller's Guide | Cody Posey";
+const pageDescription = 'Ten simple steps New Braunfels, TX home sellers can take before inspection day — utilities, access, paperwork, and small fixes that prevent costly delays.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/sellers-guide/inspection-prep' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: "Seller's Guide", url: '/sellers-guide' },
+    { name: 'Inspection Prep', url: '/sellers-guide/inspection-prep' },
+  ]),
+];
 
 const tips = [
   {
@@ -60,8 +72,9 @@ const tips = [
 ---
 
 <Layout
-  title="10 Ways to Prepare for Inspection | Seller's Guide | Popby Realty"
-  description="Simple steps to help your home inspection go smoothly. Prepare ahead to avoid unnecessary delays or surprises."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

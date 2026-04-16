@@ -4,11 +4,24 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = 'Bulverde Neighborhoods | Cody Posey Real Estate';
+const pageDescription = 'Explore Bulverde, TX neighborhoods by community and price range — acreage homesites, gated communities, and Hill Country retreats north of San Antonio.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/bulverde/neighborhoods' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Bulverde', url: '/bulverde' },
+    { name: 'Neighborhoods', url: '/bulverde/neighborhoods' },
+  ]),
+];
 ---
 
 <Layout
-  title="Bulverde Neighborhoods | Cody Posey Real Estate"
-  description="Explore Bulverde, TX neighborhoods by community and price range. Find the right fit for your lifestyle and budget in the Hill Country."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

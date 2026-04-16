@@ -4,11 +4,24 @@ import Navbar from '../../components/Navbar.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = "Mortgage Pre-Approval Checklist | Buyer's Guide | Cody Posey";
+const pageDescription = 'The complete mortgage checklist for New Braunfels, TX homebuyers — income, assets, employment, credit, and ID documents you need to get pre-approved quickly.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/buyers-guide/mortgage-checklist' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: "Buyer's Guide", url: '/buyers-guide' },
+    { name: 'Mortgage Checklist', url: '/buyers-guide/mortgage-checklist' },
+  ]),
+];
 ---
 
 <Layout
-  title="Mortgage Checklist | Buyer's Guide | Cody Posey Real Estate"
-  description="Documents and information you'll need to get pre-approved for a mortgage when buying a home in New Braunfels, TX."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

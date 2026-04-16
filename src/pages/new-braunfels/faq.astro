@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import { faqSchema, breadcrumbSchema } from '../../lib/schema';
 
 const faqs = [
   {
@@ -47,11 +48,23 @@ const faqs = [
     answer: "Growth is real and ongoing. The city has invested in infrastructure, road expansions, and services, but some areas are still catching up. Traffic on I-35 and FM 306 can be heavy, and some newer communities are still being built out. That said, the growth is also bringing new restaurants, retail, healthcare, and amenities. <a href='/new-braunfels/living-in-new-braunfels/'>Read about the practical realities of living here</a>."
   }
 ];
+
+const pageTitle = 'New Braunfels FAQ | Common Buyer Questions | Cody Posey';
+const pageDescription = 'Honest answers to the most common questions about buying a home and living in New Braunfels, TX — neighborhoods, schools, commutes, growth, and market realities.';
+const pageSchema = [
+  faqSchema(faqs.map((f) => ({ q: f.question, a: f.answer.replace(/<[^>]*>/g, '') }))),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'New Braunfels', url: '/new-braunfels' },
+    { name: 'FAQ', url: '/new-braunfels/faq' },
+  ]),
+];
 ---
 
 <Layout
-  title="New Braunfels FAQ | Common Buyer Questions | Cody Posey Real Estate"
-  description="Answers to the most common questions about buying a home and living in New Braunfels, Texas."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">
@@ -114,20 +127,8 @@ const faqs = [
 
   <ContactForm context="I have a question about New Braunfels..." />
   <Footer />
-
-  <!-- FAQ Schema -->
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer.replace(/<[^>]*>/g, '')
-      }
-    }))
-  })} />
+  {/* FAQ JSON-LD is now emitted via the schema prop on <Layout>; the
+      inline block that used to live here was duplicating the payload. */}
 </Layout>
 
 <style>

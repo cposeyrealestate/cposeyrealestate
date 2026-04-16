@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 import ParallaxBanner from '../components/ParallaxBanner.astro';
+import { collectionPageSchema, breadcrumbSchema } from '../lib/schema';
 
 const sections = [
   {
@@ -31,11 +32,32 @@ const sections = [
     icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>`,
   },
 ];
+
+const pageTitle = "Seller's Guide | Preparing Your Home for Sale | Cody Posey";
+const pageDescription = 'The complete guide to selling a home in New Braunfels and the Texas Hill Country — prep your home for sale, photography, inspection, and a room-by-room checklist.';
+const pageSchema = [
+  collectionPageSchema({
+    name: "Texas Hill Country Seller's Guide",
+    description: pageDescription,
+    url: '/sellers-guide',
+    hasPart: [
+      { name: 'Preparing Your Home for Sale', url: '/sellers-guide/preparing-for-sale' },
+      { name: 'Preparing for Photographs', url: '/sellers-guide/preparing-for-photos' },
+      { name: '10 Ways to Prepare for Inspection', url: '/sellers-guide/inspection-prep' },
+      { name: 'Home Sale Checklist', url: '/sellers-guide/sale-checklist' },
+    ],
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: "Seller's Guide", url: '/sellers-guide' },
+  ]),
+];
 ---
 
 <Layout
-  title="Seller's Guide | Preparing Your Home for Sale | Popby Realty"
-  description="Your complete guide to selling a home in New Braunfels and the Texas Hill Country. Learn how to prepare your home for sale, photos, inspections, and more."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

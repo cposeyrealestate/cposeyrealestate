@@ -3,11 +3,23 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import ContactForm from '../components/ContactForm.astro';
+import { contactPageSchema, breadcrumbSchema } from '../lib/schema';
+
+const pageTitle = 'Contact Cody Posey | New Braunfels Real Estate Agent';
+const pageDescription = 'Contact Cody Posey for help buying or selling a home in New Braunfels, Canyon Lake, Seguin, Cibolo, Schertz, or Bulverde — fast responses from a local TX agent.';
+const pageSchema = [
+  contactPageSchema(),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Contact', url: '/contact' },
+  ]),
+];
 ---
 
 <Layout
-  title="Contact Cody Posey | New Braunfels Real Estate"
-  description="Get in touch with Cody Posey for help buying or selling a home in New Braunfels, Canyon Lake, Seguin, Cibolo, Schertz, or Bulverde."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
 

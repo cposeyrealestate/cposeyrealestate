@@ -4,11 +4,23 @@ import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 import ParallaxBanner from '../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema } from '../lib/schema';
+
+const pageTitle = 'Texas Closing Cost Estimator | New Braunfels | Cody Posey';
+const pageDescription = 'Estimate closing costs for buying or selling a home in Texas and New Braunfels — title insurance, survey, inspections, lender fees, and promulgated-rate calculations.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/closing-costs' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Closing Costs', url: '/closing-costs' },
+  ]),
+];
 ---
 
 <Layout
-  title="Closing Cost Estimator | Texas Home Closing Costs | Cody Posey Real Estate"
-  description="Estimate your closing costs for buying or selling a home in Texas. Includes title insurance, survey, inspections, lender fees, and more based on Texas promulgated rates."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

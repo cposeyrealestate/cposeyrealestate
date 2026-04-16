@@ -4,11 +4,24 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = 'Canyon Lake Neighborhoods | Cody Posey Real Estate';
+const pageDescription = 'Explore Canyon Lake, TX neighborhoods — lakefront gated communities, Hill Country acreage, waterfront retreats, and family-friendly subdivisions near the water.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/canyon-lake/neighborhoods' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Canyon Lake', url: '/canyon-lake' },
+    { name: 'Neighborhoods', url: '/canyon-lake/neighborhoods' },
+  ]),
+];
 ---
 
 <Layout
-  title="Canyon Lake Neighborhoods | Cody Posey Real Estate"
-  description="Explore Canyon Lake neighborhoods — from lakefront gated communities to Hill Country acreage. Find the right area for your lifestyle and budget."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

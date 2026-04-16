@@ -4,11 +4,24 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = 'New Braunfels Neighborhoods | Cody Posey Real Estate';
+const pageDescription = 'Explore New Braunfels, TX neighborhoods — from historic Gruene and downtown to the I-35 corridor, Hill Country retreats, and master-planned communities.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/new-braunfels/neighborhoods' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'New Braunfels', url: '/new-braunfels' },
+    { name: 'Neighborhoods', url: '/new-braunfels/neighborhoods' },
+  ]),
+];
 ---
 
 <Layout
-  title="New Braunfels Neighborhoods | Cody Posey Real Estate"
-  description="Explore New Braunfels neighborhoods by area and buyer type. From Gruene to the I-35 corridor — find the right fit for your lifestyle and budget."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

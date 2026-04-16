@@ -4,11 +4,24 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = 'Things to Do in Cibolo & Schertz, TX | Cody Posey';
+const pageDescription = 'The best things to do in and around Cibolo and Schertz, TX — nature preserves, wildlife safaris, live entertainment, parks, and local events for families.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/cibolo-schertz/things-to-do' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Cibolo & Schertz', url: '/cibolo-schertz' },
+    { name: 'Things to Do', url: '/cibolo-schertz/things-to-do' },
+  ]),
+];
 ---
 
 <Layout
-  title="Things to Do in Cibolo & Schertz, TX | Cody Posey Real Estate"
-  description="Discover the best things to do in and around Cibolo and Schertz, Texas — from nature parks and wildlife safaris to live entertainment."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">

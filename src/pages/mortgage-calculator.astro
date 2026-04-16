@@ -4,11 +4,23 @@ import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 import ParallaxBanner from '../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema } from '../lib/schema';
+
+const pageTitle = 'Mortgage Calculator | Estimate Your Monthly Payment | Cody Posey';
+const pageDescription = 'Calculate your monthly mortgage payment for a home in New Braunfels, TX or the Texas Hill Country — principal, interest, property taxes, insurance, and PMI.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/mortgage-calculator' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Mortgage Calculator', url: '/mortgage-calculator' },
+  ]),
+];
 ---
 
 <Layout
-  title="Mortgage Calculator | Estimate Your Monthly Payment | Popby Realty"
-  description="Calculate your estimated monthly mortgage payment for a home in New Braunfels or the Texas Hill Country. Includes principal, interest, taxes, insurance, and PMI."
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">
