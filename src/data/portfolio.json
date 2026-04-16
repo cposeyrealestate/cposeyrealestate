@@ -3,17 +3,16 @@
 
   "currentListings": [
     {
-      "placeholder": true,
-      "mlsId": "0000001",
-      "slug": "Placeholder-Listing-One",
+      "mlsId": "1945785",
+      "slug": "7607-Sky-Loop-San-Antonio-TX",
       "status": "Active",
-      "price": "$425,000",
-      "address": "Your Listing Address",
-      "city": "New Braunfels, TX 78130",
-      "beds": 3,
-      "baths": 2,
-      "sqft": "2,100",
-      "img": "https://placehold.co/800x600/1a1a1a/FF1616?text=Current+Listing"
+      "price": "$1,175,000",
+      "address": "7607 Sky Loop",
+      "city": "San Antonio, TX 78266",
+      "beds": 4,
+      "baths": 3,
+      "sqft": "4,164",
+      "img": "/images/listings/1945785.jpg"
     },
     {
       "placeholder": true,
