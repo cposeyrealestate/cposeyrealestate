@@ -1,4 +1,36 @@
 ---
-export const prerender = false;
-return Astro.redirect('https://cposeyrealestate.idxbroker.com/idx/results/listings?idxID=a023&ccz=city&pt=1&srt=newest', 302);
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
 ---
+
+<Layout
+  title="Home Search | Cody Posey Real Estate"
+  description="Search homes for sale in New Braunfels and the Texas Hill Country."
+>
+  <Navbar />
+  <main class="search-main">
+    <iframe
+      class="connectmlsidx"
+      src="https://sabor-idx.connectmls.com/idx/spr/4F944F55988F34C7E063AA01110AD131/search"
+      title="SABOR MLS Home Search"
+      loading="lazy"
+    ></iframe>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .search-main {
+    padding-top: 80px;
+    min-height: calc(100vh - 80px);
+    background: #fafafa;
+  }
+  .connectmlsidx {
+    width: 100%;
+    height: calc(100vh - 80px);
+    min-height: 800px;
+    border: 0;
+    display: block;
+  }
+</style>

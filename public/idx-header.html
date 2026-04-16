@@ -181,58 +181,6 @@ img { max-width: 100%; height: auto; display: block; }
   border: none !important;
 }
 
-/* Custom City / Zip / County address input injected into refinement bar */
-.cp-address-search {
-  display: flex;
-  align-items: center;
-  background: #fff;
-  border-radius: 6px;
-  overflow: hidden;
-  margin-right: 12px;
-  margin-bottom: 8px;
-  flex: 1 1 260px;
-  min-width: 220px;
-  max-width: 420px;
-  height: 36px;
-}
-.cp-address-search svg {
-  width: 16px;
-  height: 16px;
-  margin: 0 10px;
-  color: #555;
-  flex-shrink: 0;
-}
-.cp-address-search input {
-  flex: 1;
-  border: none;
-  outline: none;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 0.82rem;
-  color: #111;
-  background: transparent;
-  padding: 0;
-  height: 100%;
-  min-width: 0;
-}
-.cp-address-search input::placeholder {
-  color: #888;
-}
-.cp-address-search button {
-  background: #FF1616;
-  color: #fff;
-  border: none;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 0 14px;
-  height: 100%;
-  cursor: pointer;
-  transition: background .2s;
-}
-.cp-address-search button:hover { background: #cc0000; }
-
 /* All filter bar buttons — center text horizontally and vertically */
 .IDX-searchForm .IDX-btn__PL {
   text-align: center !important;
@@ -249,11 +197,11 @@ img { max-width: 100%; height: auto; display: block; }
   border: 1px solid #444 !important;
   border-radius: 6px !important;
   font-family: 'Poppins', sans-serif !important;
-  font-size: 0.72rem !important;
+  font-size: 0.8rem !important;
   font-weight: 500 !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.04em !important;
-  padding: 7px 14px !important;
+  letter-spacing: 0.05em !important;
+  padding: 10px 20px !important;
   transition: all 0.3s !important;
 }
 .IDX-btn.IDX-btn-primary.IDX-btn__PL:hover {
@@ -281,11 +229,11 @@ img { max-width: 100%; height: auto; display: block; }
   border: 1px solid #FF1616 !important;
   border-radius: 6px !important;
   font-family: 'Poppins', sans-serif !important;
-  font-size: 0.68rem !important;
+  font-size: 0.75rem !important;
   font-weight: 600 !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.06em !important;
-  padding: 6px 12px !important;
+  letter-spacing: 0.08em !important;
+  padding: 8px 18px !important;
   transition: all 0.3s !important;
 }
 .IDX-newSearch.IDX-resultsAction:hover,
@@ -301,10 +249,8 @@ img { max-width: 100%; height: auto; display: block; }
   border: 1px solid #fff !important;
   border-radius: 6px !important;
   font-family: 'Poppins', sans-serif !important;
-  font-size: 0.68rem !important;
+  font-size: 0.75rem !important;
   font-weight: 600 !important;
-  letter-spacing: 0.04em !important;
-  padding: 7px 14px !important;
   text-transform: uppercase !important;
 }
 .idx-results-refinement__actions.IDX-btn__PL--inverse:hover {
@@ -312,16 +258,28 @@ img { max-width: 100%; height: auto; display: block; }
   color: #000 !important;
 }
 
-/* Hide "Showing 500 listings, try narrowing your search" alert — result count is often wrong */
+/* Alert bar — dark subtle style */
 .IDX-alert.IDX-results__alert {
-  display: none !important;
+  background: #1a1a1a !important;
+  color: #ccc !important;
+  border: 1px solid #333 !important;
+  border-radius: 0 !important;
+  font-family: 'Open Sans', sans-serif !important;
+  font-size: 0.85rem !important;
+  padding: 10px 30px !important;
 }
 
-/* Hide results header / total listing count — result count is often wrong */
-.idx-results__header,
-.idx-results-total,
+/* Results header — listing count */
+.idx-results__header {
+  padding: 10px 30px !important;
+  background: #fafafa !important;
+}
 .idx-results-total__heading {
-  display: none !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
 }
 
 /* Map toggle / Hide Map button */
