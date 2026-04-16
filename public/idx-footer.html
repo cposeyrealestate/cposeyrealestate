@@ -400,6 +400,32 @@
     }).join('');
   }
 
+  // Property type options — pt codes are IDX Broker's standard SABOR
+  // mapping. If any look off in practice, update the code here.
+  var CP_PTYPES = [
+    { code: '',  label: 'All property types', icon: 'home' },
+    { code: '1', label: 'Residential',        icon: 'home' },
+    { code: '2', label: 'Condos',             icon: 'build' },
+    { code: '3', label: 'Townhomes',          icon: 'home' },
+    { code: '4', label: 'Multi-family',       icon: 'build' },
+    { code: '5', label: 'Land',               icon: 'land' },
+    { code: '7', label: 'Commercial',         icon: 'build' },
+    { code: '8', label: 'Manufactured',       icon: 'home' },
+    { code: '9', label: 'Farm/Ranch',         icon: 'land' }
+  ];
+  var CP_PTYPE_ICONS = {
+    home:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 11l9-8 9 8"/><path d="M5 9v11h14V9"/></svg>',
+    build: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="3" width="14" height="18"/><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1"/></svg>',
+    land:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 20l6-10 5 7 3-4 4 7z"/></svg>'
+  };
+
+  function cpFmtPtypeLabel(pt) {
+    for (var i = 0; i < CP_PTYPES.length; i++) {
+      if (CP_PTYPES[i].code === String(pt || '')) return CP_PTYPES[i].label;
+    }
+    return 'All property types';
+  }
+
   // Reload the current page with updated URL params. Preserves existing
   // params and restores literal brackets that URLSearchParams encodes.
   function cpReloadWithParams(updates) {
@@ -425,20 +451,37 @@
     var curHp = urlParams.get('hp') || '';
     var curBd = urlParams.get('bd') || '';
     var curTb = urlParams.get('tb') || '';
+    var curPt = urlParams.get('pt') || '';
+    var isListView = /(?:^|[;\s])cp-view-list(?:[;\s]|$)/.test(document.body.className);
 
     // "All filters" deep-links into IDX's Modify Search with current params preserved
     var modifyUrl = '/idx/search/advanced?' + urlParams.toString().replace(/%5B/g, '[').replace(/%5D/g, ']');
 
+    // Property-type cards (3-col grid inside popup)
+    var ptypeCardsHtml = CP_PTYPES.filter(function(p) { return p.code !== ''; }).map(function(p) {
+      var active = String(p.code) === String(curPt) ? ' cp-ptype--active' : '';
+      return '<button type="button" class="cp-ptype' + active + '" data-opt-name="pt" data-opt-value="' + p.code + '">' +
+        '<span class="cp-ptype__icon">' + CP_PTYPE_ICONS[p.icon] + '</span>' +
+        '<span class="cp-ptype__label">' + p.label + '</span>' +
+        '</button>';
+    }).join('');
+    // "Any" option sits above the grid as a full-width pill
+    var ptypeAnyActive = !curPt ? ' cp-ptype--active' : '';
+    ptypeCardsHtml =
+      '<button type="button" class="cp-ptype cp-ptype--any' + ptypeAnyActive + '" data-opt-name="pt" data-opt-value="">' +
+        '<span class="cp-ptype__label">All property types</span>' +
+      '</button>' + ptypeCardsHtml;
+
     var bar = document.createElement('div');
     bar.className = 'cp-address-bar';
     bar.innerHTML = [
-      // Search input (with inline magnifier icon, no separate button — Enter to submit)
+      // Search input (Enter to submit)
       '<div class="cp-address-search">',
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">',
       '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
       '<input type="text" id="cpAddrInput" placeholder="City, neighborhood, or ZIP code..." autocomplete="off" />',
       '</div>',
-      // Filter pills
+      // Center-left filter group
       '<div class="cp-filters">',
       // Price
       '<div class="cp-filter" data-filter="price">',
@@ -467,8 +510,23 @@
       '</div>',
       '</div>',
       '</div>',
-      // Link to full advanced search for everything else
-      '<a href="' + modifyUrl + '" class="cp-filter__more">All filters</a>',
+      // Property Types
+      '<div class="cp-filter cp-filter--wide" data-filter="ptype">',
+      '<button type="button" class="cp-filter__btn" data-filter-btn="ptype">' + cpFmtPtypeLabel(curPt) + '</button>',
+      '<div class="cp-filter__popup cp-filter__popup--grid" data-filter-popup="ptype">',
+      '<div class="cp-ptype-grid">' + ptypeCardsHtml + '</div>',
+      '</div>',
+      '</div>',
+      // All Filters — now a pill button styled like the others (links to IDX advanced search)
+      '<a href="' + modifyUrl + '" class="cp-filter__btn cp-filter__btn--link">All filters</a>',
+      '</div>',
+      // Right-side group (List/Map toggle + Save Search) — margin-left: auto in CSS
+      '<div class="cp-right-group">',
+      '<div class="cp-view-toggle">',
+      '<button type="button" data-view="list" class="' + (isListView ? 'cp-view-toggle__active' : '') + '">List</button>',
+      '<button type="button" data-view="map" class="' + (!isListView ? 'cp-view-toggle__active' : '') + '">Map</button>',
+      '</div>',
+      '<button type="button" class="cp-save-search">Save search</button>',
       '</div>'
     ].join('');
 
@@ -476,8 +534,10 @@
 
     // Build a results URL with literal [] in the bracketed param name —
     // URLSearchParams percent-encodes brackets which IDX sometimes ignores.
+    // Preserve the current pt param so city searches don't reset it.
     function cpBuildResultsUrl(ccz, bracketParam, id) {
-      return '/idx/results/listings?idxID=a023&pt=1&srt=newest' +
+      var currentPt = new URLSearchParams(window.location.search).get('pt') || '1';
+      return '/idx/results/listings?idxID=a023&pt=' + encodeURIComponent(currentPt) + '&srt=newest' +
         '&ccz=' + encodeURIComponent(ccz) +
         '&' + bracketParam + '[]=' + encodeURIComponent(id);
     }
@@ -548,16 +608,60 @@
       });
     }
 
-    // Beds/Baths — click a pill applies immediately
+    // Beds / Baths / Property Type — click a pill/card applies immediately
     bar.querySelectorAll('[data-opt-name]').forEach(function(pill) {
       pill.addEventListener('click', function() {
-        var name = pill.getAttribute('data-opt-name'); // 'bd' or 'tb'
+        var name = pill.getAttribute('data-opt-name'); // 'bd' / 'tb' / 'pt'
         var value = pill.getAttribute('data-opt-value');
         var updates = {};
         updates[name] = value;
         cpReloadWithParams(updates);
       });
     });
+
+    // List / Map view toggle — applies a body class; CSS hides the map in list view
+    bar.querySelectorAll('[data-view]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var v = btn.getAttribute('data-view');
+        bar.querySelectorAll('[data-view]').forEach(function(x) {
+          x.classList.toggle('cp-view-toggle__active', x === btn);
+        });
+        document.body.classList.toggle('cp-view-list', v === 'list');
+        // Persist so it survives page navigation in this tab
+        try { sessionStorage.setItem('cpView', v); } catch (e) {}
+        // If switching back to Map, make sure Leaflet recalculates size
+        if (v === 'map' && cpMap && typeof cpMap.invalidateSize === 'function') {
+          setTimeout(function() { cpMap.invalidateSize(); }, 50);
+        }
+      });
+    });
+    // Restore view preference on page load
+    try {
+      if (sessionStorage.getItem('cpView') === 'list') {
+        document.body.classList.add('cp-view-list');
+        var listBtn = bar.querySelector('[data-view="list"]');
+        var mapBtn = bar.querySelector('[data-view="map"]');
+        if (listBtn && mapBtn) {
+          listBtn.classList.add('cp-view-toggle__active');
+          mapBtn.classList.remove('cp-view-toggle__active');
+        }
+      }
+    } catch (e) {}
+
+    // Save Search — proxy to IDX's native (hidden) save-search link
+    var saveBtn = bar.querySelector('.cp-save-search');
+    if (saveBtn) {
+      saveBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var native = document.querySelector('#IDX-saveSearch, [class*="save-search"]:not(.cp-save-search)');
+        if (native && typeof native.click === 'function') {
+          native.click();
+        } else {
+          // Last resort: navigate to the save-search hash IDX uses
+          window.location.hash = 'saveSearch';
+        }
+      });
+    }
 
     return true;
   }
