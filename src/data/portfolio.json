@@ -48,16 +48,12 @@
 
   "pastSales": [
     {
-      "placeholder": true,
       "status": "Sold",
-      "soldPrice": "$510,000",
-      "soldDate": "2025-11-15",
-      "address": "Past Sale Address",
-      "city": "New Braunfels, TX 78130",
-      "beds": 4,
-      "baths": 3,
-      "sqft": "2,450",
-      "img": "https://placehold.co/800x600/333/FF1616?text=Past+Sale"
+      "address": "2034 San Jose Way",
+      "city": "Canyon Lake, TX 78133",
+      "acres": "1.54",
+      "highlight": "Guadalupe River Property",
+      "img": "/images/sold/2034-san-jose-way.jpg"
     },
     {
       "placeholder": true,

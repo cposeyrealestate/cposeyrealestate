@@ -28,13 +28,15 @@ type Current = {
 type Past = {
   placeholder?: boolean;
   status: string;
-  soldPrice: string;
-  soldDate: string;
+  soldPrice?: string;
+  soldDate?: string;
   address: string;
   city: string;
   beds?: number;
   baths?: number;
   sqft?: string;
+  acres?: string;
+  highlight?: string;
   img: string;
 };
 
@@ -127,14 +129,15 @@ function fmtSoldDate(iso: string) {
                   {l.soldDate && <span class="p-card__sold-date">Closed {fmtSoldDate(l.soldDate)}</span>}
                 </div>
                 <div class="p-card__body">
-                  <div class="p-card__price">{l.soldPrice}</div>
+                  {l.soldPrice && <div class="p-card__price">{l.soldPrice}</div>}
+                  {l.highlight && <div class="p-card__highlight">{l.highlight}</div>}
                   <div class="p-card__address">{l.address}</div>
                   <div class="p-card__city">{l.city}</div>
                   <div class="p-card__details">
                     {l.beds && <span>{l.beds} Beds</span>}
                     {l.baths && <span>{l.baths} Baths</span>}
                     {l.sqft && <span>{l.sqft} sqft</span>}
-                    {'acres' in l && l.acres && <span>{l.acres} Acres</span>}
+                    {l.acres && <span>{l.acres} Acres</span>}
                   </div>
                 </div>
               </div>
@@ -300,6 +303,15 @@ function fmtSoldDate(iso: string) {
     font-weight: 700;
     color: #FF1616;
     margin-bottom: 0.3rem;
+  }
+  .p-card__highlight {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #FF1616;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.4rem;
   }
   .p-card__address { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
   .p-card__city { font-size: 0.8rem; color: #777; margin-bottom: 1rem; }

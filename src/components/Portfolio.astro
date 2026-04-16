@@ -30,13 +30,15 @@ type Current = {
 type Past = {
   placeholder?: boolean;
   status: string;
-  soldPrice: string;
-  soldDate: string;
+  soldPrice?: string;   // optional — Texas is a non-disclosure state
+  soldDate?: string;
   address: string;
   city: string;
   beds?: number;
   baths?: number;
   sqft?: string;
+  acres?: string;
+  highlight?: string;   // short descriptive badge (e.g. "Guadalupe River")
   img: string;
 };
 
@@ -72,8 +74,9 @@ const past = (data.pastSales as Past[]).map((l) => ({
   beds: l.beds,
   baths: l.baths,
   sqft: l.sqft,
+  acres: l.acres,
+  highlight: l.highlight,
   img: l.img,
-  url: '/portfolio',
   soldDate: l.soldDate,
   placeholder: !!l.placeholder,
 }));
@@ -139,7 +142,10 @@ function fmtSoldDate(iso: string) {
                   )}
                 </div>
                 <div class="prop-card__body">
-                  <div class="prop-card__price">{s.price}</div>
+                  {s.price && <div class="prop-card__price">{s.price}</div>}
+                  {'highlight' in s && s.highlight && (
+                    <div class="prop-card__highlight">{s.highlight}</div>
+                  )}
                   <div class="prop-card__address">{s.address}</div>
                   <div class="prop-card__city">{s.city}</div>
                   <div class="prop-card__details">
@@ -255,6 +261,16 @@ function fmtSoldDate(iso: string) {
     font-weight: 700;
     color: #FF1616;
     margin-bottom: 0.3rem;
+  }
+
+  .prop-card__highlight {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #FF1616;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.4rem;
   }
 
   .prop-card__address {
