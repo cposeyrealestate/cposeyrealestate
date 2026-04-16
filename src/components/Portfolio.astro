@@ -83,13 +83,20 @@ const past = (data.pastSales as Past[]).map((l) => ({
   placeholder: !!l.placeholder,
 }));
 
-// Interleave a little so the carousel opens on a current listing
-// and then alternates. If either list is empty, the other takes over.
+// Cap the home-page carousel so it stays short and snappy. All current
+// listings are always included; past sales are limited to the top N
+// (JSON order — reorder there to feature different sold properties).
+// The full /portfolio page still shows every listing and every sale.
+const MAX_PAST_IN_CAROUSEL = 3;
+const pastForCarousel = past.slice(0, MAX_PAST_IN_CAROUSEL);
+
+// Interleave so the carousel opens on a current listing and then
+// alternates. If either list is empty, the other takes over.
 const slides: Array<typeof current[number] | typeof past[number]> = [];
-const maxLen = Math.max(current.length, past.length);
+const maxLen = Math.max(current.length, pastForCarousel.length);
 for (let i = 0; i < maxLen; i++) {
   if (current[i]) slides.push(current[i]);
-  if (past[i]) slides.push(past[i]);
+  if (pastForCarousel[i]) slides.push(pastForCarousel[i]);
 }
 
 function fmtSoldDate(iso: string) {
