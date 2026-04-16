@@ -204,6 +204,16 @@
       "sqft": "2,407",
       "role": "Buyer's Agent",
       "img": "/images/sold/323-wauford-way.jpg"
+    },
+    {
+      "status": "Sold",
+      "address": "857 Fair Lane",
+      "city": "New Braunfels, TX 78130",
+      "beds": 4,
+      "baths": 2,
+      "sqft": "2,198",
+      "role": "Listing Agent",
+      "img": "/images/sold/857-fair-lane.jpg"
     }
   ]
 }
