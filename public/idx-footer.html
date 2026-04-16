@@ -36,19 +36,32 @@
     else nav.classList.remove('scrolled');
   });
 
-  // Shorten map price labels: $1,200,000 → $1.2M, $689,900 → $689K
+  // Shorten map price labels and ensure K/M suffix
+  // IDX may pre-shorten prices (e.g. "$300" meaning $300,000)
+  // or show full prices (e.g. "$300,000" or "$1,200,000")
   function shortPrice(text) {
-    var m = text.match(/\$?([\d,]+)/);
+    var raw = text.replace(/[^0-9.$,KMkm]/g, '').trim();
+    // Already has K or M suffix — leave it
+    if (/[KMkm]/.test(raw)) return text;
+    var m = raw.match(/\$?([\d,]+)/);
     if (!m) return text;
     var n = parseInt(m[1].replace(/,/g, ''), 10);
+    // Full price: $1,200,000 → $1.2M
     if (n >= 1000000) {
       var v = (n / 1000000).toFixed(1).replace(/\.0$/, '');
       return '$' + v + 'M';
     }
+    // Full price: $300,000 → $300K
     if (n >= 1000) {
       return '$' + Math.round(n / 1000) + 'K';
     }
-    return '$' + n;
+    // IDX pre-shortened: $300 (meaning $300K) — add K
+    // Heuristic: real estate prices under $1000 don't exist,
+    // so any number under 1000 is actually in thousands
+    if (n > 0) {
+      return '$' + n + 'K';
+    }
+    return text;
   }
 
   function reformatPriceLabels() {
