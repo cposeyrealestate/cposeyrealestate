@@ -133,7 +133,57 @@
     }
   }, true);
 
-  // Inject custom City / Zip / County address search into IDX refinement bar
+  // City / Zip / County address search for IDX refinement bar.
+  // IDX Broker requires numeric IDs (not names) for city[] and county[] params,
+  // so we ship a lookup table of cities/counties in Cody's service area.
+  var CP_CITIES = {
+    'newbraunfels': 32367, 'nb': 32367,
+    'canyonlake': 7164,
+    'seguin': 42106,
+    'cibolo': 8778,
+    'schertz': 41744,
+    'bulverde': 6303,
+    'gardenridge': 17473,
+    'springbranch': 44143,
+    'marion': 28543,
+    'mcqueeney': 29420,
+    'sanantonio': 41201, 'sa': 41201,
+    'boerne': 4804,
+    'comfort': 9893,
+    'fischer': 16015,
+    'wimberley': 52110,
+    'blanco': 4392,
+    'kingsbury': 24309,
+    'geronimo': 17801,
+    'fairoaksranch': 15362,
+    'universalcity': 47518,
+    'converse': 10106,
+    'selma': 42149,
+    'liveoak': 26812,
+    'helotes': 20782,
+    'leonvalley': 26162,
+    'castlehills': 7629,
+    'terrellhills': 46085,
+    'alamoheights': 436,
+    'windcrest': 52145,
+    'kirby': 24411
+  };
+  var CP_COUNTIES = {
+    'comal': 2247,
+    'guadalupe': 2693,
+    'bexar': 416,
+    'hays': 1461,
+    'kendall': 1936,
+    'travis': 1460,
+    'wilson': 2914,
+    'bandera': 1598,
+    'blanco': 2105,
+    'caldwell': 2873,
+    'gonzales': 1798,
+    'kerr': 2535
+  };
+  function cpNormalize(s) { return (s || '').toLowerCase().replace(/[^a-z0-9]/g, ''); }
+
   function injectAddressSearch() {
     if (document.querySelector('.cp-address-search')) return true;
     var refinement = document.querySelector('.idx-results__refinement');
@@ -147,7 +197,6 @@
       '<input type="text" id="cpAddrInput" placeholder="City, Zip Code, or County" autocomplete="off" />' +
       '<button type="button" id="cpAddrGo">Search</button>';
 
-    // Put it at the start of the refinement bar so it sits before the filter dropdowns
     refinement.insertBefore(wrap, refinement.firstChild);
 
     function runSearch() {
@@ -161,22 +210,46 @@
       params.set('pt', '1');
       params.set('srt', 'newest');
 
+      // 5-digit zip — IDX accepts the raw number
       if (/^\d{5}$/.test(q)) {
-        // 5-digit zip
         params.set('ccz', 'zipcode');
         params.append('zipcode[]', q);
-      } else if (/\bcounty\b/i.test(q)) {
-        // Contains "county" — strip the word and route as county
-        var county = q.replace(/\s*county\s*$/i, '').trim();
-        params.set('ccz', 'county');
-        params.append('county[]', county);
-      } else {
-        // Default: city
-        params.set('ccz', 'city');
-        params.append('city[]', q);
+        window.location.href = '/idx/results/listings?' + params.toString();
+        return;
       }
 
-      window.location.href = '/idx/results/listings?' + params.toString();
+      var hasCountyWord = /\bcounty\b/i.test(q);
+      var key = cpNormalize(q.replace(/\s*county\s*$/i, ''));
+
+      // "Xxx County" — look up in county table
+      if (hasCountyWord && CP_COUNTIES[key]) {
+        params.set('ccz', 'county');
+        params.append('county[]', CP_COUNTIES[key]);
+        window.location.href = '/idx/results/listings?' + params.toString();
+        return;
+      }
+
+      // Bare name — prefer city match, then county
+      if (CP_CITIES[key]) {
+        params.set('ccz', 'city');
+        params.append('city[]', CP_CITIES[key]);
+        window.location.href = '/idx/results/listings?' + params.toString();
+        return;
+      }
+      if (CP_COUNTIES[key]) {
+        params.set('ccz', 'county');
+        params.append('county[]', CP_COUNTIES[key]);
+        window.location.href = '/idx/results/listings?' + params.toString();
+        return;
+      }
+
+      // Not in our list — show inline hint instead of dumping user into a broken page
+      input.setCustomValidity("Try a city or county in the Hill Country, or a 5-digit ZIP");
+      input.reportValidity();
+      input.addEventListener('input', function clear() {
+        input.setCustomValidity('');
+        input.removeEventListener('input', clear);
+      });
     }
 
     document.getElementById('cpAddrGo').addEventListener('click', runSearch);
