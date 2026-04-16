@@ -181,25 +181,9 @@ img { max-width: 100%; height: auto; display: block; }
   border: none !important;
 }
 
-/* Search form — horizontal with wrapping, vertically center all items */
-.IDX-searchForm {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 12px !important;
-}
-
-/* Keep filter dropdowns at natural width, don't stretch */
-.IDX-searchForm .idx-dropdown {
-  flex: 1 1 auto !important;
-  min-width: 150px !important;
-  max-width: 220px !important;
-}
-
-/* Apply Filters + Save Search — centered on their own row */
-.IDX-searchForm > .IDX-btn__PL:not(.IDX-dropdown-toggle):not(.idx-dropdown .IDX-btn__PL) {
-  flex: 0 0 auto !important;
+/* Apply Filters + Save Search — center the text */
+.IDX-searchForm .IDX-btn__PL {
+  text-align: center !important;
 }
 
 /* Filter dropdown buttons — dark with subtle border */
