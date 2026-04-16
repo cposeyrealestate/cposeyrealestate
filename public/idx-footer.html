@@ -182,7 +182,14 @@
     'gonzales': 1798,
     'kerr': 2535
   };
-  function cpNormalize(s) { return (s || '').toLowerCase().replace(/[^a-z0-9]/g, ''); }
+  function cpNormalize(s) {
+    return (s || '')
+      .toLowerCase()
+      .trim()
+      // Drop trailing state suffix like ", TX", " Texas", " tx 78130", etc.
+      .replace(/[,\s]+(texas|tx)\b.*$/i, '')
+      .replace(/[^a-z0-9]/g, '');
+  }
 
   function injectAddressSearch() {
     if (document.querySelector('.cp-address-search')) return true;
