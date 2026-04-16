@@ -105,29 +105,52 @@ function fmtSoldDate(iso: string) {
       <div class="swiper-wrapper">
         {slides.map((s) => (
           <div class="swiper-slide">
-            <a href={s.url} class="prop-card" target={s.kind === 'current' && 'external' in s && s.external ? '_blank' : '_self'} rel={s.kind === 'current' && 'external' in s && s.external ? 'noopener' : undefined}>
-              <div class="prop-card__img-wrap">
-                <img src={s.img} alt={s.address} class="prop-card__img" loading="lazy" />
-                <span class={`prop-card__status ${String(s.status).toLowerCase()}`}>{s.status}</span>
-                {s.kind === 'past' && 'soldDate' in s && s.soldDate && (
-                  <span class="prop-card__sold-date">Sold {fmtSoldDate(s.soldDate)}</span>
-                )}
-              </div>
-              <div class="prop-card__body">
-                <div class="prop-card__price">{s.price}</div>
-                <div class="prop-card__address">{s.address}</div>
-                <div class="prop-card__city">{s.city}</div>
-                <div class="prop-card__details">
-                  {s.beds && <span>{s.beds} Beds</span>}
-                  {s.baths && <span>{s.baths} Baths</span>}
-                  {s.sqft && <span>{s.sqft} sqft</span>}
-                  {'acres' in s && s.acres && <span>{s.acres} Acres</span>}
+            {s.kind === 'current' ? (
+              <a
+                href={s.url}
+                class="prop-card"
+                target={'external' in s && s.external ? '_blank' : '_self'}
+                rel={'external' in s && s.external ? 'noopener' : undefined}
+              >
+                <div class="prop-card__img-wrap">
+                  <img src={s.img} alt={s.address} class="prop-card__img" loading="lazy" />
+                  <span class={`prop-card__status ${String(s.status).toLowerCase()}`}>{s.status}</span>
                 </div>
-                <span class="prop-card__cta">
-                  {s.kind === 'current' ? 'View Listing →' : 'See My Portfolio →'}
-                </span>
+                <div class="prop-card__body">
+                  <div class="prop-card__price">{s.price}</div>
+                  <div class="prop-card__address">{s.address}</div>
+                  <div class="prop-card__city">{s.city}</div>
+                  <div class="prop-card__details">
+                    {s.beds && <span>{s.beds} Beds</span>}
+                    {s.baths && <span>{s.baths} Baths</span>}
+                    {s.sqft && <span>{s.sqft} sqft</span>}
+                    {'acres' in s && s.acres && <span>{s.acres} Acres</span>}
+                  </div>
+                  <span class="prop-card__cta">View Listing →</span>
+                </div>
+              </a>
+            ) : (
+              <div class="prop-card prop-card--sold">
+                <div class="prop-card__img-wrap">
+                  <img src={s.img} alt={s.address} class="prop-card__img" loading="lazy" />
+                  <span class={`prop-card__status ${String(s.status).toLowerCase()}`}>{s.status}</span>
+                  {'soldDate' in s && s.soldDate && (
+                    <span class="prop-card__sold-date">Sold {fmtSoldDate(s.soldDate)}</span>
+                  )}
+                </div>
+                <div class="prop-card__body">
+                  <div class="prop-card__price">{s.price}</div>
+                  <div class="prop-card__address">{s.address}</div>
+                  <div class="prop-card__city">{s.city}</div>
+                  <div class="prop-card__details">
+                    {s.beds && <span>{s.beds} Beds</span>}
+                    {s.baths && <span>{s.baths} Baths</span>}
+                    {s.sqft && <span>{s.sqft} sqft</span>}
+                    {'acres' in s && s.acres && <span>{s.acres} Acres</span>}
+                  </div>
+                </div>
               </div>
-            </a>
+            )}
           </div>
         ))}
       </div>
@@ -169,10 +192,14 @@ function fmtSoldDate(iso: string) {
     text-decoration: none;
   }
 
-  .prop-card:hover {
+  a.prop-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
   }
+  a.prop-card:hover .prop-card__img {
+    transform: scale(1.05);
+  }
+  .prop-card--sold { cursor: default; }
 
   .prop-card__img-wrap {
     position: relative;
@@ -187,9 +214,6 @@ function fmtSoldDate(iso: string) {
     transition: transform 0.4s;
   }
 
-  .prop-card:hover .prop-card__img {
-    transform: scale(1.05);
-  }
 
   .prop-card__status {
     position: absolute;
