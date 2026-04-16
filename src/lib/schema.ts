@@ -54,7 +54,7 @@ function serviceAreaList() {
 
 /* ── Core entity: Cody Posey, the Person / RealEstateAgent ────────── */
 export function personSchema() {
-  return {
+  const person: any = {
     '@context': 'https://schema.org',
     '@type': ['Person', 'RealEstateAgent'],
     '@id': PERSON_ID,
@@ -69,6 +69,14 @@ export function personSchema() {
     url: SITE,
     worksFor: { '@id': ORG_ID },
     knowsLanguage: seo.person.languages,
+    slogan: seo.site.tagline,
+    hasOccupation: {
+      '@type': 'Occupation',
+      name: 'Real Estate Agent',
+      occupationLocation: serviceAreaList(),
+      skills: seo.services.join(', '),
+      qualifications: `Licensed by the Texas Real Estate Commission (TREC #${seo.person.license.number}) since ${seo.person.license.since}.`,
+    },
     hasCredential: [
       {
         '@type': 'EducationalOccupationalCredential',
@@ -91,9 +99,27 @@ export function personSchema() {
         },
       })),
     ],
+    award: seo.person.designations.map((d: any) => `${d.full} (${d.short})`),
+    memberOf: seo.person.memberOf.map((m: any) => ({
+      '@type': 'Organization',
+      name: m.name,
+      url: m.url,
+    })),
+    knowsAbout: seo.services,
     areaServed: serviceAreaList(),
     sameAs: allSameAsUrls(),
   };
+  // Attach aggregateRating only if we have review data
+  if (seo.reviews?.reviewCount > 0) {
+    person.aggregateRating = {
+      '@type': 'AggregateRating',
+      ratingValue: seo.reviews.aggregateRating,
+      reviewCount: seo.reviews.reviewCount,
+      bestRating: 5,
+      worstRating: 1,
+    };
+  }
+  return person;
 }
 
 /* ── Brokerage: Popby Realty as an Organization ───────────────────── */
@@ -119,13 +145,14 @@ export function brokerageSchema() {
 
 /* ── The overall LocalBusiness entity (what Google uses for the panel) */
 export function localBusinessSchema() {
-  return {
+  const biz: any = {
     '@context': 'https://schema.org',
     '@type': 'RealEstateAgent',
     '@id': BUSINESS_ID,
     name: seo.site.name,
     alternateName: seo.person.name,
     description: seo.site.description,
+    slogan: seo.site.tagline,
     url: SITE,
     image: seo.person.image,
     logo: seo.brokerage.logo,
@@ -143,7 +170,48 @@ export function localBusinessSchema() {
     priceRange: '$$',
     sameAs: allSameAsUrls(),
     knowsAbout: seo.services,
+    award: seo.person.designations.map((d: any) => `${d.full} (${d.short})`),
+    memberOf: seo.person.memberOf.map((m: any) => ({
+      '@type': 'Organization',
+      name: m.name,
+      url: m.url,
+    })),
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Real Estate Services',
+      itemListElement: seo.services.map((svc: string) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: svc, provider: { '@id': PERSON_ID }, areaServed: serviceAreaList() },
+      })),
+    },
   };
+  if (seo.reviews?.reviewCount > 0) {
+    biz.aggregateRating = {
+      '@type': 'AggregateRating',
+      ratingValue: seo.reviews.aggregateRating,
+      reviewCount: seo.reviews.reviewCount,
+      bestRating: 5,
+      worstRating: 1,
+    };
+  }
+  return biz;
+}
+
+/* ── Review items for the Testimonials page ─────────────────────── */
+export function reviewsSchema(reviews: Array<{ name: string; role?: string; quote: string; rating?: number }>) {
+  return reviews.map((r) => ({
+    '@context': 'https://schema.org',
+    '@type': 'Review',
+    itemReviewed: { '@id': BUSINESS_ID },
+    author: { '@type': 'Person', name: r.name, ...(r.role && { jobTitle: r.role }) },
+    reviewBody: r.quote,
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: r.rating ?? 5,
+      bestRating: 5,
+      worstRating: 1,
+    },
+  }));
 }
 
 /* ── WebSite entity (enables Google sitelinks search box eligibility) */

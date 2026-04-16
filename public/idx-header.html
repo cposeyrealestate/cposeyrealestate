@@ -464,6 +464,83 @@ img { max-width: 100%; height: auto; display: block; }
   body { padding-bottom: 60px; }
 }
 </style>
+
+<!-- ── Entity signals for IDX-hosted search pages ─────────────────
+     This JSON-LD gets injected into every IDX Broker page via the
+     wrapper, so every /idx/* URL on cposeyrealestate.idxbroker.com
+     also ships with Person + LocalBusiness schema tying the content
+     back to Cody Posey as the canonical real-estate entity.
+     Mirrors the key fields in src/data/seo.json — keep in sync when
+     license numbers, designations, or reviews change.
+────────────────────────────────────────────────────────────────── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Person", "RealEstateAgent"],
+      "@id": "https://cposeyrealestate.com#person-cody-posey",
+      "name": "Cody Posey",
+      "jobTitle": "REALTOR®",
+      "description": "U.S. Army veteran (20 years of service) and licensed Texas REALTOR® focused on the New Braunfels and Texas Hill Country market. MRP, ABR, and PSA certified.",
+      "image": "https://cposeyrealestate.com/images/cody-posey.jpg",
+      "telephone": "+1-830-360-5569",
+      "email": "mailto:codyposey@cposeyrealestate.com",
+      "url": "https://cposeyrealestate.com",
+      "slogan": "Educating. Serving. Delivering Results.",
+      "knowsLanguage": ["English"],
+      "award": ["Military Relocation Professional (MRP)", "Accredited Buyer's Representative (ABR)", "Pricing Strategy Advisor (PSA)"],
+      "aggregateRating": {"@type": "AggregateRating", "ratingValue": 5.0, "reviewCount": 29, "bestRating": 5, "worstRating": 1},
+      "hasCredential": {"@type": "EducationalOccupationalCredential", "name": "TREC Real Estate Salesperson License 822002-SA", "credentialCategory": "license", "recognizedBy": {"@type": "Organization", "name": "Texas Real Estate Commission (TREC)", "url": "https://www.trec.texas.gov/"}},
+      "memberOf": [
+        {"@type": "Organization", "name": "National Association of REALTORS®", "url": "https://www.nar.realtor/"},
+        {"@type": "Organization", "name": "Texas REALTORS®", "url": "https://www.texasrealestate.com/"},
+        {"@type": "Organization", "name": "San Antonio Board of REALTORS®", "url": "https://sabor.com/"}
+      ],
+      "areaServed": [
+        {"@type": "City", "name": "New Braunfels", "addressRegion": "TX"},
+        {"@type": "City", "name": "Canyon Lake", "addressRegion": "TX"},
+        {"@type": "City", "name": "Seguin", "addressRegion": "TX"},
+        {"@type": "City", "name": "Cibolo", "addressRegion": "TX"},
+        {"@type": "City", "name": "Schertz", "addressRegion": "TX"},
+        {"@type": "City", "name": "Bulverde", "addressRegion": "TX"},
+        {"@type": "City", "name": "San Antonio", "addressRegion": "TX"}
+      ],
+      "sameAs": [
+        "https://www.facebook.com/cposeyrealestate",
+        "https://www.instagram.com/cposeyrealestate/",
+        "https://www.tiktok.com/@cposeyrealestate",
+        "https://www.youtube.com/@cposeyrealestate",
+        "https://www.linkedin.com/in/cposeyrealestate/",
+        "https://www.zillow.com/profile/Cody%20Posey",
+        "https://www.realtor.com/realestateagents/66280118f87d02826d67af33",
+        "https://www.fastexpert.com/agents/cody-posey-124289/",
+        "https://www.homelight.com/agents/cody-posey-tx-822002",
+        "https://www.homes.com/real-estate-agents/cody-posey/zx296nx/",
+        "https://g.page/r/Cbqy8Bqvej7eEBM/review"
+      ]
+    },
+    {
+      "@type": "RealEstateAgent",
+      "@id": "https://cposeyrealestate.com#business",
+      "name": "Cody Posey Real Estate",
+      "alternateName": "Cody Posey",
+      "url": "https://cposeyrealestate.com",
+      "telephone": "+1-830-360-5569",
+      "image": "https://cposeyrealestate.com/images/cody-posey.jpg",
+      "logo": "https://cposeyrealestate.com/images/popby-logo.png",
+      "address": {"@type": "PostalAddress", "streetAddress": "323 Arendes Dr", "addressLocality": "New Braunfels", "addressRegion": "TX", "postalCode": "78130", "addressCountry": "US"},
+      "priceRange": "$$",
+      "openingHoursSpecification": [
+        {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "09:00", "closes": "21:00"}
+      ],
+      "aggregateRating": {"@type": "AggregateRating", "ratingValue": 5.0, "reviewCount": 29, "bestRating": 5, "worstRating": 1},
+      "employee": {"@id": "https://cposeyrealestate.com#person-cody-posey"}
+    }
+  ]
+}
+</script>
+
 </head>
 <body>
 <header class="cp-navbar" id="cp-navbar">

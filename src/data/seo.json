@@ -31,7 +31,19 @@
       { "short": "ABR", "full": "Accredited Buyer's Representative" },
       { "short": "PSA", "full": "Pricing Strategy Advisor" }
     ],
+    "memberOf": [
+      { "name": "National Association of REALTORS®", "url": "https://www.nar.realtor/" },
+      { "name": "Texas REALTORS®", "url": "https://www.texasrealestate.com/" },
+      { "name": "San Antonio Board of REALTORS® (SABOR)", "url": "https://sabor.com/" },
+      { "name": "Texas Real Estate Commission (TREC)", "url": "https://www.trec.texas.gov/" }
+    ],
     "languages": ["English"]
+  },
+
+  "reviews": {
+    "aggregateRating": 5.0,
+    "reviewCount": 29,
+    "source": "Google Business Profile"
   },
 
   "brokerage": {
