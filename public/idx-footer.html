@@ -36,6 +36,51 @@
     else nav.classList.remove('scrolled');
   });
 
+  // Shorten map price labels: $1,200,000 → $1.2M, $689,900 → $689K
+  function shortPrice(text) {
+    var m = text.match(/\$?([\d,]+)/);
+    if (!m) return text;
+    var n = parseInt(m[1].replace(/,/g, ''), 10);
+    if (n >= 1000000) {
+      var v = (n / 1000000).toFixed(1).replace(/\.0$/, '');
+      return '$' + v + 'M';
+    }
+    if (n >= 1000) {
+      return '$' + Math.round(n / 1000) + 'K';
+    }
+    return '$' + n;
+  }
+
+  function reformatPriceLabels() {
+    var labels = document.querySelectorAll('.leaflet-tooltip.leaflet-label');
+    labels.forEach(function(el) {
+      var raw = el.textContent.trim();
+      if (raw.indexOf('$') === -1) return;
+      var short = shortPrice(raw);
+      if (el.textContent.trim() !== short) el.textContent = short;
+    });
+  }
+
+  // Run on load and observe for new labels added dynamically
+  reformatPriceLabels();
+  var mapObs = new MutationObserver(function() { reformatPriceLabels(); });
+  var tooltipPane = document.querySelector('.leaflet-tooltip-pane');
+  if (tooltipPane) {
+    mapObs.observe(tooltipPane, { childList: true, subtree: true, characterData: true });
+  } else {
+    // Retry after map loads
+    var retryCount = 0;
+    var retryInterval = setInterval(function() {
+      tooltipPane = document.querySelector('.leaflet-tooltip-pane');
+      if (tooltipPane) {
+        reformatPriceLabels();
+        mapObs.observe(tooltipPane, { childList: true, subtree: true, characterData: true });
+        clearInterval(retryInterval);
+      }
+      if (++retryCount > 30) clearInterval(retryInterval);
+    }, 1000);
+  }
+
   // Fix: listing cards in Prime Map Search have a collapsed <a> link.
   // This delegate catches clicks anywhere on a card and navigates to the details page.
   document.addEventListener('click', function(e) {
