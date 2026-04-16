@@ -129,8 +129,7 @@ function fmtSoldDate(iso: string) {
                   {l.soldDate && <span class="p-card__sold-date">Closed {fmtSoldDate(l.soldDate)}</span>}
                 </div>
                 <div class="p-card__body">
-                  {l.soldPrice && <div class="p-card__price">{l.soldPrice}</div>}
-                  {l.highlight && <div class="p-card__highlight">{l.highlight}</div>}
+                  <div class="p-card__price">Price Upon Request</div>
                   <div class="p-card__address">{l.address}</div>
                   <div class="p-card__city">{l.city}</div>
                   <div class="p-card__details">

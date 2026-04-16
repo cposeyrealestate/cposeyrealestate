@@ -142,10 +142,7 @@ function fmtSoldDate(iso: string) {
                   )}
                 </div>
                 <div class="prop-card__body">
-                  {s.price && <div class="prop-card__price">{s.price}</div>}
-                  {'highlight' in s && s.highlight && (
-                    <div class="prop-card__highlight">{s.highlight}</div>
-                  )}
+                  <div class="prop-card__price">Price Upon Request</div>
                   <div class="prop-card__address">{s.address}</div>
                   <div class="prop-card__city">{s.city}</div>
                   <div class="prop-card__details">
