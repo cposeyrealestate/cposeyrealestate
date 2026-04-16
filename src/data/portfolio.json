@@ -222,6 +222,15 @@
       "propertyType": "Duplex",
       "role": "Buyer's Agent",
       "img": "/images/sold/2600-pahmeyer-road.jpg"
+    },
+    {
+      "status": "Leased",
+      "address": "1911 Kalli Jo Ln",
+      "city": "New Braunfels, TX 78130",
+      "beds": 3,
+      "baths": 2,
+      "sqft": "1,552",
+      "img": "/images/sold/1911-kalli-jo-ln.jpg"
     }
   ]
 }

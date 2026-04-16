@@ -127,7 +127,7 @@ function fmtSoldDate(iso: string) {
               <div class="p-card p-card--sold">
                 <div class="p-card__img-wrap">
                   <img src={l.img} alt={l.address} class="p-card__img" loading="lazy" />
-                  <span class={`p-card__status ${String(l.status).toLowerCase()}`}>Sold</span>
+                  <span class={`p-card__status ${String(l.status).toLowerCase()}`}>{l.status}</span>
                   {l.soldDate && <span class="p-card__sold-date">Closed {fmtSoldDate(l.soldDate)}</span>}
                 </div>
                 <div class="p-card__body">
@@ -284,6 +284,7 @@ function fmtSoldDate(iso: string) {
   .p-card__status.active { background: #FF1616; }
   .p-card__status.pending { background: #e07b00; }
   .p-card__status.sold { background: #111; }
+  .p-card__status.leased { background: #333; }
 
   .p-card__sold-date {
     position: absolute;
