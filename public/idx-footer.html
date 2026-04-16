@@ -347,6 +347,52 @@
       .replace(/[^a-z0-9]/g, '');
   }
 
+  // ── Filter helpers (Price / Beds / Baths) ────────────────────────────
+  var CP_PRICE_STEPS = [100000, 150000, 200000, 250000, 300000, 350000, 400000, 500000, 600000, 750000, 1000000, 1500000, 2000000, 3000000, 5000000];
+
+  function cpFmtPrice(n) {
+    n = parseInt(n, 10);
+    if (!n) return null;
+    if (n >= 1000000) return '$' + (n / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+    return '$' + Math.round(n / 1000) + 'K';
+  }
+  function cpFmtPriceLabel(lp, hp) {
+    var lo = cpFmtPrice(lp), hi = cpFmtPrice(hp);
+    if (lo && hi) return lo + ' – ' + hi;
+    if (lo) return lo + '+';
+    if (hi) return 'Up to ' + hi;
+    return 'Any Price';
+  }
+
+  function cpPriceOptions(selected) {
+    var html = '<option value="">Any</option>';
+    CP_PRICE_STEPS.forEach(function(v) {
+      var sel = String(v) === String(selected) ? ' selected' : '';
+      html += '<option value="' + v + '"' + sel + '>' + cpFmtPrice(v) + '</option>';
+    });
+    return html;
+  }
+
+  function cpPillButtons(name, values, selected, labeler) {
+    return values.map(function(v) {
+      var isSel = String(v) === String(selected);
+      return '<button type="button" class="cp-filter__opt' + (isSel ? ' cp-filter__opt--active' : '') + '" data-opt-name="' + name + '" data-opt-value="' + v + '">' + labeler(v) + '</button>';
+    }).join('');
+  }
+
+  // Reload the current page with updated URL params. Preserves existing
+  // params and restores literal brackets that URLSearchParams encodes.
+  function cpReloadWithParams(updates) {
+    var p = new URLSearchParams(window.location.search);
+    Object.keys(updates).forEach(function(k) {
+      var v = updates[k];
+      if (v === null || v === '' || v === undefined) p.delete(k);
+      else p.set(k, String(v));
+    });
+    var qs = p.toString().replace(/%5B/g, '[').replace(/%5D/g, ']');
+    window.location.href = window.location.pathname + (qs ? '?' + qs : '');
+  }
+
   function cpInjectAddressSearch() {
     if (document.querySelector('.cp-address-bar')) return true;
     // Inject into our own wrapper container (always exists) so the search
@@ -354,15 +400,57 @@
     var host = document.querySelector('.cp-idx-container') || document.querySelector('#IDX-main') || document.querySelector('.IDX-wrapper-standard');
     if (!host) return false;
 
+    var urlParams = new URLSearchParams(window.location.search);
+    var curLp = urlParams.get('lp') || '';
+    var curHp = urlParams.get('hp') || '';
+    var curBd = urlParams.get('bd') || '';
+    var curTb = urlParams.get('tb') || '';
+
+    // "All filters" deep-links into IDX's Modify Search with current params preserved
+    var modifyUrl = '/idx/search/advanced?' + urlParams.toString().replace(/%5B/g, '[').replace(/%5D/g, ']');
+
     var bar = document.createElement('div');
     bar.className = 'cp-address-bar';
-    bar.innerHTML =
-      '<div class="cp-address-search">' +
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
-      '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
-      '<input type="text" id="cpAddrInput" placeholder="City, Zip Code, or County" autocomplete="off" />' +
-      '<button type="button" id="cpAddrGo">Search</button>' +
-      '</div>';
+    bar.innerHTML = [
+      // Search input (with inline magnifier icon, no separate button — Enter to submit)
+      '<div class="cp-address-search">',
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">',
+      '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
+      '<input type="text" id="cpAddrInput" placeholder="City, neighborhood, or ZIP code..." autocomplete="off" />',
+      '</div>',
+      // Filter pills
+      '<div class="cp-filters">',
+      // Price
+      '<div class="cp-filter" data-filter="price">',
+      '<button type="button" class="cp-filter__btn" data-filter-btn="price">' + cpFmtPriceLabel(curLp, curHp) + '</button>',
+      '<div class="cp-filter__popup" data-filter-popup="price">',
+      '<div class="cp-filter__row"><label>Min</label><select id="cpPriceLow">' + cpPriceOptions(curLp) + '</select></div>',
+      '<div class="cp-filter__row"><label>Max</label><select id="cpPriceHigh">' + cpPriceOptions(curHp) + '</select></div>',
+      '<button type="button" class="cp-filter__apply" data-apply="price">Apply</button>',
+      '</div>',
+      '</div>',
+      // Beds
+      '<div class="cp-filter" data-filter="beds">',
+      '<button type="button" class="cp-filter__btn" data-filter-btn="beds">' + (curBd ? curBd + '+ Beds' : 'All beds') + '</button>',
+      '<div class="cp-filter__popup" data-filter-popup="beds">',
+      '<div class="cp-filter__pills">',
+      cpPillButtons('bd', ['', '1', '2', '3', '4', '5'], curBd, function(v) { return v ? v + '+' : 'Any'; }),
+      '</div>',
+      '</div>',
+      '</div>',
+      // Baths
+      '<div class="cp-filter" data-filter="baths">',
+      '<button type="button" class="cp-filter__btn" data-filter-btn="baths">' + (curTb ? curTb + '+ Baths' : 'All baths') + '</button>',
+      '<div class="cp-filter__popup" data-filter-popup="baths">',
+      '<div class="cp-filter__pills">',
+      cpPillButtons('tb', ['', '1', '2', '3', '4'], curTb, function(v) { return v ? v + '+' : 'Any'; }),
+      '</div>',
+      '</div>',
+      '</div>',
+      // Link to full advanced search for everything else
+      '<a href="' + modifyUrl + '" class="cp-filter__more">All filters</a>',
+      '</div>'
+    ].join('');
 
     host.insertBefore(bar, host.firstChild);
 
@@ -409,10 +497,48 @@
       });
     }
 
-    document.getElementById('cpAddrGo').addEventListener('click', runSearch);
     document.getElementById('cpAddrInput').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') { e.preventDefault(); runSearch(); }
     });
+
+    // Filter popup toggling + outside-click close
+    bar.querySelectorAll('[data-filter-btn]').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var name = btn.getAttribute('data-filter-btn');
+        var popup = bar.querySelector('[data-filter-popup="' + name + '"]');
+        bar.querySelectorAll('.cp-filter__popup.open').forEach(function(p) { if (p !== popup) p.classList.remove('open'); });
+        popup.classList.toggle('open');
+      });
+    });
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.cp-filter')) {
+        bar.querySelectorAll('.cp-filter__popup.open').forEach(function(p) { p.classList.remove('open'); });
+      }
+    });
+
+    // Price apply (Min/Max dropdowns)
+    var priceApply = bar.querySelector('[data-apply="price"]');
+    if (priceApply) {
+      priceApply.addEventListener('click', function() {
+        cpReloadWithParams({
+          lp: document.getElementById('cpPriceLow').value,
+          hp: document.getElementById('cpPriceHigh').value
+        });
+      });
+    }
+
+    // Beds/Baths — click a pill applies immediately
+    bar.querySelectorAll('[data-opt-name]').forEach(function(pill) {
+      pill.addEventListener('click', function() {
+        var name = pill.getAttribute('data-opt-name'); // 'bd' or 'tb'
+        var value = pill.getAttribute('data-opt-value');
+        var updates = {};
+        updates[name] = value;
+        cpReloadWithParams(updates);
+      });
+    });
+
     return true;
   }
 
