@@ -134,6 +134,16 @@
       "sqft": "2,738",
       "role": "Buyer's Agent",
       "img": "/images/sold/3150-bee-hill.jpg"
+    },
+    {
+      "status": "Sold",
+      "address": "763 Hill Ave",
+      "city": "New Braunfels, TX 78130",
+      "beds": 3,
+      "baths": 1.5,
+      "sqft": "1,185",
+      "role": "Listing Agent",
+      "img": "/images/sold/763-hill-ave.jpg"
     }
   ]
 }
