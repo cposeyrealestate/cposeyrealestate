@@ -184,6 +184,16 @@
       "sqft": "1,282",
       "role": "Buyer's Agent",
       "img": "/images/sold/4204-carraway-street.jpg"
+    },
+    {
+      "status": "Sold",
+      "address": "3354 Kinglet Court",
+      "city": "New Braunfels, TX 78130",
+      "beds": 4,
+      "baths": 3.5,
+      "sqft": "2,653",
+      "role": "Listing Agent",
+      "img": "/images/sold/3354-kinglet-court.jpg"
     }
   ]
 }
