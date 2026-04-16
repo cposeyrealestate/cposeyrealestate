@@ -1,0 +1,16 @@
+# robots.txt for cposeyrealestate.com
+# Generated 2026-04-16
+
+User-agent: *
+Allow: /
+
+# Don't waste crawl budget on IDX wrapper fragments (they're not pages
+# visitors should land on; they're content-free shells IDX fetches).
+Disallow: /idx-header
+Disallow: /idx-footer
+
+# Internal API endpoints (if any)
+Disallow: /api/
+
+# Canonical sitemap
+Sitemap: https://cposeyrealestate.com/sitemap-index.xml

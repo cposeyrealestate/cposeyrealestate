@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 import ParallaxBanner from '../components/ParallaxBanner.astro';
+import { faqSchema, breadcrumbSchema } from '../lib/schema';
 
 const faqCategories = [
   {
@@ -193,11 +194,22 @@ const faqCategories = [
     ],
   },
 ];
+
+// Flatten every category's Q&A pairs into one FAQPage JSON-LD payload.
+const allFaqs = faqCategories.flatMap((cat) => cat.questions);
 ---
 
 <Layout
-  title="Real Estate FAQ | Buying & Selling a Home in New Braunfels, TX | Cody Posey Real Estate"
-  description="Answers to the most common questions about buying and selling a home in New Braunfels and the Texas Hill Country. Expert local real estate guidance from Cody Posey."
+  title="Real Estate FAQ | Buying & Selling in New Braunfels, TX"
+  description="Plain-English answers to the most common questions about buying and selling a home in New Braunfels, Canyon Lake, and the Texas Hill Country."
+  schema={[
+    faqSchema(allFaqs),
+    breadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Resources', url: '/#resources' },
+      { name: 'FAQ', url: '/faq' },
+    ]),
+  ]}
 >
   <Navbar />
   <main style="padding-top: 80px;">

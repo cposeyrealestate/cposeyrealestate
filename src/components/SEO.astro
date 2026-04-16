@@ -1,0 +1,105 @@
+---
+/**
+ * SEO component — emits <title>, meta description, canonical, Open Graph,
+ * Twitter Card, and an optional JSON-LD schema block for a single page.
+ *
+ * Every page should pass a page-specific `title` and `description`.
+ * `image` and `type` are optional; `schema` takes a schema.org object
+ * (or array of objects) and renders it as JSON-LD.
+ */
+
+import seo from '../data/seo.json';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;                // Defaults to current URL
+  image?: string;                    // Absolute URL preferred; will be absolutized if relative
+  type?: 'website' | 'article' | 'profile';
+  noindex?: boolean;
+  schema?: object | object[];        // JSON-LD payload(s)
+  publishedTime?: string;            // ISO 8601 for articles
+  modifiedTime?: string;             // ISO 8601 for articles
+  author?: string;                   // Override default author name
+  tags?: string[];                   // article:tag entries
+  twitterCard?: 'summary' | 'summary_large_image';
+}
+
+const {
+  title,
+  description,
+  canonical,
+  image,
+  type = 'website',
+  noindex = false,
+  schema,
+  publishedTime,
+  modifiedTime,
+  author = seo.person.name,
+  tags = [],
+  twitterCard = 'summary_large_image',
+} = Astro.props as Props;
+
+// --- Title: keep under 60 chars for Google SERP truncation sanity
+// If the raw title is already branded, leave it alone; otherwise append the site name.
+const siteName = seo.site.name;
+const fullTitle = title.toLowerCase().includes(siteName.toLowerCase())
+  ? title
+  : `${title} | ${siteName}`;
+
+// --- Description: hard-cap at ~155 chars (Google's typical snippet width)
+const cleanDescription = description
+  .replace(/\s+/g, ' ')
+  .trim()
+  .slice(0, 155);
+
+// --- Canonical URL
+const canonicalUrl = canonical
+  ? new URL(canonical, Astro.site).toString()
+  : new URL(Astro.url.pathname, Astro.site).toString();
+
+// --- OG image — absolutize if relative
+const ogImageInput = image || seo.site.defaultOgImage;
+const ogImage = ogImageInput.startsWith('http')
+  ? ogImageInput
+  : new URL(ogImageInput, Astro.site).toString();
+
+// --- JSON-LD payload normalization
+const schemaArray = schema
+  ? Array.isArray(schema) ? schema : [schema]
+  : [];
+---
+
+<!-- ── Core tags ───────────────────────────────────────────── -->
+<title>{fullTitle}</title>
+<meta name="description" content={cleanDescription} />
+<meta name="author" content={author} />
+<link rel="canonical" href={canonicalUrl} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+<meta name="theme-color" content={seo.site.themeColor} />
+
+<!-- ── Open Graph ──────────────────────────────────────────── -->
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content={seo.site.locale} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={cleanDescription} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+{publishedTime && <meta property="article:published_time" content={publishedTime} />}
+{modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+{type === 'article' && <meta property="article:author" content={author} />}
+{tags.map((tag) => <meta property="article:tag" content={tag} />)}
+
+<!-- ── Twitter Card ────────────────────────────────────────── -->
+<meta name="twitter:card" content={twitterCard} />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={cleanDescription} />
+<meta name="twitter:image" content={ogImage} />
+
+<!-- ── JSON-LD schema (one <script> tag per payload) ───────── -->
+{schemaArray.map((s) => (
+  <script type="application/ld+json" set:html={JSON.stringify(s)} />
+))}

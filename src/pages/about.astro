@@ -4,11 +4,21 @@ import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 import ParallaxBanner from '../components/ParallaxBanner.astro';
+import { personSchema, breadcrumbSchema } from '../lib/schema';
 ---
 
 <Layout
-  title="About Cody Posey | New Braunfels REALTOR | Cody Posey Real Estate"
-  description="Meet Cody Posey — a New Braunfels REALTOR, U.S. Army veteran, and local real estate expert serving the Texas Hill Country."
+  title="About Cody Posey | U.S. Army Veteran & New Braunfels REALTOR®"
+  description="Meet Cody Posey — 20-year U.S. Army veteran and Texas REALTOR® (TREC 822002-SA) serving New Braunfels, Canyon Lake, Seguin, and the Hill Country."
+  image="/images/cody-posey.jpg"
+  type="profile"
+  schema={[
+    personSchema(),
+    breadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'About Cody', url: '/about' },
+    ]),
+  ]}
 >
   <Navbar />
   <main style="padding-top: 80px;">

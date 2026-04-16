@@ -1,12 +1,33 @@
 ---
+import SEO from '../components/SEO.astro';
+import seo from '../data/seo.json';
+
 export interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
+  image?: string;
+  type?: 'website' | 'article' | 'profile';
+  noindex?: boolean;
+  schema?: object | object[];
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  tags?: string[];
 }
 
 const {
   title = 'Cody Posey | New Braunfels, Texas Real Estate Agent',
-  description = 'Cody Posey is a top real estate agent in New Braunfels, Texas. Search homes for sale, get a free home valuation, and connect with a local expert.',
+  description = seo.site.description,
+  canonical,
+  image,
+  type,
+  noindex,
+  schema,
+  publishedTime,
+  modifiedTime,
+  author,
+  tags,
 } = Astro.props;
 ---
 
@@ -15,11 +36,23 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="/swiper-bundle.min.css" />
+
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonical}
+      image={image}
+      type={type}
+      noindex={noindex}
+      schema={schema}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+      author={author}
+      tags={tags}
+    />
   </head>
   <body>
     <slot />
