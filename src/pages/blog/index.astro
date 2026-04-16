@@ -3,15 +3,43 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import blogPosts from '../../data/blog-posts.json';
+import { breadcrumbSchema } from '../../lib/schema';
+import seo from '../../data/seo.json';
 
 const POSTS_PER_PAGE = 12;
 const posts = [...blogPosts].sort((a, b) => (b.dateRaw || '').localeCompare(a.dateRaw || ''));
 const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
+
+// Blog index schema: a Blog entity that lists the most recent posts.
+const blogSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  '@id': 'https://cposeyrealestate.com/blog#blog',
+  name: 'Cody Posey Real Estate Blog',
+  description:
+    'Market updates, neighborhood guides, and expert insight for buyers and sellers in New Braunfels and the Texas Hill Country.',
+  url: 'https://cposeyrealestate.com/blog',
+  publisher: { '@id': `${seo.site.url}#business` },
+  blogPost: posts.slice(0, 10).map((p) => ({
+    '@type': 'BlogPosting',
+    headline: p.title,
+    url: `https://cposeyrealestate.com/blog/${p.slug}`,
+    datePublished: p.dateRaw,
+    image: p.featuredImage,
+  })),
+};
 ---
 
 <Layout
-  title="Blog | Cody Posey Real Estate | New Braunfels, TX"
-  description="Real estate insights for New Braunfels and the Texas Hill Country. Market updates, neighborhood guides, buyer and seller strategies."
+  title="New Braunfels Real Estate Blog | Cody Posey"
+  description="Market updates, neighborhood guides, and expert buyer + seller insights for New Braunfels, Canyon Lake, and the Texas Hill Country."
+  schema={[
+    blogSchema,
+    breadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Blog', url: '/blog' },
+    ]),
+  ]}
 >
   <Navbar />
   <main style="padding-top: 80px;">

@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import data from '../data/portfolio.json';
+import { breadcrumbSchema } from '../lib/schema';
 
 const IDX_BASE = 'https://cposeyrealestate.idxbroker.com/idx/details/listing/a023';
 
@@ -61,8 +62,12 @@ function fmtSoldDate(iso: string) {
 ---
 
 <Layout
-  title="Portfolio | Cody Posey Real Estate"
-  description="Cody Posey's current listings and recent sales across New Braunfels and the Texas Hill Country."
+  title="Portfolio | Current Listings & Recent Sales in New Braunfels"
+  description="Cody Posey's current listings and recent closings across New Braunfels, Canyon Lake, Seguin, and the Texas Hill Country."
+  schema={breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Portfolio', url: '/portfolio' },
+  ])}
 >
   <Navbar />
 

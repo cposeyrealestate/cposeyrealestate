@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import data from '../../data/portfolio.json';
+import { listingSchema, breadcrumbSchema } from '../../lib/schema';
 
 export function getStaticPaths() {
   const internal = (data.currentListings as any[]).filter(
@@ -34,10 +35,32 @@ const { listing } = Astro.props as { listing: Listing };
 
 // Gallery defaults to [hero] if none supplied
 const photos = listing.gallery && listing.gallery.length > 0 ? listing.gallery : [listing.img];
+
+// Schema.org RealEstateListing + breadcrumb
+const pageUrl = `/portfolio/${listing.slug}`;
+const pageSchema = [
+  listingSchema({ ...listing, url: pageUrl }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Portfolio', url: '/portfolio' },
+    { name: listing.address, url: pageUrl },
+  ]),
+];
+
+// Meta description: either the provided description (truncated to 155)
+// or a concise auto-generated fallback.
+const metaDescription = (
+  listing.description
+  || `${listing.propertyType || 'Home'} at ${listing.address}, ${listing.city}. ${listing.acres ? listing.acres + ' acres. ' : ''}Listed by Cody Posey, REALTOR®.`
+).replace(/\s+/g, ' ').trim().slice(0, 155);
 ---
 
 <Layout
-  title={`${listing.address} | ${listing.city} | Cody Posey Real Estate`}
+  title={`${listing.address} | ${listing.city}`}
+  description={metaDescription}
+  image={listing.img}
+  schema={pageSchema}
+>
   description={listing.description?.slice(0, 160) || `${listing.price} — ${listing.address}, ${listing.city}`}
 >
   <Navbar />
