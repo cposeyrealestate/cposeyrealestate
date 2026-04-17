@@ -2,77 +2,116 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 
-const BOLDTRAIL_API_KEY = import.meta.env.BOLDTRAIL_API_KEY;
-const BOLDTRAIL_URL = 'https://kvcore.com/api/leads';
+/**
+ * Lead submission endpoint.
+ *
+ * Posts leads to the BoldTrail / kvCORE vendor API using a JWT Bearer
+ * token. The token is issued from BoldTrail admin → Lead Engine →
+ * "My API Tokens" with either "All" or "Contacts" scope (Contacts is
+ * the minimum required to create leads).
+ *
+ * On failure, the full lead payload is logged to the Cloudflare Worker
+ * console so leads are never silently lost — you can inspect failed
+ * submissions under Workers & Pages → your worker → Logs.
+ */
 
-export const POST: APIRoute = async ({ request }) => {
+// Endpoint can be overridden by env var if BoldTrail ever changes paths.
+const BOLDTRAIL_API_URL =
+  (import.meta.env.BOLDTRAIL_API_URL as string | undefined) ||
+  'https://api.kvcore.com/v2/public/contact';
+
+export const POST: APIRoute = async ({ request, locals }) => {
+  // Cloudflare runtime puts secrets on locals.runtime.env; fall back to
+  // import.meta.env for local dev (wrangler dev / astro dev).
+  // @ts-expect-error locals.runtime is Cloudflare-specific
+  const envBag = locals?.runtime?.env ?? import.meta.env;
+  const apiKey: string | undefined = envBag.BOLDTRAIL_API_KEY;
+
+  let leadData: Record<string, any> = {};
+
   try {
     const body = await request.json();
-    const { name, email, phone, address, message, source } = body;
+    const { name, firstName, lastName, email, phone, address, message, source } = body;
 
     if (!email) {
-      return new Response(JSON.stringify({ error: 'Email is required' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      });
+      return json({ error: 'Email is required' }, 400);
     }
 
-    // Split name into first/last
-    const nameParts = (name || '').trim().split(/\s+/);
-    const firstName = nameParts[0] || '';
-    const lastName = nameParts.slice(1).join(' ') || '';
+    // Prefer explicit firstName/lastName, otherwise split the single name field.
+    let first = firstName || '';
+    let last = lastName || '';
+    if (!first && !last && name) {
+      const parts = String(name).trim().split(/\s+/);
+      first = parts[0] || '';
+      last = parts.slice(1).join(' ') || '';
+    }
 
-    // Build the BoldTrail lead payload
-    const leadData: Record<string, any> = {
-      first_name: firstName,
-      last_name: lastName,
-      email: email,
+    // Compose the contact payload using kvCORE/BoldTrail field names.
+    leadData = {
+      first_name: first,
+      last_name: last,
+      email,
       source: source || 'cposeyrealestate.com',
     };
-
     if (phone) leadData.phone = phone;
-    if (message) leadData.notes = message;
-    if (address) leadData.notes = (leadData.notes ? leadData.notes + '\n' : '') + 'Property: ' + address;
 
-    // Send to BoldTrail
-    const res = await fetch(BOLDTRAIL_URL, {
+    const notes: string[] = [];
+    if (message) notes.push(String(message));
+    if (address) notes.push(`Property: ${address}`);
+    if (notes.length) leadData.message = notes.join('\n');
+
+    if (!apiKey) {
+      console.error('[lead] Missing BOLDTRAIL_API_KEY — leaving lead in logs', leadData);
+      return json({ error: 'Server configuration error' }, 500);
+    }
+
+    const res = await fetch(BOLDTRAIL_API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${BOLDTRAIL_API_KEY}`,
+        Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify(leadData),
     });
 
     const responseText = await res.text();
-    let responseData;
+    let responseData: unknown;
     try {
-      responseData = JSON.parse(responseText);
+      responseData = responseText ? JSON.parse(responseText) : null;
     } catch {
       responseData = { raw: responseText };
     }
 
     if (!res.ok) {
-      console.error('BoldTrail API error:', res.status, responseText);
-      return new Response(JSON.stringify({
-        error: 'Failed to submit lead',
+      // Log the lead AND the BoldTrail response so nothing is lost.
+      console.error('[lead] BoldTrail rejected submission', {
         status: res.status,
-        details: responseData,
-      }), {
-        status: 502,
-        headers: { 'Content-Type': 'application/json' },
+        endpoint: BOLDTRAIL_API_URL,
+        response: responseData,
+        lead: leadData,
       });
+      return json(
+        {
+          error: 'Failed to submit lead',
+          status: res.status,
+          details: responseData,
+        },
+        502
+      );
     }
 
-    return new Response(JSON.stringify({ success: true, data: responseData }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    console.log('[lead] BoldTrail accepted submission', { email, source: leadData.source });
+    return json({ success: true, data: responseData }, 200);
   } catch (err) {
-    console.error('Lead submission error:', err);
-    return new Response(JSON.stringify({ error: 'Internal server error' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    // Always log the lead payload even on unexpected errors.
+    console.error('[lead] Unhandled error', { error: err, lead: leadData });
+    return json({ error: 'Internal server error' }, 500);
   }
 };
+
+function json(data: unknown, status: number) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  });
+}
