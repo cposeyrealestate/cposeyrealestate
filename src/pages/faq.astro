@@ -276,20 +276,6 @@ const allFaqs = faqCategories.flatMap((cat) => cat.questions);
   <Footer />
 </Layout>
 
-<!-- FAQ Schema for SEO -->
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqCategories.flatMap(cat => cat.questions.map(item => ({
-    "@type": "Question",
-    "name": item.q,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": item.a,
-    },
-  }))),
-})} />
-
 <style>
   .faq-hero {
     position: relative;

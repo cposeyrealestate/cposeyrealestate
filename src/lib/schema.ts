@@ -202,7 +202,17 @@ export function reviewsSchema(reviews: Array<{ name: string; role?: string; quot
   return reviews.map((r) => ({
     '@context': 'https://schema.org',
     '@type': 'Review',
-    itemReviewed: { '@id': BUSINESS_ID },
+    // Inline the reviewed entity so Google's Rich Results validator can
+    // classify it without needing to follow the @id reference across
+    // separate JSON-LD blocks. The @id is retained so the reviews still
+    // attach to the same business entity in the entity graph.
+    itemReviewed: {
+      '@type': 'RealEstateAgent',
+      '@id': BUSINESS_ID,
+      name: seo.site.name,
+      image: seo.person.image,
+      url: SITE,
+    },
     author: { '@type': 'Person', name: r.name, ...(r.role && { jobTitle: r.role }) },
     reviewBody: r.quote,
     reviewRating: {
@@ -287,8 +297,26 @@ export function blogPostingSchema(post: {
     image: post.featuredImage || seo.site.defaultOgImage,
     datePublished: post.dateRaw,
     dateModified: post.dateRaw,
-    author: { '@id': PERSON_ID },
-    publisher: { '@id': BUSINESS_ID },
+    // Inline author/publisher so Google's Rich Results validator can
+    // classify them without resolving @id across JSON-LD blocks.
+    // The @id is retained so entity graph linking still works.
+    author: {
+      '@type': 'Person',
+      '@id': PERSON_ID,
+      name: seo.person.name,
+      url: SITE,
+      image: seo.person.image,
+    },
+    publisher: {
+      '@type': 'RealEstateAgent',
+      '@id': BUSINESS_ID,
+      name: seo.site.name,
+      url: SITE,
+      logo: {
+        '@type': 'ImageObject',
+        url: seo.brokerage.logo,
+      },
+    },
     articleSection: post.category || 'Blog',
     mainEntityOfPage: {
       '@type': 'WebPage',
@@ -334,6 +362,12 @@ export function articleSchema(article: {
   dateModified?: string;
 }) {
   const url = new URL(article.url, SITE).toString();
+  // Resolve image: use the article's image if provided, otherwise fall
+  // back to the site-wide default OG image so every Article schema has
+  // a valid 'image' (Google prefers it present even though it's optional).
+  const image = article.image
+    ? (article.image.startsWith('http') ? article.image : new URL(article.image, SITE).toString())
+    : seo.site.defaultOgImage;
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -341,11 +375,26 @@ export function articleSchema(article: {
     headline: article.title,
     description: article.description,
     url,
-    ...(article.image && {
-      image: article.image.startsWith('http') ? article.image : new URL(article.image, SITE).toString(),
-    }),
-    author: { '@id': PERSON_ID },
-    publisher: { '@id': BUSINESS_ID },
+    image,
+    // Inline author/publisher so Google's Rich Results validator can
+    // classify them without resolving @id across JSON-LD blocks.
+    author: {
+      '@type': 'Person',
+      '@id': PERSON_ID,
+      name: seo.person.name,
+      url: SITE,
+      image: seo.person.image,
+    },
+    publisher: {
+      '@type': 'RealEstateAgent',
+      '@id': BUSINESS_ID,
+      name: seo.site.name,
+      url: SITE,
+      logo: {
+        '@type': 'ImageObject',
+        url: seo.brokerage.logo,
+      },
+    },
     ...(article.datePublished && { datePublished: article.datePublished }),
     ...(article.dateModified && { dateModified: article.dateModified || article.datePublished }),
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
