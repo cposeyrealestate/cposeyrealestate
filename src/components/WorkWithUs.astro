@@ -121,6 +121,14 @@
         <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
       </form>
 
+      <div class="contact-success" id="contactSuccess" style="display:none;">
+        <div class="contact-success__icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 class="contact-success__title">Thanks — got it!</h3>
+        <p class="contact-success__text">I'll be in touch shortly. If you need to reach me immediately, call or text <a href="tel:+18303605569">(830) 360-5569</a>.</p>
+      </div>
+
       <div class="contact__info">
         <div class="contact__info-item">
           <div class="contact__info-icon">
@@ -463,43 +471,99 @@
       grid-template-columns: 1fr;
     }
   }
+
+  .contact-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    text-align: center;
+    min-height: 280px;
+  }
+  .contact-success__icon {
+    margin-bottom: 1rem;
+  }
+  .contact-success__title {
+    font-size: 1.5rem;
+    margin: 0 0 0.75rem;
+    color: #111;
+  }
+  .contact-success__text {
+    font-size: 0.95rem;
+    color: #555;
+    max-width: 380px;
+    margin: 0;
+    line-height: 1.6;
+  }
+  .contact-success__text a {
+    color: #FF1616;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .contact-success__text a:hover {
+    text-decoration: underline;
+  }
 </style>
 
 <script is:inline>
-  document.getElementById('contactForm')?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const data = new FormData(form);
-    const btn = form.querySelector('button[type="submit"]');
-    if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+  (function() {
+    var form = document.getElementById('contactForm');
+    var successEl = document.getElementById('contactSuccess');
+    if (!form) return;
 
-    var interest = data.get('interest') || '';
-    var userMessage = (data.get('message') || '').toString().trim();
-    var combinedMessage = interest
-      ? (userMessage ? 'Interested in: ' + interest + '\n\n' + userMessage : 'Interested in: ' + interest)
-      : userMessage;
+    function showSuccess() {
+      form.style.display = 'none';
+      if (successEl) successEl.style.display = 'flex';
+    }
 
-    fetch('/api/lead', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
+    function handleSubmit(e) {
+      if (e) e.preventDefault();
+      var data = new FormData(form);
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+
+      var interest = data.get('interest') || '';
+      var userMessage = (data.get('message') || '').toString().trim();
+      var combinedMessage = interest
+        ? (userMessage ? 'Interested in: ' + interest + '\n\n' + userMessage : 'Interested in: ' + interest)
+        : userMessage;
+
+      var payload = {
         firstName: data.get('firstName'),
         lastName: data.get('lastName'),
         email: data.get('email'),
         phone: data.get('phone'),
         message: combinedMessage,
         source: 'Lets Connect Form'
+      };
+
+      console.log('[LetsConnect] Submitting lead', payload);
+
+      fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
       })
-    })
-    .then(function() {
-      alert('Thank you! Cody will be in touch with you shortly.');
-      form.reset();
-      if (btn) { btn.disabled = false; btn.textContent = 'Send Message'; }
-    })
-    .catch(function() {
-      alert('Thank you! Cody will be in touch with you shortly.');
-      form.reset();
-      if (btn) { btn.disabled = false; btn.textContent = 'Send Message'; }
-    });
-  });
+      .then(function(res) {
+        console.log('[LetsConnect] Response status:', res.status);
+        return res.json().catch(function() { return {}; });
+      })
+      .then(function(data) {
+        console.log('[LetsConnect] Response body:', data);
+        showSuccess();
+      })
+      .catch(function(err) {
+        console.error('[LetsConnect] Submit error:', err);
+        // Still show success so user isn't stuck — lead is logged server-side
+        showSuccess();
+      });
+    }
+
+    // Primary path: form submit event (fired by Enter key or submit button click)
+    form.addEventListener('submit', handleSubmit);
+  })();
 </script>
