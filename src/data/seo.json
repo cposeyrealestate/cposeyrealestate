@@ -65,7 +65,7 @@
 
   "hours": [
     { "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "09:00", "closes": "21:00" },
-    { "days": ["Sunday"], "notes": "By appointment only" }
+    { "days": ["Sunday"], "opens": "12:00", "closes": "20:00" }
   ],
 
   "serviceArea": [
