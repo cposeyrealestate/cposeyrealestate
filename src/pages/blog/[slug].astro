@@ -77,6 +77,22 @@ const metaDescription = (post.excerpt || `${post.category}: ${post.title}`)
       </div>
     </article>
 
+    {Array.isArray(post.faqItems) && post.faqItems.length > 0 && (
+      <section class="post-faq section">
+        <div class="container">
+          <h2 class="post-faq__heading">Frequently Asked Questions</h2>
+          <dl class="post-faq__list">
+            {post.faqItems.map((item: { q: string; a: string }) => (
+              <div class="post-faq__item">
+                <dt class="post-faq__q">{item.q}</dt>
+                <dd class="post-faq__a">{item.a}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+    )}
+
     <!-- Back to Blog -->
     <section class="section" style="background: var(--light-gray); text-align: center;">
       <div class="container">
@@ -264,5 +280,50 @@ const metaDescription = (post.excerpt || `${post.category}: ${post.title}`)
   .post-content__body :global(th) {
     background: #f5f5f5;
     font-weight: 700;
+  }
+
+  /* FAQ section (rendered from post.faqItems, if present) */
+  .post-faq {
+    background: #fafafa;
+    border-top: 1px solid var(--light-gray);
+  }
+
+  .post-faq__heading {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    margin: 0 auto 2rem;
+    color: #000;
+    max-width: 750px;
+    text-align: left;
+    letter-spacing: 0.04em;
+  }
+
+  .post-faq__list {
+    max-width: 750px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .post-faq__item {
+    border-left: 3px solid #FF1616;
+    padding: 0.25rem 0 0.25rem 1.25rem;
+  }
+
+  .post-faq__q {
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+    line-height: 1.4;
+  }
+
+  .post-faq__a {
+    margin: 0;
+    color: #333;
+    line-height: 1.75;
+    font-size: 1rem;
   }
 </style>
