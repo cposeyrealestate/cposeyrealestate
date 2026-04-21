@@ -1,0 +1,266 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { breadcrumbSchema } from '../lib/schema';
+
+const pageTitle = 'Privacy Policy | Cody Posey Real Estate';
+const pageDescription = 'How Cody Posey Real Estate and Popby Realty collect, use, and protect your information on cposeyrealestate.com.';
+const lastUpdated = 'April 20, 2026';
+
+const pageSchema = [
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Privacy Policy', url: '/privacy' },
+  ]),
+];
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
+  noindex={false}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+    <section class="privacy-hero">
+      <div class="privacy-hero__overlay"></div>
+      <div class="privacy-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <span>Privacy Policy</span>
+        </nav>
+        <h1>Privacy <span style="color:#FF1616;">Policy</span></h1>
+        <p>How we collect, use, and protect your information</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container privacy-body">
+        <p class="privacy-updated">Last updated: {lastUpdated}</p>
+
+        <p>
+          This Privacy Policy describes how Cody Posey, a licensed Texas real estate agent with Popby Realty, collects and uses information from visitors to <strong>cposeyrealestate.com</strong> (the "Site"). By using the Site, you agree to the practices described here.
+        </p>
+
+        <h2>Information We Collect</h2>
+        <p>We collect information in two ways:</p>
+        <h3>Information You Provide</h3>
+        <p>When you fill out a form on the Site — the contact form, home valuation request, or any lead form — we collect the information you choose to submit, which typically includes:</p>
+        <ul>
+          <li>Your name</li>
+          <li>Email address</li>
+          <li>Phone number</li>
+          <li>Property address or general area of interest (when applicable)</li>
+          <li>Any message or context you include</li>
+        </ul>
+
+        <h3>Information Collected Automatically</h3>
+        <p>
+          When you visit the Site, our hosting provider (Cloudflare) and our server logs may automatically record basic technical information — your IP address, browser type, pages visited, and referring site — for security, performance, and fraud prevention. This is standard for any modern website.
+        </p>
+
+        <h2>How We Use Your Information</h2>
+        <p>We use the information you provide to:</p>
+        <ul>
+          <li>Respond to your inquiry about buying, selling, or touring homes</li>
+          <li>Send property recommendations, market updates, or other real estate information you request</li>
+          <li>Follow up on home valuation requests</li>
+          <li>Comply with legal, regulatory, and professional obligations (including those of the Texas Real Estate Commission)</li>
+        </ul>
+        <p>We do not sell your personal information.</p>
+
+        <h2>Third-Party Services</h2>
+        <p>
+          Some features of the Site take you to platforms operated by third parties, each with their own privacy practices:
+        </p>
+        <ul>
+          <li><strong>IDX Broker (Home Search):</strong> When you search for existing homes for sale, you are directed to listings powered by IDX Broker, which operates under its own privacy policy.</li>
+          <li><strong>New Home Buddy (New Construction):</strong> When you use the New Construction search, you are directed to a branded portal operated by New Home Buddy, which operates under its own privacy policy.</li>
+          <li><strong>Cloudflare (Hosting):</strong> The Site is hosted on Cloudflare, which may set essential security cookies required to deliver the Site safely.</li>
+        </ul>
+        <p>
+          We may also share your contact information with our brokerage (Popby Realty), lenders or service providers you specifically request an introduction to, or as required by law.
+        </p>
+
+        <h2>Cookies</h2>
+        <p>
+          A "cookie" is a small piece of data stored by your browser. Our Site uses a minimal set of cookies:
+        </p>
+        <ul>
+          <li><strong>Essential cookies</strong> set by our hosting provider (Cloudflare) to protect the Site from abuse and maintain session integrity.</li>
+          <li><strong>A consent cookie</strong> that remembers your acknowledgment of our cookie banner so it does not reappear on every visit.</li>
+        </ul>
+        <p>
+          We do not run Google Analytics, Meta Pixel, or any advertising, retargeting, or behavioral tracking on this Site. If you follow a link to IDX Broker, New Home Buddy, or any other third-party site, those services may set their own cookies, which are governed by their privacy policies.
+        </p>
+        <p>
+          You can disable or delete cookies in your browser settings. The Site will continue to work, though some features may be affected.
+        </p>
+
+        <h2>Your Choices</h2>
+        <p>You can:</p>
+        <ul>
+          <li>Decline to submit information through our forms — this limits our ability to respond to you, but you can still browse the Site.</li>
+          <li>Ask us to stop contacting you at any time by replying "stop" to a text, unsubscribing from email, or emailing us directly.</li>
+          <li>Request a copy of the information we have about you, or ask us to correct or delete it, by contacting us at the email below. We will respond in a reasonable time frame.</li>
+        </ul>
+
+        <h2>Texas Residents</h2>
+        <p>
+          Texas residents have rights under the Texas Data Privacy and Security Act (TDPSA), including the right to access, correct, or delete personal data we hold about you, and the right to opt out of the sale of personal data or targeted advertising. We do not sell personal data or engage in targeted advertising. To exercise any of these rights, contact us using the information below.
+        </p>
+
+        <h2>Children's Privacy</h2>
+        <p>
+          The Site is not directed at children under 13, and we do not knowingly collect personal information from children. If you believe a child has submitted information to us, please contact us so we can remove it.
+        </p>
+
+        <h2>Security</h2>
+        <p>
+          We take reasonable steps to protect the information you provide — encrypted connections (HTTPS), a reputable hosting provider, and limited internal access to contact details. No online transmission is fully secure, however, and we cannot guarantee absolute security.
+        </p>
+
+        <h2>Updates to This Policy</h2>
+        <p>
+          We may update this Privacy Policy from time to time. When we do, we will revise the "Last updated" date at the top of this page. Material changes will be posted on the Site.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          If you have questions about this Privacy Policy or wish to exercise any of the rights described here, contact:
+        </p>
+        <p>
+          <strong>Cody Posey</strong><br />
+          Popby Realty<br />
+          323 Arendes Dr, New Braunfels, TX 78130<br />
+          Phone: <a href="tel:+18303605569">(830) 360-5569</a><br />
+          Email: <a href="mailto:codyposey@cposeyrealestate.com">codyposey@cposeyrealestate.com</a>
+        </p>
+
+        <p class="privacy-note">
+          <em>
+            This Privacy Policy is provided for informational purposes and is not legal advice. For questions about your specific situation, consult a licensed attorney.
+          </em>
+        </p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .privacy-hero {
+    position: relative;
+    height: 240px;
+    background: url('/images/generated/home-nb-modern.png') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .privacy-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .privacy-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .privacy-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .privacy-hero__content p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .breadcrumb a {
+    color: rgba(255, 255, 255, 0.55);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  .privacy-body {
+    max-width: 800px;
+    color: var(--gray);
+    line-height: 1.75;
+    font-size: 0.95rem;
+  }
+
+  .privacy-body h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #000;
+  }
+
+  .privacy-body h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: #000;
+  }
+
+  .privacy-body p {
+    margin-bottom: 1rem;
+  }
+
+  .privacy-body ul {
+    margin: 0 0 1.25rem 1.25rem;
+    padding-left: 0.25rem;
+  }
+
+  .privacy-body li {
+    margin-bottom: 0.4rem;
+  }
+
+  .privacy-body a {
+    color: #FF1616;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .privacy-body a:hover {
+    color: #000;
+  }
+
+  .privacy-updated {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 2rem;
+  }
+
+  .privacy-note {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+    font-size: 0.85rem;
+    color: #888;
+  }
+</style>

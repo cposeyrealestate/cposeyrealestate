@@ -1,0 +1,123 @@
+---
+---
+
+<div class="cookie-banner" id="cookieBanner" hidden>
+  <div class="cookie-banner__inner">
+    <p class="cookie-banner__text">
+      This site uses cookies to improve your experience. By continuing to use the site, you accept our cookie use.
+      <a href="/privacy" class="cookie-banner__link">Privacy Policy</a>
+    </p>
+    <button type="button" class="cookie-banner__accept" id="cookieBannerAccept">
+      Got it
+    </button>
+  </div>
+</div>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #000;
+    color: #fff;
+    border-top: 2px solid #FF1616;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+    padding: 1rem 1.25rem;
+    z-index: 95;
+  }
+
+  .cookie-banner__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .cookie-banner__text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.5;
+    margin: 0;
+    flex: 1;
+  }
+
+  .cookie-banner__link {
+    color: #FF1616;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    margin-left: 0.25rem;
+    transition: color 0.2s;
+  }
+
+  .cookie-banner__link:hover {
+    color: #fff;
+  }
+
+  .cookie-banner__accept {
+    background: #FF1616;
+    color: #fff;
+    border: none;
+    padding: 0.65rem 1.4rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+
+  .cookie-banner__accept:hover {
+    background: #cc1212;
+  }
+
+  @media (max-width: 700px) {
+    .cookie-banner {
+      padding: 0.85rem 1rem;
+      padding-bottom: calc(0.85rem + env(safe-area-inset-bottom, 0));
+    }
+
+    .cookie-banner__inner {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+    }
+
+    .cookie-banner__text {
+      font-size: 0.75rem;
+      text-align: center;
+    }
+
+    .cookie-banner__accept {
+      width: 100%;
+      padding: 0.75rem 1rem;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var STORAGE_KEY = 'cookieConsent.v1';
+    var banner = document.getElementById('cookieBanner');
+    var acceptBtn = document.getElementById('cookieBannerAccept');
+    if (!banner || !acceptBtn) return;
+
+    var accepted = false;
+    try {
+      accepted = localStorage.getItem(STORAGE_KEY) === 'accepted';
+    } catch (_) { /* storage blocked — show banner anyway */ }
+
+    if (!accepted) banner.hidden = false;
+
+    acceptBtn.addEventListener('click', function () {
+      try { localStorage.setItem(STORAGE_KEY, 'accepted'); } catch (_) {}
+      banner.hidden = true;
+    });
+  })();
+</script>

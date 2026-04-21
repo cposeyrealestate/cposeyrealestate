@@ -1,5 +1,6 @@
 ---
 import SEO from '../components/SEO.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 import seo from '../data/seo.json';
 
 export interface Props {
@@ -53,9 +54,17 @@ const {
       author={author}
       tags={tags}
     />
+
+    <!-- Privacy-friendly analytics by Plausible -->
+    <script async src="https://plausible.io/js/pa-h5TNqTBUNL1OihFlOO-iG.js"></script>
+    <script is:inline>
+      window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+      plausible.init()
+    </script>
   </head>
   <body>
     <slot />
+    <CookieBanner />
   </body>
 </html>
 

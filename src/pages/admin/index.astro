@@ -1,0 +1,973 @@
+---
+export const prerender = false;
+
+import SEO from '../../components/SEO.astro';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Admin Dashboard · Cody Posey Real Estate</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"
+      defer
+      is:inline></script>
+  </head>
+
+  <body>
+    <div class="admin-shell">
+      <!-- Header -->
+      <header class="admin-header">
+        <div class="admin-header__left">
+          <h1 class="admin-header__title">Site Analytics</h1>
+          <p class="admin-header__sub">cposeyrealestate.com</p>
+        </div>
+        <div class="admin-header__right">
+          <label class="range-select">
+            <span>Range</span>
+            <select id="dateRange">
+              <option value="7d">Last 7 days</option>
+              <option value="28d" selected>Last 28 days</option>
+              <option value="91d">Last 91 days</option>
+              <option value="12mo">Last 12 months</option>
+            </select>
+          </label>
+          <a href="/" class="back-link">← View site</a>
+        </div>
+      </header>
+
+      <!-- Global error banner -->
+      <div id="errorBanner" class="error-banner" hidden></div>
+
+      <!-- Scorecards -->
+      <section class="scorecards" aria-label="Headline metrics">
+        <div class="scorecard" data-metric="visitors">
+          <div class="scorecard__label">Unique Visitors</div>
+          <div class="scorecard__value" data-role="value">—</div>
+          <div class="scorecard__delta" data-role="delta"></div>
+        </div>
+        <div class="scorecard" data-metric="visits">
+          <div class="scorecard__label">Total Visits</div>
+          <div class="scorecard__value" data-role="value">—</div>
+          <div class="scorecard__delta" data-role="delta"></div>
+        </div>
+        <div class="scorecard" data-metric="pageviews">
+          <div class="scorecard__label">Pageviews</div>
+          <div class="scorecard__value" data-role="value">—</div>
+          <div class="scorecard__delta" data-role="delta"></div>
+        </div>
+        <div class="scorecard" data-metric="visit_duration">
+          <div class="scorecard__label">Avg. Visit Duration</div>
+          <div class="scorecard__value" data-role="value">—</div>
+          <div class="scorecard__delta" data-role="delta"></div>
+        </div>
+      </section>
+
+      <!-- Time series -->
+      <section class="card card--wide">
+        <header class="card__header">
+          <h2>Visits Over Time</h2>
+          <span class="card__hint" id="timeseriesHint"></span>
+        </header>
+        <div class="chart-wrap">
+          <canvas id="timeseriesChart"></canvas>
+        </div>
+      </section>
+
+      <!-- Top pages + Sources -->
+      <section class="grid-2">
+        <div class="card">
+          <header class="card__header">
+            <h2>Top Pages</h2>
+            <span class="card__hint">Most viewed pages</span>
+          </header>
+          <table class="data-table" id="topPagesTable">
+            <thead>
+              <tr><th>Page</th><th class="num">Visitors</th><th class="num">Views</th></tr>
+            </thead>
+            <tbody><tr><td colspan="3" class="empty">Loading…</td></tr></tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <header class="card__header">
+            <h2>Traffic Sources</h2>
+            <span class="card__hint">Where visitors come from</span>
+          </header>
+          <div class="chart-wrap chart-wrap--donut">
+            <canvas id="sourcesChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- Device + OS + Browser -->
+      <section class="grid-3">
+        <div class="card">
+          <header class="card__header"><h2>Device Type</h2></header>
+          <div class="chart-wrap chart-wrap--donut">
+            <canvas id="devicesChart"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <header class="card__header">
+            <h2>Mobile OS</h2>
+            <span class="card__hint">iOS vs Android (mobile only)</span>
+          </header>
+          <div class="chart-wrap chart-wrap--donut">
+            <canvas id="osChart"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <header class="card__header"><h2>Browsers</h2></header>
+          <table class="data-table data-table--compact" id="browsersTable">
+            <thead>
+              <tr><th>Browser</th><th class="num">Visitors</th></tr>
+            </thead>
+            <tbody><tr><td colspan="2" class="empty">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Geographic -->
+      <section class="card">
+        <header class="card__header">
+          <h2>Top Countries</h2>
+          <span class="card__hint">Where your visitors are based</span>
+        </header>
+        <table class="data-table" id="countriesTable">
+          <thead>
+            <tr><th>Country</th><th class="num">Visitors</th><th class="num">% of total</th></tr>
+          </thead>
+          <tbody><tr><td colspan="3" class="empty">Loading…</td></tr></tbody>
+        </table>
+      </section>
+
+      <!-- Search Console -->
+      <section class="card card--wide">
+        <header class="card__header">
+          <h2>Search Performance (Google)</h2>
+          <span class="card__hint" id="gscHint">What people search to find you · 3-day delay</span>
+        </header>
+        <div class="gsc-grid">
+          <div class="gsc-totals">
+            <div class="gsc-stat">
+              <div class="gsc-stat__label">Total Clicks</div>
+              <div class="gsc-stat__value" id="gscClicks">—</div>
+            </div>
+            <div class="gsc-stat">
+              <div class="gsc-stat__label">Impressions</div>
+              <div class="gsc-stat__value" id="gscImpressions">—</div>
+            </div>
+            <div class="gsc-stat">
+              <div class="gsc-stat__label">Avg. CTR</div>
+              <div class="gsc-stat__value" id="gscCtr">—</div>
+            </div>
+            <div class="gsc-stat">
+              <div class="gsc-stat__label">Avg. Position</div>
+              <div class="gsc-stat__value" id="gscPosition">—</div>
+            </div>
+          </div>
+          <table class="data-table" id="gscQueriesTable">
+            <thead>
+              <tr>
+                <th>Query</th>
+                <th class="num">Clicks</th>
+                <th class="num">Impr.</th>
+                <th class="num">CTR</th>
+                <th class="num">Pos.</th>
+              </tr>
+            </thead>
+            <tbody><tr><td colspan="5" class="empty">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer class="admin-footer">
+        <span>Last refresh: <span id="lastRefresh">—</span></span>
+        <button id="refreshBtn" class="btn">Refresh</button>
+      </footer>
+    </div>
+
+    <style>
+      :root {
+        --bg: #0a0a0a;
+        --panel: #141414;
+        --panel-2: #1c1c1c;
+        --border: #262626;
+        --text: #fff;
+        --text-dim: rgba(255, 255, 255, 0.6);
+        --text-faint: rgba(255, 255, 255, 0.35);
+        --accent: #FF1616;
+        --accent-soft: rgba(255, 22, 22, 0.15);
+        --green: #1cd37a;
+        --green-soft: rgba(28, 211, 122, 0.12);
+        --red: #ff4d6a;
+        --red-soft: rgba(255, 77, 106, 0.12);
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      a { color: inherit; }
+
+      .admin-shell {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 1.5rem 1.5rem 3rem;
+      }
+
+      /* Header */
+      .admin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 1rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+      }
+      .admin-header__title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0;
+        letter-spacing: -0.01em;
+      }
+      .admin-header__sub {
+        font-size: 0.8rem;
+        color: var(--text-dim);
+        margin: 0.25rem 0 0;
+      }
+      .admin-header__right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .range-select {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8rem;
+        color: var(--text-dim);
+      }
+      .range-select select {
+        background: var(--panel);
+        color: var(--text);
+        border: 1px solid var(--border);
+        padding: 0.5rem 0.75rem;
+        font-family: inherit;
+        font-size: 0.8rem;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .range-select select:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+      .back-link {
+        font-size: 0.75rem;
+        color: var(--text-dim);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        transition: color 0.2s;
+      }
+      .back-link:hover { color: var(--accent); }
+
+      /* Error banner */
+      .error-banner {
+        background: var(--red-soft);
+        border: 1px solid var(--red);
+        color: var(--red);
+        padding: 0.85rem 1rem;
+        margin-bottom: 1.25rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
+      }
+
+      /* Scorecards */
+      .scorecards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+      .scorecard {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        padding: 1.15rem 1.25rem;
+        border-radius: 4px;
+      }
+      .scorecard__label {
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-dim);
+        margin-bottom: 0.5rem;
+      }
+      .scorecard__value {
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+      }
+      .scorecard__delta {
+        font-size: 0.72rem;
+        margin-top: 0.35rem;
+        color: var(--text-faint);
+        min-height: 1em;
+      }
+      .scorecard__delta.up { color: var(--green); }
+      .scorecard__delta.down { color: var(--red); }
+
+      /* Cards + grids */
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 1.25rem;
+        margin-bottom: 1.25rem;
+      }
+      .card--wide { width: 100%; }
+      .card__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+      }
+      .card__header h2 {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin: 0;
+        font-weight: 600;
+      }
+      .card__hint {
+        font-size: 0.72rem;
+        color: var(--text-faint);
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr;
+        gap: 1.25rem;
+        margin-bottom: 1.25rem;
+      }
+      .grid-2 .card { margin-bottom: 0; }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1.25rem;
+        margin-bottom: 1.25rem;
+      }
+      .grid-3 .card { margin-bottom: 0; }
+
+      /* Charts */
+      .chart-wrap {
+        position: relative;
+        height: 320px;
+        width: 100%;
+      }
+      .chart-wrap--donut {
+        height: 260px;
+      }
+
+      /* Tables */
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.8rem;
+      }
+      .data-table th, .data-table td {
+        text-align: left;
+        padding: 0.55rem 0.6rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .data-table th {
+        color: var(--text-dim);
+        font-weight: 500;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .data-table td { color: var(--text); }
+      .data-table td.num, .data-table th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .data-table tbody tr:last-child td { border-bottom: none; }
+      .data-table tbody tr:hover td { background: var(--panel-2); }
+      .data-table td.empty {
+        text-align: center;
+        color: var(--text-faint);
+        padding: 2rem 0;
+      }
+      .data-table--compact th, .data-table--compact td {
+        padding: 0.4rem 0.5rem;
+      }
+      .data-table td.truncate {
+        max-width: 280px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      /* GSC */
+      .gsc-grid {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 1.5rem;
+        align-items: start;
+      }
+      .gsc-totals {
+        display: grid;
+        gap: 0.9rem;
+      }
+      .gsc-stat {
+        background: var(--panel-2);
+        padding: 0.8rem 0.9rem;
+        border-radius: 4px;
+        border: 1px solid var(--border);
+      }
+      .gsc-stat__label {
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-dim);
+        margin-bottom: 0.35rem;
+      }
+      .gsc-stat__value {
+        font-size: 1.35rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+
+      /* Footer */
+      .admin-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--border);
+        margin-top: 0.5rem;
+        font-size: 0.72rem;
+        color: var(--text-faint);
+      }
+      .btn {
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        padding: 0.55rem 1.1rem;
+        font-family: inherit;
+        font-size: 0.72rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        cursor: pointer;
+        border-radius: 3px;
+        transition: background 0.2s;
+      }
+      .btn:hover { background: #cc1212; }
+      .btn:disabled { opacity: 0.5; cursor: wait; }
+
+      /* Responsive */
+      @media (max-width: 1000px) {
+        .scorecards { grid-template-columns: repeat(2, 1fr); }
+        .grid-2, .grid-3 { grid-template-columns: 1fr; }
+        .gsc-grid { grid-template-columns: 1fr; }
+        .gsc-totals {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 600px) {
+        .admin-shell { padding: 1rem; }
+        .admin-header { flex-direction: column; align-items: flex-start; }
+        .admin-header__right { width: 100%; justify-content: space-between; }
+        .scorecards { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+        .scorecard__value { font-size: 1.45rem; }
+        .chart-wrap { height: 240px; }
+      }
+    </style>
+
+    <script is:inline>
+      // ============================================
+      // Admin Dashboard — Client Logic
+      // ============================================
+
+      const STATE = {
+        range: document.getElementById('dateRange').value,
+        charts: {}, // Chart.js instances, keyed by id
+      };
+
+      const COLORS = [
+        '#FF1616', '#ff6b6b', '#ffb86b', '#fdd562',
+        '#7ddd9f', '#4bc0c0', '#6c9dff', '#a78bfa',
+        '#f472b6', '#888',
+      ];
+
+      const fmt = {
+        int: (n) => Number(n || 0).toLocaleString('en-US'),
+        pct: (n) => (Number(n || 0)).toFixed(1) + '%',
+        duration: (sec) => {
+          const s = Number(sec || 0);
+          if (s < 60) return Math.round(s) + 's';
+          const m = Math.floor(s / 60);
+          const r = Math.round(s % 60);
+          return m + 'm ' + r + 's';
+        },
+        percentChange: (now, prev) => {
+          if (!prev || prev === 0) return now > 0 ? '+∞' : '±0%';
+          const diff = ((now - prev) / prev) * 100;
+          const sign = diff >= 0 ? '+' : '';
+          return sign + diff.toFixed(1) + '%';
+        },
+      };
+
+      function showError(msg) {
+        const b = document.getElementById('errorBanner');
+        b.textContent = msg;
+        b.hidden = false;
+      }
+
+      function clearError() {
+        const b = document.getElementById('errorBanner');
+        b.hidden = true;
+      }
+
+      // ---------- API helpers ----------
+
+      async function queryPlausible(body) {
+        const res = await fetch('/admin/api/plausible', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error('Plausible ' + res.status + ': ' + text.slice(0, 200));
+        }
+        return res.json();
+      }
+
+      async function queryGSC(body) {
+        const res = await fetch('/admin/api/gsc', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error('GSC ' + res.status + ': ' + text.slice(0, 200));
+        }
+        return res.json();
+      }
+
+      // ---------- Chart.js defaults ----------
+
+      function setupChartDefaults() {
+        if (typeof Chart === 'undefined') return;
+        Chart.defaults.color = 'rgba(255,255,255,0.65)';
+        Chart.defaults.font.family = "'Poppins', system-ui, sans-serif";
+        Chart.defaults.font.size = 11;
+        Chart.defaults.borderColor = 'rgba(255,255,255,0.08)';
+      }
+
+      function destroyChart(id) {
+        if (STATE.charts[id]) {
+          STATE.charts[id].destroy();
+          delete STATE.charts[id];
+        }
+      }
+
+      // ---------- Rendering ----------
+
+      async function loadScorecards() {
+        const metrics = ['visitors', 'visits', 'pageviews', 'visit_duration'];
+        const [curData, prevData] = await Promise.all([
+          queryPlausible({ metrics, date_range: STATE.range }),
+          queryPlausible({ metrics, date_range: previousPeriodRange(STATE.range) }),
+        ]);
+
+        const cur = (curData.results && curData.results[0] && curData.results[0].metrics) || [0, 0, 0, 0];
+        const prev = (prevData.results && prevData.results[0] && prevData.results[0].metrics) || [0, 0, 0, 0];
+
+        const setCard = (metric, value, prevValue, formatter) => {
+          const card = document.querySelector(
+            '.scorecard[data-metric="' + metric + '"]'
+          );
+          if (!card) return;
+          card.querySelector('[data-role="value"]').textContent =
+            formatter(value);
+          const delta = card.querySelector('[data-role="delta"]');
+          delta.textContent =
+            fmt.percentChange(value, prevValue) + ' vs previous period';
+          delta.classList.remove('up', 'down');
+          if (value > prevValue) delta.classList.add('up');
+          else if (value < prevValue) delta.classList.add('down');
+        };
+
+        setCard('visitors', cur[0], prev[0], fmt.int);
+        setCard('visits', cur[1], prev[1], fmt.int);
+        setCard('pageviews', cur[2], prev[2], fmt.int);
+        setCard('visit_duration', cur[3], prev[3], fmt.duration);
+      }
+
+      function previousPeriodRange(range) {
+        const days = { '7d': 7, '28d': 28, '91d': 91, '12mo': 365 }[range] || 28;
+        const end = new Date();
+        end.setDate(end.getDate() - days);
+        const start = new Date(end);
+        start.setDate(end.getDate() - days + 1);
+        const iso = (d) => d.toISOString().slice(0, 10);
+        return [iso(start), iso(end)];
+      }
+
+      async function loadTimeSeries() {
+        const data = await queryPlausible({
+          metrics: ['visitors', 'pageviews'],
+          date_range: STATE.range,
+          dimensions: ['time:day'],
+        });
+
+        const rows = data.results || [];
+        const labels = rows.map((r) => r.dimensions[0]);
+        const visitors = rows.map((r) => r.metrics[0]);
+        const pageviews = rows.map((r) => r.metrics[1]);
+
+        destroyChart('timeseriesChart');
+        const ctx = document.getElementById('timeseriesChart').getContext('2d');
+        STATE.charts.timeseriesChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels,
+            datasets: [
+              {
+                label: 'Unique Visitors',
+                data: visitors,
+                borderColor: '#FF1616',
+                backgroundColor: 'rgba(255,22,22,0.12)',
+                borderWidth: 2,
+                fill: true,
+                tension: 0.35,
+                pointRadius: 0,
+                pointHoverRadius: 5,
+              },
+              {
+                label: 'Pageviews',
+                data: pageviews,
+                borderColor: 'rgba(255,255,255,0.55)',
+                backgroundColor: 'rgba(255,255,255,0.04)',
+                borderWidth: 1.5,
+                borderDash: [4, 4],
+                fill: false,
+                tension: 0.35,
+                pointRadius: 0,
+                pointHoverRadius: 5,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+              legend: { position: 'bottom', labels: { boxWidth: 12 } },
+              tooltip: { backgroundColor: '#000' },
+            },
+            scales: {
+              x: { grid: { display: false }, ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 10 } },
+              y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' } },
+            },
+          },
+        });
+      }
+
+      async function loadTopPages() {
+        const data = await queryPlausible({
+          metrics: ['visitors', 'pageviews'],
+          date_range: STATE.range,
+          dimensions: ['event:page'],
+          pagination: { limit: 10 },
+        });
+
+        const tbody = document.querySelector('#topPagesTable tbody');
+        const rows = data.results || [];
+        if (!rows.length) {
+          tbody.innerHTML = '<tr><td colspan="3" class="empty">No data yet</td></tr>';
+          return;
+        }
+        tbody.innerHTML = rows
+          .map((r) => {
+            const page = r.dimensions[0] || '/';
+            return (
+              '<tr><td class="truncate" title="' + escapeHtml(page) + '">' +
+              escapeHtml(page) +
+              '</td><td class="num">' +
+              fmt.int(r.metrics[0]) +
+              '</td><td class="num">' +
+              fmt.int(r.metrics[1]) +
+              '</td></tr>'
+            );
+          })
+          .join('');
+      }
+
+      async function loadDonut(canvasId, dimension, extra) {
+        const query = {
+          metrics: ['visitors'],
+          date_range: STATE.range,
+          dimensions: [dimension],
+          pagination: { limit: 8 },
+        };
+        if (extra) Object.assign(query, extra);
+
+        const data = await queryPlausible(query);
+        const rows = data.results || [];
+        const labels = rows.map((r) => r.dimensions[0] || '—');
+        const values = rows.map((r) => r.metrics[0]);
+
+        destroyChart(canvasId);
+        const ctx = document.getElementById(canvasId).getContext('2d');
+        STATE.charts[canvasId] = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels,
+            datasets: [
+              {
+                data: values,
+                backgroundColor: COLORS.slice(0, labels.length),
+                borderColor: 'transparent',
+                borderWidth: 0,
+                hoverOffset: 6,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '65%',
+            plugins: {
+              legend: {
+                position: 'right',
+                labels: { boxWidth: 10, padding: 10, font: { size: 11 } },
+              },
+              tooltip: { backgroundColor: '#000' },
+            },
+          },
+        });
+      }
+
+      async function loadBrowsers() {
+        const data = await queryPlausible({
+          metrics: ['visitors'],
+          date_range: STATE.range,
+          dimensions: ['visit:browser'],
+          pagination: { limit: 8 },
+        });
+        const tbody = document.querySelector('#browsersTable tbody');
+        const rows = data.results || [];
+        if (!rows.length) {
+          tbody.innerHTML = '<tr><td colspan="2" class="empty">No data</td></tr>';
+          return;
+        }
+        tbody.innerHTML = rows
+          .map(
+            (r) =>
+              '<tr><td>' +
+              escapeHtml(r.dimensions[0] || '—') +
+              '</td><td class="num">' +
+              fmt.int(r.metrics[0]) +
+              '</td></tr>'
+          )
+          .join('');
+      }
+
+      async function loadCountries() {
+        const data = await queryPlausible({
+          metrics: ['visitors'],
+          date_range: STATE.range,
+          dimensions: ['visit:country'],
+          pagination: { limit: 10 },
+        });
+        const tbody = document.querySelector('#countriesTable tbody');
+        const rows = data.results || [];
+        if (!rows.length) {
+          tbody.innerHTML = '<tr><td colspan="3" class="empty">No data</td></tr>';
+          return;
+        }
+        const total = rows.reduce((s, r) => s + r.metrics[0], 0) || 1;
+        tbody.innerHTML = rows
+          .map((r) => {
+            const v = r.metrics[0];
+            const pct = ((v / total) * 100).toFixed(1) + '%';
+            return (
+              '<tr><td>' +
+              countryName(r.dimensions[0]) +
+              '</td><td class="num">' +
+              fmt.int(v) +
+              '</td><td class="num">' +
+              pct +
+              '</td></tr>'
+            );
+          })
+          .join('');
+      }
+
+      async function loadSearchConsole() {
+        // Map range to date strings
+        const { start, end } = rangeToDates(STATE.range);
+
+        // Totals (no dimensions)
+        let totals;
+        try {
+          totals = await queryGSC({ startDate: start, endDate: end });
+        } catch (e) {
+          showError('Search Console error: ' + e.message);
+          return;
+        }
+        const t = (totals.rows && totals.rows[0]) || {
+          clicks: 0, impressions: 0, ctr: 0, position: 0,
+        };
+        document.getElementById('gscClicks').textContent = fmt.int(t.clicks);
+        document.getElementById('gscImpressions').textContent = fmt.int(t.impressions);
+        document.getElementById('gscCtr').textContent = (t.ctr * 100).toFixed(2) + '%';
+        document.getElementById('gscPosition').textContent = Number(t.position || 0).toFixed(1);
+
+        // Top queries
+        const q = await queryGSC({
+          startDate: start,
+          endDate: end,
+          dimensions: ['query'],
+          rowLimit: 20,
+        });
+        const tbody = document.querySelector('#gscQueriesTable tbody');
+        const rows = q.rows || [];
+        if (!rows.length) {
+          tbody.innerHTML = '<tr><td colspan="5" class="empty">No data yet</td></tr>';
+          return;
+        }
+        tbody.innerHTML = rows
+          .map(
+            (r) =>
+              '<tr><td class="truncate" title="' +
+              escapeHtml(r.keys[0]) +
+              '">' +
+              escapeHtml(r.keys[0]) +
+              '</td><td class="num">' +
+              fmt.int(r.clicks) +
+              '</td><td class="num">' +
+              fmt.int(r.impressions) +
+              '</td><td class="num">' +
+              (r.ctr * 100).toFixed(1) +
+              '%</td><td class="num">' +
+              Number(r.position || 0).toFixed(1) +
+              '</td></tr>'
+          )
+          .join('');
+      }
+
+      // ---------- Utilities ----------
+
+      function rangeToDates(range) {
+        const end = new Date();
+        // GSC data lags ~3 days; shift endpoints back to avoid all-zero rows.
+        end.setDate(end.getDate() - 3);
+        const start = new Date(end);
+        const days = { '7d': 7, '28d': 28, '91d': 91, '12mo': 365 }[range] || 28;
+        start.setDate(end.getDate() - days + 1);
+        const iso = (d) => d.toISOString().slice(0, 10);
+        return { start: iso(start), end: iso(end) };
+      }
+
+      function escapeHtml(s) {
+        return String(s || '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function countryName(code) {
+        try {
+          const names = new Intl.DisplayNames(['en'], { type: 'region' });
+          return names.of(code) || code || '—';
+        } catch {
+          return code || '—';
+        }
+      }
+
+      // ---------- Orchestration ----------
+
+      async function refresh() {
+        const btn = document.getElementById('refreshBtn');
+        btn.disabled = true;
+        clearError();
+
+        try {
+          await Promise.all([
+            loadScorecards().catch((e) => showError('Scorecards: ' + e.message)),
+            loadTimeSeries().catch((e) => showError('Timeseries: ' + e.message)),
+            loadTopPages().catch((e) => showError('Top pages: ' + e.message)),
+            loadDonut('sourcesChart', 'visit:source').catch((e) =>
+              showError('Sources: ' + e.message)
+            ),
+            loadDonut('devicesChart', 'visit:device').catch((e) =>
+              showError('Devices: ' + e.message)
+            ),
+            loadDonut('osChart', 'visit:os', {
+              filters: [['is', 'visit:device', ['Mobile']]],
+            }).catch((e) => showError('OS: ' + e.message)),
+            loadBrowsers().catch((e) => showError('Browsers: ' + e.message)),
+            loadCountries().catch((e) => showError('Countries: ' + e.message)),
+            loadSearchConsole().catch((e) => showError('Search: ' + e.message)),
+          ]);
+
+          document.getElementById('lastRefresh').textContent =
+            new Date().toLocaleTimeString();
+        } finally {
+          btn.disabled = false;
+        }
+      }
+
+      // ---------- Init ----------
+
+      function init() {
+        setupChartDefaults();
+        document.getElementById('dateRange').addEventListener('change', (e) => {
+          STATE.range = e.target.value;
+          refresh();
+        });
+        document.getElementById('refreshBtn').addEventListener('click', refresh);
+        refresh();
+      }
+
+      // Wait for Chart.js (deferred) then init.
+      if (document.readyState === 'complete') {
+        init();
+      } else {
+        window.addEventListener('load', init);
+      }
+    </script>
+  </body>
+</html>

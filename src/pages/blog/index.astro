@@ -244,7 +244,9 @@ const blogSchema = {
     flex-wrap: wrap;
   }
   .blog-pagination:empty { display: none; }
-  .blog-pagination button {
+  /* Buttons are created at runtime via JS — use :global() so the scoped
+     CSS hash isn't required to match them. */
+  .blog-pagination :global(button) {
     min-width: 38px;
     height: 38px;
     padding: 0 12px;
@@ -258,14 +260,14 @@ const blogSchema = {
     cursor: pointer;
     transition: border-color .15s, background .15s, color .15s;
   }
-  .blog-pagination button:hover:not(:disabled):not(.active) { border-color: #111; }
-  .blog-pagination button.active {
+  .blog-pagination :global(button:hover:not(:disabled):not(.active)) { border-color: #111; }
+  .blog-pagination :global(button.active) {
     background: #FF1616;
     border-color: #FF1616;
     color: #fff;
   }
-  .blog-pagination button:disabled { opacity: 0.35; cursor: default; }
-  .blog-pagination button[data-dir] { font-weight: 600; }
+  .blog-pagination :global(button:disabled) { opacity: 0.35; cursor: default; }
+  .blog-pagination :global(button[data-dir]) { font-weight: 600; }
 </style>
 
 <script is:inline>
