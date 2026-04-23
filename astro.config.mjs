@@ -6,7 +6,7 @@ export default defineConfig({
   // Canonical production origin — used by @astrojs/sitemap and by
   // Astro.site everywhere for absolute URLs (canonical, og:url, etc.).
   site: 'https://cposeyrealestate.com',
-  output: 'hybrid',
+  output: 'static',
   adapter: cloudflare(),
   integrations: [
     sitemap({
