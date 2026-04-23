@@ -1,6 +1,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
+import { env } from 'cloudflare:workers';
 
 /**
  * Lead submission endpoint.
@@ -20,12 +21,8 @@ const BOLDTRAIL_API_URL =
   (import.meta.env.BOLDTRAIL_API_URL as string | undefined) ||
   'https://api.kvcore.com/v2/public/contact';
 
-export const POST: APIRoute = async ({ request, locals }) => {
-  // Cloudflare runtime puts secrets on locals.runtime.env; fall back to
-  // import.meta.env for local dev (wrangler dev / astro dev).
-  // @ts-expect-error locals.runtime is Cloudflare-specific
-  const envBag = locals?.runtime?.env ?? import.meta.env;
-  const apiKey: string | undefined = envBag.BOLDTRAIL_API_KEY;
+export const POST: APIRoute = async ({ request }) => {
+  const apiKey = (env as any).BOLDTRAIL_API_KEY as string | undefined;
 
   let leadData: Record<string, any> = {};
 

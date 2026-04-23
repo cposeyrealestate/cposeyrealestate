@@ -1,6 +1,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
+import { env } from 'cloudflare:workers';
 
 /**
  * Plausible Stats API proxy.
@@ -16,10 +17,8 @@ import type { APIRoute } from 'astro';
 const PLAUSIBLE_API_URL = 'https://plausible.io/api/v2/query';
 const SITE_ID = 'cposeyrealestate.com';
 
-export const POST: APIRoute = async ({ request, locals }) => {
-  // @ts-expect-error locals.runtime is Cloudflare-specific
-  const env = locals?.runtime?.env ?? import.meta.env;
-  const apiKey: string | undefined = env.PLAUSIBLE_API_KEY;
+export const POST: APIRoute = async ({ request }) => {
+  const apiKey = (env as any).PLAUSIBLE_API_KEY as string | undefined;
 
   if (!apiKey) {
     console.error('[admin/plausible] Missing PLAUSIBLE_API_KEY');

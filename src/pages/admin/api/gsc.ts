@@ -1,6 +1,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
+import { env } from 'cloudflare:workers';
 
 /**
  * Google Search Console API proxy.
@@ -30,10 +31,8 @@ interface ServiceAccount {
   token_uri?: string;
 }
 
-export const POST: APIRoute = async ({ request, locals }) => {
-  // @ts-expect-error locals.runtime is Cloudflare-specific
-  const env = locals?.runtime?.env ?? import.meta.env;
-  const saJsonRaw: string | undefined = env.GOOGLE_SERVICE_ACCOUNT_JSON;
+export const POST: APIRoute = async ({ request }) => {
+  const saJsonRaw = (env as any).GOOGLE_SERVICE_ACCOUNT_JSON as string | undefined;
 
   if (!saJsonRaw) {
     console.error('[admin/gsc] Missing GOOGLE_SERVICE_ACCOUNT_JSON');
