@@ -10,6 +10,9 @@
     <button type="button" class="cookie-banner__accept" id="cookieBannerAccept">
       Got it
     </button>
+    <button type="button" class="cookie-banner__close" id="cookieBannerClose" aria-label="Close cookie notice">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
   </div>
 </div>
 
@@ -77,6 +80,28 @@
     background: #cc1212;
   }
 
+  .cookie-banner__close {
+    background: transparent;
+    border: 0;
+    padding: 0.4rem;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: color 0.15s, background 0.15s;
+    flex-shrink: 0;
+  }
+
+  .cookie-banner__close:hover,
+  .cookie-banner__close:focus-visible {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    outline: none;
+  }
+
   @media (max-width: 700px) {
     .cookie-banner {
       padding: 0.85rem 1rem;
@@ -98,25 +123,43 @@
       width: 100%;
       padding: 0.75rem 1rem;
     }
+
+    .cookie-banner__close {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+    }
+
+    .cookie-banner {
+      position: fixed;
+    }
   }
 </style>
 
 <script is:inline>
   (function () {
-    var STORAGE_KEY = 'cookieConsent.v1';
+    var STORAGE_KEY = 'cookieConsent.v1';     // permanent accept (localStorage)
+    var SESSION_KEY = 'cookieConsent.dismiss'; // close-for-session (sessionStorage)
     var banner = document.getElementById('cookieBanner');
     var acceptBtn = document.getElementById('cookieBannerAccept');
+    var closeBtn = document.getElementById('cookieBannerClose');
     if (!banner || !acceptBtn) return;
 
     var accepted = false;
-    try {
-      accepted = localStorage.getItem(STORAGE_KEY) === 'accepted';
-    } catch (_) { /* storage blocked — show banner anyway */ }
+    var dismissed = false;
+    try { accepted = localStorage.getItem(STORAGE_KEY) === 'accepted'; } catch (_) {}
+    try { dismissed = sessionStorage.getItem(SESSION_KEY) === '1'; } catch (_) {}
 
-    if (!accepted) banner.hidden = false;
+    if (!accepted && !dismissed) banner.hidden = false;
 
     acceptBtn.addEventListener('click', function () {
       try { localStorage.setItem(STORAGE_KEY, 'accepted'); } catch (_) {}
+      banner.hidden = true;
+    });
+
+    closeBtn?.addEventListener('click', function () {
+      // Hide for this session only — does not record consent.
+      try { sessionStorage.setItem(SESSION_KEY, '1'); } catch (_) {}
       banner.hidden = true;
     });
   })();
