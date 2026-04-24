@@ -77,33 +77,49 @@
       "description": "Custom 4,164 SF two-story home built in 2007 in gated Seven Hills Ranch. Situated on 1.39 acres with mature heritage oaks, level topography, and greenbelt boundary backing to a protected Bat Conservation Area. Stone and stucco exterior with concrete roof and circular drive.\n\nOpen floor plan with 4 bedrooms, 3 full baths, dedicated study, formal dining, two living areas, and high ceilings. Living room features stone fireplace with gas logs and wide windows framing tree canopy and sunset views. Island kitchen with cooktop, double ovens, walk-in pantry, butler's pantry, breakfast area, and adjacent dining space.\n\nPrimary suite located on main level with outdoor access, walk-in closet, and bath with soaking tub and separate shower. Guest en-suite with private bath provides secondary primary option. Two additional bedrooms upstairs with shared hall bath and additional living/family room.\n\nExterior includes covered patio, heated in-ground pool and spa, wrought iron fencing, and expansive yard with mature oak trees. Property borders protected land providing unobstructed Hill Country views and added privacy.\n\nOversized 4-car garage accommodates vehicles, boat, or storage. Circular driveway allows additional parking and guest access.\n\nEnergy features include spray foam insulation, radiant barrier decking, double-pane windows, dehumidifier, HVAC (3+ units, zoned), ceiling fans, and electric water heater. Private well. Central vacuum system. Water softener (owned).\n\nInterior features include wood, tile, and carpet flooring; high ceilings; open living areas; utility room; attic with radiant barrier and partial flooring; security system (owned); and pre-wiring for security.\n\nLevel lot and level drive. Accessibility features include 36-inch-wide halls, first-floor bedroom, and first-floor bath.",
       "features": {
         "Interior": [
-          "Island kitchen with cooktop & double ovens",
-          "Walk-in pantry + butler's pantry",
-          "Two living areas with high ceilings",
-          "Fireplace with gas logs",
-          "Dedicated study / library",
-          "Main-level laundry",
-          "Central vacuum system",
-          "Security system"
+          ["Total Bedrooms", "4"],
+          ["Total Bathrooms", "3"],
+          ["Full Bathrooms", "3"],
+          ["Laundry Room", "Main Level"],
+          ["Flooring", "Carpet, Ceramic Tile, Wood"],
+          ["Fireplace", "Living Room, Gas Logs"],
+          ["Master Bedroom", "Main Level, Outside Access, Walk-In Closet, Full Bath"],
+          ["Master Bath", "Tub / Shower Separate"],
+          ["Appliances", "Cooktop, Double Ovens, Dishwasher, Disposal, Refrigerator, Self-Cleaning Oven, Water Softener (owned)"],
+          ["Other Interior Features", "Two Living Areas, Separate Dining Room, Island Kitchen, Walk-In Pantry, Study / Library, High Ceilings, Open Floor Plan, Walk-In Closets, Central Vacuum, Security System"]
         ],
         "Exterior": [
-          "Heated in-ground pool & spa",
-          "Covered patio",
-          "Wrought iron fencing",
-          "Mature heritage oak trees",
-          "Stone & stucco construction",
-          "Concrete roof",
-          "Circular driveway",
-          "Oversized 4-car garage"
+          ["Stories", "2"],
+          ["Garage", "Oversized 4-Car, Circular Driveway"],
+          ["Pool", "In-Ground, Heated, Adjoining Spa"],
+          ["Roof", "Concrete"],
+          ["Construction", "Stone, Stucco"],
+          ["Foundation", "Slab"],
+          ["Heat Type", "3+ Units, Electric"],
+          ["Air Conditioning", "Three+ Central, Zoned"],
+          ["Energy Efficiency", "Double-Pane Windows, Radiant Barrier, Foam Insulation, Dehumidifier, Ceiling Fans"],
+          ["Exterior Features", "Covered Patio, Wrought Iron Fence, Mature Trees"],
+          ["Lot Description", "On Greenbelt, County View, 1–2 Acres, Borders State Park"],
+          ["Disability Features", "36\" Wide Halls, Level Lot, Level Drive, First-Floor Bath, First-Floor Bedroom"],
+          ["Neighborhood Amenities", "Controlled Access (Gated)"]
         ],
-        "Features & Amenities": [
-          "1.39 acres backing to Bat Conservation Area",
-          "Gated Seven Hills Ranch community",
-          "Private well + owned water softener",
-          "Spray foam insulation & radiant barrier",
-          "Zoned HVAC (3+ units) & double-pane windows",
-          "36-inch-wide interior halls",
-          "HOA $450 / year"
+        "Area & Lot": [
+          ["Status", "Active"],
+          ["Living Area", "4,164 Sq.Ft."],
+          ["Lot Area", "1.39 Acres"],
+          ["MLS® ID", "1945785"],
+          ["Type", "Single Family Detached"],
+          ["Year Built", "2007"],
+          ["Architecture Style", "Two Story, Spanish"],
+          ["Subdivision", "Seven Hills Ranch"],
+          ["County", "Comal"],
+          ["Elementary School", "Garden Ridge"],
+          ["Middle School", "Danville"],
+          ["High School", "Davenport"],
+          ["School District", "Comal ISD"],
+          ["Annual Taxes", "$15,319"],
+          ["HOA", "$450 / year — 7H Ranch POA"],
+          ["Builder", "Storer Construction LLC"]
         ]
       }
     },
