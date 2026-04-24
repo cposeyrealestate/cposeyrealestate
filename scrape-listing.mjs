@@ -121,7 +121,7 @@ const totalBaths = readField('totalBaths');               // "3"
 const fullBaths = readField('fullBaths');                 // "3"
 const halfBaths = readField('halfBaths');                 // "1"
 const sqft = readField('sqFt');                           // "4,164"
-const acres = readField('acres');                         // "1.39"
+const acres = readField('acres') || readField('lotSize'); // land uses "lotSize"
 const yearBuilt = readField('yearBuilt');                 // "2007"
 const propType = readField('propType');                   // "Single Family Residential"
 const propSubType = readField('propSubType');             // "Single Family Detached"
@@ -163,6 +163,21 @@ const totalTax = readField('totalTax');
 const builderName = readField('builderName');
 const style = readField('style');
 const utilityWater = readField('utilitySupplierWater');
+
+// Land-specific fields (only populated on Lots/Land listings)
+const frontage = readField('frontage');
+const frontFeet = readField('frontFeet');
+const depthFeet = readField('depthFeet');
+const trees = readField('trees');
+const improvements = readField('improvements');
+const restrictions = readField('restrictions');
+const septic = readField('septicSystem');
+const utilitiesAvailable = readField('utilitiesAvailable');
+const utilitiesOnSite = readField('utilitiesOnSite');
+const location = readField('location');
+const zoning = readField('zoning');
+const landDescription = readField('description');         // "Undeveloped"
+const isLand = /lots?\s+and\s+land|land|lot/i.test(propType || '') && !beds;
 
 // Address pieces — IDX renders these in a different markup chunk, so use
 // the hidden contact form's name="address|cityName|state|zipcode" inputs
@@ -291,6 +306,20 @@ const featuresExterior = [
   row('Neighborhood Amenities', neighborhoodAmenities),
 ].filter(Boolean);
 
+// Land Details — only populated for Lots/Land listings
+const featuresLand = isLand ? [
+  row('Topography / Location', location),
+  row('Frontage', joinNonEmpty([frontage, frontFeet ? `${frontFeet} ft frontage` : null, depthFeet ? `${depthFeet} ft deep` : null])),
+  row('Trees', trees),
+  row('Improvements', improvements),
+  row('Utilities On Site', utilitiesOnSite),
+  row('Utilities Available', utilitiesAvailable),
+  row('Septic', septic),
+  row('Restrictions', restrictions),
+  row('Zoning', zoning && zoning.toLowerCase() !== 'n/a' ? zoning : undefined),
+  row('Status', landDescription),
+].filter(Boolean) : [];
+
 const featuresAreaLot = [
   row('Status', status),
   row('Living Area', fmtSqft(sqft)),
@@ -310,11 +339,14 @@ const featuresAreaLot = [
   row('Builder', builderName),
 ].filter(Boolean);
 
-const features = {
-  Interior: featuresInterior,
-  Exterior: featuresExterior,
-  'Area & Lot': featuresAreaLot,
-};
+// Build features object — only include groups that have rows so Land
+// listings don't render an empty Interior/Exterior section, and Houses
+// don't render an empty Land Details section.
+const features = {};
+if (featuresInterior.length) features.Interior = featuresInterior;
+if (featuresExterior.length) features.Exterior = featuresExterior;
+if (featuresLand.length) features['Land Details'] = featuresLand;
+if (featuresAreaLot.length) features['Area & Lot'] = featuresAreaLot;
 
 const entry = {
   source: 'internal',

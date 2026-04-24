@@ -124,24 +124,75 @@
       }
     },
     {
+      "source": "internal",
       "mlsId": "1948761",
-      "slug": "531-Eden-Ranch-Dr-Canyon-Lake-TX-78133",
+      "slug": "531-eden-ranch-dr",
       "status": "Active",
       "price": "$449,000",
       "address": "531 Eden Ranch Dr",
       "city": "Canyon Lake, TX 78133",
       "acres": "8.01",
-      "img": "/images/listings/1948761.jpg"
+      "propertyType": "Residential Lot and Acreage",
+      "subdivision": "Eden Ranch",
+      "county": "Comal",
+      "hoaMonthly": null,
+      "lat": 29.860359,
+      "lng": -98.136443,
+      "img": "/images/listings/1948761-1.jpg",
+      "gallery": [
+        "/images/listings/1948761-1.jpg",
+        "/images/listings/1948761-2.jpg",
+        "/images/listings/1948761-3.jpg",
+        "/images/listings/1948761-4.jpg",
+        "/images/listings/1948761-5.jpg",
+        "/images/listings/1948761-6.jpg",
+        "/images/listings/1948761-7.jpg",
+        "/images/listings/1948761-8.jpg",
+        "/images/listings/1948761-9.jpg"
+      ],
+      "description": "Discover the freedom to build your Hill Country retreat on this scenic 8-acre homesite in Eden Ranch. With sweeping Hill Country views, sloping terrain, and a natural landscape of mature oaks and cedar, this property offers the perfect canvas for a custom home designed to take full advantage of the surrounding beauty.\n\nThe gently rolling topography creates ideal building opportunities for a home with elevated views, expansive patios, and outdoor living spaces that capture the sunrise and sunset over the Texas Hill Country. Electric is available and private wells are allowed, giving you flexibility as you design and build your dream property.\n\nLocated on paved Eden Ranch Drive, this acreage provides the privacy and elbow room buyers are searching for, while still being close to everything that makes Canyon Lake living special. Spend weekends boating, fishing, and enjoying nearby Canyon Lake and Guadalupe River recreation, or take a short drive to dining, shopping, and entertainment in New Braunfels and the surrounding Hill Country communities.\n\nWith no HOA, you'll enjoy greater freedom in how you design your property, while mobile and manufactured homes are restricted, helping preserve the character and quality of the surrounding acreage homesites.\n\nIf you've been searching for space, views, and the relaxed outdoorsy Hill Country lifestyle, this property is ready for your vision.",
+      "features": {
+        "Land Details": [
+          ["Topography", "Country View, Sloping"],
+          ["Frontage", "Private Street — 220 ft frontage × 1,200 ft deep"],
+          ["Trees", "Many — Mature Oaks & Cedar"],
+          ["Improvements", "Paved Roads"],
+          ["Utilities On Site", "Electric"],
+          ["Utilities Available", "Private Well Allowed"],
+          ["Septic", "Allowed"],
+          ["Restrictions", "No Mobile / Manufactured Homes (no HOA)"]
+        ],
+        "Area & Lot": [
+          ["Status", "Active"],
+          ["Lot Area", "8.01 Acres"],
+          ["MLS® ID", "1948761"],
+          ["Type", "Residential Lot and Acreage"],
+          ["Subdivision", "Eden Ranch (Phase 7)"],
+          ["County", "Comal"],
+          ["Elementary School", "Mountain Valley"],
+          ["Middle School", "Mountain Valley"],
+          ["High School", "Canyon Lake"],
+          ["School District", "Comal ISD"],
+          ["Annual Taxes", "$5,884.81"],
+          ["HOA", "None"]
+        ]
+      }
     },
     {
       "source": "internal",
-      "slug": "CR-3390-Kempner-TX",
+      "mlsId": "604073",
+      "slug": "0000-cr-3390-kempner",
       "status": "Active",
       "price": "$139,000",
       "address": "0000 CR 3390",
       "city": "Kempner, TX 76539",
       "acres": "5.25",
       "propertyType": "Land",
+      "subdivision": null,
+      "county": "Lampasas",
+      "hoaMonthly": null,
+      "lat": 31.138089,
+      "lng": -97.957122,
       "img": "/images/listings/604073-1.jpg",
       "gallery": [
         "/images/listings/604073-1.jpg",
@@ -151,7 +202,30 @@
         "/images/listings/604073-5.jpg",
         "/images/listings/604073-6.jpg"
       ],
-      "description": "5.25-acre tract on CR 3390 with paved county road frontage and available water/electric. Generally flat terrain with light tree coverage offering multiple build sites. Fenced perimeter, no HOA, no known deed restrictions. Approximately 3 miles to Highway 190 with direct access to Copperas Cove and Lampasas. About 20 miles to Fort Hood. Suitable for residential construction, barndominium, manufactured home, workshop, RV storage, or small agricultural use. Survey available."
+      "description": "5.25-acre tract on CR 3390 with paved county road frontage and available water and electric. Generally flat terrain with light tree coverage offering multiple build sites. Fenced perimeter, no HOA, and no known deed restrictions.\n\nApproximately 3 miles to Highway 190 with direct access to Copperas Cove and Lampasas. About 20 miles to Fort Hood — convenient for military families and commuters.\n\nSuitable for residential construction, barndominium, manufactured home, workshop, RV storage, or small agricultural use. Survey available.",
+      "features": {
+        "Land Details": [
+          ["Topography", "Generally Flat — Multiple Build Sites"],
+          ["Frontage", "Paved County Road (CR 3390)"],
+          ["Trees", "Light Coverage"],
+          ["Fencing", "Fenced Perimeter"],
+          ["Utilities Available", "Water & Electric"],
+          ["Restrictions", "None (No HOA, No Known Deed Restrictions)"],
+          ["Permitted Uses", "Residential, Barndominium, Manufactured Home, Workshop, RV Storage, Light Agricultural"],
+          ["Survey", "Available"]
+        ],
+        "Area & Lot": [
+          ["Status", "Active"],
+          ["Lot Area", "5.25 Acres"],
+          ["MLS® ID", "604073"],
+          ["Type", "Land"],
+          ["County", "Lampasas"],
+          ["Nearest Highway", "~3 miles to US Hwy 190"],
+          ["Nearest Cities", "Copperas Cove, Lampasas"],
+          ["Notable Distance", "~20 miles to Fort Cavazos (Fort Hood)"],
+          ["HOA", "None"]
+        ]
+      }
     }
   ],
 
