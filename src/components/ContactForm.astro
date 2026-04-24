@@ -1,18 +1,47 @@
 ---
 interface Props {
   context?: string;
+  // Optional listing context — when provided, the banner and prefill
+  // are rendered server-side and the form ships ready to submit. When
+  // omitted, the script falls back to reading ?listing=&mls=&url= from
+  // the URL (preserves the existing /contact page flow).
+  listing?: string;
+  mls?: string;
+  listingUrl?: string;
+  source?: string;
 }
 
-const { context = "I'm interested in learning more about New Braunfels real estate..." } = Astro.props;
+const {
+  context = "I'm interested in learning more about New Braunfels real estate...",
+  listing,
+  mls,
+  listingUrl,
+  source,
+} = Astro.props;
+
+// Pre-rendered prefill if a listing was passed in
+const prefillMessage = listing
+  ? `I'm interested in ${listing}${mls ? ` (MLS# ${mls})` : ''}. Please send me more information or help me schedule a showing.`
+  : '';
 ---
 
 <section class="contact-form section" id="contact">
   <div class="container">
-    <div class="contact-form__listing-banner" id="cfListingBanner" style="display:none;">
+    <div
+      class="contact-form__listing-banner"
+      id="cfListingBanner"
+      data-server-listing={listing || ''}
+      data-server-mls={mls || ''}
+      data-server-url={listingUrl || ''}
+      data-server-source={source || ''}
+      style={listing ? '' : 'display:none;'}
+    >
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
       <div>
         <div class="contact-form__listing-label">You're inquiring about:</div>
-        <div class="contact-form__listing-address" id="cfListingAddress"></div>
+        <div class="contact-form__listing-address" id="cfListingAddress">
+          {listing && (mls ? `${listing} (MLS# ${mls})` : listing)}
+        </div>
       </div>
     </div>
 
@@ -49,7 +78,7 @@ const { context = "I'm interested in learning more about New Braunfels real esta
         </div>
         <div class="contact-form__field">
           <label for="cf-message">Message <span class="required">*</span></label>
-          <textarea id="cf-message" name="message" rows="4" required placeholder={context}></textarea>
+          <textarea id="cf-message" name="message" rows="4" required placeholder={context}>{prefillMessage}</textarea>
         </div>
         <button type="submit" class="btn btn-primary contact-form__submit">Send Message</button>
 
@@ -235,35 +264,45 @@ const { context = "I'm interested in learning more about New Braunfels real esta
 </style>
 
 <script is:inline>
-  // ── Pre-fill from URL params (when arriving from IDX listing detail) ──
+  // ── Resolve listing context: server-rendered props win, fall back to URL params ──
   (function() {
-    var params = new URLSearchParams(window.location.search);
-    var listing = params.get('listing');
-    var mls = params.get('mls');
-    var sourceUrl = params.get('url');
-    var source = params.get('source');
+    var banner = document.getElementById('cfListingBanner');
+    var srvListing = banner?.dataset?.serverListing || '';
+    var srvMls = banner?.dataset?.serverMls || '';
+    var srvUrl = banner?.dataset?.serverUrl || '';
+    var srvSource = banner?.dataset?.serverSource || '';
 
-    if (listing) {
-      var banner = document.getElementById('cfListingBanner');
-      var addr = document.getElementById('cfListingAddress');
-      if (banner && addr) {
-        addr.textContent = listing + (mls ? ' (MLS# ' + mls + ')' : '');
+    var listing = srvListing;
+    var mls = srvMls;
+    var sourceUrl = srvUrl;
+    var source = srvSource;
+
+    if (!listing) {
+      var params = new URLSearchParams(window.location.search);
+      listing = params.get('listing') || '';
+      mls = params.get('mls') || '';
+      sourceUrl = params.get('url') || '';
+      source = params.get('source') || '';
+
+      if (listing && banner) {
+        var addr = document.getElementById('cfListingAddress');
+        if (addr) addr.textContent = listing + (mls ? ' (MLS# ' + mls + ')' : '');
         banner.style.display = 'flex';
-      }
-      var msg = document.getElementById('cf-message');
-      if (msg && !msg.value) {
-        msg.value = "I'm interested in " + listing +
-          (mls ? ' (MLS# ' + mls + ')' : '') +
-          '. Please send me more information or help me schedule a showing.';
+        var msg = document.getElementById('cf-message');
+        if (msg && !msg.value) {
+          msg.value = "I'm interested in " + listing +
+            (mls ? ' (MLS# ' + mls + ')' : '') +
+            '. Please send me more information or help me schedule a showing.';
+        }
       }
     }
 
     // Stash for the lead submission
     window.__leadContext = {
-      listing: listing || '',
-      mls: mls || '',
-      listingUrl: sourceUrl || '',
-      source: source === 'idx-detail' ? 'IDX Listing Detail' : 'Contact Form'
+      listing: listing,
+      mls: mls,
+      listingUrl: sourceUrl,
+      source: source === 'idx-detail' ? 'IDX Listing Detail' : (source || 'Contact Form')
     };
   })();
 

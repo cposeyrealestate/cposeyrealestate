@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
 import data from '../../data/portfolio.json';
 import { listingSchema, breadcrumbSchema } from '../../lib/schema';
 
@@ -28,6 +29,11 @@ interface Listing {
   acres?: string;
   yearBuilt?: number;
   propertyType?: string;
+  subdivision?: string;
+  county?: string;
+  hoaMonthly?: number;
+  lat?: number;
+  lng?: number;
   youtubeId?: string;
   img: string;
   gallery?: string[];
@@ -37,10 +43,8 @@ interface Listing {
 
 const { listing } = Astro.props as { listing: Listing };
 
-// Gallery defaults to [hero] if none supplied
 const photos = listing.gallery && listing.gallery.length > 0 ? listing.gallery : [listing.img];
 
-// Schema.org RealEstateListing + breadcrumb
 const pageUrl = `/portfolio/${listing.slug}`;
 const pageSchema = [
   listingSchema({ ...listing, url: pageUrl }),
@@ -51,14 +55,32 @@ const pageSchema = [
   ]),
 ];
 
-// Meta description: either the provided description (truncated to 155)
-// or a concise auto-generated fallback.
 const metaDescription = (
   listing.description
   || `${listing.propertyType || 'Home'} at ${listing.address}, ${listing.city}. ${listing.acres ? listing.acres + ' acres. ' : ''}Listed by Cody Posey, REALTOR®.`
 ).replace(/\s+/g, ' ').trim().slice(0, 155);
 
-const featureGroups = listing.features ? Object.entries(listing.features) : [];
+// Description as paragraphs (preserve \n\n breaks from MLS remarks)
+const descParagraphs = (listing.description || '').split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
+
+const featureGroups = listing.features ? Object.entries(listing.features).filter(([, v]) => v && v.length) : [];
+
+// ── Mortgage calculator defaults ──────────────────────────────
+// Price comes from the listing; the rest are nationwide-friendly Texas
+// Hill Country starting points. Property taxes vary widely by county,
+// school district, and homestead exemption — disclaimer in the UI.
+const priceNumeric = parseInt((listing.price || '0').replace(/[^0-9]/g, ''), 10) || 500000;
+const calcDefaults = {
+  price: priceNumeric,
+  downPct: 20,
+  termYears: 30,
+  ratePct: 6.75,
+  taxPct: 2.0,                                   // user-confirmed default
+  insuranceAnnual: 2000,                         // user-confirmed starting slider value
+  hoaMonthly: listing.hoaMonthly ?? 0,           // pulled from MLS
+};
+
+const hasMap = typeof listing.lat === 'number' && typeof listing.lng === 'number';
 ---
 
 <Layout
@@ -72,7 +94,7 @@ const featureGroups = listing.features ? Object.entries(listing.features) : [];
   <main class="detail">
     <a href="/portfolio" class="detail__back">← Back to Portfolio</a>
 
-    <!-- Hero gallery -->
+    <!-- 1. Hero gallery -->
     <section class="detail__gallery">
       <div class="swiper detail-swiper">
         <div class="swiper-wrapper">
@@ -99,62 +121,76 @@ const featureGroups = listing.features ? Object.entries(listing.features) : [];
       </div>
     </section>
 
-    <!-- Header block -->
-    <section class="detail__header">
-      <div class="container">
-        <div class="detail__header-grid">
-          <div>
-            <span class={`detail__status ${listing.status.toLowerCase()}`}>{listing.status}</span>
-            <h1 class="detail__price">{listing.price}</h1>
-            <div class="detail__address">{listing.address}</div>
-            <div class="detail__city">{listing.city}</div>
-            {listing.mlsId && (
-              <div class="detail__mls">MLS #{listing.mlsId}</div>
-            )}
-          </div>
-          <div class="detail__specs">
-            {listing.beds && (
-              <div class="spec">
-                <div class="spec__value">{listing.beds}</div>
-                <div class="spec__label">Beds</div>
-              </div>
-            )}
-            {listing.baths && (
-              <div class="spec">
-                <div class="spec__value">{listing.baths}</div>
-                <div class="spec__label">Baths</div>
-              </div>
-            )}
-            {listing.sqft && (
-              <div class="spec">
-                <div class="spec__value">{listing.sqft}</div>
-                <div class="spec__label">Sqft</div>
-              </div>
-            )}
-            {listing.acres && (
-              <div class="spec">
-                <div class="spec__value">{listing.acres}</div>
-                <div class="spec__label">Acres</div>
-              </div>
-            )}
-            {listing.yearBuilt && (
-              <div class="spec">
-                <div class="spec__value">{listing.yearBuilt}</div>
-                <div class="spec__label">Year</div>
-              </div>
-            )}
-            {listing.propertyType && (
-              <div class="spec">
-                <div class="spec__value spec__value--small">{listing.propertyType}</div>
-                <div class="spec__label">Type</div>
-              </div>
-            )}
-          </div>
+    <!-- 2. Price + address band with Schedule CTA -->
+    <section class="detail__band">
+      <div class="container detail__band-inner">
+        <div class="detail__band-info">
+          <span class={`detail__status ${listing.status.toLowerCase()}`}>{listing.status}</span>
+          <h1 class="detail__price">{listing.price}</h1>
+          <div class="detail__address">{listing.address}</div>
+          <div class="detail__city">{listing.city}</div>
+          {listing.mlsId && <div class="detail__mls">MLS #{listing.mlsId}</div>}
+        </div>
+        <div class="detail__band-cta">
+          <button type="button" class="btn btn-primary detail__schedule-btn" data-schedule-btn>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Schedule a Showing
+          </button>
+          <a href="tel:+18303605569" class="detail__phone-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            (830) 360-5569
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Video tour -->
+    <!-- 3. Description (left) + Stats (right) -->
+    <section class="detail__section detail__section--white">
+      <div class="container detail__desc-grid">
+        <div class="detail__desc">
+          <h2 class="detail__h2">About This Property</h2>
+          {descParagraphs.length > 0
+            ? descParagraphs.map((p) => <p class="detail__description">{p}</p>)
+            : <p class="detail__description detail__description--muted">Listing details coming soon.</p>}
+        </div>
+        <aside class="detail__stats">
+          <div class="detail__stats-card">
+            {listing.beds && (
+              <div class="stat-row">
+                <span class="stat-row__value">{listing.beds}</span>
+                <span class="stat-row__label">Bedrooms</span>
+              </div>
+            )}
+            {listing.baths && (
+              <div class="stat-row">
+                <span class="stat-row__value">{listing.baths}</span>
+                <span class="stat-row__label">Bathrooms</span>
+              </div>
+            )}
+            {listing.sqft && (
+              <div class="stat-row">
+                <span class="stat-row__value">{listing.sqft}</span>
+                <span class="stat-row__label">Sq. Ft.</span>
+              </div>
+            )}
+            {listing.acres && (
+              <div class="stat-row">
+                <span class="stat-row__value">{listing.acres}</span>
+                <span class="stat-row__label">Acres</span>
+              </div>
+            )}
+            {listing.yearBuilt && (
+              <div class="stat-row">
+                <span class="stat-row__value">{listing.yearBuilt}</span>
+                <span class="stat-row__label">Year Built</span>
+              </div>
+            )}
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 4. Optional video tour -->
     {listing.youtubeId && (
       <section class="detail__video">
         <div class="container">
@@ -177,29 +213,17 @@ const featureGroups = listing.features ? Object.entries(listing.features) : [];
       </section>
     )}
 
-    <!-- Description -->
-    {listing.description && (
-      <section class="detail__section">
-        <div class="container">
-          <h2 class="detail__h2">About This Property</h2>
-          <p class="detail__description">{listing.description}</p>
-        </div>
-      </section>
-    )}
-
-    <!-- Features & amenities -->
+    <!-- 5. Features & Amenities -->
     {featureGroups.length > 0 && (
       <section class="detail__section detail__section--alt">
         <div class="container">
-          <h2 class="detail__h2">Features &amp; Amenities</h2>
+          <h2 class="detail__h2 detail__h2--center">Features &amp; Amenities</h2>
           <div class="detail__features-grid">
             {featureGroups.map(([groupName, items]) => (
               <div class="feature-group">
                 <h3 class="feature-group__title">{groupName}</h3>
                 <ul class="feature-group__list">
-                  {items.map((item) => (
-                    <li class="feature-group__item">{item}</li>
-                  ))}
+                  {items.map((item) => <li class="feature-group__item">{item}</li>)}
                 </ul>
               </div>
             ))}
@@ -208,21 +232,123 @@ const featureGroups = listing.features ? Object.entries(listing.features) : [];
       </section>
     )}
 
-    <!-- Contact CTA -->
-    <section class="detail__cta">
+    <!-- 6. Mortgage Calculator -->
+    <section
+      class="detail__section detail__section--white"
+      data-mortgage-calc
+      data-default-price={calcDefaults.price}
+      data-default-down-pct={calcDefaults.downPct}
+      data-default-term={calcDefaults.termYears}
+      data-default-rate={calcDefaults.ratePct}
+      data-default-tax={calcDefaults.taxPct}
+      data-default-insurance={calcDefaults.insuranceAnnual}
+      data-default-hoa={calcDefaults.hoaMonthly}
+    >
       <div class="container">
-        <h2>Interested in this property?</h2>
-        <p>Reach out — I'll walk you through a showing or answer any questions.</p>
-        <div class="detail__cta-buttons">
-          <a href="tel:+18303605569" class="btn btn-primary">Call (830) 360-5569</a>
-          <a href={`mailto:codyposey@cposeyrealestate.com?subject=${encodeURIComponent('Inquiry about ' + listing.address)}`} class="btn btn-outline-light">Email Cody</a>
+        <h2 class="detail__h2 detail__h2--center">Mortgage Calculator</h2>
+        <p class="calc__subtitle">Estimate your monthly payment for {listing.address}.</p>
+
+        <div class="calc">
+          <div class="calc__inputs">
+            <div class="calc-field">
+              <div class="calc-field__row"><label for="calc-price">Home Price</label><span class="calc-field__val" data-out="price-display">$0</span></div>
+              <input type="range" id="calc-price" min="50000" max={Math.max(2000000, calcDefaults.price * 2)} step="5000" value={calcDefaults.price} />
+            </div>
+
+            <div class="calc-field">
+              <div class="calc-field__row"><label for="calc-down">Down Payment</label><span class="calc-field__val"><span data-out="down-pct">{calcDefaults.downPct}</span>%  ·  <span data-out="down-amount">$0</span></span></div>
+              <input type="range" id="calc-down" min="0" max="50" step="1" value={calcDefaults.downPct} />
+            </div>
+
+            <div class="calc-field">
+              <div class="calc-field__row"><label for="calc-term">Loan Term</label><span class="calc-field__val"><span data-out="term">{calcDefaults.termYears}</span> years</span></div>
+              <input type="range" id="calc-term" min="10" max="30" step="5" value={calcDefaults.termYears} />
+            </div>
+
+            <div class="calc-field">
+              <div class="calc-field__row"><label for="calc-rate">Interest Rate</label><span class="calc-field__val"><span data-out="rate">{calcDefaults.ratePct}</span>%</span></div>
+              <input type="range" id="calc-rate" min="2" max="12" step="0.125" value={calcDefaults.ratePct} />
+            </div>
+
+            <div class="calc-field">
+              <div class="calc-field__row"><label for="calc-tax">Property Tax</label><span class="calc-field__val"><span data-out="tax">{calcDefaults.taxPct}</span>% / yr</span></div>
+              <input type="range" id="calc-tax" min="0" max="4" step="0.05" value={calcDefaults.taxPct} />
+            </div>
+
+            <div class="calc-field">
+              <div class="calc-field__row"><label for="calc-insurance">Homeowners Insurance</label><span class="calc-field__val">$<span data-out="insurance">{calcDefaults.insuranceAnnual}</span> / yr</span></div>
+              <input type="range" id="calc-insurance" min="500" max="6000" step="100" value={calcDefaults.insuranceAnnual} />
+            </div>
+
+            {calcDefaults.hoaMonthly > 0 && (
+              <div class="calc-field calc-field--hoa">
+                <div class="calc-field__row"><label>HOA Dues</label><span class="calc-field__val">${calcDefaults.hoaMonthly.toFixed(2)} / mo <span class="calc-field__hint">(from MLS)</span></span></div>
+              </div>
+            )}
+          </div>
+
+          <div class="calc__result">
+            <div class="calc__total-label">Estimated Monthly Payment</div>
+            <div class="calc__total" data-out="total">$0</div>
+
+            <ul class="calc__breakdown">
+              <li><span class="calc__bk-dot" style="background:#FF1616"></span><span class="calc__bk-name">Principal &amp; Interest</span><span class="calc__bk-value" data-out="pi">$0</span></li>
+              <li><span class="calc__bk-dot" style="background:#111"></span><span class="calc__bk-name">Property Taxes</span><span class="calc__bk-value" data-out="taxMo">$0</span></li>
+              <li><span class="calc__bk-dot" style="background:#777"></span><span class="calc__bk-name">Insurance</span><span class="calc__bk-value" data-out="insMo">$0</span></li>
+              {calcDefaults.hoaMonthly > 0 && (
+                <li><span class="calc__bk-dot" style="background:#bbb"></span><span class="calc__bk-name">HOA Dues</span><span class="calc__bk-value" data-out="hoaMo">$0</span></li>
+              )}
+            </ul>
+
+            <div class="calc__bar" aria-hidden="true">
+              <span class="calc__bar-seg" data-bar="pi" style="background:#FF1616"></span>
+              <span class="calc__bar-seg" data-bar="taxMo" style="background:#111"></span>
+              <span class="calc__bar-seg" data-bar="insMo" style="background:#777"></span>
+              <span class="calc__bar-seg" data-bar="hoaMo" style="background:#bbb"></span>
+            </div>
+          </div>
         </div>
+
+        <p class="calc__disclaimer">
+          <strong>Estimates only.</strong> Property taxes vary widely by county, school district, MUD, and homestead exemption status — actual rates in the Texas Hill Country range from roughly 1.5%–3.0% of assessed value. Homeowners insurance premiums depend on coverage, deductibles, location, and provider; figures here are a planning placeholder. For an accurate quote, confirm rates with your lender and a licensed insurance agent.
+        </p>
       </div>
     </section>
+
+    <!-- 7. Map -->
+    {hasMap && (
+      <section class="detail__section detail__section--map">
+        <div class="container">
+          <h2 class="detail__h2 detail__h2--center">Location</h2>
+          <p class="calc__subtitle">{listing.address}, {listing.city}</p>
+          <div
+            id="propertyMap"
+            class="detail__map"
+            data-lat={listing.lat}
+            data-lng={listing.lng}
+            data-address={listing.address}
+            role="img"
+            aria-label={`Map showing ${listing.address}`}
+          ></div>
+        </div>
+      </section>
+    )}
+
+    <!-- 8. Let's Connect — embedded ContactForm -->
+    <ContactForm
+      listing={`${listing.address}, ${listing.city}`}
+      mls={listing.mlsId}
+      listingUrl={pageUrl}
+      source="Listing Detail"
+    />
   </main>
 
   <Footer />
 </Layout>
+
+{hasMap && (
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+)}
 
 <style>
   .detail {
@@ -240,9 +366,6 @@ const featureGroups = listing.features ? Object.entries(listing.features) : [];
     text-decoration: none;
   }
   .detail__back:hover { color: #FF1616; }
-  @media (min-width: 768px) {
-    .detail__back { display: block; }
-  }
 
   /* Gallery */
   .detail__gallery {
@@ -257,17 +380,13 @@ const featureGroups = listing.features ? Object.entries(listing.features) : [];
     background: #000;
     position: relative;
   }
-  .detail__photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  .detail__photo { width: 100%; height: 100%; object-fit: cover; }
   .detail__photo-count {
     position: absolute;
     bottom: 1rem;
     right: 1rem;
     padding: 0.4rem 0.8rem;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0,0,0,0.7);
     color: #fff;
     font-family: 'Poppins', sans-serif;
     font-size: 0.8rem;
@@ -278,21 +397,21 @@ const featureGroups = listing.features ? Object.entries(listing.features) : [];
     pointer-events: none;
   }
 
-  /* Header */
-  .detail__header {
+  /* Price/address band */
+  .detail__band {
     background: #fff;
-    padding: 2rem 0;
+    border-bottom: 1px solid #eee;
+    padding: 1.75rem 0;
   }
-  .detail__header-grid {
+  .detail__band-inner {
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 2rem;
     align-items: center;
   }
   @media (max-width: 720px) {
-    .detail__header-grid { grid-template-columns: 1fr; }
+    .detail__band-inner { grid-template-columns: 1fr; }
   }
-
   .detail__status {
     display: inline-block;
     padding: 0.3rem 0.8rem;
@@ -303,28 +422,19 @@ const featureGroups = listing.features ? Object.entries(listing.features) : [];
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.7rem;
   }
   .detail__status.pending { background: #e07b00; }
   .detail__status.sold { background: #111; }
-
   .detail__price {
     font-family: 'Poppins', sans-serif;
-    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
     color: #FF1616;
     margin: 0 0 0.25rem;
     line-height: 1;
   }
-  .detail__address {
-    font-weight: 600;
-    font-size: 1.1rem;
-    margin-bottom: 0.2rem;
-  }
-  .detail__city {
-    color: #777;
-    font-size: 0.95rem;
-    margin-bottom: 0.5rem;
-  }
+  .detail__address { font-weight: 600; font-size: 1.1rem; margin-bottom: 0.2rem; }
+  .detail__city { color: #777; font-size: 0.95rem; margin-bottom: 0.5rem; }
   .detail__mls {
     font-family: 'Poppins', sans-serif;
     font-size: 0.7rem;
@@ -333,40 +443,102 @@ const featureGroups = listing.features ? Object.entries(listing.features) : [];
     text-transform: uppercase;
     letter-spacing: 0.12em;
   }
-
-  .detail__specs {
+  .detail__band-cta {
     display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.6rem;
   }
-  .spec { text-align: center; min-width: 60px; }
-  .spec__value {
+  @media (max-width: 720px) {
+    .detail__band-cta { align-items: stretch; }
+  }
+  .detail__schedule-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.5rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    border: 0;
+  }
+  .detail__phone-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #555;
+    font-size: 0.85rem;
     font-family: 'Poppins', sans-serif;
-    font-size: 1.5rem;
+    text-decoration: none;
+  }
+  .detail__phone-link:hover { color: #FF1616; }
+
+  /* Sections */
+  .detail__section { padding: 3rem 0; background: #f5f5f5; }
+  .detail__section--white { background: #fff; }
+  .detail__section--alt { background: #fafafa; }
+  .detail__section--map { background: #fff; padding-bottom: 4rem; }
+
+  .detail__h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1.3rem, 2.3vw, 1.6rem);
+    margin-bottom: 1rem;
+    color: #111;
+  }
+  .detail__h2--center { text-align: center; margin-bottom: 0.4rem; }
+
+  /* Description + Stats grid */
+  .detail__desc-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .detail__desc-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+  .detail__description {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #333;
+    margin: 0 0 1.1rem;
+    text-align: left;
+  }
+  .detail__description--muted { color: #999; }
+
+  .detail__stats { position: sticky; top: 90px; }
+  @media (max-width: 900px) { .detail__stats { position: static; } }
+  .detail__stats-card {
+    background: #fafafa;
+    border-top: 4px solid #FF1616;
+    padding: 1.5rem;
+  }
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid #eee;
+  }
+  .stat-row:last-child { border-bottom: 0; }
+  .stat-row__value {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
     font-weight: 700;
     color: #111;
     line-height: 1;
   }
-  .spec__value--small { font-size: 0.9rem; line-height: 1.3; }
-  .spec__label {
+  .stat-row__label {
     font-family: 'Poppins', sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     font-weight: 600;
     color: #777;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-top: 0.25rem;
+    letter-spacing: 0.1em;
   }
 
   /* Video */
-  .detail__video {
-    background: #111;
-    padding: 3.5rem 0 4rem;
-  }
-  .detail__video-header {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
+  .detail__video { background: #111; padding: 3.5rem 0 4rem; }
+  .detail__video-header { text-align: center; margin-bottom: 2rem; }
   .detail__video-eyebrow {
     display: inline-block;
     font-family: 'Poppins', sans-serif;
@@ -377,81 +549,45 @@ const featureGroups = listing.features ? Object.entries(listing.features) : [];
     letter-spacing: 0.2em;
     margin-bottom: 0.6rem;
   }
-  .detail__video h2 {
-    color: #fff;
-    margin: 0;
-  }
+  .detail__video h2 { color: #fff; margin: 0; }
   .detail__video-frame {
     position: relative;
     max-width: 1100px;
     margin: 0 auto;
     aspect-ratio: 16 / 9;
     background: #000;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     overflow: hidden;
   }
   .detail__video-frame iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
+    position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
   }
 
-  /* Section */
-  .detail__section {
-    padding: 3rem 0;
-    background: #f5f5f5;
-  }
-  .detail__section--alt {
-    background: #fff;
-  }
-  .detail__h2 {
-    font-family: 'Poppins', sans-serif;
-    font-size: clamp(1.3rem, 2.3vw, 1.6rem);
-    margin-bottom: 1rem;
-    color: #111;
-  }
-  .detail__description {
-    font-size: 1rem;
-    line-height: 1.75;
-    color: #333;
-    max-width: 820px;
-  }
-
-  /* Features grid */
+  /* Features grid (4-col on wide screens) */
   .detail__features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 2rem;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
   }
-  .feature-group {
-    padding: 1.5rem;
-    background: #fafafa;
-    border-top: 3px solid #FF1616;
-  }
+  .feature-group { padding: 1.5rem; background: #fff; border-top: 3px solid #FF1616; }
   .feature-group__title {
     font-family: 'Poppins', sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
     color: #111;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     margin: 0 0 1rem;
   }
-  .feature-group__list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+  .feature-group__list { list-style: none; padding: 0; margin: 0; }
   .feature-group__item {
     position: relative;
     padding: 0.35rem 0 0.35rem 1.2rem;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     line-height: 1.5;
     color: #333;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #f0f0f0;
   }
   .feature-group__item:last-child { border-bottom: 0; }
   .feature-group__item::before {
@@ -465,57 +601,340 @@ const featureGroups = listing.features ? Object.entries(listing.features) : [];
     border-radius: 50%;
   }
 
-  /* CTA */
-  .detail__cta {
-    background: #000;
+  /* Mortgage calculator */
+  .calc__subtitle {
+    text-align: center;
+    color: #777;
+    font-size: 0.95rem;
+    margin: 0 0 2rem;
+  }
+  .calc {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 2rem;
+    margin-top: 1rem;
+  }
+  @media (max-width: 800px) {
+    .calc { grid-template-columns: 1fr; gap: 2rem; padding: 1.5rem; }
+  }
+  .calc__inputs { display: flex; flex-direction: column; gap: 1.2rem; }
+  .calc-field { display: flex; flex-direction: column; gap: 0.5rem; }
+  .calc-field__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
+  .calc-field label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .calc-field__val {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #111;
+  }
+  .calc-field__hint {
+    font-weight: 500;
+    color: #888;
+    font-size: 0.7rem;
+    margin-left: 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .calc-field input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: #eee;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+  }
+  .calc-field input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 22px; height: 22px;
+    background: #FF1616;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    cursor: pointer;
+  }
+  .calc-field input[type="range"]::-moz-range-thumb {
+    width: 22px; height: 22px;
+    background: #FF1616;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    cursor: pointer;
+  }
+  .calc-field--hoa { padding-top: 0.5rem; border-top: 1px solid #f0f0f0; }
+
+  .calc__result {
+    background: #111;
     color: #fff;
-    padding: 4rem 0;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .calc__total-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.4rem;
+  }
+  .calc__total {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    font-weight: 800;
+    color: #FF1616;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+  .calc__breakdown { list-style: none; padding: 0; margin: 0 0 1.25rem; }
+  .calc__breakdown li {
+    display: grid;
+    grid-template-columns: 14px 1fr auto;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.9rem;
+  }
+  .calc__breakdown li:last-child { border-bottom: 0; }
+  .calc__bk-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .calc__bk-name { color: rgba(255,255,255,0.85); }
+  .calc__bk-value { font-weight: 700; color: #fff; font-family: 'Poppins', sans-serif; }
+  .calc__bar {
+    display: flex;
+    width: 100%;
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.08);
+  }
+  .calc__bar-seg { display: block; height: 100%; transition: width .15s; }
+  .calc__disclaimer {
+    margin: 1.5rem auto 0;
+    max-width: 820px;
+    font-size: 0.8rem;
+    color: #777;
+    line-height: 1.6;
     text-align: center;
   }
-  .detail__cta h2 {
-    color: #fff;
-    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-    margin-bottom: 0.5rem;
+  .calc__disclaimer strong { color: #333; }
+
+  /* Map */
+  .detail__map {
+    margin-top: 1.25rem;
+    width: 100%;
+    height: 460px;
+    background: #eee;
+    border: 1px solid #e0e0e0;
   }
-  .detail__cta p {
-    color: rgba(255, 255, 255, 0.75);
-    margin-bottom: 2rem;
+  @media (max-width: 720px) {
+    .detail__map { height: 360px; }
   }
-  .detail__cta-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
+  /* Custom Popby pin */
+  :global(.popby-pin) {
+    background: transparent !important;
+    border: 0 !important;
+  }
+  :global(.popby-pin svg) {
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.35));
   }
 </style>
 
 <script>
   import Swiper from 'swiper/bundle';
+
+  // ── Photo carousel ──
   const swiper = new Swiper('.detail-swiper', {
     slidesPerView: 1,
     loop: true,
     speed: 500,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-      pauseOnMouseEnter: true,
-    },
+    autoplay: { delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true },
     navigation: {
       nextEl: '.detail-swiper .swiper-button-next',
       prevEl: '.detail-swiper .swiper-button-prev',
     },
-    pagination: {
-      el: '.detail-swiper .swiper-pagination',
-      clickable: true,
-    },
+    pagination: { el: '.detail-swiper .swiper-pagination', clickable: true },
     keyboard: { enabled: true },
   });
-
-  // Live photo counter ("3 / 49")
   const counter = document.querySelector('.detail__photo-current');
   if (counter) {
-    swiper.on('slideChange', () => {
-      counter.textContent = String(swiper.realIndex + 1);
-    });
+    swiper.on('slideChange', () => { counter.textContent = String(swiper.realIndex + 1); });
   }
+
+  // ── Schedule a Showing button: scroll to ContactForm + override message ──
+  document.querySelectorAll('[data-schedule-btn]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const form = document.getElementById('contact');
+      const msg = document.getElementById('cf-message') as HTMLTextAreaElement | null;
+      const banner = document.getElementById('cfListingBanner');
+      const listingAddr = banner?.dataset.serverListing || '';
+      if (msg) {
+        msg.value = listingAddr
+          ? `I'd like to schedule a showing for ${listingAddr}. Please reach out with available times that work for me.`
+          : "I'd like to schedule a showing — please reach out with available times.";
+      }
+      form?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Focus the name field so the user can immediately fill it in
+      setTimeout(() => {
+        const nameField = document.getElementById('cf-name') as HTMLInputElement | null;
+        nameField?.focus();
+      }, 600);
+    });
+  });
+
+  // ── Mortgage Calculator ──
+  (function () {
+    const root = document.querySelector('[data-mortgage-calc]') as HTMLElement | null;
+    if (!root) return;
+
+    const $ = <T extends HTMLElement = HTMLElement>(sel: string) =>
+      root.querySelector(sel) as T | null;
+    const $$ = (sel: string) => root.querySelectorAll(sel);
+
+    const fmt = (n: number) =>
+      n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+    const fmt2 = (n: number) =>
+      n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+
+    const hoaMonthly = parseFloat(root.dataset.defaultHoa || '0') || 0;
+
+    const inputs = {
+      price: $('#calc-price') as HTMLInputElement | null,
+      down: $('#calc-down') as HTMLInputElement | null,
+      term: $('#calc-term') as HTMLInputElement | null,
+      rate: $('#calc-rate') as HTMLInputElement | null,
+      tax: $('#calc-tax') as HTMLInputElement | null,
+      insurance: $('#calc-insurance') as HTMLInputElement | null,
+    };
+
+    function setOut(name: string, value: string) {
+      $$(`[data-out="${name}"]`).forEach((el) => { (el as HTMLElement).textContent = value; });
+    }
+    function setBar(name: string, pct: number) {
+      $$(`[data-bar="${name}"]`).forEach((el) => { (el as HTMLElement).style.width = pct + '%'; });
+    }
+
+    function recalc() {
+      if (!inputs.price || !inputs.down || !inputs.term || !inputs.rate || !inputs.tax || !inputs.insurance) return;
+
+      const price = +inputs.price.value;
+      const downPct = +inputs.down.value;
+      const downAmount = price * (downPct / 100);
+      const principal = price - downAmount;
+      const term = +inputs.term.value;
+      const ratePct = +inputs.rate.value;
+      const taxPct = +inputs.tax.value;
+      const insuranceAnnual = +inputs.insurance.value;
+
+      const r = ratePct / 100 / 12;
+      const n = term * 12;
+      const pi = r === 0
+        ? principal / n
+        : (principal * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+      const taxMo = (price * (taxPct / 100)) / 12;
+      const insMo = insuranceAnnual / 12;
+      const hoaMo = hoaMonthly;
+      const total = pi + taxMo + insMo + hoaMo;
+
+      setOut('price-display', fmt(price));
+      setOut('down-pct', String(downPct));
+      setOut('down-amount', fmt(downAmount));
+      setOut('term', String(term));
+      setOut('rate', ratePct.toFixed(ratePct % 1 === 0 ? 0 : 3).replace(/0+$/, '').replace(/\.$/, ''));
+      setOut('tax', taxPct.toFixed(2).replace(/0+$/, '').replace(/\.$/, ''));
+      setOut('insurance', String(insuranceAnnual));
+
+      setOut('total', fmt2(total));
+      setOut('pi', fmt2(pi));
+      setOut('taxMo', fmt2(taxMo));
+      setOut('insMo', fmt2(insMo));
+      setOut('hoaMo', fmt2(hoaMo));
+
+      const totalForBar = Math.max(total, 1);
+      setBar('pi', (pi / totalForBar) * 100);
+      setBar('taxMo', (taxMo / totalForBar) * 100);
+      setBar('insMo', (insMo / totalForBar) * 100);
+      setBar('hoaMo', (hoaMo / totalForBar) * 100);
+    }
+
+    Object.values(inputs).forEach((inp) => {
+      inp?.addEventListener('input', recalc);
+    });
+    recalc();
+  })();
+
+  // ── Map (Leaflet, lazy-loaded if a property has lat/lng) ──
+  (async function initMap() {
+    const el = document.getElementById('propertyMap');
+    if (!el) return;
+    const lat = parseFloat(el.dataset.lat || '');
+    const lng = parseFloat(el.dataset.lng || '');
+    if (!isFinite(lat) || !isFinite(lng)) return;
+
+    // Inject Leaflet JS once
+    if (!(window as any).L) {
+      await new Promise<void>((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+        s.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
+        s.crossOrigin = '';
+        s.onload = () => resolve();
+        s.onerror = () => reject(new Error('Failed to load Leaflet'));
+        document.head.appendChild(s);
+      });
+    }
+    const L = (window as any).L;
+
+    const map = L.map(el, {
+      center: [lat, lng],
+      zoom: 15,
+      scrollWheelZoom: false, // avoids hijacking page scroll
+      zoomControl: true,
+    });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(map);
+
+    // Custom Popby brand-red teardrop pin (option A)
+    const pinSvg = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="50" viewBox="0 0 40 50" fill="none">
+        <path d="M20 0C8.954 0 0 8.954 0 20c0 14 20 30 20 30s20-16 20-30C40 8.954 31.046 0 20 0z" fill="#FF1616"/>
+        <circle cx="20" cy="20" r="7" fill="#fff"/>
+      </svg>`;
+    const icon = L.divIcon({
+      className: 'popby-pin',
+      html: pinSvg,
+      iconSize: [40, 50],
+      iconAnchor: [20, 50],
+      popupAnchor: [0, -45],
+    });
+    L.marker([lat, lng], { icon }).addTo(map)
+      .bindPopup(`<strong>${el.dataset.address || ''}</strong>`);
+
+    // Re-enable scroll-zoom only after the user interacts with the map
+    map.once('focus', () => map.scrollWheelZoom.enable());
+    map.on('click', () => map.scrollWheelZoom.enable());
+  })();
 </script>
