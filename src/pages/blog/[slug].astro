@@ -73,7 +73,84 @@ const metaDescription = (post.excerpt || `${post.category}: ${post.title}`)
     <!-- Post Content -->
     <article class="post-content section">
       <div class="container">
-        <div class="post-content__body" set:html={post.content} />
+        <div class="post-content__body">
+          {post.content ? (
+            <Fragment set:html={post.content} />
+          ) : (
+            <>
+              {post.opening_question && <h3>{post.opening_question}</h3>}
+
+              {post.quick_answer && (
+                <div class="quick-answer-block">
+                  <p class="quick-answer-label">Quick Answer</p>
+                  <p set:html={post.quick_answer} />
+                </div>
+              )}
+
+              {Array.isArray(post.content_sections) && post.content_sections.map((section: any, i: number) => {
+                const total = post.content_sections.length;
+                const midpoint = Math.max(0, Math.floor(total / 2) - 1);
+                const insertConversion = post.mid_post_block && i === midpoint;
+                return (
+                  <Fragment>
+                    <h2>{section.h}</h2>
+                    {String(section.p).split("\n\n").map((para: string) => (
+                      <p set:html={para} />
+                    ))}
+                    {insertConversion && (
+                      <div class="conversion-block">
+                        <p class="cb-hook">{post.mid_post_block.hook}</p>
+                        <p class="cb-offer">{post.mid_post_block.offer}</p>
+                        <p class="cb-cta">
+                          <a href="tel:+18303605569">Call Cody Posey Real Estate at 830.360.5569</a>
+                          <span> · </span>
+                          <a href={post.mid_post_block.cta_href}>{post.mid_post_block.cta_text}</a>
+                        </p>
+                      </div>
+                    )}
+                  </Fragment>
+                );
+              })}
+
+              {Array.isArray(post.action_steps) && post.action_steps.length > 0 && (
+                <Fragment>
+                  {post.action_steps_heading && <h2>{post.action_steps_heading}</h2>}
+                  <ol class="action-steps">
+                    {post.action_steps.map((s: string) => <li set:html={s} />)}
+                  </ol>
+                </Fragment>
+              )}
+
+              {post.in_closing && (
+                <Fragment>
+                  <h2>In Closing</h2>
+                  {post.in_closing.who && (
+                    <p>
+                      <strong>{post.in_closing.who}</strong>
+                      {post.in_closing.next && <Fragment> {post.in_closing.next}</Fragment>}
+                    </p>
+                  )}
+                  {post.in_closing.reduce_friction && <p>{post.in_closing.reduce_friction}</p>}
+                  <p>Ready to talk strategy? <a href="https://cposeyrealestate.com/contact/">Cody Posey Real Estate</a> at <a href="tel:+18303605569">830.360.5569</a>.</p>
+                </Fragment>
+              )}
+
+              {Array.isArray(post.sources) && post.sources.length > 0 && (
+                <p class="post-sources">
+                  <small>
+                    Sources:{" "}
+                    {post.sources.map((s: any, i: number) => (
+                      <Fragment>
+                        {i > 0 && " · "}
+                        <a href={s.url}>{s.name}</a>
+                      </Fragment>
+                    ))}
+                  </small>
+                </p>
+              )}
+            </>
+          )}
+        </div>
       </div>
     </article>
 
@@ -325,5 +402,57 @@ const metaDescription = (post.excerpt || `${post.category}: ${post.title}`)
     color: #333;
     line-height: 1.75;
     font-size: 1rem;
+  }
+
+  /* Structured-render blocks (used when post.content is absent and the post
+     supplies quick_answer / content_sections / mid_post_block / etc.).
+     These styles match the canonical inline HTML used by the existing 44
+     posts so visual output is identical. */
+  .post-content__body .quick-answer-block {
+    border-left: 4px solid #0073aa;
+    padding: 15px;
+    background: #f0f7ff;
+    margin: 20px 0;
+  }
+
+  .post-content__body .quick-answer-label {
+    color: #0073aa;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .post-content__body .conversion-block {
+    border: 1px solid #0073aa;
+    padding: 18px 20px;
+    background: #fafcff;
+    margin: 28px 0;
+    border-radius: 6px;
+  }
+
+  .post-content__body .conversion-block .cb-hook {
+    font-weight: bold;
+    margin: 0 0 6px;
+  }
+
+  .post-content__body .conversion-block .cb-offer {
+    margin: 0 0 12px;
+  }
+
+  .post-content__body .conversion-block .cb-cta {
+    margin: 0;
+  }
+
+  .post-content__body ol.action-steps :global(li) {
+    margin-bottom: 14px;
+  }
+
+  .post-content__body .post-sources {
+    display: block;
+    margin-top: 32px;
+    color: #6b7280;
+  }
+
+  .post-content__body .post-sources small {
+    font-size: 14px;
   }
 </style>
