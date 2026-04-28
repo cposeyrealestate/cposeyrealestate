@@ -21,6 +21,81 @@ const BOLDTRAIL_API_URL =
   (import.meta.env.BOLDTRAIL_API_URL as string | undefined) ||
   'https://api.kvcore.com/v2/public/contact';
 
+// kvCORE classifies contacts as "buyer" or "seller". Forms whose source
+// indicates the lead is selling go to seller; everything else is buyer.
+function dealTypeForSource(source: string | undefined): 'buyer' | 'seller' {
+  if (!source) return 'buyer';
+  const s = source.toLowerCase();
+  if (
+    s.includes('valuation') ||
+    s.includes('seller') ||
+    s.includes('net sheet') ||
+    s.includes('home value')
+  ) {
+    return 'seller';
+  }
+  return 'buyer';
+}
+
+// Best-effort parse of "123 Main St, New Braunfels, TX 78130" into
+// kvCORE's primary_address / primary_city / primary_state / primary_zip.
+// Falls back gracefully when the user types a freeform address.
+function parseAddress(addr: string): {
+  street?: string;
+  city?: string;
+  state?: string;
+  zip?: string;
+} {
+  const parts = addr
+    .split(',')
+    .map((p) => p.trim())
+    .filter(Boolean);
+  if (parts.length === 0) return {};
+  if (parts.length === 1) return { street: parts[0] };
+
+  const last = parts[parts.length - 1];
+  const stateZip = last.match(/^([A-Za-z]{2})\s+(\d{5}(?:-\d{4})?)$/);
+  const zipOnly = last.match(/^(\d{5}(?:-\d{4})?)$/);
+  const stateOnly = last.match(/^([A-Za-z]{2})$/);
+
+  let state: string | undefined;
+  let zip: string | undefined;
+  let city: string | undefined;
+  let street: string | undefined;
+
+  if (stateZip) {
+    state = stateZip[1].toUpperCase();
+    zip = stateZip[2];
+    if (parts.length >= 3) {
+      city = parts[parts.length - 2];
+      street = parts.slice(0, -2).join(', ');
+    } else {
+      street = parts[0];
+    }
+  } else if (zipOnly) {
+    zip = zipOnly[1];
+    if (parts.length >= 3) {
+      city = parts[parts.length - 2];
+      street = parts.slice(0, -2).join(', ');
+    } else {
+      street = parts[0];
+    }
+  } else if (stateOnly) {
+    state = stateOnly[1].toUpperCase();
+    if (parts.length >= 3) {
+      city = parts[parts.length - 2];
+      street = parts.slice(0, -2).join(', ');
+    } else {
+      street = parts[0];
+    }
+  } else {
+    city = last;
+    street = parts.slice(0, -1).join(', ');
+  }
+
+  return { street, city, state, zip };
+}
+
 export const POST: APIRoute = async ({ request }) => {
   const apiKey = (env as any).BOLDTRAIL_API_KEY as string | undefined;
 
@@ -43,15 +118,30 @@ export const POST: APIRoute = async ({ request }) => {
       last = parts.slice(1).join(' ') || '';
     }
 
+    const finalSource = source || 'cposeyrealestate.com';
+
     // Compose the contact payload using kvCORE/BoldTrail field names.
     leadData = {
       first_name: first,
       last_name: last,
       email,
-      source: source || 'cposeyrealestate.com',
+      source: finalSource,
+      deal_type: dealTypeForSource(finalSource),
     };
-    if (phone) leadData.phone = phone;
 
+    // kvCORE expects cell_phone_1, not "phone".
+    if (phone) leadData.cell_phone_1 = String(phone).trim();
+
+    // Map address into structured primary_* fields when possible.
+    if (address) {
+      const parsed = parseAddress(String(address));
+      leadData.primary_address = parsed.street || String(address);
+      if (parsed.city) leadData.primary_city = parsed.city;
+      if (parsed.state) leadData.primary_state = parsed.state;
+      if (parsed.zip) leadData.primary_zip = parsed.zip;
+    }
+
+    // Also keep a human-readable note so the agent sees full context.
     const notes: string[] = [];
     if (message) notes.push(String(message));
     if (address) notes.push(`Property: ${address}`);
@@ -97,7 +187,11 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    console.log('[lead] BoldTrail accepted submission', { email, source: leadData.source });
+    console.log('[lead] BoldTrail accepted submission', {
+      email,
+      source: leadData.source,
+      deal_type: leadData.deal_type,
+    });
     return json({ success: true, data: responseData }, 200);
   } catch (err) {
     // Always log the lead payload even on unexpected errors.

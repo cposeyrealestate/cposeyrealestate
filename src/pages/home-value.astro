@@ -70,6 +70,11 @@ const pageSchema = [
             </div>
           </div>
 
+          <div class="valuation-form__error" id="valuationError" style="display: none;">
+            <p class="valuation-form__error-title">Something went wrong</p>
+            <p class="valuation-form__error-text">We couldn't submit your request. Please try again, or call <a href="tel:+18303605569">(830) 360-5569</a> directly.</p>
+          </div>
+
           <p class="valuation-form__disclaimer">By submitting, you agree to be contacted by Cody Posey at Popby Realty. We respect your privacy and will never share your information.</p>
         </div>
       </div>
@@ -344,6 +349,34 @@ const pageSchema = [
     line-height: 1.5;
   }
 
+  .valuation-form__error {
+    padding: 16px 18px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-left: 4px solid #FF1616;
+    border-radius: 8px;
+    margin-top: 12px;
+  }
+  .valuation-form__error-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #991b1b;
+    margin-bottom: 4px;
+  }
+  .valuation-form__error-text {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .valuation-form__error-text a {
+    color: #FF1616;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .valuation-form__error-text a:hover {
+    text-decoration: underline;
+  }
+
   .valuation-form__disclaimer {
     font-size: 11px;
     color: #999;
@@ -457,12 +490,14 @@ const pageSchema = [
 <script is:inline>
   const form = document.getElementById('valuationForm');
   const success = document.getElementById('valuationSuccess');
+  const errorBox = document.getElementById('valuationError');
 
   form?.addEventListener('submit', function(e) {
     e.preventDefault();
 
     // Clear previous errors
     form.querySelectorAll('.error').forEach(function(el) { el.classList.remove('error'); });
+    if (errorBox) errorBox.style.display = 'none';
 
     var name = form.querySelector('#vf-name');
     var address = form.querySelector('#vf-address');
@@ -492,15 +527,21 @@ const pageSchema = [
           source: 'Home Valuation Page'
         })
       })
-      .then(function(res) { return res.json(); })
-      .then(function(data) {
-        form.style.display = 'none';
-        success.style.display = 'flex';
+      .then(function(res) {
+        return res.json().then(function(data) { return { ok: res.ok, data: data }; });
+      })
+      .then(function(result) {
+        if (result.ok && result.data && result.data.success) {
+          form.style.display = 'none';
+          success.style.display = 'flex';
+        } else {
+          throw new Error('lead-not-accepted');
+        }
       })
       .catch(function() {
-        // Still show success to user — lead may have gone through
-        form.style.display = 'none';
-        success.style.display = 'flex';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Get My Home Value';
+        if (errorBox) errorBox.style.display = 'block';
       });
     }
   });
