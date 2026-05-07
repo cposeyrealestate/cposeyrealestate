@@ -1,84 +1,28 @@
 ---
-// Featured Listings — these are illustrative cards on the homepage.
-// Live MLS search is handled by IDX Broker; the "View All Listings" CTA
-// sends users to /search which redirects to the wrapped IDX search.
-const usingPlaceholders = true;
-const featuredListings: any[] = [];
+import portfolioData from '../data/portfolio.json';
 
-const placeholderListings = [
-  {
-    id: 1,
-    status: 'Active',
-    price: '$450,000',
-    address: '123 Sample Drive',
-    city: 'New Braunfels, TX 78130',
-    beds: 4,
-    baths: 3,
-    sqft: '2,450',
-    img: 'https://placehold.co/600x400/1a1a1a/FF1616?text=Property+Photo',
-    url: '/search',
-  },
-  {
-    id: 2,
-    status: 'Active',
-    price: '$325,000',
-    address: '456 River Bend Blvd',
-    city: 'New Braunfels, TX 78132',
-    beds: 3,
-    baths: 2,
-    sqft: '1,890',
-    img: 'https://placehold.co/600x400/1a1a1a/FF1616?text=Property+Photo',
-    url: '/search',
-  },
-  {
-    id: 3,
-    status: 'Pending',
-    price: '$589,000',
-    address: '789 Hill Country Ln',
-    city: 'New Braunfels, TX 78130',
-    beds: 5,
-    baths: 4,
-    sqft: '3,100',
-    img: 'https://placehold.co/600x400/1a1a1a/FF1616?text=Property+Photo',
-    url: '/search',
-  },
-  {
-    id: 4,
-    status: 'Active',
-    price: '$275,000',
-    address: '321 Gruene Road',
-    city: 'New Braunfels, TX 78130',
-    beds: 3,
-    baths: 2,
-    sqft: '1,650',
-    img: 'https://placehold.co/600x400/1a1a1a/FF1616?text=Property+Photo',
-    url: '/search',
-  },
-];
-
-// Normalise IDX data into the same shape the template expects
-const listings = usingPlaceholders
-  ? placeholderListings
-  : featuredListings.map((l: any) => ({
-      id: l.listingID || l.id,
-      status: l.propStatus || 'Active',
-      price: l.listingPrice || l.price,
-      address: l.address || '',
-      city: [l.cityName, l.state, l.zipcode].filter(Boolean).join(', ') || l.city,
-      beds: l.bedrooms ?? l.beds,
-      baths: l.totalBaths ?? l.baths,
-      sqft: l.sqFt || l.sqft || '',
-      img: (typeof l.image === 'string' ? l.image : l.image?.[0]?.url) || l.img || 'https://placehold.co/600x400/1a1a1a/FF1616?text=No+Photo',
-      propType: l.propSubType || '',
-      url: l.fullDetailsURL || l.url || '/search',
-    }));
+const listings = (portfolioData.currentListings as any[])
+  .filter((l: any) => l.featured)
+  .map((l: any) => ({
+    id: l.mlsId,
+    status: l.status,
+    price: l.price,
+    address: l.address,
+    city: l.city,
+    beds: l.beds,
+    baths: l.baths,
+    sqft: l.sqft,
+    img: l.img,
+    propType: l.propertyType,
+    url: `/portfolio/${l.slug}`,
+  }));
 ---
 
 <section class="properties section" id="featured-properties">
   <div class="container">
     <div class="section-title">
       <h2>Featured <span class="accent">Listings</span></h2>
-      <p>Hand-picked properties in the New Braunfels area</p>
+      <p>Hand-picked properties across Central Texas</p>
     </div>
 
     <div class="swiper properties-swiper">
