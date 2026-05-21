@@ -103,7 +103,23 @@ export const POST: APIRoute = async ({ request }) => {
 
   try {
     const body = await request.json();
-    const { name, firstName, lastName, email, phone, address, message, source } = body;
+    const {
+      name,
+      firstName,
+      lastName,
+      email,
+      phone,
+      address,
+      message,
+      source,
+      // Listing context — sent from ContactForm.astro when the user
+      // inquires from a /portfolio/[id] detail page. Maps to kvCORE's
+      // Property of Interest (POI) fields so the agent can see exactly
+      // which property the buyer is asking about.
+      listing,
+      mls,
+      listingUrl,
+    } = body;
 
     if (!email) {
       return json({ error: 'Email is required' }, 400);
@@ -141,10 +157,27 @@ export const POST: APIRoute = async ({ request }) => {
       if (parsed.zip) leadData.primary_zip = parsed.zip;
     }
 
+    // Property of Interest — the listing the buyer is asking about.
+    // ContactForm sends `listing` as "Street, City, ST ZIP", which we parse
+    // into kvCORE's poi_* fields. MLS# stamps active_mls_id for searchability.
+    if (listing) {
+      const poi = parseAddress(String(listing));
+      leadData.poi_address = poi.street || String(listing);
+      if (poi.city) leadData.poi_city = poi.city;
+      if (poi.state) leadData.poi_state = poi.state;
+      if (poi.zip) leadData.poi_zip = poi.zip;
+    }
+    if (mls) leadData.active_mls_id = String(mls).trim();
+
     // Also keep a human-readable note so the agent sees full context.
     const notes: string[] = [];
     if (message) notes.push(String(message));
     if (address) notes.push(`Property: ${address}`);
+    if (listing) {
+      const mlsTag = mls ? ` (MLS# ${mls})` : '';
+      notes.push(`Inquiring about: ${listing}${mlsTag}`);
+    }
+    if (listingUrl) notes.push(`Listing URL: ${listingUrl}`);
     if (notes.length) leadData.message = notes.join('\n');
 
     if (!apiKey) {

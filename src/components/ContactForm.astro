@@ -86,6 +86,15 @@ const prefillMessage = listing
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           <p>Thanks for reaching out! I'll get back to you shortly.</p>
         </div>
+
+        <div class="contact-form__error" id="contactError" style="display: none;" role="alert">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <p>
+            Something went wrong sending your message. Please try again, or contact me directly at
+            <a href="tel:+18303605569">(830) 360-5569</a> or
+            <a href="mailto:codyposey@cposeyrealestate.com">codyposey@cposeyrealestate.com</a>.
+          </p>
+        </div>
       </form>
     </div>
   </div>
@@ -206,7 +215,8 @@ const prefillMessage = listing
     cursor: pointer;
   }
 
-  .contact-form__success {
+  .contact-form__success,
+  .contact-form__error {
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -217,9 +227,20 @@ const prefillMessage = listing
     margin-top: 0.5rem;
   }
 
-  .contact-form__success p {
+  .contact-form__success p,
+  .contact-form__error p {
     color: rgba(255,255,255,0.9);
     font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .contact-form__error a {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  .contact-form__error a:hover {
+    color: #FF1616;
   }
 
   /* Listing context banner (when arriving from an IDX listing detail page) */
@@ -308,12 +329,14 @@ const prefillMessage = listing
 
   const form = document.getElementById('contactForm');
   const success = document.getElementById('contactSuccess');
+  const errorBox = document.getElementById('contactError');
 
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // Clear previous errors
+    // Clear previous errors (field-level + global)
     form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+    if (errorBox) errorBox.style.display = 'none';
 
     const name = form.querySelector('#cf-name');
     const email = form.querySelector('#cf-email');
@@ -326,6 +349,7 @@ const prefillMessage = listing
 
     if (valid) {
       var submitBtn = form.querySelector('.contact-form__submit');
+      var originalLabel = submitBtn.textContent;
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
 
@@ -344,13 +368,19 @@ const prefillMessage = listing
           listingUrl: ctx.listingUrl || ''
         })
       })
-      .then(function() {
+      .then(function(res) {
+        // fetch() only rejects on network failure — must check res.ok
+        // explicitly or a 4xx/5xx looks like a success.
+        if (!res.ok) throw new Error('HTTP ' + res.status);
         form.style.display = 'none';
         success.style.display = 'flex';
       })
-      .catch(function() {
-        form.style.display = 'none';
-        success.style.display = 'flex';
+      .catch(function(err) {
+        // Surface the failure so the lead is never silently lost.
+        console.error('[contact-form] submission failed', err);
+        if (errorBox) errorBox.style.display = 'flex';
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
       });
     }
   });
