@@ -128,7 +128,7 @@ function fmtSoldDate(iso: string) {
               >
                 <div class="prop-card__img-wrap">
                   <img src={s.img} alt={s.address} class="prop-card__img" loading="lazy" />
-                  <span class={`prop-card__status ${String(s.status).toLowerCase()}`}>{s.status}</span>
+                  <span class={`prop-card__status ${String(s.status).toLowerCase().replace(/\s+/g, '-')}`}>{s.status}</span>
                 </div>
                 <div class="prop-card__body">
                   <div class="prop-card__price">{s.price}</div>
@@ -147,7 +147,7 @@ function fmtSoldDate(iso: string) {
               <div class="prop-card prop-card--sold">
                 <div class="prop-card__img-wrap">
                   <img src={s.img} alt={s.address} class="prop-card__img" loading="lazy" />
-                  <span class={`prop-card__status ${String(s.status).toLowerCase()}`}>{s.status}</span>
+                  <span class={`prop-card__status ${String(s.status).toLowerCase().replace(/\s+/g, '-')}`}>{s.status}</span>
                   {'soldDate' in s && s.soldDate && (
                     <span class="prop-card__sold-date">Sold {fmtSoldDate(s.soldDate)}</span>
                   )}
@@ -246,6 +246,7 @@ function fmtSoldDate(iso: string) {
     color: #fff;
   }
   .prop-card__status.active { background: #FF1616; }
+  .prop-card__status.under-contract { background: #d97706; }
   .prop-card__status.pending { background: #e07b00; }
   .prop-card__status.sold { background: #111; }
   .prop-card__status.leased { background: #333; }

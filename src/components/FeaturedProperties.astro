@@ -32,7 +32,7 @@ const listings = (portfolioData.currentListings as any[])
             <div class="prop-card">
               <div class="prop-card__img-wrap">
                 <img src={listing.img} alt={listing.address} class="prop-card__img" loading="lazy" />
-                <span class={`prop-card__status ${String(listing.status).toLowerCase()}`}>{listing.status}</span>
+                <span class={`prop-card__status ${String(listing.status).toLowerCase().replace(/\s+/g, '-')}`}>{listing.status}</span>
               </div>
               <div class="prop-card__body">
                 <div class="prop-card__price">{listing.price}</div>
@@ -121,6 +121,7 @@ const listings = (portfolioData.currentListings as any[])
   }
 
   .prop-card__status.active { background: #FF1616; }
+  .prop-card__status.under-contract { background: #d97706; }
   .prop-card__status.pending { background: #e07b00; }
   .prop-card__status.sold { background: #333; }
 

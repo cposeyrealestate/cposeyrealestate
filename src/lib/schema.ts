@@ -467,7 +467,7 @@ export function listingSchema(listing: {
   const availability =
     status === 'sold'
       ? 'https://schema.org/SoldOut'
-      : status === 'pending'
+      : status === 'pending' || status === 'under contract'
         ? 'https://schema.org/PreOrder'
         : 'https://schema.org/InStock';
 

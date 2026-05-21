@@ -95,7 +95,7 @@ function fmtSoldDate(iso: string) {
               <a href={l.url} target={l.external ? '_blank' : '_self'} rel={l.external ? 'noopener' : undefined} class="p-card">
                 <div class="p-card__img-wrap">
                   <img src={l.img} alt={l.address} class="p-card__img" loading="lazy" />
-                  <span class={`p-card__status ${String(l.status).toLowerCase()}`}>{l.status}</span>
+                  <span class={`p-card__status ${String(l.status).toLowerCase().replace(/\s+/g, '-')}`}>{l.status}</span>
                 </div>
                 <div class="p-card__body">
                   <div class="p-card__price">{l.price}</div>
@@ -131,7 +131,7 @@ function fmtSoldDate(iso: string) {
               <div class="p-card p-card--sold" data-page={Math.floor(i / 12) + 1}>
                 <div class="p-card__img-wrap">
                   <img src={l.img} alt={l.address} class="p-card__img" loading="lazy" />
-                  <span class={`p-card__status ${String(l.status).toLowerCase()}`}>{l.status}</span>
+                  <span class={`p-card__status ${String(l.status).toLowerCase().replace(/\s+/g, '-')}`}>{l.status}</span>
                   {l.soldDate && <span class="p-card__sold-date">Closed {fmtSoldDate(l.soldDate)}</span>}
                 </div>
                 <div class="p-card__body">
@@ -287,6 +287,7 @@ function fmtSoldDate(iso: string) {
     color: #fff;
   }
   .p-card__status.active { background: #FF1616; }
+  .p-card__status.under-contract { background: #d97706; }
   .p-card__status.pending { background: #e07b00; }
   .p-card__status.sold { background: #111; }
   .p-card__status.leased { background: #333; }

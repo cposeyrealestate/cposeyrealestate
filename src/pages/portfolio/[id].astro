@@ -133,7 +133,7 @@ const hasMap = typeof listing.lat === 'number' && typeof listing.lng === 'number
     <section class="detail__band">
       <div class="container detail__band-inner">
         <div class="detail__band-info">
-          <span class={`detail__status ${listing.status.toLowerCase()}`}>{listing.status}</span>
+          <span class={`detail__status ${listing.status.toLowerCase().replace(/\s+/g, '-')}`}>{listing.status}</span>
           <h1 class="detail__price">{listing.price}</h1>
           <div class="detail__address">{listing.address}</div>
           <div class="detail__city">{listing.city}</div>
@@ -459,6 +459,7 @@ const hasMap = typeof listing.lat === 'number' && typeof listing.lng === 'number
     letter-spacing: 0.1em;
     margin-bottom: 0.7rem;
   }
+  .detail__status.under-contract { background: #d97706; }
   .detail__status.pending { background: #e07b00; }
   .detail__status.sold { background: #111; }
   .detail__price {

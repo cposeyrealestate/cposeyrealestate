@@ -392,7 +392,7 @@
       "source": "internal",
       "mlsId": "604073",
       "slug": "0000-cr-3390-kempner",
-      "status": "Active",
+      "status": "Under Contract",
       "featured": true,
       "price": "$139,000",
       "address": "0000 CR 3390",
@@ -426,7 +426,7 @@
           ["Survey", "Available"]
         ],
         "Area & Lot": [
-          ["Status", "Active"],
+          ["Status", "Under Contract"],
           ["Lot Area", "5.25 Acres"],
           ["MLS® ID", "604073"],
           ["Type", "Land"],
