@@ -1,0 +1,6 @@
+# Cloudflare Pages redirects — picked up automatically from dist/ root.
+# Format: <from> <to> <status>   (301 = permanent, good for SEO)
+
+# Physical yard signs and old blog post CTAs point at /contact-us.
+# The actual contact page lives at /contact.
+/contact-us  /contact  301
