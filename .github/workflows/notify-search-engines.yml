@@ -1,0 +1,39 @@
+name: Notify search engines
+
+# Submits new/updated blog post URLs to IndexNow (Bing, Yandex, DuckDuckGo,
+# Seznam, Naver) the moment they go live on Cloudflare Pages.
+#
+# Google does not participate in IndexNow. The corresponding Google levers
+# are (a) the <lastmod> emitted in /sitemap-0.xml and (b) the sitemap being
+# submitted in Google Search Console — both already in place.
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'src/data/blog-posts.json'
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: 'Comma-separated absolute URLs to resubmit (manual override)'
+        required: false
+        default: ''
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (with previous commit for diff)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Submit to IndexNow
+        env:
+          MANUAL_URLS: ${{ github.event.inputs.urls }}
+        run: node .github/scripts/notify-indexnow.mjs

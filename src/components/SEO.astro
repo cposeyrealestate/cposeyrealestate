@@ -41,11 +41,15 @@ const {
 } = Astro.props as Props;
 
 // --- Title: keep under 60 chars for Google SERP truncation sanity
-// If the raw title is already branded, leave it alone; otherwise append the site name.
+// Checking for the person's name (not the full site name) prevents the
+// "X | Cody Posey | Cody Posey Real Estate" double-brand the June 2026
+// audit flagged on ~20 pages. When we do append, fall back to the short
+// brand if the full one would blow past Google's ~60-char display limit.
 const siteName = seo.site.name;
-const fullTitle = title.toLowerCase().includes(siteName.toLowerCase())
+const shortBrand = seo.person.name;
+const fullTitle = title.toLowerCase().includes(shortBrand.toLowerCase())
   ? title
-  : `${title} | ${siteName}`;
+  : `${title} | ${title.length + siteName.length + 3 > 60 ? shortBrand : siteName}`;
 
 // --- Description: hard-cap at ~155 chars (Google's typical snippet width)
 const cleanDescription = description

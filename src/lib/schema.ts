@@ -471,6 +471,10 @@ export function listingSchema(listing: {
         ? 'https://schema.org/PreOrder'
         : 'https://schema.org/InStock';
 
+  // RealEstateListing is a WebPage subtype, so housing facts (beds, baths,
+  // floor size) are not valid directly on it — schema.org validators flag
+  // them as UNKNOWN_FIELD. They belong on the Accommodation entity the
+  // listing page is `about`.
   return {
     '@context': 'https://schema.org',
     '@type': 'RealEstateListing',
@@ -480,13 +484,34 @@ export function listingSchema(listing: {
     url: new URL(listing.url, SITE).toString(),
     image: listing.img.startsWith('http') ? listing.img : new URL(listing.img, SITE).toString(),
     datePosted: new Date().toISOString().split('T')[0],
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: listing.address,
-      addressLocality: locality,
-      addressRegion: region,
-      ...(postalCode && { postalCode }),
-      addressCountry: 'US',
+    about: {
+      '@type': 'SingleFamilyResidence',
+      name: `${listing.address}, ${listing.city}`,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: listing.address,
+        addressLocality: locality,
+        addressRegion: region,
+        ...(postalCode && { postalCode }),
+        addressCountry: 'US',
+      },
+      ...(listing.beds && { numberOfBedrooms: listing.beds }),
+      ...(listing.baths && { numberOfBathroomsTotal: listing.baths }),
+      ...(listing.sqft && {
+        floorSize: {
+          '@type': 'QuantitativeValue',
+          value: parseInt(listing.sqft.replace(/[^0-9]/g, ''), 10),
+          unitCode: 'FTK', // square feet
+        },
+      }),
+      ...(listing.acres && {
+        additionalProperty: {
+          '@type': 'PropertyValue',
+          name: 'Lot size',
+          value: parseFloat(listing.acres),
+          unitCode: 'ACR',
+        },
+      }),
     },
     offers: {
       '@type': 'Offer',
@@ -494,21 +519,5 @@ export function listingSchema(listing: {
       ...(listing.price && { price: listing.price.replace(/[^0-9]/g, ''), priceCurrency: 'USD' }),
       seller: { '@id': PERSON_ID },
     },
-    ...(listing.beds && { numberOfRooms: listing.beds }),
-    ...(listing.baths && { numberOfBathroomsTotal: listing.baths }),
-    ...(listing.sqft && {
-      floorSize: {
-        '@type': 'QuantitativeValue',
-        value: parseInt(listing.sqft.replace(/[^0-9]/g, ''), 10),
-        unitCode: 'FTK', // square feet
-      },
-    }),
-    ...(listing.acres && {
-      lotSize: {
-        '@type': 'QuantitativeValue',
-        value: parseFloat(listing.acres),
-        unitCode: 'ACR',
-      },
-    }),
   };
 }

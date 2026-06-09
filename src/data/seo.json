@@ -8,7 +8,7 @@
     "language": "English",
     "description": "Cody Posey is a U.S. Army veteran and New Braunfels REALTOR® serving the Texas Hill Country. Trusted buyer and seller representation across New Braunfels, Canyon Lake, Seguin, Cibolo, Schertz, and Bulverde.",
     "tagline": "Educating. Serving. Delivering Results.",
-    "defaultOgImage": "/images/og-default.jpg",
+    "defaultOgImage": "/images/generated/hero-home-aerial.webp",
     "themeColor": "#FF1616"
   },
 
@@ -18,7 +18,7 @@
     "familyName": "Posey",
     "jobTitle": "REALTOR®",
     "bio": "Cody Posey is a U.S. Army veteran (20 years of service) and licensed Texas REALTOR® focused on the New Braunfels and Texas Hill Country market. He holds the MRP (Military Relocation Professional), ABR (Accredited Buyer's Representative), and PSA (Pricing Strategy Advisor) certifications. Cody represents both buyers and sellers across New Braunfels, Canyon Lake, Seguin, Cibolo, Schertz, Bulverde, and San Antonio.",
-    "image": "https://cposeyrealestate.com/images/cody-posey.jpg",
+    "image": "https://cposeyrealestate.com/images/cody-posey.webp",
     "email": "codyposey@cposeyrealestate.com",
     "telephone": "+1-830-360-5569",
     "license": {
