@@ -9,11 +9,11 @@ import { articleSchema, breadcrumbSchema } from '../../lib/schema';
 const pageTitle = "Why Work with a REALTOR | Buyer's Guide | Cody Posey";
 const pageDescription = 'How a licensed REALTOR gives New Braunfels, TX homebuyers an advantage — fiduciary duty, negotiation, contract expertise, and local market knowledge that pays off.';
 const pageSchema = [
-  articleSchema({ title: pageTitle, description: pageDescription, url: '/buyers-guide/why-use-a-realtor' }),
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/buyers-guide/why-use-a-realtor/' }),
   breadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: "Buyer's Guide", url: '/buyers-guide' },
-    { name: 'Why Use a REALTOR', url: '/buyers-guide/why-use-a-realtor' },
+    { name: "Buyer's Guide", url: '/buyers-guide/' },
+    { name: 'Why Use a REALTOR', url: '/buyers-guide/why-use-a-realtor/' },
   ]),
 ];
 ---
@@ -31,7 +31,7 @@ const pageSchema = [
       <div class="sub-hero__overlay"></div>
       <div class="sub-hero__content">
         <nav class="breadcrumb" aria-label="Breadcrumb">
-          <a href="/">Home</a> <span>/</span> <a href="/buyers-guide">Buyer's Guide</a> <span>/</span> <span>Why Use a REALTOR</span>
+          <a href="/">Home</a> <span>/</span> <a href="/buyers-guide/">Buyer's Guide</a> <span>/</span> <span>Why Use a REALTOR</span>
         </nav>
         <h1>Why Work with a <span style="color:#FF1616;">REALTOR&reg;</span></h1>
         <p>The difference between an agent and a REALTOR&reg; matters</p>
@@ -117,7 +117,7 @@ const pageSchema = [
         <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">I'm here to educate, serve, and deliver results. Let's talk about your goals.</p>
         <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
           <a href="#contact" class="btn btn-primary">Let's Connect</a>
-          <a href="/buyers-guide" class="btn btn-outline">Back to Buyer's Guide</a>
+          <a href="/buyers-guide/" class="btn btn-outline">Back to Buyer's Guide</a>
         </div>
       </div>
     </section>

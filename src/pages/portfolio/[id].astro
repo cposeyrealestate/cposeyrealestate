@@ -45,12 +45,12 @@ const { listing } = Astro.props as { listing: Listing };
 
 const photos = listing.gallery && listing.gallery.length > 0 ? listing.gallery : [listing.img];
 
-const pageUrl = `/portfolio/${listing.slug}`;
+const pageUrl = `/portfolio/${listing.slug}/`;
 const pageSchema = [
   listingSchema({ ...listing, url: pageUrl }),
   breadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: 'Portfolio', url: '/portfolio' },
+    { name: 'Portfolio', url: '/portfolio/' },
     { name: listing.address, url: pageUrl },
   ]),
 ];
@@ -96,7 +96,7 @@ const hasMap = typeof listing.lat === 'number' && typeof listing.lng === 'number
       <ol>
         <li><a href="/">Home</a></li>
         <li aria-hidden="true">/</li>
-        <li><a href="/portfolio">Portfolio</a></li>
+        <li><a href="/portfolio/">Portfolio</a></li>
         <li aria-hidden="true">/</li>
         <li aria-current="page">{listing.address}</li>
       </ol>

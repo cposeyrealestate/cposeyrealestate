@@ -47,7 +47,7 @@ type Past = {
 const IDX_BASE = 'https://cposeyrealestate.idxbroker.com/idx/details/listing/a023';
 
 function resolveCurrentUrl(l: Current) {
-  if (l.source === 'internal') return `/portfolio/${l.slug}`;
+  if (l.source === 'internal') return `/portfolio/${l.slug}/`;
   return `${IDX_BASE}/${l.mlsId}/${l.slug}`;
 }
 
@@ -178,7 +178,7 @@ function fmtSoldDate(iso: string) {
     </div>
 
     <div class="portfolio__cta">
-      <a href="/portfolio" class="btn btn-primary">See Full Portfolio</a>
+      <a href="/portfolio/" class="btn btn-primary">See Full Portfolio</a>
     </div>
   </div>
 </section>

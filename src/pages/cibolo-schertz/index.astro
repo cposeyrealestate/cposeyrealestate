@@ -8,22 +8,22 @@ import { placeSchema, collectionPageSchema, breadcrumbSchema } from '../../lib/s
 
 const csDescription = 'Explore Cibolo and Schertz, Texas — family-friendly communities between San Antonio and New Braunfels. Top schools, safe neighborhoods, and I-35 access.';
 const pageSchema = [
-  placeSchema({ name: 'Cibolo, TX', description: csDescription, url: '/cibolo-schertz' }),
-  placeSchema({ name: 'Schertz, TX', description: csDescription, url: '/cibolo-schertz' }),
+  placeSchema({ name: 'Cibolo, TX', description: csDescription, url: '/cibolo-schertz/' }),
+  placeSchema({ name: 'Schertz, TX', description: csDescription, url: '/cibolo-schertz/' }),
   collectionPageSchema({
     name: 'Cibolo & Schertz Area Guide',
     description: csDescription,
-    url: '/cibolo-schertz',
+    url: '/cibolo-schertz/',
     hasPart: [
-      { name: 'Neighborhoods', url: '/cibolo-schertz/neighborhoods' },
-      { name: 'Restaurants', url: '/cibolo-schertz/restaurants' },
-      { name: 'Things to Do', url: '/cibolo-schertz/things-to-do' },
+      { name: 'Neighborhoods', url: '/cibolo-schertz/neighborhoods/' },
+      { name: 'Restaurants', url: '/cibolo-schertz/restaurants/' },
+      { name: 'Things to Do', url: '/cibolo-schertz/things-to-do/' },
     ],
   }),
   breadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: 'Explore Area', url: '/explorearea' },
-    { name: 'Cibolo & Schertz', url: '/cibolo-schertz' },
+    { name: 'Explore Area', url: '/explorearea/' },
+    { name: 'Cibolo & Schertz', url: '/cibolo-schertz/' },
   ]),
 ];
 ---

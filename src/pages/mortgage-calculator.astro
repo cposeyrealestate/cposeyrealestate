@@ -9,10 +9,10 @@ import { articleSchema, breadcrumbSchema } from '../lib/schema';
 const pageTitle = 'Mortgage Calculator | Estimate Your Monthly Payment | Cody Posey';
 const pageDescription = 'Calculate your monthly mortgage payment for a home in New Braunfels, TX or the Texas Hill Country — principal, interest, property taxes, insurance, and PMI.';
 const pageSchema = [
-  articleSchema({ title: pageTitle, description: pageDescription, url: '/mortgage-calculator' }),
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/mortgage-calculator/' }),
   breadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: 'Mortgage Calculator', url: '/mortgage-calculator' },
+    { name: 'Mortgage Calculator', url: '/mortgage-calculator/' },
   ]),
 ];
 ---
@@ -129,7 +129,7 @@ const pageSchema = [
 
             <button type="button" class="btn btn-primary mc-calc-btn" id="calcBtn" style="width:100%; margin-top:1.5rem; font-size:1rem; padding:0.9rem;">Calculate My Payment</button>
 
-            <a href="/recommended-lenders" class="btn btn-outline-dark" style="width:100%; margin-top:0.75rem; font-size:0.9rem; padding:0.8rem; text-align:center; display:block;">Connect with a Lender</a>
+            <a href="/recommended-lenders/" class="btn btn-outline-dark" style="width:100%; margin-top:0.75rem; font-size:0.9rem; padding:0.8rem; text-align:center; display:block;">Connect with a Lender</a>
 
             <div class="mc-disclaimer__box" style="margin-top:1rem;">
               <strong>Disclaimer:</strong> This calculator provides estimates only and is not a commitment to lend. Actual rates, payments, and costs may vary based on your credit profile, lender, loan program, and market conditions. Property taxes are estimated at 1.75% of home value annually (Comal County average). Homeowners insurance is estimated at 0.5% annually. Always consult with a licensed mortgage lender for accurate figures.
@@ -226,7 +226,7 @@ const pageSchema = [
             <!-- CTA -->
             <div class="mc-cta">
               <p>Ready to get pre-approved? Connect with trusted local lenders who specialize in the Hill Country market.</p>
-              <a href="/recommended-lenders" class="mc-cta__btn">Connect with a Lender</a>
+              <a href="/recommended-lenders/" class="mc-cta__btn">Connect with a Lender</a>
             </div>
           </div>
 

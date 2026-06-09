@@ -22,8 +22,8 @@ const schemaPayload: object[] = [
   blogPostingSchema(post),
   breadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: 'Blog', url: '/blog' },
-    { name: post.title, url: `/blog/${post.slug}` },
+    { name: 'Blog', url: '/blog/' },
+    { name: post.title, url: `/blog/${post.slug}/` },
   ]),
 ];
 if (Array.isArray(post.faqItems) && post.faqItems.length > 0) {

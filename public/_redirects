@@ -4,3 +4,20 @@
 # Physical yard signs and old blog post CTAs point at /contact-us.
 # The actual contact page lives at /contact.
 /contact-us  /contact  301
+
+# AI-written blog posts (Mar-Apr 2026) linked to pages that never
+# existed; the links are fixed in blog-posts.json but Google already
+# crawled the 404s, so send them to the closest real page.
+/home-valuation  /home-value/  301
+/home-search/listings  /search  301
+/home-search  /search  301
+/properties  /search  301
+/neighborhoods/veramendi  /new-braunfels/neighborhoods/  301
+/neighborhoods  /explorearea/  301
+/blog/new-braunfels-has-entered-a-buyers-market-heres-what-that-actually-means  /blog/new-braunfels-buyer-or-seller-market-2026/  301
+/blog/new-vs-resale-buyers-market-picks-in-new-braunfels  /new-braunfels/new-construction/  301
+/blog/new-braunfels-buyers-guide-2025-new-construction-vs-resale-homes-in-canyon-lake-and-hill-country  /new-braunfels/new-construction/  301
+/blog/the-emotional-pricing-trap-3-steps-new-braunfels-sellers-can-take-to-price-their-home-for-the-current-buyers-market  /blog/new-braunfels-home-pricing-strategy-2026/  301
+/blog/how-to-sell-my-home-in-new-braunfels  /sellers-guide/  301
+/blog/why-is-the-san-antonio-new-braunfels-market-hot-but-my-house-isnt-selling  /blog/new-braunfels-home-pricing-in-2026/  301
+/blog/selling-in-2026-how-new-braunfels-vs-schertz-property-taxes-really-impact-your-bottom-line  /blog/comal-county-property-tax-rate-changes-2026/  301

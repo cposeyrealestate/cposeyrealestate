@@ -8,21 +8,21 @@ import { placeSchema, collectionPageSchema, breadcrumbSchema } from '../../lib/s
 
 const bvDescription = 'Explore Bulverde, Texas — quiet Hill Country living on acreage. Neighborhoods, homes for sale, restaurants, and things to do in Bulverde.';
 const pageSchema = [
-  placeSchema({ name: 'Bulverde, TX', description: bvDescription, url: '/bulverde' }),
+  placeSchema({ name: 'Bulverde, TX', description: bvDescription, url: '/bulverde/' }),
   collectionPageSchema({
     name: 'Bulverde Area Guide',
     description: bvDescription,
-    url: '/bulverde',
+    url: '/bulverde/',
     hasPart: [
-      { name: 'Neighborhoods', url: '/bulverde/neighborhoods' },
-      { name: 'Restaurants', url: '/bulverde/restaurants' },
-      { name: 'Things to Do', url: '/bulverde/things-to-do' },
+      { name: 'Neighborhoods', url: '/bulverde/neighborhoods/' },
+      { name: 'Restaurants', url: '/bulverde/restaurants/' },
+      { name: 'Things to Do', url: '/bulverde/things-to-do/' },
     ],
   }),
   breadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: 'Explore Area', url: '/explorearea' },
-    { name: 'Bulverde', url: '/bulverde' },
+    { name: 'Explore Area', url: '/explorearea/' },
+    { name: 'Bulverde', url: '/bulverde/' },
   ]),
 ];
 ---

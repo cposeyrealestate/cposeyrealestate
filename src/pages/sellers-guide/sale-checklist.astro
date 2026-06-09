@@ -9,11 +9,11 @@ import { articleSchema, breadcrumbSchema } from '../../lib/schema';
 const pageTitle = "Home Sale Checklist | Seller's Guide | Cody Posey";
 const pageDescription = 'A room-by-room home sale checklist for New Braunfels, TX sellers — evaluate exterior, interior, kitchen, bath, and mechanicals to maximize your final sale price.';
 const pageSchema = [
-  articleSchema({ title: pageTitle, description: pageDescription, url: '/sellers-guide/sale-checklist' }),
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/sellers-guide/sale-checklist/' }),
   breadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: "Seller's Guide", url: '/sellers-guide' },
-    { name: 'Sale Checklist', url: '/sellers-guide/sale-checklist' },
+    { name: "Seller's Guide", url: '/sellers-guide/' },
+    { name: 'Sale Checklist', url: '/sellers-guide/sale-checklist/' },
   ]),
 ];
 
@@ -157,7 +157,7 @@ const categories = [
       <div class="sp-hero__overlay"></div>
       <div class="sp-hero__content">
         <nav class="breadcrumb" aria-label="Breadcrumb">
-          <a href="/">Home</a> <span>/</span> <a href="/sellers-guide">Seller's Guide</a> <span>/</span> <span>Sale Checklist</span>
+          <a href="/">Home</a> <span>/</span> <a href="/sellers-guide/">Seller's Guide</a> <span>/</span> <span>Sale Checklist</span>
         </nav>
         <h1>Home Sale <span style="color:#FF1616;">Checklist</span></h1>
         <p>A room-by-room evaluation to get your home ready for market</p>

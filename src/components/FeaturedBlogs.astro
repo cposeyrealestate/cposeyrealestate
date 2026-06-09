@@ -20,13 +20,13 @@ const blogs = sortedPosts.slice(0, 9).map(post => ({
     <div class="blogs__grid">
       {blogs.slice(0, 3).map(post => (
         <article class="blog-card blog-card--featured">
-          <a href={`/blog/${post.slug}`} class="blog-card__img-link">
+          <a href={`/blog/${post.slug}/`} class="blog-card__img-link">
             <img src={post.img} alt={post.title} class="blog-card__img" loading="lazy" />
           </a>
           <div class="blog-card__body">
             <span class="blog-card__cat">{post.category}</span>
             <h3 class="blog-card__title">
-              <a href={`/blog/${post.slug}`}>{post.title}</a>
+              <a href={`/blog/${post.slug}/`}>{post.title}</a>
             </h3>
             <p class="blog-card__meta">Cody Posey &nbsp;|&nbsp; {post.date}</p>
           </div>
@@ -39,7 +39,7 @@ const blogs = sortedPosts.slice(0, 9).map(post => ({
         <article class="blog-row">
           <span class="blog-row__cat">{post.category}</span>
           <h4 class="blog-row__title">
-            <a href={`/blog/${post.slug}`}>{post.title}</a>
+            <a href={`/blog/${post.slug}/`}>{post.title}</a>
           </h4>
           <span class="blog-row__date">{post.date}</span>
         </article>
@@ -47,7 +47,7 @@ const blogs = sortedPosts.slice(0, 9).map(post => ({
     </div>
 
     <div class="blogs__cta">
-      <a href="/blog" class="btn btn-outline-dark">View All Posts</a>
+      <a href="/blog/" class="btn btn-outline-dark">View All Posts</a>
     </div>
   </div>
 </section>

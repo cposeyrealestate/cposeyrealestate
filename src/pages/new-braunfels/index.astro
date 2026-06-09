@@ -8,25 +8,25 @@ import { placeSchema, collectionPageSchema, breadcrumbSchema } from '../../lib/s
 
 const nbDescription = 'Explore New Braunfels, Texas — neighborhoods, homes for sale, schools, and lifestyle. Your local guide to finding the right home in the Texas Hill Country.';
 const pageSchema = [
-  placeSchema({ name: 'New Braunfels, TX', description: nbDescription, url: '/new-braunfels' }),
+  placeSchema({ name: 'New Braunfels, TX', description: nbDescription, url: '/new-braunfels/' }),
   collectionPageSchema({
     name: 'New Braunfels Area Guide',
     description: nbDescription,
-    url: '/new-braunfels',
+    url: '/new-braunfels/',
     hasPart: [
-      { name: 'Neighborhoods', url: '/new-braunfels/neighborhoods' },
-      { name: 'Restaurants', url: '/new-braunfels/restaurants' },
-      { name: 'Things to Do', url: '/new-braunfels/things-to-do' },
-      { name: 'Schools', url: '/new-braunfels/schools' },
-      { name: 'New Construction', url: '/new-braunfels/new-construction' },
-      { name: 'Living in New Braunfels', url: '/new-braunfels/living-in-new-braunfels' },
-      { name: 'FAQ', url: '/new-braunfels/faq' },
+      { name: 'Neighborhoods', url: '/new-braunfels/neighborhoods/' },
+      { name: 'Restaurants', url: '/new-braunfels/restaurants/' },
+      { name: 'Things to Do', url: '/new-braunfels/things-to-do/' },
+      { name: 'Schools', url: '/new-braunfels/schools/' },
+      { name: 'New Construction', url: '/new-braunfels/new-construction/' },
+      { name: 'Living in New Braunfels', url: '/new-braunfels/living-in-new-braunfels/' },
+      { name: 'FAQ', url: '/new-braunfels/faq/' },
     ],
   }),
   breadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: 'Explore Area', url: '/explorearea' },
-    { name: 'New Braunfels', url: '/new-braunfels' },
+    { name: 'Explore Area', url: '/explorearea/' },
+    { name: 'New Braunfels', url: '/new-braunfels/' },
   ]),
 ];
 ---

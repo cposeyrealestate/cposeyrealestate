@@ -14,16 +14,16 @@ const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
 const blogSchema = {
   '@context': 'https://schema.org',
   '@type': 'Blog',
-  '@id': 'https://cposeyrealestate.com/blog#blog',
+  '@id': 'https://cposeyrealestate.com/blog/#blog',
   name: 'Cody Posey Real Estate Blog',
   description:
     'Market updates, neighborhood guides, and expert insight for buyers and sellers in New Braunfels and the Texas Hill Country.',
-  url: 'https://cposeyrealestate.com/blog',
+  url: 'https://cposeyrealestate.com/blog/',
   publisher: { '@id': `${seo.site.url}#business` },
   blogPost: posts.slice(0, 10).map((p) => ({
     '@type': 'BlogPosting',
     headline: p.title,
-    url: `https://cposeyrealestate.com/blog/${p.slug}`,
+    url: `https://cposeyrealestate.com/blog/${p.slug}/`,
     datePublished: p.dateRaw,
     image: p.featuredImage,
   })),
@@ -37,7 +37,7 @@ const blogSchema = {
     blogSchema,
     breadcrumbSchema([
       { name: 'Home', url: '/' },
-      { name: 'Blog', url: '/blog' },
+      { name: 'Blog', url: '/blog/' },
     ]),
   ]}
 >
@@ -62,13 +62,13 @@ const blogSchema = {
         <div class="blog-grid" data-blog-grid>
           {posts.map((post, i) => (
             <article class="blog-card" data-page={Math.floor(i / POSTS_PER_PAGE) + 1}>
-              <a href={`/blog/${post.slug}`} class="blog-card__img-link">
+              <a href={`/blog/${post.slug}/`} class="blog-card__img-link">
                 <img src={post.featuredImage} alt={post.title} class="blog-card__img" loading="lazy" />
               </a>
               <div class="blog-card__body">
                 <span class="blog-card__cat">{post.category}</span>
                 <h3 class="blog-card__title">
-                  <a href={`/blog/${post.slug}`}>{post.title}</a>
+                  <a href={`/blog/${post.slug}/`}>{post.title}</a>
                 </h3>
                 <p class="blog-card__excerpt">{post.excerpt.slice(0, 150)}...</p>
                 <p class="blog-card__meta">Cody Posey &nbsp;|&nbsp; {post.date}</p>

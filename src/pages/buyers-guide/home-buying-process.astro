@@ -9,11 +9,11 @@ import { articleSchema, breadcrumbSchema } from '../../lib/schema';
 const pageTitle = "The Home Buying Process | Buyer's Guide | Cody Posey";
 const pageDescription = 'A step-by-step guide to buying a home in New Braunfels, TX — from choosing a REALTOR and getting pre-approved to making an offer, inspection, and closing day.';
 const pageSchema = [
-  articleSchema({ title: pageTitle, description: pageDescription, url: '/buyers-guide/home-buying-process' }),
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/buyers-guide/home-buying-process/' }),
   breadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: "Buyer's Guide", url: '/buyers-guide' },
-    { name: 'Home Buying Process', url: '/buyers-guide/home-buying-process' },
+    { name: "Buyer's Guide", url: '/buyers-guide/' },
+    { name: 'Home Buying Process', url: '/buyers-guide/home-buying-process/' },
   ]),
 ];
 ---
@@ -31,7 +31,7 @@ const pageSchema = [
       <div class="sub-hero__overlay"></div>
       <div class="sub-hero__content">
         <nav class="breadcrumb" aria-label="Breadcrumb">
-          <a href="/">Home</a> <span>/</span> <a href="/buyers-guide">Buyer's Guide</a> <span>/</span> <span>Home Buying Process</span>
+          <a href="/">Home</a> <span>/</span> <a href="/buyers-guide/">Buyer's Guide</a> <span>/</span> <span>Home Buying Process</span>
         </nav>
         <h1>The Home Buying <span style="color:#FF1616;">Process</span></h1>
         <p>A step-by-step overview from start to keys in hand</p>
@@ -124,7 +124,7 @@ const pageSchema = [
         <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">I'll walk you through every step and make sure you feel confident from start to finish.</p>
         <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
           <a href="#contact" class="btn btn-primary">Let's Connect</a>
-          <a href="/buyers-guide" class="btn btn-outline">Back to Buyer's Guide</a>
+          <a href="/buyers-guide/" class="btn btn-outline">Back to Buyer's Guide</a>
         </div>
       </div>
     </section>

@@ -10,31 +10,31 @@ const sections = [
   {
     title: 'The Home Buying Process',
     description: 'A step-by-step walkthrough from finding an agent to getting your keys on closing day.',
-    href: '/buyers-guide/home-buying-process',
+    href: '/buyers-guide/home-buying-process/',
     icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>`,
   },
   {
     title: 'Why Work with a REALTOR\u00AE',
     description: 'Learn why partnering with a licensed REALTOR\u00AE gives you a major advantage in the home buying process.',
-    href: '/buyers-guide/why-use-a-realtor',
+    href: '/buyers-guide/why-use-a-realtor/',
     icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>`,
   },
   {
     title: 'Mortgage Checklist',
     description: 'The documents and information you\'ll need to provide your lender to get pre-approved for a home loan.',
-    href: '/buyers-guide/mortgage-checklist',
+    href: '/buyers-guide/mortgage-checklist/',
     icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
   },
   {
     title: 'Common Real Estate Terms',
     description: 'A glossary of the most common terms you\'ll encounter during a real estate transaction.',
-    href: '/buyers-guide/real-estate-terms',
+    href: '/buyers-guide/real-estate-terms/',
     icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>`,
   },
   {
     title: 'New Braunfels Utility Providers',
     description: 'Contact information for electric, water, sewer, gas, trash, internet, and phone providers in the area.',
-    href: '/buyers-guide/utility-providers',
+    href: '/buyers-guide/utility-providers/',
     icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF1616" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
   },
 ];
@@ -45,18 +45,18 @@ const pageSchema = [
   collectionPageSchema({
     name: "New Braunfels Buyer's Guide",
     description: pageDescription,
-    url: '/buyers-guide',
+    url: '/buyers-guide/',
     hasPart: [
-      { name: 'The Home Buying Process', url: '/buyers-guide/home-buying-process' },
-      { name: 'Why Work with a REALTOR', url: '/buyers-guide/why-use-a-realtor' },
-      { name: 'Mortgage Checklist', url: '/buyers-guide/mortgage-checklist' },
-      { name: 'Common Real Estate Terms', url: '/buyers-guide/real-estate-terms' },
-      { name: 'New Braunfels Utility Providers', url: '/buyers-guide/utility-providers' },
+      { name: 'The Home Buying Process', url: '/buyers-guide/home-buying-process/' },
+      { name: 'Why Work with a REALTOR', url: '/buyers-guide/why-use-a-realtor/' },
+      { name: 'Mortgage Checklist', url: '/buyers-guide/mortgage-checklist/' },
+      { name: 'Common Real Estate Terms', url: '/buyers-guide/real-estate-terms/' },
+      { name: 'New Braunfels Utility Providers', url: '/buyers-guide/utility-providers/' },
     ],
   }),
   breadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: "Buyer's Guide", url: '/buyers-guide' },
+    { name: "Buyer's Guide", url: '/buyers-guide/' },
   ]),
 ];
 ---

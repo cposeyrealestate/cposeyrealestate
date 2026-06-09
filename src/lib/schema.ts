@@ -287,7 +287,7 @@ export function blogPostingSchema(post: {
   category?: string;
   featuredImage?: string;
 }) {
-  const url = `${SITE}/blog/${post.slug}`;
+  const url = `${SITE}/blog/${post.slug}/`;
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -434,9 +434,9 @@ export function contactPageSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
-    '@id': `${SITE}/contact#contactpage`,
+    '@id': `${SITE}/contact/#contactpage`,
     name: `Contact ${seo.person.name} — ${seo.site.name}`,
-    url: `${SITE}/contact`,
+    url: `${SITE}/contact/`,
     about: { '@id': BUSINESS_ID },
     mainEntity: { '@id': BUSINESS_ID },
   };
