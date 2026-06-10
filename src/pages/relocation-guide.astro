@@ -94,7 +94,7 @@ const sections = [
       'New Braunfels has a thriving veteran community, supported by VFW Post 7110, American Legion, and veteran-focused nonprofits.',
       'Proximity to JBSA makes it popular with active-duty families and military retirees.',
       'Texas offers significant property tax exemptions for disabled veterans — up to 100% exemption for 100% disability.',
-      'VA home loans are widely accepted throughout the area, and many agents (including Cody Posey) specialize in military relocations.',
+      'VA home loans are widely accepted throughout the area, and many agents (including Cody Posey) specialize in military relocations — see the <a href="/military-relocation/">PCS to JBSA military relocation guide</a> for BAH rates, commute times, and the VA loan process.',
     ],
   },
 ];
@@ -169,7 +169,7 @@ const movingChecklist = [
             <div class="rg-section__content">
               <ul>
                 {s.content.map((item) => (
-                  <li>{item}</li>
+                  <li set:html={item} />
                 ))}
               </ul>
             </div>

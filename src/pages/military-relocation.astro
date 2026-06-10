@@ -1,0 +1,653 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+import ParallaxBanner from '../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema, faqSchema } from '../lib/schema';
+
+const pageTitle = 'PCS to JBSA | Military Relocation Guide for New Braunfels & Randolph AFB | Cody Posey';
+const pageDescription = 'PCSing to JBSA-Randolph, Fort Sam Houston, or Lackland? Your military relocation hub for New Braunfels, Schertz, and Cibolo — 2026 BAH rates, commute times, the VA loan process, and a PCS timeline from a retired Army First Sergeant and MRP-certified REALTOR®.';
+
+const faqs = [
+  {
+    q: 'Can I buy a home in New Braunfels before I arrive at JBSA?',
+    a: 'Yes — buying sight-unseen during a PCS is common and I handle it regularly. I do live video walkthroughs of every home you are serious about, flag the things cameras hide (road noise, slopes, neighboring properties), and coordinate with your lender so you can go under contract from your current duty station and close shortly after you arrive. A power of attorney lets your spouse — or you, remotely — sign at closing if your report date and closing date collide.',
+  },
+  {
+    q: 'What does 2026 BAH actually cover in the New Braunfels area?',
+    a: 'The 2026 JBSA rate for an E-5 with dependents is $1,869/month and an O-3 with dependents is $2,127/month. With current rates, that range covers the principal, interest, taxes, and insurance on homes roughly in the high-$200s to mid-$300s with a zero-down VA loan, depending on rate and tax district. Many military families in Schertz, Cibolo, and New Braunfels keep their full housing cost at or near BAH.',
+  },
+  {
+    q: 'Do I need a down payment to buy near JBSA with a VA loan?',
+    a: 'No. The VA loan allows $0 down with no monthly mortgage insurance, and sellers can contribute toward your closing costs. The VA funding fee can be rolled into the loan — and it is waived entirely if you have a VA disability rating of 10% or more.',
+  },
+  {
+    q: 'Which towns have the shortest commute to JBSA-Randolph?',
+    a: 'Schertz and Cibolo are the closest — typically 10 to 20 minutes to the Randolph main gate. Garden Ridge runs about 20 minutes, and New Braunfels and Seguin are roughly 25 to 35 minutes. New Braunfels trades a slightly longer drive for Comal ISD schools, the rivers, and stronger long-term appreciation — that trade-off is exactly what I help families weigh.',
+  },
+  {
+    q: 'What property tax benefits do veterans get in Texas?',
+    a: 'Texas offers a property tax exemption that scales with your VA disability rating — and a 100% disabled veteran pays no property tax at all on their homestead. Texas also has no state income tax, so retirement pay and VA compensation go further here. After closing, file your homestead and disabled veteran exemptions with the county appraisal district; I walk every client through it.',
+  },
+];
+
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/military-relocation/' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Military Relocation / PCS to JBSA', url: '/military-relocation/' },
+  ]),
+  faqSchema(faqs),
+];
+
+const highlights = [
+  { num: '20 yrs', label: 'U.S. Army, Retired 1SG', desc: 'Cody has PCSed himself — he knows the timeline pressure firsthand.' },
+  { num: 'MRP', label: 'Military Relocation Pro', desc: 'NAR-certified in military relocation, plus ABR and PSA designations.' },
+  { num: '$0', label: 'Down With a VA Loan', desc: 'No down payment, no monthly mortgage insurance, seller-paid costs possible.' },
+  { num: '25 min', label: 'NB to JBSA-Randolph', desc: 'New Braunfels sits an easy commute up I-35 from the Randolph gate.' },
+];
+
+const commuteMatrix = [
+  { town: 'Schertz', randolph: '10–15 min', fortSam: '20–25 min', lackland: '35–45 min', vibe: 'Closest to the gate, SCUCISD schools, strong rental demand' },
+  { town: 'Cibolo', randolph: '12–18 min', fortSam: '25–30 min', lackland: '40–50 min', vibe: 'Fast-growing family suburb, newer construction' },
+  { town: 'Garden Ridge', randolph: '~20 min', fortSam: '~25 min', lackland: '40–50 min', vibe: 'Larger lots, quiet, Comal ISD' },
+  { town: 'New Braunfels', randolph: '25–35 min', fortSam: '35–45 min', lackland: '50–60 min', vibe: 'Rivers, Gruene, Comal/NB ISD, best long-term growth' },
+  { town: 'Seguin', randolph: '25–30 min', fortSam: '40–45 min', lackland: '55–65 min', vibe: 'Most affordable, small-town Texas feel' },
+];
+
+// 2026 BAH for MHA TX318 (all four JBSA installations share one MHA).
+// Source: DoD/DTMO 2026 rates, effective Jan 1, 2026 (−2.9% vs 2025).
+const bahRates = [
+  { grade: 'E-4', withDeps: '$1,728', withoutDeps: '$1,359' },
+  { grade: 'E-5', withDeps: '$1,869', withoutDeps: '$1,500' },
+  { grade: 'E-6', withDeps: '$2,094', withoutDeps: '$1,596' },
+  { grade: 'E-7', withDeps: '$2,112', withoutDeps: '$1,731' },
+  { grade: 'E-8', withDeps: '$2,121', withoutDeps: '$1,920' },
+  { grade: 'E-9', withDeps: '$2,157', withoutDeps: '$1,977' },
+  { grade: 'O-1', withDeps: '$1,905', withoutDeps: '$1,584' },
+  { grade: 'O-2', withDeps: '$2,091', withoutDeps: '$1,827' },
+  { grade: 'O-3', withDeps: '$2,127', withoutDeps: '$2,007' },
+  { grade: 'O-4', withDeps: '$2,307', withoutDeps: '$2,088' },
+  { grade: 'O-5', withDeps: '$2,457', withoutDeps: '$2,100' },
+];
+
+const vaSteps = [
+  {
+    title: 'Get Your Certificate of Eligibility (COE)',
+    desc: 'Pull it instantly through eBenefits/VA.gov, or your lender can request it for you in minutes. This confirms your entitlement — most veterans with 90+ days of active service qualify.',
+  },
+  {
+    title: 'Get Pre-Approved With a VA-Savvy Lender',
+    desc: 'Not all lenders handle VA loans well. I work with local lenders who close VA loans on PCS timelines every month — see my recommended lenders page. Pre-approval tells us your real budget against BAH.',
+  },
+  {
+    title: 'Tour Homes — In Person or by Video',
+    desc: 'If you\'re still at your losing duty station, I do live video walkthroughs and send honest assessments — including the stuff that would make me walk away. You\'ll never be pressured into a house you haven\'t properly vetted.',
+  },
+  {
+    title: 'Make an Offer Built on VA Terms',
+    desc: 'I write offers that protect your earnest money around the VA appraisal and your orders. Sellers can contribute concessions — up to 4% under VA rules — toward your funding fee, rate buydown, or closing costs.',
+  },
+  {
+    title: 'VA Appraisal, Inspection & Notice of Value',
+    desc: 'The VA appraisal checks Minimum Property Requirements and establishes the Notice of Value. I schedule the independent inspection in parallel so nothing slips your timeline.',
+  },
+  {
+    title: 'Close — Even From Another Duty Station',
+    desc: 'The funding fee rolls into the loan (waived with a 10%+ VA disability rating). A power of attorney covers signing if you\'re mid-move. Typical VA closings here run about 30 days from contract.',
+  },
+];
+
+const pcsChecklist = [
+  { task: 'Orders in hand — connect with me & get pre-approved', timeline: '90+ days out' },
+  { task: 'Pick your target towns (commute vs. schools vs. budget)', timeline: '60-90 days out' },
+  { task: 'Video tours & shortlist homes', timeline: '45-60 days out' },
+  { task: 'Go under contract; schedule VA appraisal + inspection', timeline: '30-45 days out' },
+  { task: 'Final walkthrough & close (POA if you\'re still en route)', timeline: '0-30 days out' },
+  { task: 'Set up utilities (NBU, GVEC, CPS Energy by area)', timeline: 'Week of move-in' },
+  { task: 'File homestead exemption with the county', timeline: 'After closing' },
+  { task: 'File disabled veteran exemption (if rated)', timeline: 'After closing' },
+  { task: 'Update DEERS/Tricare region & vehicle registration', timeline: 'Within 90 days' },
+];
+
+const veteranPosts = [
+  { slug: 'va-loan-schertz-tx-2026-pcs-checklist-jbsa', title: 'VA Loan in Schertz TX (2026): PCS Checklist for JBSA', tag: 'PCS' },
+  { slug: 'pcs-season-2026-should-you-buy-a-home-in-san-antonio-new-braunfels-or-wait', title: 'PCS Season 2026: Buy in San Antonio / New Braunfels — or Wait?', tag: 'PCS' },
+  { slug: '2026-04-02-texas-va-loan-pcs-guide', title: 'Texas VA Loan + PCS Guide (2026)', tag: 'PCS' },
+  { slug: 'va-loan-funding-fee-rates-2026-texas', title: 'VA Funding Fee Rates 2026 in Texas', tag: 'VA Loan' },
+  { slug: 'va-loan-seller-credits-4-percent-rule-new-braunfels', title: 'VA Loan Seller Credits: the 4% Rule in New Braunfels', tag: 'VA Loan' },
+  { slug: '2026-04-16-texas-va-home-buying-guide', title: 'Texas VA Home Buying Guide for Veterans', tag: 'VA Loan' },
+  { slug: 'texas-veteran-home-buying-plan', title: 'Texas Veteran Home Buying Plan', tag: 'VA Loan' },
+  { slug: 'texas-veterans-home-buying-resources', title: 'Texas Veterans Home Buying Resources', tag: 'Resources' },
+  { slug: 'disabled-veteran-tax-exemption-texas-2026-steps', title: 'Disabled Veteran Tax Exemption Texas: 2026 Steps', tag: 'Tax Benefits' },
+  { slug: '2026-04-09-texas-veteran-property-tax-exemption-plan', title: 'Texas Veteran Home Tax Benefits (2026)', tag: 'Tax Benefits' },
+  { slug: 'cibolo-schertz-2026-neighborhood-spotlight', title: 'Cibolo & Schertz 2026: Neighborhood Spotlight Guide', tag: 'Area Guide' },
+];
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="mr-hero" style="background-image:url('/images/generated/cibolo-schertz-home.webp');">
+      <div class="mr-hero__overlay"></div>
+      <div class="mr-hero__content">
+        <p class="mr-hero__eyebrow">From a Retired Army First Sergeant</p>
+        <h1>PCS to <span style="color:#FF1616;">JBSA</span> — Land Well in New Braunfels</h1>
+        <p>BAH rates, commute times, the VA loan process, and a PCS timeline — everything for your move to JBSA-Randolph, Fort Sam Houston, or Lackland</p>
+        <div class="mr-hero__badges">
+          <span class="mr-badge">MRP — Military Relocation Professional</span>
+          <span class="mr-badge">ABR — Accredited Buyer's Representative</span>
+          <span class="mr-badge">PSA — Pricing Strategy Advisor</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <section class="mr-stats">
+      <div class="container">
+        <div class="mr-stats__grid">
+          {highlights.map((h) => (
+            <div class="mr-stat">
+              <div class="mr-stat__num">{h.num}</div>
+              <div class="mr-stat__label">{h.label}</div>
+              <div class="mr-stat__desc">{h.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <div class="mr-intro">
+          <h2>You've Got Orders. <span class="accent">I've Got the Ground Truth.</span></h2>
+          <p>
+            I spent 20 years in the Army and retired as a First Sergeant, so I know exactly what a PCS window feels like — the report date that won't move, the house hunt squeezed into a four-day TDY, the spouse coordinating from two time zones away. Now I help military families land in New Braunfels, Schertz, Cibolo, and the towns around Joint Base San Antonio. Below is the intel I give every PCSing client: what BAH covers here, which towns put you closest to your gate, and how the VA loan actually plays out in this market.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Commute Matrix -->
+    <section class="section mr-section--alt">
+      <div class="container">
+        <div class="section-title" style="margin-bottom:2rem;">
+          <h2>Commute Times to <span class="accent">JBSA Gates</span></h2>
+          <p style="color:#555;">Typical off-peak drive times. Randolph is the key gate for most of my PCS clients — Schertz and Cibolo are practically next door, and New Braunfels is a straight shot down I-35.</p>
+        </div>
+        <div class="mr-table-wrap">
+          <table class="mr-table">
+            <thead>
+              <tr>
+                <th>Town</th>
+                <th>JBSA-Randolph</th>
+                <th>Fort Sam Houston</th>
+                <th>JBSA-Lackland</th>
+                <th>Why Families Pick It</th>
+              </tr>
+            </thead>
+            <tbody>
+              {commuteMatrix.map((row) => (
+                <tr>
+                  <td class="mr-table__town">{row.town}</td>
+                  <td>{row.randolph}</td>
+                  <td>{row.fortSam}</td>
+                  <td>{row.lackland}</td>
+                  <td class="mr-table__vibe">{row.vibe}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAH Table -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title" style="margin-bottom:2rem;">
+          <h2>2026 BAH Rates — <span class="accent">San Antonio MHA</span></h2>
+          <p style="color:#555;">All four JBSA installations — Randolph, Fort Sam Houston, Lackland, and Camp Bullis — share one Military Housing Area, so your rate is the same regardless of gate. 2026 rates are down 2.9% from 2025, but if you were already assigned here, individual rate protection keeps you at your higher 2025 rate.</p>
+        </div>
+        <div class="mr-table-wrap mr-table-wrap--narrow">
+          <table class="mr-table">
+            <thead>
+              <tr>
+                <th>Pay Grade</th>
+                <th>With Dependents</th>
+                <th>Without Dependents</th>
+              </tr>
+            </thead>
+            <tbody>
+              {bahRates.map((row) => (
+                <tr>
+                  <td class="mr-table__town">{row.grade}</td>
+                  <td>{row.withDeps}/mo</td>
+                  <td>{row.withoutDeps}/mo</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="mr-table-note">Official DoD rates effective January 1, 2026. Want to know what your BAH buys in a specific neighborhood? <a href="#contact">Ask me</a> — or run the numbers in my <a href="/mortgage-calculator/">mortgage calculator</a>.</p>
+      </div>
+    </section>
+
+    <!-- VA Loan Process -->
+    <section class="section mr-section--alt">
+      <div class="container">
+        <div class="section-title" style="margin-bottom:2.5rem;">
+          <h2>The VA Loan Process, <span class="accent">Step by Step</span></h2>
+          <p style="color:#555;">$0 down, no monthly mortgage insurance, and built for people who move on the government's schedule. Here's how it runs in this market.</p>
+        </div>
+        <div class="mr-steps">
+          {vaSteps.map((step, i) => (
+            <div class="mr-step">
+              <div class="mr-step__num">{i + 1}</div>
+              <div class="mr-step__content">
+                <h3>{step.title}</h3>
+                <p>{step.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style="text-align:center;margin-top:2.5rem;">
+          <a href="/recommended-lenders/" class="btn btn-primary">See My Recommended VA Lenders</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PCS Checklist -->
+    <section class="section" style="background:#000;color:#fff;">
+      <div class="container">
+        <div class="section-title" style="margin-bottom:2rem;">
+          <h2 style="color:#fff;">Your PCS <span class="accent">Timeline</span></h2>
+          <p style="color:#aaa;">From orders in hand to keys in hand — the home-buying battle rhythm</p>
+        </div>
+        <div class="mr-checklist">
+          {pcsChecklist.map((item) => (
+            <div class="mr-check-item">
+              <div class="mr-check-item__check">&#10003;</div>
+              <div class="mr-check-item__content">
+                <div class="mr-check-item__task">{item.task}</div>
+                <div class="mr-check-item__timeline">{item.timeline}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Veteran Resources / Blog Posts -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title" style="margin-bottom:2rem;">
+          <h2>Military & Veteran <span class="accent">Guides</span></h2>
+          <p style="color:#555;">Deep dives on VA loans, PCS timing, and Texas veteran tax benefits — written for this market, updated for 2026</p>
+        </div>
+        <div class="mr-posts">
+          {veteranPosts.map((post) => (
+            <a href={`/blog/${post.slug}/`} class="mr-post">
+              <span class="mr-post__tag">{post.tag}</span>
+              <span class="mr-post__title">{post.title}</span>
+            </a>
+          ))}
+        </div>
+        <div style="text-align:center;margin-top:2.5rem;">
+          <a href="https://www.youtube.com/@cposeyrealestate" target="_blank" rel="noopener" class="btn btn-outline-dark">Watch My Military Relocation Videos on YouTube</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>PCS to JBSA — Frequently Asked Questions</h2>
+        <div class="faq-list">
+          {faqs.map((faq) => (
+            <details class="faq-item">
+              <summary>{faq.q}</summary>
+              <p>{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background:var(--light-gray);">
+      <div class="container" style="text-align:center;max-width:700px;">
+        <h2>PCSing This Season? <span class="accent">Let's Talk.</span></h2>
+        <p style="color:#555;margin-bottom:2rem;">
+          Tell me your report date, your gate, and your budget — I'll send you a straight-shooting rundown of the neighborhoods that fit, homes that work for your BAH, and a timeline that gets you closed before you sign in. Veteran to veteran, no pressure.
+        </p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <a href="#contact" class="btn btn-primary">Start Your PCS Plan</a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="btn btn-outline-dark">Browse Homes Near JBSA</a>
+        </div>
+      </div>
+    </section>
+
+    <ParallaxBanner image="/images/generated/hill-country-sunset.webp" />
+
+    <ContactForm />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .mr-hero {
+    position: relative;
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+  }
+  .mr-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+  }
+  .mr-hero__content {
+    position: relative;
+    z-index: 2;
+    padding: 3rem 1.5rem;
+    max-width: 900px;
+  }
+  .mr-hero__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #FF1616;
+    margin-bottom: 0.75rem;
+  }
+  .mr-hero__content h1 {
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+  .mr-hero__content > p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+  }
+  .mr-hero__badges {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+  .mr-badge {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.35);
+    background: rgba(255,22,22,0.15);
+    padding: 0.4rem 0.9rem;
+  }
+
+  /* Stats */
+  .mr-stats {
+    background: #111;
+    padding: 3rem 0;
+  }
+  .mr-stats__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .mr-stat {
+    text-align: center;
+    padding: 1rem;
+  }
+  .mr-stat__num {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #FF1616;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .mr-stat__label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .mr-stat__desc {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.5;
+  }
+
+  /* Intro */
+  .mr-intro {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .mr-intro h2 {
+    margin-bottom: 1.25rem;
+  }
+  .mr-intro p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.8;
+  }
+
+  .mr-section--alt {
+    background: var(--light-gray);
+  }
+
+  /* Tables */
+  .mr-table-wrap {
+    overflow-x: auto;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .mr-table-wrap--narrow {
+    max-width: 640px;
+  }
+  .mr-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    font-size: 0.88rem;
+  }
+  .mr-table th {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #fff;
+    background: #000;
+    padding: 0.85rem 1rem;
+    text-align: left;
+    white-space: nowrap;
+  }
+  .mr-table td {
+    padding: 0.8rem 1rem;
+    color: #555;
+    border-bottom: 1px solid #eee;
+    line-height: 1.5;
+  }
+  .mr-table tbody tr:nth-child(even) {
+    background: #fafafa;
+  }
+  .mr-table__town {
+    font-weight: 700;
+    color: #111 !important;
+    white-space: nowrap;
+  }
+  .mr-table__vibe {
+    font-size: 0.8rem;
+  }
+  .mr-table-note {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 1.25rem;
+  }
+  .mr-table-note a {
+    color: #FF1616;
+    font-weight: 600;
+  }
+
+  /* VA Steps */
+  .mr-steps {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .mr-step {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    background: #fff;
+    padding: 1.5rem;
+    border-left: 3px solid #FF1616;
+  }
+  .mr-step__num {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #FF1616;
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 2rem;
+  }
+  .mr-step__content h3 {
+    font-size: 1rem;
+    margin: 0 0 0.5rem;
+  }
+  .mr-step__content p {
+    font-size: 0.88rem;
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* Checklist */
+  .mr-checklist {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .mr-check-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .mr-check-item:last-child {
+    border-bottom: none;
+  }
+  .mr-check-item__check {
+    width: 28px;
+    height: 28px;
+    background: #FF1616;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+  .mr-check-item__task {
+    font-size: 0.9rem;
+    color: #fff;
+    margin-bottom: 0.2rem;
+  }
+  .mr-check-item__timeline {
+    font-size: 0.72rem;
+    color: #FF1616;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* Blog post links */
+  .mr-posts {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .mr-post {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1.1rem 1.25rem;
+    background: #fff;
+    border: 1px solid #eee;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .mr-post:hover {
+    border-color: #FF1616;
+    transform: translateY(-2px);
+  }
+  .mr-post__tag {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #FF1616;
+  }
+  .mr-post__title {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #111;
+    line-height: 1.4;
+  }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
+
+  @media (max-width: 768px) {
+    .mr-stats__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .mr-posts {
+      grid-template-columns: 1fr;
+    }
+    .mr-table {
+      font-size: 0.8rem;
+    }
+    .mr-table th,
+    .mr-table td {
+      padding: 0.6rem 0.7rem;
+    }
+  }
+</style>
