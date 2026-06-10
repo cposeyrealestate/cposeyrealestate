@@ -56,20 +56,54 @@ const commuteMatrix = [
   { town: 'Seguin', randolph: '25–30 min', fortSam: '40–45 min', lackland: '55–65 min', vibe: 'Most affordable, small-town Texas feel' },
 ];
 
-// 2026 BAH for MHA TX318 (all four JBSA installations share one MHA).
-// Source: DoD/DTMO 2026 rates, effective Jan 1, 2026 (−2.9% vs 2025).
-const bahRates = [
-  { grade: 'E-4', withDeps: '$1,728', withoutDeps: '$1,359' },
-  { grade: 'E-5', withDeps: '$1,869', withoutDeps: '$1,500' },
-  { grade: 'E-6', withDeps: '$2,094', withoutDeps: '$1,596' },
-  { grade: 'E-7', withDeps: '$2,112', withoutDeps: '$1,731' },
-  { grade: 'E-8', withDeps: '$2,121', withoutDeps: '$1,920' },
-  { grade: 'E-9', withDeps: '$2,157', withoutDeps: '$1,977' },
-  { grade: 'O-1', withDeps: '$1,905', withoutDeps: '$1,584' },
-  { grade: 'O-2', withDeps: '$2,091', withoutDeps: '$1,827' },
-  { grade: 'O-3', withDeps: '$2,127', withoutDeps: '$2,007' },
-  { grade: 'O-4', withDeps: '$2,307', withoutDeps: '$2,088' },
-  { grade: 'O-5', withDeps: '$2,457', withoutDeps: '$2,100' },
+// 2026 BAH for the San Antonio MHA (TX285) — all four JBSA installations
+// share this MHA. Verified against the official DTMO BAH calculator
+// (ZIP 78150). DoD publishes a single rate for O-7 and above.
+const bahGroups = [
+  {
+    label: 'Enlisted',
+    rows: [
+      { grade: 'E-1', withDeps: '$1,728', withoutDeps: '$1,359' },
+      { grade: 'E-2', withDeps: '$1,728', withoutDeps: '$1,359' },
+      { grade: 'E-3', withDeps: '$1,728', withoutDeps: '$1,359' },
+      { grade: 'E-4', withDeps: '$1,728', withoutDeps: '$1,359' },
+      { grade: 'E-5', withDeps: '$1,869', withoutDeps: '$1,500' },
+      { grade: 'E-6', withDeps: '$2,094', withoutDeps: '$1,596' },
+      { grade: 'E-7', withDeps: '$2,112', withoutDeps: '$1,731' },
+      { grade: 'E-8', withDeps: '$2,121', withoutDeps: '$1,920' },
+      { grade: 'E-9', withDeps: '$2,157', withoutDeps: '$1,977' },
+    ],
+  },
+  {
+    label: 'Warrant Officers',
+    rows: [
+      { grade: 'W-1', withDeps: '$2,109', withoutDeps: '$1,692' },
+      { grade: 'W-2', withDeps: '$2,118', withoutDeps: '$1,917' },
+      { grade: 'W-3', withDeps: '$2,130', withoutDeps: '$1,986' },
+      { grade: 'W-4', withDeps: '$2,178', withoutDeps: '$2,085' },
+      { grade: 'W-5', withDeps: '$2,280', withoutDeps: '$2,097' },
+    ],
+  },
+  {
+    label: 'Officers — Prior Enlisted',
+    rows: [
+      { grade: 'O-1E', withDeps: '$2,115', withoutDeps: '$1,866' },
+      { grade: 'O-2E', withDeps: '$2,124', withoutDeps: '$1,965' },
+      { grade: 'O-3E', withDeps: '$2,196', withoutDeps: '$2,082' },
+    ],
+  },
+  {
+    label: 'Officers',
+    rows: [
+      { grade: 'O-1', withDeps: '$1,905', withoutDeps: '$1,584' },
+      { grade: 'O-2', withDeps: '$2,091', withoutDeps: '$1,827' },
+      { grade: 'O-3', withDeps: '$2,127', withoutDeps: '$2,007' },
+      { grade: 'O-4', withDeps: '$2,307', withoutDeps: '$2,088' },
+      { grade: 'O-5', withDeps: '$2,457', withoutDeps: '$2,100' },
+      { grade: 'O-6', withDeps: '$2,475', withoutDeps: '$2,103' },
+      { grade: 'O-7 & above', withDeps: '$2,490', withoutDeps: '$2,112' },
+    ],
+  },
 ];
 
 const vaSteps = [
@@ -228,17 +262,24 @@ const veteranPosts = [
               </tr>
             </thead>
             <tbody>
-              {bahRates.map((row) => (
-                <tr>
-                  <td class="mr-table__town">{row.grade}</td>
-                  <td>{row.withDeps}/mo</td>
-                  <td>{row.withoutDeps}/mo</td>
-                </tr>
+              {bahGroups.map((group) => (
+                <>
+                  <tr class="mr-table__group">
+                    <td colspan="3">{group.label}</td>
+                  </tr>
+                  {group.rows.map((row) => (
+                    <tr>
+                      <td class="mr-table__town">{row.grade}</td>
+                      <td>{row.withDeps}/mo</td>
+                      <td>{row.withoutDeps}/mo</td>
+                    </tr>
+                  ))}
+                </>
               ))}
             </tbody>
           </table>
         </div>
-        <p class="mr-table-note">Official DoD rates effective January 1, 2026. Want to know what your BAH buys in a specific neighborhood? <a href="#contact">Ask me</a> — or run the numbers in my <a href="/mortgage-calculator/">mortgage calculator</a>.</p>
+        <p class="mr-table-note">Official DoD rates for the San Antonio, TX Military Housing Area (TX285), effective January 1, 2026, verified against the DTMO BAH calculator. DoD publishes one rate for O-7 and above — O-8, O-9, and O-10 receive the O-7+ rate. Want to know what your BAH buys in a specific neighborhood? <a href="#contact">Ask me</a> — or run the numbers in my <a href="/mortgage-calculator/">mortgage calculator</a>.</p>
       </div>
     </section>
 
@@ -492,6 +533,16 @@ const veteranPosts = [
   }
   .mr-table tbody tr:nth-child(even) {
     background: #fafafa;
+  }
+  .mr-table__group td {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #FF1616;
+    background: #f1f1f1 !important;
+    padding: 0.55rem 1rem;
   }
   .mr-table__town {
     font-weight: 700;
