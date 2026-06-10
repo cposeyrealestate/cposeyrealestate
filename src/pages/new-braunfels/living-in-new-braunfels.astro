@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
 import { articleSchema, breadcrumbSchema } from '../../lib/schema';
 
 const pageTitle = 'Living in New Braunfels, TX | What to Expect';
@@ -172,6 +173,27 @@ const pageSchema = [
           <a href="/new-braunfels/neighborhoods/" class="btn btn-primary">Explore Neighborhoods</a>
           <a href="#contact" class="btn btn-outline">Talk Through Areas That Fit</a>
         </div>
+      </div>
+    </section>
+
+    <!-- Videos -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Watch: The Costs Nobody <span class="accent">Warns You About</span></h2>
+        </div>
+        <VideoEmbed
+          videoId="jWnENuiikDo"
+          title="New Braunfels Water Bills Are Shocking Homebuyers in 2026"
+          description="Why water bills surprise new New Braunfels residents — NBU rates, irrigation tiers, and how to estimate your real monthly cost before buying."
+          uploadDate="2026-06-02"
+        />
+        <VideoEmbed
+          videoId="iEP0elgl-lQ"
+          title="Texas Property Taxes Shock New Braunfels Home Buyers in 2026"
+          description="No state income tax doesn't mean low taxes — how Comal and Guadalupe County property taxes work and what exemptions cut your bill."
+          uploadDate="2026-06-05"
+        />
       </div>
     </section>
 

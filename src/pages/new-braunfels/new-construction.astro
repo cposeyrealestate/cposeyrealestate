@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
 import { articleSchema, breadcrumbSchema } from '../../lib/schema';
 
 const pageTitle = 'New Construction Homes in New Braunfels, TX | Cody Posey';
@@ -173,6 +174,21 @@ const pageSchema = [
           <a href="https://a.nhb.app/u/cposeyrealestate" target="_blank" rel="noopener" class="btn btn-primary">Search New Construction</a>
           <a href="#contact" class="btn btn-outline">Tour New Construction Homes</a>
         </div>
+      </div>
+    </section>
+
+    <!-- Video -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Watch: Inside a New Braunfels <span class="accent">Builder Community</span></h2>
+        </div>
+        <VideoEmbed
+          videoId="ITTSa5_cdNU"
+          title="Hidden Luxury in New Braunfels? Inside The Preserve at Elm Creek with Grand Endeavor Homes"
+          description="A walkthrough of The Preserve at Elm Creek with Grand Endeavor Homes — lot sizes, build quality, and what custom construction looks like in New Braunfels."
+          uploadDate="2025-11-17"
+        />
       </div>
     </section>
 

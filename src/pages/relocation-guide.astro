@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 import ParallaxBanner from '../components/ParallaxBanner.astro';
+import VideoEmbed from '../components/VideoEmbed.astro';
 import { articleSchema, breadcrumbSchema } from '../lib/schema';
 
 const pageTitle = 'New Braunfels Relocation Guide | Moving to the Hill Country | Cody Posey';
@@ -231,6 +232,21 @@ const movingChecklist = [
           <a href="#contact" class="btn btn-primary">Get In Touch</a>
           <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="btn btn-outline-dark">Browse Homes</a>
         </div>
+      </div>
+    </section>
+
+    <!-- Video -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Watch: Which Town <span class="accent">Fits Your Lifestyle?</span></h2>
+        </div>
+        <VideoEmbed
+          videoId="udB0gHvZX3Q"
+          title="New Braunfels vs Garden Ridge vs Cibolo: Which Lifestyle Fits You?"
+          description="Three towns, three very different lifestyles — comparing commutes, schools, lot sizes, and price points to help you pick where to land."
+          uploadDate="2026-05-28"
+        />
       </div>
     </section>
 

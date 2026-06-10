@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import { articleSchema, breadcrumbSchema } from '../../lib/schema';
@@ -112,6 +113,21 @@ const categories = [...new Set(restaurants.map(r => r.cuisine))];
           <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="btn btn-primary">Search Homes</a>
           <a href="#contact" class="btn btn-outline">Let's Connect</a>
         </div>
+      </div>
+    </section>
+
+    <!-- Video -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Watch: Best German Food <span class="accent">&amp; BBQ Hidden Gems</span></h2>
+        </div>
+        <VideoEmbed
+          videoId="UvSMFgntGPI"
+          title="New Braunfels Hidden Gems: Best German Food & BBQ in Texas"
+          description="A local's tour of New Braunfels' best German food and BBQ — the spots residents actually eat at, beyond the tourist stops."
+          uploadDate="2026-05-27"
+        />
       </div>
     </section>
 

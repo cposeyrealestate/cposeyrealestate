@@ -1,0 +1,123 @@
+---
+/**
+ * Click-to-play YouTube embed with VideoObject structured data.
+ *
+ * Renders a lightweight thumbnail facade (no iframe until the user clicks)
+ * so pages keep their load speed, while the JSON-LD gives search engines
+ * and AI crawlers the video + text on one URL.
+ */
+import seo from '../data/seo.json';
+
+export interface Props {
+  videoId: string;
+  title: string;
+  description?: string;
+  uploadDate?: string; // ISO date
+}
+
+const { videoId, title, description = '', uploadDate } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  name: title,
+  description: description || title,
+  thumbnailUrl: `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+  ...(uploadDate && { uploadDate }),
+  embedUrl: `https://www.youtube-nocookie.com/embed/${videoId}`,
+  contentUrl: `https://www.youtube.com/watch?v=${videoId}`,
+  author: {
+    '@type': 'Person',
+    name: seo.person.name,
+    url: seo.site.url,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: seo.site.name,
+    logo: { '@type': 'ImageObject', url: seo.brokerage.logo },
+  },
+};
+---
+
+<div class="video-embed" data-video-id={videoId} data-video-title={title}>
+  <button type="button" class="video-embed__facade" aria-label={`Play video: ${title}`}>
+    <img
+      src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}
+      alt={title}
+      loading="lazy"
+      width="480"
+      height="270"
+    />
+    <span class="video-embed__play" aria-hidden="true">
+      <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52 7.74a8 8 0 0 0-5.6-5.66C56.07.86 34 .86 34 .86s-22.07 0-26.92 1.22a8 8 0 0 0-5.6 5.66C.26 12.62.26 24 .26 24s0 11.38 1.22 16.26a8 8 0 0 0 5.6 5.66C11.93 47.14 34 47.14 34 47.14s22.07 0 26.92-1.22a8 8 0 0 0 5.6-5.66C67.74 35.38 67.74 24 67.74 24s0-11.38-1.22-16.26z" fill="#FF1616"/><path d="M45 24 27 14v20z" fill="#fff"/></svg>
+    </span>
+  </button>
+  <p class="video-embed__caption">{title}</p>
+</div>
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+<script>
+  document.addEventListener('click', (e) => {
+    const facade = (e.target as HTMLElement).closest('.video-embed__facade');
+    if (!facade) return;
+    const wrap = facade.closest('.video-embed') as HTMLElement;
+    const id = wrap.dataset.videoId;
+    const title = wrap.dataset.videoTitle || 'YouTube video';
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&autoplay=1`;
+    iframe.title = title;
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+    iframe.className = 'video-embed__iframe';
+    facade.replaceWith(iframe);
+  });
+</script>
+
+<style>
+  .video-embed {
+    max-width: 700px;
+    margin: 2rem auto 0;
+  }
+  .video-embed__facade {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    padding: 0;
+    border: none;
+    background: #000;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .video-embed__facade img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  .video-embed__facade:hover img {
+    transform: scale(1.03);
+  }
+  .video-embed__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+    pointer-events: none;
+  }
+  .video-embed :global(.video-embed__iframe) {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    display: block;
+  }
+  .video-embed__caption {
+    font-size: 0.8rem;
+    color: #777;
+    margin-top: 0.6rem;
+    text-align: center;
+  }
+</style>

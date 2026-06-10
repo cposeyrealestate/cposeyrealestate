@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
 import { placeSchema, collectionPageSchema, breadcrumbSchema } from '../../lib/schema';
 
 const csDescription = 'Explore Cibolo and Schertz, Texas — family-friendly communities between San Antonio and New Braunfels. Top schools, safe neighborhoods, and I-35 access.';
@@ -187,6 +188,21 @@ const pageSchema = [
             <p>Absolutely. The Cibolo and Schertz area is one of the most military-friendly communities in the San Antonio metro. Randolph Air Force Base, part of Joint Base San Antonio, is just minutes away, and a large percentage of residents are active-duty, retired military, or DoD civilians. The community is welcoming to newcomers, which is important for families who move frequently. VA loans are widely used and accepted here, and many of the newer neighborhoods were specifically designed to appeal to military families with features like community pools, parks, and proximity to base. As a veteran, I have firsthand experience helping military families navigate PCS moves and find the right home in this area.</p>
           </details>
         </div>
+      </div>
+    </section>
+
+    <!-- Video -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Watch: Military Families <span class="accent">Love Cibolo</span></h2>
+        </div>
+        <VideoEmbed
+          videoId="fx--C5RuV_I"
+          title="Why Military Families Love Cibolo TX Near JBSA Randolph & Fort Sam"
+          description="Why PCSing families pick Cibolo: the short commute to JBSA-Randolph and Fort Sam Houston, SCUC schools, and what homes cost near the gate."
+          uploadDate="2026-05-22"
+        />
       </div>
     </section>
 

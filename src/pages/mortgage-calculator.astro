@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
+import VideoEmbed from '../components/VideoEmbed.astro';
 import Footer from '../components/Footer.astro';
 import ParallaxBanner from '../components/ParallaxBanner.astro';
 import { articleSchema, breadcrumbSchema } from '../lib/schema';
@@ -293,6 +294,21 @@ const pageSchema = [
             <p>A 30-year mortgage has lower monthly payments but costs significantly more in total interest over the life of the loan. A 15-year mortgage has higher monthly payments but saves tens of thousands of dollars in interest and builds equity much faster. Use this calculator to compare the monthly payment and total cost for different loan terms to see which fits your budget and goals.</p>
           </details>
         </div>
+      </div>
+    </section>
+
+    <!-- Video -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Watch: PITI + DTI <span class="accent">Explained</span></h2>
+        </div>
+        <VideoEmbed
+          videoId="woMl9SleAA0"
+          title="Think You Can Afford That House? (PITI + DTI Explained)"
+          description="The two numbers lenders actually look at — principal, interest, taxes, and insurance, plus your debt-to-income ratio — and how they set your real budget."
+          uploadDate="2025-10-13"
+        />
       </div>
     </section>
 

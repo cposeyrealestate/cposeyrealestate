@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
+import VideoEmbed from '../components/VideoEmbed.astro';
 import Footer from '../components/Footer.astro';
 import ParallaxBanner from '../components/ParallaxBanner.astro';
 import { collectionPageSchema, breadcrumbSchema } from '../lib/schema';
@@ -151,6 +152,27 @@ const pageSchema = [
             <p>While it is technically possible to purchase a home without representation, having a REALTOR on your side provides significant advantages. A buyer's agent negotiates on your behalf, helps you navigate the complex Texas real estate contracts, coordinates inspections and appraisals, and ensures deadlines are met throughout the transaction. In most cases, the seller pays the listing broker's commission, so working with a buyer's agent typically costs you nothing out of pocket. Having professional guidance protects your interests and often saves you money in the long run.</p>
           </details>
         </div>
+      </div>
+    </section>
+
+    <!-- Videos -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Watch: First-Time Buyer <span class="accent">Essentials</span></h2>
+        </div>
+        <VideoEmbed
+          videoId="yyODwTPtBUc"
+          title="Home Inspections Explained for First-Time Buyers"
+          description="What a home inspection covers, what it doesn't, and how to use the report to negotiate — explained for first-time buyers in the New Braunfels area."
+          uploadDate="2026-01-19"
+        />
+        <VideoEmbed
+          videoId="4NeOwP1DN7Q"
+          title="Why A Lower House Price Is A TRAP For First-Time Buyers"
+          description="Why the cheapest listing can cost you more — deferred maintenance, taxes, insurance, and the real math behind a 'deal'."
+          uploadDate="2026-02-02"
+        />
       </div>
     </section>
 

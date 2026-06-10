@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
 import { placeSchema, collectionPageSchema, breadcrumbSchema } from '../../lib/schema';
 
 const sgDescription = 'Explore Seguin, Texas — affordable living with small-town charm on the Guadalupe River. Neighborhoods, homes for sale, restaurants, and things to do.';
@@ -187,6 +188,21 @@ const pageSchema = [
             <p>Seguin is approximately 35 minutes east of downtown San Antonio via I-10, and about 20 minutes south of New Braunfels via TX-46. The I-10 corridor makes the commute to San Antonio straightforward, and many residents find it a manageable daily drive. New Braunfels is even closer, which gives Seguin residents easy access to the shops, restaurants, and entertainment options along the I-35 corridor. For day-to-day needs, Seguin has its own grocery stores, medical facilities, and retail, so you do not need to leave town for routine errands.</p>
           </details>
         </div>
+      </div>
+    </section>
+
+    <!-- Video -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Watch: Why Buyers Are <span class="accent">Choosing Seguin</span></h2>
+        </div>
+        <VideoEmbed
+          videoId="_t58Gb0QNfw"
+          title="Why Buyers Are Choosing Seguin Over New Braunfels Right Now"
+          description="Cody Posey breaks down why more buyers are picking Seguin: lower prices, the Guadalupe River lifestyle, and what you trade for the savings."
+          uploadDate="2026-05-21"
+        />
       </div>
     </section>
 

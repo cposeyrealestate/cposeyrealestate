@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
 import { articleSchema, breadcrumbSchema } from '../../lib/schema';
 
 const pageTitle = 'New Braunfels Neighborhoods | Cody Posey Real Estate';
@@ -239,6 +240,21 @@ const pageSchema = [
         <h2>Need Help <span class="accent">Narrowing It Down</span>?</h2>
         <p>I can walk you through the differences between areas and help you focus your search on neighborhoods that match your priorities.</p>
         <a href="#contact" class="btn btn-outline">Get Help Choosing a Neighborhood</a>
+      </div>
+    </section>
+
+    <!-- Video -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Watch: Top 3 Neighborhoods <span class="accent">Buyers Are Asking About</span></h2>
+        </div>
+        <VideoEmbed
+          videoId="cDQ2GLET82s"
+          title="Top 3 New Braunfels Neighborhoods Buyers Are Asking About Now"
+          description="The three New Braunfels neighborhoods getting the most buyer questions right now — price points, lifestyle, and who each one fits."
+          uploadDate="2026-05-20"
+        />
       </div>
     </section>
 

@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
+import VideoEmbed from '../components/VideoEmbed.astro';
 import Footer from '../components/Footer.astro';
 import ParallaxBanner from '../components/ParallaxBanner.astro';
 import { collectionPageSchema, breadcrumbSchema } from '../lib/schema';
@@ -141,6 +142,21 @@ const pageSchema = [
             <p>Staging is not always necessary, but presenting your home in a clean, decluttered, and neutral way is essential. At a minimum, remove personal items, clear countertops, and ensure every room has a clear purpose. Professional staging can help in higher price points or when a home has been sitting on the market. The goal is to help buyers envision themselves living in the space.</p>
           </details>
         </div>
+      </div>
+    </section>
+
+    <!-- Video -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Watch: Selling Against <span class="accent">New Construction</span></h2>
+        </div>
+        <VideoEmbed
+          videoId="XfEIoDVmGlk"
+          title="New Construction Is Crushing Resale Homes in New Braunfels. Here's How to Sell Anyway"
+          description="Builder incentives are pulling buyers away from resale homes — the pricing and prep strategy that gets resale listings sold in this market."
+          uploadDate="2025-09-15"
+        />
       </div>
     </section>
 
