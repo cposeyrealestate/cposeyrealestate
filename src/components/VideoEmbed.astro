@@ -12,10 +12,15 @@ export interface Props {
   videoId: string;
   title: string;
   description?: string;
-  uploadDate?: string; // ISO date
+  uploadDate?: string; // ISO date (YYYY-MM-DD) or full ISO datetime
 }
 
-const { videoId, title, description = '', uploadDate } = Astro.props;
+const { videoId, title, description = '', uploadDate: rawUploadDate } = Astro.props;
+
+// Google requires uploadDate to carry a timezone; expand bare dates to noon Central.
+const uploadDate = rawUploadDate && /^\d{4}-\d{2}-\d{2}$/.test(rawUploadDate)
+  ? `${rawUploadDate}T12:00:00-06:00`
+  : rawUploadDate;
 
 const schema = {
   '@context': 'https://schema.org',
