@@ -1,0 +1,69 @@
+---
+// Inline TidyCal scheduler. Renders a "Book a Session" section with the
+// embedded 30-minute meeting calendar so visitors can pick a time without
+// leaving the site. Reused on the homepage and the /contact page (anchor
+// #book — the navbar "Book a Session" button links to /contact#book).
+const tidyCalPath = 'cposeyrealestate/30-minute-meeting';
+---
+
+<section class="book-session section" id="book">
+  <div class="container">
+    <div class="section-title">
+      <p class="book-session__eyebrow">Let's Talk</p>
+      <h2>Book a <span class="accent">Session</span></h2>
+      <p class="book-session__sub">Grab a free 30-minute call — whether you're buying, selling, relocating to the Hill Country, or just have questions about the New Braunfels market. Pick a time that works for you and I'll take it from there.</p>
+    </div>
+
+    <div class="book-session__embed">
+      <div class="tidycal-embed" data-path={tidyCalPath}></div>
+    </div>
+  </div>
+</section>
+
+<script is:inline async src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+
+<style>
+  .book-session {
+    background: #000;
+    color: #fff;
+  }
+
+  .book-session .section-title {
+    text-align: center;
+  }
+
+  .book-session__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #FF1616;
+    margin-bottom: 0.5rem;
+  }
+
+  .book-session h2 {
+    color: #fff;
+  }
+
+  .book-session__sub {
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 620px;
+    margin: 1rem auto 0;
+    line-height: 1.7;
+  }
+
+  .book-session__embed {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2.5rem auto 0;
+    max-width: 900px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  @media (max-width: 600px) {
+    .book-session__embed {
+      padding: 0.75rem;
+    }
+  }
+</style>

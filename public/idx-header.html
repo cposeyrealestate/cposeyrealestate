@@ -123,6 +123,17 @@ img { max-width: 100%; height: auto; display: block; }
 .cp-btn-primary { background: var(--cp-red); color: #fff; }
 .cp-btn-primary:hover { background: var(--cp-red-dark); color: #fff; }
 
+/* Book a Session — red pill in IDX wrapper nav */
+.cp-navbar__book {
+  background: var(--cp-red) !important;
+  color: #fff !important;
+  padding: .5rem 1rem !important;
+  border-radius: 4px !important;
+  white-space: nowrap;
+}
+.cp-navbar__book::after { display: none !important; }
+.cp-navbar__book:hover { background: var(--cp-red-dark) !important; color: #fff !important; }
+
 .cp-navbar__hamburger {
   display: none; flex-direction: column; gap: 5px;
   background: none; border: none; cursor: pointer; padding: 4px;
@@ -624,9 +635,9 @@ img { max-width: 100%; height: auto; display: block; }
           </ul>
         </li>
         <li><a href="https://cposeyrealestate.com/#contact" class="cp-navbar__link">Let's Connect</a></li>
+        <li><a href="https://cposeyrealestate.com/contact#book" class="cp-navbar__link cp-navbar__book">Book a Session</a></li>
       </ul>
     </nav>
-    <a href="tel:+18303605569" class="cp-btn cp-btn-primary cp-navbar__cta">(830) 360-5569</a>
     <button class="cp-navbar__hamburger" id="cpHamburger" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>

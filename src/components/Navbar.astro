@@ -82,12 +82,9 @@
           </ul>
         </li>
         <li><a href="#contact" class="navbar__link">Let's Connect</a></li>
+        <li><a href="/contact#book" class="navbar__link navbar__book">Book a Session</a></li>
       </ul>
     </nav>
-
-    <a href="tel:+18303605569" class="btn btn-primary navbar__cta">
-      (830) 360-5569
-    </a>
 
     <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu">
       <span></span>
@@ -279,6 +276,24 @@
     font-size: 0.75rem;
     padding: 0.6rem 1.4rem;
     white-space: nowrap;
+  }
+
+  /* Book a Session — red pill, visible on desktop nav and mobile menu */
+  .navbar__book {
+    background: #FF1616;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .navbar__book::after {
+    display: none;
+  }
+
+  .navbar__book:hover {
+    background: #cc0000;
+    color: #fff;
   }
 
   .navbar__hamburger {
