@@ -6,7 +6,7 @@
       "source": "internal",
       "mlsId": "1968354",
       "slug": "226-treasure-way",
-      "status": "Active",
+      "status": "Under Contract",
       "featured": true,
       "price": "$1,100,000",
       "address": "226 Treasure Way",
@@ -102,7 +102,7 @@
           ["Smart Home", "Ring Security, Cameras, Doorbell, Smart Locks, Smart Thermostat, Smart Lighting, Google Fiber Available"]
         ],
         "Area & Lot": [
-          ["Status", "Active"],
+          ["Status", "Under Contract"],
           ["Living Area", "3,080 Sq.Ft."],
           ["Lot Area", "0.321 Acres"],
           ["MLS® ID", "1968354"],
@@ -126,7 +126,7 @@
       "slug": "203-paul-street",
       "status": "Active",
       "featured": true,
-      "price": "$189,000",
+      "price": "$160,000",
       "address": "203 Paul Street",
       "city": "San Antonio, TX 78203",
       "beds": 3,
