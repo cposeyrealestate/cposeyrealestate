@@ -1,12 +1,19 @@
 ---
+// Rating and count come from seo.json so this stays in sync with the
+// aggregateRating emitted in the Person and LocalBusiness JSON-LD.
+// Update src/data/seo.json when the Google Business Profile changes.
+import seo from '../data/seo.json';
+
+const { aggregateRating, reviewCount } = seo.reviews;
+const score = aggregateRating.toFixed(1);
 ---
 
 <section class="social-proof">
   <div class="social-proof__inner container">
     <a href="/testimonials/" class="social-proof__rating">
-      <span class="social-proof__score">5.0</span>
+      <span class="social-proof__score">{score}</span>
       <span class="social-proof__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <span class="social-proof__text">from 27 Google Reviews</span>
+      <span class="social-proof__text">from {reviewCount} Google Reviews</span>
     </a>
     <p class="social-proof__tagline">Veteran-Owned | Educating. Serving. Delivering Results.</p>
   </div>
