@@ -7,9 +7,15 @@ import data from '../../data/portfolio.json';
 import { listingSchema, breadcrumbSchema } from '../../lib/schema';
 
 export function getStaticPaths() {
-  const internal = (data.currentListings as any[]).filter(
-    (l) => l.source === 'internal',
-  );
+  // Past sales keep their detail page when they were self-hosted listings —
+  // the URL stays indexed after the sale closes instead of 404ing. Cards on
+  // /portfolio stay non-clickable for sold properties; this is for direct
+  // hits from Google and previously shared links.
+  const internal = [
+    ...(data.currentListings as any[]),
+    ...(data.pastSales as any[]),
+  ].filter((l) => l.source === 'internal' && l.slug);
+
   return internal.map((l) => ({
     params: { id: l.slug },
     props: { listing: l },
@@ -81,6 +87,11 @@ const calcDefaults = {
 };
 
 const hasMap = typeof listing.lat === 'number' && typeof listing.lng === 'number';
+
+// A closed property can't be shown — offer a consultation instead so the
+// page doesn't advertise a showing that isn't available.
+const isClosed = ['sold', 'leased'].includes(listing.status.toLowerCase());
+const scheduleLabel = isClosed ? 'Schedule a Consultation' : 'Schedule a Showing';
 ---
 
 <Layout
@@ -142,7 +153,7 @@ const hasMap = typeof listing.lat === 'number' && typeof listing.lng === 'number
         <div class="detail__band-cta">
           <button type="button" class="btn btn-primary detail__schedule-btn" data-schedule-btn>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Schedule a Showing
+            {scheduleLabel}
           </button>
           <a href="tel:+18303605569" class="detail__phone-link">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
