@@ -37,6 +37,9 @@ const metaDescription = (post.excerpt || `${post.category}: ${post.title}`)
   .replace(/\s+/g, ' ')
   .trim()
   .slice(0, 155);
+
+const formatActionStep = (step: string) =>
+  String(step).replace(/^\s*(?:step\s*\d+|[\d]+[.)])\s*[:—-]\s*/i, '');
 ---
 
 <Layout
@@ -116,7 +119,7 @@ const metaDescription = (post.excerpt || `${post.category}: ${post.title}`)
                 <Fragment>
                   {post.action_steps_heading && <h2>{post.action_steps_heading}</h2>}
                   <ol class="action-steps">
-                    {post.action_steps.map((s: string) => <li set:html={s} />)}
+                    {post.action_steps.map((s: string) => <li set:html={formatActionStep(s)} />)}
                   </ol>
                 </Fragment>
               )}
