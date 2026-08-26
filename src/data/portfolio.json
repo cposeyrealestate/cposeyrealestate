@@ -549,6 +549,16 @@
     },
     {
       "status": "Sold",
+      "address": "1827 Slumber Pass",
+      "city": "San Antonio, TX 78260",
+      "beds": 4,
+      "baths": 3.5,
+      "sqft": "2,663",
+      "role": "Buyer's Agent",
+      "img": "/images/sold/1827-slumber-pass.webp"
+    },
+    {
+      "status": "Sold",
       "address": "2218 Briggs Summit",
       "city": "San Antonio, TX 78245",
       "beds": 3,
