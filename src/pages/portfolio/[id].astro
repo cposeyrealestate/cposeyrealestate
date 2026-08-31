@@ -71,11 +71,25 @@ const descParagraphs = (listing.description || '').split(/\n{2,}/).map((p) => p.
 
 const featureGroups = listing.features ? Object.entries(listing.features).filter(([, v]) => v && v.length) : [];
 
+// A closed property can't be shown — offer a consultation instead so the
+// page doesn't advertise a showing that isn't available.
+const isClosed = ['sold', 'leased'].includes(listing.status.toLowerCase());
+const scheduleLabel = isClosed ? 'Schedule a Consultation' : 'Schedule a Showing';
+
+// Texas is a non-disclosure state, so sold prices stay private. Closed
+// listings show "Price Upon Request" here the same way the portfolio cards
+// do; the JSON-LD offer drops its price to match (see listingSchema).
+const displayPrice = isClosed ? 'Price Upon Request' : listing.price;
+
 // ── Mortgage calculator defaults ──────────────────────────────
 // Price comes from the listing; the rest are nationwide-friendly Texas
 // Hill Country starting points. Property taxes vary widely by county,
 // school district, and homestead exemption — disclaimer in the UI.
-const priceNumeric = parseInt((listing.price || '0').replace(/[^0-9]/g, ''), 10) || 500000;
+// Closed listings fall back to the generic default so the withheld price
+// doesn't leak back through the Home Price slider.
+const priceNumeric = isClosed
+  ? 500000
+  : parseInt((listing.price || '0').replace(/[^0-9]/g, ''), 10) || 500000;
 const calcDefaults = {
   price: priceNumeric,
   downPct: 20,
@@ -87,11 +101,6 @@ const calcDefaults = {
 };
 
 const hasMap = typeof listing.lat === 'number' && typeof listing.lng === 'number';
-
-// A closed property can't be shown — offer a consultation instead so the
-// page doesn't advertise a showing that isn't available.
-const isClosed = ['sold', 'leased'].includes(listing.status.toLowerCase());
-const scheduleLabel = isClosed ? 'Schedule a Consultation' : 'Schedule a Showing';
 ---
 
 <Layout
@@ -145,7 +154,7 @@ const scheduleLabel = isClosed ? 'Schedule a Consultation' : 'Schedule a Showing
       <div class="container detail__band-inner">
         <div class="detail__band-info">
           <span class={`detail__status ${listing.status.toLowerCase().replace(/\s+/g, '-')}`}>{listing.status}</span>
-          <h1 class="detail__price">{listing.price}</h1>
+          <h1 class={`detail__price${isClosed ? ' detail__price--tbd' : ''}`}>{displayPrice}</h1>
           <div class="detail__address">{listing.address}</div>
           <div class="detail__city">{listing.city}</div>
           {listing.mlsId && <div class="detail__mls">MLS #{listing.mlsId}</div>}
@@ -480,6 +489,7 @@ const scheduleLabel = isClosed ? 'Schedule a Consultation' : 'Schedule a Showing
     margin: 0 0 0.25rem;
     line-height: 1;
   }
+  .detail__price--tbd { font-size: clamp(1.35rem, 2.6vw, 1.75rem); }
   .detail__address { font-weight: 600; font-size: 1.1rem; margin-bottom: 0.2rem; }
   .detail__city { color: #777; font-size: 0.95rem; margin-bottom: 0.5rem; }
   .detail__mls {

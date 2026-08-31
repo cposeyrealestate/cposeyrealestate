@@ -464,6 +464,7 @@ export function listingSchema(listing: {
   const postalCode = cityMatch?.[3];
 
   const status = (listing.status || 'Active').toLowerCase();
+  const isClosed = status === 'sold' || status === 'leased';
   const availability =
     status === 'sold'
       ? 'https://schema.org/SoldOut'
@@ -516,7 +517,12 @@ export function listingSchema(listing: {
     offers: {
       '@type': 'Offer',
       availability,
-      ...(listing.price && { price: listing.price.replace(/[^0-9]/g, ''), priceCurrency: 'USD' }),
+      // Texas is a non-disclosure state — a closed listing's sale price is not
+      // public, so a sold/leased offer carries availability but no price.
+      ...(listing.price && !isClosed && {
+        price: listing.price.replace(/[^0-9]/g, ''),
+        priceCurrency: 'USD',
+      }),
       seller: { '@id': PERSON_ID },
     },
   };
