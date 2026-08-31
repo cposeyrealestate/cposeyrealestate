@@ -375,18 +375,21 @@
           ["HOA", "None"]
         ]
       }
-    },
+    }
+  ],
+
+  "pastSales": [
     {
       "source": "internal",
       "mlsId": "604073",
       "slug": "0000-cr-3390-kempner",
-      "status": "Under Contract",
-      "featured": true,
+      "status": "Sold",
       "price": "$139,000",
       "address": "0000 CR 3390",
       "city": "Kempner, TX 76539",
       "acres": "5.25",
       "propertyType": "Land",
+      "role": "Listing Agent",
       "subdivision": null,
       "county": "Lampasas",
       "hoaMonthly": null,
@@ -414,7 +417,7 @@
           ["Survey", "Available"]
         ],
         "Area & Lot": [
-          ["Status", "Under Contract"],
+          ["Status", "Sold"],
           ["Lot Area", "5.25 Acres"],
           ["MLS® ID", "604073"],
           ["Type", "Land"],
@@ -425,10 +428,7 @@
           ["HOA", "None"]
         ]
       }
-    }
-  ],
-
-  "pastSales": [
+    },
     {
       "source": "internal",
       "mlsId": "1968354",
