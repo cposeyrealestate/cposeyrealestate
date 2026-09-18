@@ -1,0 +1,2477 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+import ParallaxBanner from '../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema, faqSchema } from '../lib/schema';
+
+const JOIN_POPBY_URL = 'https://www.joinpopby.com/';
+
+const pageTitle = 'Join Popby Realty | Brokerage Savings Calculator for Agents | Cody Posey';
+const pageDescription =
+  'Thinking about a brokerage change? See what your current split, cap, and fees actually cost you each year versus Popby Realty, then explore joining the team.';
+
+const faqs = [
+  {
+    q: 'What is Popby Realty?',
+    a: 'Popby Realty is the brokerage Cody Posey hangs his license with, built around a capped commission plan, a flat monthly technology fee, and a revenue share program that pays agents for helping grow the brokerage. You can read the full model at joinpopby.com.',
+  },
+  {
+    q: 'How does the savings calculator work?',
+    a: 'You enter the numbers you already know — your annual gross commission income, your current split with your brokerage, your monthly fees, and how many transactions you close. The calculator compares that against Popby Realty\'s published fee schedule and shows the yearly difference.',
+  },
+  {
+    q: 'Are the results a guarantee of what I would earn?',
+    a: 'No. The calculator produces an estimate based only on the figures you enter and Popby Realty\'s current published fee schedule. Real income depends on your production, your market, and your expenses. Treat the output as a starting point for a conversation, not a promise.',
+  },
+  {
+    q: 'Do I have to give my contact information to use it?',
+    a: 'No. The calculator runs entirely in your browser with no login and no signup. You only share your name and email if you choose to request a written breakdown.',
+  },
+  {
+    q: 'Who do I talk to about joining?',
+    a: 'Cody Posey. He is a REALTOR® with Popby Realty serving New Braunfels, San Antonio, and the Texas Hill Country, and he can walk you through the plan, the tools, and the revenue share side of the business.',
+  },
+];
+
+const pageSchema = [
+  articleSchema({
+    title: pageTitle,
+    description: pageDescription,
+    url: '/join-popby-realty/',
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Join Popby Realty', url: '/join-popby-realty/' },
+  ]),
+  faqSchema(faqs),
+];
+---
+
+<Layout title={pageTitle} description={pageDescription} schema={pageSchema}>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="jp-hero" style="background-image:url('/images/generated/calculator-hero.webp');">
+      <div class="jp-hero__overlay"></div>
+      <div class="jp-hero__content">
+        <h1>Join <span style="color:#FF1616;">Popby Realty</span></h1>
+        <p>Run your own numbers, then come see what the brokerage looks like from the inside.</p>
+      </div>
+    </div>
+
+    <!-- Intro + primary link out to joinpopby.com -->
+    <section class="section">
+      <div class="container">
+        <div class="jp-intro">
+          <div class="jp-intro__copy">
+            <h2>A brokerage built around <span class="accent">keeping more of what you earn</span></h2>
+            <p>
+              Most agents can tell you their split. Far fewer can tell you what that
+              split, plus the desk fee, plus the technology fee, plus the per-transaction
+              fee actually added up to last year. That number is usually the reason a
+              brokerage change gets put off another season.
+            </p>
+            <p>
+              Popby Realty runs on a capped commission plan with a flat monthly
+              technology fee and a revenue share program for agents who help the
+              brokerage grow. Start with the calculator below to see your own numbers,
+              then head over to the Popby Realty site for the full picture.
+            </p>
+            <div class="jp-intro__actions">
+              <a class="btn btn-primary" href={JOIN_POPBY_URL} target="_blank" rel="noopener">
+                Visit joinpopby.com
+              </a>
+              <a class="btn btn-outline-dark" href="#savings-calculator">Run the numbers first</a>
+            </div>
+          </div>
+          <a class="jp-intro__card" href={JOIN_POPBY_URL} target="_blank" rel="noopener">
+            <img
+              src="/images/popby-wordmark.png"
+              width="750"
+              height="258"
+              alt="Popby Realty"
+              loading="lazy"
+            />
+            <span class="jp-intro__card-label">joinpopby.com</span>
+            <span class="jp-intro__card-cta">See the full brokerage model &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Savings calculator -->
+    <section class="section jp-calc-section" id="savings-calculator">
+      <div class="container">
+        <div class="section-title">
+          <h2>Popby Savings <span class="accent">Calculator</span></h2>
+          <p>No login, no signup. Everything runs in your browser.</p>
+        </div>
+
+        <!--
+          data-mode is read from the ?mode= URL param by JS below and applied here.
+          Default is "full". See LAYER 2 for the mode switch logic.
+        -->
+        <div class="pb-calc" id="pbCalc" data-mode="full">
+          <div class="pb-shell">
+
+            <div class="pb-eyebrow-row">
+              <div class="pb-wordmark"><a href="https://www.joinpopby.com/" target="_blank" rel="noopener"><img src="/images/popby-wordmark.png" width="750" height="258" alt="Popby Realty" /></a></div>
+              <div class="pb-agent-chip" id="pbAgentChip" hidden>
+                <img id="pbAgentChipImg" src="" alt="" hidden />
+                <span id="pbAgentChipText">Guided by an agent</span>
+              </div>
+            </div>
+
+            <!-- FULL MODE HERO -->
+            <div class="pb-hero" id="pbHero">
+              <h1>Know your numbers.</h1>
+              <p>Your brokerage should make sense for your business. Enter what you're
+                producing today and we'll do the math on what you're actually paying
+                to sell real estate — no login, no pressure.</p>
+            </div>
+
+            <!-- EMBED MODE HEADING -->
+            <h2 class="pb-embed-heading" id="pbEmbedHeading" hidden>Let's see what you could keep.</h2>
+
+            <!-- CALCULATOR CARD -->
+            <div class="pb-card">
+
+              <div class="pb-field">
+                <div class="pb-field-label"><span>Current brokerage</span><span class="pb-hint">optional</span></div>
+                <div class="pb-select-row">
+                  <select id="pbBrokeragePreset">
+                    <option value="">Select to auto-fill a typical split</option>
+                  </select>
+                </div>
+                <small class="pb-desc">Just a starting point — every office is different. Adjust the split below to match yours.</small>
+              </div>
+
+              <div class="pb-field">
+                <div class="pb-field-label">
+                  <span>Annual GCI</span>
+                  <span class="pb-field-value" id="pbGciDisplay">$120,000</span>
+                </div>
+                <input type="range" class="pb-slider" id="pbGci" min="20000" max="500000" step="5000" value="120000" />
+                <small class="pb-desc">Total commission income you generate in a year, before any splits.</small>
+              </div>
+
+              <div class="pb-grid-2">
+                <div class="pb-field">
+                  <div class="pb-field-label"><span>Deals per year</span></div>
+                  <div class="pb-input-row">
+                    <input type="number" id="pbTransactions" value="12" min="0" step="1" inputmode="numeric" />
+                  </div>
+                </div>
+                <div class="pb-field">
+                  <div class="pb-field-label">
+                    <span>Current split you pay</span>
+                    <span class="pb-field-value" id="pbSplitDisplay">20%</span>
+                  </div>
+                  <input type="range" class="pb-slider" id="pbSplit" min="0" max="50" step="1" value="20" />
+                </div>
+              </div>
+
+              <div class="pb-field">
+                <div class="pb-field-label">
+                  <span>Monthly brokerage fees</span>
+                  <span class="pb-hint">optional</span>
+                </div>
+                <div class="pb-input-row">
+                  <span class="pb-prefix">$</span>
+                  <input type="number" id="pbMonthlyFees" placeholder="0" min="0" step="5" inputmode="numeric" />
+                </div>
+                <small class="pb-desc">Desk fees, franchise fees, tech fees — anything billed monthly on top of your split.</small>
+              </div>
+
+              <button class="pb-cta-btn" id="pbCalculateBtn" type="button">See where your money is going</button>
+            </div>
+
+            <!-- POPBY FEE SCHEDULE (interactive: right column updates with your GCI/deals above) -->
+            <div class="pb-fee-card" id="pbFeeCard" data-open="false">
+              <button class="pb-fee-toggle" id="pbFeeToggle" type="button" aria-expanded="false">
+                <span>The Popby<sup>&reg;</sup> Way</span>
+                <span class="pb-fee-chevron" aria-hidden="true"></span>
+              </button>
+              <div class="pb-fee-table-wrap" id="pbFeeTableWrap" hidden>
+                <table class="pb-fee-table">
+                  <thead>
+                    <tr><th>What</th><th>Popby's rate</th><th>Based on your numbers</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><div class="pb-fee-name-row"><span class="pb-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></span><div><span class="pb-fee-name">Commission split</span><span class="pb-fee-desc">What Popby keeps, until you hit the cap</span></div></div></td>
+                      <td id="pbFeeSplitRate"></td>
+                      <td class="pb-fee-live pb-tabular" id="pbFeeSplitLive">—</td>
+                    </tr>
+                    <tr>
+                      <td><div class="pb-fee-name-row"><span class="pb-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><div><span class="pb-fee-name">Annual cap</span><span class="pb-fee-desc">After this, you keep 100% for the rest of the year</span></div></div></td>
+                      <td id="pbFeeCapRate"></td>
+                      <td class="pb-fee-live pb-tabular" id="pbFeeCapLive">—</td>
+                    </tr>
+                    <tr>
+                      <td><div class="pb-fee-name-row"><span class="pb-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M5 13a10 10 0 0 1 14 0"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span><div><span class="pb-fee-name">Monthly tech fee</span><span class="pb-fee-desc">Flat platform fee, billed monthly</span></div></div></td>
+                      <td id="pbFeeTechRate"></td>
+                      <td class="pb-fee-live pb-tabular" id="pbFeeTechLive">—</td>
+                    </tr>
+                    <tr>
+                      <td><div class="pb-fee-name-row"><span class="pb-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M20.59 13.41 13.41 20.59a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span><div><span class="pb-fee-name">Transaction fee</span><span class="pb-fee-desc">Flat fee per closed deal</span></div></div></td>
+                      <td id="pbFeeTxnRate"></td>
+                      <td class="pb-fee-live pb-tabular" id="pbFeeTxnLive">—</td>
+                    </tr>
+                    <tr>
+                      <td><div class="pb-fee-name-row"><span class="pb-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><circle cx="12" cy="8" r="6"/><path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"/></svg></span><div><span class="pb-fee-name">Royalty fee</span><span class="pb-fee-desc">Franchise/royalty charge</span></div></div></td>
+                      <td id="pbFeeRoyaltyRate"></td>
+                      <td class="pb-fee-live pb-tabular" id="pbFeeRoyaltyLive">—</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p class="pb-fee-table-note">The "based on your numbers" column updates live from the GCI and deals-per-year fields above.</p>
+              </div>
+            </div>
+
+            <!-- RESULTS -->
+            <div class="pb-results" id="pbResults">
+              <div class="pb-results-headline">
+                <div class="pb-label">What you could keep with Popby, per year</div>
+                <div class="pb-amount pb-tabular" id="pbSavingsAmount">$0</div>
+                <div class="pb-amount-sub" id="pbSavingsSub"></div>
+              </div>
+
+              <div class="pb-donut-row">
+                <div class="pb-donut-col pb-donut-current">
+                  <svg width="72" height="72" viewBox="0 0 72 72">
+                    <circle class="pb-donut-ring-track" cx="36" cy="36" r="30" stroke-width="8" />
+                    <circle class="pb-donut-ring-value" id="pbDonutCurrentRing" cx="36" cy="36" r="30" stroke-width="8"
+                      stroke-dasharray="0 188.5" transform="rotate(-90 36 36)" />
+                  </svg>
+                  <div class="pb-donut-pct" id="pbDonutCurrentPct">0%</div>
+                  <div class="pb-donut-label">You keep today</div>
+                </div>
+                <div class="pb-donut-col pb-donut-popby">
+                  <svg width="72" height="72" viewBox="0 0 72 72">
+                    <circle class="pb-donut-ring-track" cx="36" cy="36" r="30" stroke-width="8" />
+                    <circle class="pb-donut-ring-value" id="pbDonutPopbyRing" cx="36" cy="36" r="30" stroke-width="8"
+                      stroke-dasharray="0 188.5" transform="rotate(-90 36 36)" />
+                  </svg>
+                  <div class="pb-donut-pct" id="pbDonutPopbyPct">0%</div>
+                  <div class="pb-donut-label">You'd keep with Popby</div>
+                </div>
+              </div>
+
+              <div class="pb-compare">
+                <div class="pb-compare-col">
+                  <h4>Your brokerage, today</h4>
+                  <div class="pb-total pb-tabular" id="pbCurrentTotal">$0</div>
+                  <ul id="pbCurrentBreakdown"></ul>
+                </div>
+                <div class="pb-compare-col">
+                  <h4>With Popby</h4>
+                  <div class="pb-total pb-tabular" id="pbPopbyTotal">$0</div>
+                  <ul id="pbPopbyBreakdown"></ul>
+                </div>
+              </div>
+
+              <!-- CAP COUNTDOWN -->
+              <div class="pb-cap-countdown" id="pbCapCountdown" hidden>
+                <h4 id="pbCapHeadline">Your cap</h4>
+                <div class="pb-cap-track">
+                  <div class="pb-cap-fill" id="pbCapFill"></div>
+                  <div class="pb-cap-marker" id="pbCapMarker"></div>
+                </div>
+                <p class="pb-cap-copy" id="pbCapCopy"></p>
+              </div>
+
+              <!-- MULTI-YEAR PROJECTION -->
+              <div class="pb-projection" id="pbProjection" hidden>
+                <h4 id="pbProjectionTitle">If nothing else changes</h4>
+                <p class="pb-proj-sub">Same production, no growth assumed — just what today's numbers add up to over time.</p>
+                <div class="pb-proj-row">
+                  <span class="pb-proj-label">Year 1</span>
+                  <div class="pb-proj-track"><div class="pb-proj-bar" id="pbProjBar1"></div></div>
+                  <span class="pb-proj-value pb-tabular" id="pbProjVal1">$0</span>
+                </div>
+                <div class="pb-proj-row">
+                  <span class="pb-proj-label">Year 3</span>
+                  <div class="pb-proj-track"><div class="pb-proj-bar" id="pbProjBar3"></div></div>
+                  <span class="pb-proj-value pb-tabular" id="pbProjVal3">$0</span>
+                </div>
+                <div class="pb-proj-row">
+                  <span class="pb-proj-label">Year 5</span>
+                  <div class="pb-proj-track"><div class="pb-proj-bar" id="pbProjBar5"></div></div>
+                  <span class="pb-proj-value pb-tabular" id="pbProjVal5">$0</span>
+                </div>
+              </div>
+
+              <details class="pb-disclosure">
+                <summary>How we calculated this</summary>
+                <p>We'll do the math. You decide. Your current cost is your GCI times the split
+                  you pay, plus any monthly fees you entered, annualized. Your Popby cost is a
+                  capped split (never more than $<span id="pbDiscCap"></span>/year), a flat monthly
+                  tech fee, and a per-transaction fee — all set out in Popby's published fee
+                  structure. Compare the numbers for yourself.</p>
+              </details>
+
+              <button class="pb-share-btn" id="pbShareBtn" type="button">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.5 15.4 6.5M8.6 13.5 15.4 17.5"/></svg>
+                Share My Results
+              </button>
+              <p class="pb-share-status" id="pbShareStatus" hidden></p>
+              <canvas id="pbShareCanvas" width="1080" height="1080" style="display:none;"></canvas>
+
+              <!-- LEAD CAPTURE (shown after results, never gated) -->
+              <div class="pb-lead" id="pbLead">
+                <div id="pbLeadForm">
+                  <h3>Want a personalized breakdown?</h3>
+                  <p>We'll send you your numbers and answer any questions about what switching to Popby could look like.</p>
+                  <div class="pb-lead-fields">
+                    <div class="pb-input-row"><input type="text" id="pbFirstName" placeholder="First name" /></div>
+                    <div class="pb-input-row"><input type="email" id="pbEmail" placeholder="Email" /></div>
+                    <div class="pb-input-row"><input type="tel" id="pbPhone" placeholder="Phone (optional)" /></div>
+                    <div class="pb-input-row"><input type="text" id="pbBrokerage" placeholder="Current brokerage (optional)" /></div>
+                  </div>
+                  <!-- Honeypot field — real visitors never see or fill this in.
+                       See the .pb-hp-field CSS comment and wireLeadForm() JS. -->
+                  <div class="pb-hp-field" aria-hidden="true">
+                    <label for="pbHoneypot">Leave this field empty</label>
+                    <input type="text" id="pbHoneypot" name="company_website" tabindex="-1" autocomplete="off" />
+                  </div>
+                  <button class="pb-cta-btn" id="pbSendBreakdownBtn" type="button">Send Me My Breakdown</button>
+                  <p class="pb-trust-line">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5l-8-3Z"/></svg>
+                    No spam, no obligation — just your numbers.
+                  </p>
+                </div>
+                <div class="pb-lead-success" id="pbLeadSuccess" hidden>
+                  <div class="pb-check">✓</div>
+                  <h4>Sent.</h4>
+                  <p id="pbLeadSuccessCopy">We'll follow up with your personalized breakdown shortly.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- REVENUE SHARE PROJECTION -->
+            <div class="pb-revshare-card">
+              <h3>Grow your income by growing your team</h3>
+              <p>Popby shares a piece of what the company earns from agents you bring in —
+                four tiers deep. Enter how many agents you'd have at each tier and a rough
+                average GCI, and we'll estimate what that could pay you every year.</p>
+
+              <div class="pb-tier-diagram" aria-hidden="true">
+                <div class="pb-tier-node"><span class="pb-tier-node-num">TIER 1</span><span class="pb-tier-node-pct" id="pbDiagTier1Pct">5%</span></div>
+                <div class="pb-tier-arrow">&rarr;</div>
+                <div class="pb-tier-node"><span class="pb-tier-node-num">TIER 2</span><span class="pb-tier-node-pct" id="pbDiagTier2Pct">4%</span></div>
+                <div class="pb-tier-arrow">&rarr;</div>
+                <div class="pb-tier-node"><span class="pb-tier-node-num">TIER 3</span><span class="pb-tier-node-pct" id="pbDiagTier3Pct">2%</span></div>
+                <div class="pb-tier-arrow">&rarr;</div>
+                <div class="pb-tier-node"><span class="pb-tier-node-num">TIER 4</span><span class="pb-tier-node-pct" id="pbDiagTier4Pct">1%</span></div>
+              </div>
+
+              <div class="pb-tier-grid">
+                <div class="pb-tier-field">
+                  <label for="pbTier1">Tier 1 agents <span class="pb-tier-pct" id="pbTier1Pct"></span></label>
+                  <div class="pb-input-row"><input type="number" id="pbTier1" min="0" step="1" placeholder="0" inputmode="numeric" /></div>
+                </div>
+                <div class="pb-tier-field">
+                  <label for="pbTier2">Tier 2 agents <span class="pb-tier-pct" id="pbTier2Pct"></span></label>
+                  <div class="pb-input-row"><input type="number" id="pbTier2" min="0" step="1" placeholder="0" inputmode="numeric" /></div>
+                </div>
+                <div class="pb-tier-field">
+                  <label for="pbTier3">Tier 3 agents <span class="pb-tier-pct" id="pbTier3Pct"></span></label>
+                  <div class="pb-input-row"><input type="number" id="pbTier3" min="0" step="1" placeholder="0" inputmode="numeric" /></div>
+                </div>
+                <div class="pb-tier-field">
+                  <label for="pbTier4">Tier 4 agents <span class="pb-tier-pct" id="pbTier4Pct"></span></label>
+                  <div class="pb-input-row"><input type="number" id="pbTier4" min="0" step="1" placeholder="0" inputmode="numeric" /></div>
+                </div>
+              </div>
+
+              <div class="pb-field">
+                <div class="pb-field-label">
+                  <span>Average GCI per downline agent</span>
+                </div>
+                <div class="pb-input-row">
+                  <span class="pb-prefix">$</span>
+                  <input type="number" id="pbAvgDownlineGci" min="0" step="5000" placeholder="120000" inputmode="numeric" />
+                </div>
+                <small class="pb-desc">A rough average across the agents you'd recruit — doesn't need to be exact.</small>
+              </div>
+
+              <button class="pb-cta-btn" id="pbCalcRevShareBtn" type="button">See my team's potential</button>
+
+              <div class="pb-revshare-results" id="pbRevShareResults">
+                <div class="pb-revshare-total-card">
+                  <div class="pb-label">Estimated revenue share, per year</div>
+                  <div class="pb-amount pb-tabular" id="pbRevShareTotal">$0</div>
+                </div>
+                <ul class="pb-revshare-breakdown" id="pbRevShareBreakdown"></ul>
+
+                <div class="pb-combined-total" id="pbCombinedTotal" hidden>
+                  Combine that with your brokerage savings and your total potential
+                  Popby advantage is
+                  <strong id="pbCombinedAmount">$0/year</strong>
+                </div>
+
+                <details class="pb-disclosure">
+                  <summary>How we calculated this</summary>
+                  <p>Revenue share is estimated as a percentage of the "company dollar" Popby
+                    collects from each downline agent — their capped split plus Popby's flat
+                    monthly tech fee — based on the average GCI you entered. Tier 1 pays 5%,
+                    Tier 2 pays 4%, Tier 3 pays 2%, and Tier 4 pays 1%. This is an estimate to
+                    help you think through the model, not a guarantee of earnings.</p>
+                </details>
+              </div>
+            </div>
+
+            <!-- BOTTOM RECRUITING CTA -->
+            <div class="pb-recruit-cta">
+              <div class="pb-recruit-copy">
+                <div class="pb-kicker">Curious what Popby could look like for your business?</div>
+                <h3 id="pbRecruitHeadline">Let's talk.</h3>
+              </div>
+              <div class="pb-recruit-agent">
+                <img id="pbBottomAgentImg" src="" alt="" hidden />
+                <button class="pb-book-btn" id="pbBookCallBtn" type="button">Book a Conversation</button>
+                <a class="pb-learn-link" id="pbLearnMoreLink" href="https://www.joinpopby.com/" target="_blank" rel="noopener">Explore Popby Realty</a>
+              </div>
+            </div>
+
+            <p class="pb-footnote">Estimates only, based on the figures you enter and Popby's current published fee schedule. Not a guarantee of earnings or savings. <a href="#" id="pbPrivacyLink">Privacy</a></p>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Common <span class="accent">Questions</span></h2>
+        </div>
+        <div class="jp-faq">
+          {faqs.map((item) => (
+            <details class="jp-faq__item">
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <ParallaxBanner image="/images/generated/hill-country-sunset.webp" />
+
+  <ContactForm context="I'm a licensed agent and I'd like to hear more about joining Popby Realty..." />
+  <Footer />
+</Layout>
+
+<style>
+  .jp-hero {
+    position: relative;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+  }
+  .jp-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+  }
+  .jp-hero__content {
+    position: relative;
+    z-index: 2;
+    padding: 3rem 1.5rem;
+  }
+  .jp-hero__content h1 { color: #fff; margin-bottom: 0.75rem; }
+  .jp-hero__content p {
+    color: rgba(255,255,255,0.75);
+    font-size: 1rem;
+    max-width: 44ch;
+    margin: 0 auto;
+  }
+
+  .jp-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: center;
+  }
+  .jp-intro__copy h2 { margin-bottom: 1rem; }
+  /* .accent is only defined globally under .section-title, so the intro
+     heading needs its own rule. */
+  .jp-intro__copy .accent { color: var(--red, #FF1616); }
+  .jp-intro__copy p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  .jp-intro__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  .jp-intro__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border: 1px solid #e7e7e7;
+    border-radius: 12px;
+    background: #fff;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .jp-intro__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+  }
+  .jp-intro__card img {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+  }
+  .jp-intro__card-label {
+    font-weight: 600;
+    color: #000;
+    margin-top: 0.5rem;
+  }
+  .jp-intro__card-cta {
+    font-size: 0.9rem;
+    color: #FF1616;
+    font-weight: 600;
+  }
+
+  .jp-calc-section { background: #fafafa; }
+
+  .jp-faq {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .jp-faq__item {
+    border: 1px solid #e7e7e7;
+    border-radius: 10px;
+    background: #fff;
+    padding: 1rem 1.25rem;
+  }
+  .jp-faq__item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: #000;
+  }
+  .jp-faq__item p {
+    margin: 0.75rem 0 0;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 900px) {
+    .jp-intro { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .jp-hero { min-height: 240px; }
+    .jp-hero__content h1 { font-size: 28px; }
+  }
+</style>
+
+<!--
+  Popby Realty savings calculator widget styles.
+  Everything is scoped under .pb-calc and prefixed "pb-" by the widget's
+  own design, so emitting it globally is safe. It has to be global: the
+  widget script rewrites several regions with innerHTML, and those nodes
+  never receive Astro's scoping attribute.
+-->
+<style is:global>
+  /* Fonts: a warm, confident serif for the "big number" moments (this is a
+     financial decision — it should feel considered, not like a SaaS trial
+     calculator), paired with a clean grotesque for interface + data.
+     Loaded via Google Fonts for the prototype; a production embed would
+     likely self-host these to avoid a render-blocking third-party request. */
+  /* Poppins is already loaded site-wide by src/styles/global.css — no @import needed here. */
+
+  /* ---------------------------------------------------------------------
+     SCOPED DESIGN TOKENS
+     Everything is scoped under .pb-calc so nothing leaks into — or is
+     overridden by — the host page's own styles.
+  --------------------------------------------------------------------- */
+  .pb-calc {
+    --pb-ink: #000000;
+    --pb-ink-soft: #33343A;
+    --pb-slate: #6B7280;
+    --pb-paper: #FFFFFF;
+    --pb-paper-raised: #FFFFFF;
+    --pb-line: #E7E7E7;
+    --pb-brass: #FF1616;
+    --pb-brass-deep: #D91111;
+    --pb-green: #FF1616;
+    --pb-green-soft: #FFE7E7;
+
+    --pb-radius: 14px;
+    --pb-radius-sm: 8px;
+
+    all: initial;
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--pb-ink);
+    background: var(--pb-paper);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .pb-calc *, .pb-calc *::before, .pb-calc *::after {
+    box-sizing: border-box;
+    font-family: inherit;
+  }
+  .pb-calc button { cursor: pointer; }
+  .pb-calc [hidden] { display: none !important; }
+
+  .pb-serif { font-family: 'Poppins', sans-serif; }
+  .pb-tabular { font-variant-numeric: tabular-nums; }
+
+  /* ---------------------------------------------------------------------
+     LAYOUT SHELL
+  --------------------------------------------------------------------- */
+  .pb-shell {
+    width: 100%;
+    padding: clamp(20px, 5vw, 48px) clamp(16px, 5vw, 40px) clamp(32px, 6vw, 56px);
+  }
+
+  .pb-eyebrow-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: clamp(18px, 4vw, 32px);
+  }
+  .pb-wordmark { display: block; line-height: 0; }
+  .pb-wordmark img {
+    display: block;
+    height: clamp(22px, 5vw, 30px);
+    width: auto;
+  }
+
+  .pb-agent-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--pb-slate);
+    background: var(--pb-paper-raised);
+    border: 1px solid var(--pb-line);
+    padding: 6px 12px 6px 6px;
+    border-radius: 999px;
+  }
+  .pb-agent-chip img {
+    width: 22px; height: 22px; border-radius: 50%;
+    object-fit: cover; display: block;
+  }
+
+  /* ---------------------------------------------------------------------
+     HERO (mode=full only)
+  --------------------------------------------------------------------- */
+  .pb-hero { margin-bottom: clamp(28px, 6vw, 44px); max-width: 62ch; }
+  .pb-hero h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: clamp(28px, 5.4vw, 44px);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+  }
+  .pb-hero p {
+    font-size: clamp(15px, 2.4vw, 17px);
+    line-height: 1.6;
+    color: var(--pb-ink-soft);
+    margin: 0;
+    max-width: 52ch;
+  }
+
+  .pb-embed-heading {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: clamp(22px, 4.6vw, 28px);
+    line-height: 1.2;
+    margin: 0 0 20px;
+  }
+
+  /* ---------------------------------------------------------------------
+     CALCULATOR CARD
+  --------------------------------------------------------------------- */
+  .pb-card {
+    background: var(--pb-paper-raised);
+    border: 1px solid var(--pb-line);
+    border-radius: var(--pb-radius);
+    padding: clamp(18px, 4.5vw, 32px);
+    border-left: 4px solid var(--pb-brass);
+  }
+
+  .pb-field { margin-bottom: 22px; }
+  .pb-field:last-child { margin-bottom: 0; }
+
+  .pb-field-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .pb-field-label .pb-hint {
+    font-weight: 400;
+    color: var(--pb-slate);
+    font-size: 12.5px;
+  }
+  .pb-field-value {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--pb-brass-deep);
+  }
+
+  .pb-field small.pb-desc {
+    display: block;
+    color: var(--pb-slate);
+    font-size: 12.5px;
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  .pb-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--pb-line);
+    outline: none;
+  }
+  .pb-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--pb-brass);
+    border: 2px solid var(--pb-paper-raised);
+    box-shadow: 0 0 0 1px var(--pb-brass);
+    cursor: pointer;
+  }
+  .pb-slider::-moz-range-thumb {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--pb-brass);
+    border: 2px solid var(--pb-paper-raised);
+    box-shadow: 0 0 0 1px var(--pb-brass);
+    cursor: pointer;
+    border: none;
+  }
+
+  .pb-input-row {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--pb-line);
+    border-radius: var(--pb-radius-sm);
+    overflow: hidden;
+    background: var(--pb-paper);
+  }
+  .pb-input-row .pb-prefix {
+    padding: 0 12px;
+    color: var(--pb-slate);
+    font-size: 14px;
+    border-right: 1px solid var(--pb-line);
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+  }
+  .pb-input-row input {
+    all: unset;
+    flex: 1;
+    padding: 11px 12px;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    color: var(--pb-ink);
+    min-width: 0;
+  }
+  .pb-input-row input::placeholder { color: #A6ABB5; }
+  .pb-input-row:focus-within {
+    border-color: var(--pb-brass);
+    box-shadow: 0 0 0 3px rgba(255,22,22,0.16);
+  }
+
+  .pb-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 420px) {
+    .pb-grid-2 { grid-template-columns: 1fr; }
+  }
+
+  .pb-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background: var(--pb-ink);
+    color: var(--pb-paper-raised);
+    border: none;
+    border-radius: var(--pb-radius-sm);
+    padding: 14px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    margin-top: 8px;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .pb-cta-btn:hover { background: #262C3A; }
+  .pb-cta-btn:active { transform: scale(0.99); }
+  .pb-cta-btn:focus-visible {
+    outline: 2px solid var(--pb-brass);
+    outline-offset: 2px;
+  }
+
+  .pb-cta-secondary {
+    background: transparent;
+    color: var(--pb-ink);
+    border: 1.5px solid var(--pb-ink);
+  }
+  .pb-cta-secondary:hover { background: var(--pb-ink); color: var(--pb-paper-raised); }
+
+  /* ---------------------------------------------------------------------
+     BROKERAGE PRESET SELECT
+  --------------------------------------------------------------------- */
+  .pb-select-row {
+    position: relative;
+    border: 1px solid var(--pb-line);
+    border-radius: var(--pb-radius-sm);
+    background: var(--pb-paper);
+  }
+  .pb-select-row select {
+    all: unset;
+    display: block;
+    width: 100%;
+    padding: 11px 34px 11px 12px;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    color: var(--pb-ink);
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+  .pb-select-row::after {
+    content: "";
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-right: 1.5px solid var(--pb-slate);
+    border-bottom: 1.5px solid var(--pb-slate);
+    transform: translateY(-70%) rotate(45deg);
+    pointer-events: none;
+  }
+  .pb-select-row:focus-within {
+    border-color: var(--pb-brass);
+    box-shadow: 0 0 0 3px rgba(255,22,22,0.16);
+  }
+
+  /* ---------------------------------------------------------------------
+     METHODOLOGY DISCLOSURE ("How we calculated this")
+  --------------------------------------------------------------------- */
+  .pb-disclosure {
+    margin: 4px 0 0;
+    font-size: 12.5px;
+    color: var(--pb-slate);
+  }
+  .pb-disclosure summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--pb-ink-soft);
+    list-style: none;
+  }
+  .pb-disclosure summary::-webkit-details-marker { display: none; }
+  .pb-disclosure summary::before {
+    content: "+ ";
+    color: var(--pb-brass-deep);
+    font-weight: 700;
+  }
+  .pb-disclosure[open] summary::before { content: "\2212 "; }
+  .pb-disclosure p {
+    margin: 8px 0 0;
+    line-height: 1.6;
+  }
+
+  /* ---------------------------------------------------------------------
+     KEEP VS. GIVE AWAY DONUTS
+  --------------------------------------------------------------------- */
+  .pb-donut-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  @media (max-width: 420px) {
+    .pb-donut-row { grid-template-columns: 1fr 1fr; }
+  }
+  .pb-donut-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid var(--pb-line);
+    border-radius: var(--pb-radius-sm);
+    padding: 14px 10px;
+  }
+  .pb-donut-col.pb-donut-popby { border-color: #FFC7C7; background: var(--pb-green-soft); }
+  .pb-donut-col svg { display: block; }
+  .pb-donut-pct {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+  }
+  .pb-donut-label {
+    font-size: 11.5px;
+    color: var(--pb-slate);
+    font-weight: 600;
+    margin-top: 8px;
+  }
+  .pb-donut-ring-track { fill: none; stroke: var(--pb-line); }
+  .pb-donut-ring-value { fill: none; stroke-linecap: round; transition: stroke-dasharray 0.7s ease; }
+  @media (prefers-reduced-motion: reduce) {
+    .pb-donut-ring-value { transition: none; }
+  }
+  .pb-donut-col.pb-donut-current .pb-donut-ring-value { stroke: var(--pb-ink); }
+  .pb-donut-col.pb-donut-popby .pb-donut-ring-value { stroke: var(--pb-brass); }
+
+  /* ---------------------------------------------------------------------
+     CAP COUNTDOWN
+  --------------------------------------------------------------------- */
+  .pb-cap-countdown {
+    margin: 0 0 18px;
+    border: 1px solid var(--pb-line);
+    border-left: 4px solid var(--pb-brass);
+    border-radius: var(--pb-radius-sm);
+    padding: 16px;
+  }
+  .pb-cap-countdown h4 {
+    margin: 0 0 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--pb-brass-deep);
+  }
+  .pb-cap-track {
+    position: relative;
+    height: 10px;
+    background: var(--pb-paper);
+    border: 1px solid var(--pb-line);
+    border-radius: 999px;
+    overflow: visible;
+    margin: 8px 0 10px;
+  }
+  .pb-cap-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--pb-brass);
+    border-radius: 999px;
+    transition: width 0.7s ease;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pb-cap-fill { transition: none; }
+  }
+  .pb-cap-marker {
+    position: absolute;
+    top: -3px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--pb-ink);
+    border: 2px solid #fff;
+    transform: translateX(-50%);
+    left: 0%;
+  }
+  .pb-cap-copy { font-size: 13px; color: var(--pb-ink-soft); line-height: 1.5; margin: 0; }
+  .pb-cap-copy strong { color: var(--pb-ink); }
+
+  /* ---------------------------------------------------------------------
+     SHARE MY RESULTS
+  --------------------------------------------------------------------- */
+  .pb-share-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background: transparent;
+    color: var(--pb-brass-deep);
+    border: 1.5px solid var(--pb-brass);
+    border-radius: var(--pb-radius-sm);
+    padding: 13px 20px;
+    font-size: 14.5px;
+    font-weight: 600;
+    margin: 4px 0 18px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .pb-share-btn:hover { background: var(--pb-brass); color: #fff; }
+  .pb-share-btn svg { flex-shrink: 0; }
+  .pb-share-status {
+    font-size: 12px;
+    color: var(--pb-slate);
+    text-align: center;
+    margin: -12px 0 18px;
+  }
+
+  /* ---------------------------------------------------------------------
+     TIER DIAGRAM (revenue share)
+  --------------------------------------------------------------------- */
+  .pb-tier-diagram {
+    display: flex;
+    align-items: stretch;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .pb-tier-node {
+    flex: 1;
+    text-align: center;
+    border: 1.5px solid var(--pb-brass);
+    border-radius: var(--pb-radius-sm);
+    padding: 10px 4px;
+    position: relative;
+  }
+  .pb-tier-node:nth-child(1) { background: var(--pb-brass); }
+  .pb-tier-node:nth-child(1) .pb-tier-node-num,
+  .pb-tier-node:nth-child(1) .pb-tier-node-pct { color: #fff; }
+  .pb-tier-node:nth-child(2) { background: rgba(255,22,22,0.16); }
+  .pb-tier-node:nth-child(3) { background: rgba(255,22,22,0.08); }
+  .pb-tier-node:nth-child(4) { background: transparent; }
+  .pb-tier-node-num {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--pb-brass-deep);
+  }
+  .pb-tier-node-pct {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--pb-brass-deep);
+    display: block;
+    margin-top: 2px;
+  }
+  .pb-tier-arrow {
+    align-self: center;
+    color: var(--pb-slate);
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  /* ---------------------------------------------------------------------
+     ROW ICONS (fee schedule + compare breakdown)
+  --------------------------------------------------------------------- */
+  .pb-row-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px; height: 20px;
+    border-radius: 6px;
+    background: rgba(255,22,22,0.1);
+    color: var(--pb-brass-deep);
+    flex-shrink: 0;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .pb-fee-table .pb-fee-name-row { display: flex; align-items: flex-start; }
+  .pb-compare-col li { align-items: center; }
+  .pb-compare-col li .pb-li-label { display: flex; align-items: center; }
+
+  /* ---------------------------------------------------------------------
+     SAVINGS REVEAL PULSE
+  --------------------------------------------------------------------- */
+  @keyframes pbSavingsPulse {
+    0% { transform: scale(1); }
+    45% { transform: scale(1.06); }
+    100% { transform: scale(1); }
+  }
+  .pb-amount.pb-pulse { animation: pbSavingsPulse 0.5s ease; }
+  @media (prefers-reduced-motion: reduce) {
+    .pb-amount.pb-pulse { animation: none; }
+  }
+
+  /* ---------------------------------------------------------------------
+     MULTI-YEAR PROJECTION
+  --------------------------------------------------------------------- */
+  .pb-projection {
+    margin: 18px 0;
+    border: 1px solid var(--pb-line);
+    border-radius: var(--pb-radius-sm);
+    padding: 18px;
+  }
+  .pb-projection h4 {
+    margin: 0 0 4px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .pb-projection .pb-proj-sub {
+    font-size: 12px;
+    color: var(--pb-slate);
+    margin: 0 0 16px;
+  }
+  .pb-proj-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .pb-proj-row:last-child { margin-bottom: 0; }
+  .pb-proj-label {
+    width: 52px;
+    flex-shrink: 0;
+    font-size: 12.5px;
+    color: var(--pb-ink-soft);
+    font-weight: 600;
+  }
+  .pb-proj-track {
+    flex: 1;
+    height: 22px;
+    background: var(--pb-paper);
+    border-radius: 999px;
+    overflow: hidden;
+    border: 1px solid var(--pb-line);
+  }
+  .pb-proj-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--pb-brass);
+    border-radius: 999px;
+    transition: width 0.6s ease;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pb-proj-bar { transition: none; }
+  }
+  .pb-proj-value {
+    width: 88px;
+    flex-shrink: 0;
+    text-align: right;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  /* ---------------------------------------------------------------------
+     REVENUE SHARE ("grow your income")
+  --------------------------------------------------------------------- */
+  .pb-revshare-card {
+    margin-top: clamp(24px, 5vw, 36px);
+    background: var(--pb-paper-raised);
+    border: 1px solid var(--pb-line);
+    border-radius: var(--pb-radius);
+    padding: clamp(18px, 4.5vw, 32px);
+    border-left: 4px solid var(--pb-ink);
+  }
+  .pb-revshare-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: clamp(19px, 3.6vw, 24px);
+    margin: 0 0 6px;
+  }
+  .pb-revshare-card > p {
+    font-size: 14px;
+    color: var(--pb-ink-soft);
+    line-height: 1.55;
+    margin: 0 0 20px;
+    max-width: 52ch;
+  }
+  .pb-tier-grid {
+    display: grid;
+    /* minmax(0, 1fr) rather than 1fr: a bare 1fr track is floored at the
+       item's min-content width, and the number inputs inside are wide
+       enough that the two columns overflowed the card on a phone —
+       clipping the Tier 2 / Tier 4 fields out of reach. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .pb-tier-field { min-width: 0; }
+  .pb-tier-field .pb-input-row { min-width: 0; }
+  .pb-tier-field input { width: 100%; min-width: 0; }
+  @media (max-width: 420px) {
+    .pb-tier-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  .pb-tier-field label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .pb-tier-field .pb-tier-pct {
+    font-weight: 400;
+    color: var(--pb-brass-deep);
+  }
+  .pb-revshare-results {
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .pb-revshare-results.pb-visible { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .pb-revshare-results { transition: none; }
+  }
+  .pb-revshare-total-card {
+    background: #F3F3F3;
+    border: 1px solid var(--pb-line);
+    border-radius: var(--pb-radius);
+    padding: clamp(18px, 4.5vw, 26px);
+    margin-bottom: 14px;
+  }
+  .pb-revshare-total-card .pb-label { font-size: 13px; color: var(--pb-slate); margin-bottom: 6px; }
+  .pb-revshare-total-card .pb-amount {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: clamp(28px, 6.5vw, 40px);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .pb-revshare-breakdown { margin: 0 0 14px; padding: 0; list-style: none; }
+  .pb-revshare-breakdown li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--pb-ink-soft);
+    padding: 7px 0;
+    border-top: 1px solid var(--pb-line);
+  }
+  .pb-revshare-breakdown li:first-child { border-top: none; }
+  .pb-combined-total {
+    background: var(--pb-green-soft);
+    border: 1px solid #FFC7C7;
+    border-radius: var(--pb-radius-sm);
+    padding: 16px;
+    font-size: 13.5px;
+    color: var(--pb-ink);
+    line-height: 1.5;
+  }
+  .pb-combined-total strong {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: clamp(19px, 4vw, 24px);
+    margin-top: 2px;
+  }
+
+  /* ---------------------------------------------------------------------
+     TRUST LINE + ANTI-SPAM HONEYPOT
+  --------------------------------------------------------------------- */
+  .pb-trust-line {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--pb-slate);
+    margin-top: 10px;
+  }
+  .pb-trust-line svg { flex-shrink: 0; }
+
+  /* Honeypot: kept in the document and reachable by simple bots, but
+     invisible and unreachable for real visitors (off-screen, not
+     display:none, no tabindex). If this field has a value on submit,
+     the lead is treated as spam. See wireLeadForm() for the check. */
+  .pb-hp-field {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  /* ---------------------------------------------------------------------
+     POPBY FEE SCHEDULE TABLE
+  --------------------------------------------------------------------- */
+  .pb-fee-card {
+    margin-top: 16px;
+    border: 1px solid var(--pb-line);
+    border-left: 4px solid var(--pb-brass);
+    border-radius: var(--pb-radius);
+    background: var(--pb-green-soft);
+    padding: clamp(16px, 4vw, 24px);
+  }
+  .pb-fee-toggle {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--pb-brass-deep);
+    letter-spacing: 0.01em;
+  }
+  .pb-fee-toggle .pb-fee-chevron {
+    width: 9px; height: 9px;
+    border-right: 1.5px solid var(--pb-brass-deep);
+    border-bottom: 1.5px solid var(--pb-brass-deep);
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+  .pb-fee-card[data-open="true"] .pb-fee-chevron { transform: rotate(-135deg); }
+
+  .pb-fee-table-wrap {
+    overflow-x: auto;
+    margin-top: 16px;
+  }
+  .pb-fee-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .pb-fee-table th {
+    text-align: left;
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--pb-brass-deep);
+    font-weight: 700;
+    padding: 0 0 8px;
+    border-bottom: 1.5px solid var(--pb-brass);
+  }
+  .pb-fee-table th:last-child, .pb-fee-table td:last-child { text-align: right; }
+  .pb-fee-table td {
+    padding: 10px 0;
+    border-bottom: 1px solid #FFC7C7;
+    vertical-align: top;
+  }
+  .pb-fee-table tr:last-child td { border-bottom: none; }
+  .pb-fee-table .pb-fee-name { font-weight: 600; }
+  .pb-fee-table .pb-fee-desc { display: block; font-weight: 400; color: var(--pb-ink-soft); font-size: 11.5px; margin-top: 2px; }
+  .pb-fee-table .pb-fee-live { font-weight: 700; color: var(--pb-brass-deep); white-space: nowrap; }
+  .pb-fee-table-note {
+    font-size: 11.5px;
+    color: var(--pb-ink-soft);
+    margin: 10px 0 0;
+  }
+
+  /* ---------------------------------------------------------------------
+     RESULTS
+  --------------------------------------------------------------------- */
+  .pb-results {
+    margin-top: clamp(20px, 4.5vw, 32px);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .pb-results.pb-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pb-results { transition: none; }
+  }
+
+  .pb-results-headline {
+    background: var(--pb-green-soft);
+    border: 1px solid #FFC7C7;
+    border-radius: var(--pb-radius);
+    padding: clamp(20px, 5vw, 30px);
+    text-align: left;
+    margin-bottom: 18px;
+  }
+  .pb-results-headline .pb-label {
+    font-size: 13px;
+    color: var(--pb-slate);
+    margin-bottom: 6px;
+  }
+  .pb-results-headline .pb-amount {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: clamp(34px, 8vw, 52px);
+    line-height: 1;
+    color: var(--pb-green);
+    letter-spacing: -0.01em;
+  }
+  .pb-results-headline .pb-amount-sub {
+    font-size: 14px;
+    color: var(--pb-ink-soft);
+    margin-top: 8px;
+  }
+
+  .pb-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  @media (max-width: 420px) {
+    .pb-compare { grid-template-columns: 1fr; }
+  }
+  .pb-compare-col {
+    border: 1px solid var(--pb-line);
+    border-radius: var(--pb-radius-sm);
+    padding: 16px;
+  }
+  .pb-compare-col h4 {
+    margin: 0 0 10px;
+    font-size: 12.5px;
+    color: var(--pb-slate);
+    font-weight: 600;
+  }
+  .pb-compare-col .pb-total {
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .pb-compare-col ul {
+    margin: 0; padding: 0; list-style: none;
+  }
+  .pb-compare-col li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--pb-ink-soft);
+    padding: 5px 0;
+    border-top: 1px solid var(--pb-line);
+  }
+  .pb-compare-col li:first-child { border-top: none; }
+
+  .pb-methodology {
+    font-size: 12px;
+    color: var(--pb-slate);
+    line-height: 1.5;
+    margin: 4px 0 0;
+  }
+
+  /* ---------------------------------------------------------------------
+     LEAD CAPTURE
+  --------------------------------------------------------------------- */
+  .pb-lead {
+    margin-top: 18px;
+    border: 1px solid var(--pb-line);
+    border-radius: var(--pb-radius);
+    padding: clamp(18px, 4.5vw, 28px);
+    background: var(--pb-paper-raised);
+  }
+  .pb-lead h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: clamp(19px, 3.6vw, 22px);
+    margin: 0 0 6px;
+  }
+  .pb-lead p {
+    font-size: 14px;
+    color: var(--pb-ink-soft);
+    line-height: 1.5;
+    margin: 0 0 18px;
+    max-width: 46ch;
+  }
+  .pb-lead-fields { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
+
+  .pb-lead-success {
+    text-align: left;
+    padding: 6px 0 2px;
+  }
+  .pb-lead-success .pb-check {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--pb-green);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .pb-lead-success h4 { margin: 0 0 4px; font-size: 16px; }
+  .pb-lead-success p { margin: 0; font-size: 13.5px; color: var(--pb-ink-soft); }
+
+  /* ---------------------------------------------------------------------
+     BOTTOM RECRUITING CTA
+  --------------------------------------------------------------------- */
+  .pb-recruit-cta {
+    margin-top: clamp(24px, 5vw, 36px);
+    border-radius: var(--pb-radius);
+    background: var(--pb-ink);
+    color: var(--pb-paper-raised);
+    padding: clamp(22px, 5vw, 34px);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .pb-recruit-copy { max-width: 40ch; }
+  .pb-recruit-copy .pb-kicker {
+    font-size: 13px;
+    color: #C6CAD3;
+    margin-bottom: 6px;
+  }
+  .pb-recruit-copy h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: clamp(19px, 3.6vw, 24px);
+    margin: 0;
+    line-height: 1.25;
+  }
+  .pb-recruit-agent {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  .pb-recruit-agent img {
+    width: 46px; height: 46px; border-radius: 50%;
+    object-fit: cover; border: 2px solid rgba(255,255,255,0.25);
+  }
+  .pb-recruit-agent .pb-book-btn {
+    background: var(--pb-brass);
+    color: #FFFFFF;
+    border: none;
+    border-radius: var(--pb-radius-sm);
+    padding: 13px 20px;
+    font-weight: 600;
+    font-size: 14.5px;
+    white-space: nowrap;
+  }
+  .pb-recruit-agent .pb-book-btn:hover { background: var(--pb-brass-deep); }
+
+  /* Secondary route out of the calculator: straight to joinpopby.com for
+     anyone who wants to read about the brokerage before booking a call. */
+  .pb-learn-link {
+    display: inline-block;
+    color: var(--pb-paper-raised);
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: var(--pb-radius-sm);
+    padding: 12px 18px;
+    font-weight: 600;
+    font-size: 14.5px;
+    white-space: nowrap;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .pb-learn-link:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.6);
+  }
+
+  /* The CTA cluster is flex-shrink: 0, so with two controls in it the cluster
+     keeps its full content width and pushes past the card's right edge on a
+     phone. Below 560px, stack the whole CTA and let both controls go full
+     width instead. */
+  @media (max-width: 560px) {
+    .pb-recruit-cta {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .pb-recruit-agent {
+      width: 100%;
+      flex-shrink: 1;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .pb-recruit-agent img { align-self: flex-start; }
+    .pb-recruit-agent .pb-book-btn,
+    .pb-learn-link {
+      width: 100%;
+      text-align: center;
+      white-space: normal;
+    }
+  }
+
+  .pb-footnote {
+    margin-top: 16px;
+    font-size: 11.5px;
+    color: var(--pb-slate);
+    text-align: left;
+  }
+  .pb-footnote a { color: var(--pb-slate); }
+</style>
+
+<script is:inline>
+(function () {
+  "use strict";
+
+  // ==========================================================================
+  // CENTRAL CONFIGURATION
+  // Every calculation in this file reads from these two objects. Nothing
+  // below should ever hardcode a fee number directly — update it here and
+  // it propagates everywhere, including inside the CTA copy and breakdowns.
+  // ==========================================================================
+  const POPBY_CONFIG = {
+    brokerageSplit: 0.15,   // % of GCI Popby keeps, until the annual cap is hit
+    annualCap: 12000,       // once an agent has paid this much in splits, they go to 100%
+    monthlyTechFee: 79,     // flat monthly platform/tech fee
+    transactionFee: 250,    // flat fee per closed transaction
+    royaltyFee: 0,          // placeholder for a future royalty/franchise fee, currently $0
+
+    // 4-tier revenue share: % of the "company dollar" (capped split + tech
+    // fee) Popby collects from each downline agent, paid up to the
+    // recruiting agent who brought them in.
+    revShareTiers: [0.05, 0.04, 0.02, 0.01]
+  };
+
+  const POPBY_LINKS = {
+    // The brokerage's own site — where "Explore Popby Realty" and the
+    // wordmark both point.
+    learnMore: "https://www.joinpopby.com/",
+    defaultBooking: "https://calendly.com/popbyrealty",
+    privacy: "#",
+
+    // Where lead submissions get POSTed. Point this at a deployed Google
+    // Apps Script Web App URL (see google-apps-script-lead-handler.gs,
+    // shipped alongside this file) to both log every submission to a
+    // Google Sheet AND email a notification to camille@popbyrealty.com.
+    // Leave blank to keep the calculator working with zero integration —
+    // submitRecruitingLead() below still logs the lead to the console.
+    leadWebhook: ""
+  };
+
+  // Illustrative starting points only — real splits vary by office/market.
+  // Selecting one just pre-fills the split slider + monthly fee field, which
+  // the visitor can (and should) adjust to match their actual numbers.
+  const POPBY_BROKERAGE_PRESETS = [
+    { label: "Keller Williams", split: 30, monthlyFee: 60 },
+    { label: "eXp Realty", split: 20, monthlyFee: 85 },
+    { label: "RE/MAX", split: 30, monthlyFee: 150 },
+    { label: "Coldwell Banker", split: 30, monthlyFee: 100 },
+    { label: "Compass", split: 20, monthlyFee: 0 },
+    { label: "Other / I know my numbers", split: null, monthlyFee: null }
+  ];
+
+
+  // ==========================================================================
+  // === LAYER 1: CALCULATION ENGINE =========================================
+  // Pure functions only — no DOM access, no globals besides POPBY_CONFIG.
+  // This is the part that should stay identical between ?mode=full and
+  // ?mode=embed, and the part a future backend/CRM sync would want to
+  // mirror server-side for lead-scoring.
+  // ==========================================================================
+
+  /**
+   * Estimate an agent's current annual brokerage cost.
+   * @param {number} annualGCI
+   * @param {number} currentSplitPercent  e.g. 20 for "I pay a 20% split"
+   * @param {number} monthlyFees          desk/tech/franchise fees billed monthly
+   * @returns {{splitCost:number, feeCost:number, total:number}}
+   */
+  function calculateCurrentBrokerageCost(annualGCI, currentSplitPercent, monthlyFees) {
+    const splitCost = annualGCI * (currentSplitPercent / 100);
+    const feeCost = (monthlyFees || 0) * 12;
+    return {
+      splitCost: round(splitCost),
+      feeCost: round(feeCost),
+      total: round(splitCost + feeCost)
+    };
+  }
+
+  /**
+   * Estimate what the same agent would pay under Popby's model:
+   * a capped split, plus a flat monthly tech fee, plus a flat per-transaction
+   * fee. All figures come from POPBY_CONFIG so they can be updated in one place.
+   * @param {number} annualGCI
+   * @param {number} annualTransactions
+   * @returns {{splitCost:number, techCost:number, transactionCost:number, royaltyCost:number, total:number}}
+   */
+  function calculatePopbyCost(annualGCI, annualTransactions) {
+    const uncappedSplit = annualGCI * POPBY_CONFIG.brokerageSplit;
+    const splitCost = Math.min(uncappedSplit, POPBY_CONFIG.annualCap);
+    const techCost = POPBY_CONFIG.monthlyTechFee * 12;
+    const transactionCost = POPBY_CONFIG.transactionFee * (annualTransactions || 0);
+    const royaltyCost = POPBY_CONFIG.royaltyFee;
+    return {
+      splitCost: round(splitCost),
+      techCost: round(techCost),
+      transactionCost: round(transactionCost),
+      royaltyCost: round(royaltyCost),
+      total: round(splitCost + techCost + transactionCost + royaltyCost)
+    };
+  }
+
+  /**
+   * Full comparison used to drive the UI.
+   */
+  function calculatePopbySavings(inputs) {
+    const current = calculateCurrentBrokerageCost(inputs.annualGCI, inputs.currentSplitPercent, inputs.monthlyFees);
+    const popby = calculatePopbyCost(inputs.annualGCI, inputs.annualTransactions);
+    return {
+      current,
+      popby,
+      savings: round(current.total - popby.total)
+    };
+  }
+
+  /**
+   * Estimate annual revenue share income from a 4-tier downline, using the
+   * "company dollar" (capped split + monthly tech fee) Popby collects per
+   * agent as the base each tier percentage applies to. Per-transaction fees
+   * are left out of the base since we don't collect a downline transaction
+   * count from the visitor — this keeps the estimate conservative.
+   * @param {number[]} tierCounts        [tier1Count, tier2Count, tier3Count, tier4Count]
+   * @param {number} avgDownlineGCI      assumed average annual GCI per downline agent
+   * @returns {{perAgentCompanyDollar:number, tiers:Array, total:number}}
+   */
+  function calculateRevenueShare(tierCounts, avgDownlineGCI) {
+    const cappedSplit = Math.min(avgDownlineGCI * POPBY_CONFIG.brokerageSplit, POPBY_CONFIG.annualCap);
+    const techCost = POPBY_CONFIG.monthlyTechFee * 12;
+    const perAgentCompanyDollar = round(cappedSplit + techCost);
+
+    const tiers = POPBY_CONFIG.revShareTiers.map((pct, i) => {
+      const count = tierCounts[i] || 0;
+      const income = round(count * perAgentCompanyDollar * pct);
+      return { tier: i + 1, pct, count, income };
+    });
+
+    const total = tiers.reduce((sum, t) => sum + t.income, 0);
+    return { perAgentCompanyDollar, tiers, total };
+  }
+
+  /**
+   * Flat (no-growth) multi-year projection: simply multiplies a steady
+   * annual figure out across 1, 3, and 5 years so a visitor can see what
+   * today's numbers add up to over time.
+   * @param {number} annualValue
+   * @returns {{year1:number, year3:number, year5:number}}
+   */
+  function calculateMultiYearProjection(annualValue) {
+    return {
+      year1: round(annualValue * 1),
+      year3: round(annualValue * 3),
+      year5: round(annualValue * 5)
+    };
+  }
+
+  function round(n) { return Math.round(n); }
+  function formatCurrency(n) {
+    return "$" + Math.round(n).toLocaleString("en-US");
+  }
+
+
+  // ==========================================================================
+  // === LAYER 3: REFERRAL / LEAD ATTRIBUTION =================================
+  // Reads URL params once on load, holds them in memory for the life of the
+  // widget, and exposes helpers the UI layer uses to personalize copy and
+  // to build the lead object. No data leaves the browser in this prototype.
+  // ==========================================================================
+
+  /**
+   * Supported URL params (see embed docs at top of file):
+   *   ?ref=cody-posey            referring agent's slug/id
+   *   &agentName=Cody%20Posey    referring agent's display name
+   *   &agentImage=https://...    referring agent's headshot
+   *   &booking=https://...       referring agent's personal booking link
+   *   &source=instagram          marketing source
+   *   &campaign=brokerage-savings marketing campaign
+   *   &mode=embed|full           display mode (default: full)
+   *
+   * A production version of joinpopby.com would generate one unique
+   * recruiting URL per agent (e.g. joinpopby.com/savings/cody-posey) and
+   * resolve agentName/agentImage/booking server-side from the agent's slug,
+   * so agents never have to hand-build a long query string themselves.
+   */
+  function readReferralParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+      ref: params.get("ref") || params.get("agent") || null,
+      agentName: params.get("agentName") || null,
+      agentImage: params.get("agentImage") || null,
+      booking: params.get("booking") || null,
+      source: params.get("source") || null,
+      campaign: params.get("campaign") || null,
+      mode: params.get("mode") || "full"
+    };
+  }
+
+  // Held in memory for the life of the page/iframe. Never written to
+  // localStorage/cookies in this prototype — CRM sync (Layer 3 below)
+  // is where this would eventually be persisted.
+  const PopbyReferral = readReferralParams();
+
+  function referringAgentLabel() {
+    return PopbyReferral.agentName || (PopbyReferral.ref ? titleCase(PopbyReferral.ref) : null);
+  }
+  function titleCase(slug) {
+    return slug.replace(/[-_]/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+  }
+
+  /**
+   * Builds the lead payload and "submits" it. In production this is where
+   * Popby would POST to its CRM. Kept as a single, clearly-commented
+   * integration point so swapping in a real endpoint later is a one-function change.
+   */
+  function submitRecruitingLead(formInputs, calculationResult) {
+    const lead = {
+      firstName: formInputs.firstName,
+      lastName: formInputs.lastName || "",
+      email: formInputs.email,
+      phone: formInputs.phone || "",
+      currentBrokerage: formInputs.currentBrokerage || "",
+      annualGCI: formInputs.annualGCI,
+      annualTransactions: formInputs.annualTransactions,
+      estimatedCurrentBrokerageCost: calculationResult.current.total,
+      estimatedPopbyCost: calculationResult.popby.total,
+      estimatedAnnualSavings: calculationResult.savings,
+      referringAgent: PopbyReferral.ref,
+      source: PopbyReferral.source,
+      campaign: PopbyReferral.campaign,
+      submittedAt: new Date().toISOString()
+    };
+
+    // ---- LIVE INTEGRATION: Google Apps Script Web App ----------------------
+    // POPBY_LINKS.leadWebhook, once set, should point at a deployed Apps
+    // Script Web App URL. That one endpoint both:
+    //   1. Appends `lead` as a new row to a Google Sheet, and
+    //   2. Emails a notification to camille@popbyrealty.com
+    // See google-apps-script-lead-handler.gs (shipped alongside this file)
+    // for the exact script to paste in and deploy — it's a 5-minute setup,
+    // no separate email service or paid API required.
+    //
+    // Apps Script Web Apps don't return CORS headers by default, so this
+    // uses mode: "no-cors" — the request still reaches the script and still
+    // runs, we just can't read a response back in the browser. That's fine
+    // here since there's nothing in the response the UI needs.
+    if (POPBY_LINKS.leadWebhook) {
+      fetch(POPBY_LINKS.leadWebhook, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" }, // avoids an Apps Script CORS preflight
+        body: JSON.stringify(lead)
+      }).catch(err => {
+        // Never let a failed network call break the visitor's experience —
+        // the lead is already logged to the console below as a fallback.
+        console.warn("[Popby] lead webhook failed (lead still logged locally):", err);
+      });
+    } else {
+      console.log("[Popby] submitRecruitingLead — no leadWebhook configured yet, lead not sent anywhere:", lead);
+    }
+
+    // ---- OTHER FUTURE CRM / AUTOMATION INTEGRATION POINTS ------------------
+    // BoldTrail:  POST `lead` to BoldTrail's lead-capture API, mapping
+    //             referringAgent -> the receiving agent's BoldTrail user id.
+    // Zapier:     POST `lead` as JSON to a Zapier "Catch Hook" webhook URL,
+    //             then branch in Zapier on `lead.referringAgent`.
+    // Make:       same shape, POST to a Make.com webhook trigger.
+    // CRM API:    call Popby's own CRM REST API directly once it exists.
+    // -------------------------------------------------------------------------
+
+    trackEvent("lead_submitted", lead);
+    return lead;
+  }
+
+  /**
+   * Builds a shareable recruiting link for the CURRENT referring agent.
+   * A production joinpopby.com would instead issue one permanent slug per
+   * agent (joinpopby.com/savings/cody-posey) that resolves server-side —
+   * this helper just shows how the query-string version would be composed.
+   */
+  function buildShareableLink(agentSlug, baseUrl) {
+    baseUrl = baseUrl || (window.location.origin + window.location.pathname);
+    const url = new URL(baseUrl);
+    if (agentSlug) url.searchParams.set("ref", agentSlug);
+    return url.toString();
+  }
+
+
+  // ---- TRACKING EVENT STUBS --------------------------------------------
+  // Each function below is called at the relevant point in the flow. None
+  // of them call an analytics provider yet — wire in Meta Pixel / GA4 /
+  // another tool where noted, keeping referring_agent/source/campaign as
+  // custom parameters so recruiting funnels can be attributed per agent.
+  function trackEvent(eventName, extra) {
+    const payload = Object.assign({
+      referring_agent: PopbyReferral.ref,
+      source: PopbyReferral.source,
+      campaign: PopbyReferral.campaign
+    }, extra || {});
+
+    // Meta Pixel:        fbq('trackCustom', eventName, payload);
+    // Google Analytics:  gtag('event', eventName, payload);
+    // Other platform:    window.analytics && window.analytics.track(eventName, payload);
+    console.log("[Popby tracking]", eventName, payload);
+  }
+  function calculator_started() { trackEvent("calculator_started"); }
+  function calculator_completed(extra) { trackEvent("calculator_completed", extra); }
+  function savings_calculated(extra) { trackEvent("savings_calculated", extra); }
+  function lead_submitted(extra) { trackEvent("lead_submitted", extra); }
+  function book_call_clicked(extra) { trackEvent("book_call_clicked", extra); }
+  function revenue_share_calculated(extra) { trackEvent("revenue_share_calculated", extra); }
+  function results_shared(extra) { trackEvent("results_shared", extra); }
+  function learn_more_clicked(extra) { trackEvent("learn_more_clicked", extra); }
+
+
+  // ==========================================================================
+  // === LAYER 2: USER INTERFACE ==============================================
+  // DOM wiring only. Reads from Layer 1 (calculation) and Layer 3 (referral)
+  // but contains no calculation logic or attribution logic of its own.
+  // ==========================================================================
+
+  const root = document.getElementById("pbCalc");
+  const el = id => document.getElementById(id);
+
+  let hasStarted = false;
+  let lastRevShareResult = null;
+
+  // ---- Static labels that read from config, not hardcoded -----------------
+  function applyConfigLabels() {
+    el("pbDiscCap").textContent = POPBY_CONFIG.annualCap.toLocaleString();
+    const pctEls = [el("pbTier1Pct"), el("pbTier2Pct"), el("pbTier3Pct"), el("pbTier4Pct")];
+    const diagEls = [el("pbDiagTier1Pct"), el("pbDiagTier2Pct"), el("pbDiagTier3Pct"), el("pbDiagTier4Pct")];
+    POPBY_CONFIG.revShareTiers.forEach((pct, i) => {
+      pctEls[i].textContent = "(" + Math.round(pct * 100) + "%)";
+      diagEls[i].textContent = Math.round(pct * 100) + "%";
+    });
+  }
+
+  // ---- Brokerage preset dropdown -------------------------------------------
+  function wireBrokeragePreset() {
+    const select = el("pbBrokeragePreset");
+    POPBY_BROKERAGE_PRESETS.forEach((preset, i) => {
+      const opt = document.createElement("option");
+      opt.value = String(i);
+      opt.textContent = preset.label;
+      select.appendChild(opt);
+    });
+
+    select.addEventListener("change", () => {
+      const preset = POPBY_BROKERAGE_PRESETS[Number(select.value)];
+      if (!preset || preset.split === null) return; // "Other" / blank — leave manual values alone
+
+      el("pbSplit").value = preset.split;
+      el("pbSplitDisplay").textContent = preset.split + "%";
+      if (preset.monthlyFee !== null) {
+        el("pbMonthlyFees").value = preset.monthlyFee;
+      }
+      maybeTrackStart();
+    });
+  }
+
+  // ---- Apply display mode -------------------------------------------------
+  function applyMode() {
+    const mode = PopbyReferral.mode === "embed" ? "embed" : "full";
+    root.setAttribute("data-mode", mode);
+    if (mode === "embed") {
+      el("pbHero").hidden = true;
+      el("pbEmbedHeading").hidden = false;
+    } else {
+      el("pbHero").hidden = false;
+      el("pbEmbedHeading").hidden = true;
+    }
+  }
+
+  // ---- Apply agent personalization ----------------------------------------
+  function applyPersonalization() {
+    const agentLabel = referringAgentLabel();
+
+    // Top chip: "Guided by Cody" — only shown if we know who referred them
+    if (agentLabel) {
+      el("pbAgentChip").hidden = false;
+      el("pbAgentChipText").textContent = "Guided by " + agentLabel;
+      if (PopbyReferral.agentImage) {
+        el("pbAgentChipImg").src = PopbyReferral.agentImage;
+        el("pbAgentChipImg").alt = agentLabel;
+        el("pbAgentChipImg").hidden = false;
+      }
+    }
+
+    // "Send Me My Breakdown" button + bottom recruiting CTA copy
+    const talkLabel = agentLabel ? ("Talk to " + firstNameOnly(agentLabel)) : "Talk With Popby";
+    el("pbSendBreakdownBtn").textContent = "Send Me My Breakdown";
+
+    el("pbRecruitHeadline").textContent = "Let's talk.";
+    el("pbBookCallBtn").textContent = agentLabel
+      ? ("Book a Conversation With " + firstNameOnly(agentLabel))
+      : "Book a Conversation With Popby";
+
+    if (agentLabel && PopbyReferral.agentImage) {
+      el("pbBottomAgentImg").src = PopbyReferral.agentImage;
+      el("pbBottomAgentImg").alt = agentLabel;
+      el("pbBottomAgentImg").hidden = false;
+    }
+
+    el("pbBookCallBtn").addEventListener("click", function () {
+      book_call_clicked({ label: talkLabel });
+      const href = PopbyReferral.booking || POPBY_LINKS.defaultBooking;
+      if (href && href !== "#") window.open(href, "_blank", "noopener");
+    });
+
+    el("pbPrivacyLink").href = POPBY_LINKS.privacy;
+
+    // "Explore Popby Realty" — same referral attribution as the booking
+    // button, so a visit that starts on an agent's page is still credited.
+    const learnEl = el("pbLearnMoreLink");
+    if (learnEl) {
+      learnEl.href = POPBY_LINKS.learnMore;
+      learnEl.addEventListener("click", function () {
+        learn_more_clicked({ destination: POPBY_LINKS.learnMore });
+      });
+    }
+  }
+
+  function firstNameOnly(fullName) { return fullName.split(" ")[0]; }
+
+  // ---- Popby fee schedule table --------------------------------------------
+  function applyFeeScheduleRates() {
+    el("pbFeeSplitRate").textContent = Math.round(POPBY_CONFIG.brokerageSplit * 100) + "% of GCI";
+    el("pbFeeCapRate").textContent = formatCurrency(POPBY_CONFIG.annualCap) + "/yr";
+    el("pbFeeTechRate").textContent = formatCurrency(POPBY_CONFIG.monthlyTechFee) + "/mo";
+    el("pbFeeTxnRate").textContent = formatCurrency(POPBY_CONFIG.transactionFee) + " / deal";
+    el("pbFeeRoyaltyRate").textContent = POPBY_CONFIG.royaltyFee ? formatCurrency(POPBY_CONFIG.royaltyFee) : "$0";
+  }
+
+  function renderFeeScheduleLive() {
+    const inputs = readInputs();
+    const popby = calculatePopbyCost(inputs.annualGCI, inputs.annualTransactions);
+
+    el("pbFeeSplitLive").textContent = formatCurrency(popby.splitCost) + "/yr";
+    el("pbFeeCapLive").textContent = popby.splitCost >= POPBY_CONFIG.annualCap ? "Capped" : "Not yet reached";
+    el("pbFeeTechLive").textContent = formatCurrency(popby.techCost) + "/yr";
+    el("pbFeeTxnLive").textContent = formatCurrency(popby.transactionCost) + "/yr";
+    el("pbFeeRoyaltyLive").textContent = formatCurrency(popby.royaltyCost) + "/yr";
+  }
+
+  function wireFeeSchedule() {
+    applyFeeScheduleRates();
+    renderFeeScheduleLive();
+
+    const card = el("pbFeeCard");
+    const toggle = el("pbFeeToggle");
+    const wrap = el("pbFeeTableWrap");
+    toggle.addEventListener("click", () => {
+      const isOpen = card.getAttribute("data-open") === "true";
+      card.setAttribute("data-open", String(!isOpen));
+      toggle.setAttribute("aria-expanded", String(!isOpen));
+      wrap.hidden = isOpen;
+    });
+  }
+
+  // ---- Slider / input live values -----------------------------------------
+  function wireInputDisplays() {
+    const gci = el("pbGci");
+    const split = el("pbSplit");
+
+    gci.addEventListener("input", () => {
+      el("pbGciDisplay").textContent = formatCurrency(Number(gci.value));
+      renderFeeScheduleLive();
+      maybeTrackStart();
+    });
+    split.addEventListener("input", () => {
+      el("pbSplitDisplay").textContent = split.value + "%";
+      maybeTrackStart();
+    });
+    [el("pbTransactions"), el("pbMonthlyFees")].forEach(input => {
+      input.addEventListener("input", () => {
+        renderFeeScheduleLive();
+        maybeTrackStart();
+      });
+    });
+  }
+
+  function maybeTrackStart() {
+    if (!hasStarted) {
+      hasStarted = true;
+      calculator_started();
+    }
+  }
+
+  // ---- Read current form state --------------------------------------------
+  function readInputs() {
+    return {
+      annualGCI: Number(el("pbGci").value) || 0,
+      annualTransactions: Number(el("pbTransactions").value) || 0,
+      currentSplitPercent: Number(el("pbSplit").value) || 0,
+      monthlyFees: Number(el("pbMonthlyFees").value) || 0
+    };
+  }
+
+  // Small inline icon set reused across the breakdown list and share card.
+  const PB_ICONS = {
+    percent: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>',
+    calendar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
+    wifi: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 13a10 10 0 0 1 14 0"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>',
+    tag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M20.59 13.41 13.41 20.59a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>'
+  };
+  function pbLi(iconKey, label, value) {
+    return `<li><span class="pb-li-label"><span class="pb-row-icon">${PB_ICONS[iconKey]}</span>${label}</span><span class="pb-tabular">${value}</span></li>`;
+  }
+
+  // ---- Render results -------------------------------------------------------
+  function renderResults(result) {
+    const savingsEl = el("pbSavingsAmount");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion) {
+      savingsEl.textContent = formatCurrency(result.savings);
+    } else {
+      animateCount(savingsEl, 0, result.savings, 700);
+      // Small pop once the number lands, so the reveal feels like a payoff
+      // rather than just text fading in.
+      window.setTimeout(() => {
+        savingsEl.classList.remove("pb-pulse");
+        void savingsEl.offsetWidth; // restart the animation if triggered twice
+        savingsEl.classList.add("pb-pulse");
+      }, 700);
+    }
+
+    el("pbSavingsSub").textContent = result.savings >= 0
+      ? "Compare the numbers for yourself below."
+      : "Based on what you entered, your current setup may cost less — here's the breakdown.";
+
+    el("pbCurrentTotal").textContent = formatCurrency(result.current.total);
+    el("pbCurrentBreakdown").innerHTML =
+      pbLi("percent", "Split paid to brokerage", formatCurrency(result.current.splitCost)) +
+      pbLi("calendar", "Monthly fees (annualized)", formatCurrency(result.current.feeCost));
+
+    el("pbPopbyTotal").textContent = formatCurrency(result.popby.total);
+    el("pbPopbyBreakdown").innerHTML =
+      pbLi("percent", `Capped split (max $${POPBY_CONFIG.annualCap.toLocaleString()})`, formatCurrency(result.popby.splitCost)) +
+      pbLi("wifi", `Tech fee ($${POPBY_CONFIG.monthlyTechFee}/mo)`, formatCurrency(result.popby.techCost)) +
+      pbLi("tag", `Transaction fees ($${POPBY_CONFIG.transactionFee} × deals)`, formatCurrency(result.popby.transactionCost));
+
+    renderDonuts(result);
+    renderCapCountdown(result);
+
+    el("pbResults").classList.add("pb-visible");
+
+    renderProjectionChart();
+  }
+
+  /**
+   * "Keep vs. give away" donut rings — shows what % of GCI the agent keeps
+   * under their current brokerage vs. under Popby, side by side.
+   */
+  const PB_DONUT_CIRCUMFERENCE = 2 * Math.PI * 30; // r=30 in the SVG markup
+  function renderDonuts(result) {
+    const gci = lastInputs ? lastInputs.annualGCI : 0;
+    if (!gci) return;
+
+    const currentKeepPct = clampPct(((gci - result.current.total) / gci) * 100);
+    const popbyKeepPct = clampPct(((gci - result.popby.total) / gci) * 100);
+
+    setDonut("pbDonutCurrentRing", "pbDonutCurrentPct", currentKeepPct);
+    setDonut("pbDonutPopbyRing", "pbDonutPopbyPct", popbyKeepPct);
+  }
+  function clampPct(n) { return Math.max(0, Math.min(100, n)); }
+  function setDonut(ringId, labelId, pct) {
+    const dash = (pct / 100) * PB_DONUT_CIRCUMFERENCE;
+    el(ringId).setAttribute("stroke-dasharray", dash.toFixed(1) + " " + PB_DONUT_CIRCUMFERENCE.toFixed(1));
+    el(labelId).textContent = Math.round(pct) + "%";
+  }
+
+  /**
+   * Cap countdown — the single most persuasive fact in the capped-split
+   * model, so it gets its own callout instead of living inside a table row.
+   */
+  function renderCapCountdown(result) {
+    const gci = lastInputs ? lastInputs.annualGCI : 0;
+    const block = el("pbCapCountdown");
+    if (!gci) { block.hidden = true; return; }
+
+    const uncappedSplit = gci * POPBY_CONFIG.brokerageSplit;
+    const isCapped = uncappedSplit > POPBY_CONFIG.annualCap;
+
+    if (isCapped) {
+      const monthsToCap = Math.max(1, Math.round((POPBY_CONFIG.annualCap / uncappedSplit) * 12));
+      const fillPct = clampPct((monthsToCap / 12) * 100);
+      el("pbCapHeadline").textContent = "You'd hit your cap around month " + monthsToCap;
+      el("pbCapCopy").innerHTML = `At your production, you'd hit Popby's $${POPBY_CONFIG.annualCap.toLocaleString()} cap around <strong>month ${monthsToCap}</strong> — then you keep 100% of your commission for the rest of the year.`;
+      el("pbCapFill").style.width = fillPct + "%";
+      el("pbCapMarker").style.left = fillPct + "%";
+      el("pbCapMarker").hidden = false;
+    } else {
+      const fillPct = clampPct((uncappedSplit / POPBY_CONFIG.annualCap) * 100);
+      el("pbCapHeadline").textContent = "You're nowhere near the cap";
+      el("pbCapCopy").innerHTML = `At your production, you'd pay about <strong>${formatCurrency(uncappedSplit)}</strong> in splits this year — well under Popby's $${POPBY_CONFIG.annualCap.toLocaleString()} cap, so you'd never hit it.`;
+      el("pbCapFill").style.width = fillPct + "%";
+      el("pbCapMarker").hidden = true;
+    }
+
+    block.hidden = false;
+  }
+
+  /**
+   * Renders the 1/3/5-year bar chart from whatever we currently know:
+   * brokerage savings alone if the revenue share section hasn't been
+   * calculated yet, or savings + revenue share combined once it has.
+   */
+  function renderProjectionChart() {
+    if (!lastResult) return;
+    const annual = lastResult.savings + (lastRevShareResult ? lastRevShareResult.total : 0);
+    const projection = calculateMultiYearProjection(Math.max(annual, 0));
+    const maxValue = Math.max(projection.year5, 1);
+
+    el("pbProjectionTitle").textContent = lastRevShareResult
+      ? "Savings + revenue share, if nothing else changes"
+      : "If nothing else changes";
+
+    setProjBar("1", projection.year1, maxValue);
+    setProjBar("3", projection.year3, maxValue);
+    setProjBar("5", projection.year5, maxValue);
+
+    el("pbProjection").hidden = false;
+  }
+
+  function setProjBar(yearKey, value, maxValue) {
+    const pct = Math.min(100, Math.round((value / maxValue) * 100));
+    el("pbProjBar" + yearKey).style.width = pct + "%";
+    el("pbProjVal" + yearKey).textContent = formatCurrency(value);
+  }
+
+  function animateCount(node, from, to, duration) {
+    const start = performance.now();
+    function step(now) {
+      const progress = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = Math.round(from + (to - from) * eased);
+      node.textContent = formatCurrency(value);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  // ---- Wire the "Calculate" button ------------------------------------------
+  let lastResult = null;
+  let lastInputs = null;
+  function wireCalculateButton() {
+    el("pbCalculateBtn").addEventListener("click", () => {
+      const inputs = readInputs();
+      lastInputs = inputs;
+      lastResult = calculatePopbySavings(inputs);
+      renderResults(lastResult);
+      savings_calculated({ savings: lastResult.savings });
+      calculator_completed({ savings: lastResult.savings });
+      el("pbResults").scrollIntoView({ behavior: prefersReducedMotionSafe() ? "auto" : "smooth", block: "nearest" });
+    });
+  }
+  function prefersReducedMotionSafe() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  // ---- Share My Results ------------------------------------------------------
+  // Draws a simple branded 1080x1080 image summarizing the visitor's
+  // savings, using the hidden <canvas id="pbShareCanvas">. Nothing here is
+  // sent anywhere — it's generated entirely client-side, then either handed
+  // to the native share sheet (mobile) or downloaded (desktop).
+  async function generateShareBlob() {
+    const canvas = el("pbShareCanvas");
+    const ctx = canvas.getContext("2d");
+    const W = canvas.width, H = canvas.height;
+
+    // Best-effort font preload so canvas text doesn't fall back to a
+    // system serif before Poppins has finished loading.
+    try {
+      await Promise.all([
+        document.fonts.load("700 36px Poppins"),
+        document.fonts.load("700 118px Poppins"),
+        document.fonts.load("600 30px Poppins"),
+        document.fonts.load("400 26px Poppins")
+      ]);
+    } catch (e) { /* canvas will just fall back to a system font */ }
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = "#FF1616";
+    ctx.fillRect(0, 0, W, 16);
+
+    ctx.fillStyle = "#000000";
+    ctx.font = "700 36px Poppins, sans-serif";
+    ctx.fillText("POPBY REALTY", 70, 120);
+
+    ctx.fillStyle = "#6B7280";
+    ctx.font = "400 26px Poppins, sans-serif";
+    ctx.fillText("What I could keep per year", 70, 420);
+
+    ctx.fillStyle = "#FF1616";
+    ctx.font = "700 118px Poppins, sans-serif";
+    ctx.fillText(formatCurrency(lastResult.savings), 66, 545);
+
+    ctx.fillStyle = "#33343A";
+    ctx.font = "400 26px Poppins, sans-serif";
+    ctx.fillText("by switching to Popby Realty", 70, 590);
+
+    const agentLabel = referringAgentLabel();
+    ctx.fillStyle = "#000000";
+    ctx.font = "600 30px Poppins, sans-serif";
+    ctx.fillText(agentLabel ? ("Talk to " + firstNameOnly(agentLabel)) : "Talk With Popby", 70, 950);
+
+    ctx.fillStyle = "#6B7280";
+    ctx.font = "400 22px Poppins, sans-serif";
+    ctx.fillText("Estimate only — not a guarantee of earnings.", 70, 990);
+
+    return new Promise(resolve => canvas.toBlob(resolve, "image/png"));
+  }
+
+  function wireShareButton() {
+    el("pbShareBtn").addEventListener("click", async () => {
+      const statusEl = el("pbShareStatus");
+      if (!lastResult) {
+        statusEl.hidden = false;
+        statusEl.textContent = "Calculate your numbers first, then share your results.";
+        return;
+      }
+
+      statusEl.hidden = false;
+      statusEl.textContent = "Preparing your image…";
+
+      try {
+        const blob = await generateShareBlob();
+        const file = new File([blob], "popby-savings.png", { type: "image/png" });
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            files: [file],
+            title: "My Popby Realty savings",
+            text: "Here's what I could keep per year with Popby Realty."
+          });
+          statusEl.hidden = true;
+        } else {
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "popby-savings.png";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+          statusEl.textContent = "Image downloaded — share it anywhere.";
+        }
+        results_shared({ savings: lastResult.savings });
+      } catch (err) {
+        if (err && err.name === "AbortError") { statusEl.hidden = true; return; } // user cancelled the native share sheet
+        console.warn("[Popby] share image failed:", err);
+        statusEl.textContent = "Couldn't generate the image — try again.";
+      }
+    });
+  }
+
+  // ---- Wire the revenue share / downline projection --------------------------
+  function wireRevShare() {
+    el("pbCalcRevShareBtn").addEventListener("click", () => {
+      const tierCounts = [
+        Number(el("pbTier1").value) || 0,
+        Number(el("pbTier2").value) || 0,
+        Number(el("pbTier3").value) || 0,
+        Number(el("pbTier4").value) || 0
+      ];
+      const avgDownlineGCI = Number(el("pbAvgDownlineGci").value) || 0;
+
+      lastRevShareResult = calculateRevenueShare(tierCounts, avgDownlineGCI);
+      renderRevShareResults(lastRevShareResult);
+
+      revenue_share_calculated({ total: lastRevShareResult.total });
+
+      // If the visitor already calculated their brokerage savings, fold
+      // this into the same multi-year projection chart.
+      if (lastResult) renderProjectionChart();
+
+      el("pbRevShareResults").scrollIntoView({ behavior: prefersReducedMotionSafe() ? "auto" : "smooth", block: "nearest" });
+    });
+  }
+
+  function renderRevShareResults(result) {
+    const totalEl = el("pbRevShareTotal");
+    if (prefersReducedMotionSafe()) {
+      totalEl.textContent = formatCurrency(result.total);
+    } else {
+      animateCount(totalEl, 0, result.total, 700);
+    }
+
+    el("pbRevShareBreakdown").innerHTML = result.tiers.map(t =>
+      `<li><span>Tier ${t.tier} — ${t.count} agent${t.count === 1 ? "" : "s"} (${Math.round(t.pct * 100)}%)</span><span class="pb-tabular">${formatCurrency(t.income)}</span></li>`
+    ).join("");
+
+    el("pbRevShareResults").classList.add("pb-visible");
+
+    const combinedEl = el("pbCombinedTotal");
+    if (lastResult) {
+      const combined = lastResult.savings + result.total;
+      el("pbCombinedAmount").textContent = formatCurrency(combined) + "/year";
+      combinedEl.hidden = false;
+    } else {
+      combinedEl.hidden = true;
+    }
+  }
+
+  // ---- Wire the lead capture form --------------------------------------------
+  function wireLeadForm() {
+    el("pbSendBreakdownBtn").addEventListener("click", () => {
+      // Honeypot check: a real visitor never fills this field in (it's
+      // off-screen and unreachable by tab). If it has a value, a bot
+      // filled the form — drop the submission without any network call
+      // and without tipping the bot off that it was caught.
+      if (el("pbHoneypot").value.trim() !== "") {
+        return;
+      }
+
+      const firstName = el("pbFirstName").value.trim();
+      const email = el("pbEmail").value.trim();
+
+      if (!firstName || !email) {
+        el("pbFirstName").focus();
+        return; // keep it simple for the prototype — a production build
+                // would show inline validation messaging here
+      }
+      if (!lastResult) {
+        // Shouldn't happen since the lead section only shows after results,
+        // but guard anyway.
+        lastResult = calculatePopbySavings(readInputs());
+      }
+
+      const formInputs = {
+        firstName,
+        email,
+        phone: el("pbPhone").value.trim(),
+        currentBrokerage: el("pbBrokerage").value.trim(),
+        annualGCI: readInputs().annualGCI,
+        annualTransactions: readInputs().annualTransactions
+      };
+
+      submitRecruitingLead(formInputs, lastResult);
+
+      el("pbLeadForm").hidden = true;
+      el("pbLeadSuccess").hidden = false;
+      const agentLabel = referringAgentLabel();
+      el("pbLeadSuccessCopy").textContent = agentLabel
+        ? `${firstNameOnly(agentLabel)} will follow up with your personalized breakdown shortly.`
+        : "We'll follow up with your personalized breakdown shortly.";
+    });
+  }
+
+  // ---- Init ------------------------------------------------------------------
+  function init() {
+    applyMode();
+    applyPersonalization();
+    applyConfigLabels();
+    wireBrokeragePreset();
+    wireInputDisplays();
+    wireFeeSchedule();
+    wireCalculateButton();
+    wireShareButton();
+    wireRevShare();
+    wireLeadForm();
+  }
+
+  init();
+
+  // Exposed for debugging / future integration testing from the browser console.
+  window.PopbyCalculator = {
+    calculatePopbySavings,
+    calculateRevenueShare,
+    calculateMultiYearProjection,
+    submitRecruitingLead,
+    buildShareableLink,
+    referral: PopbyReferral
+  };
+})();
+</script>
