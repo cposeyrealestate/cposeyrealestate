@@ -8840,5 +8840,90 @@
         ]
       }
     }
+  },
+  {
+    "action_steps": [
+      "Confirm your 2026 BAH rate and VA loan entitlement before you browse a single listing — your price ceiling flows from those two numbers, not from what looks affordable online.",
+      "Rank your non-negotiables: commute time, school district, or square footage. Near Fort Sam Houston you reliably get two of the three — deciding which two saves weeks of indecision.",
+      "Verify the exact school campus assignment by street address. District boundaries do not always follow subdivision lines, and one street can change the assigned high school.",
+      "Model the full monthly payment before you fall for a price: mortgage, ~2.2% Bexar County property taxes, insurance, HOA dues, and any MUD or PID assessments.",
+      "Buying remotely? Have a local agent walk the property on live video. Photos hide foundation movement and drainage issues that show up in older neighborhoods near the base.",
+      "File your Texas homestead exemption immediately after closing. It caps annual taxable appraisal growth at 10% and is the single cheapest tax move a new Texas homeowner makes."
+    ],
+    "action_steps_heading": "Your Fort Sam Houston PCS Buying Checklist",
+    "category": "Veterans",
+    "content_sections": [
+      {
+        "h": "What Your 2026 BAH Actually Buys Near Fort Sam Houston",
+        "p": "The San Antonio Military Housing Area covers all of JBSA — Fort Sam Houston, Lackland, and Randolph — under one rate table. For 2026, with-dependents BAH runs $1,869 for an E-5, $2,094 for an E-6, $2,112 for an E-7, and $2,127 for an O-3. Rates dipped about 3% from 2025, but rate protection means anyone already stationed here keeps the higher figure.\n\nPair that allowance with a zero-down VA loan and no PMI, and an E-6's $2,094 covers the payment on roughly a $270,000–$320,000 home in the Fort Sam corridor. The number that surprises incoming families is not the price — it is the tax bill. Bexar County's effective property tax rate sits around 2.2%, among the highest in Texas, which is why modeling taxes, insurance, and HOA together matters more here than at most duty stations. Texas offsets it with no state income tax. I broke the full BAH-to-payment math down in <a href=\"/blog/bah-mortgage-garden-ridge-2026-costs/\">this BAH guide</a>."
+      },
+      {
+        "h": "Closest to the Gate: Alamo Heights, Terrell Hills, and Government Hill",
+        "p": "Five to ten minutes from the gate puts you in Alamo Heights and Terrell Hills — established neighborhoods with mature oaks, historic homes, and Alamo Heights ISD, one of the most in-demand school districts in San Antonio. Expect pricing from the low $500s into the $700s, thin inventory, and competition for updated homes. Alamo Heights also layers a city tax on top of county taxes, so the monthly payment runs hotter than the sticker price suggests.\n\nGovernment Hill borders the base's western edge and is the budget play in this corridor: historic bungalows and Craftsman-era homes at entry-level pricing, with some streets walkable to the gate — which zeroes out the commute entirely. Renovation activity has pushed medians higher, but it remains the most affordable way to live minutes from Fort Sam Houston."
+      },
+      {
+        "h": "Best Schools for the Commute: Stone Oak and North Central San Antonio",
+        "p": "Stone Oak sits about 20–25 minutes north via US-281 in North Central San Antonio, zoned to North East ISD — the Churchill and Reagan High School zones military families specifically request. Typical pricing runs $440,000–$520,000 for 2000s-and-newer homes in master-planned sections with resort-style pools, trails, and parks. HOA fees are standard in these subdivisions, so verify the dues per section before comparing monthly payments.\n\nThis corridor skews toward senior enlisted and officers, and it doubles as a strong resale market: proximity to the South Texas Medical Center keeps buyer demand broad well beyond the military pool."
+      },
+      {
+        "h": "Best Value Inside BAH: Schertz, Cibolo, Converse, and Windcrest",
+        "p": "Ten to twenty minutes northeast, the Schertz–Cibolo–Converse corridor is where E-5 and E-6 BAH stretches furthest. Schertz and Cibolo feed Schertz-Cibolo-Universal City ISD, with newer construction typically in the $310,000–$360,000 range; Converse and Windcrest run $240,000–$290,000 with North East and Judson ISD zoning. Converse sits roughly equidistant from all three JBSA locations — useful insurance if your next assignment could be Randolph or Lackland.\n\nNew construction dominates parts of this corridor. If you are weighing a new build, <a href=\"https://a.nhb.app/u/cposeyrealestate\">browse current new construction options here</a>, then compare builder incentives against resale — builders are negotiating in 2026. For the PCS timeline view, see <a href=\"/blog/pcs-to-cibolo-from-california-va-loan-timeline-guide/\">this PCS timeline guide</a> and the <a href=\"/blog/2026-04-02-texas-va-loan-pcs-guide/\">Texas VA Loan + PCS Guide</a>."
+      }
+    ],
+    "date": "September 25, 2026",
+    "dateRaw": "2026-09-25T13:35:00",
+    "excerpt": "PCS orders to Fort Sam Houston? Compare top neighborhoods for military families: commute times, 2026 BAH buying power, schools, and property taxes.",
+    "faqItems": [
+      {
+        "a": "For 2026, the San Antonio Military Housing Area with-dependents rates are $1,869 (E-5), $2,094 (E-6), $2,112 (E-7), and $2,127 (O-3). That covers Fort Sam Houston, Lackland, and Randolph under one table. Rates dipped about 3% from 2025, but anyone already stationed here keeps their higher rate under DoD rate protection.",
+        "q": "1) What is the 2026 BAH rate for Fort Sam Houston?"
+      },
+      {
+        "a": "It depends on your tradeoff. Alamo Heights and Terrell Hills are 5–10 minutes from the gate with Alamo Heights ISD but run $500K+. Stone Oak offers North East ISD schools with a 20–25 minute commute at $440K–$520K. Schertz, Cibolo, Converse, and Windcrest deliver the best value inside E-5/E-6 BAH at $240K–$360K with solid districts.",
+        "q": "2) What are the best neighborhoods near Fort Sam Houston for military families?"
+      },
+      {
+        "a": "About 20–25 minutes via US-281 outside rush hour. During peak morning traffic, plan on 35–45 minutes. If commute is your top priority, the Alamo Heights corridor (5–10 minutes) or Converse (10–15 minutes) cut that significantly.",
+        "q": "3) How long is the commute from Stone Oak to Fort Sam Houston?"
+      },
+      {
+        "a": "Bexar County's effective property tax rate is roughly 2.2%, among the highest in Texas. Alamo Heights adds a city tax on top of that. Texas has no state income tax, which offsets part of the burden, and filing a homestead exemption caps your annual taxable appraisal growth at 10%.",
+        "q": "4) What are property taxes like near Fort Sam Houston?"
+      },
+      {
+        "a": "Yes, for most ranks. An E-6's $2,094 monthly BAH paired with a zero-down VA loan (no PMI) supports roughly a $270,000–$320,000 purchase — squarely in the range for Converse, Universal City, Windcrest, and parts of Schertz and Cibolo. Just be sure to model taxes, insurance, and HOA in the payment, not just principal and interest.",
+        "q": "5) Can I buy a home near Fort Sam Houston on BAH alone?"
+      }
+    ],
+    "featuredImage": "/images/blog/pcs-to-fort-sam-houston-neighborhoods-2026.webp",
+    "in_closing": {
+      "next": "the decision is not which neighborhood has the nicest marketing — it is which corridor matches your BAH, your commute tolerance, and your kids' school needs at the same time.",
+      "reduce_friction": "Call Cody Posey Real Estate at 830.360.5569 — a 20-year Army veteran who has guided military families through San Antonio PCS moves for years. I will narrow your search to two or three neighborhoods before you ever book a flight. Prefer to schedule directly? <a href=\"https://tidycal.com/cposeyrealestate/30-minute-meeting\">Book a session here</a>.",
+      "who": "If you are PCSing to Fort Sam Houston, JBSA-Randolph, or Lackland in the next 3 to 6 months,"
+    },
+    "mid_post_block": {
+      "cta_href": "https://tidycal.com/cposeyrealestate/30-minute-meeting",
+      "cta_text": "Book your PCS buying session",
+      "hook": "PCS orders to Fort Sam and trying to narrow it to two or three neighborhoods?",
+      "offer": "Cody will map your BAH, commute tolerance, school priorities, and price range against live listings near Fort Sam Houston — so your house-hunting trip targets the right corridors from day one."
+    },
+    "opening_question": "PCS orders to Fort Sam Houston — where should your family buy in 2026?",
+    "quick_answer": "Most Fort Sam families land in one of three corridors: Alamo Heights and Terrell Hills (5–10 minutes to the gate, premium prices, Alamo Heights ISD), Stone Oak (20–25 minutes, North East ISD schools, master-planned amenities), or the Schertz–Cibolo–Converse corridor (10–20 minutes, strong value inside BAH). With 2026 BAH at $2,094/month for an E-6 with dependents and zero-down VA financing, buying beats renting for most ranks planning a 3-year tour. <a href=\"https://tidycal.com/cposeyrealestate/30-minute-meeting\">Book a session with Cody</a> before you house-hunt from across the country.",
+    "slug": "pcs-to-fort-sam-houston-neighborhoods-2026",
+    "sources": [
+      {
+        "name": "Joint Base San Antonio — Housing",
+        "url": "https://www.jbsa.mil/Resources/Housing/"
+      },
+      {
+        "name": "JBSA — Relocation Readiness",
+        "url": "https://www.jbsa.mil/Resources/Military-Family-Support/Military-Family-Readiness/Relocation-Readiness/"
+      },
+      {
+        "name": "VA Home Loan Buyer's Guide",
+        "url": "https://www.benefits.va.gov/homeloans/documents/docs/VA_Buyers_Guide.pdf"
+      }
+    ],
+    "title": "PCS to Fort Sam Houston: Military Family Buying Guide 2026"
   }
 ]
