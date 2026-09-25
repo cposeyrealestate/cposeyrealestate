@@ -115,6 +115,22 @@ const formatActionStep = (step: string) =>
                 );
               })}
 
+              {post.youtubeVideo && post.youtubeVideo.videoId && (
+                <Fragment>
+                  <h2>Watch: {post.youtubeVideo.title || "Related Video"}</h2>
+                  <div class="video-embed" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin:1.5rem 0;">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${post.youtubeVideo.videoId}`}
+                      title={post.youtubeVideo.title || "YouTube video"}
+                      style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                      loading="lazy"
+                    />
+                  </div>
+                </Fragment>
+              )}
+
               {Array.isArray(post.action_steps) && post.action_steps.length > 0 && (
                 <Fragment>
                   {post.action_steps_heading && <h2>{post.action_steps_heading}</h2>}
