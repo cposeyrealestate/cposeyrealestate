@@ -1,0 +1,467 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import Footer from '../../components/Footer.astro';
+import { articleSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
+import { bahGroups, formatUsd, BAH_YEAR, BAH_MHA, BAH_MHA_NAME, BAH_EFFECTIVE } from '../../data/bah-2026';
+
+const pageTitle = `${BAH_YEAR} BAH Rates for JBSA | Randolph, Fort Sam Houston & Lackland | Cody Posey`;
+const pageDescription = `Official ${BAH_YEAR} BAH rates for Joint Base San Antonio (MHA ${BAH_MHA}) — every pay grade E-1 through O-7+, with and without dependents. Look up your rate and see what it buys near JBSA-Randolph, Fort Sam Houston, and Lackland.`;
+
+const allRows = bahGroups.flatMap((g) => g.rows);
+const e5 = allRows.find((r) => r.grade === 'E-5')!;
+const o3 = allRows.find((r) => r.grade === 'O-3')!;
+const minRate = Math.min(...allRows.map((r) => r.withoutDeps));
+const maxRate = Math.max(...allRows.map((r) => r.withDeps));
+
+const faqs = [
+  {
+    q: `What is the ${BAH_YEAR} BAH rate for JBSA?`,
+    a: `JBSA falls in the ${BAH_MHA_NAME} Military Housing Area (${BAH_MHA}). ${BAH_YEAR} rates range from ${formatUsd(minRate)}/month (E-1 to E-4 without dependents) to ${formatUsd(maxRate)}/month (O-7 and above with dependents). An E-5 with dependents receives ${formatUsd(e5.withDeps)}/month and an O-3 with dependents receives ${formatUsd(o3.withDeps)}/month.`,
+  },
+  {
+    q: 'Is BAH the same at Randolph, Fort Sam Houston, Lackland, and Camp Bullis?',
+    a: `Yes. All four Joint Base San Antonio installations share one Military Housing Area (${BAH_MHA}), so your rate is identical no matter which gate you report to.`,
+  },
+  {
+    q: 'Does my BAH change if I live in New Braunfels, Schertz, or Cibolo?',
+    a: 'No. BAH is based on your permanent duty station ZIP code, not where you live. If you are stationed at JBSA and buy in New Braunfels, Schertz, Cibolo, Converse, Garden Ridge, or Seguin, you receive the same JBSA rate — so choosing a town with lower prices or taxes stretches that allowance further.',
+  },
+  {
+    q: 'What if BAH goes down after I arrive?',
+    a: 'Individual rate protection keeps you at the higher rate as long as you remain at the same duty station with the same dependency status and do not drop in grade. If rates rise, you get the increase. Your rate resets to the current table only when you PCS, lose rank, or change dependency status.',
+  },
+  {
+    q: 'Can I use BAH to qualify for a VA loan?',
+    a: 'Yes. VA lenders count BAH as income when you have orders to or are stationed in the area, and because BAH is non-taxable, many lenders gross it up when calculating your debt-to-income ratio. Talk to a VA-experienced lender early — pre-approval tells you exactly what your BAH plus base pay supports.',
+  },
+  {
+    q: 'When do new BAH rates come out?',
+    a: `DoD typically announces new BAH rates in mid-December, and they take effect January 1. The rates on this page are effective ${BAH_EFFECTIVE}, and I update the table every January.`,
+  },
+];
+
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/military-relocation/bah-rates/' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Military Relocation / PCS to JBSA', url: '/military-relocation/' },
+    { name: `${BAH_YEAR} JBSA BAH Rates`, url: '/military-relocation/bah-rates/' },
+  ]),
+  faqSchema(faqs),
+];
+
+const facts = [
+  { num: BAH_MHA, label: 'Military Housing Area', desc: `${BAH_MHA_NAME} — covers every JBSA installation` },
+  { num: formatUsd(minRate), label: 'Lowest Monthly Rate', desc: 'E-1 to E-4, without dependents' },
+  { num: formatUsd(maxRate), label: 'Highest Monthly Rate', desc: 'O-7 and above, with dependents' },
+  { num: '$0', label: 'Federal Income Tax', desc: 'BAH is a non-taxable allowance' },
+];
+
+const installations = [
+  { name: 'JBSA-Randolph', note: 'Universal City — closest to Schertz, Cibolo & New Braunfels' },
+  { name: 'JBSA-Fort Sam Houston', note: 'Northeast San Antonio — Army medicine & Army North' },
+  { name: 'JBSA-Lackland', note: 'Southwest San Antonio — Air Force basic training' },
+  { name: 'JBSA-Camp Bullis', note: 'Northwest San Antonio — field training area' },
+];
+
+const lookupData = Object.fromEntries(allRows.map((r) => [r.grade, [r.withDeps, r.withoutDeps]]));
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="bah-hero" style="background-image:url('/images/generated/cibolo-schertz-home.webp');">
+      <div class="bah-hero__overlay"></div>
+      <div class="bah-hero__content">
+        <nav class="bah-crumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/military-relocation/">PCS to JBSA</a> <span>/</span> BAH Rates
+        </nav>
+        <h1>{BAH_YEAR} BAH Rates for <span style="color:#FF1616;">JBSA</span></h1>
+        <p>Official Basic Allowance for Housing for Joint Base San Antonio — Randolph, Fort Sam Houston, Lackland &amp; Camp Bullis. Effective {BAH_EFFECTIVE}.</p>
+      </div>
+    </div>
+
+    <!-- Quick facts -->
+    <section class="bah-stats">
+      <div class="container">
+        <div class="bah-stats__grid">
+          {facts.map((f) => (
+            <div class="bah-stat">
+              <div class="bah-stat__num">{f.num}</div>
+              <div class="bah-stat__label">{f.label}</div>
+              <div class="bah-stat__desc">{f.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Lookup -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title" style="margin-bottom:2rem;">
+          <h2>Look Up <span class="accent">Your BAH</span></h2>
+          <p style="color:#555;">Pick your pay grade and dependency status.</p>
+        </div>
+        <div class="bah-lookup" id="bahLookup" data-rates={JSON.stringify(lookupData)}>
+          <div class="bah-lookup__controls">
+            <label class="bah-lookup__field">
+              <span>Pay grade</span>
+              <select id="bahGrade">
+                {bahGroups.map((g) => (
+                  <optgroup label={g.label}>
+                    {g.rows.map((r) => (
+                      <option value={r.grade} selected={r.grade === 'E-5'}>{r.grade}</option>
+                    ))}
+                  </optgroup>
+                ))}
+              </select>
+            </label>
+            <div class="bah-lookup__field">
+              <span>Dependents</span>
+              <div class="bah-toggle" role="radiogroup" aria-label="Dependency status">
+                <button type="button" role="radio" aria-checked="true" data-deps="0" class="is-active">With</button>
+                <button type="button" role="radio" aria-checked="false" data-deps="1">Without</button>
+              </div>
+            </div>
+          </div>
+          <div class="bah-lookup__result" aria-live="polite">
+            <div>
+              <div class="bah-lookup__amount" id="bahMonthly">{formatUsd(e5.withDeps)}</div>
+              <div class="bah-lookup__unit">per month</div>
+            </div>
+            <div>
+              <div class="bah-lookup__amount bah-lookup__amount--sm" id="bahAnnual">{formatUsd(e5.withDeps * 12)}</div>
+              <div class="bah-lookup__unit">per year, tax-free</div>
+            </div>
+          </div>
+          <p class="bah-lookup__cta">Want to see which homes near your gate fit that number? <a href="/mortgage-calculator/">Run it in the mortgage calculator</a> or <a href="#contact">ask me directly</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Full table -->
+    <section class="section bah-section--alt" id="rates">
+      <div class="container">
+        <div class="section-title" style="margin-bottom:2rem;">
+          <h2>{BAH_YEAR} JBSA BAH Rate <span class="accent">Table</span></h2>
+          <p style="color:#555;">Monthly rates for the {BAH_MHA_NAME} Military Housing Area ({BAH_MHA}), all pay grades.</p>
+        </div>
+        <div class="bah-table-wrap">
+          <table class="bah-table">
+            <thead>
+              <tr>
+                <th>Pay Grade</th>
+                <th>With Dependents</th>
+                <th>Without Dependents</th>
+              </tr>
+            </thead>
+            <tbody>
+              {bahGroups.map((group) => (
+                <>
+                  <tr class="bah-table__group">
+                    <td colspan="3">{group.label}</td>
+                  </tr>
+                  {group.rows.map((row) => (
+                    <tr>
+                      <td class="bah-table__grade">{row.grade}</td>
+                      <td>{formatUsd(row.withDeps)}<span class="bah-table__mo">/mo</span></td>
+                      <td>{formatUsd(row.withoutDeps)}<span class="bah-table__mo">/mo</span></td>
+                    </tr>
+                  ))}
+                </>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="bah-note">
+          Source: Defense Travel Management Office (DTMO), {BAH_YEAR} BAH rates for MHA {BAH_MHA}, effective {BAH_EFFECTIVE}, verified against the official
+          <a href="https://www.travel.dod.mil/Allowances/Basic-Allowance-for-Housing/BAH-Rate-Lookup/" target="_blank" rel="noopener">DTMO BAH Rate Lookup</a>.
+          DoD publishes one rate for O-7 and above — O-8, O-9, and O-10 receive the O-7+ rate. Always confirm your individual entitlement with your finance office.
+        </p>
+      </div>
+    </section>
+
+    <!-- Installations -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title" style="margin-bottom:2rem;">
+          <h2>One Rate, <span class="accent">Four Installations</span></h2>
+          <p style="color:#555;">BAH is set by your duty station ZIP, not where you live — so a home in New Braunfels, Schertz, or Cibolo gets the same JBSA rate as one right outside the gate.</p>
+        </div>
+        <div class="bah-bases">
+          {installations.map((b) => (
+            <div class="bah-base">
+              <h3>{b.name}</h3>
+              <p>{b.note}</p>
+            </div>
+          ))}
+        </div>
+        <div style="text-align:center;margin-top:2.5rem;">
+          <a href="/military-relocation/#commute" class="btn btn-outline-dark">See Commute Times to Each Gate</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>JBSA BAH — Frequently Asked Questions</h2>
+        <div class="faq-list">
+          {faqs.map((faq) => (
+            <details class="faq-item">
+              <summary>{faq.q}</summary>
+              <p>{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background:#000;color:#fff;">
+      <div class="container" style="text-align:center;max-width:700px;">
+        <h2 style="color:#fff;">Make Your BAH <span class="accent">Work Harder</span></h2>
+        <p style="color:#aaa;margin-bottom:2rem;">
+          I'm a retired Army First Sergeant and MRP-certified REALTOR®. Tell me your grade, your gate, and your report date — I'll show you the neighborhoods where your BAH covers the full house payment, and the VA loan moves that keep it that way.
+        </p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <a href="#contact" class="btn btn-primary">Start Your PCS Plan</a>
+          <a href="/military-relocation/" class="btn bah-btn-light">Full PCS to JBSA Guide</a>
+        </div>
+      </div>
+    </section>
+
+    <ContactForm />
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  const root = document.getElementById('bahLookup');
+  if (root) {
+    const rates: Record<string, [number, number]> = JSON.parse(root.dataset.rates || '{}');
+    const grade = document.getElementById('bahGrade') as HTMLSelectElement;
+    const monthly = document.getElementById('bahMonthly')!;
+    const annual = document.getElementById('bahAnnual')!;
+    const buttons = root.querySelectorAll<HTMLButtonElement>('.bah-toggle button');
+    let deps = 0;
+    const fmt = (n: number) => '$' + n.toLocaleString('en-US');
+    const render = () => {
+      const r = rates[grade.value];
+      if (!r) return;
+      monthly.textContent = fmt(r[deps]);
+      annual.textContent = fmt(r[deps] * 12);
+    };
+    grade.addEventListener('change', render);
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        deps = Number(btn.dataset.deps);
+        buttons.forEach((b) => {
+          const on = b === btn;
+          b.classList.toggle('is-active', on);
+          b.setAttribute('aria-checked', String(on));
+        });
+        render();
+      });
+    });
+    render();
+  }
+</script>
+
+<style>
+  .bah-hero {
+    position: relative;
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+  }
+  .bah-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.68);
+  }
+  .bah-hero__content {
+    position: relative;
+    z-index: 2;
+    padding: 3rem 1.5rem;
+    max-width: 860px;
+  }
+  .bah-crumbs {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 0.9rem;
+  }
+  .bah-crumbs a { color: #FF1616; text-decoration: none; }
+  .bah-crumbs span { margin: 0 0.35rem; }
+  .bah-hero__content h1 { color: #fff; margin-bottom: 0.75rem; }
+  .bah-hero__content > p { color: rgba(255,255,255,0.75); font-size: 1rem; }
+
+  .bah-stats { background: #111; padding: 3rem 0; }
+  .bah-stats__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+  .bah-stat { text-align: center; padding: 1rem; }
+  .bah-stat__num {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #FF1616;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .bah-stat__label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .bah-stat__desc { font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
+
+  /* Lookup */
+  .bah-lookup {
+    max-width: 640px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #eee;
+    border-top: 3px solid #FF1616;
+    padding: 2rem;
+  }
+  .bah-lookup__controls { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .bah-lookup__field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .bah-lookup__field > span {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #111;
+  }
+  .bah-lookup select {
+    font: inherit;
+    font-size: 1rem;
+    padding: 0.7rem 0.8rem;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #111;
+    height: 46px;
+  }
+  .bah-toggle { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid #ccc; height: 46px; }
+  .bah-toggle button {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: none;
+    background: #fff;
+    color: #555;
+    cursor: pointer;
+  }
+  .bah-toggle button.is-active { background: #000; color: #fff; }
+  .bah-toggle button:focus-visible, .bah-lookup select:focus-visible { outline: 2px solid #FF1616; outline-offset: 2px; }
+  .bah-lookup__result {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 1.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+    text-align: center;
+  }
+  .bah-lookup__amount {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: #FF1616;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+  .bah-lookup__amount--sm { font-size: 1.9rem; color: #111; padding-top: 0.35rem; }
+  .bah-lookup__unit { font-size: 0.8rem; color: #888; margin-top: 0.2rem; }
+  .bah-lookup__cta { text-align: center; font-size: 0.85rem; color: #555; margin: 1.5rem 0 0; }
+  .bah-lookup__cta a, .bah-note a { color: #FF1616; font-weight: 600; }
+
+  .bah-section--alt { background: var(--light-gray); }
+
+  /* Table */
+  .bah-table-wrap { overflow-x: auto; max-width: 640px; margin: 0 auto; }
+  .bah-table { width: 100%; border-collapse: collapse; background: #fff; font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+  .bah-table th {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #fff;
+    background: #000;
+    padding: 0.85rem 1rem;
+    text-align: left;
+    white-space: nowrap;
+  }
+  .bah-table th:not(:first-child), .bah-table td:not(:first-child) { text-align: right; }
+  .bah-table td { padding: 0.75rem 1rem; color: #333; border-bottom: 1px solid #eee; }
+  .bah-table tbody tr:nth-child(even) { background: #fafafa; }
+  .bah-table__group td {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #FF1616;
+    background: #f1f1f1 !important;
+    padding: 0.55rem 1rem;
+    text-align: left !important;
+  }
+  .bah-table__grade { font-weight: 700; color: #111 !important; white-space: nowrap; }
+  .bah-table__mo { color: #999; font-size: 0.8em; }
+  .bah-note { max-width: 640px; margin: 1.25rem auto 0; text-align: center; font-size: 0.8rem; color: #888; line-height: 1.7; }
+
+  /* Installations */
+  .bah-bases { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .bah-base { background: #fff; border: 1px solid #eee; border-left: 3px solid #FF1616; padding: 1.25rem; }
+  .bah-base h3 { font-size: 0.95rem; margin: 0 0 0.4rem; }
+  .bah-base p { font-size: 0.82rem; color: #555; line-height: 1.6; margin: 0; }
+
+  .bah-btn-light { border: 2px solid #fff; color: #fff; background: transparent; }
+  .bah-btn-light:hover { background: #fff; color: #000; }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
+
+  @media (max-width: 900px) {
+    .bah-bases { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .bah-stats__grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .bah-stat__num { font-size: 1.7rem; }
+    .bah-lookup { padding: 1.5rem 1.25rem; }
+    .bah-lookup__controls { grid-template-columns: 1fr; }
+    .bah-lookup__amount { font-size: 2.1rem; }
+    .bah-lookup__amount--sm { font-size: 1.5rem; }
+    .bah-table th, .bah-table td { padding: 0.6rem 0.7rem; }
+  }
+  @media (max-width: 480px) {
+    .bah-bases { grid-template-columns: 1fr; }
+  }
+</style>
