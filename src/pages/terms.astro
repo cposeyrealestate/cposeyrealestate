@@ -1,0 +1,243 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { breadcrumbSchema } from '../lib/schema';
+
+const pageTitle = 'Terms of Service | Cody Posey Real Estate';
+const pageDescription = 'The terms governing use of cposeyrealestate.com and the CPosey Shorts Publisher application.';
+const lastUpdated = 'September 26, 2026';
+
+const pageSchema = [
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Terms of Service', url: '/terms/' },
+  ]),
+];
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
+  noindex={false}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+    <section class="terms-hero">
+      <div class="terms-hero__overlay"></div>
+      <div class="terms-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <span>Terms of Service</span>
+        </nav>
+        <h1>Terms of <span style="color:#FF1616;">Service</span></h1>
+        <p>The rules for using this site and our publishing tools</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container terms-body">
+        <p class="terms-updated">Last updated: {lastUpdated}</p>
+
+        <p>
+          These Terms of Service ("Terms") govern your use of <strong>cposeyrealestate.com</strong> (the "Site"),
+          operated by Cody Posey, a licensed Texas real estate agent (License #822002-SA) with Popby Realty
+          ("we," "us," or "our"). By accessing or using the Site, you agree to these Terms. If you do not agree,
+          please do not use the Site.
+        </p>
+
+        <h2>1. About Our Services</h2>
+        <p>
+          The Site provides real estate information, market data, home search tools, and educational content for
+          buyers, sellers, and renters in the San Antonio–New Braunfels area. Content on the Site is for general
+          informational purposes and does not constitute legal, financial, or tax advice.
+        </p>
+
+        <h2>2. Acceptable Use</h2>
+        <p>You agree not to:</p>
+        <ul>
+          <li>Use the Site for any unlawful purpose or in violation of any applicable regulation.</li>
+          <li>Attempt to gain unauthorized access to the Site, its servers, or any connected systems.</li>
+          <li>Scrape, copy, or redistribute Site content at scale without our written permission.</li>
+          <li>Submit false, misleading, or someone else's personal information through our forms.</li>
+          <li>Interfere with the Site's operation, security, or other users' experience.</li>
+        </ul>
+
+        <h2>3. Intellectual Property</h2>
+        <p>
+          All text, images, video, graphics, and other content on the Site are owned by us or our licensors and
+          are protected by copyright and other intellectual property laws. You may view and share individual pages
+          for personal, non-commercial use with attribution. Any other reproduction requires our prior written consent.
+        </p>
+
+        <h2>4. Third-Party Services</h2>
+        <p>
+          The Site links to and embeds third-party services — including IDX Broker (home search), New Home Buddy
+          (new construction), YouTube (video embeds), and social media platforms. Your use of those services is
+          governed by their own terms and privacy policies, not these Terms.
+        </p>
+
+        <h2>5. CPosey Shorts Publisher (TikTok Application)</h2>
+        <p>
+          We operate an internal content-management application called <strong>CPosey Shorts Publisher</strong>,
+          which connects to our official TikTok business account via TikTok's Content Posting API. The application:
+        </p>
+        <ul>
+          <li>Uploads short-form videos <strong>produced by our own team</strong> (market updates, home-buyer education, community highlights) to our TikTok account's drafts. A team member reviews every video before it is published.</li>
+          <li>Requests only the TikTok permissions needed for this workflow: basic profile information, video upload, and video publishing.</li>
+          <li>Does not collect, store, or share personal data of TikTok viewers. The only data retained is the access credential for our own TikTok account, stored securely on our servers.</li>
+          <li>Does not repost third-party content, automate engagement (likes, follows, comments), or misrepresent the source of any video.</li>
+        </ul>
+        <p>
+          Use of TikTok itself remains governed by
+          <a href="https://www.tiktok.com/legal/page/us/terms-of-service/en" target="_blank" rel="noopener">TikTok's Terms of Service</a>
+          and
+          <a href="https://www.tiktok.com/legal/page/us/privacy-policy/en" target="_blank" rel="noopener">Privacy Policy</a>.
+        </p>
+
+        <h2>6. Disclaimers</h2>
+        <p>
+          The Site and its content are provided "as is" without warranties of any kind, express or implied.
+          Market data, prices, and availability change frequently; we strive for accuracy but do not guarantee that
+          any listing, price, or statistic is current or complete. Nothing on the Site creates an agency relationship
+          between you and us — that relationship is established only through a separate written agreement.
+        </p>
+
+        <h2>7. Limitation of Liability</h2>
+        <p>
+          To the fullest extent permitted by law, we are not liable for any indirect, incidental, or consequential
+          damages arising from your use of the Site. Our total liability for any claim related to the Site will not
+          exceed $100.
+        </p>
+
+        <h2>8. Changes to These Terms</h2>
+        <p>
+          We may update these Terms from time to time. Material changes will be reflected in the "Last updated" date
+          above. Continued use of the Site after changes take effect constitutes acceptance of the revised Terms.
+        </p>
+
+        <h2>9. Contact</h2>
+        <p>
+          Questions about these Terms? Reach us at
+          <a href="mailto:codyposey@cposeyrealestate.com">codyposey@cposeyrealestate.com</a>
+          or <a href="tel:+18303605569">(830) 360-5569</a>.
+        </p>
+
+        <p class="terms-note">
+          Cody Posey is a licensed Texas REALTOR® (#822002-SA) with Popby Realty, New Braunfels, Texas.
+          Texas Real Estate Commission Consumer Protection Notice and Information About Brokerage Services
+          are available on request.
+        </p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .terms-hero {
+    position: relative;
+    height: 240px;
+    background: url('/images/generated/home-nb-modern.webp') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .terms-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .terms-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .terms-hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .terms-hero__content p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .breadcrumb a {
+    color: rgba(255, 255, 255, 0.55);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  .terms-body {
+    max-width: 800px;
+    color: var(--gray);
+    line-height: 1.75;
+    font-size: 0.95rem;
+  }
+
+  .terms-body h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #000;
+  }
+
+  .terms-body p {
+    margin-bottom: 1rem;
+  }
+
+  .terms-body ul {
+    margin: 0 0 1.25rem 1.25rem;
+    padding-left: 0.25rem;
+  }
+
+  .terms-body li {
+    margin-bottom: 0.4rem;
+  }
+
+  .terms-body a {
+    color: #FF1616;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .terms-body a:hover {
+    color: #000;
+  }
+
+  .terms-updated {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 2rem;
+  }
+
+  .terms-note {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+    font-size: 0.85rem;
+    color: #888;
+  }
+</style>
