@@ -284,10 +284,13 @@ export function blogPostingSchema(post: {
   slug: string;
   excerpt: string;
   dateRaw: string;
+  dateModified?: string;
   category?: string;
   featuredImage?: string;
+  quickAnswer?: string;
 }) {
   const url = `${SITE}/blog/${post.slug}/`;
+  const dateModified = post.dateModified || post.dateRaw;
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -296,7 +299,13 @@ export function blogPostingSchema(post: {
     description: post.excerpt,
     image: post.featuredImage || seo.site.defaultOgImage,
     datePublished: post.dateRaw,
-    dateModified: post.dateRaw,
+    dateModified,
+    // Speakable: points voice assistants and AI answer engines at the
+    // quick-answer summary block, which is written as a direct answer.
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['.quick-answer-block'],
+    },
     // Inline author/publisher so Google's Rich Results validator can
     // classify them without resolving @id across JSON-LD blocks.
     // The @id is retained so entity graph linking still works.
@@ -321,6 +330,33 @@ export function blogPostingSchema(post: {
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': url,
+    },
+    inLanguage: seo.site.locale.replace('_', '-'),
+  };
+}
+
+/* ── VideoObject schema for posts with an embedded YouTube video ── */
+export function videoObjectSchema(video: {
+  videoId: string;
+  title?: string;
+  description?: string;
+  dateRaw?: string;
+  featuredImage?: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: video.title || 'Related video',
+    description: (video.description || '').replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, '').trim().slice(0, 500) || undefined,
+    thumbnailUrl: video.featuredImage || `https://i.ytimg.com/vi/${video.videoId}/hqdefault.jpg`,
+    uploadDate: video.dateRaw || undefined,
+    embedUrl: `https://www.youtube.com/embed/${video.videoId}`,
+    contentUrl: `https://www.youtube.com/watch?v=${video.videoId}`,
+    publisher: {
+      '@type': 'RealEstateAgent',
+      '@id': BUSINESS_ID,
+      name: seo.site.name,
+      url: SITE,
     },
     inLanguage: seo.site.locale.replace('_', '-'),
   };

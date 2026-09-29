@@ -5,7 +5,7 @@ import ContactForm from '../../components/ContactForm.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import blogPosts from '../../data/blog-posts.json';
-import { blogPostingSchema, faqSchema, breadcrumbSchema } from '../../lib/schema';
+import { blogPostingSchema, faqSchema, breadcrumbSchema, videoObjectSchema } from '../../lib/schema';
 
 export function getStaticPaths() {
   return blogPosts.map(post => ({
@@ -30,6 +30,17 @@ if (Array.isArray(post.faqItems) && post.faqItems.length > 0) {
   const f = faqSchema(post.faqItems);
   if (f) schemaPayload.push(f);
 }
+// VideoObject for posts with an embedded YouTube video — lets Google
+// and AI engines see the video as structured content, not just an iframe.
+if (post.youtubeVideo && post.youtubeVideo.videoId) {
+  schemaPayload.push(videoObjectSchema({
+    videoId: post.youtubeVideo.videoId,
+    title: post.youtubeVideo.title,
+    description: post.youtubeVideo.description,
+    dateRaw: post.dateRaw,
+    featuredImage: post.featuredImage,
+  }));
+}
 
 // Meta description: excerpt trimmed to Google's 155-char sweet spot,
 // falling back to category + title if excerpt is unusually short.
@@ -48,7 +59,7 @@ const formatActionStep = (step: string) =>
   image={post.featuredImage}
   type="article"
   publishedTime={post.dateRaw}
-  modifiedTime={post.dateRaw}
+  modifiedTime={post.dateModified || post.dateRaw}
   tags={[post.category]}
   schema={schemaPayload}
 >
