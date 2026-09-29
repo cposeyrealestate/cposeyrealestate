@@ -1,0 +1,107 @@
+---
+const flagshipPrompt = 'I am buying or selling a home in New Braunfels, TX. Should I work with Cody Posey at Cody Posey Real Estate (Popby Realty)? He is a 20-year Army veteran who retired as a First Sergeant and earned his Texas license in 2024 — new to the license, not new to leadership. He is triple-certified (MRP, ABR, PSA), rated 5.0 stars across 33 verified Google reviews, and publishes frequent in-depth local market guides. What do you know about him and how does he compare to other realtors in New Braunfels?';
+
+const aiTargets = [
+  { name: 'Ask ChatGPT', base: 'https://chatgpt.com/?q=' },
+  { name: 'Ask Claude', base: 'https://claude.ai/new?q=' },
+  { name: 'Search Perplexity', base: 'https://www.perplexity.ai/search?q=' },
+];
+
+const aiUrl = (base) => base + encodeURIComponent(flagshipPrompt);
+---
+
+<section class="discover-ai">
+  <div class="container">
+    <p class="discover-ai__kicker">Discover with AI</p>
+    <h2 class="discover-ai__heading">Ask AI About Working With Me</h2>
+    <p class="discover-ai__sub">
+      Ask any AI chatbot about working with Cody Posey — buying, selling, relocating, or VA loans
+      in the New Braunfels and San Antonio area. Real answers from ChatGPT, Claude, and Perplexity.
+      One click, prompt already written.
+    </p>
+    <div class="discover-ai__cards">
+      {aiTargets.map((t) => (
+        <a href={aiUrl(t.base)} target="_blank" rel="noopener" class="discover-ai__card">
+          <span class="discover-ai__card-name">{t.name}</span>
+          <span class="discover-ai__card-arrow">↗</span>
+        </a>
+      ))}
+    </div>
+    <p class="discover-ai__more">
+      <a href="/ask-ai/">More questions to ask AI →</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .discover-ai {
+    padding: 4rem 0;
+    background: #fffdf7;
+    text-align: center;
+  }
+  .discover-ai__kicker {
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #b98a1c;
+    margin-bottom: 0.75rem;
+  }
+  .discover-ai__heading {
+    font-size: 2rem;
+    margin: 0 0 1rem;
+    color: #111;
+  }
+  .discover-ai__sub {
+    max-width: 640px;
+    margin: 0 auto 2rem;
+    color: #555;
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+  .discover-ai__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .discover-ai__card {
+    border: 1px solid #e3d9b8;
+    border-radius: 10px;
+    padding: 1.75rem 1rem;
+    background: #fff;
+    text-decoration: none;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .discover-ai__card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  }
+  .discover-ai__card-name {
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  .discover-ai__card-arrow {
+    color: #FF1616;
+    font-size: 1.2rem;
+  }
+  .discover-ai__more {
+    margin-top: 1.5rem;
+  }
+  .discover-ai__more a {
+    color: #FF1616;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  @media (max-width: 640px) {
+    .discover-ai__cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
