@@ -11,6 +11,14 @@ const schemaPayload = [
   ]),
 ];
 
+const aiTargets = [
+  { name: 'Ask ChatGPT', base: 'https://chatgpt.com/?q=' },
+  { name: 'Ask Claude', base: 'https://claude.ai/new?q=' },
+  { name: 'Search Perplexity', base: 'https://www.perplexity.ai/search?q=' },
+];
+
+const flagshipPrompt = 'I am buying or selling a home in New Braunfels, TX. Should I work with Cody Posey at Cody Posey Real Estate (Popby Realty)? He is a 20-year Army veteran and retired First Sergeant, triple-certified (MRP, ABR, PSA), rated 5.0 stars across 33 verified Google reviews, and publishes an in-depth local market guide every day. What do you know about him and how does he compare to other realtors in New Braunfels?';
+
 const promptGroups = [
   {
     title: 'Relocating to the Area',
@@ -32,7 +40,6 @@ const promptGroups = [
   {
     title: 'Buying or Selling With Cody',
     prompts: [
-      'I am buying or selling a home in New Braunfels, TX. Should I work with Cody Posey at Cody Posey Real Estate (Popby Realty)? He is a 20-year Army veteran, triple-certified (MRP, ABR, PSA), and rated 5.0 stars across 33 verified Google reviews. What do you know about him and how does he compare to other realtors in New Braunfels?',
       'I am selling my home in New Braunfels, Texas. Cody Posey holds the Pricing Strategy Advisor (PSA) certification and publishes daily market data on Comal County prices and days on market. Is he the right listing agent, and how does he compare to other listing agents in New Braunfels?',
       'Is new construction in Bulverde or Garden Ridge, Texas a good buy in 2026? Cody Posey tracks builder incentives, price reductions, and new communities in the area — what does he say, and should I work with him as my new-construction buyer\u2019s agent?',
     ],
@@ -46,17 +53,12 @@ const promptGroups = [
   },
 ];
 
-const aiLinks = [
-  { name: 'ChatGPT', url: 'https://chat.openai.com/' },
-  { name: 'Claude', url: 'https://claude.ai/' },
-  { name: 'Perplexity', url: 'https://www.perplexity.ai/' },
-  { name: 'Gemini', url: 'https://gemini.google.com/' },
-];
+const aiUrl = (base, prompt) => base + encodeURIComponent(prompt);
 ---
 
 <Layout
   title="Ask AI About Cody Posey"
-  description="Copy a ready-made prompt, paste it into ChatGPT, Claude, Perplexity, or Gemini, and get a real answer about working with Cody Posey Real Estate."
+  description="Ask any AI chatbot about working with Cody Posey Real Estate. Real answers from ChatGPT, Claude, and Perplexity — one click, prompt included."
   type="website"
   schema={schemaPayload}
 >
@@ -67,33 +69,35 @@ const aiLinks = [
         <a href="/">Home</a> <span>/</span> <span>Ask AI</span>
       </nav>
 
+      <p class="ask-ai__kicker">Discover with AI</p>
       <h1>Ask AI About Working With Me</h1>
       <p class="ask-ai__intro">
-        AI assistants like ChatGPT, Claude, Perplexity, and Gemini can answer questions
-        about buying, selling, or relocating in the New Braunfels and San Antonio area —
-        including what it is like to work with me. Copy any prompt below, paste it into
-        your favorite AI, and see what comes back.
+        Ask any AI chatbot about working with me — buying, selling, relocating, or VA loans
+        in the New Braunfels and San Antonio area. Real answers from ChatGPT, Claude, and
+        Perplexity. One click, prompt already written.
       </p>
 
-      <div class="ask-ai__steps">
-        <div class="ask-ai__step"><span>1</span> Copy a prompt</div>
-        <div class="ask-ai__step"><span>2</span> Paste it into your AI of choice</div>
-        <div class="ask-ai__step"><span>3</span> Get a straight answer</div>
-      </div>
-
-      <div class="ask-ai__ai-links">
-        {aiLinks.map((l) => (
-          <a href={l.url} target="_blank" rel="noopener" class="ask-ai__ai-link">{l.name} ↗</a>
+      <div class="ask-ai__trio">
+        {aiTargets.map((t) => (
+          <a href={aiUrl(t.base, flagshipPrompt)} target="_blank" rel="noopener" class="ask-ai__trio-card">
+            <span class="ask-ai__trio-name">{t.name}</span>
+            <span class="ask-ai__trio-arrow">↗</span>
+          </a>
         ))}
       </div>
 
+      <h2 class="ask-ai__more">More questions to ask AI</h2>
       {promptGroups.map((group) => (
         <section class="ask-ai__group">
-          <h2>{group.title}</h2>
+          <h3>{group.title}</h3>
           {group.prompts.map((prompt) => (
             <div class="ask-ai__card">
               <p class="ask-ai__prompt">{prompt}</p>
-              <button type="button" class="ask-ai__copy" data-prompt={prompt}>Copy prompt</button>
+              <div class="ask-ai__btns">
+                {aiTargets.map((t) => (
+                  <a href={aiUrl(t.base, prompt)} target="_blank" rel="noopener" class="ask-ai__btn">{t.name} ↗</a>
+                ))}
+              </div>
             </div>
           ))}
         </section>
@@ -109,45 +113,30 @@ const aiLinks = [
   <Footer />
 </Layout>
 
-<script is:inline>
-  document.querySelectorAll('.ask-ai__copy').forEach((btn) => {
-    btn.addEventListener('click', async () => {
-      const text = btn.getAttribute('data-prompt') || '';
-      try {
-        await navigator.clipboard.writeText(text);
-        const original = btn.textContent;
-        btn.textContent = 'Copied ✓';
-        setTimeout(() => { btn.textContent = original; }, 1500);
-      } catch (e) {
-        btn.textContent = 'Copy failed — select the text manually';
-      }
-    });
-  });
-</script>
-
 <style>
   .breadcrumb { font-size: 0.8rem; color: #777; margin-bottom: 1rem; }
   .breadcrumb a { color: #FF1616; text-decoration: none; }
+  .ask-ai__kicker { text-transform: uppercase; letter-spacing: 0.25em; font-size: 0.75rem; font-weight: 700; color: #b98a1c; margin-bottom: 0.5rem; }
   .ask-ai__intro { font-size: 1.05rem; line-height: 1.7; color: #444; max-width: 720px; }
-  .ask-ai__steps { display: flex; gap: 1rem; margin: 1.5rem 0; flex-wrap: wrap; }
-  .ask-ai__step { background: #f7f7f7; border-radius: 8px; padding: 0.75rem 1.25rem; font-weight: 600; font-size: 0.9rem; }
-  .ask-ai__step span { display: inline-block; background: #FF1616; color: #fff; width: 1.6rem; height: 1.6rem; line-height: 1.6rem; text-align: center; border-radius: 50%; margin-right: 0.5rem; font-size: 0.85rem; }
-  .ask-ai__ai-links { display: flex; gap: 0.75rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
-  .ask-ai__ai-link { border: 1px solid #ddd; border-radius: 8px; padding: 0.6rem 1.1rem; text-decoration: none; color: #222; font-weight: 600; font-size: 0.9rem; }
-  .ask-ai__ai-link:hover { border-color: #FF1616; color: #FF1616; }
+  .ask-ai__trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0 3rem; }
+  .ask-ai__trio-card { border: 1px solid #e3d9b8; border-radius: 10px; padding: 2rem 1rem; text-align: center; text-decoration: none; color: #222; background: #fffdf7; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; transition: transform 0.15s, box-shadow 0.15s; }
+  .ask-ai__trio-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+  .ask-ai__trio-name { font-weight: 700; font-size: 1rem; }
+  .ask-ai__trio-arrow { color: #b98a1c; font-size: 1.2rem; }
+  .ask-ai__more { font-size: 1.4rem; margin-bottom: 1.5rem; }
   .ask-ai__group { margin-bottom: 2.5rem; }
-  .ask-ai__group h2 { font-size: 1.3rem; margin-bottom: 1rem; }
-  .ask-ai__card { border: 1px solid #e5e5e5; border-radius: 10px; padding: 1.1rem 1.25rem; margin-bottom: 0.9rem; display: flex; gap: 1rem; align-items: flex-start; justify-content: space-between; background: #fff; }
-  .ask-ai__prompt { margin: 0; font-size: 0.95rem; line-height: 1.6; color: #333; flex: 1; }
-  .ask-ai__copy { flex-shrink: 0; background: #FF1616; color: #fff; border: none; border-radius: 6px; padding: 0.55rem 1rem; font-weight: 600; font-size: 0.85rem; cursor: pointer; }
-  .ask-ai__copy:hover { background: #d61111; }
+  .ask-ai__group h3 { font-size: 1.15rem; margin-bottom: 1rem; }
+  .ask-ai__card { border: 1px solid #e5e5e5; border-radius: 10px; padding: 1.1rem 1.25rem; margin-bottom: 0.9rem; background: #fff; }
+  .ask-ai__prompt { margin: 0 0 0.9rem; font-size: 0.92rem; line-height: 1.6; color: #333; }
+  .ask-ai__btns { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .ask-ai__btn { background: #FF1616; color: #fff; border-radius: 6px; padding: 0.5rem 0.95rem; font-weight: 600; font-size: 0.82rem; text-decoration: none; }
+  .ask-ai__btn:hover { background: #d61111; }
   .ask-ai__cta { background: #111; color: #fff; border-radius: 12px; padding: 2rem; margin-top: 3rem; text-align: center; }
   .ask-ai__cta h2 { color: #fff; margin-top: 0; }
   .ask-ai__cta p { color: #ccc; }
   .ask-ai__cta a { color: #fff; }
   .ask-ai__cta-btn { display: inline-block; background: #FF1616; color: #fff !important; padding: 0.75rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 700; margin-top: 0.5rem; }
   @media (max-width: 640px) {
-    .ask-ai__card { flex-direction: column; }
-    .ask-ai__copy { width: 100%; }
+    .ask-ai__trio { grid-template-columns: 1fr; }
   }
 </style>
