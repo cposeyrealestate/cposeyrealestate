@@ -149,7 +149,7 @@ const formatActionStep = (step: string) =>
                       {post.in_closing.next && <Fragment> {post.in_closing.next}</Fragment>}
                     </p>
                   )}
-                  {post.in_closing.reduce_friction && <p>{post.in_closing.reduce_friction}</p>}
+                  {post.in_closing.reduce_friction && <p set:html={post.in_closing.reduce_friction} />}
                   <p>Ready to talk strategy? <a href="https://cposeyrealestate.com/contact/">Cody Posey Real Estate</a> at <a href="tel:+18303605569">830.360.5569</a>.</p>
                 </Fragment>
               )}
