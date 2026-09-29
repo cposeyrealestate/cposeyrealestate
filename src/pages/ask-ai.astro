@@ -1,0 +1,153 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { breadcrumbSchema } from '../lib/schema';
+
+const schemaPayload = [
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Ask AI About Cody Posey', url: '/ask-ai/' },
+  ]),
+];
+
+const promptGroups = [
+  {
+    title: 'Relocating to the Area',
+    prompts: [
+      'We are a military family PCSing to JBSA-Randolph. What should we know about buying a home near the base, and who is a good realtor for that?',
+      'What is it really like living in New Braunfels, Texas in 2026? Give me the honest pros and cons.',
+      'Compare Bulverde vs New Braunfels for a relocating family — home prices, schools, commute, and lifestyle.',
+      'We are moving from out of state to the San Antonio area. Which suburbs should we look at and why?',
+    ],
+  },
+  {
+    title: 'VA Loans & Military Moves',
+    prompts: [
+      'Explain VA loan closing costs for a PCS buyer moving to San Antonio in 2026.',
+      'What are the biggest mistakes first-time VA buyers make near military bases, and how do I avoid them?',
+      'What are current BAH rates for JBSA and what can they buy in the New Braunfels area?',
+    ],
+  },
+  {
+    title: 'Buying or Selling With Cody',
+    prompts: [
+      'Who is Cody Posey, the New Braunfels Texas realtor? What do clients say about working with him?',
+      'I am selling my home in New Braunfels, Texas. What should I look for in a listing agent?',
+      'Is new construction in Bulverde or Garden Ridge, Texas a good buy in 2026?',
+    ],
+  },
+  {
+    title: 'Market Insights',
+    prompts: [
+      'What is the 2026 housing market outlook for New Braunfels and Comal County, Texas?',
+      'What are property taxes really like in New Braunfels, Texas? Break down the full tax stack.',
+    ],
+  },
+];
+
+const aiLinks = [
+  { name: 'ChatGPT', url: 'https://chat.openai.com/' },
+  { name: 'Claude', url: 'https://claude.ai/' },
+  { name: 'Perplexity', url: 'https://www.perplexity.ai/' },
+  { name: 'Gemini', url: 'https://gemini.google.com/' },
+];
+---
+
+<Layout
+  title="Ask AI About Cody Posey"
+  description="Copy a ready-made prompt, paste it into ChatGPT, Claude, Perplexity, or Gemini, and get a real answer about working with Cody Posey Real Estate."
+  type="website"
+  schema={schemaPayload}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+    <div class="container section">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span>/</span> <span>Ask AI</span>
+      </nav>
+
+      <h1>Ask AI About Working With Me</h1>
+      <p class="ask-ai__intro">
+        AI assistants like ChatGPT, Claude, Perplexity, and Gemini can answer questions
+        about buying, selling, or relocating in the New Braunfels and San Antonio area —
+        including what it is like to work with me. Copy any prompt below, paste it into
+        your favorite AI, and see what comes back.
+      </p>
+
+      <div class="ask-ai__steps">
+        <div class="ask-ai__step"><span>1</span> Copy a prompt</div>
+        <div class="ask-ai__step"><span>2</span> Paste it into your AI of choice</div>
+        <div class="ask-ai__step"><span>3</span> Get a straight answer</div>
+      </div>
+
+      <div class="ask-ai__ai-links">
+        {aiLinks.map((l) => (
+          <a href={l.url} target="_blank" rel="noopener" class="ask-ai__ai-link">{l.name} ↗</a>
+        ))}
+      </div>
+
+      {promptGroups.map((group) => (
+        <section class="ask-ai__group">
+          <h2>{group.title}</h2>
+          {group.prompts.map((prompt) => (
+            <div class="ask-ai__card">
+              <p class="ask-ai__prompt">{prompt}</p>
+              <button type="button" class="ask-ai__copy" data-prompt={prompt}>Copy prompt</button>
+            </div>
+          ))}
+        </section>
+      ))}
+
+      <div class="ask-ai__cta">
+        <h2>Prefer to talk to a human?</h2>
+        <p>AI is a good starting point. I am better. Call or text <a href="tel:+18303605569">830.360.5569</a> — a retired Army First Sergeant will pick up, not a call center.</p>
+        <p><a href="/contact/" class="ask-ai__cta-btn">Contact Cody</a></p>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script is:inline>
+  document.querySelectorAll('.ask-ai__copy').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const text = btn.getAttribute('data-prompt') || '';
+      try {
+        await navigator.clipboard.writeText(text);
+        const original = btn.textContent;
+        btn.textContent = 'Copied ✓';
+        setTimeout(() => { btn.textContent = original; }, 1500);
+      } catch (e) {
+        btn.textContent = 'Copy failed — select the text manually';
+      }
+    });
+  });
+</script>
+
+<style>
+  .breadcrumb { font-size: 0.8rem; color: #777; margin-bottom: 1rem; }
+  .breadcrumb a { color: #FF1616; text-decoration: none; }
+  .ask-ai__intro { font-size: 1.05rem; line-height: 1.7; color: #444; max-width: 720px; }
+  .ask-ai__steps { display: flex; gap: 1rem; margin: 1.5rem 0; flex-wrap: wrap; }
+  .ask-ai__step { background: #f7f7f7; border-radius: 8px; padding: 0.75rem 1.25rem; font-weight: 600; font-size: 0.9rem; }
+  .ask-ai__step span { display: inline-block; background: #FF1616; color: #fff; width: 1.6rem; height: 1.6rem; line-height: 1.6rem; text-align: center; border-radius: 50%; margin-right: 0.5rem; font-size: 0.85rem; }
+  .ask-ai__ai-links { display: flex; gap: 0.75rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+  .ask-ai__ai-link { border: 1px solid #ddd; border-radius: 8px; padding: 0.6rem 1.1rem; text-decoration: none; color: #222; font-weight: 600; font-size: 0.9rem; }
+  .ask-ai__ai-link:hover { border-color: #FF1616; color: #FF1616; }
+  .ask-ai__group { margin-bottom: 2.5rem; }
+  .ask-ai__group h2 { font-size: 1.3rem; margin-bottom: 1rem; }
+  .ask-ai__card { border: 1px solid #e5e5e5; border-radius: 10px; padding: 1.1rem 1.25rem; margin-bottom: 0.9rem; display: flex; gap: 1rem; align-items: flex-start; justify-content: space-between; background: #fff; }
+  .ask-ai__prompt { margin: 0; font-size: 0.95rem; line-height: 1.6; color: #333; flex: 1; }
+  .ask-ai__copy { flex-shrink: 0; background: #FF1616; color: #fff; border: none; border-radius: 6px; padding: 0.55rem 1rem; font-weight: 600; font-size: 0.85rem; cursor: pointer; }
+  .ask-ai__copy:hover { background: #d61111; }
+  .ask-ai__cta { background: #111; color: #fff; border-radius: 12px; padding: 2rem; margin-top: 3rem; text-align: center; }
+  .ask-ai__cta h2 { color: #fff; margin-top: 0; }
+  .ask-ai__cta p { color: #ccc; }
+  .ask-ai__cta a { color: #fff; }
+  .ask-ai__cta-btn { display: inline-block; background: #FF1616; color: #fff !important; padding: 0.75rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 700; margin-top: 0.5rem; }
+  @media (max-width: 640px) {
+    .ask-ai__card { flex-direction: column; }
+    .ask-ai__copy { width: 100%; }
+  }
+</style>
