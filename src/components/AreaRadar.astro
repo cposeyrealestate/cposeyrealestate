@@ -1,48 +1,77 @@
 ---
 /**
- * AreaRadar — clickable "radar screen" area map for the homepage.
- * Stylized SVG radar (rings radiate from San Antonio) with HTML overlay links:
+ * AreaRadar — real-geography service-area map for the homepage.
+ * Dark, brand-styled map traced from the actual San Antonio highway network:
  *  - 12 city dots → area relocation guides
  *  - 4 installation stars → per-installation PCS housing guides
- *  - 5 landmark pins with custom icons → visual markers with hover labels (not links)
- * Major highways drawn as real roads with shield icons.
+ *  - 5 landmark pins with custom icons (visual markers, hover for name)
+ * Real road curves: I-35, I-10, I-37, US-281, Loop 1604, Loop 410, TX-46,
+ * plus dim minor roads (US-90, US-87, TX-123, US-181, TX-16) for texture.
  */
 
 const cities = [
-  { name: 'San Antonio', href: '/san-antonio/', x: 50, y: 50, lx: -8, ly: 68, home: true },
-  { name: 'New Braunfels', href: '/new-braunfels/', x: 68, y: 35.5, lx: 14, ly: -10 },
-  { name: 'Bulverde', href: '/bulverde/', x: 47, y: 33, lx: -54, ly: -8 },
-  { name: 'Garden Ridge', href: '/garden-ridge/', x: 53.75, y: 37.5, lx: -30, ly: -30 },
-  { name: 'Canyon Lake', href: '/canyon-lake/', x: 52, y: 24.5, lx: 14, ly: -12 },
-  { name: 'Seguin', href: '/seguin/', x: 78, y: 50, lx: 14, ly: -10 },
-  { name: 'Cibolo', href: '/cibolo-schertz/', x: 71.5, y: 41.7, lx: 14, ly: -14 },
-  { name: 'Schertz', href: '/cibolo-schertz/', x: 64, y: 41.5, lx: 8, ly: -24 },
-  { name: 'Boerne', href: '/boerne/', x: 34.5, y: 34.5, lx: -50, ly: -10 },
-  { name: 'Universal City', href: '/cibolo-schertz/', x: 66, y: 52, lx: 14, ly: 20 },
-  { name: 'Selma', href: '/cibolo-schertz/', x: 61, y: 48.6, lx: 14, ly: -22 },
-  { name: 'Live Oak', href: '/cibolo-schertz/', x: 56.7, y: 50.3, lx: -20, ly: 30 },
+  { name: 'San Antonio', href: '/san-antonio/', x: 350, y: 385, lx: 350, ly: 435, anchor: 'start', home: true },
+  { name: 'New Braunfels', href: '/new-braunfels/', x: 559, y: 232, lx: 575, ly: 220, anchor: 'start' },
+  { name: 'Bulverde', href: '/bulverde/', x: 303, y: 216, lx: 296, ly: 212, anchor: 'end' },
+  { name: 'Garden Ridge', href: '/garden-ridge/', x: 445, y: 264, lx: 350, ly: 256, anchor: 'start' },
+  { name: 'Canyon Lake', href: '/canyon-lake/', x: 500, y: 100, lx: 516, ly: 90, anchor: 'start' },
+  { name: 'Seguin', href: '/seguin/', x: 649, y: 306, lx: 665, ly: 298, anchor: 'start' },
+  { name: 'Cibolo', href: '/cibolo-schertz/', x: 502, y: 307, lx: 560, ly: 310, anchor: 'start' },
+  { name: 'Schertz', href: '/cibolo-schertz/', x: 471, y: 300, lx: 455, ly: 288, anchor: 'end' },
+  { name: 'Boerne', href: '/boerne/', x: 245, y: 178, lx: 259, ly: 168, anchor: 'start' },
+  { name: 'Universal City', href: '/cibolo-schertz/', x: 457, y: 315, lx: 490, ly: 352, anchor: 'start' },
+  { name: 'Selma', href: '/cibolo-schertz/', x: 454, y: 297, lx: 468, ly: 291, anchor: 'start' },
+  { name: 'Live Oak', href: '/cibolo-schertz/', x: 437, y: 316, lx: 330, ly: 344, anchor: 'start' },
 ];
 
 const installations = [
-  { name: 'Fort Sam Houston', href: '/military-relocation/fort-sam-houston/', x: 57, y: 46, lx: -120, ly: -6 },
-  { name: 'Randolph AFB', href: '/military-relocation/randolph-afb/', x: 76, y: 44, lx: 14, ly: 14 },
-  { name: 'Lackland AFB', href: '/military-relocation/lackland-afb/', x: 38, y: 60, lx: -64, ly: 6 },
-  { name: 'Camp Bullis', href: '/military-relocation/camp-bullis/', x: 41.25, y: 37, lx: -62, ly: 8 },
+  { name: 'Fort Sam Houston', href: '/military-relocation/fort-sam-houston/', x: 364, y: 366, lx: 234, ly: 378, anchor: 'start' },
+  { name: 'Randolph AFB', href: '/military-relocation/randolph-afb/', x: 471, y: 327, noLabel: true },
+  { name: 'Lackland AFB', href: '/military-relocation/lackland-afb/', x: 282, y: 410, lx: 212, ly: 418, anchor: 'start' },
+  { name: 'Camp Bullis', href: '/military-relocation/camp-bullis/', x: 276, y: 267, lx: 196, ly: 251, anchor: 'start' },
 ];
 
 const landmarks = [
-  { name: 'Schlitterbahn', x: 73, y: 29.5, icon: '#icon-slide', color: '#5ab0ff', showName: true },
-  { name: 'Riverwalk', x: 51, y: 55, icon: '#icon-river', color: '#4fd1c5', showName: false },
-  { name: 'Spurs', x: 65, y: 56, icon: '#icon-ball', color: '#c0c0c0', showName: false },
-  { name: 'Six Flags', x: 34, y: 42, icon: '#icon-coaster', color: '#ff9f43', showName: true },
-  { name: 'SeaWorld', x: 33, y: 65, icon: '#icon-wave', color: '#5ab0ff', showName: false },
+  { name: 'Schlitterbahn', x: 595, y: 255, lx: 613, ly: 247, icon: '#icon-slide', color: '#5ab0ff', showName: true },
+  { name: 'Riverwalk', x: 390, y: 395, icon: '#icon-river', color: '#4fd1c5', showName: false },
+  { name: 'Spurs', x: 405, y: 378, icon: '#icon-ball', color: '#c0c0c0', showName: false },
+  { name: 'Six Flags', x: 291, y: 290, lx: 309, ly: 282, icon: '#icon-coaster', color: '#ff9f43', showName: true },
+  { name: 'SeaWorld', x: 236, y: 373, icon: '#icon-wave', color: '#5ab0ff', showName: false },
 ];
 
-const driveTimes = [
-  { label: '25 MIN · SA TO NEW BRAUNFELS', x: 50, y: 4.5 },
-  { label: '80 MIN · SA TO AUSTIN', x: 50, y: 95.5 },
-  { label: '35 MIN · SA TO SEGUIN', x: 5, y: 50 },
-  { label: '30 MIN · SA TO BOERNE', x: 95, y: 50 },
+const contextTowns = [
+  ['San Marcos', 628, 150], ['Buda', 700, 42], ['Wimberley', 570, 60], ['Blanco', 395, 22],
+  ['Kerrville', 105, 32], ['Comfort', 190, 105], ['Bandera', 105, 182], ['Hondo', 115, 525],
+  ['Lytle', 230, 570], ['Natalia', 200, 595], ['Somerset', 300, 575], ['Poteet', 350, 680],
+  ['Pleasanton', 375, 745], ['Jourdanton', 360, 790], ['Pearsall', 120, 830],
+  ['La Vernia', 508, 500], ['Stockdale', 592, 550], ['Luling', 775, 245], ['Lockhart', 725, 150],
+  ['Helotes', 235, 305], ['Floresville', 508, 648],
+];
+
+/* traced road geometry (1024 reference, from real map) */
+const I35 = "M655,-10 L655,78 L650,110 L642,150 L625,180 L605,200 L580,215 L558,232 L545,245 L528,258 L510,268 L495,275 L478,285 L462,300 L445,318 L430,335 L415,355 L405,372 L398,388 L392,410 L385,435 L375,455 L360,470 L345,478 L330,495 L312,515 L292,535 L270,552 L248,562 L230,570 L212,582 L200,595 L185,608 L170,618 L150,635 L130,655 L115,680 L105,710 L100,740 L98,800 L95,900 L92,1034";
+const I10 = "M100,-10 L95,45 L95,70 L100,95 L110,118 L125,140 L145,158 L170,172 L195,185 L220,195 L245,205 L270,215 L295,225 L298,245 L300,265 L303,285 L306,305 L310,325 L318,345 L330,362 L345,375 L362,384 L380,390 L400,392 L420,390 L438,384 L455,375 L470,364 L485,350 L500,335 L515,320 L532,306 L550,294 L570,283 L592,274 L615,266 L638,259 L662,252 L688,246 L715,242 L745,243 L775,245 L810,246 L850,247 L890,248 L930,249 L975,250 L1034,251";
+const I37 = "M400,395 L410,420 L418,445 L425,470 L430,495 L433,520 L435,545 L436,570 L435,595 L432,620 L428,640 L422,665 L415,690 L408,715 L400,740 L392,765 L385,790 L380,820 L375,860 L372,900 L370,950 L368,1034";
+const US281N = "M400,390 L402,360 L405,330 L408,305 L411,285 L415,265 L419,245 L423,225 L427,205 L431,185 L434,165 L437,145 L440,125 L442,105 L444,85 L446,65 L448,45 L450,25 L452,-10";
+const US281S = "M400,395 L394,425 L388,455 L382,485 L376,515 L370,545 L364,575 L360,605 L358,635 L358,665 L360,695 L364,725 L370,755 L378,785 L388,815 L398,845 L408,875 L418,905 L428,935 L438,965 L448,995 L458,1034";
+const LOOP1604 = "M335,285 L350,260 L375,240 L405,228 L435,225 L465,230 L495,240 L520,255 L540,275 L555,300 L562,325 L560,350 L550,375 L535,398 L515,418 L492,435 L468,448 L442,458 L415,465 L388,468 L360,466 L333,458 L310,445 L292,428 L280,408 L272,385 L270,362 L275,338 L285,315 L300,295 L318,282 Z";
+const LOOP410 = "M345,325 L370,310 L395,305 L420,310 L440,322 L452,340 L455,360 L450,380 L438,398 L420,412 L400,420 L378,420 L358,412 L342,398 L333,380 L330,360 L333,340 Z";
+const TX46W = "M558,232 L540,225 L520,218 L500,210 L480,202 L460,195 L440,188 L420,182 L400,178 L380,175 L360,172 L340,168 L320,165 L300,164 L288,168 L270,169 L250,170 L230,171 L210,173 L190,174 L170,176 L150,177 L130,179 L110,181 L95,183";
+const TX46E = "M558,232 L575,235 L595,242 L615,250 L630,258 L642,266 L649,275 L652,290 L653,306";
+const US90W = "M390,395 L360,420 L330,445 L300,470 L270,492 L240,510 L215,520 L190,525 L160,528 L130,530 L100,532 L60,536 L20,540 L-10,543";
+const US87S = "M405,405 L425,430 L445,455 L460,475 L480,495 L500,510 L530,525 L560,540 L590,555 L620,562 L650,565 L685,568 L720,570 L760,572 L800,578 L840,585 L880,595 L920,608 L960,622 L1000,638 L1034,652";
+const TX123 = "M648,120 L650,150 L652,180 L654,205 L653,222 L650,245 L646,268 L642,290 L640,312 L640,335 L642,358 L645,380 L648,402 L650,425 L652,448 L654,470 L655,493 L656,516 L656,539 L655,562 L654,585 L652,608 L650,631 L648,654 L646,677 L644,700 L642,723 L640,746 L638,769 L636,792 L634,815 L632,838";
+const US181 = "M435,580 L450,600 L465,620 L482,638 L500,652 L520,662 L542,670 L562,678 L580,688 L595,700 L605,715 L610,732 L613,750 L616,768 L620,786 L626,804 L634,822 L642,840";
+const TX16 = "M170,-10 L165,40 L158,90 L150,130 L140,160 L128,178 L112,186 L100,198 L95,215 L98,235 L108,255 L125,272 L150,285 L180,295 L210,302 L235,305 L260,308 L285,315 L310,325 L330,338 L348,353 L362,370 L372,388 L378,405";
+
+const shieldsI = [
+  [655, 78, '35'], [530, 258, '35'], [345, 478, '35'], [170, 618, '35'],
+  [715, 242, '10'], [311, 332, '10'], [428, 640, '37'],
+];
+const shieldsH = [
+  [431, 185, '281'], [360, 605, '281'], [415, 465, '1604'], [455, 360, '410'],
+  [360, 172, '46'], [232, 514, '90'], [460, 475, '87'], [685, 568, '87'],
+  [652, 180, '123'], [610, 732, '181'], [148, 130, '16'],
 ];
 ---
 
@@ -51,15 +80,14 @@ const driveTimes = [
     <p class="area-radar__kicker">Explore the Area</p>
     <h2 class="area-radar__heading">Find Your Place in the Corridor</h2>
     <p class="area-radar__sub">
-      Twelve cities, four military installations, one radar. Click anywhere on the
-      dial for the full relocation guide — neighborhoods, commute times, schools,
-      and what your BAH actually buys.
+      Twelve cities, four military installations, one map. Click anywhere for the
+      full relocation guide — neighborhoods, commute times, schools, and what
+      your BAH actually buys.
     </p>
 
     <div class="area-radar__map">
-      <svg viewBox="0 0 800 800" class="area-radar__svg" role="img" aria-label="Radar-style map of Cody Posey's service area, centered on San Antonio, Texas">
+      <svg viewBox="0 0 1024 1024" class="area-radar__svg" role="img" aria-label="Service area map: San Antonio, Texas region">
         <defs>
-          <!-- landmark icons -->
           <symbol id="icon-ball" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
             <path d="M12 3v18M3 12h18M5.5 5.5c3 3 3 10 0 13M18.5 5.5c-3 3-3 10 0 13" fill="none" stroke="currentColor" stroke-width="1.4"/>
@@ -80,126 +108,113 @@ const driveTimes = [
             <path d="M4 9c5 1.5 7 7 11 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.6"/>
             <circle cx="18" cy="19" r="1.8" fill="currentColor"/>
           </symbol>
-          <!-- interstate shield -->
           <symbol id="shield-i" viewBox="0 0 40 44">
             <path d="M20 2l14 6v12c0 10-6 17-14 22C12 37 6 30 6 20V8z" fill="#1a3a6b" stroke="#fff" stroke-width="2"/>
             <path d="M6 8l14-6 14 6v5H6z" fill="#c0392b"/>
           </symbol>
-          <!-- state/us highway shield -->
           <symbol id="shield-h" viewBox="0 0 40 40">
             <rect x="3" y="5" width="34" height="30" rx="7" fill="#f5f5f5" stroke="#222" stroke-width="2"/>
           </symbol>
         </defs>
 
-        <!-- concentric radar rings -->
-        <g fill="none" stroke="rgba(255,255,255,0.14)" stroke-dasharray="6 8">
-          <circle cx="400" cy="400" r="360" stroke-width="1.5" />
-          <circle cx="400" cy="400" r="270" stroke-width="1" />
-          <circle cx="400" cy="400" r="180" stroke-width="1" />
-          <circle cx="400" cy="400" r="90" stroke-width="1" />
-        </g>
-        <!-- crosshairs -->
-        <g stroke="rgba(255,255,255,0.07)" stroke-width="1">
-          <line x1="400" y1="20" x2="400" y2="780" />
-          <line x1="20" y1="400" x2="780" y2="400" />
-        </g>
-
-        <!-- ======== HIGHWAYS (casing + surface) ======== -->
-        <g fill="none" stroke-linecap="round">
-          <!-- casing -->
-          <g stroke="#0a0a0a" stroke-width="9">
-            <path d="M 300 560 L 400 400 L 478 368 L 545 285 L 605 195" />
-            <path d="M 110 432 L 400 400 L 705 378" />
-            <path d="M 400 400 L 410 280 L 415 190" />
-            <path d="M 545 285 L 430 300 L 340 282 L 272 272" />
-            <path d="M 400 400 L 470 510 L 530 610" />
-          </g>
-          <!-- I-35 surface: red -->
-          <path d="M 300 560 L 400 400 L 478 368 L 545 285 L 605 195" stroke="#FF1616" stroke-width="4.5" opacity="0.85"/>
-          <!-- other highways surface: light -->
-          <g stroke="#e8e8e8" stroke-width="3.5" opacity="0.9">
-            <path d="M 110 432 L 400 400 L 705 378" />
-            <path d="M 400 400 L 410 280 L 415 190" />
-            <path d="M 545 285 L 430 300 L 340 282 L 272 272" />
-            <path d="M 400 400 L 470 510 L 530 610" />
-          </g>
-        </g>
-        <!-- Loop 1604 -->
-        <g fill="none">
-          <ellipse cx="400" cy="400" rx="185" ry="140" stroke="#0a0a0a" stroke-width="8" transform="rotate(-12 400 400)" />
-          <ellipse cx="400" cy="400" rx="185" ry="140" stroke="#e8e8e8" stroke-width="3" stroke-dasharray="12 7" transform="rotate(-12 400 400)" opacity="0.85" />
-        </g>
-
-        <!-- highway shields -->
-        <g font-family="inherit" font-weight="700" text-anchor="middle">
-          <g transform="translate(362,466)"><use href="#shield-i" width="30" height="33" x="-15" y="-16"/><text x="0" y="8" font-size="13" fill="#fff">35</text></g>
-          <g transform="translate(170,420)"><use href="#shield-i" width="30" height="33" x="-15" y="-16"/><text x="0" y="8" font-size="13" fill="#fff">10</text></g>
-          <g transform="translate(420,266)"><use href="#shield-h" width="34" height="34" x="-17" y="-17"/><text x="0" y="6" font-size="12" fill="#111">281</text></g>
-          <g transform="translate(352,282)"><use href="#shield-h" width="34" height="34" x="-17" y="-17"/><text x="0" y="6" font-size="12" fill="#111">46</text></g>
-          <g transform="translate(590,420)"><use href="#shield-h" width="40" height="34" x="-20" y="-17"/><text x="0" y="6" font-size="11" fill="#111">1604</text></g>
-        </g>
-
+        <!-- land -->
+        <rect x="0" y="0" width="1024" height="1024" fill="#20242a"/>
+        <!-- urban footprint -->
+        <path d="M250,250 L330,222 L420,218 L500,235 L555,270 L575,330 L560,395 L515,445 L450,475 L375,485 L305,465 L255,420 L232,355 L235,295 Z" fill="rgba(255,255,255,0.045)"/>
         <!-- water -->
-        <g fill="rgba(120,170,220,0.20)">
-          <ellipse cx="415" cy="195" rx="42" ry="26" transform="rotate(-18 415 195)" />
+        <g fill="#2e5f8a" opacity="0.85">
+          <path d="M498,132 L508,120 L520,112 L535,110 L550,115 L560,125 L562,135 L555,145 L542,148 L528,146 L515,142 L505,138 Z"/>
+          <ellipse cx="452" cy="452" rx="12" ry="8"/>
+          <ellipse cx="468" cy="466" rx="10" ry="7"/>
         </g>
-        <!-- water / county labels -->
-        <g fill="rgba(255,255,255,0.30)" font-size="13" letter-spacing="3" text-anchor="middle" font-family="inherit">
-                    <text x="400" y="560">BEXAR CO.</text>
-          <text x="690" y="445">GUADALUPE CO.</text>
-          <text x="180" y="300">KENDALL CO.</text>
-          <text x="590" y="150">COMAL CO.</text>
+
+        <!-- minor roads -->
+        <g fill="none" stroke="#7a828e" stroke-width="3" stroke-linecap="round" opacity="0.75">
+          <path d={US90W} /><path d={US87S} /><path d={TX123} /><path d={US181} /><path d={TX16} />
         </g>
+
+        <!-- highways: casing -->
+        <g fill="none" stroke="#0b0d10" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d={US281N} /><path d={US281S} /><path d={LOOP1604} /><path d={LOOP410} /><path d={TX46W} /><path d={TX46E} />
+        </g>
+        <!-- highways: surface -->
+        <g fill="none" stroke="#c8cdd4" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d={US281N} /><path d={US281S} /><path d={LOOP1604} /><path d={LOOP410} /><path d={TX46W} /><path d={TX46E} />
+        </g>
+
+        <!-- interstates: casing -->
+        <g fill="none" stroke="#0b0d10" stroke-width="11" stroke-linecap="round" stroke-linejoin="round">
+          <path d={I35} /><path d={I10} /><path d={I37} />
+        </g>
+        <!-- interstates: surface -->
+        <g fill="none" stroke="#FF1616" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+          <path d={I35} /><path d={I10} /><path d={I37} />
+        </g>
+
+        <!-- shields -->
+        <g font-family="inherit" font-weight="700" text-anchor="middle">
+          {shieldsI.map(([x, y, t]) => (
+            <g transform={`translate(${x},${y})`}>
+              <use href="#shield-i" width="34" height="37" x="-17" y="-18"/>
+              <text x="0" y="9" font-size="14" fill="#fff">{t}</text>
+            </g>
+          ))}
+          {shieldsH.map(([x, y, t]) => (
+            <g transform={`translate(${x},${y})`}>
+              <use href="#shield-h" width="38" height="38" x="-19" y="-19"/>
+              <text x="0" y="7" font-size={String(t).length > 3 ? 12 : 13} fill="#111">{t}</text>
+            </g>
+          ))}
+        </g>
+
+        <!-- county labels -->
+        <g fill="rgba(255,255,255,0.28)" font-size="19" letter-spacing="5" text-anchor="middle" font-family="inherit">
+          <text x="350" y="640">BEXAR CO.</text>
+          <text x="660" y="118">COMAL CO.</text>
+          <text x="770" y="370">GUADALUPE CO.</text>
+          <text x="150" y="220">KENDALL CO.</text>
+        </g>
+
+        <!-- context towns -->
+        <g fill="rgba(255,255,255,0.38)" font-size="15" text-anchor="middle" font-family="inherit">
+          {contextTowns.map(([t, x, y]) => (<text x={x} y={y}>{t}</text>))}
+        </g>
+
         <!-- compass -->
-        <g fill="rgba(255,255,255,0.55)" font-size="16" font-weight="700" text-anchor="middle" font-family="inherit">
-          <text x="400" y="52">N</text>
-          <path d="M 400 60 L 394 74 L 406 74 Z" />
+        <g fill="rgba(255,255,255,0.55)" font-size="20" font-weight="700" text-anchor="middle" font-family="inherit">
+          <text x="60" y="60">N</text>
+          <path d="M 60 70 L 53 86 L 67 86 Z" />
         </g>
+
+        <!-- clickable city dots -->
+        {cities.map((c) => (
+          <a href={c.href} class={'map-city' + (c.home ? ' map-city--home' : '')} aria-label={`${c.name} relocation guide`}>
+            <circle cx={c.x} cy={c.y} r="30" fill="transparent" />
+            <circle class="dot" cx={c.x} cy={c.y} r={c.home ? 11 : 8} />
+            <text class="lbl" x={c.lx} y={c.ly} text-anchor={c.anchor}>{c.name}</text>
+          </a>
+        ))}
+
+        <!-- installation stars -->
+        {installations.map((b) => (
+          <a href={b.href} class="map-base" aria-label={`${b.name} PCS housing guide`}>
+            <circle cx={b.x} cy={b.y} r="30" fill="transparent" />
+            <path class="star" d={`M ${b.x} ${b.y - 12} l 3.4 7.3 7.9 0.9 -5.9 5.4 1.6 7.8 -7 -4 -7 4 1.6 -7.8 -5.9 -5.4 7.9 -0.9 z`} />
+            <title>{b.name}</title>
+            {!b.noLabel && <text class="lbl" x={b.lx} y={b.ly} text-anchor={b.anchor}>{b.name}</text>}
+          </a>
+        ))}
+
+        <!-- landmark pins -->
+        {landmarks.map((l) => (
+          <g class="pin" aria-label={l.name}>
+            <title>{l.name}</title>
+            <circle cx={l.x} cy={l.y} r="13" fill="#101216" stroke="rgba(255,255,255,0.55)" stroke-width="1.5"/>
+            <use href={l.icon} x={l.x - 8} y={l.y - 8} width="16" height="16" style={`color:${l.color}`} />
+            {l.showName && <text class="pin-lbl" x={l.lx} y={l.ly}>{l.name}</text>}
+          </g>
+        ))}
       </svg>
-
-      <!-- clickable city dots -->
-      {cities.map((c) => (
-        <a
-          href={c.href}
-          class={'area-radar__point' + (c.home ? ' area-radar__point--home' : '')}
-          style={`left:${c.x}%;top:${c.y}%;`}
-          aria-label={`${c.name} relocation guide`}
-        >
-          <span class="area-radar__dot"></span>
-          <span class="area-radar__label" style={`transform:translate(${c.lx}px,${c.ly}px);`}>{c.name}</span>
-        </a>
-      ))}
-
-      <!-- installation stars -->
-      {installations.map((b) => (
-        <a
-          href={b.href}
-          class="area-radar__point area-radar__point--base"
-          style={`left:${b.x}%;top:${b.y}%;`}
-          aria-label={`${b.name} PCS housing guide`}
-        >
-          <svg class="area-radar__star" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-            <path d="M12 1.8l3.1 6.6 7.1.8-5.3 4.9 1.4 7-6.3-3.6-6.3 3.6 1.4-7L1.8 9.2l7.1-.8z" fill="#FF1616" stroke="#fff" stroke-width="1.2"/>
-          </svg>
-          <span class="area-radar__label area-radar__label--base" style={`transform:translate(${b.lx}px,${b.ly}px);`}>{b.name}</span>
-        </a>
-      ))}
-
-      <!-- landmark pins (visual only) -->
-      {landmarks.map((l) => (
-        <span class="area-radar__landmark" style={`left:${l.x}%;top:${l.y}%;`} title={l.name} aria-label={l.name}>
-          <svg class="area-radar__pin" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
-            <circle cx="16" cy="16" r="14" fill="#161616" stroke="rgba(255,255,255,0.55)" stroke-width="1.5"/>
-            <use href={l.icon} x="8" y="8" width="16" height="16" style={`color:${l.color}`} />
-          </svg>
-          {l.showName && <span class="area-radar__landmark-name">{l.name}</span>}
-        </span>
-      ))}
-
-      <!-- drive-time callouts -->
-      {driveTimes.map((d) => (
-        <span class="area-radar__drive" style={`left:${d.x}%;top:${d.y}%;`}>{d.label}</span>
-      ))}
     </div>
 
     <!-- legend -->
@@ -266,98 +281,53 @@ const driveTimes = [
     width: 100%;
     height: 100%;
   }
-  .area-radar__point {
-    position: absolute;
-    width: 0;
-    height: 0;
-    text-decoration: none;
-    z-index: 3;
+  .area-radar__svg a { cursor: pointer; }
+  .map-city .dot {
+    fill: #FF1616;
+    stroke: #fff;
+    stroke-width: 2.5;
+    transition: r 0.15s;
   }
-  .area-radar__dot {
-    position: absolute;
-    left: -6px;
-    top: -6px;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #FF1616;
-    border: 2px solid #fff;
-    box-shadow: 0 0 0 4px rgba(255,22,22,0.25);
-    transition: box-shadow 0.15s, transform 0.15s;
+  .map-city:hover .dot { fill: #ff4d4d; }
+  .map-city--home .dot {
+    fill: #fff;
+    stroke: #FF1616;
+    stroke-width: 3.5;
   }
-  .area-radar__point:hover .area-radar__dot {
-    transform: scale(1.35);
-    box-shadow: 0 0 0 7px rgba(255,22,22,0.35);
+  .map-city .lbl {
+    fill: #fff;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    paint-order: stroke;
+    stroke: rgba(10, 12, 16, 0.9);
+    stroke-width: 5px;
   }
-  .area-radar__point--home .area-radar__dot {
-    width: 16px;
-    height: 16px;
-    left: -8px;
-    top: -8px;
-    background: #fff;
-    border: 3px solid #FF1616;
-  }
-  .area-radar__star {
-    position: absolute;
-    left: -9px;
-    top: -9px;
+  .map-city:hover .lbl { fill: #FF1616; }
+  .map-base .star {
+    fill: #FF1616;
+    stroke: #fff;
+    stroke-width: 1.5;
     filter: drop-shadow(0 0 6px rgba(255,22,22,0.7));
-    transition: transform 0.15s;
   }
-  .area-radar__point--base:hover .area-radar__star {
-    transform: scale(1.3);
-  }
-  .area-radar__label {
-    position: absolute;
-    left: 0;
-    top: -9px;
-    white-space: nowrap;
-    font-size: 0.72rem;
+  .map-base:hover .star { fill: #ff4d4d; }
+  .map-base .lbl {
+    fill: #ffb3b3;
+    font-size: 20px;
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    color: #fff;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.9);
-    transition: color 0.15s;
+    paint-order: stroke;
+    stroke: rgba(10, 12, 16, 0.9);
+    stroke-width: 5px;
   }
-  .area-radar__point:hover .area-radar__label {
-    color: #FF1616;
-  }
-  .area-radar__label--base {
-    color: #ffb3b3;
-  }
-  .area-radar__landmark {
-    position: absolute;
-    width: 0;
-    height: 0;
-    z-index: 2;
-    cursor: default;
-  }
-  .area-radar__pin {
-    position: absolute;
-    left: -15px;
-    top: -15px;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
-  }
-  .area-radar__landmark-name {
-    position: absolute;
-    left: 18px;
-    top: -8px;
-    white-space: nowrap;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
+  .map-base:hover .lbl { fill: #FF1616; }
+  .pin-lbl {
+    fill: rgba(255,255,255,0.6);
+    font-size: 15px;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.6);
-  }
-  .area-radar__drive {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    white-space: nowrap;
-    font-size: 0.62rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    color: rgba(255,255,255,0.5);
-    z-index: 1;
   }
   .area-radar__legend {
     display: flex;
@@ -376,10 +346,12 @@ const driveTimes = [
     color: #bdbdbd;
   }
   .area-radar__dot--sm {
-    position: static;
     width: 10px;
     height: 10px;
-    box-shadow: none;
+    border-radius: 50%;
+    background: #FF1616;
+    border: 2px solid #fff;
+    display: inline-block;
   }
   .area-radar__mobile-list {
     display: none;
@@ -393,9 +365,6 @@ const driveTimes = [
     text-decoration: none;
   }
   @media (max-width: 720px) {
-    .area-radar__label { font-size: 0.6rem; }
-    .area-radar__landmark-name { display: none; }
-    .area-radar__drive { display: none; }
     .area-radar__mobile-list {
       display: block;
       margin-top: 1.5rem;

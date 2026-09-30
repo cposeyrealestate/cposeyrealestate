@@ -1,11 +1,21 @@
 ---
+/**
+ * LeadGate — email capture modal.
+ * mode="block": full-page blocking gate that unblurs `.lead-gated` content on submit (default).
+ * mode="download": hidden until opened via `window.openLeadGate()` or a `[data-open-lead-gate]`
+ *   button; on successful submit it triggers a file download from `downloadUrl`.
+ */
+const { mode = 'block', downloadUrl = '' } = Astro.props;
+const isDownload = mode === 'download';
 ---
 
-<div class="lead-gate" id="leadGate">
+<div class="lead-gate" id="leadGate" data-mode={mode} data-download-url={downloadUrl} style={isDownload ? 'display:none;' : ''}>
   <div class="lead-gate__backdrop"></div>
   <div class="lead-gate__modal">
-    <h2 class="lead-gate__title">Unlock Full <span class="lead-gate__accent">Access</span></h2>
-    <p class="lead-gate__subtext">Register once to access all neighborhood guides, market insights, and local resources.</p>
+    <h2 class="lead-gate__title">Get the <span class="lead-gate__accent">Free Guide</span></h2>
+    <p class="lead-gate__subtext">{isDownload
+      ? 'Enter your details and the New Braunfels & Hill Country Relocation Guide PDF is yours.'
+      : 'Register once to access all neighborhood guides, market insights, and local resources.'}</p>
 
     <form class="lead-gate__form" id="leadGateForm" novalidate>
       <div class="lead-gate__field">
