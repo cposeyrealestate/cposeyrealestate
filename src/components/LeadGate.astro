@@ -10,8 +10,11 @@ const isDownload = mode === 'download';
 ---
 
 <div class="lead-gate" id="leadGate" data-mode={mode} data-download-url={downloadUrl} style={isDownload ? 'display:none;' : ''}>
-  <div class="lead-gate__backdrop"></div>
+  <div class="lead-gate__backdrop" data-close-lead-gate></div>
   <div class="lead-gate__modal">
+    {isDownload && (
+      <button type="button" class="lead-gate__close" data-close-lead-gate aria-label="Close">&times;</button>
+    )}
     <h2 class="lead-gate__title">Get the <span class="lead-gate__accent">Free Guide</span></h2>
     <p class="lead-gate__subtext">{isDownload
       ? 'Enter your details and the New Braunfels & Hill Country Relocation Guide PDF is yours.'
@@ -27,14 +30,20 @@ const isDownload = mode === 'download';
         <input type="email" id="lg-email" name="email" required placeholder="you@example.com" />
       </div>
       <div class="lead-gate__field">
-        <label for="lg-phone">Phone <span class="lead-gate__required">*</span></label>
-        <input type="tel" id="lg-phone" name="phone" required placeholder="(555) 555-5555" />
+        <label for="lg-phone">Phone {isDownload ? <span class="lead-gate__optional">(optional)</span> : <span class="lead-gate__required">*</span>}</label>
+        <input type="tel" id="lg-phone" name="phone" required={!isDownload} placeholder="(555) 555-5555" />
       </div>
       <div class="lead-gate__error" id="leadGateError" style="display: none;">
         Something went wrong. Please try again.
       </div>
-      <button type="submit" class="btn btn-primary lead-gate__submit">Get Access</button>
+      <button type="submit" class="btn btn-primary lead-gate__submit">{isDownload ? 'Download the Guide' : 'Get Access'}</button>
     </form>
+
+    <div class="lead-gate__success" id="leadGateSuccess" style="display: none;">
+      <div class="lead-gate__success-icon">&#10003;</div>
+      <h3>Your guide is on its way!</h3>
+      <p>Your download should start automatically. If it doesn't, <a id="leadGateRetry" href={downloadUrl} download>click here</a>.</p>
+    </div>
 
     <p class="lead-gate__privacy">Your information is never shared.</p>
   </div>
@@ -70,6 +79,22 @@ const isDownload = mode === 'download';
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
   }
 
+  .lead-gate__close {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.25rem;
+  }
+  .lead-gate__close:hover {
+    color: #fff;
+  }
+
   .lead-gate__title {
     color: #fff;
     font-size: 1.75rem;
@@ -79,6 +104,13 @@ const isDownload = mode === 'download';
 
   .lead-gate__accent {
     color: #FF1616;
+  }
+
+  .lead-gate__optional {
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: normal;
   }
 
   .lead-gate__subtext {
@@ -153,6 +185,35 @@ const isDownload = mode === 'download';
     margin-top: 0.25rem;
   }
 
+  .lead-gate__success {
+    text-align: center;
+    padding: 1rem 0;
+  }
+  .lead-gate__success-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 1rem;
+    background: #FF1616;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  .lead-gate__success h3 {
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .lead-gate__success p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+  }
+  .lead-gate__success a {
+    color: #FF1616;
+  }
+
   .lead-gate__privacy {
     text-align: center;
     color: rgba(255, 255, 255, 0.35);
@@ -178,28 +239,69 @@ const isDownload = mode === 'download';
 <script is:inline>
   (function() {
     var overlay = document.getElementById('leadGate');
+    if (!overlay) return;
+    var mode = overlay.getAttribute('data-mode') || 'block';
+    var isDownload = mode === 'download';
+    var downloadUrl = overlay.getAttribute('data-download-url') || '';
     var form = document.getElementById('leadGateForm');
     var errorEl = document.getElementById('leadGateError');
+    var successEl = document.getElementById('leadGateSuccess');
+    var source = isDownload ? 'Relocation Guide Download' : 'Lead Gate';
 
-    function unlock() {
+    function open() {
+      if (overlay) overlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
       if (overlay) overlay.style.display = 'none';
       document.body.style.overflow = '';
+    }
+
+    function unlock() {
+      close();
       document.querySelectorAll('.lead-gated').forEach(function(el) {
         el.classList.remove('lead-gated');
         el.classList.add('lead-gated--unlocked');
       });
     }
 
-    // Check if already registered
-    var stored = localStorage.getItem('cpr_lead');
-    if (stored) {
-      unlock();
-      return;
+    function triggerDownload() {
+      if (!downloadUrl) return;
+      var a = document.createElement('a');
+      a.href = downloadUrl;
+      a.setAttribute('download', '');
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
     }
 
-    // Show overlay and lock scroll
-    if (overlay) overlay.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
+    if (isDownload) {
+      // Download mode: hidden until opened via button or window.openLeadGate()
+      window.openLeadGate = open;
+      document.addEventListener('click', function(e) {
+        var opener = e.target.closest('[data-open-lead-gate]');
+        if (opener) {
+          e.preventDefault();
+          open();
+          return;
+        }
+        if (e.target.closest('[data-close-lead-gate]')) {
+          close();
+        }
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && overlay.style.display === 'flex') close();
+      });
+    } else {
+      // Block mode: show on load unless already registered
+      var stored = localStorage.getItem('cpr_lead');
+      if (stored) {
+        unlock();
+        return;
+      }
+      open();
+    }
 
     form && form.addEventListener('submit', function(e) {
       e.preventDefault();
@@ -215,7 +317,7 @@ const isDownload = mode === 'download';
 
       if (!nameInput.value.trim()) { nameInput.classList.add('error'); valid = false; }
       if (!emailInput.value.trim() || !emailInput.value.includes('@')) { emailInput.classList.add('error'); valid = false; }
-      if (!phoneInput.value.trim()) { phoneInput.classList.add('error'); valid = false; }
+      if (!isDownload && !phoneInput.value.trim()) { phoneInput.classList.add('error'); valid = false; }
 
       if (!valid) return;
 
@@ -225,23 +327,34 @@ const isDownload = mode === 'download';
         phone: phoneInput.value.trim()
       };
 
+      var payload = { name: data.name, email: data.email, source: source };
+      if (data.phone) payload.phone = data.phone;
+
       fetch('/api/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: data.name, email: data.email, phone: data.phone, source: 'Lead Gate' })
+        body: JSON.stringify(payload)
       })
       .then(function(res) {
         if (!res.ok) throw new Error('Server error');
         return res.json();
       })
       .then(function() {
-        localStorage.setItem('cpr_lead', JSON.stringify({
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          registeredAt: Date.now()
-        }));
-        unlock();
+        if (!isDownload) {
+          localStorage.setItem('cpr_lead', JSON.stringify({
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            registeredAt: Date.now()
+          }));
+        }
+        if (isDownload) {
+          form.style.display = 'none';
+          if (successEl) successEl.style.display = 'block';
+          triggerDownload();
+        } else {
+          unlock();
+        }
       })
       .catch(function() {
         if (errorEl) {

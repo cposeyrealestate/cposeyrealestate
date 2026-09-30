@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
+import LeadGate from '../components/LeadGate.astro';
 import Footer from '../components/Footer.astro';
 import ParallaxBanner from '../components/ParallaxBanner.astro';
 import VideoEmbed from '../components/VideoEmbed.astro';
@@ -18,10 +19,10 @@ const pageSchema = [
 ];
 
 const highlights = [
-  { num: '90K+', label: 'Population & Growing', desc: 'One of the fastest-growing cities in the U.S. for over a decade.' },
+  { num: '116K+', label: 'Population & Growing', desc: 'One of the fastest-growing cities in the U.S. — 2024 Census estimate.' },
   { num: '30 min', label: 'To San Antonio', desc: 'Easy commute south on I-35 to downtown SA and military bases.' },
   { num: '45 min', label: 'To Austin', desc: 'Quick drive north to the state capital and tech corridor.' },
-  { num: '$380K', label: 'Median Home Price', desc: 'More affordable than Austin with excellent quality of life.' },
+  { num: '$380K', label: 'Median Listing Price', desc: 'Realtor.com, September 2026 — more affordable than Austin.' },
 ];
 
 const sections = [
@@ -29,7 +30,7 @@ const sections = [
     title: 'Cost of Living',
     content: [
       'Texas has no state income tax, which means more of your paycheck stays with you.',
-      'Property taxes in Comal County average around 1.75% — lower than Bexar County (San Antonio) and significantly lower than Travis County (Austin).',
+      'Property taxes: your total rate depends on your exact taxing districts (county, city, school district, and any special districts). For tax year 2025, Comal County\u2019s county-only rate was $0.305015 per $100 of valuation \u2014 just one slice of the total bill. Always verify the adopted rates for a specific address.',
       'Overall cost of living in New Braunfels is below the national average, with affordable groceries, utilities, and transportation.',
       'Housing costs are well below Austin prices, making the NB area attractive for families and remote workers priced out of larger metros.',
     ],
@@ -147,6 +148,17 @@ const movingChecklist = [
       </div>
     </section>
 
+    <!-- PDF Download CTA -->
+    <section class="rg-download">
+      <div class="container rg-download__inner">
+        <div class="rg-download__text">
+          <h2>Take This Guide <span class="accent">With You</span></h2>
+          <p>Get the free New Braunfels &amp; Hill Country Relocation Guide as a printable PDF — all the numbers, neighborhoods, and checklists in one place.</p>
+        </div>
+        <button type="button" class="btn btn-primary" data-open-lead-gate>Download the Free PDF</button>
+      </div>
+    </section>
+
     <!-- Intro -->
     <section class="section">
       <div class="container">
@@ -254,6 +266,7 @@ const movingChecklist = [
 
     <ContactForm />
   </main>
+  <LeadGate mode="download" downloadUrl="/downloads/new-braunfels-relocation-guide.pdf" />
   <Footer />
 
   <script type="application/ld+json">
@@ -363,6 +376,38 @@ const movingChecklist = [
     font-size: 0.78rem;
     color: rgba(255,255,255,0.5);
     line-height: 1.5;
+  }
+
+  /* Download CTA band */
+  .rg-download {
+    background: #000;
+    padding: 3rem 0;
+  }
+  .rg-download__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .rg-download__text h2 {
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .rg-download__text p {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
+    max-width: 520px;
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    .rg-download__inner {
+      flex-direction: column;
+      text-align: center;
+    }
+    .rg-download__text p {
+      margin: 0 auto;
+    }
   }
 
   /* Intro */
