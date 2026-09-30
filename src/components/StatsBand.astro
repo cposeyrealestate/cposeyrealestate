@@ -1,0 +1,117 @@
+---
+// StatsBand — specific proof numbers. Rating and review count come from
+// seo.json so they stay in sync with SocialProof and the JSON-LD
+// aggregateRating. Update src/data/seo.json when the Google Business
+// Profile changes.
+import seo from '../data/seo.json';
+
+const { aggregateRating, reviewCount } = seo.reviews;
+
+const stats = [
+  {
+    num: aggregateRating.toFixed(1),
+    suffix: '★',
+    label: 'Google Rating',
+    sub: `from ${reviewCount} reviews`,
+  },
+  {
+    num: '20',
+    suffix: 'yrs',
+    label: 'U.S. Army Service',
+    sub: 'First Sergeant, Retired',
+  },
+  {
+    num: '16',
+    suffix: '',
+    label: 'Areas Served',
+    sub: '12 cities + 4 installations',
+  },
+  {
+    num: '3',
+    suffix: '',
+    label: 'Pro Designations',
+    sub: 'MRP · ABR · PSA',
+  },
+];
+---
+
+<section class="stats-band" aria-label="Cody Posey by the numbers">
+  <div class="container stats-band__grid">
+    {stats.map((s) => (
+      <div class="stats-band__stat">
+        <div class="stats-band__num">
+          {s.num}
+          {s.suffix && <span class="stats-band__suffix">{s.suffix}</span>}
+        </div>
+        <div class="stats-band__label">{s.label}</div>
+        <div class="stats-band__sub">{s.sub}</div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .stats-band {
+    background: #0a0a0a;
+    border-top: 1px solid rgba(255, 22, 22, 0.25);
+    border-bottom: 1px solid rgba(255, 22, 22, 0.25);
+    padding: 2.75rem 1.5rem;
+  }
+
+  .stats-band__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .stats-band__stat {
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .stats-band__stat + .stats-band__stat {
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .stats-band__num {
+    font-family: var(--font-heading);
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: #FF1616;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stats-band__suffix {
+    font-size: 1.4rem;
+    margin-left: 0.15rem;
+  }
+
+  .stats-band__label {
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #fff;
+    margin-bottom: 0.25rem;
+  }
+
+  .stats-band__sub {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    .stats-band__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.75rem 1rem;
+    }
+    .stats-band__stat + .stats-band__stat {
+      border-left: none;
+    }
+    .stats-band__num {
+      font-size: 2.1rem;
+    }
+  }
+</style>

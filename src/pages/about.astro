@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
+import StatsBand from '../components/StatsBand.astro';
 import Footer from '../components/Footer.astro';
 import ParallaxBanner from '../components/ParallaxBanner.astro';
 import { personSchema, breadcrumbSchema } from '../lib/schema';
@@ -73,6 +74,8 @@ import { personSchema, breadcrumbSchema } from '../lib/schema';
         </div>
       </div>
     </section>
+
+    <StatsBand />
 
     <!-- FAQ Section -->
     <section class="faq-section">
