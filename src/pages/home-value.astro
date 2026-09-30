@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
+import ShortAnswer from '../components/ShortAnswer.astro';
 import Footer from '../components/Footer.astro';
 import ParallaxBanner from '../components/ParallaxBanner.astro';
 import { articleSchema, breadcrumbSchema } from '../lib/schema';
@@ -32,6 +33,8 @@ const pageSchema = [
         <p>Request a free, personalized home valuation from a local expert who knows your neighborhood.</p>
       </div>
     </section>
+
+    <ShortAnswer answer="Your New Braunfels home's value comes from recent comparable sales nearby, adjusted for condition, upgrades, and lot — not automated estimates, which miss renovations and micro-neighborhood trends. For an accurate number, get a comparative market analysis built on live MLS data. Cody provides free, no-pressure CMAs for Hill Country homeowners." />
 
     <!-- Valuation Form -->
     <section class="valuation-form-section">

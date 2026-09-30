@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
+import ShortAnswer from '../components/ShortAnswer.astro';
 import ContactForm from '../components/ContactForm.astro';
 import VideoEmbed from '../components/VideoEmbed.astro';
 import Footer from '../components/Footer.astro';
@@ -34,6 +35,8 @@ const pageSchema = [
         <p>Estimate your monthly payment and see a full breakdown of costs</p>
       </div>
     </div>
+
+    <ShortAnswer answer="Your monthly payment depends on price, down payment, interest rate, property taxes, insurance, and HOA dues. In Texas, property taxes are a major factor and vary by exact address — always verify the rate for the home you're considering. Run the numbers here, then get pre-approved to lock in your real budget." />
 
     <!-- Calculator -->
     <section class="section">

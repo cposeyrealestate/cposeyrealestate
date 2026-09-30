@@ -1,0 +1,48 @@
+---
+// ShortAnswer — a 40–60 word direct answer to the page's core question,
+// placed right under the hero. Built for featured snippets and AI search:
+// crawlers lift concise, self-contained answers.
+interface Props {
+  answer: string;
+}
+
+const { answer } = Astro.props;
+---
+
+<div class="short-answer">
+  <div class="container">
+    <p class="short-answer__label">Short answer</p>
+    <p class="short-answer__text">{answer}</p>
+  </div>
+</div>
+
+<style>
+  .short-answer {
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+    padding: 1.5rem 1.5rem;
+  }
+
+  .short-answer__label {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #FF1616;
+    margin: 0 0 0.5rem;
+  }
+
+  .short-answer__text {
+    font-size: 1.02rem;
+    line-height: 1.7;
+    color: #333;
+    margin: 0;
+    max-width: 62ch;
+  }
+
+  .short-answer__text a {
+    color: #FF1616;
+    font-weight: 600;
+  }
+</style>
