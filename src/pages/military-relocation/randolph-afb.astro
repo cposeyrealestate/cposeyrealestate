@@ -1,0 +1,314 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { placeSchema, collectionPageSchema, breadcrumbSchema } from '../../lib/schema';
+
+const rndDescription = 'PCS to Randolph AFB? Where military families buy near JBSA-Randolph: Schertz, Cibolo, and Universal City neighborhoods, commute times, 2026 BAH buying power, schools, and VA loan notes.';
+const pageSchema = [
+  placeSchema({ name: 'Randolph AFB, TX', description: rndDescription, url: '/military-relocation/randolph-afb/' }),
+  collectionPageSchema({
+    name: 'PCS Housing Guide: Randolph AFB',
+    description: rndDescription,
+    url: '/military-relocation/randolph-afb/',
+    hasPart: [
+      { name: 'Base Overview', url: '/military-relocation/randolph-afb/#overview' },
+      { name: 'Where Families Buy', url: '/military-relocation/randolph-afb/#where-to-buy' },
+      { name: 'BAH Buying Power', url: '/military-relocation/randolph-afb/#bah' },
+      { name: 'Schools', url: '/military-relocation/randolph-afb/#schools' },
+    ],
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Military Relocation / PCS to JBSA', url: '/military-relocation/' },
+    { name: 'Randolph AFB Housing Guide', url: '/military-relocation/randolph-afb/' },
+  ]),
+];
+---
+
+<Layout
+  title="PCS to Randolph AFB: Where to Buy | Cody Posey"
+  description={rndDescription}
+  schema={pageSchema}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="rnd-hero">
+      <div class="rnd-hero__overlay"></div>
+      <div class="rnd-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/military-relocation/">Military Relocation</a> <span>/</span> <span>Randolph AFB</span>
+        </nav>
+        <h1>Randolph <span style="color:#FF1616;">AFB</span></h1>
+        <p>PCS housing guide: the Showplace of the Air Force and the I-35 northeast corridor</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section id="overview" class="section rnd-intro">
+      <div class="container">
+        <div class="rnd-quick">
+          <p><strong>Quick answer:</strong> Randolph families almost all land in the same cluster — Schertz, Cibolo, and Universal City, all under 10 minutes from the Main Gate on Harmon Drive with SCUCISD schools. New Braunfels runs about 25 minutes up I-35 and gives you Hill Country amenities with the same school district. This is my backyard — my office is in New Braunfels and I work this corridor every week.</p>
+        </div>
+        <div class="rnd-intro__grid">
+          <div class="rnd-intro__text">
+            <h2>The <span class="accent">Showplace</span> of the Air Force</h2>
+            <p>Randolph sits in Universal City on San Antonio's northeast side and hosts the headquarters of Air Education and Training Command — the command that owns Air Force recruiting, training, and education worldwide. The base is famous for its Spanish Colonial Revival architecture, its central tower, and one of the prettiest flight lines in the service. It's a headquarters assignment, which means the population skews experienced: lots of field grades, senior NCOs, and civilian professionals.</p>
+            <p>The Main Gate on Harmon Drive in Universal City feeds directly into the Schertz–Cibolo–Universal City corridor — three cities that have functionally merged into one housing market. This is new-construction country: master-planned communities, strong schools, and the easiest sub-10-minute commute to a gate in the entire JBSA system. Converse borders the base to the south and offers value on the same corridor.</p>
+            <p>Because Randolph is the northernmost JBSA installation, it also pulls from New Braunfels — about 25 minutes up I-35, still in the same school district for the Cibolo side, with the Guadalupe River, Schlitterbahn summers, and a real downtown. Plenty of Randolph families live here and commute down. I know, because I'm one of the realtors they call.</p>
+          </div>
+          <div class="rnd-intro__stats">
+            <div class="rnd-stat">
+              <span class="rnd-stat__number">&lt;10 min</span>
+              <span class="rnd-stat__label">Schertz/Cibolo/UC to Main Gate</span>
+            </div>
+            <div class="rnd-stat">
+              <span class="rnd-stat__number">25 min</span>
+              <span class="rnd-stat__label">New Braunfels to gate</span>
+            </div>
+            <div class="rnd-stat">
+              <span class="rnd-stat__number">$2,112</span>
+              <span class="rnd-stat__label">E-7 BAH w/ deps, 2026</span>
+            </div>
+            <div class="rnd-stat">
+              <span class="rnd-stat__number">SCUCISD</span>
+              <span class="rnd-stat__label">One school district</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Where families buy -->
+    <section id="where-to-buy" class="section rnd-explore" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Where Randolph Families <span class="accent">Actually Buy</span></h2>
+          <p>One corridor, one school district, and the shortest commutes in JBSA</p>
+        </div>
+        <div class="rnd-explore__grid">
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="rnd-explore__card">
+            <h3>Schertz — 5–10 min</h3>
+            <p>Directly north of the base with the fastest gate access. Master-planned communities, SCUCISD schools, and strong resale. The default pick for Randolph families who want the shortest commute and newer homes.</p>
+          </a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="rnd-explore__card">
+            <h3>Cibolo — 5–10 min</h3>
+            <p>East of the base and one of the fastest-growing cities in Texas. New construction everywhere, same SCUCISD schools, slightly more house for the money than Schertz. Heavy military population.</p>
+          </a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="rnd-explore__card">
+            <h3>Universal City — 5 min</h3>
+            <p>The base's host city — the Main Gate is on Harmon Drive in Universal City. Established neighborhoods, the lowest prices in the cluster, and you can practically walk to the gate.</p>
+          </a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="rnd-explore__card">
+            <h3>Converse — 10–15 min</h3>
+            <p>South of the base on the Randolph corridor. The value play in the cluster — lower prices, Judson ISD on the south side, and a straight shot to the gate up the corridor.</p>
+          </a>
+          <a href="/new-braunfels/" class="rnd-explore__card">
+            <h3>New Braunfels — 25 min</h3>
+            <p>The Hill Country option: 25 minutes up I-35 with the river, a real downtown, and Comal ISD on the south side. Plenty of Randolph families make this commute for the lifestyle. It's where I live and work.</p>
+          </a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="rnd-explore__card">
+            <h3>Search Current Listings</h3>
+            <p>See what's on the market in the Randolph corridor right now. Filter by city, price, and school district.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAH -->
+    <section id="bah" class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>What Your 2026 BAH <span class="accent">Buys</span></h2>
+          <p>Same rate as every JBSA installation — one Military Housing Area</p>
+        </div>
+        <div class="rnd-intro__grid">
+          <div class="rnd-intro__text">
+            <p>2026 with-dependents BAH in the San Antonio area: <strong>$1,869/month for an E-5, $2,094 for an E-6, $2,112 for an E-7, and $2,127 for an O-3</strong>. Rates dipped about 3% from 2025, but rate protection holds your higher figure if you're already stationed here.</p>
+            <p>Randolph's headquarters population runs higher in rank than the training bases, which means BAH goes a little further per family here. An E-7's $2,112 with a zero-down VA loan buys comfortably in Schertz and Cibolo, where new construction sits in the low-to-mid $300s. And because the corridor is all new construction, you get builder warranties and energy efficiency that keep the total monthly cost down.</p>
+            <p>The number that still surprises incoming families: property taxes. Rates in the corridor run around 2%, and Texas has no state income tax to offset it — you model the full monthly payment, taxes and insurance included, before you fall in love with a floor plan. Run your rank's exact numbers on my <a href="/military-relocation/bah-rates/" style="color:#FF1616; font-weight:700;">2026 JBSA BAH rates page</a>.</p>
+          </div>
+          <div class="rnd-intro__stats">
+            <div class="rnd-stat">
+              <span class="rnd-stat__number">$2,094</span>
+              <span class="rnd-stat__label">E-6 w/ deps, 2026</span>
+            </div>
+            <div class="rnd-stat">
+              <span class="rnd-stat__number">$2,127</span>
+              <span class="rnd-stat__label">O-3 w/ deps, 2026</span>
+            </div>
+            <div class="rnd-stat">
+              <span class="rnd-stat__number">$0</span>
+              <span class="rnd-stat__label">Down w/ VA loan</span>
+            </div>
+            <div class="rnd-stat">
+              <span class="rnd-stat__number">$0</span>
+              <span class="rnd-stat__label">Monthly PMI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schools -->
+    <section id="schools" class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>School <span class="accent">Districts</span></h2>
+          <p>One district covers almost the entire corridor — verify by street before you buy</p>
+        </div>
+        <div class="rnd-schools__grid">
+          <a href="https://www.scucisd.org" target="_blank" rel="noopener" class="rnd-schools__card">
+            <h3>Schertz-Cibolo-Universal City ISD</h3>
+            <p>One district for Schertz, Cibolo, and Universal City — the reason the corridor is so simple for military families. Strong accountability ratings and new campuses keeping up with growth.</p>
+            <span class="rnd-schools__link">Visit SCUCISD Website →</span>
+          </a>
+          <a href="https://www.judsonisd.org" target="_blank" rel="noopener" class="rnd-schools__card">
+            <h3>Judson ISD</h3>
+            <p>Covers Converse and the corridor south of Randolph. Check attendance boundaries by address — parts of Converse feed into different districts.</p>
+            <span class="rnd-schools__link">Visit Judson ISD Website →</span>
+          </a>
+          <a href="https://www.comalisd.org" target="_blank" rel="noopener" class="rnd-schools__card">
+            <h3>Comal ISD</h3>
+            <p>Covers the New Braunfels side for Randolph families who commute from the Hill Country. One of the fastest-growing districts in Texas.</p>
+            <span class="rnd-schools__link">Visit Comal ISD Website →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA with Parallax -->
+    <section class="section rnd-cta">
+      <div class="rnd-cta__overlay"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <h2>Orders to Randolph? <span class="accent">This Is My Corridor.</span></h2>
+        <p>My office is in New Braunfels, 25 minutes from your Main Gate. I'm a retired Army First Sergeant who does video walkthroughs for out-of-state buyers — give me your report date and your BAH, and I'll send you a short list in Schertz, Cibolo, or New Braunfels before you ever get on a plane.</p>
+        <div class="rnd-cta__buttons">
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Book a PCS Call</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About <span class="accent">Randolph AFB</span></h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Where do most Randolph AFB families live?</summary>
+            <p>Schertz, Cibolo, and Universal City — all under 10 minutes from the Main Gate on Harmon Drive, all served by Schertz-Cibolo-Universal City ISD. It's the simplest housing decision in the JBSA system: one corridor, one school district, shortest commutes. Converse offers value just south of the base, and New Braunfels runs about 25 minutes up I-35 for families wanting Hill Country living.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What is Randolph AFB known for?</summary>
+            <p>Randolph hosts the headquarters of Air Education and Training Command — the Air Force command responsible for recruiting, training, and education worldwide. The base is nicknamed the "Showplace of the Air Force" for its Spanish Colonial Revival architecture and central tower, and it's a headquarters assignment with a more experienced, senior population than the training bases.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is it realistic to live in New Braunfels and commute to Randolph?</summary>
+            <p>Yes — it's about 25 minutes down I-35 from New Braunfels to the Randolph Main Gate, and plenty of families do it for the Guadalupe River, the downtown, and Comal ISD schools. I live in New Braunfels and work this commute corridor every week. Just drive it at rush hour once before you commit.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ParallaxBanner image="/images/generated/nb-neighborhood.webp" />
+
+  <ContactForm context="PCS orders to Randolph AFB — I'd like a video-tour plan for my BAH and timeline..." />
+  <Footer />
+</Layout>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where do most Randolph AFB families live?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Schertz, Cibolo, and Universal City — all under 10 minutes from the Main Gate on Harmon Drive, all served by Schertz-Cibolo-Universal City ISD. Converse offers value just south of the base, and New Braunfels runs about 25 minutes up I-35."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Randolph AFB known for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Randolph hosts the headquarters of Air Education and Training Command — the Air Force command responsible for recruiting, training, and education worldwide. The base is nicknamed the 'Showplace of the Air Force' for its Spanish Colonial Revival architecture."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it realistic to live in New Braunfels and commute to Randolph?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — it's about 25 minutes down I-35 from New Braunfels to the Randolph Main Gate, and plenty of families do it for the Guadalupe River, the downtown, and Comal ISD schools."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; padding: 0; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
+
+  .rnd-hero { position: relative; height: 320px; background: url('/images/generated/cibolo-schertz-home.webp') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; }
+  .rnd-hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
+  .rnd-hero__content { position: relative; z-index: 1; padding: 0 1.5rem; }
+  .rnd-hero__content h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 0.75rem; }
+  .rnd-hero__content p { color: rgba(255,255,255,0.7); font-size: 1rem; max-width: 600px; margin: 0 auto; }
+
+  .breadcrumb { font-size: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.5); }
+  .breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .rnd-quick { background: #111; color: #fff; border-left: 4px solid #FF1616; padding: 1.5rem 2rem; border-radius: 0 8px 8px 0; margin-bottom: 3rem; }
+  .rnd-quick p { line-height: 1.8; font-size: 0.95rem; margin: 0; color: rgba(255,255,255,0.85); }
+  .rnd-quick strong { color: #FF1616; }
+
+  .rnd-intro__grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: start; }
+  .rnd-intro__text p { color: var(--gray); line-height: 1.8; margin-bottom: 1rem; }
+  .rnd-intro__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .rnd-stat { background: var(--light-gray); padding: 1.5rem; text-align: center; border-radius: 8px; }
+  .rnd-stat__number { display: block; font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: #FF1616; }
+  .rnd-stat__label { display: block; font-size: 0.8rem; color: var(--gray); margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .rnd-explore__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .rnd-explore__card { display: block; background: #fff; border: 1px solid var(--light-gray); padding: 2rem; border-radius: 8px; transition: transform 0.2s, box-shadow 0.2s; }
+  .rnd-explore__card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .rnd-explore__card h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; margin-bottom: 0.5rem; color: #000; }
+  .rnd-explore__card:hover h3 { color: #FF1616; }
+  .rnd-explore__card p { color: var(--gray); font-size: 0.85rem; line-height: 1.6; }
+
+  .rnd-schools__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
+  .rnd-schools__card { display: block; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: transform 0.2s, box-shadow 0.2s; text-align: center; }
+  .rnd-schools__card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .rnd-schools__card h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.75rem; color: #000; }
+  .rnd-schools__card:hover h3 { color: #FF1616; }
+  .rnd-schools__card p { color: var(--gray); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem; }
+  .rnd-schools__link { font-family: var(--font-heading); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #FF1616; }
+
+  .rnd-cta { position: relative; background: url('/images/testimonials-hero.webp') center/cover no-repeat fixed; color: #fff; text-align: center; }
+  .rnd-cta__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.75); }
+  .rnd-cta__buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .rnd-cta p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem; }
+
+  @media (max-width: 768px) {
+    .rnd-intro__grid { grid-template-columns: 1fr; }
+    .rnd-explore__grid { grid-template-columns: 1fr; }
+  }
+</style>

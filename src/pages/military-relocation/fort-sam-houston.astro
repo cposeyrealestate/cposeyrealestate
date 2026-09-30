@@ -1,0 +1,348 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { placeSchema, collectionPageSchema, breadcrumbSchema } from '../../lib/schema';
+
+const fshDescription = 'PCS to Fort Sam Houston? Where military families buy near JBSA-Fort Sam Houston: gates, commute times by neighborhood, 2026 BAH buying power, schools, and VA loan notes.';
+const pageSchema = [
+  placeSchema({ name: 'Fort Sam Houston, TX', description: fshDescription, url: '/military-relocation/fort-sam-houston/' }),
+  collectionPageSchema({
+    name: 'PCS Housing Guide: Fort Sam Houston',
+    description: fshDescription,
+    url: '/military-relocation/fort-sam-houston/',
+    hasPart: [
+      { name: 'Gates & Access', url: '/military-relocation/fort-sam-houston/#gates' },
+      { name: 'Where Families Buy', url: '/military-relocation/fort-sam-houston/#where-to-buy' },
+      { name: 'BAH Buying Power', url: '/military-relocation/fort-sam-houston/#bah' },
+      { name: 'Schools', url: '/military-relocation/fort-sam-houston/#schools' },
+    ],
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Military Relocation / PCS to JBSA', url: '/military-relocation/' },
+    { name: 'Fort Sam Houston Housing Guide', url: '/military-relocation/fort-sam-houston/' },
+  ]),
+];
+---
+
+<Layout
+  title="PCS to Fort Sam Houston: Where to Buy | Cody Posey"
+  description={fshDescription}
+  schema={pageSchema}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="fsh-hero">
+      <div class="fsh-hero__overlay"></div>
+      <div class="fsh-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/military-relocation/">Military Relocation</a> <span>/</span> <span>Fort Sam Houston</span>
+        </nav>
+        <h1>Fort Sam <span style="color:#FF1616;">Houston</span></h1>
+        <p>PCS housing guide: gates, commute corridors, and what your BAH buys</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section fsh-intro">
+      <div class="container">
+        <div class="fsh-quick">
+          <p><strong>Quick answer:</strong> Most Fort Sam families land in one of three corridors — Terrell Hills and Alamo Heights (5–15 minutes to the gate, premium prices, Alamo Heights ISD), Stone Oak (20–25 minutes, North East ISD, master-planned amenities), or the Schertz–Cibolo–Converse corridor (10–20 minutes, the strongest value inside 2026 BAH). Your best gate depends on your unit's location on post, so ask your sponsor before you sign anything.</p>
+        </div>
+        <div class="fsh-intro__grid">
+          <div class="fsh-intro__text">
+            <h2>JBSA's <span class="accent">Army Medicine</span> Hub</h2>
+            <p>Fort Sam Houston sits in northeast San Antonio and anchors the Army side of Joint Base San Antonio. This is where Army medicine lives: Brooke Army Medical Center — the Department of Defense's only Level I Trauma Center — plus the Army Medical Center of Excellence and the headquarters of U.S. Army North. The 502d Air Base Wing runs the joint base from here, so even though it's an Army post, you'll see every service on the streets.</p>
+            <p>The post sprawls across northeast San Antonio with twelve access points, which is exactly why housing decisions here start with your unit's location. A family reporting to BAMC on the south side of post has a very different ideal neighborhood than one assigned near the Walters Street side. Get your sponsor on the phone early and ask which gate you'll actually use every day — that single answer narrows your home search more than anything else.</p>
+            <p>Off post, the surrounding neighborhoods range from some of San Antonio's most expensive zip codes (Alamo Heights, Terrell Hills, Olmos Park) to strong value plays (Windcrest, Live Oak, the Schertz–Cibolo corridor). Historic homes, mid-century ranch houses, and new construction all sit within a 25-minute radius. The common thread: everything here is priced against BAH, and in 2026 that allowance still buys a real house in most of these corridors with a zero-down VA loan.</p>
+          </div>
+          <div class="fsh-intro__stats">
+            <div class="fsh-stat">
+              <span class="fsh-stat__number">5–10 min</span>
+              <span class="fsh-stat__label">Terrell Hills to gate</span>
+            </div>
+            <div class="fsh-stat">
+              <span class="fsh-stat__number">12</span>
+              <span class="fsh-stat__label">Access points</span>
+            </div>
+            <div class="fsh-stat">
+              <span class="fsh-stat__number">$2,094</span>
+              <span class="fsh-stat__label">E-6 BAH w/ deps, 2026</span>
+            </div>
+            <div class="fsh-stat">
+              <span class="fsh-stat__number">~2.2%</span>
+              <span class="fsh-stat__label">Bexar Co. effective tax rate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gates -->
+    <section id="gates" class="section fsh-why" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Know Your <span class="accent">Gate</span></h2>
+          <p>Fort Sam has twelve access points — these are the ones that matter for housing</p>
+        </div>
+        <div class="fsh-why__grid">
+          <div class="fsh-why__card">
+            <h3>Walters Street — Main Gate</h3>
+            <p>Open 24/7 with a Visitor Control Center co-located. Primary entry off I-35 (Exit 159B). If your unit is on the west or central part of post, this is likely your daily gate — Terrell Hills and Alamo Heights feed it directly.</p>
+          </div>
+          <div class="fsh-why__card">
+            <h3>BAMC / I-35 Gate</h3>
+            <p>Open 24/7 with a second Visitor Control Center. The medical-center gate — if you're assigned to Brooke Army Medical Center, living south or east of post keeps this commute short.</p>
+          </div>
+          <div class="fsh-why__card">
+            <h3>Harry Wurzbach East &amp; Schofield</h3>
+            <p>Both run 24 hours and serve the northeast corridor. Windcrest, Live Oak, and the Schertz side of town flow through these gates — this is the value-corridor entry.</p>
+          </div>
+          <div class="fsh-why__card">
+            <h3>The Rest Run Limited Hours</h3>
+            <p>New Braunfels, Harry Wurzbach West, Winans, Wilson, Jadwin, and the SAMMC Beach gates run weekday or peak-hour schedules, and hours changed as recently as March 2026. Verify current hours on the official JBSA gate page before you commit to a neighborhood, and bring REAL ID-compliant identification for base access.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Where families buy -->
+    <section id="where-to-buy" class="section fsh-explore">
+      <div class="container">
+        <div class="section-title">
+          <h2>Where Fort Sam Families <span class="accent">Actually Buy</span></h2>
+          <p>Honest drive times, not marketing copy — verified against 2026 PCS guides</p>
+        </div>
+        <div class="fsh-explore__grid">
+          <a href="/military-relocation/bah-rates/" class="fsh-explore__card">
+            <h3>Terrell Hills — 5–10 min</h3>
+            <p>The closest off-post neighborhood to the Walters Street and Harry Wurzbach East gates. Established, expensive, and zoned to Alamo Heights ISD. If BAH covers it at your rank, the commute can't be beaten.</p>
+          </a>
+          <a href="/military-relocation/bah-rates/" class="fsh-explore__card">
+            <h3>Alamo Heights &amp; Olmos Park — 10–15 min</h3>
+            <p>Historic streets, mature oaks, walkable pockets, and Alamo Heights ISD. Premium pricing across the board — this is the lifestyle corridor, and you pay for it.</p>
+          </a>
+          <a href="/military-relocation/bah-rates/" class="fsh-explore__card">
+            <h3>Windcrest &amp; Live Oak — 10–15 min</h3>
+            <p>The value play near the eastern gates. Mid-century homes at far lower prices than the Heights corridor, with a straight shot to Harry Wurzbach East and Schofield.</p>
+          </a>
+          <a href="/military-relocation/bah-rates/" class="fsh-explore__card">
+            <h3>Stone Oak — 20–25 min</h3>
+            <p>Master-planned amenities, North East ISD schools, and newer construction. The tradeoff is the drive — 20-plus minutes each way, and rush hour on 281/1604 is real.</p>
+          </a>
+          <a href="/military-relocation/bah-rates/" class="fsh-explore__card">
+            <h3>Schertz–Cibolo–Converse — 10–20 min</h3>
+            <p>New construction, strong schools (SCUCISD), and prices that sit comfortably inside BAH for most ranks. The corridor I know best — it's 25 minutes from my office in New Braunfels.</p>
+          </a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="fsh-explore__card">
+            <h3>Search Current Listings</h3>
+            <p>See what's actually on the market in these corridors right now. Filter by price, beds, and commute side of post.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAH -->
+    <section id="bah" class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>What Your 2026 BAH <span class="accent">Buys</span></h2>
+          <p>All four JBSA installations share one Military Housing Area, so your rate is identical at every gate</p>
+        </div>
+        <div class="fsh-intro__grid">
+          <div class="fsh-intro__text">
+            <p>For 2026, with-dependents BAH in the San Antonio area runs <strong>$1,869/month for an E-5, $2,094 for an E-6, $2,112 for an E-7, and $2,127 for an O-3</strong>. Rates dipped about 3% from 2025, but rate protection means anyone already stationed here keeps the higher figure.</p>
+            <p>Pair that allowance with a zero-down VA loan and no PMI, and an E-6's $2,094 covers the payment on roughly a $270,000–$320,000 home in the Fort Sam corridor. The number that surprises incoming families isn't the price — it's the tax bill. Bexar County's effective property tax rate sits around 2.2%, among the highest in Texas, which is why modeling taxes, insurance, and HOA together matters more here than at most duty stations. Texas offsets it with no state income tax.</p>
+            <p>Run your exact numbers by rank on my <a href="/military-relocation/bah-rates/" style="color:#FF1616; font-weight:700;">2026 JBSA BAH rates page</a> — then let's talk about which corridor fits.</p>
+          </div>
+          <div class="fsh-intro__stats">
+            <div class="fsh-stat">
+              <span class="fsh-stat__number">$1,869</span>
+              <span class="fsh-stat__label">E-5 w/ deps, 2026</span>
+            </div>
+            <div class="fsh-stat">
+              <span class="fsh-stat__number">$2,127</span>
+              <span class="fsh-stat__label">O-3 w/ deps, 2026</span>
+            </div>
+            <div class="fsh-stat">
+              <span class="fsh-stat__number">$0</span>
+              <span class="fsh-stat__label">Down w/ VA loan</span>
+            </div>
+            <div class="fsh-stat">
+              <span class="fsh-stat__number">$0</span>
+              <span class="fsh-stat__label">Monthly PMI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schools -->
+    <section id="schools" class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>School <span class="accent">Districts</span></h2>
+          <p>Your district follows your address — verify by street before you buy</p>
+        </div>
+        <div class="fsh-schools__grid">
+          <a href="https://www.ahisd.net" target="_blank" rel="noopener" class="fsh-schools__card">
+            <h3>Alamo Heights ISD</h3>
+            <p>Serves Alamo Heights, Terrell Hills, and Olmos Park. Small, high-performing district and a major driver of home values in the corridor closest to post.</p>
+            <span class="fsh-schools__link">Visit AHISD Website →</span>
+          </a>
+          <a href="https://www.neisd.net" target="_blank" rel="noopener" class="fsh-schools__card">
+            <h3>North East ISD</h3>
+            <p>One of Texas's largest districts, serving Stone Oak and much of north-central San Antonio. Wide range of magnet and specialty programs.</p>
+            <span class="fsh-schools__link">Visit NEISD Website →</span>
+          </a>
+          <a href="https://www.saisd.net" target="_blank" rel="noopener" class="fsh-schools__card">
+            <h3>San Antonio ISD</h3>
+            <p>Serves central San Antonio neighborhoods near the post's south and west sides. Check attendance boundaries carefully — they vary block by block.</p>
+            <span class="fsh-schools__link">Visit SAISD Website →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA with Parallax -->
+    <section class="section fsh-cta">
+      <div class="fsh-cta__overlay"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <h2>PCS Orders in Hand? <span class="accent">Let's Build Your Plan.</span></h2>
+        <p>I'm a retired Army First Sergeant — I've PCSed myself and I do video walkthroughs for buyers house-hunting from across the country. Tell me your report date and your gate, and I'll send you a short list that fits your BAH before you ever get on a plane.</p>
+        <div class="fsh-cta__buttons">
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Book a PCS Call</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About <span class="accent">Fort Sam Houston</span></h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Which neighborhood is closest to Fort Sam Houston's gates?</summary>
+            <p>Terrell Hills is the closest off-post neighborhood — roughly 5 to 10 minutes to the Walters Street Gate or Harry Wurzbach East Gate. Alamo Heights and Olmos Park run 10 to 15 minutes, and Windcrest and Live Oak offer 10-to-15-minute commutes to the eastern gates at much lower price points.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do all JBSA installations share the same BAH rate?</summary>
+            <p>Yes. Fort Sam Houston, Lackland, Randolph, and Camp Bullis all fall in the same Military Housing Area, so your BAH is identical no matter which installation is on your orders. Where that BAH goes furthest depends on the neighborhood and commute corridor you choose.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Which Fort Sam Houston gate should I plan around?</summary>
+            <p>The Walters Street main gate and the BAMC/I-35 gate are open 24/7, and Harry Wurzbach East and Schofield also run 24 hours. Other gates run limited weekday or peak-hour schedules. Your unit's location on post determines your best gate — ask your sponsor before signing a lease, because Fort Sam sprawls and gate proximity drives your daily commute.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ParallaxBanner image="/images/generated/porch-view.webp" />
+
+  <ContactForm context="PCS orders to Fort Sam Houston — I'd like a video-tour plan for my BAH and timeline..." />
+  <Footer />
+</Layout>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which neighborhood is closest to Fort Sam Houston's gates?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Terrell Hills is the closest off-post neighborhood — roughly 5 to 10 minutes to the Walters Street Gate or Harry Wurzbach East Gate. Alamo Heights and Olmos Park run 10 to 15 minutes, and Windcrest and Live Oak offer 10-to-15-minute commutes to the eastern gates at much lower price points."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do all JBSA installations share the same BAH rate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Fort Sam Houston, Lackland, Randolph, and Camp Bullis all fall in the same Military Housing Area, so your BAH is identical no matter which installation is on your orders."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which Fort Sam Houston gate should I plan around?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Walters Street main gate and the BAMC/I-35 gate are open 24/7, and Harry Wurzbach East and Schofield also run 24 hours. Other gates run limited weekday or peak-hour schedules. Ask your sponsor which gate serves your unit before signing a lease."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; padding: 0; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
+
+  .fsh-hero { position: relative; height: 320px; background: url('/images/generated/new-braunfels-downtown.webp') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; }
+  .fsh-hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
+  .fsh-hero__content { position: relative; z-index: 1; padding: 0 1.5rem; }
+  .fsh-hero__content h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 0.75rem; }
+  .fsh-hero__content p { color: rgba(255,255,255,0.7); font-size: 1rem; max-width: 600px; margin: 0 auto; }
+
+  .breadcrumb { font-size: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.5); }
+  .breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .fsh-quick { background: #111; color: #fff; border-left: 4px solid #FF1616; padding: 1.5rem 2rem; border-radius: 0 8px 8px 0; margin-bottom: 3rem; }
+  .fsh-quick p { line-height: 1.8; font-size: 0.95rem; margin: 0; color: rgba(255,255,255,0.85); }
+  .fsh-quick strong { color: #FF1616; }
+
+  .fsh-intro__grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: start; }
+  .fsh-intro__text p { color: var(--gray); line-height: 1.8; margin-bottom: 1rem; }
+  .fsh-intro__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .fsh-stat { background: var(--light-gray); padding: 1.5rem; text-align: center; border-radius: 8px; }
+  .fsh-stat__number { display: block; font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: #FF1616; }
+  .fsh-stat__label { display: block; font-size: 0.8rem; color: var(--gray); margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .fsh-why__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  .fsh-why__card { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .fsh-why__card h3 { font-family: var(--font-heading); font-size: 1.1rem; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .fsh-why__card p { color: var(--gray); font-size: 0.9rem; line-height: 1.7; }
+
+  .fsh-explore__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .fsh-explore__card { display: block; background: #fff; border: 1px solid var(--light-gray); padding: 2rem; border-radius: 8px; transition: transform 0.2s, box-shadow 0.2s; }
+  .fsh-explore__card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .fsh-explore__card h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; margin-bottom: 0.5rem; color: #000; }
+  .fsh-explore__card:hover h3 { color: #FF1616; }
+  .fsh-explore__card p { color: var(--gray); font-size: 0.85rem; line-height: 1.6; }
+
+  .fsh-schools__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
+  .fsh-schools__card { display: block; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: transform 0.2s, box-shadow 0.2s; text-align: center; }
+  .fsh-schools__card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .fsh-schools__card h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.75rem; color: #000; }
+  .fsh-schools__card:hover h3 { color: #FF1616; }
+  .fsh-schools__card p { color: var(--gray); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem; }
+  .fsh-schools__link { font-family: var(--font-heading); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #FF1616; }
+
+  .fsh-cta { position: relative; background: url('/images/testimonials-hero.webp') center/cover no-repeat fixed; color: #fff; text-align: center; }
+  .fsh-cta__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.75); }
+  .fsh-cta__buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .fsh-cta p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem; }
+
+  @media (max-width: 768px) {
+    .fsh-intro__grid { grid-template-columns: 1fr; }
+    .fsh-why__grid { grid-template-columns: 1fr; }
+    .fsh-explore__grid { grid-template-columns: 1fr; }
+  }
+</style>

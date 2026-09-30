@@ -1,0 +1,309 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { placeSchema, collectionPageSchema, breadcrumbSchema } from '../../lib/schema';
+
+const cbDescription = 'Assigned to Camp Bullis? Where military families buy near JBSA\'s training grounds: the northwest San Antonio corridor, commute times, 2026 BAH buying power, schools, and VA loan notes.';
+const pageSchema = [
+  placeSchema({ name: 'Camp Bullis, TX', description: cbDescription, url: '/military-relocation/camp-bullis/' }),
+  collectionPageSchema({
+    name: 'PCS Housing Guide: Camp Bullis',
+    description: cbDescription,
+    url: '/military-relocation/camp-bullis/',
+    hasPart: [
+      { name: 'Installation Overview', url: '/military-relocation/camp-bullis/#overview' },
+      { name: 'Where Families Buy', url: '/military-relocation/camp-bullis/#where-to-buy' },
+      { name: 'BAH Buying Power', url: '/military-relocation/camp-bullis/#bah' },
+      { name: 'Schools', url: '/military-relocation/camp-bullis/#schools' },
+    ],
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Military Relocation / PCS to JBSA', url: '/military-relocation/' },
+    { name: 'Camp Bullis Housing Guide', url: '/military-relocation/camp-bullis/' },
+  ]),
+];
+---
+
+<Layout
+  title="Assigned to Camp Bullis: Where to Buy | Cody Posey"
+  description={cbDescription}
+  schema={pageSchema}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="cb-hero">
+      <div class="cb-hero__overlay"></div>
+      <div class="cb-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/military-relocation/">Military Relocation</a> <span>/</span> <span>Camp Bullis</span>
+        </nav>
+        <h1>Camp <span style="color:#FF1616;">Bullis</span></h1>
+        <p>Housing guide: northwest San Antonio's training grounds and the corridors around them</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section id="overview" class="section cb-intro">
+      <div class="container">
+        <div class="cb-quick">
+          <p><strong>Quick answer:</strong> Camp Bullis is a training installation, not a garrison — most people who train there are assigned elsewhere, usually Fort Sam Houston. Buy for the Fort Sam commute (the Bulverde Road corridor keeps both reachable) and treat Bullis days as the exception. Stone Oak, Timberwood Park, and the Bulverde corridor put you 10–20 minutes from Bullis and inside a reasonable Fort Sam commute.</p>
+        </div>
+        <div class="cb-intro__grid">
+          <div class="cb-intro__text">
+            <h2>A Training Ground, <span class="accent">Not</span> a Town</h2>
+            <p>Camp Bullis sits about 17 miles northwest of downtown San Antonio, and it has one job: training. Army, Air Force, and Marine units rotate through for field exercises, and Brooke Army Medical Center runs its field medical training here. The installation has operated since 1917, and it is not open to the public — there is no on-post housing market to speak of and no surrounding "military town" the way bases with garrison populations create one.</p>
+            <p>That's the key fact for your housing decision. Almost everyone who works or trains at Bullis is assigned to Fort Sam Houston — medical units, Army North elements, rotating training cadres. So your daily commute is Fort Sam's northeast-San Antonio footprint, and Bullis is the periodic field trip. Buy the corridor that serves both: the Bulverde Road corridor (78261/78259) sits between them, Stone Oak anchors the 1604 side, and Timberwood Park and Garden Ridge cover the east and south.</p>
+            <p>The northwest corridor is one of the nicest stretches of the metro — Hill Country terrain, larger lots, strong schools, and quick access to Six Flags Fiesta Texas, Eisenhower Park, and the UTSA area. Prices run higher than the Lackland corridor but lower than Alamo Heights, and your 2026 BAH stretches well here with a VA loan.</p>
+          </div>
+          <div class="cb-intro__stats">
+            <div class="cb-stat">
+              <span class="cb-stat__number">17 mi</span>
+              <span class="cb-stat__label">NW of downtown SA</span>
+            </div>
+            <div class="cb-stat">
+              <span class="cb-stat__number">10–20 min</span>
+              <span class="cb-stat__label">Bullis corridor to gates</span>
+            </div>
+            <div class="cb-stat">
+              <span class="cb-stat__number">$1,869</span>
+              <span class="cb-stat__label">E-5 BAH w/ deps, 2026</span>
+            </div>
+            <div class="cb-stat">
+              <span class="cb-stat__number">1917</span>
+              <span class="cb-stat__label">Training here since</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Where families buy -->
+    <section id="where-to-buy" class="section cb-explore" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Where Bullis-Area Families <span class="accent">Actually Buy</span></h2>
+          <p>Corridors that reach Bullis training days and the Fort Sam daily commute</p>
+        </div>
+        <div class="cb-explore__grid">
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="cb-explore__card">
+            <h3>Bulverde Road Corridor — 10–15 min</h3>
+            <p>The sweet spot: between Bullis and Fort Sam on the 78261/78259 side. Newer subdivisions, Comal and North East ISD depending on address, and the most direct route to both installations.</p>
+          </a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="cb-explore__card">
+            <h3>Stone Oak — 15–20 min</h3>
+            <p>Master-planned, North East ISD, and loaded with amenities — medical center proximity, shopping, dining. The Fort Sam commute runs 20–25 minutes; Bullis is a short hop up 1604.</p>
+          </a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="cb-explore__card">
+            <h3>Timberwood Park — 15–20 min</h3>
+            <p>Heavily wooded, larger lots, quieter than Stone Oak. Popular with field grades and medical officers. Comal ISD on the north side of the community.</p>
+          </a>
+          <a href="/garden-ridge/" class="cb-explore__card">
+            <h3>Garden Ridge — 20 min</h3>
+            <p>Upscale enclave east of Bullis along 1604. Larger lots, Comal ISD, and a straight shot to both Bullis and the Fort Sam eastern gates. Premium pricing, premium quiet.</p>
+          </a>
+          <a href="/military-relocation/fort-sam-houston/" class="cb-explore__card">
+            <h3>Fort Sam Corridors — 20–35 min</h3>
+            <p>If your assignment is Fort Sam with occasional Bullis training days, optimize for the daily drive: Terrell Hills, Windcrest, or the Schertz corridor — and accept the longer training-day commute.</p>
+          </a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="cb-explore__card">
+            <h3>Search Current Listings</h3>
+            <p>See what's on the market in the northwest corridors right now. Filter by price, beds, and school district.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAH -->
+    <section id="bah" class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>What Your 2026 BAH <span class="accent">Buys</span></h2>
+          <p>Same rate as every JBSA installation — one Military Housing Area</p>
+        </div>
+        <div class="cb-intro__grid">
+          <div class="cb-intro__text">
+            <p>2026 with-dependents BAH in the San Antonio area: <strong>$1,869/month for an E-5, $2,094 for an E-6, $2,112 for an E-7, and $2,127 for an O-3</strong>. Camp Bullis falls in the same Military Housing Area as Fort Sam, Lackland, and Randolph, so your rate doesn't change — only what it buys in each corridor.</p>
+            <p>The northwest corridor is mid-range for the metro: higher than Lackland's Potranco side, lower than Alamo Heights. An E-6's $2,094 with a zero-down VA loan covers a solid payment in Stone Oak or the Bulverde corridor. The Bullis-area wrinkle is the split commute — most buyers here are really Fort Sam assignees, so run the daily-commute math on Fort Sam first and treat Bullis as the bonus, not the anchor.</p>
+            <p>Same warning as every JBSA corridor: Bexar County's effective property tax rate sits around 2.2%, so model taxes, insurance, and HOA as one number. Texas has no state income tax, which helps — but the tax bill is the line item that breaks careless budgets. Run your rank's exact figures on my <a href="/military-relocation/bah-rates/" style="color:#FF1616; font-weight:700;">2026 JBSA BAH rates page</a>.</p>
+          </div>
+          <div class="cb-intro__stats">
+            <div class="cb-stat">
+              <span class="cb-stat__number">$1,869</span>
+              <span class="cb-stat__label">E-5 w/ deps, 2026</span>
+            </div>
+            <div class="cb-stat">
+              <span class="cb-stat__number">$2,094</span>
+              <span class="cb-stat__label">E-6 w/ deps, 2026</span>
+            </div>
+            <div class="cb-stat">
+              <span class="cb-stat__number">$0</span>
+              <span class="cb-stat__label">Down w/ VA loan</span>
+            </div>
+            <div class="cb-stat">
+              <span class="cb-stat__number">$0</span>
+              <span class="cb-stat__label">Monthly PMI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schools -->
+    <section id="schools" class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>School <span class="accent">Districts</span></h2>
+          <p>Your district follows your address — verify by street before you buy</p>
+        </div>
+        <div class="cb-schools__grid">
+          <a href="https://www.neisd.net" target="_blank" rel="noopener" class="cb-schools__card">
+            <h3>North East ISD</h3>
+            <p>Serves Stone Oak and much of the northwest corridor. One of Texas's largest districts with extensive magnet and specialty programs.</p>
+            <span class="cb-schools__link">Visit NEISD Website →</span>
+          </a>
+          <a href="https://www.comalisd.org" target="_blank" rel="noopener" class="cb-schools__card">
+            <h3>Comal ISD</h3>
+            <p>Serves the Bulverde corridor, Timberwood Park's north side, and Garden Ridge. One of the fastest-growing districts in Texas.</p>
+            <span class="cb-schools__link">Visit Comal ISD Website →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA with Parallax -->
+    <section class="section cb-cta">
+      <div class="cb-cta__overlay"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <h2>Training at Bullis, Assigned to <span class="accent">Fort Sam?</span></h2>
+        <p>Buy the corridor that serves both. I'm a retired Army First Sergeant who does video walkthroughs for out-of-state buyers — tell me your assignment and your BAH, and I'll map the corridors that keep both commutes sane.</p>
+        <div class="cb-cta__buttons">
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Book a PCS Call</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About <span class="accent">Camp Bullis</span></h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Can you live on Camp Bullis?</summary>
+            <p>No — Camp Bullis is a training installation, not a garrison, and is not open to the public. There is no on-post housing market. Almost everyone who trains at Bullis is assigned elsewhere, usually Fort Sam Houston, so families buy in the surrounding northwest San Antonio corridors.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Where should I live if I train at Camp Bullis?</summary>
+            <p>The Bulverde Road corridor, Stone Oak, and Timberwood Park all sit 10 to 20 minutes from Bullis and keep the Fort Sam daily commute reasonable. Since most Bullis personnel are Fort Sam assignees, optimize for the daily Fort Sam drive and treat Bullis training days as the exception.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is Camp Bullis open to the public?</summary>
+            <p>No. Camp Bullis is an active military training area — Army, Air Force, and Marine units conduct field training there, including field medical exercises for Brooke Army Medical Center. It has operated as a training ground since 1917 and remains restricted to authorized personnel.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ParallaxBanner image="/images/generated/hill-country-aerial.webp" />
+
+  <ContactForm context="Training at Camp Bullis / assigned to Fort Sam — I'd like a video-tour plan for my BAH and timeline..." />
+  <Footer />
+</Layout>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can you live on Camp Bullis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — Camp Bullis is a training installation, not a garrison, and is not open to the public. There is no on-post housing market. Almost everyone who trains at Bullis is assigned elsewhere, usually Fort Sam Houston."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where should I live if I train at Camp Bullis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Bulverde Road corridor, Stone Oak, and Timberwood Park all sit 10 to 20 minutes from Bullis and keep the Fort Sam daily commute reasonable. Optimize for the daily Fort Sam drive and treat Bullis training days as the exception."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Camp Bullis open to the public?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Camp Bullis is an active military training area — Army, Air Force, and Marine units conduct field training there, including field medical exercises for Brooke Army Medical Center. It has operated as a training ground since 1917."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; padding: 0; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
+
+  .cb-hero { position: relative; height: 320px; background: url('/images/generated/hill-country-aerial.webp') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; }
+  .cb-hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
+  .cb-hero__content { position: relative; z-index: 1; padding: 0 1.5rem; }
+  .cb-hero__content h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 0.75rem; }
+  .cb-hero__content p { color: rgba(255,255,255,0.7); font-size: 1rem; max-width: 600px; margin: 0 auto; }
+
+  .breadcrumb { font-size: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.5); }
+  .breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .cb-quick { background: #111; color: #fff; border-left: 4px solid #FF1616; padding: 1.5rem 2rem; border-radius: 0 8px 8px 0; margin-bottom: 3rem; }
+  .cb-quick p { line-height: 1.8; font-size: 0.95rem; margin: 0; color: rgba(255,255,255,0.85); }
+  .cb-quick strong { color: #FF1616; }
+
+  .cb-intro__grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: start; }
+  .cb-intro__text p { color: var(--gray); line-height: 1.8; margin-bottom: 1rem; }
+  .cb-intro__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .cb-stat { background: var(--light-gray); padding: 1.5rem; text-align: center; border-radius: 8px; }
+  .cb-stat__number { display: block; font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: #FF1616; }
+  .cb-stat__label { display: block; font-size: 0.8rem; color: var(--gray); margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .cb-explore__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .cb-explore__card { display: block; background: #fff; border: 1px solid var(--light-gray); padding: 2rem; border-radius: 8px; transition: transform 0.2s, box-shadow 0.2s; }
+  .cb-explore__card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .cb-explore__card h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; margin-bottom: 0.5rem; color: #000; }
+  .cb-explore__card:hover h3 { color: #FF1616; }
+  .cb-explore__card p { color: var(--gray); font-size: 0.85rem; line-height: 1.6; }
+
+  .cb-schools__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
+  .cb-schools__card { display: block; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: transform 0.2s, box-shadow 0.2s; text-align: center; }
+  .cb-schools__card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .cb-schools__card h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.75rem; color: #000; }
+  .cb-schools__card:hover h3 { color: #FF1616; }
+  .cb-schools__card p { color: var(--gray); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem; }
+  .cb-schools__link { font-family: var(--font-heading); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #FF1616; }
+
+  .cb-cta { position: relative; background: url('/images/testimonials-hero.webp') center/cover no-repeat fixed; color: #fff; text-align: center; }
+  .cb-cta__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.75); }
+  .cb-cta__buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .cb-cta p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem; }
+
+  @media (max-width: 768px) {
+    .cb-intro__grid { grid-template-columns: 1fr; }
+    .cb-explore__grid { grid-template-columns: 1fr; }
+  }
+</style>

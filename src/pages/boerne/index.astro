@@ -1,0 +1,303 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { placeSchema, collectionPageSchema, breadcrumbSchema } from '../../lib/schema';
+
+const brnDescription = 'Living in Boerne, TX: Hill Country charm 30 miles from San Antonio. Home prices, Boerne ISD schools, commute times, property taxes, and what buyers need to know in 2026.';
+const pageSchema = [
+  placeSchema({ name: 'Boerne, TX', description: brnDescription, url: '/boerne/' }),
+  collectionPageSchema({
+    name: 'Living in Boerne, TX',
+    description: brnDescription,
+    url: '/boerne/',
+    hasPart: [
+      { name: 'Why Boerne', url: '/boerne/#why-brn' },
+      { name: 'Neighborhoods', url: '/boerne/#neighborhoods' },
+      { name: 'Schools', url: '/boerne/#schools' },
+      { name: 'Market Data', url: '/boerne/#market' },
+    ],
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Explore Area', url: '/explorearea/' },
+    { name: 'Boerne', url: '/boerne/' },
+  ]),
+];
+---
+
+<Layout
+  title="Living in Boerne, TX: Home Prices, Schools & Commute | Cody Posey"
+  description={brnDescription}
+  schema={pageSchema}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="brn-hero">
+      <div class="brn-hero__overlay"></div>
+      <div class="brn-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/explorearea/">Explore Area</a> <span>/</span> <span>Boerne</span>
+        </nav>
+        <h1>Boerne, <span style="color:#FF1616;">Texas</span></h1>
+        <p>Hill Country living with a real downtown — 30 miles up I-10 from San Antonio</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section id="market" class="section brn-intro">
+      <div class="container">
+        <div class="brn-quick">
+          <p><strong>Quick answer:</strong> Boerne is one of the strongest small-town markets in the San Antonio metro — median sale prices in the low-to-mid $600s in 2026, entry-level homes starting in the mid-$400s, and Boerne ISD carrying TEA A-ratings with a 98%+ graduation rate. The tradeoff is the commute: about 30 miles on I-10, 30–35 minutes off-peak and 45–50+ at rush hour. Buyers come for the historic Main Street, Hill Country outdoor access, and genuine small-town identity — and they pay a premium for it.</p>
+        </div>
+        <div class="brn-intro__grid">
+          <div class="brn-intro__text">
+            <h2>Small Town, <span class="accent">Not</span> a Suburb</h2>
+            <p>Boerne sits about 30 miles northwest of downtown San Antonio in Kendall County, and it refuses to feel like a bedroom community. The historic Main Street — the Hill Country Mile — is genuinely walkable, with local shops, restaurants, and German-heritage character that goes back to the town's 1849 founding. Dickens on Main at Christmas, Lemonade Day in spring, Friday-night football in fall: this is a town with a calendar, not just a zip code.</p>
+            <p>The market reflects that desirability. Median sale prices sit in the low-to-mid $600s, with median list prices around $669,000–$685,000. Entry-level homes start in the mid-$400s, while luxury communities like Cordillera Ranch run into the millions. It is not a budget market — but Kendall County's property tax rates (generally 1.6–2.0% of assessed value) run lower than Bexar County's, which partially offsets the higher purchase price.</p>
+            <p>Outdoor access is the other half of the pitch: the Cibolo Nature Center, the Guadalupe River, Hill Country cycling routes, and multiple parks sit within minutes of most neighborhoods. For buyers who want the Hill Country lifestyle with A-rated schools and a real downtown, Boerne is the benchmark every other town gets measured against.</p>
+          </div>
+          <div class="brn-intro__stats">
+            <div class="brn-stat">
+              <span class="brn-stat__number">Mid-$600s</span>
+              <span class="brn-stat__label">Median sale price, 2026</span>
+            </div>
+            <div class="brn-stat">
+              <span class="brn-stat__number">30–35 min</span>
+              <span class="brn-stat__label">To SA, off-peak</span>
+            </div>
+            <div class="brn-stat">
+              <span class="brn-stat__number">A-rated</span>
+              <span class="brn-stat__label">Boerne ISD (TEA)</span>
+            </div>
+            <div class="brn-stat">
+              <span class="brn-stat__number">1.6–2.0%</span>
+              <span class="brn-stat__label">Kendall Co. tax rate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Boerne -->
+    <section id="why-brn" class="section brn-why" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Why Buyers Choose <span class="accent">Boerne</span></h2>
+          <p>The four things that justify the premium</p>
+        </div>
+        <div class="brn-why__grid">
+          <div class="brn-why__card">
+            <h3>A- Rated Schools</h3>
+            <p>Boerne ISD holds consistent TEA A-ratings across campuses with a 98%+ graduation rate, smaller class sizes, and high parent engagement. Two high schools — Boerne High and Champion — serve the district. For families, the schools are the headline.</p>
+          </div>
+          <div class="brn-why__card">
+            <h3>A Real Downtown</h3>
+            <p>The Hill Country Mile on Main Street is walkable, local, and alive — not a strip center with a historic plaque. German heritage, local festivals, and independent shops give Boerne an identity no master-planned suburb replicates.</p>
+          </div>
+          <div class="brn-why__card">
+            <h3>Outdoor Access</h3>
+            <p>Cibolo Nature Center, the Guadalupe River, Hill Country cycling routes, and multiple parks — all within minutes of most neighborhoods. Weekend recreation doesn't require a plan; it's out the back door.</p>
+          </div>
+          <div class="brn-why__card">
+            <h3>Tax Rate Advantage</h3>
+            <p>Kendall County's total property tax rates generally run 1.6–2.0% of assessed value — lower than Bexar County's ~2.2%. On a $600,000 home, that difference is real money every year. File your homestead exemption at closing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Neighborhoods -->
+    <section id="neighborhoods" class="section brn-explore">
+      <div class="container">
+        <div class="section-title">
+          <h2>Neighborhoods &amp; <span class="accent">the Commute</span></h2>
+          <p>Where to look — and what the drive actually costs you</p>
+        </div>
+        <div class="brn-explore__grid">
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="brn-explore__card">
+            <h3>Historic Core &amp; Main Street</h3>
+            <p>Older homes near the Hill Country Mile — character, walkability, and mature trees. Smaller lots, higher price per square foot, and the strongest resale in town. Verify flood plain near the creeks.</p>
+          </a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="brn-explore__card">
+            <h3>South &amp; West Growth (Esperanza, etc.)</h3>
+            <p>Master-planned communities with resort-style amenities on the I-10 side of town. Newer construction, HOAs, and the shortest on-ramp to the San Antonio commute. Watch for MUD/PID assessments in newer districts.</p>
+          </a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="brn-explore__card">
+            <h3>North &amp; Acreage (Bergheim, Sisterdale)</h3>
+            <p>Elbow room — larger lots and acreage north of town toward Bergheim, Kendalia, and Sisterdale. Quieter nights, starry skies, and a few extra minutes on every drive. Well and septic territory; inspect accordingly.</p>
+          </a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="brn-explore__card">
+            <h3>The Commute, Honestly</h3>
+            <p>30 miles on I-10: 30–35 minutes off-peak, 45–50+ at rush hour. The I-10/Loop 1604 interchange is the bottleneck, though new flyover ramps opened in early 2026. Test your route at peak times before you write an offer — AM into San Antonio, PM back.</p>
+          </a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="brn-explore__card">
+            <h3>Military Families</h3>
+            <p>Boerne works for JBSA assignments if your schedule tolerates the drive — roughly 45+ minutes to Fort Sam or Lackland at peak. Officers and senior NCOs trade the commute for schools and lifestyle. Run it against your BAH first.</p>
+          </a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="brn-explore__card">
+            <h3>Search Boerne Listings</h3>
+            <p>See what's on the market in Boerne right now — historic core, new communities, and acreage.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schools -->
+    <section id="schools" class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>School <span class="accent">Districts</span></h2>
+          <p>Verify attendance zones by street address — some Boerne-address homes zone elsewhere</p>
+        </div>
+        <div class="brn-schools__grid">
+          <a href="https://www.boerneisd.net" target="_blank" rel="noopener" class="brn-schools__card">
+            <h3>Boerne ISD</h3>
+            <p>TEA "A"-rated district with a 98%+ graduation rate, strong college-readiness scores, and two high schools: Boerne High and Champion. Consistently one of the top-rated districts in the San Antonio metro.</p>
+            <span class="brn-schools__link">Visit Boerne ISD Website →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA with Parallax -->
+    <section class="section brn-cta">
+      <div class="brn-cta__overlay"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <h2>Boerne Rewards <span class="accent">Homework.</span></h2>
+        <p>Commute routes, MUD taxes, attendance zones, flood plains — Boerne has more variables than most buyers expect. I do video walkthroughs for out-of-town buyers and I know which questions to ask before you fall in love with a house.</p>
+        <div class="brn-cta__buttons">
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Talk to Cody</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About <span class="accent">Boerne</span></h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is the median home price in Boerne in 2026?</summary>
+            <p>The median sale price sits in the low-to-mid $600s, with median list prices around $669,000–$685,000. Entry-level homes start in the mid-$400s, while luxury communities like Cordillera Ranch run into the millions. Boerne is a premium market — significantly above the San Antonio metro median.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How long is the commute from Boerne to San Antonio?</summary>
+            <p>About 30 miles on I-10: 30–35 minutes off-peak and 45–50+ minutes at rush hour. The I-10/Loop 1604 interchange is the main bottleneck, though new flyover ramps opened in early 2026. Test your actual route at peak times before writing an offer.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is Boerne ISD a good school district?</summary>
+            <p>Yes — Boerne ISD is TEA "A"-rated with a graduation rate above 98% and two high schools, Boerne High and Champion. It's consistently ranked among the top districts in the San Antonio metro. Verify attendance zones by street address, since some homes with Boerne addresses zone to other districts.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ParallaxBanner image="/images/generated/porch-view.webp" />
+
+  <ContactForm context="Interested in Boerne — I'd like listings and guidance for my budget and commute..." />
+  <Footer />
+</Layout>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the median home price in Boerne in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The median sale price sits in the low-to-mid $600s, with median list prices around $669,000–$685,000. Entry-level homes start in the mid-$400s, while luxury communities like Cordillera Ranch run into the millions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long is the commute from Boerne to San Antonio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "About 30 miles on I-10: 30–35 minutes off-peak and 45–50+ minutes at rush hour. The I-10/Loop 1604 interchange is the main bottleneck, though new flyover ramps opened in early 2026."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Boerne ISD a good school district?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — Boerne ISD is TEA 'A'-rated with a graduation rate above 98% and two high schools, Boerne High and Champion. It's consistently ranked among the top districts in the San Antonio metro."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; padding: 0; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
+
+  .brn-hero { position: relative; height: 320px; background: url('/images/generated/hill-country-home-1.webp') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; }
+  .brn-hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
+  .brn-hero__content { position: relative; z-index: 1; padding: 0 1.5rem; }
+  .brn-hero__content h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 0.75rem; }
+  .brn-hero__content p { color: rgba(255,255,255,0.7); font-size: 1rem; max-width: 600px; margin: 0 auto; }
+
+  .breadcrumb { font-size: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.5); }
+  .breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .brn-quick { background: #111; color: #fff; border-left: 4px solid #FF1616; padding: 1.5rem 2rem; border-radius: 0 8px 8px 0; margin-bottom: 3rem; }
+  .brn-quick p { line-height: 1.8; font-size: 0.95rem; margin: 0; color: rgba(255,255,255,0.85); }
+  .brn-quick strong { color: #FF1616; }
+
+  .brn-intro__grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: start; }
+  .brn-intro__text p { color: var(--gray); line-height: 1.8; margin-bottom: 1rem; }
+  .brn-intro__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .brn-stat { background: var(--light-gray); padding: 1.5rem; text-align: center; border-radius: 8px; }
+  .brn-stat__number { display: block; font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: #FF1616; }
+  .brn-stat__label { display: block; font-size: 0.8rem; color: var(--gray); margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .brn-why__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  .brn-why__card { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .brn-why__card h3 { font-family: var(--font-heading); font-size: 1.1rem; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .brn-why__card p { color: var(--gray); font-size: 0.9rem; line-height: 1.7; }
+
+  .brn-explore__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .brn-explore__card { display: block; background: #fff; border: 1px solid var(--light-gray); padding: 2rem; border-radius: 8px; transition: transform 0.2s, box-shadow 0.2s; }
+  .brn-explore__card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .brn-explore__card h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; margin-bottom: 0.5rem; color: #000; }
+  .brn-explore__card:hover h3 { color: #FF1616; }
+  .brn-explore__card p { color: var(--gray); font-size: 0.85rem; line-height: 1.6; }
+
+  .brn-schools__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
+  .brn-schools__card { display: block; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: transform 0.2s, box-shadow 0.2s; text-align: center; }
+  .brn-schools__card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .brn-schools__card h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.75rem; color: #000; }
+  .brn-schools__card:hover h3 { color: #FF1616; }
+  .brn-schools__card p { color: var(--gray); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem; }
+  .brn-schools__link { font-family: var(--font-heading); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #FF1616; }
+
+  .brn-cta { position: relative; background: url('/images/testimonials-hero.webp') center/cover no-repeat fixed; color: #fff; text-align: center; }
+  .brn-cta__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.75); }
+  .brn-cta__buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .brn-cta p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem; }
+
+  @media (max-width: 768px) {
+    .brn-intro__grid { grid-template-columns: 1fr; }
+    .brn-why__grid { grid-template-columns: 1fr; }
+    .brn-explore__grid { grid-template-columns: 1fr; }
+  }
+</style>

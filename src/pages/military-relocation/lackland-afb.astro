@@ -1,0 +1,314 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { placeSchema, collectionPageSchema, breadcrumbSchema } from '../../lib/schema';
+
+const lakDescription = 'PCS to Lackland AFB? Where military families buy near JBSA-Lackland: the Gateway to the Air Force. Commute corridors, 2026 BAH buying power, schools, and VA loan notes.';
+const pageSchema = [
+  placeSchema({ name: 'Lackland AFB, TX', description: lakDescription, url: '/military-relocation/lackland-afb/' }),
+  collectionPageSchema({
+    name: 'PCS Housing Guide: Lackland AFB',
+    description: lakDescription,
+    url: '/military-relocation/lackland-afb/',
+    hasPart: [
+      { name: 'Base Overview', url: '/military-relocation/lackland-afb/#overview' },
+      { name: 'Where Families Buy', url: '/military-relocation/lackland-afb/#where-to-buy' },
+      { name: 'BAH Buying Power', url: '/military-relocation/lackland-afb/#bah' },
+      { name: 'Schools', url: '/military-relocation/lackland-afb/#schools' },
+    ],
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Military Relocation / PCS to JBSA', url: '/military-relocation/' },
+    { name: 'Lackland AFB Housing Guide', url: '/military-relocation/lackland-afb/' },
+  ]),
+];
+---
+
+<Layout
+  title="PCS to Lackland AFB: Where to Buy | Cody Posey"
+  description={lakDescription}
+  schema={pageSchema}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="lak-hero">
+      <div class="lak-hero__overlay"></div>
+      <div class="lak-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/military-relocation/">Military Relocation</a> <span>/</span> <span>Lackland AFB</span>
+        </nav>
+        <h1>Lackland <span style="color:#FF1616;">AFB</span></h1>
+        <p>PCS housing guide: the Gateway to the Air Force and southwest San Antonio</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section id="overview" class="section lak-intro">
+      <div class="container">
+        <div class="lak-quick">
+          <p><strong>Quick answer:</strong> Lackland families cluster in two directions — the Potranco Road/Loop 1604 corridor (Alamo Ranch, Redbird Ranch, Arcadia Ridge, roughly 10–15 minutes to the gate, Northside ISD) or west toward Castroville (20–25 minutes, Medina Valley ISD, more land for the money). On-post privatized housing runs through Balfour Beatty with six neighborhoods, but the waitlist pushes most families off post.</p>
+        </div>
+        <div class="lak-intro__grid">
+          <div class="lak-intro__text">
+            <h2>The <span class="accent">Gateway</span> to the Air Force</h2>
+            <p>Lackland sits in southwest San Antonio near Loop 410 and Highway 90, and it's the installation every Airman knows first: Air Force Basic Military Training graduates here — it's literally called the Gateway to the Air Force. The 37th Training Wing runs the show, and the base also hosts the Defense Language Institute English Language Center, major cybersecurity missions, and a huge chunk of the Air Force's security forces training pipeline.</p>
+            <p>Because Lackland's missions are training-heavy, the population skews young and first-term, which shapes the housing market around it. The southwest corridor is one of San Antonio's most affordable directions — new construction under and around $300,000 is still findable along Potranco Road, which is increasingly rare in the metro. Families who want more land and a small-town feel push west to Castroville and the Medina Valley; families who want master-planned amenities and top-rated schools stay in the 1604 loop corridor.</p>
+            <p>One honest note: Lackland's surrounding neighborhoods vary block to block, more than the Randolph or Fort Sam corridors. I've walked buyers through this area on video more than once — a street-by-street check beats a zip-code assumption here. That's part of what you get with a retired First Sergeant who does this every week.</p>
+          </div>
+          <div class="lak-intro__stats">
+            <div class="lak-stat">
+              <span class="lak-stat__number">10–15 min</span>
+              <span class="lak-stat__label">Potranco corridor to gate</span>
+            </div>
+            <div class="lak-stat">
+              <span class="lak-stat__number">6</span>
+              <span class="lak-stat__label">On-post neighborhoods</span>
+            </div>
+            <div class="lak-stat">
+              <span class="lak-stat__number">$1,869</span>
+              <span class="lak-stat__label">E-5 BAH w/ deps, 2026</span>
+            </div>
+            <div class="lak-stat">
+              <span class="lak-stat__number">~2.2%</span>
+              <span class="lak-stat__label">Bexar Co. effective tax rate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Where families buy -->
+    <section id="where-to-buy" class="section lak-explore" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Where Lackland Families <span class="accent">Actually Buy</span></h2>
+          <p>Two corridors, two different lifestyles — both inside 2026 BAH</p>
+        </div>
+        <div class="lak-explore__grid">
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="lak-explore__card">
+            <h3>Alamo Ranch &amp; the Potranco Corridor — 10–15 min</h3>
+            <p>The default choice for most Lackland families. Master-planned communities, Northside ISD schools, and a straight shot up 1604 to the base. New construction is the norm here, and competition is steady but sane.</p>
+          </a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="lak-explore__card">
+            <h3>Redbird Ranch &amp; Arcadia Ridge — 10–15 min</h3>
+            <p>Newer subdivisions west of 1604 along the Potranco corridor. Larger floor plans for the money than inside the loop, with quick gate access and growing retail along the corridor.</p>
+          </a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="lak-explore__card">
+            <h3>Castroville — 20–25 min</h3>
+            <p>The "Little Alsace of Texas" — historic, quiet, and priced below San Antonio proper. Medina Valley ISD, and recent sales data shows a median around the high $400s. More land, slower pace, real small-town identity.</p>
+          </a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="lak-explore__card">
+            <h3>Helotes — 20–25 min</h3>
+            <p>North of the base along Bandera Road. Established suburb with a Hill Country edge, Northside ISD, and homes on larger lots than the 1604 corridor. The commute runs up Bandera to 410.</p>
+          </a>
+          <a href="/military-relocation/bah-rates/" class="lak-explore__card">
+            <h3>On-Post Housing (Balfour Beatty)</h3>
+            <p>Six privatized neighborhoods on Lackland with rents set at BAH. Worth applying to, but the waitlist is the deciding factor for most families — have an off-post backup plan with your BAH mapped out.</p>
+          </a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="lak-explore__card">
+            <h3>Search Current Listings</h3>
+            <p>See what's on the market in the Lackland corridors right now. Filter by price, beds, and school district.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAH -->
+    <section id="bah" class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>What Your 2026 BAH <span class="accent">Buys</span></h2>
+          <p>Same rate as every JBSA installation — one Military Housing Area</p>
+        </div>
+        <div class="lak-intro__grid">
+          <div class="lak-intro__text">
+            <p>2026 with-dependents BAH in the San Antonio area: <strong>$1,869/month for an E-5, $2,094 for an E-6, $2,112 for an E-7, and $2,127 for an O-3</strong>. Rates dipped about 3% from 2025, but rate protection holds your higher figure if you're already stationed here.</p>
+            <p>The Lackland corridor stretches BAH further than any other JBSA direction. An E-5's $1,869 with a zero-down VA loan covers a real house payment in the Potranco corridor, where new construction still starts under $300,000. That's nearly impossible near the Fort Sam Heights corridor at the same rank. The tradeoff is distance from San Antonio's job centers and nightlife — but if your whole life is the base, the math is hard to argue with.</p>
+            <p>Watch the same number that surprises every incoming family: Bexar County's effective property tax rate sits around 2.2%. Model taxes, insurance, and HOA together — Texas's lack of state income tax helps, but the tax bill is the line item that breaks careless budgets. My <a href="/military-relocation/bah-rates/" style="color:#FF1616; font-weight:700;">2026 JBSA BAH rates page</a> runs the exact numbers by rank.</p>
+          </div>
+          <div class="lak-intro__stats">
+            <div class="lak-stat">
+              <span class="lak-stat__number">$1,869</span>
+              <span class="lak-stat__label">E-5 w/ deps, 2026</span>
+            </div>
+            <div class="lak-stat">
+              <span class="lak-stat__number">$2,094</span>
+              <span class="lak-stat__label">E-6 w/ deps, 2026</span>
+            </div>
+            <div class="lak-stat">
+              <span class="lak-stat__number">$0</span>
+              <span class="lak-stat__label">Down w/ VA loan</span>
+            </div>
+            <div class="lak-stat">
+              <span class="lak-stat__number">$0</span>
+              <span class="lak-stat__label">Monthly PMI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schools -->
+    <section id="schools" class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>School <span class="accent">Districts</span></h2>
+          <p>Your district follows your address — verify by street before you buy</p>
+        </div>
+        <div class="lak-schools__grid">
+          <a href="https://www.nisd.net" target="_blank" rel="noopener" class="lak-schools__card">
+            <h3>Northside ISD</h3>
+            <p>Serves Alamo Ranch, Helotes, and the 1604/Potranco corridor — one of the largest and most sought-after districts in the metro, and a top reason families pick the corridor.</p>
+            <span class="lak-schools__link">Visit NISD Website →</span>
+          </a>
+          <a href="https://www.swisd.net" target="_blank" rel="noopener" class="lak-schools__card">
+            <h3>Southwest ISD</h3>
+            <p>Serves neighborhoods immediately around Lackland to the south and west. Smaller district with improving accountability ratings.</p>
+            <span class="lak-schools__link">Visit SWISD Website →</span>
+          </a>
+          <a href="https://www.mvisd.org" target="_blank" rel="noopener" class="lak-schools__card">
+            <h3>Medina Valley ISD</h3>
+            <p>Serves Castroville and the corridor west of the base. Fast-growing district as San Antonio's sprawl pushes west along Highway 90.</p>
+            <span class="lak-schools__link">Visit MVISD Website →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA with Parallax -->
+    <section class="section lak-cta">
+      <div class="lak-cta__overlay"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <h2>Orders to Lackland? <span class="accent">Start With the Corridor.</span></h2>
+        <p>Potranco or Castroville is a lifestyle decision as much as a commute one. I'm a retired Army First Sergeant who does video walkthroughs for out-of-state buyers — tell me your report date and your rank's BAH, and I'll send you a short list that fits before you fly down.</p>
+        <div class="lak-cta__buttons">
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Book a PCS Call</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About <span class="accent">Lackland AFB</span></h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Where do most Lackland AFB families live?</summary>
+            <p>Most families cluster in the Potranco Road/Loop 1604 corridor — Alamo Ranch, Redbird Ranch, and Arcadia Ridge — about 10 to 15 minutes from the gate with Northside ISD schools. Families wanting more land and a small-town feel go west to Castroville, about 20 to 25 minutes out in Medina Valley ISD.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is on-post housing at Lackland worth the waitlist?</summary>
+            <p>Lackland's privatized housing runs through Balfour Beatty with six neighborhoods and rents set at BAH. It's worth applying, but the waitlist is the deciding factor for most families — always have an off-post plan with your BAH mapped to real listings before you arrive.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How far does BAH go near Lackland compared to other JBSA bases?</summary>
+            <p>Further than anywhere else in the JBSA area. All four installations share one Military Housing Area, so your BAH rate is identical — but the Lackland corridor has the lowest home prices, with new construction still available under $300,000 along Potranco Road. An E-5's $1,869/month buys a real house payment here.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ParallaxBanner image="/images/generated/guadalupe-river.webp" />
+
+  <ContactForm context="PCS orders to Lackland AFB — I'd like a video-tour plan for my BAH and timeline..." />
+  <Footer />
+</Layout>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where do most Lackland AFB families live?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most families cluster in the Potranco Road/Loop 1604 corridor — Alamo Ranch, Redbird Ranch, and Arcadia Ridge — about 10 to 15 minutes from the gate with Northside ISD schools. Families wanting more land and a small-town feel go west to Castroville, about 20 to 25 minutes out in Medina Valley ISD."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is on-post housing at Lackland worth the waitlist?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lackland's privatized housing runs through Balfour Beatty with six neighborhoods and rents set at BAH. It's worth applying, but the waitlist is the deciding factor for most families — always have an off-post plan with your BAH mapped to real listings before you arrive."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How far does BAH go near Lackland compared to other JBSA bases?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Further than anywhere else in the JBSA area. All four installations share one Military Housing Area, so your BAH rate is identical — but the Lackland corridor has the lowest home prices, with new construction still available under $300,000 along Potranco Road."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; padding: 0; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
+
+  .lak-hero { position: relative; height: 320px; background: url('/images/generated/hill-country-sunset.webp') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; }
+  .lak-hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
+  .lak-hero__content { position: relative; z-index: 1; padding: 0 1.5rem; }
+  .lak-hero__content h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 0.75rem; }
+  .lak-hero__content p { color: rgba(255,255,255,0.7); font-size: 1rem; max-width: 600px; margin: 0 auto; }
+
+  .breadcrumb { font-size: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.5); }
+  .breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .lak-quick { background: #111; color: #fff; border-left: 4px solid #FF1616; padding: 1.5rem 2rem; border-radius: 0 8px 8px 0; margin-bottom: 3rem; }
+  .lak-quick p { line-height: 1.8; font-size: 0.95rem; margin: 0; color: rgba(255,255,255,0.85); }
+  .lak-quick strong { color: #FF1616; }
+
+  .lak-intro__grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: start; }
+  .lak-intro__text p { color: var(--gray); line-height: 1.8; margin-bottom: 1rem; }
+  .lak-intro__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .lak-stat { background: var(--light-gray); padding: 1.5rem; text-align: center; border-radius: 8px; }
+  .lak-stat__number { display: block; font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: #FF1616; }
+  .lak-stat__label { display: block; font-size: 0.8rem; color: var(--gray); margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .lak-explore__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .lak-explore__card { display: block; background: #fff; border: 1px solid var(--light-gray); padding: 2rem; border-radius: 8px; transition: transform 0.2s, box-shadow 0.2s; }
+  .lak-explore__card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .lak-explore__card h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; margin-bottom: 0.5rem; color: #000; }
+  .lak-explore__card:hover h3 { color: #FF1616; }
+  .lak-explore__card p { color: var(--gray); font-size: 0.85rem; line-height: 1.6; }
+
+  .lak-schools__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
+  .lak-schools__card { display: block; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: transform 0.2s, box-shadow 0.2s; text-align: center; }
+  .lak-schools__card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .lak-schools__card h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.75rem; color: #000; }
+  .lak-schools__card:hover h3 { color: #FF1616; }
+  .lak-schools__card p { color: var(--gray); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem; }
+  .lak-schools__link { font-family: var(--font-heading); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #FF1616; }
+
+  .lak-cta { position: relative; background: url('/images/testimonials-hero.webp') center/cover no-repeat fixed; color: #fff; text-align: center; }
+  .lak-cta__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.75); }
+  .lak-cta__buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .lak-cta p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem; }
+
+  @media (max-width: 768px) {
+    .lak-intro__grid { grid-template-columns: 1fr; }
+    .lak-explore__grid { grid-template-columns: 1fr; }
+  }
+</style>

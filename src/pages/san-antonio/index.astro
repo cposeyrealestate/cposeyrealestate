@@ -1,0 +1,313 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { placeSchema, collectionPageSchema, breadcrumbSchema } from '../../lib/schema';
+
+const saDescription = 'Living in San Antonio, TX: neighborhoods, home prices, schools, commute times, and why Military City USA draws more relocating families than anywhere in South Texas.';
+const pageSchema = [
+  placeSchema({ name: 'San Antonio, TX', description: saDescription, url: '/san-antonio/' }),
+  collectionPageSchema({
+    name: 'Living in San Antonio, TX',
+    description: saDescription,
+    url: '/san-antonio/',
+    hasPart: [
+      { name: 'Why San Antonio', url: '/san-antonio/#why-sa' },
+      { name: 'Neighborhoods', url: '/san-antonio/#neighborhoods' },
+      { name: 'Schools', url: '/san-antonio/#schools' },
+      { name: 'Market Data', url: '/san-antonio/#market' },
+    ],
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Explore Area', url: '/explorearea/' },
+    { name: 'San Antonio', url: '/san-antonio/' },
+  ]),
+];
+---
+
+<Layout
+  title="Living in San Antonio, TX: Neighborhoods & Home Prices | Cody Posey"
+  description={saDescription}
+  schema={pageSchema}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="sa-hero">
+      <div class="sa-hero__overlay"></div>
+      <div class="sa-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/explorearea/">Explore Area</a> <span>/</span> <span>San Antonio</span>
+        </nav>
+        <h1>San <span style="color:#FF1616;">Antonio</span></h1>
+        <p>Military City USA — neighborhoods, prices, schools, and the honest tradeoffs</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section id="market" class="section sa-intro">
+      <div class="container">
+        <div class="sa-quick">
+          <p><strong>Quick answer:</strong> San Antonio is Texas's second-largest city and the most affordable major metro in the state — the metro median sat at $320,374 in September 2026, down 2.9% year over year. Military families cluster near their gate (Fort Sam, Lackland, or Randolph corridors); young professionals pick the Pearl, King William, and downtown; established families go Stone Oak or Alamo Ranch. Your neighborhood choice here is really a commute decision — the city sprawls, and rush hour is the tax you pay for picking wrong.</p>
+        </div>
+        <div class="sa-intro__grid">
+          <div class="sa-intro__text">
+            <h2>Three Centuries Deep, <span class="accent">Still</span> Affordable</h2>
+            <p>Founded in 1718, San Antonio is one of the oldest cities in the United States and the seventh-largest — a place where Spanish colonial missions sit twenty minutes from master-planned suburbs. It's also Military City USA: Joint Base San Antonio (Fort Sam Houston, Lackland, Randolph, and Camp Bullis) anchors the local economy alongside USAA, Toyota's manufacturing plant, the South Texas Medical Center, and a fast-growing cybersecurity sector.</p>
+            <p>The pitch for relocating buyers is simple: big-city amenities at a price that still works. The metro median of $320,374 (September 2026) buys a real house in most corridors, property taxes run around 2.2% in Bexar County, and Texas has no state income tax. The tradeoffs are honest too — summers are brutal, the city sprawls across 460+ square miles, and your daily quality of life is largely determined by how far you live from where you work.</p>
+            <p>That's why this page is organized around corridors, not just neighborhoods. Tell me where your job or base is, and I'll tell you where people in your situation actually land. I'm a retired Army First Sergeant based in New Braunfels, and I do video walkthroughs for buyers relocating from across the country.</p>
+          </div>
+          <div class="sa-intro__stats">
+            <div class="sa-stat">
+              <span class="sa-stat__number">$320K</span>
+              <span class="sa-stat__label">Metro median, Sept 2026</span>
+            </div>
+            <div class="sa-stat">
+              <span class="sa-stat__number">2nd</span>
+              <span class="sa-stat__label">Largest city in Texas</span>
+            </div>
+            <div class="sa-stat">
+              <span class="sa-stat__number">1718</span>
+              <span class="sa-stat__label">Founded — 300+ years</span>
+            </div>
+            <div class="sa-stat">
+              <span class="sa-stat__number">4</span>
+              <span class="sa-stat__label">JBSA installations</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why SA -->
+    <section id="why-sa" class="section sa-why" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Why People Move <span class="accent">Here</span></h2>
+          <p>The four things that actually drive relocation decisions</p>
+        </div>
+        <div class="sa-why__grid">
+          <div class="sa-why__card">
+            <h3>Military City USA</h3>
+            <p>Fort Sam Houston, Lackland AFB, Randolph AFB, and Camp Bullis make San Antonio one of the largest active-duty concentrations in the country. The entire housing market is shaped by PCS cycles, BAH, and VA loans — which is exactly my lane.</p>
+          </div>
+          <div class="sa-why__card">
+            <h3>Jobs Beyond the Bases</h3>
+            <p>USAA headquarters, Toyota Motor Manufacturing, the South Texas Medical Center, Rackspace-era tech roots, and a growing cybersecurity corridor. The economy isn't a one-industry town — it holds up when any single sector wobbles.</p>
+          </div>
+          <div class="sa-why__card">
+            <h3>Culture You Can Feel</h3>
+            <p>The River Walk, the UNESCO-listed Spanish missions, Fiesta every April, Spurs basketball at the Frost Bank Center, the Pearl's food scene. San Antonio has an identity most Sun Belt boomtowns are still trying to manufacture.</p>
+          </div>
+          <div class="sa-why__card">
+            <h3>Relative Affordability</h3>
+            <p>A $320K metro median against Austin's and Dallas's prices is the whole story. Your dollar buys more house, more lot, and more margin here than in any other major Texas metro — with the same no-state-income-tax math.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Neighborhoods -->
+    <section id="neighborhoods" class="section sa-explore">
+      <div class="container">
+        <div class="section-title">
+          <h2>Neighborhoods, <span class="accent">by Corridor</span></h2>
+          <p>Pick your commute first — the neighborhood follows</p>
+        </div>
+        <div class="sa-explore__grid">
+          <a href="/military-relocation/fort-sam-houston/" class="sa-explore__card">
+            <h3>Alamo Heights / Terrell Hills / Olmos Park</h3>
+            <p>San Antonio's premium corridor — historic homes, mature oaks, Alamo Heights ISD. Minutes to Fort Sam Houston's gates. You pay for all of it, and residents say it's worth it.</p>
+          </a>
+          <a href="/military-relocation/fort-sam-houston/" class="sa-explore__card">
+            <h3>Stone Oak</h3>
+            <p>Master-planned north side, North East ISD, medical-center adjacent. The default for established families who want newer construction and every amenity within 10 minutes.</p>
+          </a>
+          <a href="/military-relocation/lackland-afb/" class="sa-explore__card">
+            <h3>Alamo Ranch</h3>
+            <p>Southwest growth corridor, Northside ISD, 10–15 minutes to Lackland. New construction, young families, and the best value inside Loop 1604's orbit.</p>
+          </a>
+          <a href="/military-relocation/randolph-afb/" class="sa-explore__card">
+            <h3>Schertz / Cibolo / Universal City</h3>
+            <p>Northeast corridor feeding Randolph AFB — under 10 minutes to the Main Gate, SCUCISD schools, new construction throughout. Also the corridor I work most.</p>
+          </a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="sa-explore__card">
+            <h3>King William / Monte Vista / Pearl</h3>
+            <p>Historic districts and the urban core — walkable, character-rich, and closest to downtown jobs, the River Walk, and the Pearl's dining scene. Older homes, real personality.</p>
+          </a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="sa-explore__card">
+            <h3>Search All San Antonio Listings</h3>
+            <p>See what's actually on the market across every corridor right now. Filter by price, beds, and school district.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schools -->
+    <section id="schools" class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>School <span class="accent">Districts</span></h2>
+          <p>San Antonio has 15+ districts — these are the ones buyers ask about most</p>
+        </div>
+        <div class="sa-schools__grid">
+          <a href="https://www.neisd.net" target="_blank" rel="noopener" class="sa-schools__card">
+            <h3>North East ISD</h3>
+            <p>Stone Oak and north-central San Antonio. One of the state's largest districts with extensive magnet programs.</p>
+            <span class="sa-schools__link">Visit NEISD Website →</span>
+          </a>
+          <a href="https://www.nisd.net" target="_blank" rel="noopener" class="sa-schools__card">
+            <h3>Northside ISD</h3>
+            <p>Alamo Ranch, Helotes, and the northwest. The district behind the Lackland corridor's family appeal.</p>
+            <span class="sa-schools__link">Visit NISD Website →</span>
+          </a>
+          <a href="https://www.ahisd.net" target="_blank" rel="noopener" class="sa-schools__card">
+            <h3>Alamo Heights ISD</h3>
+            <p>Small, high-performing, and a primary driver of home values in the Heights corridor near Fort Sam.</p>
+            <span class="sa-schools__link">Visit AHISD Website →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA with Parallax -->
+    <section class="section sa-cta">
+      <div class="sa-cta__overlay"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <h2>Moving to San Antonio? <span class="accent">Start With Your Commute.</span></h2>
+        <p>Tell me where you'll work — which base, which employer, which side of town — and I'll send you the corridors where people in your situation actually land, with real listings and real drive times. Video walkthroughs available for out-of-state buyers.</p>
+        <div class="sa-cta__buttons">
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Talk to Cody</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About <span class="accent">San Antonio</span></h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Is San Antonio affordable in 2026?</summary>
+            <p>By major-metro Texas standards, yes. The metro median home price was $320,374 in September 2026, down 2.9% year over year — well below Austin and Dallas. Pair that with no state income tax and a zero-down VA loan for military buyers, and San Antonio remains the most affordable large metro in the state.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What are the best neighborhoods in San Antonio for families?</summary>
+            <p>It depends on your commute. Stone Oak and Alamo Ranch lead for master-planned family living with top-rated schools (NEISD and Northside ISD). The Schertz–Cibolo corridor serves Randolph families with SCUCISD. Alamo Heights and Terrell Hills offer premium historic neighborhoods near Fort Sam. Start with where you work, then pick the neighborhood.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How bad is the San Antonio commute?</summary>
+            <p>San Antonio sprawls across 460+ square miles, so the commute is entirely about corridor choice. I-10 west, I-35 north, and 1604/281 on the north side all congest at rush hour. The honest rule: live on the same side of town as your job or base, keep it under 25 minutes, and drive the route at rush hour once before you buy.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ParallaxBanner image="/images/generated/porch-view.webp" />
+
+  <ContactForm context="Relocating to San Antonio — I'd like neighborhood guidance for my commute and budget..." />
+  <Footer />
+</Layout>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is San Antonio affordable in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "By major-metro Texas standards, yes. The metro median home price was $320,374 in September 2026, down 2.9% year over year — well below Austin and Dallas. Pair that with no state income tax and a zero-down VA loan for military buyers, and San Antonio remains the most affordable large metro in the state."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the best neighborhoods in San Antonio for families?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on your commute. Stone Oak and Alamo Ranch lead for master-planned family living with top-rated schools (NEISD and Northside ISD). The Schertz–Cibolo corridor serves Randolph families with SCUCISD. Alamo Heights and Terrell Hills offer premium historic neighborhoods near Fort Sam."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How bad is the San Antonio commute?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "San Antonio sprawls across 460+ square miles, so the commute is entirely about corridor choice. The honest rule: live on the same side of town as your job or base, keep it under 25 minutes, and drive the route at rush hour once before you buy."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; padding: 0; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
+
+  .sa-hero { position: relative; height: 320px; background: url('/images/generated/hero-home-aerial.webp') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; }
+  .sa-hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
+  .sa-hero__content { position: relative; z-index: 1; padding: 0 1.5rem; }
+  .sa-hero__content h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 0.75rem; }
+  .sa-hero__content p { color: rgba(255,255,255,0.7); font-size: 1rem; max-width: 600px; margin: 0 auto; }
+
+  .breadcrumb { font-size: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.5); }
+  .breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .sa-quick { background: #111; color: #fff; border-left: 4px solid #FF1616; padding: 1.5rem 2rem; border-radius: 0 8px 8px 0; margin-bottom: 3rem; }
+  .sa-quick p { line-height: 1.8; font-size: 0.95rem; margin: 0; color: rgba(255,255,255,0.85); }
+  .sa-quick strong { color: #FF1616; }
+
+  .sa-intro__grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: start; }
+  .sa-intro__text p { color: var(--gray); line-height: 1.8; margin-bottom: 1rem; }
+  .sa-intro__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .sa-stat { background: var(--light-gray); padding: 1.5rem; text-align: center; border-radius: 8px; }
+  .sa-stat__number { display: block; font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: #FF1616; }
+  .sa-stat__label { display: block; font-size: 0.8rem; color: var(--gray); margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .sa-why__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  .sa-why__card { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .sa-why__card h3 { font-family: var(--font-heading); font-size: 1.1rem; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .sa-why__card p { color: var(--gray); font-size: 0.9rem; line-height: 1.7; }
+
+  .sa-explore__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .sa-explore__card { display: block; background: #fff; border: 1px solid var(--light-gray); padding: 2rem; border-radius: 8px; transition: transform 0.2s, box-shadow 0.2s; }
+  .sa-explore__card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .sa-explore__card h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; margin-bottom: 0.5rem; color: #000; }
+  .sa-explore__card:hover h3 { color: #FF1616; }
+  .sa-explore__card p { color: var(--gray); font-size: 0.85rem; line-height: 1.6; }
+
+  .sa-schools__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
+  .sa-schools__card { display: block; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: transform 0.2s, box-shadow 0.2s; text-align: center; }
+  .sa-schools__card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .sa-schools__card h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.75rem; color: #000; }
+  .sa-schools__card:hover h3 { color: #FF1616; }
+  .sa-schools__card p { color: var(--gray); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem; }
+  .sa-schools__link { font-family: var(--font-heading); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #FF1616; }
+
+  .sa-cta { position: relative; background: url('/images/testimonials-hero.webp') center/cover no-repeat fixed; color: #fff; text-align: center; }
+  .sa-cta__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.75); }
+  .sa-cta__buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .sa-cta p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem; }
+
+  @media (max-width: 768px) {
+    .sa-intro__grid { grid-template-columns: 1fr; }
+    .sa-why__grid { grid-template-columns: 1fr; }
+    .sa-explore__grid { grid-template-columns: 1fr; }
+  }
+</style>
