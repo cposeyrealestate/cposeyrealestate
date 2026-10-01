@@ -1,0 +1,407 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ShortAnswer from '../components/ShortAnswer.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+import { articleSchema, breadcrumbSchema, faqSchema } from '../lib/schema';
+
+const pageTitle = 'How to Choose a VA-Savvy Agent | VA Loan Realtor Guide San Antonio & New Braunfels';
+const pageDescription = 'Not every agent understands VA loans. Learn the 7 questions that reveal whether an agent is truly VA-savvy — Tidewater, MPRs, the escape clause, PCS timelines — from a retired Army First Sergeant and MRP-certified REALTOR®.';
+
+const faqs = [
+  {
+    q: 'Do I really need a VA-specialized agent, or will any good agent do?',
+    a: 'A good general agent can close a VA loan, but VA transactions have tripwires — Minimum Property Requirements, the Tidewater appraisal process, the VA escape clause — that punish inexperience. An agent who closes VA loans regularly anticipates these instead of reacting to them, which is the difference between closing on time and renegotiating under pressure.',
+  },
+  {
+    q: 'Does a VA-savvy agent cost me more?',
+    a: 'No. Buyer agent compensation works the same whether your agent is VA-experienced or not — it is negotiated in your buyer representation agreement and often paid by the seller. VA expertise costs you nothing extra; lack of it can cost you the house.',
+  },
+  {
+    q: 'Can a VA offer actually compete against conventional offers?',
+    a: 'Yes — when it is written by someone who knows how. The myth that "sellers hate VA offers" comes from agents who submit weak ones: no pre-approval from a VA-experienced lender, no plan for appraisal gaps, no clean terms. A VA-savvy agent competes on strength of presentation without stripping your VA protections.',
+  },
+  {
+    q: 'What is the VA escape clause?',
+    a: 'It is a required contract provision stating that if the VA appraisal comes in below the purchase price, you are not obligated to complete the purchase. A VA-savvy agent includes it correctly every time and has a plan — price reduction, seller concessions, or an orderly exit — before the appraisal even happens.',
+  },
+  {
+    q: 'I am PCSing and buying sight-unseen. Can a VA-savvy agent handle that?',
+    a: 'That is exactly where specialization matters most. I do live video walkthroughs, flag what cameras hide (road noise, drainage, neighboring properties), coordinate with your VA lender on your report-date timeline, and use a power of attorney so you or your spouse can close remotely if orders and closing dates collide.',
+  },
+];
+
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/va-savvy-agent/' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'How to Choose a VA-Savvy Agent', url: '/va-savvy-agent/' },
+  ]),
+  faqSchema(faqs),
+];
+
+const comparison = [
+  {
+    topic: 'VA appraisal & MPRs',
+    savvy: 'Preps the listing side for Minimum Property Requirements before the appraiser arrives; knows which repairs the VA will flag.',
+    typical: 'First learns about MPRs when the appraisal demands repairs — then scrambles mid-transaction.',
+  },
+  {
+    topic: 'Tidewater Initiative',
+    savvy: 'Has a comparable-sales rebuttal packet ready the day Tidewater is invoked, protecting your value.',
+    typical: 'Has never heard of Tidewater; the low value stands unchallenged.',
+  },
+  {
+    topic: 'VA escape clause',
+    savvy: 'Writes it correctly in every offer and plans the low-appraisal response in advance.',
+    typical: 'Omits it, misunderstands it, or treats it as optional paperwork.',
+  },
+  {
+    topic: 'Offer competitiveness',
+    savvy: 'Wins with strong pre-approval, clean terms, and lender credibility — without waiving your protections.',
+    typical: 'Tells VA buyers they "can\'t compete" or pressures them to waive the appraisal contingency.',
+  },
+  {
+    topic: 'Lender network',
+    savvy: 'Works with local lenders who close VA loans on PCS timelines every month.',
+    typical: 'Sends you to whoever — including lenders who rarely touch VA files.',
+  },
+  {
+    topic: 'PCS timelines',
+    savvy: 'Builds the contract around your report date; coordinates remote closings and power of attorney.',
+    typical: 'Runs a standard 30–45 day playbook regardless of your orders.',
+  },
+  {
+    topic: 'BAH budgeting',
+    savvy: 'Matches your total payment — taxes, insurance, HOA — against BAH so you know your true out-of-pocket.',
+    typical: 'Quotes principal and interest only; taxes become a surprise.',
+  },
+];
+
+const questions = [
+  {
+    q: 'How many VA buyers did you represent in the last 12 months?',
+    a: 'You want a number, not a vibe. Regular VA volume means current, practiced knowledge — not something remembered from a CE class two years ago.',
+  },
+  {
+    q: 'Walk me through what happens if the VA appraisal comes in low.',
+    a: 'Listen for: Tidewater, Notice of Value, MPR repairs, the escape clause, and a clear plan — price reduction, concessions, or exit. Hesitation here is disqualifying.',
+  },
+  {
+    q: 'What is the Tidewater Initiative, and how do you prepare for it?',
+    a: 'Tidewater gives the appraiser a heads-up before issuing a low value, with 2 business days for additional comps. A VA-savvy agent has that packet ready to go.',
+  },
+  {
+    q: 'How do you write the VA escape clause into my contract?',
+    a: 'It is mandatory in VA transactions. They should explain it in plain English and confirm it appears in every offer they write for you.',
+  },
+  {
+    q: 'Which VA-experienced lenders do you work with?',
+    a: 'The agent-lender pairing matters enormously on VA files. They should name specific local lenders with real VA volume — not "whoever you want."',
+  },
+  {
+    q: 'Have you handled a PCS purchase on a tight report-date timeline?',
+    a: 'PCS moves compress everything. They should describe how they have managed remote buying, video walkthroughs, and closings timed to orders.',
+  },
+  {
+    q: 'How do you make my VA offer competitive without waiving protections?',
+    a: 'This is the whole game. Strong pre-approval, credible lender, clean terms, fast responses — never stripping the appraisal or inspection protections the VA built for you.',
+  },
+];
+
+const redFlags = [
+  'Steers you away from your VA loan toward conventional "because it\'s easier."',
+  'Cannot explain MPRs or has never heard of the Tidewater Initiative.',
+  'Suggests waiving the appraisal contingency or escape clause "to win."',
+  'Has zero VA closings in the past year but claims "a loan is a loan."',
+  'Quotes only principal and interest — never asks about BAH, taxes, or insurance.',
+];
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  image="/images/generated/closing-table.webp"
+  schema={pageSchema}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="va-hero" style="background-image:url('/images/generated/closing-table.webp');">
+      <div class="va-hero__overlay"></div>
+      <div class="va-hero__content">
+        <p class="va-hero__eyebrow">VA Loan Guide</p>
+        <h1>How to Choose a <span style="color:#FF1616;">VA-Savvy</span> Agent</h1>
+        <p>Your VA loan is a powerful benefit — but only if your agent knows how to wield it. Here is how to tell the difference.</p>
+      </div>
+    </div>
+
+    <ShortAnswer answer="Choose a VA-savvy agent by verifying recent VA closings — ask how many VA buyers they represented last year. They should explain the VA appraisal, Tidewater process, and escape clause without hesitation, and work with VA-experienced lenders on PCS timelines. Cody Posey, a 20-year Army First Sergeant (Retired) and MRP-certified REALTOR, specializes in VA buyers relocating to JBSA." />
+
+    <!-- Why it matters -->
+    <section class="section">
+      <div class="container">
+        <h2>Why "VA-Savvy" Actually <span class="accent">Matters</span></h2>
+        <p>VA loans are not harder — they are <em>different</em>. The VA appraisal enforces Minimum Property Requirements. The Tidewater Initiative gives appraisers a structured low-value warning. The escape clause lets you walk if value falls short. Each of these protects you, but each one punishes an agent who meets it for the first time on <em>your</em> transaction. The agent interview below takes ten minutes and filters out 90% of the risk.</p>
+
+        <h2 style="margin-top:3rem;">VA-Savvy Agent vs. <span class="accent">Typical Agent</span></h2>
+        <div class="va-table-wrap">
+          <table class="va-table">
+            <thead>
+              <tr>
+                <th>What matters</th>
+                <th>VA-savvy agent</th>
+                <th>Typical agent</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparison.map((row) => (
+                <tr>
+                  <td class="va-table__topic">{row.topic}</td>
+                  <td class="va-table__savvy">{row.savvy}</td>
+                  <td>{row.typical}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interview questions -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <h2>The 7-Question <span class="accent">Interview</span></h2>
+        <p>Ask these on the first call. A VA-savvy agent answers all seven without reaching for Google.</p>
+        <ol class="va-questions">
+          {questions.map((item, i) => (
+            <li class="va-question">
+              <div class="va-question__num">{i + 1}</div>
+              <div>
+                <h3>{item.q}</h3>
+                <p>{item.a}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- Red flags -->
+    <section class="section">
+      <div class="container">
+        <h2>Red <span class="accent">Flags</span></h2>
+        <p>If you hear any of these, keep interviewing:</p>
+        <ul class="va-flags">
+          {redFlags.map((f) => (
+            <li>{f}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Why Cody -->
+    <section class="section" style="background:#0a0a0a;">
+      <div class="container">
+        <h2 style="color:#fff;">Why Veterans Choose <span class="accent">Cody</span></h2>
+        <div class="va-proof">
+          <div class="va-proof__item"><strong>20 yrs</strong><span>U.S. Army, First Sergeant (Retired) — he has PCSed himself</span></div>
+          <div class="va-proof__item"><strong>MRP</strong><span>Military Relocation Professional, plus ABR &amp; PSA designations</span></div>
+          <div class="va-proof__item"><strong>5.0 ★</strong><span>Across 33 Google reviews from buyers and sellers</span></div>
+          <div class="va-proof__item"><strong>JBSA</strong><span>Daily work around Randolph, Fort Sam Houston &amp; Lackland moves</span></div>
+        </div>
+        <p style="color:rgba(255,255,255,0.7);">Interview me with the seven questions above — I welcome it. If I am not the right fit, I will tell you what to look for instead.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+      <div class="container">
+        <h2>Frequently Asked <span class="accent">Questions</span></h2>
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <ContactForm />
+
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .va-hero {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    padding: 5rem 1.5rem;
+    text-align: center;
+  }
+  .va-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+  }
+  .va-hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .va-hero__eyebrow {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #FF1616;
+    margin-bottom: 1rem;
+  }
+  .va-hero h1 {
+    color: #fff;
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    margin-bottom: 1rem;
+  }
+  .va-hero__content > p:last-child {
+    color: rgba(255,255,255,0.8);
+    font-size: 1.1rem;
+    max-width: 60ch;
+    margin: 0 auto;
+  }
+
+  .va-table-wrap {
+    overflow-x: auto;
+    margin-top: 1.5rem;
+    border: 1px solid #e5e5e5;
+  }
+  .va-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    min-width: 640px;
+  }
+  .va-table th {
+    background: #111;
+    color: #fff;
+    text-align: left;
+    padding: 0.9rem 1rem;
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .va-table td {
+    padding: 0.9rem 1rem;
+    border-top: 1px solid #eee;
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .va-table__topic {
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .va-table__savvy {
+    background: rgba(255,22,22,0.04);
+  }
+
+  .va-questions {
+    list-style: none;
+    margin: 2rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+  .va-question {
+    display: flex;
+    gap: 1.25rem;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    padding: 1.5rem;
+  }
+  .va-question__num {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #FF1616;
+    color: #fff;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .va-question h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+  }
+  .va-question p {
+    margin: 0;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .va-flags {
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .va-flags li {
+    padding: 1rem 1.25rem 1rem 3rem;
+    background: #fff5f5;
+    border-left: 4px solid #FF1616;
+    position: relative;
+    line-height: 1.6;
+  }
+  .va-flags li::before {
+    content: '✕';
+    position: absolute;
+    left: 1.1rem;
+    color: #FF1616;
+    font-weight: 800;
+  }
+
+  .va-proof {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+  .va-proof__item {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  .va-proof__item strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    color: #FF1616;
+    margin-bottom: 0.5rem;
+  }
+  .va-proof__item span {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .va-proof {
+      grid-template-columns: 1fr 1fr;
+    }
+    .va-question {
+      padding: 1.1rem;
+    }
+  }
+</style>
