@@ -12,8 +12,9 @@
         <li><a href="/" class="navbar__link">Home</a></li>
         <li><a href="/search" class="navbar__link">Home Search</a></li>
         <li class="navbar__dropdown navbar__dropdown--mega">
-          <a href="/explorearea/" class="navbar__link">Explore Area</a>
+          <a href="/hill-country-relocation-guide/" class="navbar__link">Explore Area</a>
           <div class="navbar__mega">
+            <a href="/hill-country-relocation-guide/" class="navbar__mega-featured">Hill Country Relocation Guide <span>2026</span></a>
             <div class="navbar__mega-col">
               <h4><a href="/new-braunfels/">New Braunfels</a></h4>
               <ul>
@@ -60,13 +61,46 @@
                 <li><a href="/bulverde/things-to-do/">Things to Do</a></li>
               </ul>
             </div>
+            <div class="navbar__mega-col">
+              <h4><a href="/garden-ridge/">Garden Ridge</a></h4>
+              <ul>
+                <li><a href="/garden-ridge/neighborhoods/">Neighborhoods</a></li>
+                <li><a href="/search">Home Search</a></li>
+                <li><a href="/garden-ridge/restaurants/">Restaurants</a></li>
+                <li><a href="/garden-ridge/things-to-do/">Things to Do</a></li>
+              </ul>
+            </div>
+            <div class="navbar__mega-col">
+              <h4><a href="/boerne/">Boerne</a></h4>
+              <ul>
+                <li><a href="/boerne/neighborhoods/">Neighborhoods</a></li>
+                <li><a href="/search">Home Search</a></li>
+                <li><a href="/boerne/restaurants/">Restaurants</a></li>
+                <li><a href="/boerne/things-to-do/">Things to Do</a></li>
+              </ul>
+            </div>
+            <div class="navbar__mega-col">
+              <h4><a href="/san-antonio/">San Antonio</a></h4>
+              <ul>
+                <li><a href="/san-antonio/neighborhoods/">Neighborhoods</a></li>
+                <li><a href="/search">Home Search</a></li>
+                <li><a href="/san-antonio/restaurants/">Restaurants</a></li>
+                <li><a href="/san-antonio/things-to-do/">Things to Do</a></li>
+              </ul>
+            </div>
           </div>
         </li>
         <li class="navbar__dropdown">
-          <a href="/military-relocation/" class="navbar__link">PCS to JBSA</a>
+          <a href="/military-relocation/" class="navbar__link">Military &amp; VA</a>
           <ul class="navbar__sub">
             <li><a href="/military-relocation/">JBSA Relocation Guide</a></li>
+            <li><a href="/#pcs-landing-plan">PCS Landing Plan</a></li>
+            <li><a href="/military-relocation/randolph-afb/">Randolph AFB</a></li>
+            <li><a href="/military-relocation/fort-sam-houston/">Fort Sam Houston</a></li>
+            <li><a href="/military-relocation/lackland-afb/">Lackland AFB</a></li>
+            <li><a href="/military-relocation/camp-bullis/">Camp Bullis</a></li>
             <li><a href="/military-relocation/bah-rates/">2026 BAH Rates</a></li>
+            <li><a href="/va-savvy-agent/">VA-Savvy Agent Guide</a></li>
           </ul>
         </li>
         <li><a href="/blog/" class="navbar__link">Blog</a></li>
@@ -228,7 +262,39 @@
 
   .navbar__dropdown--mega:hover .navbar__mega {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .navbar__mega-featured {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #fff;
+    background: rgba(255,22,22,0.12);
+    border: 1px solid rgba(255,22,22,0.4);
+    border-radius: 6px;
+    padding: 0.7rem 1rem;
+    margin-bottom: 1rem;
+    transition: background 0.2s;
+  }
+
+  .navbar__mega-featured:hover {
+    background: rgba(255,22,22,0.25);
+  }
+
+  .navbar__mega-featured span {
+    font-size: 0.62rem;
+    color: #FF1616;
+    border: 1px solid #FF1616;
+    border-radius: 4px;
+    padding: 0.15rem 0.5rem;
+    letter-spacing: 0.1em;
   }
 
   .navbar__mega-col {

@@ -1,0 +1,266 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = 'Things to Do in Boerne, TX | Cody Posey Real Estate';
+const pageDescription = 'Things to do in Boerne, TX — the Hill Country Mile, Cibolo Center for Conservation, Cave Without A Name, Cascade Caverns, Boerne City Lake, the Guadalupe River, and seasonal festivals.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/boerne/things-to-do/', image: '/images/areas/boerne.jpg' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Boerne', url: '/boerne/' },
+    { name: 'Things to Do', url: '/boerne/things-to-do/' },
+  ]),
+];
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="brn-hero">
+      <div class="brn-hero__overlay"></div>
+      <div class="brn-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/boerne/">Boerne</a> <span>/</span> <span>Things to Do</span>
+        </nav>
+        <h1>Things to Do in <span style="color:#FF1616;">Boerne</span></h1>
+        <p>Caves, creeks, lakes, and a Main Street with a real calendar</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="brn-page-intro brn-page-intro--centered">Boerne's pitch isn't one attraction — it's that outdoor recreation sits minutes from every neighborhood, the downtown has actual gravity, and the town keeps a festival calendar like it's a civic duty. This is what weekends look like here.</p>
+      </div>
+    </section>
+
+    <!-- Outdoors -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Outdoors &amp; <span class="accent">Water</span></h2>
+        </div>
+        <div class="brn-todo__grid">
+          <div class="brn-todo__card">
+            <h3>Cibolo Center for Conservation</h3>
+            <p class="brn-todo__addr">140 City Park Rd</p>
+            <p>The 160+ acre nature preserve at the heart of Boerne — the Cibolo Nature Center campus has miles of trails through five ecosystems along Cibolo Creek, a free wheelchair-accessible boardwalk, and dinosaur track replicas the kids will talk about for weeks. The second campus, the historic Herff Farm, runs a farmers market and community events. Free admission.</p>
+          </div>
+          <div class="brn-todo__card">
+            <h3>Boerne City Lake Park</h3>
+            <p class="brn-todo__addr">1 City Lake Rd</p>
+            <p>Boerne's lake, built in 1972 as a dam and reservoir on Cibolo Creek — roughly 189 acres for swimming, kayaking, paddleboarding, and fishing (license required). The city-run park has picnic areas, a playground, a fishing pier, boat ramp, disc golf course, and paddleboard/kayak rentals on site. Non-motorized boats only; alcohol-free park.</p>
+          </div>
+          <div class="brn-todo__card">
+            <h3>Guadalupe River</h3>
+            <p class="brn-todo__addr">River Rd parks &amp; west of town</p>
+            <p>The Guadalupe runs just west of Boerne — River Road parks put you on the water in minutes for tubing, kayaking, and fishing. Guadalupe River State Park in Spring Branch is the bigger day-trip option, about 20 minutes east.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Caves -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Under <span class="accent">Boerne</span></h2>
+        </div>
+        <div class="brn-todo__grid">
+          <div class="brn-todo__card">
+            <h3>Cave Without A Name</h3>
+            <p class="brn-todo__addr">325 Kreutzberg Rd · ~9 mi from Boerne</p>
+            <p>A National Natural Landmark and one of the most decorated show caves in Texas — guided tours through chambers full of formations, plus a concert series held underground in the cave's natural acoustics. The name comes from a 1930s contest where a kid suggested it was "too beautiful to have a name."</p>
+          </div>
+          <div class="brn-todo__card">
+            <h3>Cascade Caverns</h3>
+            <p class="brn-todo__addr">226 Cascade Cavern · ~3 mi from Boerne</p>
+            <p>The smaller, more intimate cave — guided tours capped at 15 people run every hour from 10am to 4pm year-round, through a living cavern with an underground waterfall, lakes, and solution domes. The 105-acre private park adds tent and RV camping plus 1.5 miles of walking trails with whitetail and axis deer.</p>
+          </div>
+          <div class="brn-todo__card">
+            <h3>Natural Bridge Caverns</h3>
+            <p class="brn-todo__addr">26495 Natural Bridge Caverns Rd · ~24 mi away</p>
+            <p>The big-ticket day trip — Texas' largest underground attraction with the Discovery tour, adventure caving, zip rails, and gem panning. Worth the drive at least once; locals use it as the "out-of-town guests are here" card.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Downtown & festivals -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Downtown &amp; <span class="accent">Festivals</span></h2>
+        </div>
+        <div class="brn-todo__grid">
+          <div class="brn-todo__card">
+            <h3>The Hill Country Mile</h3>
+            <p class="brn-todo__addr">Main Street, downtown Boerne</p>
+            <p>The walkable heart of town — locally owned shops, restaurants, and galleries along Main Street with genuine German-heritage character going back to the 1849 founding. This is the "real downtown" the listing brochures keep mentioning, and it earns it.</p>
+          </div>
+          <div class="brn-todo__card">
+            <h3>Dickens on Main</h3>
+            <p class="brn-todo__addr">Main Street · late November</p>
+            <p>The Christmas-season centerpiece: Main Street closes to traffic and goes full Victorian Christmas with vendors, food, and holiday programming. It's the event the town's calendar is built around — plan on crowds.</p>
+          </div>
+          <div class="brn-todo__card">
+            <h3>Seasonal Festivals</h3>
+            <p class="brn-todo__addr">Year-round</p>
+            <p>Lemonade Day in spring, Friday-night football in fall, market days and farmers markets in between — Boerne runs like a town with a calendar, not just a ZIP code. Ask a local which weekend is worth blocking off.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Explore Boerne cross-links -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Keep <span class="accent">Exploring Boerne</span></h2>
+        </div>
+        <div class="brn-explore__grid">
+          <a href="/boerne/neighborhoods/" class="brn-explore__card">
+            <h3>Neighborhoods</h3>
+            <p>Cordillera Ranch to Esperanza — where Boerne's price points actually land, neighborhood by neighborhood.</p>
+          </a>
+          <a href="/boerne/restaurants/" class="brn-explore__card">
+            <h3>Restaurants</h3>
+            <p>German biergartens, Main Street date-night picks, and the best breakfast tacos in town — where Boerne eats.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Parallax CTA -->
+    <section class="brn-parallax-cta">
+      <div class="brn-parallax-cta__overlay"></div>
+      <div class="brn-parallax-cta__content">
+        <h2>Want the <span class="accent">Weekend Version</span> of Boerne?</h2>
+        <p>Come tour neighborhoods on a Saturday — Main Street, the lake, the caves, and the commute route at real traffic. You'll know by Sunday whether Boerne is your town.</p>
+        <a href="#contact" class="btn btn-outline">Plan a Tour Day</a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About <span class="accent">Boerne Activities</span></h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is the Hill Country Mile?</summary>
+            <p>It's Boerne's Main Street corridor — a walkable stretch of locally owned shops, restaurants, and galleries with German-heritage character dating to the town's 1849 founding. It's the closest thing to a real downtown in the San Antonio metro's western Hill Country.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is the Cibolo Nature Center free?</summary>
+            <p>Yes — the Cibolo Center for Conservation's 160+ acre Nature Center campus at 140 City Park Rd is free to visit, with miles of trails along Cibolo Creek and a wheelchair-accessible boardwalk. The Herff Farm campus hosts a farmers market and ticketed community events.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can you swim in Boerne City Lake?</summary>
+            <p>Yes — swimming is allowed at Boerne City Lake Park (1 City Lake Rd), along with kayaking, paddleboarding, and fishing. It's a non-motorized, alcohol-free park with rentals on site; there are no lifeguards, so swim within your ability.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ParallaxBanner image="/images/generated/hill-country-sunset.webp" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the Hill Country Mile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It's Boerne's Main Street corridor — a walkable stretch of locally owned shops, restaurants, and galleries with German-heritage character dating to the town's 1849 founding. It's the closest thing to a real downtown in the San Antonio metro's western Hill Country."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the Cibolo Nature Center free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — the Cibolo Center for Conservation's 160+ acre Nature Center campus at 140 City Park Rd is free to visit, with miles of trails along Cibolo Creek and a wheelchair-accessible boardwalk. The Herff Farm campus hosts a farmers market and ticketed community events."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you swim in Boerne City Lake?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — swimming is allowed at Boerne City Lake Park (1 City Lake Rd), along with kayaking, paddleboarding, and fishing. It's a non-motorized, alcohol-free park with rentals on site; there are no lifeguards, so swim within your ability."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <ContactForm context="I'd like to learn more about living in Boerne..." />
+  <Footer />
+</Layout>
+
+<style>
+  .brn-hero { position: relative; height: 280px; background: url('/images/areas/boerne.jpg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; }
+  .brn-hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
+  .brn-hero__content { position: relative; z-index: 1; padding: 0 1.5rem; }
+  .brn-hero__content h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 0.75rem; }
+  .brn-hero__content p { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+
+  .breadcrumb { font-size: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.5); }
+  .breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .brn-page-intro { font-size: 1.05rem; color: var(--gray); line-height: 1.8; max-width: 800px; }
+  .brn-page-intro--centered { text-align: center; font-weight: 700; color: var(--black); margin: 0 auto; }
+
+  .brn-todo__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .brn-todo__card { background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); padding: 2rem; }
+  .brn-todo__card h3 { font-family: var(--font-heading); font-size: 1.2rem; text-transform: uppercase; margin-bottom: 0.25rem; }
+  .brn-todo__addr { color: #FF1616; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+  .brn-todo__card p { color: var(--gray); line-height: 1.7; font-size: 0.92rem; }
+
+  .brn-explore__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .brn-explore__card { display: block; background: #fff; border: 1px solid var(--light-gray); padding: 2rem; border-radius: 8px; transition: transform 0.2s, box-shadow 0.2s; }
+  .brn-explore__card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .brn-explore__card h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; margin-bottom: 0.5rem; color: #000; }
+  .brn-explore__card:hover h3 { color: #FF1616; }
+  .brn-explore__card p { color: var(--gray); font-size: 0.85rem; line-height: 1.6; }
+
+  .brn-parallax-cta { position: relative; background: url('/images/testimonials-hero.webp') center / cover no-repeat fixed; padding: 5rem 1.5rem; text-align: center; color: #fff; }
+  .brn-parallax-cta__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.7); }
+  .brn-parallax-cta__content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+  .brn-parallax-cta__content h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); margin-bottom: 1rem; }
+  .brn-parallax-cta__content p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 2rem; line-height: 1.7; }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
+
+  @media (max-width: 768px) {
+    .brn-todo__grid { grid-template-columns: 1fr; }
+    .brn-explore__grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .brn-parallax-cta { background-attachment: scroll; }
+  }
+</style>

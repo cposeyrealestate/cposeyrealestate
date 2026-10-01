@@ -4,11 +4,39 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
-import { placeSchema, collectionPageSchema, breadcrumbSchema } from '../../lib/schema';
+import { placeSchema, articleSchema, collectionPageSchema, faqSchema, breadcrumbSchema } from '../../lib/schema';
 
-const bvDescription = 'Explore Bulverde, Texas — quiet Hill Country living on acreage. Neighborhoods, homes for sale, restaurants, and things to do in Bulverde.';
+const bvDescription = 'Bulverde, TX homes for sale: acreage lots, Comal ISD schools, 25–30 min to San Antonio. Honest 2026 relocation guide — the prices, costs, and trade-offs.';
+
+const faqs = [
+  {
+    q: 'What is the average home price in Bulverde?',
+    a: 'As of Sept 2026, the median list price in Bulverde sits around $645,000 (MLS data via the San Antonio Board of Realtors), while actual sale prices land lower — roughly $430K to $520K depending on the source and month. The gap reflects the acreage mix: land-heavy listings ask more per property. Neighborhood prices run from the low $300s in Bulverde Crossing to $800K+ for acreage estates in Vintage Oaks.',
+  },
+  {
+    q: 'Can I find acreage properties in Bulverde?',
+    a: 'Yes. Acreage is Bulverde\'s defining feature — lots of 1 to 10+ acres are common, with some tracts running larger. One caution: well water and septic are still common outside the master-planned communities. Johnson Ranch was the first Bulverde-area community built with central water, wastewater, and natural gas. Always verify the water source, septic status, and deed restrictions on a specific property before buying.',
+  },
+  {
+    q: 'How long is the commute from Bulverde to San Antonio?',
+    a: 'Typical drive time is 25–30 minutes via US-281 South (about 24–26 miles to downtown). At peak hours, US-281 congestion can push that to 35 minutes or more, so mid-day appointments are the local norm. Austin is a bigger trip: about 1 hour 25 minutes to the airport and roughly 1 hour 45 minutes downtown.',
+  },
+  {
+    q: 'What school district serves Bulverde?',
+    a: 'Bulverde is served by Comal ISD, one of the fastest-growing districts in Texas. Area elementary and middle schools carry GreatSchools ratings in the 8–9/10 range (per Sept 2026 Redfin data). School attendance boundaries are set by physical address, so verify your zoned campuses directly with Comal ISD before purchasing.',
+  },
+];
+
 const pageSchema = [
-  placeSchema({ name: 'Bulverde, TX', description: bvDescription, url: '/bulverde/' }),
+  placeSchema({ name: 'Bulverde, TX', description: bvDescription, url: '/bulverde/', image: '/images/areas/bulverde.jpg' }),
+  articleSchema({
+    title: 'Bulverde, TX Homes for Sale | 2026 Relocation Guide',
+    description: bvDescription,
+    url: '/bulverde/',
+    image: '/images/areas/bulverde.jpg',
+    datePublished: '2026-10-01',
+    dateModified: '2026-10-01',
+  }),
   collectionPageSchema({
     name: 'Bulverde Area Guide',
     description: bvDescription,
@@ -19,128 +47,157 @@ const pageSchema = [
       { name: 'Things to Do', url: '/bulverde/things-to-do/' },
     ],
   }),
+  faqSchema(faqs),
   breadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: 'Explore Area', url: '/explorearea/' },
+    { name: 'Hill Country Relocation Guide', url: '/hill-country-relocation-guide/' },
     { name: 'Bulverde', url: '/bulverde/' },
   ]),
 ];
 ---
 
 <Layout
-  title="Bulverde, TX Real Estate | Cody Posey"
+  title="Bulverde, TX Homes for Sale | 2026 Relocation Guide"
   description={bvDescription}
   schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">
 
-    <!-- Hero -->
+    <!-- 1. Hero -->
     <div class="bv-hero">
       <div class="bv-hero__overlay"></div>
       <div class="bv-hero__content">
         <nav class="breadcrumb" aria-label="Breadcrumb">
           <a href="/">Home</a> <span>/</span> <span>Bulverde</span>
         </nav>
-        <h1>Bul<span style="color:#FF1616;">verde</span></h1>
-        <p>Quiet Hill Country Living on Acreage</p>
+        <h1>Bulverde, TX <span style="color:#FF1616;">Homes for Sale</span></h1>
+        <p>Acreage living in the Hill Country — the 2026 relocation guide</p>
       </div>
     </div>
 
-    <!-- City Intro -->
-    <section class="section bv-intro">
+    <!-- 2. Stat band -->
+    <section class="bv-stats-band">
       <div class="container">
-        <div class="bv-intro__grid">
-          <div class="bv-intro__text">
-            <h2>A Rural Hill Country <span class="accent">Community</span></h2>
-            <p>Bulverde is a rural Hill Country community located about 25 miles north of downtown San Antonio along US-281. Known for larger lots, scenic views, and a quieter pace of life, it appeals to buyers who want space and privacy without being far from city conveniences. The area has maintained its rural character even as the surrounding region has grown, which is a big part of its appeal. Drive through Bulverde and you will see rolling hills, live oaks, grazing cattle, and winding roads that feel a world away from suburban sprawl — even though San Antonio is just down the highway.</p>
-            <p>The area is served by Comal ISD, one of the highest-rated school districts in the state, and offers easy access to Guadalupe River State Park and the JW Marriott Hill Country Resort. Whether you're looking for acreage, a family-friendly neighborhood, or a place to slow down, Bulverde delivers on all fronts.</p>
-            <p>The real estate market in Bulverde is unique compared to other communities in the New Braunfels and San Antonio metro areas. Properties here tend to sit on larger lots, and it is not uncommon to find homes on one to ten or more acres. This makes Bulverde especially attractive to buyers who want room for horses, workshops, gardens, or simply the peace that comes with not having neighbors right next door. Master-planned communities like Johnson Ranch and Singing Hills offer a more traditional suburban experience with community amenities, while custom-built homes on private acreage cater to buyers who want a fully personalized Hill Country retreat.</p>
-            <p>Home prices in Bulverde reflect the area's desirability and the larger lot sizes. The median home price tends to be higher than nearby communities like New Braunfels or Cibolo, but buyers are getting significantly more land and a premium Hill Country setting in return. Properties range from the mid-$300s in established neighborhoods to well over $1 million for custom homes on large acreage tracts with panoramic views. The market here tends to attract move-up buyers, families prioritizing school districts, and people relocating from larger metros who want a permanent change of pace.</p>
-            <p>Daily life in Bulverde revolves around the outdoors and community. Guadalupe River State Park is one of the most visited state parks in Texas, offering swimming, tubing, hiking, and fishing along the Guadalupe River. The nearby Honey Creek State Natural Area provides guided nature walks through some of the most pristine Hill Country habitat in the region. For golf and resort-style recreation, the JW Marriott Hill Country Resort and TPC San Antonio are both located within the Bulverde area, offering championship golf courses, spa facilities, and dining that attract visitors from across the country.</p>
-            <p>The Bulverde area also has a growing local commercial scene. Along US-281, you will find an increasing number of restaurants, shops, and services that make day-to-day life convenient without needing to drive to San Antonio or New Braunfels. Local favorites include family-owned BBQ joints, Hill Country cafes, and farm-to-table restaurants that source ingredients from nearby ranches and farms. The community hosts seasonal events, live music, and local markets that reinforce the tight-knit, neighborly atmosphere that residents value.</p>
-            <p>For families, the Comal ISD schools in the Bulverde area are a significant draw. The district has built several new campuses to accommodate growth, and schools in the Bulverde corridor consistently perform well in state assessments. The combination of excellent schools, safe neighborhoods, and a natural environment where kids can play outside and explore makes Bulverde one of the top choices for families moving to the Hill Country region.</p>
+        <div class="bv-stats__grid">
+          <div class="bv-stat">
+            <span class="bv-stat__number">7,337</span>
+            <span class="bv-stat__label">Population</span>
+            <span class="bv-stat__source">2025 Census estimate</span>
           </div>
-          <div class="bv-intro__stats">
-            <div class="bv-stat">
-              <span class="bv-stat__number">6,000+</span>
-              <span class="bv-stat__label">Population</span>
-            </div>
-            <div class="bv-stat">
-              <span class="bv-stat__number">25 min</span>
-              <span class="bv-stat__label">To San Antonio</span>
-            </div>
-            <div class="bv-stat">
-              <span class="bv-stat__number">25 min</span>
-              <span class="bv-stat__label">To New Braunfels</span>
-            </div>
-            <div class="bv-stat">
-              <span class="bv-stat__number">$406K</span>
-              <span class="bv-stat__label">Median Home Price</span>
-            </div>
+          <div class="bv-stat">
+            <span class="bv-stat__number">$645K</span>
+            <span class="bv-stat__label">Median List Price</span>
+            <span class="bv-stat__source">Sept 2026 · MLS/SABOR</span>
+          </div>
+          <div class="bv-stat">
+            <span class="bv-stat__number">~25–30 min</span>
+            <span class="bv-stat__label">To San Antonio</span>
+            <span class="bv-stat__source">US-281 South, 24–26 mi</span>
+          </div>
+          <div class="bv-stat">
+            <span class="bv-stat__number">1–10+ ac</span>
+            <span class="bv-stat__label">Typical Lot Sizes</span>
+            <span class="bv-stat__source">Acreage market</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Why People Move Here -->
-    <section class="section bv-why" style="background: var(--light-gray);">
+    <!-- 3. Honest overview -->
+    <section class="section bv-overview">
       <div class="container">
         <div class="section-title">
-          <h2>Why People <span class="accent">Choose Bulverde</span></h2>
-          <p>The most common reasons buyers are drawn to this area</p>
+          <h2>The <span class="accent">Honest Overview</span></h2>
+          <p>Bulverde, Texas — "Front Porch of the Texas Hill Country"</p>
         </div>
-        <div class="bv-why__grid">
-          <div class="bv-why__card">
-            <h3>Space & Privacy</h3>
-            <p>Large lots, acreage properties, and open skies. Bulverde offers the room to spread out that's increasingly hard to find closer to the city.</p>
-          </div>
-          <div class="bv-why__card">
-            <h3>Hill Country Beauty</h3>
-            <p>Scenic views, rivers, and state parks at your doorstep. The natural landscape here is one of the most appealing in the greater San Antonio area.</p>
-          </div>
-          <div class="bv-why__card">
-            <h3>Quality Schools</h3>
-            <p>Served by Comal ISD, one of the most well-regarded school districts in the region — a major draw for families with school-age children.</p>
-          </div>
-          <div class="bv-why__card">
-            <h3>Close to Everything</h3>
-            <p>Just 25 minutes to both San Antonio and New Braunfels, with the JW Marriott Hill Country Resort nearby for dining, golf, and entertainment.</p>
+        <div class="bv-overview__text">
+          <p>Bulverde sits about 26 miles north of downtown San Antonio along US-281, in western Comal County. It is a rural Hill Country community of roughly 7,300 people (2025 Census estimate, up from 5,692 in 2020) that has kept its character — rolling hills, live oaks, grazing cattle, winding roads — even as the region around it has grown. Buyers come here for one reason above all: space. Lots of 1 to 10+ acres are normal, and it is the one part of the San Antonio metro where acreage is the rule rather than the exception.</p>
+          <p>The market reflects that. Homes here command a premium over New Braunfels or Cibolo, but you are buying land and a Comal ISD address along with the house. Master-planned communities like Johnson Ranch and Singing Hills offer a more traditional suburban experience with amenities, while custom homes on private acreage cater to buyers who want horses, workshops, or simply no neighbors next door. It attracts move-up buyers, families prioritizing schools, and people leaving larger metros for a permanent change of pace.</p>
+          <div class="bv-watchouts">
+            <h3>Watch-outs before you buy</h3>
+            <ul>
+              <li><strong>Rural means driving.</strong> Daily amenities along US-281 are growing, but most specialty shopping, dining, and healthcare still means a trip to north San Antonio or New Braunfels. Plan on the car for everything.</li>
+              <li><strong>Well and septic are common.</strong> Outside the master-planned communities, many properties run on well water and septic. Johnson Ranch was the first Bulverde-area community built with central water, wastewater, and natural gas — verify the utility setup on any specific property.</li>
+              <li><strong>Property taxes plus district levies.</strong> Effective rates in Comal County commonly run 1.7–2.2%, and some communities (Johnson Ranch, Bulverde Crossing) sit in active development districts with additional charges. Verify the total rate with the Comal County Central Appraisal District, not the listing.</li>
+              <li><strong>Limited inventory, patient market.</strong> Bulverde carried about 200 listings in Sept 2026 — a buyer's-market supply — and homes averaged 90+ days on market, selling roughly 3% below list (Redfin, Sept 2026). Sellers price aspirationally here; the data rewards patient buyers.</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Navigation Cards -->
-    <section class="section bv-explore">
+    <!-- 4. Neighborhoods -->
+    <section class="section bv-neighborhoods" style="background: var(--light-gray);">
       <div class="container">
         <div class="section-title">
-          <h2>Explore <span class="accent">Bulverde</span></h2>
-          <p>Dig deeper into the areas, homes, and lifestyle that matter to you</p>
+          <h2>Bulverde <span class="accent">Neighborhoods</span></h2>
+          <p>Master-planned communities, acreage estates, and value builds</p>
         </div>
-        <div class="bv-explore__grid">
-          <a href="/bulverde/neighborhoods/" class="bv-explore__card">
-            <h3>Neighborhoods</h3>
-            <p>Explore the communities and subdivisions that make up the Bulverde area — from acreage properties to master-planned neighborhoods.</p>
-          </a>
-          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="bv-explore__card">
-            <h3>Home Search</h3>
-            <p>Search current listings in Bulverde. Filter by price, area, and home type to find what's available now.</p>
-          </a>
-          <a href="/bulverde/restaurants/" class="bv-explore__card">
-            <h3>Restaurants</h3>
-            <p>From local grills and BBQ joints to Hill Country dining — the best places to eat in and around Bulverde.</p>
-          </a>
-          <a href="/bulverde/things-to-do/" class="bv-explore__card">
-            <h3>Things to Do</h3>
-            <p>State parks, resorts, live music, and outdoor recreation — everything that makes Bulverde a great place to live.</p>
-          </a>
+        <div class="bv-nb__grid">
+          <div class="bv-nb__card">
+            <h3>Johnson Ranch</h3>
+            <p class="bv-nb__price">$350K–$550K</p>
+            <p>A 767-acre master-planned community of about 1,000 homes along US-281. The first Bulverde-area community with central water, wastewater, natural gas, and fiber internet — no well or septic headaches. Johnson Ranch Elementary sits inside the community; Smithson Valley Middle and High serve older students.</p>
+          </div>
+          <div class="bv-nb__card">
+            <h3>Vintage Oaks</h3>
+            <p class="bv-nb__price">$400K–$800K</p>
+            <p>Hill Country acreage estates near Canyon Lake with resort-style amenities. The purest version of the Bulverde pitch: big lots, big views, real privacy. Trade-off is distance — expect 45+ minutes into San Antonio at typical traffic.</p>
+          </div>
+          <div class="bv-nb__card">
+            <h3>Singing Hills</h3>
+            <p class="bv-nb__price">$350K–$600K</p>
+            <p>An established master-planned community along the SH-46/US-281 corridor with continued new development. A middle lane between Johnson Ranch's polish and raw acreage — suburban conveniences without giving up the Hill Country setting.</p>
+          </div>
+          <div class="bv-nb__card">
+            <h3>Bulverde Crossing</h3>
+            <p class="bv-nb__price">$300K–$450K</p>
+            <p>Newer value-oriented builds — the most accessible entry point into the Bulverde area. Check for development-district charges in the tax bill, as newer communities in this corridor can carry additional levies.</p>
+          </div>
+        </div>
+        <p class="bv-nb__note">Across the county line: the Stone Oak and Timberwood Park corridors lie just south of the Bexar/Comal line in North Central San Antonio — a short drive down US-281 if you want Bulverde access with a denser suburban feel.</p>
+        <div class="bv-nb__cta">
+          <a href="/bulverde/neighborhoods/" class="btn btn-primary">See All Bulverde Neighborhoods</a>
         </div>
       </div>
     </section>
 
-    <!-- School District -->
-    <section class="section">
+    <!-- 5. Cost snapshot -->
+    <section class="section bv-cost">
+      <div class="container">
+        <div class="section-title">
+          <h2>Cost <span class="accent">Snapshot</span></h2>
+          <p>What homes actually cost here — asking prices vs. sale prices, as of Sept 2026</p>
+        </div>
+        <div class="bv-cost__grid">
+          <div class="bv-cost__card">
+            <h3>Median List Price</h3>
+            <p class="bv-cost__figure">$645,450</p>
+            <p>MLS data via the San Antonio Board of Realtors, Sept 2026. Altos Research put the 78163 zip code median at $652,490 on Oct 1, 2026 — consistent with the MLS figure.</p>
+          </div>
+          <div class="bv-cost__card">
+            <h3>Median Sale Price</h3>
+            <p class="bv-cost__figure">$430K–$520K</p>
+            <p>Actual sales land below asking. Redfin showed a $428,494 median in Sept 2026; Homes.com put it at $519,990. Sellers price aspirationally — buyers close closer to $230/sq ft.</p>
+          </div>
+          <div class="bv-cost__card">
+            <h3>Neighborhood Ranges</h3>
+            <p class="bv-cost__figure">$300K–$800K+</p>
+            <p>Bulverde Crossing starts around $300K; Johnson Ranch and Singing Hills center in the $350K–$600K band; Vintage Oaks acreage estates reach $800K and beyond.</p>
+          </div>
+          <div class="bv-cost__card">
+            <h3>Property Tax Reality</h3>
+            <p class="bv-cost__figure">1.7–2.2%</p>
+            <p>Typical effective rates in Comal County, before any MUD or development-district levies. No state income tax. Verify the exact total with Comal CAD before you write an offer.</p>
+          </div>
+        </div>
+        <p class="bv-cost__note">Why the wide spread? Bulverde is a land market as much as a house market. A $400K home on a quarter acre and a $900K home on eight acres both count — so "median home price" means less here than the price band for the lot size you actually want.</p>
+      </div>
+    </section>
+
+    <!-- 6. Schools -->
+    <section class="section bv-schools" style="background: var(--light-gray);">
       <div class="container">
         <div class="section-title">
           <h2>School <span class="accent">District</span></h2>
@@ -149,42 +206,103 @@ const pageSchema = [
         <div class="bv-schools__grid">
           <a href="https://www.comalisd.org" target="_blank" rel="noopener" class="bv-schools__card">
             <h3>Comal ISD</h3>
-            <p>One of the fastest-growing districts in Texas, Comal ISD serves the entire Bulverde area. The district is known for strong academics, modern facilities, and a wide range of extracurricular programs.</p>
+            <p>One of the fastest-growing districts in Texas, serving the entire Bulverde area. Area elementary and middle schools rate 8–9/10 on GreatSchools (per Sept 2026 MLS listing data) — including Johnson Ranch Elementary, Rahe Bulverde Elementary, and Spring Branch Middle. The district has built several new campuses in the Bulverde corridor to keep pace with growth.</p>
             <span class="bv-schools__link">Visit Comal ISD Website →</span>
+          </a>
+        </div>
+        <p class="bv-schools__note">School assignments are based on physical address. Always verify directly with Comal ISD or the Texas Education Agency before purchasing.</p>
+      </div>
+    </section>
+
+    <!-- 7. Commute -->
+    <section class="section bv-commute">
+      <div class="container">
+        <div class="section-title">
+          <h2><span class="accent">Commute</span> Times</h2>
+          <p>Where Bulverde puts you on the map</p>
+        </div>
+        <div class="bv-commute__grid">
+          <div class="bv-commute__card">
+            <h3>San Antonio</h3>
+            <p class="bv-commute__time">~25–30 min</p>
+            <p>US-281 South, 24–26 miles to downtown. Expect 35+ minutes at peak hours — mid-day drives are the local norm.</p>
+          </div>
+          <div class="bv-commute__card">
+            <h3>New Braunfels</h3>
+            <p class="bv-commute__time">~25–30 min</p>
+            <p>Roughly 17–20 miles east. An easy run for shopping, dining, and river access.</p>
+          </div>
+          <div class="bv-commute__card">
+            <h3>Austin</h3>
+            <p class="bv-commute__time">~1 hr 25 min – 1 hr 45 min</p>
+            <p>About 1h 25m to Austin-Bergstrom (AUS) airport per Rome2Rio; downtown runs closer to 1h 45m. Realistically a remote-work or occasional-trip distance.</p>
+          </div>
+          <div class="bv-commute__card">
+            <h3>JBSA — Camp Bullis</h3>
+            <p class="bv-commute__time">Just southwest of town</p>
+            <p>Camp Bullis sits immediately southwest of Bulverde. PCSing families: Fort Sam Houston and Lackland AFB are further south — plan on a 40–50 minute drive.</p>
+          </div>
+        </div>
+        <p class="bv-commute__note">US-281 is the single artery in and out. Improvement projects along the corridor continue, but there is no practical alternate route — check traffic before committing to a commute schedule.</p>
+      </div>
+    </section>
+
+    <!-- 8. Things to Do / Restaurants -->
+    <section class="section bv-lifestyle" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Things to Do &amp; <span class="accent">Restaurants</span></h2>
+          <p>Life outside the property line</p>
+        </div>
+        <div class="bv-life__grid">
+          <a href="/bulverde/things-to-do/" class="bv-life__card">
+            <h3>Things to Do</h3>
+            <p>Guadalupe River State Park — swimming, tubing, and hiking on the Guadalupe River. The Honey Creek State Natural Area's guided nature walks. Championship golf, spa, and dining at the JW Marriott Hill Country Resort and TPC San Antonio, both in the Bulverde area.</p>
+            <span class="bv-life__link">Explore Things to Do →</span>
+          </a>
+          <a href="/bulverde/restaurants/" class="bv-life__card">
+            <h3>Restaurants</h3>
+            <p>Texas BBQ anchors the local scene — Smokey Mo's and True Texas BBQ on TX-46. Twine Bulverde pairs wine and live music in downtown Bulverde, and Hatch Cafe &amp; Bakery covers the breakfast-and-coffee lane. Growing, but still a short list — locals supplement with trips to north SA.</p>
+            <span class="bv-life__link">Explore Restaurants →</span>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="section bv-cta" style="background: #000; color: #fff; text-align: center;">
-      <div class="container">
-        <h2>Ready to Explore <span class="accent">Bulverde</span>?</h2>
-        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Whether you're just starting your search or ready to schedule showings, I can help you navigate the market and find the right fit.</p>
-        <div class="bv-cta__buttons">
-          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="btn btn-primary">Search Homes</a>
-          <a href="#contact" class="btn btn-outline">Ask About Bulverde</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
+    <!-- 9. FAQ -->
     <section class="faq-section">
       <div class="container">
         <h2>Frequently Asked Questions About <span class="accent">Bulverde</span></h2>
         <div class="faq-list">
           <details class="faq-item">
             <summary>What is the average home price in Bulverde?</summary>
-            <p>The median home price in Bulverde typically falls around $400,000 to $450,000, though prices vary significantly based on lot size and location. Homes in master-planned communities like Johnson Ranch start in the mid-$300s, while custom-built properties on larger acreage tracts can range from $600,000 to well over $1 million. The higher price point relative to nearby cities reflects the larger lots, Hill Country views, and premium school district that come with buying in Bulverde. If you are looking at a specific price range, I can put together a list of current listings that match your criteria.</p>
-          </details>
-          <details class="faq-item">
-            <summary>What school district serves Bulverde?</summary>
-            <p>Bulverde is served by Comal ISD, which is consistently rated as one of the top school districts in the state of Texas. The district has invested heavily in new campuses throughout the Bulverde corridor to keep pace with population growth. Schools in the area offer strong academics, competitive athletics, fine arts programs, and a range of extracurricular activities. Many families specifically choose Bulverde because of the Comal ISD reputation, and the school district is a major factor in the area's strong property values and resale potential.</p>
+            <p>As of Sept 2026, the median list price in Bulverde sits around $645,000 (MLS data via the San Antonio Board of Realtors), while actual sale prices land lower — roughly $430K to $520K depending on the source and month. The gap reflects the acreage mix: land-heavy listings ask more per property. Neighborhood prices run from the low $300s in Bulverde Crossing to $800K+ for acreage estates in Vintage Oaks.</p>
           </details>
           <details class="faq-item">
             <summary>Can I find acreage properties in Bulverde?</summary>
-            <p>Yes, acreage is one of the things Bulverde is best known for. You can find properties ranging from one-acre lots in planned communities to ten or more acres of unrestricted Hill Country land. Many buyers come to Bulverde specifically because they want room for horses, livestock, workshops, or simply the privacy of not having close neighbors. Some tracts come with existing homes, while others are raw land ready for a custom build. Deed restrictions vary by area, so it is important to verify what is and is not allowed on a particular property before purchasing. I help buyers navigate those details regularly and can walk you through the options.</p>
+            <p>Yes. Acreage is Bulverde's defining feature — lots of 1 to 10+ acres are common, with some tracts running larger. One caution: well water and septic are still common outside the master-planned communities. Johnson Ranch was the first Bulverde-area community built with central water, wastewater, and natural gas. Always verify the water source, septic status, and deed restrictions on a specific property before buying.</p>
           </details>
+          <details class="faq-item">
+            <summary>How long is the commute from Bulverde to San Antonio?</summary>
+            <p>Typical drive time is 25–30 minutes via US-281 South (about 24–26 miles to downtown). At peak hours, US-281 congestion can push that to 35 minutes or more, so mid-day appointments are the local norm. Austin is a bigger trip: about 1 hour 25 minutes to the airport and roughly 1 hour 45 minutes downtown.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What school district serves Bulverde?</summary>
+            <p>Bulverde is served by Comal ISD, one of the fastest-growing districts in Texas. Area elementary and middle schools carry GreatSchools ratings in the 8–9/10 range (per Sept 2026 Redfin data). School attendance boundaries are set by physical address, so verify your zoned campuses directly with Comal ISD before purchasing.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. CTA -->
+    <section class="section bv-cta-parallax">
+      <div class="bv-cta-parallax__overlay"></div>
+      <div class="container bv-cta-parallax__content">
+        <h2>Ready to Explore <span class="accent">Bulverde</span>?</h2>
+        <p>Whether you're just starting your search or ready to schedule showings, I can help you navigate the market and find the right fit.</p>
+        <div class="bv-cta__buttons">
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Ask About Bulverde</a>
         </div>
       </div>
     </section>
@@ -195,39 +313,6 @@ const pageSchema = [
   <ContactForm context="I'd like to learn more about Bulverde..." />
   <Footer />
 </Layout>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is the average home price in Bulverde?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The median home price in Bulverde typically falls around $400,000 to $450,000, though prices vary significantly based on lot size and location. Homes in master-planned communities like Johnson Ranch start in the mid-$300s, while custom-built properties on larger acreage tracts can range from $600,000 to well over $1 million."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What school district serves Bulverde?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Bulverde is served by Comal ISD, which is consistently rated as one of the top school districts in the state of Texas. The district has invested heavily in new campuses throughout the Bulverde corridor to keep pace with population growth."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I find acreage properties in Bulverde?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, acreage is one of the things Bulverde is best known for. You can find properties ranging from one-acre lots in planned communities to ten or more acres of unrestricted Hill Country land. Many buyers come to Bulverde specifically because they want room for horses, livestock, workshops, or simply the privacy of not having close neighbors."
-      }
-    }
-  ]
-}
-</script>
 
 <style>
   /* FAQ */
@@ -278,8 +363,8 @@ const pageSchema = [
   /* Hero */
   .bv-hero {
     position: relative;
-    height: 320px;
-    background: url('/images/generated/hill-country-home-2.webp') center/cover no-repeat;
+    height: 380px;
+    background: url('/images/areas/bulverde.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -300,7 +385,7 @@ const pageSchema = [
   }
 
   .bv-hero__content h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
     margin-bottom: 0.75rem;
   }
 
@@ -331,37 +416,24 @@ const pageSchema = [
     margin: 0 0.3rem;
   }
 
-  /* Intro */
-  .bv-intro__grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 3rem;
-    align-items: start;
+  /* Stat band */
+  .bv-stats-band {
+    background: #000;
+    padding: 2.5rem 0;
+    color: #fff;
   }
 
-  .bv-intro__text p {
-    color: var(--gray);
-    line-height: 1.8;
-    margin-bottom: 1rem;
-  }
-
-  .bv-intro__stats {
+  .bv-stats__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
-  }
-
-  .bv-stat {
-    background: var(--light-gray);
-    padding: 1.5rem;
     text-align: center;
-    border-radius: 8px;
   }
 
   .bv-stat__number {
     display: block;
     font-family: var(--font-heading);
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     font-weight: 800;
     color: #FF1616;
   }
@@ -369,82 +441,163 @@ const pageSchema = [
   .bv-stat__label {
     display: block;
     font-size: 0.8rem;
-    color: var(--gray);
+    color: rgba(255,255,255,0.85);
     margin-top: 0.25rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    font-weight: 600;
   }
 
-  /* Why Section */
-  .bv-why__grid {
+  .bv-stat__source {
+    display: block;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.45);
+    margin-top: 0.25rem;
+  }
+
+  /* Overview */
+  .bv-overview__text p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    max-width: 860px;
+  }
+
+  .bv-watchouts {
+    background: #fff;
+    border-left: 4px solid #FF1616;
+    padding: 1.75rem 2rem;
+    margin-top: 1.75rem;
+    max-width: 860px;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .bv-watchouts h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+  }
+
+  .bv-watchouts ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+
+  .bv-watchouts li {
+    color: var(--gray);
+    font-size: 0.92rem;
+    line-height: 1.7;
+    margin-bottom: 0.6rem;
+  }
+
+  .bv-watchouts li strong {
+    color: #000;
+  }
+
+  /* Neighborhoods */
+  .bv-nb__grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
-  .bv-why__card {
+  .bv-nb__card {
     background: #fff;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   }
 
-  .bv-why__card h3 {
+  .bv-nb__card h3 {
     font-family: var(--font-heading);
     font-size: 1.1rem;
     text-transform: uppercase;
+    margin-bottom: 0.25rem;
+  }
+
+  .bv-nb__price {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    color: #FF1616;
+    font-size: 1.05rem;
     margin-bottom: 0.75rem;
   }
 
-  .bv-why__card p {
+  .bv-nb__card p {
     color: var(--gray);
     font-size: 0.9rem;
     line-height: 1.7;
   }
 
-  /* Explore Cards */
-  .bv-explore__grid {
+  .bv-nb__note {
+    max-width: 860px;
+    margin: 1.75rem auto 0;
+    text-align: center;
+    color: var(--gray);
+    font-size: 0.9rem;
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  .bv-nb__cta {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  /* Cost snapshot */
+  .bv-cost__grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
   }
 
-  .bv-explore__card {
-    display: block;
+  .bv-cost__card {
     background: #fff;
     border: 1px solid var(--light-gray);
-    padding: 2rem;
+    padding: 1.75rem;
     border-radius: 8px;
-    transition: transform 0.2s, box-shadow 0.2s;
   }
 
-  .bv-explore__card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  }
-
-  .bv-explore__card h3 {
+  .bv-cost__card h3 {
     font-family: var(--font-heading);
-    font-size: 1rem;
+    font-size: 0.85rem;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
     margin-bottom: 0.5rem;
-    color: #000;
+    color: var(--gray);
   }
 
-  .bv-explore__card:hover h3 {
+  .bv-cost__figure {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 800;
     color: #FF1616;
+    margin-bottom: 0.5rem;
   }
 
-  .bv-explore__card p {
+  .bv-cost__card p {
     color: var(--gray);
     font-size: 0.85rem;
-    line-height: 1.6;
+    line-height: 1.65;
+  }
+
+  .bv-cost__note {
+    max-width: 860px;
+    margin: 1.75rem auto 0;
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    font-style: italic;
+    text-align: center;
   }
 
   /* Schools */
   .bv-schools__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: 1fr;
     gap: 1.5rem;
     max-width: 800px;
     margin: 0 auto;
@@ -494,7 +647,142 @@ const pageSchema = [
     color: #FF1616;
   }
 
-  /* CTA */
+  .bv-schools__note {
+    text-align: center;
+    font-style: italic;
+    color: var(--gray);
+    font-size: 0.85rem;
+    margin-top: 1.5rem;
+  }
+
+  /* Commute */
+  .bv-commute__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .bv-commute__card {
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    padding: 1.75rem;
+    border-radius: 8px;
+  }
+
+  .bv-commute__card h3 {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .bv-commute__time {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #FF1616;
+    margin-bottom: 0.5rem;
+  }
+
+  .bv-commute__card p {
+    color: var(--gray);
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  .bv-commute__note {
+    max-width: 860px;
+    margin: 1.75rem auto 0;
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* Lifestyle cards */
+  .bv-life__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .bv-life__card {
+    display: block;
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    padding: 2rem;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .bv-life__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .bv-life__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    color: #000;
+  }
+
+  .bv-life__card:hover h3 {
+    color: #FF1616;
+  }
+
+  .bv-life__card p {
+    color: var(--gray);
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .bv-life__link {
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #FF1616;
+  }
+
+  /* CTA Parallax */
+  .bv-cta-parallax {
+    position: relative;
+    padding: 5rem 0;
+    color: #fff;
+    text-align: center;
+    background-image: url('/images/areas/bulverde.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  .bv-cta-parallax__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+  }
+
+  .bv-cta-parallax__content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .bv-cta-parallax__content h2 {
+    color: #fff;
+  }
+
+  .bv-cta-parallax__content p {
+    color: rgba(255,255,255,0.7);
+    max-width: 600px;
+    margin: 1rem auto 2rem;
+  }
+
   .bv-cta__buttons {
     display: flex;
     gap: 1rem;
@@ -503,17 +791,46 @@ const pageSchema = [
   }
 
   /* Responsive */
+  @media (max-width: 900px) {
+    .bv-stats__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bv-cost__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
   @media (max-width: 768px) {
-    .bv-intro__grid {
+    .bv-nb__grid {
       grid-template-columns: 1fr;
     }
 
-    .bv-why__grid {
+    .bv-commute__grid {
       grid-template-columns: 1fr;
     }
 
-    .bv-explore__grid {
+    .bv-life__grid {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .bv-hero {
+      height: 300px;
+    }
+
+    .bv-stats__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .bv-cost__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .bv-cta-parallax {
+      background-attachment: scroll;
     }
   }
 </style>

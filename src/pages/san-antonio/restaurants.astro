@@ -1,0 +1,271 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
+
+const pageTitle = 'Best Restaurants in San Antonio, TX | Cody Posey';
+const pageDescription = "A local's guide to the best restaurants in San Antonio, TX — Tex-Mex icons, River Walk dining, the Pearl's chef-driven lineup, BBQ, and fine dining.";
+const faqs = [
+  {
+    q: 'What are the best restaurants in San Antonio, TX?',
+    a: 'Start with the icons: Mi Tierra Cafe y Panaderia at Market Square (family-owned since 1941, mariachi and pan dulce), Boudro\'s Texas Bistro on the River Walk (tableside guacamole since 1986), and Bohanan\'s Prime Steaks and Seafood downtown. The Pearl District holds the chef-driven lineup — La Gloria, Southerleigh, Botika, and Best Quality Daughter. For BBQ, 2M Smokehouse is the pitmaster favorite. Chris Madrid\'s is the burger institution, and The Guenther House does the classic King William breakfast.',
+  },
+  {
+    q: 'Where should I eat on the San Antonio River Walk?',
+    a: 'Boudro\'s Texas Bistro is the standout — a Texas bistro on the river since 1986, famous for tableside guacamole and prickly pear margaritas. Casa Rio has been serving Mexican food on the river since 1946 with the iconic colorful umbrellas. Paesanos does Mediterranean-Italian on the water. Fair warning: the River Walk has tourist traps — the spots on this list are the ones locals actually recommend.',
+  },
+  {
+    q: 'What are good family-friendly restaurants in San Antonio?',
+    a: 'Mi Tierra is built for groups — big dining room, mariachi, bakery attached, open long hours. Rosario\'s on S. Alamo handles loud tables well with live music. 2M Smokehouse is casual counter-service BBQ (BYOB, lunch hours, expect a line). Bakery Lorraine at the Pearl covers the pastry-and-coffee stop the kids will remember.',
+  },
+];
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/san-antonio/restaurants/' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'San Antonio', url: '/san-antonio/' },
+    { name: 'Restaurants', url: '/san-antonio/restaurants/' },
+  ]),
+  faqSchema(faqs),
+];
+
+const restaurants = [
+  { name: 'Mi Tierra Cafe y Panaderia', cuisine: 'Tex-Mex', description: "The Market Square icon — family-owned since 1941, strolling mariachis, festive decor, and a panaderia turning out fresh pan dulce. Open long hours; the Botana Platter and mole enchiladas are the move.", price: '$$', tags: ['iconic', 'family', 'mariachi'], address: '218 Produce Row, San Antonio, TX 78207' },
+  { name: "Boudro's Texas Bistro", cuisine: 'River Walk', description: "A Texas bistro on the River Walk since 1986. The tableside guacamole is the city's most famous appetizer, backed by prickly pear margaritas, shrimp and grits, and blackened prime rib on the water.", price: '$$$', tags: ['iconic', 'river-walk', 'date-night'], address: '421 E Commerce St, San Antonio, TX 78205' },
+  { name: "Bohanan's Prime Steaks and Seafood", cuisine: 'Fine Dining', description: "Old-World steakhouse on historic Houston Street with an elegant upstairs dining room, live jazz, and prime beef plus Gulf seafood. The special-occasion standard downtown.", price: '$$$$', tags: ['steakhouse', 'date-night', 'live-music'], address: '219 E Houston St, San Antonio, TX 78205' },
+  { name: '2M Smokehouse', cuisine: 'BBQ', description: "Tex-Mex BBQ with a James Beard-nominated pitmaster — smoky brisket, brisket nachos, chicharron mac and cheese, and Mexican street corn. BYOB, lunch hours only, and expect a line. Worth it.", price: '$$', tags: ['bbq', 'local-favorite', 'byob'], address: '2731 S WW White Rd, San Antonio, TX 78222' },
+  { name: 'La Gloria', cuisine: 'Pearl District', description: "Chef Johnny Hernandez's love letter to interior Mexican street food, right on the river at the Pearl. Tacos, elotes, and agua frescas in a relaxed outdoor setting.", price: '$$', tags: ['mexican', 'pearl', 'outdoor'], address: 'Pearl District, San Antonio, TX' },
+  { name: 'Southerleigh Fine Food & Brewery', cuisine: 'Pearl District', description: "Southern and coastal Texas cooking with beer brewed on-site, in the Pearl's grand brewhouse. Big patio, diverse menu, and a reliable crowd-pleaser for out-of-town guests.", price: '$$', tags: ['southern', 'pearl', 'brewery'], address: 'Pearl District, San Antonio, TX' },
+  { name: 'Botika', cuisine: 'Pearl District', description: "Peruvian-Asian fusion at the Pearl — vibrant ceviches, creative cocktails, and a lively dining room. One of the district's most consistently praised kitchens.", price: '$$$', tags: ['fusion', 'pearl', 'cocktails'], address: 'Pearl District, San Antonio, TX' },
+  { name: 'Best Quality Daughter', cuisine: 'Pearl District', description: "Chef Jennifer Hwa Dobbertin's Asian-American restaurant in the historic Mueller House at the Pearl — mochi hush puppies, Taiwanese popcorn chicken, and garlic noodles in a beautifully restored space.", price: '$$$', tags: ['asian', 'pearl', 'chef-driven'], address: '602 Avenue A, San Antonio, TX 78215' },
+  { name: 'Bakery Lorraine', cuisine: 'Pearl District', description: "French patisserie famous for picture-perfect macarons, croissants, and cakes. The Pearl location is the flagship — the mandatory coffee-and-pastry stop.", price: '$$', tags: ['bakery', 'pearl', 'coffee'], address: 'Pearl District, San Antonio, TX' },
+  { name: 'The Guenther House', cuisine: 'American', description: "Breakfast and lunch in a historic 1860s home attached to the still-running Pioneer Flour Mills in King William. Buttermilk pancakes and biscuits and gravy made from the mill's own flour, on a scenic river bend.", price: '$$', tags: ['breakfast', 'historic', 'king-william'], address: 'King William Historic District, San Antonio, TX' },
+  { name: "Chris Madrid's", cuisine: 'Burgers', description: "The greasy-spoon burger institution — famously oozy cheddar-cheesy burgers and fresh-cut fries, voted the city's best burger year after year. Cash-friendly, no-frills, legendary.", price: '$', tags: ['burgers', 'iconic', 'casual'], address: 'San Antonio, TX' },
+  { name: "Rosario's", cuisine: 'Tex-Mex', description: "Lively Tex-Mex on S. Alamo with live music and a deceptively large dining room that turns tables fast. Don't worry about the kids being loud — nobody will hear them.", price: '$$', tags: ['tex-mex', 'family', 'live-music'], address: 'S. Alamo St, San Antonio, TX' },
+  { name: 'Dough Pizzeria Napoletana', cuisine: 'Italian', description: "Authentic Neapolitan pizza from a husband-and-wife team who trained in Naples — wood-fired, blistered crusts, 20–45 minute waits that regulars insist are worth it.", price: '$$', tags: ['pizza', 'local-favorite', 'wood-fired'], address: '518 S Alamo St, San Antonio, TX' },
+  { name: 'Casa Rio', cuisine: 'River Walk', description: "Serving Mexican food on the River Walk since 1946 — the colorful umbrellas are the postcard shot. Classic enchiladas and margaritas on the water.", price: '$$', tags: ['mexican', 'river-walk', 'historic'], address: '430 E Commerce St, San Antonio, TX' },
+];
+
+const categories = [...new Set(restaurants.map(r => r.cuisine))];
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="rest-hero">
+      <div class="rest-hero__overlay"></div>
+      <div class="rest-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/san-antonio/">San Antonio</a> <span>/</span> <span>Restaurants</span>
+        </nav>
+        <h1>San Antonio <span style="color:#FF1616;">Restaurants</span></h1>
+        <p>A UNESCO Creative City of Gastronomy — where the locals actually eat</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="rest-intro">San Antonio is a UNESCO Creative City of Gastronomy and the self-declared Culinary Capital of Texas — Tex-Mex, German, Southern, and contemporary kitchens all in one city. These are the spots that come up in every "where should we eat" conversation: the icons, the Pearl's chef-driven lineup, and the local institutions.</p>
+      </div>
+    </section>
+
+    <!-- Filter Tabs -->
+    <section class="section" style="background: var(--light-gray); padding-top: 2rem; padding-bottom: 0;">
+      <div class="container">
+        <div class="rest-filters" id="restFilters">
+          <button class="rest-filter rest-filter--active" data-filter="all">All</button>
+          {categories.map(cat => (
+            <button class="rest-filter" data-filter={cat}>{cat}</button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Restaurant List -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="rest-grid" id="restGrid">
+          {restaurants.map(r => (
+            <div class="rest-card" data-cuisine={r.cuisine}>
+              <div class="rest-card__header">
+                <h3>{r.name}</h3>
+                <span class="rest-card__cuisine">{r.cuisine}</span>
+              </div>
+              <p class="rest-card__desc">{r.description}</p>
+              <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.name + ', ' + r.address)}`} target="_blank" rel="noopener" class="rest-card__address">{r.address}</a>
+              <div class="rest-card__footer">
+                <span class="rest-card__price">{r.price}</span>
+                <div class="rest-card__tags">
+                  {r.tags.map(tag => (
+                    <span class="rest-card__tag">{tag.replace(/-/g, ' ')}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- More SA guides -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>More <span class="accent">San Antonio</span> Guides</h2>
+        </div>
+        <div class="rest-grid">
+          <a href="/san-antonio/" class="rest-more-card">
+            <h3>San Antonio Overview</h3>
+            <p>Median prices, cost snapshot, schools, and commute times — the full 2026 relocation guide.</p>
+          </a>
+          <a href="/san-antonio/neighborhoods/" class="rest-more-card">
+            <h3>Neighborhoods by Corridor</h3>
+            <p>Where to live based on your gate or employer — the corridor breakdown.</p>
+          </a>
+          <a href="/san-antonio/things-to-do/" class="rest-more-card">
+            <h3>Things to Do</h3>
+            <p>The Alamo, the missions, the Zoo, theme parks — what weekends look like here.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="rest-cta">
+      <div class="rest-cta__overlay"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <h2>Looking for a Home Near Your <span class="accent">Favorite Spots</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">I can help you find homes in the neighborhoods closest to the restaurants, shops, and nightlife you love.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Let's Connect</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions About Dining in San Antonio</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ParallaxBanner image="/images/areas/san-antonio.jpg" />
+
+  <ContactForm context="I'd like to find homes near the best restaurants in San Antonio..." />
+  <Footer />
+</Layout>
+
+<style>
+  .rest-hero {
+    position: relative;
+    height: 280px;
+    background: url('/images/areas/san-antonio.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    background-color: #111;
+  }
+  .rest-hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
+  .rest-hero__content { position: relative; z-index: 1; padding: 0 1.5rem; }
+  .rest-hero__content h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 0.75rem; }
+  .rest-hero__content p { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+
+  .breadcrumb { font-size: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.5); }
+  .breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .rest-intro { font-size: 1.05rem; color: var(--gray); line-height: 1.8; max-width: 800px; text-align: center; margin: 0 auto; font-weight: 600; }
+
+  .rest-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; padding-bottom: 2rem; }
+  .rest-filter { padding: 0.5rem 1.25rem; border: 2px solid #ddd; border-radius: 25px; background: #fff; font-family: var(--font-heading); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; cursor: pointer; transition: all 0.2s; color: #333; }
+  .rest-filter:hover { border-color: #FF1616; color: #FF1616; }
+  .rest-filter--active { background: #FF1616; border-color: #FF1616; color: #fff; }
+  .rest-filter--active:hover { color: #fff; }
+
+  .rest-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .rest-card { background: #fff; padding: 2rem; border-radius: 8px; border-left: 3px solid #FF1616; box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: transform 0.2s, box-shadow 0.2s; }
+  .rest-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .rest-card__header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.75rem; }
+  .rest-card__header h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .rest-card__cuisine { flex-shrink: 0; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #FF1616; background: rgba(255, 22, 22, 0.08); padding: 0.25rem 0.6rem; border-radius: 4px; }
+  .rest-card__desc { color: var(--gray); font-size: 0.88rem; line-height: 1.7; margin-bottom: 1rem; }
+  .rest-card__address { display: block; font-size: 0.82rem; color: #FF1616; margin-bottom: 1rem; transition: opacity 0.2s; }
+  .rest-card__address:hover { opacity: 0.7; }
+  .rest-card__footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f0f0f0; padding-top: 0.75rem; }
+  .rest-card__price { font-family: var(--font-heading); font-weight: 700; font-size: 0.9rem; color: #FF1616; }
+  .rest-card__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .rest-card__tag { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--gray); background: #f5f5f5; padding: 0.2rem 0.5rem; border-radius: 3px; }
+
+  .rest-more-card { display: block; background: #fff; border: 1px solid var(--light-gray); padding: 2rem; border-radius: 8px; transition: transform 0.2s, box-shadow 0.2s; }
+  .rest-more-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .rest-more-card h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; margin-bottom: 0.5rem; color: #000; }
+  .rest-more-card:hover h3 { color: #FF1616; }
+  .rest-more-card p { color: var(--gray); font-size: 0.85rem; line-height: 1.6; }
+
+  .rest-cta { position: relative; padding: 5rem 0; color: #fff; text-align: center; background-image: url('/images/testimonials-hero.webp'); background-size: cover; background-position: center; background-attachment: fixed; background-color: #333; }
+  .rest-cta__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.65); }
+  .rest-cta h2 { color: #fff; }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
+
+  @media (max-width: 768px) {
+    .rest-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .rest-cta { background-attachment: scroll; }
+  }
+</style>
+
+<script is:inline>
+  // Filter functionality
+  const filters = document.querySelectorAll('.rest-filter');
+  const cards = document.querySelectorAll('.rest-card');
+
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      filters.forEach(f => f.classList.remove('rest-filter--active'));
+      btn.classList.add('rest-filter--active');
+
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.cuisine === filter) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

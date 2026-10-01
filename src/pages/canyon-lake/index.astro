@@ -4,11 +4,45 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
-import { placeSchema, collectionPageSchema, breadcrumbSchema } from '../../lib/schema';
+import { placeSchema, collectionPageSchema, articleSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
 
-const clDescription = 'Explore Canyon Lake, Texas — waterfront living, neighborhoods, homes for sale, and outdoor recreation. Your guide to Hill Country lakeside real estate.';
+const clDescription = 'Canyon Lake, TX homes for sale in 2026: lakefront living, Comal ISD schools, market prices, and commute times. A no-fluff relocation guide by Cody Posey.';
+const pageTitle = 'Canyon Lake, TX Homes for Sale | 2026 Relocation Guide';
+
+const faqs = [
+  {
+    q: 'How do lake level fluctuations affect waterfront properties?',
+    a: 'Canyon Lake is a flood-control reservoir, not a constant-level lake. In drought years the water can drop well below conservation pool, which means a "waterfront" lot can temporarily sit high above the waterline. Before buying waterfront, check the elevation of the lot, confirm dock and shoreline permits through the Army Corps of Engineers, and factor the level swings into what you are willing to pay.',
+  },
+  {
+    q: 'What is the median home price at Canyon Lake?',
+    a: 'In August 2026 the median sale price at Canyon Lake was $335K, with a typical range of $212K to $495K (San Antonio Board of REALTORS data, as of Sept 2026). Homes away from the water start in the mid-$200s in established neighborhoods, while direct lakefront properties with water access typically run $500K to well over $1 million.',
+  },
+  {
+    q: 'What school district serves Canyon Lake?',
+    a: 'Canyon Lake is served by Comal ISD, one of the fastest-growing districts in Texas. Elementary, middle, and high school campuses (including Canyon Lake High School) sit in the area, so most students attend close to home. Confirm campus assignments through the district for any specific address.',
+  },
+  {
+    q: 'Is Canyon Lake a good fit for full-time living, or is it mostly vacation homes?',
+    a: 'More buyers are going full-time every year. Grocery, medical, dining, and services have all expanded over the past decade, and remote workers do well here. The commute to New Braunfels runs about 20 minutes and San Antonio about 45, but most of it moves through FM 306, so rush hour adds time. If you are commuting daily, drive it at your actual commute hour before you commit.',
+  },
+];
+
 const pageSchema = [
-  placeSchema({ name: 'Canyon Lake, TX', description: clDescription, url: '/canyon-lake/' }),
+  placeSchema({
+    name: 'Canyon Lake, TX',
+    description: clDescription,
+    url: '/canyon-lake/',
+    image: '/images/areas/canyon-lake.jpg',
+  }),
+  articleSchema({
+    title: pageTitle,
+    description: clDescription,
+    url: '/canyon-lake/',
+    image: '/images/areas/canyon-lake.jpg',
+    datePublished: '2026-10-01',
+    dateModified: '2026-10-01',
+  }),
   collectionPageSchema({
     name: 'Canyon Lake Area Guide',
     description: clDescription,
@@ -21,21 +55,22 @@ const pageSchema = [
   }),
   breadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: 'Explore Area', url: '/explorearea/' },
+    { name: 'Hill Country Relocation Guide', url: '/hill-country-relocation-guide/' },
     { name: 'Canyon Lake', url: '/canyon-lake/' },
   ]),
-];
+  faqSchema(faqs),
+].filter(Boolean);
 ---
 
 <Layout
-  title="Canyon Lake, TX Real Estate | Cody Posey"
+  title={pageTitle}
   description={clDescription}
   schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">
 
-    <!-- Hero -->
+    <!-- 1. Hero -->
     <div class="cl-hero">
       <div class="cl-hero__overlay"></div>
       <div class="cl-hero__content">
@@ -43,124 +78,198 @@ const pageSchema = [
           <a href="/">Home</a> <span>/</span> <span>Canyon Lake</span>
         </nav>
         <h1>Canyon <span style="color:#FF1616;">Lake</span></h1>
-        <p>Hill Country Lakeside Living at Its Best</p>
+        <p>Waterfront living, Hill Country acreage, and the tradeoffs nobody puts in the brochure</p>
       </div>
     </div>
 
-    <!-- Intro -->
-    <section class="section cl-intro">
+    <!-- 2. Stat band -->
+    <section class="cl-statband">
       <div class="container">
-        <div class="cl-intro__grid">
-          <div class="cl-intro__text">
-            <h2>A Scenic Hill Country <span class="accent">Community</span></h2>
-            <p>Canyon Lake is a scenic Hill Country community built around the 8,230-acre reservoir on the Guadalupe River. Known for waterfront living, outdoor recreation, and a laid-back lifestyle, it draws everyone from young families to retirees looking for a quieter pace without sacrificing access to city amenities. The lake itself was created in 1964 when the U.S. Army Corps of Engineers completed Canyon Dam, and the surrounding community has grown steadily ever since into one of the most sought-after residential areas in the Texas Hill Country.</p>
-            <p>Located just 20 minutes from New Braunfels and 45 minutes from San Antonio, Canyon Lake offers a rare combination of natural beauty and convenience. The area has a population of over 33,000 and is considered 48% safer than the Texas state average. Residents enjoy a true Hill Country atmosphere with rolling terrain, mature oak trees, and stunning views of the lake and surrounding hills. The pace of life here is noticeably slower, which is exactly what most buyers are looking for when they start exploring the area.</p>
-            <p>Whether you're looking for a lakefront retreat, acreage with Hill Country views, or a family-friendly neighborhood with community amenities, Canyon Lake has options across a wide range of price points and lifestyles. Waterfront properties with direct lake access command premium prices, but there are also well-established neighborhoods like Mystic Shores, Canyon Lake Hills, and Hancock that offer more affordable entry points with community boat ramps, pools, and parks.</p>
-            <p>The real estate market at Canyon Lake tends to attract a mix of primary residents and vacation-home buyers. Many people initially purchase a weekend lake house and eventually transition to full-time living once they experience the quality of life here. The variety of housing stock ranges from modest cabins and older ranch-style homes to custom-built estates on waterfront lots. New construction has also picked up in recent years, with several builders developing communities that cater to families and retirees alike.</p>
-            <p>One of the things that sets Canyon Lake apart from other Hill Country destinations is its strong sense of community. Local organizations host regular events, from farmers markets and holiday parades to fishing tournaments and live music at the Whitewater Amphitheater. The area also benefits from a growing number of local businesses, restaurants, and services that make daily life comfortable without needing to drive into town for every errand.</p>
-            <p>For outdoor enthusiasts, Canyon Lake is hard to beat. The Guadalupe River below the dam is one of the most popular stretches for tubing and kayaking in the entire state. The lake itself offers world-class bass fishing, wakeboarding, and sailing. Numerous public parks and access points line the shoreline, and the Canyon Lake Gorge — a geological formation exposed by a 2002 flood — offers guided tours showcasing dinosaur tracks and rare rock formations. Hiking, cycling, and birdwatching are also popular pastimes in the surrounding Hill Country terrain.</p>
+        <div class="cl-statband__grid">
+          <div class="cl-stat">
+            <span class="cl-stat__number">~35.6K</span>
+            <span class="cl-stat__label">Population (2026 est.)</span>
           </div>
-          <div class="cl-intro__stats">
-            <div class="cl-stat">
-              <span class="cl-stat__number">33K+</span>
-              <span class="cl-stat__label">Population</span>
-            </div>
-            <div class="cl-stat">
-              <span class="cl-stat__number">45 min</span>
-              <span class="cl-stat__label">To San Antonio</span>
-            </div>
-            <div class="cl-stat">
-              <span class="cl-stat__number">20 min</span>
-              <span class="cl-stat__label">To New Braunfels</span>
-            </div>
-            <div class="cl-stat">
-              <span class="cl-stat__number">8,230</span>
-              <span class="cl-stat__label">Acre Lake</span>
-            </div>
+          <div class="cl-stat">
+            <span class="cl-stat__number">$335K</span>
+            <span class="cl-stat__label">Median Sale Price (Aug 2026)</span>
+          </div>
+          <div class="cl-stat">
+            <span class="cl-stat__number">8,230</span>
+            <span class="cl-stat__label">Acre Lake</span>
+          </div>
+          <div class="cl-stat">
+            <span class="cl-stat__number">20 min</span>
+            <span class="cl-stat__label">To New Braunfels · 45 min to SA</span>
           </div>
         </div>
+        <p class="cl-statband__note">Stats as of Sept 2026. Median sale price: San Antonio Board of REALTORS via realty.com. Population: 2026 estimate. Drive times are typical, not guaranteed.</p>
       </div>
     </section>
 
-    <!-- Why People Move Here -->
-    <section class="section cl-why" style="background: var(--light-gray);">
+    <!-- 3. Honest overview -->
+    <section class="section cl-overview">
       <div class="container">
         <div class="section-title">
-          <h2>Why People <span class="accent">Move Here</span></h2>
-          <p>The most common reasons buyers choose Canyon Lake</p>
+          <h2>The Honest <span class="accent">Overview</span></h2>
+          <p>What Canyon Lake actually is, who it fits, and the watch-outs</p>
         </div>
-        <div class="cl-why__grid">
-          <div class="cl-why__card">
-            <h3>Waterfront Living</h3>
-            <p>Direct lake access, boating, fishing, and waterfront homesites make Canyon Lake one of the most desirable lakeside communities in the Texas Hill Country.</p>
-          </div>
-          <div class="cl-why__card">
-            <h3>Outdoor Recreation</h3>
-            <p>Hiking trails, river tubing on the Guadalupe, swimming, and live music at the Whitewater Amphitheater — all within minutes of home.</p>
-          </div>
-          <div class="cl-why__card">
-            <h3>Hill Country Privacy</h3>
-            <p>Larger lots, acreage properties, and scenic Hill Country views offer a level of space and privacy that's hard to find closer to the city.</p>
-          </div>
-          <div class="cl-why__card">
-            <h3>Value & Location</h3>
-            <p>More space per dollar compared to nearby metros, with easy access to New Braunfels and San Antonio for work, shopping, and healthcare.</p>
-          </div>
+        <div class="cl-overview__text">
+          <p>Canyon Lake is a scenic Hill Country community built around the 8,230-acre reservoir on the Guadalupe River, created in 1964 when the U.S. Army Corps of Engineers completed Canyon Dam. It draws everyone from young families to retirees looking for a quieter pace with boating, fishing, and tubing access minutes from home. The variety of housing stock runs from modest cabins and older ranch-style homes to custom waterfront estates, with new construction picking up in recent years. The community vibe is real — farmers markets, holiday parades, fishing tournaments, and live music at the Whitewater Amphitheater.</p>
+          <p>Now the watch-outs. Canyon Lake is a <strong>flood-control reservoir, not a constant-level lake</strong> — water levels swing with drought and rainfall, so a waterfront lot can temporarily sit well above the waterline. Check lot elevation and Army Corps dock/shoreline permits before paying waterfront prices. The <strong>commute is limited</strong>: most routes run through FM 306, and rush hour stretches the 20-minute New Braunfels run. And <strong>property taxes</strong> typically land between 1.7% and 2.2% of assessed value in Comal County, which pushes annual bills higher than many out-of-state buyers expect — ask for the current tax bill on any home you are seriously considering.</p>
+          <p>The market attracts a mix of primary residents and vacation-home buyers; many start with a weekend lake house and go full-time within a few years. Larger lots, acreage, and privacy come at prices that undercut the San Antonio and Austin metros, which is exactly why the area keeps growing. If the lake life fits your budget and commute tolerance, there are still real values here — just buy with the water level in mind.</p>
         </div>
       </div>
     </section>
 
-    <!-- Explore Cards -->
-    <section class="section cl-explore">
+    <!-- 4. Neighborhoods -->
+    <section class="section cl-neighborhoods" style="background: var(--light-gray);">
       <div class="container">
         <div class="section-title">
-          <h2>Explore <span class="accent">Canyon Lake</span></h2>
-          <p>Dig deeper into the neighborhoods, homes, and lifestyle that matter to you</p>
+          <h2>Canyon Lake <span class="accent">Neighborhoods</span></h2>
+          <p>The established communities buyers ask about most</p>
         </div>
-        <div class="cl-explore__grid">
-          <a href="/canyon-lake/neighborhoods/" class="cl-explore__card">
-            <h3>Neighborhoods</h3>
-            <p>From lakefront gated communities to Hill Country acreage — find the area that fits your lifestyle and budget.</p>
-          </a>
-          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="cl-explore__card">
-            <h3>Home Search</h3>
-            <p>Search current listings in Canyon Lake. Filter by price, area, and home type to find what's available now.</p>
-          </a>
-          <a href="/canyon-lake/restaurants/" class="cl-explore__card">
-            <h3>Restaurants</h3>
-            <p>From lakeside hangouts and Tex-Mex joints to Italian trattorias — the best places to eat around Canyon Lake.</p>
-          </a>
-          <a href="/canyon-lake/things-to-do/" class="cl-explore__card">
-            <h3>Things to Do</h3>
-            <p>Boating, river tubing, live music, fishing, hiking, and everything else that makes Canyon Lake special.</p>
-          </a>
+        <div class="cl-neighborhoods__grid">
+          <div class="cl-neighborhoods__card">
+            <h3>Canyon Lake Hills</h3>
+            <p>One of the first and most established subdivisions — active HOA, community pool, parks, and lake access. Strong pick for families wanting amenities without waterfront prices.</p>
+          </div>
+          <div class="cl-neighborhoods__card">
+            <h3>Mystic Shores</h3>
+            <p>Acreage and privacy with a resort feel — gated, luxury-leaning, and a draw for buyers who want land plus lake access. Custom homes dominate.</p>
+          </div>
+          <div class="cl-neighborhoods__card">
+            <h3>Hancock Area</h3>
+            <p>Named for the historic Hancock community along Hancock Road. Larger lots (often 1–5 acres), a no-frills feel, and some of the most affordable entry points in the area.</p>
+          </div>
+          <div class="cl-neighborhoods__card">
+            <h3>Oak Shores Estates</h3>
+            <p>Established lakeside community with community boat ramps and parks — a middle-ground option between pure waterfront and off-water subdivisions.</p>
+          </div>
+        </div>
+        <div class="cl-neighborhoods__cta">
+          <a href="/canyon-lake/neighborhoods/" class="btn btn-primary">Explore All Neighborhoods</a>
         </div>
       </div>
     </section>
 
-    <!-- School District -->
-    <section class="section">
+    <!-- 5. Cost snapshot -->
+    <section class="section cl-cost">
+      <div class="container">
+        <div class="section-title">
+          <h2>Cost <span class="accent">Snapshot</span></h2>
+          <p>What homes actually cost at Canyon Lake</p>
+        </div>
+        <div class="cl-cost__grid">
+          <div class="cl-cost__card">
+            <span class="cl-cost__number">$335K</span>
+            <span class="cl-cost__label">Median sale price (Aug 2026)</span>
+          </div>
+          <div class="cl-cost__card">
+            <span class="cl-cost__number">$212K–$495K</span>
+            <span class="cl-cost__label">Typical sale range</span>
+          </div>
+          <div class="cl-cost__card">
+            <span class="cl-cost__number">$468K</span>
+            <span class="cl-cost__label">Median list price</span>
+          </div>
+        </div>
+        <div class="cl-cost__text">
+          <p><strong>Waterfront premium:</strong> direct lake access roughly doubles your entry cost. Off-water homes in established neighborhoods start in the mid-$200s; comparable waterfront properties start around $500K and run well past $1 million depending on lot, views, and dock permits. Median list price sits above median sale price — sellers are testing the market, which is leverage for buyers.</p>
+          <p><strong>Property taxes:</strong> Comal County rates typically land between 1.7% and 2.2% of assessed value. On a $335K home, that is roughly $5,700–$7,400 per year before exemptions. Pull the actual tax bill for any property you are evaluating.</p>
+          <p class="cl-cost__note">Market data as of Sept 2026 (San Antonio Board of REALTORS via realty.com; realtor.com).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Schools -->
+    <section class="section cl-schools" style="background: var(--light-gray);">
       <div class="container">
         <div class="section-title">
           <h2>School <span class="accent">District</span></h2>
-          <p>Canyon Lake is served by one of the top-rated districts in the region</p>
+          <p>One district covers the Canyon Lake area</p>
         </div>
         <div class="cl-schools__grid">
           <a href="https://www.comalisd.org" target="_blank" rel="noopener" class="cl-schools__card">
             <h3>Comal ISD</h3>
-            <p>One of the fastest-growing and highest-rated districts in Texas. Comal ISD serves the entire Canyon Lake area with multiple elementary, middle, and high school campuses.</p>
+            <p>One of the fastest-growing districts in Texas, serving the entire Canyon Lake area with multiple elementary and middle school campuses plus Canyon Lake High School. Many families target the area specifically for the district's academic and extracurricular reputation.</p>
             <span class="cl-schools__link">Visit Comal ISD Website →</span>
+          </a>
+        </div>
+        <p class="cl-schools__note">Verify campus assignments for a specific address through the district — ratings and boundaries change. TEA publishes campus-level accountability ratings.</p>
+      </div>
+    </section>
+
+    <!-- 7. Commute -->
+    <section class="section cl-commute">
+      <div class="container">
+        <div class="section-title">
+          <h2>Commute <span class="accent">Times</span></h2>
+          <p>How far Canyon Lake sits from where you work</p>
+        </div>
+        <div class="cl-commute__grid">
+          <div class="cl-commute__card">
+            <span class="cl-commute__number">~20 min</span>
+            <span class="cl-commute__label">New Braunfels</span>
+            <p>The everyday hub for groceries, healthcare, and dining. Manageable, but FM 306 funnels everything through the same corridor at rush hour.</p>
+          </div>
+          <div class="cl-commute__card">
+            <span class="cl-commute__number">~45 min</span>
+            <span class="cl-commute__label">San Antonio</span>
+            <p>Doable for JBSA and downtown SA workers on the north side of the city. Budget extra during peak traffic — this is the longest realistic daily commute.</p>
+          </div>
+          <div class="cl-commute__card">
+            <span class="cl-commute__number">~75 min</span>
+            <span class="cl-commute__label">Austin</span>
+            <p>Realistic only for remote or hybrid workers, or buyers prioritizing lake life over commute. Drive it at your actual commute hour before deciding.</p>
+          </div>
+        </div>
+        <p class="cl-commute__note">Times are typical off-peak estimates, not guarantees. Traffic on FM 306 and I-35 varies by time of day.</p>
+      </div>
+    </section>
+
+    <!-- 8. Things to Do / Restaurants -->
+    <section class="section cl-lifestyle" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Life at <span class="accent">Canyon Lake</span></h2>
+          <p>What fills the weekends here</p>
+        </div>
+        <div class="cl-lifestyle__grid">
+          <a href="/canyon-lake/things-to-do/" class="cl-lifestyle__card">
+            <h3>Things to Do</h3>
+            <p>Boating and bass fishing on the lake, tubing the Guadalupe below the dam, guided tours of the Canyon Lake Gorge, hiking and birdwatching in the Hill Country, and live music at the Whitewater Amphitheater.</p>
+            <span class="cl-lifestyle__link">See the full list →</span>
+          </a>
+          <a href="/canyon-lake/restaurants/" class="cl-lifestyle__card">
+            <h3>Restaurants</h3>
+            <p>Lakeside hangouts, Tex-Mex joints, and Italian trattorias — the local spots residents actually eat at, from casual boat-day food to date-night dinners.</p>
+            <span class="cl-lifestyle__link">See the full list →</span>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- CTA with Parallax -->
-    <section class="section cl-cta-parallax">
-      <div class="cl-cta-parallax__overlay"></div>
-      <div class="container cl-cta-parallax__content">
+    <!-- 9. FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About <span class="accent">Canyon Lake</span></h2>
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. CTA + Contact -->
+    <section class="section cl-cta">
+      <div class="container cl-cta__content">
         <h2>Ready to Explore <span class="accent">Canyon Lake</span>?</h2>
-        <p>Whether you're just starting your search or ready to schedule showings, I can help you navigate the market and find the right fit.</p>
+        <p>Whether you're just starting your search or ready to schedule showings, I can help you navigate the market and find the right fit — waterfront or not.</p>
         <div class="cl-cta__buttons">
           <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="btn btn-primary">Search Homes</a>
           <a href="#contact" class="btn btn-outline">Ask About Canyon Lake</a>
@@ -168,118 +277,20 @@ const pageSchema = [
       </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="faq-section">
-      <div class="container">
-        <h2>Frequently Asked Questions About <span class="accent">Canyon Lake</span></h2>
-        <div class="faq-list">
-          <details class="faq-item">
-            <summary>What is the average home price at Canyon Lake?</summary>
-            <p>Home prices at Canyon Lake vary widely depending on location and lake access. As of 2026, you can find homes starting in the mid-$200s in established neighborhoods away from the waterfront, while lakefront properties with direct water access typically range from $500,000 to well over $1 million. The median home price in the broader Canyon Lake area generally sits in the mid-$300s to low $400s. Factors like lot size, views, dock permits, and community amenities all play a significant role in pricing. If you want a current market snapshot for a specific neighborhood, reach out and I can pull the latest data for you.</p>
-          </details>
-          <details class="faq-item">
-            <summary>What school district serves Canyon Lake?</summary>
-            <p>Canyon Lake is served by Comal ISD, one of the fastest-growing and highest-rated school districts in the state of Texas. Comal ISD consistently earns top marks from the Texas Education Agency and offers a wide range of academic, athletic, and extracurricular programs. The district operates several elementary and middle school campuses in the Canyon Lake area, with high school students attending Canyon Lake High School. Many families specifically target Canyon Lake because of the district's reputation for academic excellence and community involvement.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Is Canyon Lake a good place to live full-time or just for vacations?</summary>
-            <p>Canyon Lake works well for both, but an increasing number of residents are choosing it as their full-time home. The area has grown significantly over the past decade, with new grocery stores, medical offices, restaurants, and services making it a fully functional community rather than just a weekend getaway. Many of my clients initially buy a vacation property here and end up making the move to full-time within a few years. The commute to San Antonio or New Braunfels is manageable for those who work in either city, and remote workers especially appreciate the peaceful surroundings and reliable internet infrastructure that newer developments provide.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
   </main>
-  <ParallaxBanner image="/images/generated/canyon-lake-water.webp" />
+
+  <ParallaxBanner image="/images/areas/canyon-lake.jpg" alt="Canyon Lake, Texas" height="280px" />
 
   <ContactForm context="I'd like to learn more about Canyon Lake..." />
   <Footer />
 </Layout>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is the average home price at Canyon Lake?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Home prices at Canyon Lake vary widely depending on location and lake access. As of 2026, you can find homes starting in the mid-$200s in established neighborhoods away from the waterfront, while lakefront properties with direct water access typically range from $500,000 to well over $1 million. The median home price in the broader Canyon Lake area generally sits in the mid-$300s to low $400s."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What school district serves Canyon Lake?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Canyon Lake is served by Comal ISD, one of the fastest-growing and highest-rated school districts in the state of Texas. Comal ISD consistently earns top marks from the Texas Education Agency and offers a wide range of academic, athletic, and extracurricular programs."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is Canyon Lake a good place to live full-time or just for vacations?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Canyon Lake works well for both, but an increasing number of residents are choosing it as their full-time home. The area has grown significantly over the past decade, with new grocery stores, medical offices, restaurants, and services making it a fully functional community rather than just a weekend getaway."
-      }
-    }
-  ]
-}
-</script>
-
 <style>
-  /* FAQ */
-  .faq-section {
-    padding: 4rem 0;
-    background: #f9f9f9;
-  }
-  .faq-section h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  .faq-list {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  .faq-item {
-    background: #fff;
-    border: 1px solid #eee;
-    margin-bottom: 1rem;
-    padding: 0;
-  }
-  .faq-item summary {
-    padding: 1.25rem 1.5rem;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 1rem;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .faq-item summary::after {
-    content: '+';
-    font-size: 1.3rem;
-    color: #FF1616;
-    font-weight: 700;
-  }
-  .faq-item[open] summary::after {
-    content: '\2212';
-  }
-  .faq-item p {
-    padding: 0 1.5rem 1.25rem;
-    color: #555;
-    line-height: 1.8;
-    font-size: 0.95rem;
-  }
-
-  /* Hero */
+  /* 1. Hero */
   .cl-hero {
     position: relative;
-    height: 320px;
-    background: url('/images/generated/canyon-lake-water.webp') center/cover no-repeat;
+    height: 340px;
+    background: url('/images/areas/canyon-lake.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -331,120 +342,143 @@ const pageSchema = [
     margin: 0 0.3rem;
   }
 
-  /* Intro */
-  .cl-intro__grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 3rem;
-    align-items: start;
+  /* 2. Stat band */
+  .cl-statband {
+    background: #000;
+    color: #fff;
+    padding: 2.5rem 0;
   }
 
-  .cl-intro__text p {
-    color: var(--gray);
-    line-height: 1.8;
-    margin-bottom: 1rem;
-  }
-
-  .cl-intro__stats {
+  .cl-statband__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
-  }
-
-  .cl-stat {
-    background: var(--light-gray);
-    padding: 1.5rem;
     text-align: center;
-    border-radius: 8px;
   }
 
   .cl-stat__number {
     display: block;
     font-family: var(--font-heading);
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 800;
     color: #FF1616;
   }
 
   .cl-stat__label {
     display: block;
-    font-size: 0.8rem;
-    color: var(--gray);
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.6);
     margin-top: 0.25rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
 
-  /* Why Section */
-  .cl-why__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+  .cl-statband__note {
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.45);
+    margin-top: 1.5rem;
   }
 
-  .cl-why__card {
+  /* 3. Overview */
+  .cl-overview__text {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .cl-overview__text p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  /* 4. Neighborhoods */
+  .cl-neighborhoods__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cl-neighborhoods__card {
     background: #fff;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   }
 
-  .cl-why__card h3 {
+  .cl-neighborhoods__card h3 {
     font-family: var(--font-heading);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     text-transform: uppercase;
     margin-bottom: 0.75rem;
   }
 
-  .cl-why__card p {
+  .cl-neighborhoods__card p {
     color: var(--gray);
     font-size: 0.9rem;
     line-height: 1.7;
   }
 
-  /* Explore Cards */
-  .cl-explore__grid {
+  .cl-neighborhoods__cta {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+
+  /* 5. Cost snapshot */
+  .cl-cost__grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto 2rem;
   }
 
-  .cl-explore__card {
-    display: block;
-    background: #fff;
-    border: 1px solid var(--light-gray);
-    padding: 2rem;
+  .cl-cost__card {
+    background: #000;
+    color: #fff;
+    padding: 2rem 1.5rem;
+    text-align: center;
     border-radius: 8px;
-    transition: transform 0.2s, box-shadow 0.2s;
   }
 
-  .cl-explore__card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  }
-
-  .cl-explore__card h3 {
+  .cl-cost__number {
+    display: block;
     font-family: var(--font-heading);
-    font-size: 1rem;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-    color: #000;
-  }
-
-  .cl-explore__card:hover h3 {
+    font-size: 1.9rem;
+    font-weight: 800;
     color: #FF1616;
   }
 
-  .cl-explore__card p {
-    color: var(--gray);
-    font-size: 0.85rem;
-    line-height: 1.6;
+  .cl-cost__label {
+    display: block;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.65);
+    margin-top: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
-  /* Schools */
+  .cl-cost__text {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .cl-cost__text p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .cl-cost__note {
+    font-size: 0.8rem;
+    color: var(--gray);
+    font-style: italic;
+  }
+
+  /* 6. Schools */
   .cl-schools__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: 1fr;
     gap: 1.5rem;
     max-width: 800px;
     margin: 0 auto;
@@ -494,30 +528,168 @@ const pageSchema = [
     color: #FF1616;
   }
 
-  /* CTA Parallax */
-  .cl-cta-parallax {
-    position: relative;
-    padding: 5rem 0;
+  .cl-schools__note {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--gray);
+    max-width: 800px;
+    margin: 1.5rem auto 0;
+    font-style: italic;
+  }
+
+  /* 7. Commute */
+  .cl-commute__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cl-commute__card {
+    background: var(--light-gray);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-radius: 8px;
+  }
+
+  .cl-commute__number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: #FF1616;
+  }
+
+  .cl-commute__label {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0.5rem 0 0.75rem;
+    color: #000;
+  }
+
+  .cl-commute__card p {
+    color: var(--gray);
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+
+  .cl-commute__note {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--gray);
+    margin-top: 1.5rem;
+    font-style: italic;
+  }
+
+  /* 8. Lifestyle */
+  .cl-lifestyle__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cl-lifestyle__card {
+    display: block;
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    padding: 2rem;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .cl-lifestyle__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .cl-lifestyle__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: #000;
+  }
+
+  .cl-lifestyle__card:hover h3 {
+    color: #FF1616;
+  }
+
+  .cl-lifestyle__card p {
+    color: var(--gray);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .cl-lifestyle__link {
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #FF1616;
+  }
+
+  /* 9. FAQ */
+  .faq-section {
+    padding: 4rem 0;
+    background: #f9f9f9;
+  }
+  .faq-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .faq-item {
+    background: #fff;
+    border: 1px solid #eee;
+    margin-bottom: 1rem;
+    padding: 0;
+  }
+  .faq-item summary {
+    padding: 1.25rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.3rem;
+    color: #FF1616;
+    font-weight: 700;
+  }
+  .faq-item[open] summary::after {
+    content: '\2212';
+  }
+  .faq-item p {
+    padding: 0 1.5rem 1.25rem;
+    color: #555;
+    line-height: 1.8;
+    font-size: 0.95rem;
+  }
+
+  /* 10. CTA */
+  .cl-cta {
+    background: #000;
     color: #fff;
     text-align: center;
-    background-image: url('/images/testimonials-hero.webp');
-    background-size: cover;
-    background-position: center bottom;
-    background-attachment: fixed;
   }
 
-  .cl-cta-parallax__overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.75);
+  .cl-cta__content h2 {
+    color: #fff;
   }
 
-  .cl-cta-parallax__content {
-    position: relative;
-    z-index: 1;
-  }
-
-  .cl-cta-parallax__content p {
+  .cl-cta__content p {
     color: rgba(255,255,255,0.7);
     max-width: 600px;
     margin: 1rem auto 2rem;
@@ -530,17 +702,32 @@ const pageSchema = [
     flex-wrap: wrap;
   }
 
+  /* Parallax mobile fallback (applies inside the ParallaxBanner component) */
+  @media (max-width: 600px) {
+    :global(.parallax-banner) {
+      background-attachment: scroll;
+    }
+  }
+
   /* Responsive */
   @media (max-width: 768px) {
-    .cl-intro__grid {
+    .cl-statband__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .cl-neighborhoods__grid {
       grid-template-columns: 1fr;
     }
 
-    .cl-why__grid {
+    .cl-cost__grid {
       grid-template-columns: 1fr;
     }
 
-    .cl-explore__grid {
+    .cl-commute__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cl-lifestyle__grid {
       grid-template-columns: 1fr;
     }
   }

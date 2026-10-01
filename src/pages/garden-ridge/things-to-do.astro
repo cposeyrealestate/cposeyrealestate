@@ -1,0 +1,326 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
+
+const pageTitle = 'Things to Do in Garden Ridge, TX | Cody Posey';
+const pageDescription = 'Things to do in and around Garden Ridge, TX — Bracken Bat Cave dusk emergences, Natural Bridge Caverns, the wildlife ranch, Paul Davis Park, and Market Days every second Saturday.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/garden-ridge/things-to-do/', image: '/images/generated/hill-country-aerial.webp' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Garden Ridge', url: '/garden-ridge/' },
+    { name: 'Things to Do', url: '/garden-ridge/things-to-do/' },
+  ]),
+  faqSchema([
+    {
+      q: 'Can you visit Bracken Bat Cave near Garden Ridge?',
+      a: 'Yes, but only by reservation. Bracken Cave Preserve is managed by Bat Conservation International, and access is restricted to protect the colony. From roughly March to October, millions of Mexican free-tailed bats emerge at dusk — one of the largest bat flights in the world. Tickets must be booked in advance and often sell out.',
+    },
+    {
+      q: 'What is there to do in Garden Ridge on weekends?',
+      a: 'The everyday rotation: Paul Davis Park (playground, sports fields), Garden Ridge Market Days on the second Saturday of each month, the city library, and live music at Wraptitude on FM 3009. Bigger outings — Natural Bridge Caverns, the Natural Bridge Wildlife Ranch, and Comanche Lookout Park\u2019s trails — are all a short drive.',
+    },
+    {
+      q: 'How far is Canyon Lake from Garden Ridge?',
+      a: 'Canyon Lake is roughly 25–30 minutes northeast of Garden Ridge via FM 3009 and River Road — an easy day trip for boating, fishing, and swimming. Guadalupe River access points near New Braunfels are about 15 minutes.',
+    },
+  ]),
+];
+
+const activities = [
+  { name: 'Bracken Cave Preserve', category: 'outdoor', description: "Home to the world's largest bat colony — millions of Mexican free-tailed bats roost here each summer and spiral out at dusk in one of nature's most spectacular shows. Managed by Bat Conservation International; viewing is by reservation only, roughly March to October.", url: null },
+  { name: 'Natural Bridge Caverns', category: 'family', description: 'One of Texas\u2019s premier show caves, minutes west of Garden Ridge. Guided tours descend into massive chambers of stalactites and flowstone; above ground, the Canopy Challenge and zip rails make it a full family day.', url: null },
+  { name: 'Natural Bridge Wildlife Ranch', category: 'family', description: 'Drive-through safari with 500+ animals — zebras, giraffes, gazelles — plus the Safari Camp Grill for lunch on-site. One of the most popular family outings in the corridor.', url: 'https://www.wildliferanchtexas.com/safari-camp-grill' },
+  { name: 'Comanche Lookout Park', category: 'outdoor', description: 'Hill Country hiking and biking trails just outside the city, with elevation, canopy, and long views. The closest real trail system to Garden Ridge — popular with runners and mountain bikers.', url: null },
+  { name: 'Paul Davis Park', category: 'family', description: "Garden Ridge\u2019s city park — playground, sports fields, and open green space. The default weekend spot for families with kids, and home to youth sports leagues.", url: null },
+  { name: 'Garden Ridge Market Days', category: 'events', description: 'A monthly outdoor market held every second Saturday — local vendors, crafts, food, and a small-town social hour. Check the city calendar before you go; weather moves the schedule.', url: null },
+  { name: 'City of Garden Ridge Library', category: 'events', description: 'The community\u2019s public library — story times, community events, and a quiet place to work. Small but genuinely used by the neighborhood.', url: null },
+  { name: 'Bracken Village', category: 'family', description: 'A restored 120-year-old German-Texas farm turned village of small shops and businesses on FM 2252 — worth the browse on a Saturday afternoon.', url: 'http://brackenvillagesa.com/' },
+  { name: 'Wraptitude Live Music', category: 'events', description: 'The burger-and-wrap spot on FM 3009 doubles as Garden Ridge\u2019s live-music venue — patio shows on weekends, family crowd, craft beer. The town\u2019s social calendar in one location.', url: 'https://wraptitude.com/' },
+];
+
+const categoryLabels = {
+  outdoor: 'Outdoors & Nature',
+  family: 'Family & Local',
+  events: 'Events & Community',
+};
+
+const categories = [...new Set(activities.map(a => a.category))];
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="act-hero">
+      <div class="act-hero__overlay"></div>
+      <div class="act-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/garden-ridge/">Garden Ridge</a> <span>/</span> <span>Things to Do</span>
+        </nav>
+        <h1>Things to Do in <span style="color:#FF1616;">Garden Ridge</span></h1>
+        <p>Bats, caverns, wildlife, trails, and a monthly market — the quiet city's loud backyard</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="act-intro">Garden Ridge itself is a quiet, residential city — but its backyard is not. Within 15 minutes you have the world's largest bat colony emerging at dusk, one of Texas's best show caves, a drive-through wildlife safari, Hill Country hiking trails, and two rivers' worth of tubing. Residents describe the rhythm well: sleep in the quiet, play in the corridor.</p>
+        <div class="grn-expanded-content">
+          <p>The headliner is Bracken Cave Preserve, just west of the city on FM 3009. Each summer, millions of Mexican free-tailed bats roost in the cave and emerge at dusk in a spiraling column that can take hours — a sight people drive across the country for. Bat Conservation International manages the preserve, and access is restricted to protect the colony: you must reserve a bat-viewing spot in advance, and they sell out during peak season (roughly March through October).</p>
+          <p>For family days, the Natural Bridge corridor is minutes away. Natural Bridge Caverns runs guided tours through massive underground chambers, with zip rails and a ropes course above ground. Next door, the Natural Bridge Wildlife Ranch puts 500+ animals — zebras, giraffes, gazelles — along a drive-through route, with the Safari Camp Grill on site for lunch. Comanche Lookout Park, just outside the city, adds real Hill Country trail miles for hikers and mountain bikers.</p>
+          <p>Inside the city, life moves slower: Paul Davis Park hosts youth sports and weekend playground duty, Garden Ridge Market Days brings local vendors together on the second Saturday of each month, and Wraptitude's patio on FM 3009 functions as the town's informal social calendar with live music on weekends. For water, the Guadalupe River access near New Braunfels is about 15 minutes, and Canyon Lake is roughly 25–30 minutes northeast for boating and swimming.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter Tabs -->
+    <section class="section" style="background: var(--light-gray); padding-top: 2rem; padding-bottom: 0;">
+      <div class="container">
+        <div class="act-filters" id="actFilters">
+          <button class="act-filter act-filter--active" data-filter="all">All</button>
+          {categories.map(cat => (
+            <button class="act-filter" data-filter={cat}>{categoryLabels[cat]}</button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Activity Cards -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="act-grid" id="actGrid">
+          {activities.map(a => (
+            a.url ? (
+              <a href={a.url} target="_blank" rel="noopener" class="act-card" data-category={a.category}>
+                <span class="act-card__category">{categoryLabels[a.category]}</span>
+                <h3>{a.name}</h3>
+                <p>{a.description}</p>
+              </a>
+            ) : (
+              <div class="act-card" data-category={a.category}>
+                <span class="act-card__category">{categoryLabels[a.category]}</span>
+                <h3>{a.name}</h3>
+                <p>{a.description}</p>
+              </div>
+            )
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Explore more of Garden Ridge -->
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div class="act-crosslinks__grid">
+          <a href="/garden-ridge/" class="act-crosslinks__card"><h3>Garden Ridge Guide</h3><p>Market data, commute times, schools, and the honest overview.</p></a>
+          <a href="/garden-ridge/neighborhoods/" class="act-crosslinks__card"><h3>Neighborhoods</h3><p>Subdivisions by price, lot size, and builder.</p></a>
+          <a href="/garden-ridge/restaurants/" class="act-crosslinks__card"><h3>Restaurants</h3><p>Where locals actually eat in and around Garden Ridge.</p></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="act-cta">
+      <div class="act-cta__overlay"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <h2>Want to Live Where the <span class="accent">Fun Is</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">I can help you find a Garden Ridge home close to the trails, the caverns corridor, and the schools that anchor this market.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Let's Connect</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions About Things to Do in Garden Ridge</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Can you visit Bracken Bat Cave near Garden Ridge?</summary>
+          <p>Yes, but only by reservation. Bracken Cave Preserve is managed by Bat Conservation International, and access is restricted to protect the colony. From roughly March to October, millions of Mexican free-tailed bats emerge at dusk — one of the largest bat flights in the world. Tickets must be booked in advance and often sell out.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is there to do in Garden Ridge on weekends?</summary>
+          <p>The everyday rotation: Paul Davis Park (playground, sports fields), Garden Ridge Market Days on the second Saturday of each month, the city library, and live music at Wraptitude on FM 3009. Bigger outings — Natural Bridge Caverns, the Natural Bridge Wildlife Ranch, and Comanche Lookout Park's trails — are all a short drive.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How far is Canyon Lake from Garden Ridge?</summary>
+          <p>Canyon Lake is roughly 25–30 minutes northeast of Garden Ridge via FM 3009 and River Road — an easy day trip for boating, fishing, and swimming. Guadalupe River access points near New Braunfels are about 15 minutes.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <ParallaxBanner image="/images/generated/guadalupe-river.webp" />
+
+  <ContactForm context="I'd like to find a Garden Ridge home near the best things to do..." />
+  <Footer />
+</Layout>
+
+<style>
+  .act-hero {
+    position: relative;
+    height: 280px;
+    background: url('/images/generated/hill-country-aerial.webp') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .act-hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
+  .act-hero__content { position: relative; z-index: 1; padding: 0 1.5rem; }
+  .act-hero__content h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 0.75rem; }
+  .act-hero__content p { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+
+  .breadcrumb { font-size: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.5); }
+  .breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .act-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 800px;
+    text-align: center;
+    margin: 0 auto;
+    font-weight: 600;
+  }
+
+  .grn-expanded-content { max-width: 800px; margin: 2rem auto 0; }
+  .grn-expanded-content p { color: var(--gray); line-height: 1.8; margin-bottom: 1.25rem; font-size: 0.95rem; }
+
+  .act-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    padding-bottom: 2rem;
+  }
+
+  .act-filter {
+    padding: 0.5rem 1.25rem;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    background: #fff;
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #333;
+  }
+
+  .act-filter:hover { border-color: #FF1616; color: #FF1616; }
+  .act-filter--active { background: #FF1616; border-color: #FF1616; color: #fff; }
+  .act-filter--active:hover { color: #fff; }
+
+  .act-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .act-card {
+    display: block;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    border-top: 3px solid #FF1616;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .act-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .act-card__category {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #FF1616;
+    background: rgba(255, 22, 22, 0.08);
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+  }
+  .act-card h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.75rem; color: #000; }
+  .act-card p { color: var(--gray); font-size: 0.88rem; line-height: 1.7; }
+
+  .act-crosslinks__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
+  .act-crosslinks__card { display: block; background: #fff; border: 1px solid var(--light-gray); padding: 1.75rem; border-radius: 8px; transition: transform 0.2s, box-shadow 0.2s; }
+  .act-crosslinks__card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .act-crosslinks__card h3 { font-family: var(--font-heading); font-size: 0.95rem; text-transform: uppercase; margin-bottom: 0.5rem; color: #000; }
+  .act-crosslinks__card:hover h3 { color: #FF1616; }
+  .act-crosslinks__card p { color: var(--gray); font-size: 0.85rem; line-height: 1.6; }
+
+  .act-cta {
+    position: relative;
+    padding: 5rem 0;
+    color: #fff;
+    text-align: center;
+    background-image: url('/images/testimonials-hero.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #333;
+  }
+  .act-cta__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.65); }
+  .act-cta h2 { color: #fff; }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
+
+  @media (max-width: 600px) {
+    .act-cta { background-attachment: scroll; }
+  }
+
+  @media (max-width: 768px) {
+    .act-grid { grid-template-columns: 1fr; }
+    .act-crosslinks__grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script is:inline>
+  // Filter functionality
+  const filters = document.querySelectorAll('.act-filter');
+  const cards = document.querySelectorAll('.act-card');
+
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      filters.forEach(f => f.classList.remove('rest-filter--active'));
+      filters.forEach(f => f.classList.remove('act-filter--active'));
+      btn.classList.add('act-filter--active');
+
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

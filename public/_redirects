@@ -13,7 +13,7 @@
 /home-search  /search  301
 /properties  /search  301
 /neighborhoods/veramendi  /new-braunfels/neighborhoods/  301
-/neighborhoods  /explorearea/  301
+/neighborhoods  /hill-country-relocation-guide/  301
 /blog/new-braunfels-has-entered-a-buyers-market-heres-what-that-actually-means  /blog/new-braunfels-buyer-or-seller-market-2026/  301
 /blog/new-vs-resale-buyers-market-picks-in-new-braunfels  /new-braunfels/new-construction/  301
 /blog/new-braunfels-buyers-guide-2025-new-construction-vs-resale-homes-in-canyon-lake-and-hill-country  /new-braunfels/new-construction/  301
@@ -111,3 +111,6 @@
 /blog/va-seller-credits-texas-2026-new-braunfels/  /blog/va-loan-seller-credits-4-percent-rule-new-braunfels/  301
 /blog/veramendi-taxes-2026-new-braunfels-buyer-check  /blog/veramendi-mud-taxes-2026-new-braunfels-monthly-cost/  301
 /blog/veramendi-taxes-2026-new-braunfels-buyer-check/  /blog/veramendi-mud-taxes-2026-new-braunfels-monthly-cost/  301
+
+# Area section restructure (2026-10-01): new flagship hub replaces /explorearea/.
+/explorearea/  /hill-country-relocation-guide/  301

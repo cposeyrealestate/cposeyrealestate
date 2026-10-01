@@ -2,14 +2,42 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
-import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import VideoEmbed from '../../components/VideoEmbed.astro';
-import { placeSchema, collectionPageSchema, breadcrumbSchema } from '../../lib/schema';
+import { placeSchema, articleSchema, collectionPageSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
 
-const sgDescription = 'Explore Seguin, Texas — affordable living with small-town charm on the Guadalupe River. Neighborhoods, homes for sale, restaurants, and things to do.';
+const sgTitle = 'Seguin, TX Homes for Sale | 2026 Relocation Guide';
+const sgDescription = 'Seguin, TX homes for sale: median ~$289K, 35 min to San Antonio, Guadalupe River living. Explore neighborhoods, schools, commute, and honest 2026 cost data.';
+
+const faqs = [
+  {
+    q: 'Is Seguin a good place to buy a first home?',
+    a: 'Seguin is one of the best markets in the greater San Antonio region for first-time homebuyers. The median sale price runs in the $275K-$290K range as of Sept 2026 — significantly lower than New Braunfels, San Marcos, or San Antonio proper — so buyers can often get a newer, larger home for less money. Several master-planned communities offer new construction in the mid-$200s, and established neighborhoods carry well-maintained homes at even lower price points.',
+  },
+  {
+    q: 'What are the major employers in Seguin?',
+    a: 'Seguin has a manufacturing-anchored job base. Caterpillar operates a large hydraulic excavator plant here, Continental Automotive and Tyson Foods have major presences, and Guadalupe Regional Medical Center anchors the healthcare sector. Texas Lutheran University contributes to the local economy as well. That said, the local job base is smaller than San Antonio or New Braunfels — many residents commute to San Antonio (about 35 minutes via I-10) for broader career options.',
+  },
+  {
+    q: 'How far is Seguin from San Antonio, New Braunfels, and Austin?',
+    a: 'Seguin is approximately 35 minutes east of downtown San Antonio via I-10 and about 20 minutes south of New Braunfels via TX-46. Austin is roughly an hour away (about 50 miles, fastest via the TX-130 toll road). For day-to-day needs, Seguin has its own grocery stores, medical facilities, and retail, so you do not need to leave town for routine errands.',
+  },
+  {
+    q: 'What are property taxes like in Seguin?',
+    a: 'Seguin property taxes run roughly 2.0-2.3% of assessed value per year when you combine the city, Guadalupe County, Seguin ISD, and other taxing units. On a $289K home that works out to roughly $5,800-$6,600 per year — meaningful for your monthly payment, so factor it into your budget from the start. File for your homestead exemption immediately after closing to reduce the taxable value.',
+  },
+];
+
 const pageSchema = [
-  placeSchema({ name: 'Seguin, TX', description: sgDescription, url: '/seguin/' }),
+  placeSchema({ name: 'Seguin, TX', description: sgDescription, url: '/seguin/', image: '/images/areas/seguin.jpg' }),
+  articleSchema({
+    title: sgTitle,
+    description: sgDescription,
+    url: '/seguin/',
+    image: '/images/areas/seguin.jpg',
+    datePublished: '2026-10-01',
+    dateModified: '2026-10-01',
+  }),
   collectionPageSchema({
     name: 'Seguin Area Guide',
     description: sgDescription,
@@ -22,126 +50,149 @@ const pageSchema = [
   }),
   breadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: 'Explore Area', url: '/explorearea/' },
+    { name: 'Hill Country Relocation Guide', url: '/hill-country-relocation-guide/' },
     { name: 'Seguin', url: '/seguin/' },
   ]),
+  faqSchema(faqs),
 ];
 ---
 
 <Layout
-  title="Seguin, TX Real Estate | Cody Posey"
+  title={sgTitle}
   description={sgDescription}
   schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">
 
-    <!-- Hero -->
+    <!-- 1. Hero -->
     <div class="seg-hero">
       <div class="seg-hero__overlay"></div>
       <div class="seg-hero__content">
         <nav class="breadcrumb" aria-label="Breadcrumb">
           <a href="/">Home</a> <span>/</span> <span>Seguin</span>
         </nav>
-        <h1><span style="color:#FF1616;">Seguin</span></h1>
-        <p>Affordable Living with Small-Town Texas Charm</p>
+        <h1><span style="color:#FF1616;">Seguin</span>, TX</h1>
+        <p>2026 Relocation Guide: the affordability play on the Guadalupe River — 35 minutes from San Antonio</p>
       </div>
     </div>
 
-    <!-- City Intro -->
-    <section class="section seg-intro">
+    <!-- 2. Stat Band -->
+    <section class="section seg-stats" style="background: var(--light-gray);">
       <div class="container">
-        <div class="seg-intro__grid">
-          <div class="seg-intro__text">
-            <h2>A Historic City on the <span class="accent">Guadalupe River</span></h2>
-            <p>Seguin is a historic city on the Guadalupe River, located about 35 miles east of San Antonio. Named after Texas Revolution hero Juan Seguin, the city combines affordable housing, a growing job market anchored by employers like Caterpillar and Tyson Foods, and a charming downtown that reflects its deep Texas roots. Founded in 1838, Seguin is one of the oldest cities in Texas, and that history is visible everywhere — from the pecan-lined streets to the beautifully restored Victorian and German-style homes in the historic district.</p>
-            <p>With a lower cost of living than neighboring cities, Seguin offers one of the best-value housing markets in the region. Whether you're a first-time buyer, a growing family, or someone looking for more space without sacrificing convenience, Seguin delivers more home for your dollar. The median home price here runs significantly below what you would pay in New Braunfels or San Antonio, making it an attractive option for buyers who want to stretch their budget without compromising on quality of life.</p>
-            <p>The city's Main Street district, riverside parks, and strong sense of community make it a place where small-town character and modern growth coexist naturally. Downtown Seguin has seen a revitalization in recent years, with local entrepreneurs opening craft breweries, coffee shops, and boutiques alongside the longstanding family-owned businesses that have served the community for decades.</p>
-            <p>The real estate landscape in Seguin is diverse. Buyers can find everything from historic homes in the original downtown neighborhoods to brand-new construction in master-planned communities on the outskirts of town. Several national builders have moved into the area, developing subdivisions with modern floor plans, community pools, and parks — all at price points that remain well below the regional average. Acreage properties are also available on the edges of town for buyers who want a more rural setting with room for livestock or a workshop.</p>
-            <p>The economic engine in Seguin continues to strengthen. Caterpillar's major manufacturing facility brought hundreds of jobs to the area, and Continental Automotive, Tyson Foods, and other employers have followed. Texas Lutheran University, a private liberal arts college, adds to the local economy and cultural offerings. The combination of steady employment, affordable housing, and proximity to larger metro areas has fueled consistent population growth over the past decade.</p>
-            <p>Recreation in Seguin centers around the Guadalupe River and Max Starcke Park, a 227-acre green space that includes a golf course, swimming areas, playgrounds, walking trails, and kayak launch points. The annual Texas Pecan Festival draws visitors from across the state, and the city's calendar is packed with community events, live music, and holiday celebrations throughout the year. ZDT's Amusement Park, a family-owned theme park in the heart of town, is a unique local attraction that features roller coasters, go-karts, and water rides — something you rarely find in a city this size.</p>
-            <p>For commuters, Seguin's location along I-10 provides a direct route to San Antonio in about 35 minutes, while New Braunfels is just a 20-minute drive north on TX-46. Many residents work in San Antonio or the surrounding area and appreciate the ability to come home to a quieter, more affordable community at the end of the day. The city has also invested in infrastructure improvements and new retail development, reducing the need to leave town for everyday shopping and services.</p>
+        <div class="seg-stats__grid">
+          <div class="seg-stat">
+            <span class="seg-stat__number">~39K</span>
+            <span class="seg-stat__label">Population (2024 Census est.; up ~32% since 2020)</span>
           </div>
-          <div class="seg-intro__stats">
-            <div class="seg-stat">
-              <span class="seg-stat__number">33K+</span>
-              <span class="seg-stat__label">Population</span>
-            </div>
-            <div class="seg-stat">
-              <span class="seg-stat__number">35 min</span>
-              <span class="seg-stat__label">To San Antonio</span>
-            </div>
-            <div class="seg-stat">
-              <span class="seg-stat__number">20 min</span>
-              <span class="seg-stat__label">To New Braunfels</span>
-            </div>
-            <div class="seg-stat">
-              <span class="seg-stat__number">$313K</span>
-              <span class="seg-stat__label">Median Home Price</span>
-            </div>
+          <div class="seg-stat">
+            <span class="seg-stat__number">$289K</span>
+            <span class="seg-stat__label">Median Sale Price (Sept 2026)</span>
           </div>
+          <div class="seg-stat">
+            <span class="seg-stat__number">35 min</span>
+            <span class="seg-stat__label">To San Antonio via I-10</span>
+          </div>
+          <div class="seg-stat">
+            <span class="seg-stat__number">227 acres</span>
+            <span class="seg-stat__label">Max Starcke Park on the Guadalupe</span>
+          </div>
+        </div>
+        <p class="seg-stats__note">Stats verified as of Sept 2026. Population: U.S. Census Bureau 2024 annual estimate; Seguin ranked the fastest-growing city in the San Antonio metro. Price: Sept 2026 market data; typical sold range $208K-$414K (Aug 2026).</p>
+      </div>
+    </section>
+
+    <!-- 3. Honest Overview -->
+    <section class="section seg-overview">
+      <div class="container">
+        <div class="seg-overview__text">
+          <h2>The <span class="accent">Honest Overview</span></h2>
+          <p>Seguin is a historic city on the Guadalupe River, about 35 miles east of San Antonio. Named after Texas Revolution hero Juan Seguin and founded in 1838, it is one of the oldest cities in Texas — pecan-lined streets, a revitalized Main Street downtown, and restored Victorian and German-style homes in the historic district. Major employers like Caterpillar, Continental Automotive, and Tyson Foods anchor a manufacturing job base, and Texas Lutheran University adds culture and economic stability. For buyers, the headline is simple: Seguin is the most affordable market on the I-35/I-10 corridor, with new construction from the mid-$200s and median sale prices roughly half of what you'd pay for a comparable new build in parts of New Braunfels or Austin.</p>
+          <p>The watch-outs, stated plainly: the local job base is narrower than San Antonio's or New Braunfels' — a meaningful share of residents commutes to San Antonio, and that 35-minute I-10 drive becomes 50+ minutes during rush hour, so test the commute from your likely work location before you commit. Property taxes run roughly 2.0-2.3% of assessed value per year across all taxing units, which adds real money to the monthly payment on any home here. And Seguin is a growing city, not a finished one — retail, dining, and infrastructure are catching up to the population, so if you need every amenity within five minutes, New Braunfels or the metro may fit better. But if you want more house for the money, river access, and a genuine small-town feel that still commutes to the big city, Seguin delivers.</p>
         </div>
       </div>
     </section>
 
-    <!-- Why People Move Here -->
-    <section class="section seg-why" style="background: var(--light-gray);">
-      <div class="container">
-        <div class="section-title">
-          <h2>Why People Choose <span class="accent">Seguin</span></h2>
-          <p>The most common reasons buyers are looking at Seguin</p>
-        </div>
-        <div class="seg-why__grid">
-          <div class="seg-why__card">
-            <h3>Affordability</h3>
-            <p>Seguin is one of the most affordable markets in the region. Buyers get more home per dollar here compared to San Antonio, New Braunfels, or Austin — making it ideal for first-time buyers and families stretching their budget further.</p>
-          </div>
-          <div class="seg-why__card">
-            <h3>Job Market</h3>
-            <p>Major employers like Caterpillar, Tyson Foods, and Continental Automotive have brought over 4,000 manufacturing jobs to the area. The local economy continues to grow with new investment and development.</p>
-          </div>
-          <div class="seg-why__card">
-            <h3>Historic Charm</h3>
-            <p>Downtown Seguin's Main Street is lined with local shops, restaurants, and breweries housed in vintage storefronts. The city's history runs deep, and the community takes pride in preserving its character.</p>
-          </div>
-          <div class="seg-why__card">
-            <h3>River Living</h3>
-            <p>The Guadalupe River runs through the heart of Seguin, with Max Starcke Park offering 227 acres of green space, kayaking, fishing, golf, and recreation right in the middle of town.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Navigation Cards -->
-    <section class="section seg-explore">
+    <!-- 4. Neighborhoods -->
+    <section class="section seg-neighborhoods" style="background: var(--light-gray);">
       <div class="container">
         <div class="section-title">
-          <h2>Explore <span class="accent">Seguin</span></h2>
-          <p>Dig deeper into the areas, homes, and lifestyle that matter to you</p>
+          <h2>Seguin <span class="accent">Neighborhoods</span></h2>
+          <p>Top picks across price points — full breakdowns on the neighborhoods page</p>
         </div>
-        <div class="seg-explore__grid">
-          <a href="/seguin/neighborhoods/" class="seg-explore__card">
-            <h3>Neighborhoods</h3>
-            <p>From established communities to new construction — find the Seguin neighborhood that fits your lifestyle and budget.</p>
-          </a>
-          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="seg-explore__card">
-            <h3>Home Search</h3>
-            <p>Search current listings in Seguin. Filter by price, area, and home type to find what's available now.</p>
-          </a>
-          <a href="/seguin/restaurants/" class="seg-explore__card">
-            <h3>Restaurants</h3>
-            <p>From Michelin-recognized BBQ to local breweries and downtown cafes — the best places to eat in Seguin.</p>
-          </a>
-          <a href="/seguin/things-to-do/" class="seg-explore__card">
-            <h3>Things to Do</h3>
-            <p>River kayaking, historic downtown, amusement parks, and everything else that makes Seguin worth exploring.</p>
-          </a>
+        <div class="seg-grid-4">
+          <div class="seg-card">
+            <h3>Village of Mill Creek</h3>
+            <p class="seg-card__price">$200K - $320K</p>
+            <p>Quiet, family-friendly community with larger lots than surrounding areas and a close-knit feel. Easy access to New Braunfels, Randolph AFB, and the Guadalupe River. Some sections have no HOA.</p>
+          </div>
+          <div class="seg-card">
+            <h3>Cordova Crossing</h3>
+            <p class="seg-card__price">$280K - $400K</p>
+            <p>One of Seguin's newer developments: contemporary designs, open layouts, smart-home tech, energy-efficient builds, plus a playground, dog park, and trails. The master-planned feel at a non-metro price.</p>
+          </div>
+          <div class="seg-card">
+            <h3>Nob Hill</h3>
+            <p class="seg-card__price">$250K - $350K</p>
+            <p>Established community anchored by Nob Hill Condominiums — a budget-friendly entry into homeownership with mature trees, a community pool and clubhouse, and HOA-managed exteriors. Appeals to first-time buyers and downsizers.</p>
+          </div>
+          <div class="seg-card">
+            <h3>Downtown Seguin</h3>
+            <p class="seg-card__price">$150K - $300K</p>
+            <p>Charming, walkable living on Main Street: Victorian-era houses, bungalows, and mid-century ranches, each with its own character. Many homes qualify for historic preservation tax incentives. Character and convenience in one package.</p>
+          </div>
         </div>
+        <div style="text-align: center; margin-top: 2rem;">
+          <a href="/seguin/neighborhoods/" class="btn btn-primary">All Seguin Neighborhoods</a>
+        </div>
+        <div class="section-title" style="margin-top: 3rem;">
+          <h2>Watch: New Construction in <span class="accent">Seguin</span></h2>
+          <p>What new builds buy you on this side of the Guadalupe</p>
+        </div>
+        <VideoEmbed
+          videoId="mEOheFhazEQ"
+          title="Meadows at Mill Creek | Perry Homes | Seguin, TX"
+          description="A walkthrough of Meadows at Mill Creek by Perry Homes in Seguin — floor plans, pricing, and what new construction buys you on this side of the Guadalupe."
+          uploadDate="2026-05-13"
+        />
       </div>
     </section>
 
-    <!-- School District -->
-    <section class="section">
+    <!-- 5. Cost Snapshot -->
+    <section class="section seg-cost">
+      <div class="container">
+        <div class="section-title">
+          <h2>The Cost <span class="accent">Snapshot</span></h2>
+          <p>Seguin is the affordability play — here is the data behind it</p>
+        </div>
+        <div class="seg-cost__grid">
+          <div class="seg-cost__card">
+            <h3>Median Sale Price</h3>
+            <p class="seg-cost__number">$289K</p>
+            <p>Sept 2026 market data. Typical sold range $208K-$414K (Aug 2026). New construction from the mid-$200s. Acreage on the town's edges for buyers who want rural space.</p>
+          </div>
+          <div class="seg-cost__card">
+            <h3>Property Tax</h3>
+            <p class="seg-cost__number">~2.0-2.3%</p>
+            <p>Combined rate across city, Guadalupe County, Seguin ISD, and other units — roughly $5,800-$6,600/year on a $289K home. File your homestead exemption at closing.</p>
+          </div>
+          <div class="seg-cost__card">
+            <h3>Median Rent</h3>
+            <p class="seg-cost__number">$1,360</p>
+            <p>Sept 2026. With a median sale price under $290K, Seguin remains one of the few markets where buying still beats renting on monthly payment for most buyers.</p>
+          </div>
+          <div class="seg-cost__card">
+            <h3>Days on Market</h3>
+            <p class="seg-cost__number">82</p>
+            <p>Sept 2026, down from 96 a year ago. Sale-to-list ratio near 97%. Homes still take time to sell — accurate pricing matters more than it did two years ago.</p>
+          </div>
+        </div>
+        <p class="seg-cost__note">Compared with New Braunfels and San Antonio proper, Seguin buyers consistently get more home per dollar — the reason first-time buyers and budget-stretchers keep landing here.</p>
+      </div>
+    </section>
+
+    <!-- 6. Schools -->
+    <section class="section" style="background: var(--light-gray);">
       <div class="container">
         <div class="section-title">
           <h2>School <span class="accent">District</span></h2>
@@ -154,13 +205,80 @@ const pageSchema = [
             <span class="seg-schools__link">Visit Seguin ISD Website →</span>
           </a>
         </div>
+        <p class="seg-schools__note">Portions of the Seguin area fall within Navarro ISD boundaries. School assignments are based on physical address — always verify campus-level ratings directly with the district and the Texas Education Agency before purchasing.</p>
       </div>
     </section>
 
-    <!-- CTA with Parallax -->
-    <section class="section seg-cta">
-      <div class="seg-cta__overlay"></div>
-      <div class="container" style="position: relative; z-index: 1;">
+    <!-- 7. Commute -->
+    <section class="section seg-commute">
+      <div class="container">
+        <div class="section-title">
+          <h2>The <span class="accent">Commute</span></h2>
+          <p>Drive times are off-peak — test your actual route before you buy</p>
+        </div>
+        <div class="seg-commute__grid">
+          <div class="seg-commute__card">
+            <span class="seg-commute__time">~35 min</span>
+            <h3>San Antonio</h3>
+            <p>Via I-10 west. The most common commute. Expect 45-60+ minutes during rush hour — many Seguin residents make this drive daily for the metro job market.</p>
+          </div>
+          <div class="seg-commute__card">
+            <span class="seg-commute__time">~20 min</span>
+            <h3>New Braunfels</h3>
+            <p>Via TX-46 north. Easy access to the shops, dining, and employers along the I-35 corridor. Close enough for dinner without planning a trip.</p>
+          </div>
+          <div class="seg-commute__card">
+            <span class="seg-commute__time">~60 min</span>
+            <h3>Austin</h3>
+            <p>About 50 miles — fastest via the TX-130 toll road. A workable occasional trip; a heavy daily commute. Worth knowing before you pick an employer base.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Things to Do / Restaurants -->
+    <section class="section seg-explore" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Life in <span class="accent">Seguin</span></h2>
+          <p>River, BBQ, and small-town weekends — dig deeper on the lifestyle pages</p>
+        </div>
+        <div class="seg-explore__grid">
+          <a href="/seguin/things-to-do/" class="seg-explore__card">
+            <h3>Things to Do</h3>
+            <p>Guadalupe River kayaking, Max Starcke Park's 227 acres, ZDT's Amusement Park, downtown Main Street, the Seguin Heritage Museum, and the annual Texas Pecan Festival.</p>
+          </a>
+          <a href="/seguin/restaurants/" class="seg-explore__card">
+            <h3>Restaurants</h3>
+            <p>Michelin Bib Gourmand BBQ at Burnt Bean Co., Seguin Brewing Company, The Oak Tavern, and downtown cafes like Court Street Coffee — a deeper food scene than the city's size suggests.</p>
+          </a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="seg-explore__card">
+            <h3>Home Search</h3>
+            <p>Search current listings in Seguin. Filter by price, area, and home type to find what's available now.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About <span class="accent">Seguin</span></h2>
+        <div class="faq-list">
+          {faqs.map((item) => (
+            <details class="faq-item">
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. CTA -->
+    <section class="section seg-cta-parallax">
+      <div class="seg-cta-parallax__overlay"></div>
+      <div class="container seg-cta-parallax__content">
         <h2>Ready to Explore <span class="accent">Seguin</span>?</h2>
         <p>Whether you're just starting your search or ready to schedule showings, I can help you navigate the market and find the right fit.</p>
         <div class="seg-cta__buttons">
@@ -170,133 +288,18 @@ const pageSchema = [
       </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="faq-section">
-      <div class="container">
-        <h2>Frequently Asked Questions About <span class="accent">Seguin</span></h2>
-        <div class="faq-list">
-          <details class="faq-item">
-            <summary>Is Seguin a good place to buy a first home?</summary>
-            <p>Seguin is one of the best markets in the greater San Antonio region for first-time homebuyers. The median home price is significantly lower than in New Braunfels, San Marcos, or San Antonio proper, which means buyers can often get a newer, larger home for less money. Several master-planned communities in Seguin offer new construction in the low-to-mid $200s, and there are also established neighborhoods with well-maintained homes at even lower price points. Combined with low property tax rates relative to the area and a growing local economy, Seguin offers first-time buyers a strong combination of affordability and long-term value.</p>
-          </details>
-          <details class="faq-item">
-            <summary>What are the major employers in Seguin?</summary>
-            <p>Seguin has a diverse and growing employment base. Caterpillar operates a large hydraulic excavator manufacturing plant in the city, which is one of the biggest employers in the area. Continental Automotive has a significant presence, as does Tyson Foods. The healthcare sector is also growing, with Guadalupe Regional Medical Center serving as both a major employer and a vital community resource. Texas Lutheran University contributes to the local economy as well. Many Seguin residents also commute to San Antonio, which is about 35 minutes away via I-10, giving them access to the full metro job market while enjoying a lower cost of living at home.</p>
-          </details>
-          <details class="faq-item">
-            <summary>How far is Seguin from San Antonio and New Braunfels?</summary>
-            <p>Seguin is approximately 35 minutes east of downtown San Antonio via I-10, and about 20 minutes south of New Braunfels via TX-46. The I-10 corridor makes the commute to San Antonio straightforward, and many residents find it a manageable daily drive. New Braunfels is even closer, which gives Seguin residents easy access to the shops, restaurants, and entertainment options along the I-35 corridor. For day-to-day needs, Seguin has its own grocery stores, medical facilities, and retail, so you do not need to leave town for routine errands.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- Video -->
-    <section class="section">
-      <div class="container">
-        <div class="section-title">
-          <h2>Watch: Inside a Seguin <span class="accent">Builder Community</span></h2>
-        </div>
-        <VideoEmbed
-          videoId="mEOheFhazEQ"
-          title="Meadows at Mill Creek | Perry Homes | Seguin, TX"
-          description="A walkthrough of Meadows at Mill Creek by Perry Homes in Seguin — floor plans, pricing, and what new construction buys you on this side of the Guadalupe."
-          uploadDate="2026-05-13"
-        />
-      </div>
-    </section>
-
   </main>
-  <ParallaxBanner image="/images/generated/porch-view.webp" />
 
   <ContactForm context="I'd like to learn more about Seguin..." />
   <Footer />
 </Layout>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is Seguin a good place to buy a first home?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Seguin is one of the best markets in the greater San Antonio region for first-time homebuyers. The median home price is significantly lower than in New Braunfels, San Marcos, or San Antonio proper, which means buyers can often get a newer, larger home for less money. Several master-planned communities in Seguin offer new construction in the low-to-mid $200s."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What are the major employers in Seguin?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Seguin has a diverse and growing employment base. Caterpillar operates a large hydraulic excavator manufacturing plant in the city. Continental Automotive has a significant presence, as does Tyson Foods. The healthcare sector is also growing, with Guadalupe Regional Medical Center serving as both a major employer and a vital community resource."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How far is Seguin from San Antonio and New Braunfels?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Seguin is approximately 35 minutes east of downtown San Antonio via I-10, and about 20 minutes south of New Braunfels via TX-46. The I-10 corridor makes the commute to San Antonio straightforward, and many residents find it a manageable daily drive."
-      }
-    }
-  ]
-}
-</script>
-
 <style>
-  /* FAQ */
-  .faq-section {
-    padding: 4rem 0;
-    background: #f9f9f9;
-  }
-  .faq-section h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  .faq-list {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  .faq-item {
-    background: #fff;
-    border: 1px solid #eee;
-    margin-bottom: 1rem;
-    padding: 0;
-  }
-  .faq-item summary {
-    padding: 1.25rem 1.5rem;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 1rem;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .faq-item summary::after {
-    content: '+';
-    font-size: 1.3rem;
-    color: #FF1616;
-    font-weight: 700;
-  }
-  .faq-item[open] summary::after {
-    content: '\2212';
-  }
-  .faq-item p {
-    padding: 0 1.5rem 1.25rem;
-    color: #555;
-    line-height: 1.8;
-    font-size: 0.95rem;
-  }
-
   /* Hero */
   .seg-hero {
     position: relative;
-    height: 320px;
-    background: url('/images/generated/hill-country-home-1.webp') center/cover no-repeat;
+    height: 420px;
+    background: url('/images/areas/seguin.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -324,7 +327,7 @@ const pageSchema = [
   .seg-hero__content p {
     color: rgba(255,255,255,0.7);
     font-size: 1rem;
-    max-width: 600px;
+    max-width: 640px;
     margin: 0 auto;
   }
 
@@ -348,31 +351,19 @@ const pageSchema = [
     margin: 0 0.3rem;
   }
 
-  /* Intro */
-  .seg-intro__grid {
+  /* Stat band */
+  .seg-stats__grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 3rem;
-    align-items: start;
-  }
-
-  .seg-intro__text p {
-    color: var(--gray);
-    line-height: 1.8;
-    margin-bottom: 1rem;
-  }
-
-  .seg-intro__stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
   }
 
   .seg-stat {
-    background: var(--light-gray);
+    background: #fff;
     padding: 1.5rem;
     text-align: center;
     border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   }
 
   .seg-stat__number {
@@ -385,77 +376,114 @@ const pageSchema = [
 
   .seg-stat__label {
     display: block;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: var(--gray);
     margin-top: 0.25rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
 
-  /* Why Section */
-  .seg-why__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+  .seg-stats__note {
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--gray);
+    font-style: italic;
+    margin-top: 1.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .seg-why__card {
+  /* Overview */
+  .seg-overview__text {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .seg-overview__text p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  /* Cards */
+  .seg-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .seg-card {
     background: #fff;
-    padding: 2rem;
+    padding: 1.75rem;
     border-radius: 8px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   }
 
-  .seg-why__card h3 {
+  .seg-card h3 {
     font-family: var(--font-heading);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     text-transform: uppercase;
+    margin-bottom: 0.25rem;
+  }
+
+  .seg-card__price {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: #FF1616;
+    font-size: 0.95rem;
     margin-bottom: 0.75rem;
   }
 
-  .seg-why__card p {
+  .seg-card p {
     color: var(--gray);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     line-height: 1.7;
   }
 
-  /* Explore Cards */
-  .seg-explore__grid {
+  /* Cost snapshot */
+  .seg-cost__grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
   }
 
-  .seg-explore__card {
-    display: block;
-    background: #fff;
-    border: 1px solid var(--light-gray);
-    padding: 2rem;
+  .seg-cost__card {
+    background: var(--light-gray);
+    padding: 1.75rem;
     border-radius: 8px;
-    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: center;
   }
 
-  .seg-explore__card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  }
-
-  .seg-explore__card h3 {
+  .seg-cost__card h3 {
     font-family: var(--font-heading);
-    font-size: 1rem;
+    font-size: 0.95rem;
     text-transform: uppercase;
     margin-bottom: 0.5rem;
-    color: #000;
   }
 
-  .seg-explore__card:hover h3 {
+  .seg-cost__number {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 800;
     color: #FF1616;
+    margin-bottom: 0.5rem;
   }
 
-  .seg-explore__card p {
+  .seg-cost__card p {
     color: var(--gray);
     font-size: 0.85rem;
-    line-height: 1.6;
+    line-height: 1.65;
+  }
+
+  .seg-cost__note {
+    text-align: center;
+    font-size: 0.92rem;
+    color: var(--gray);
+    margin-top: 1.75rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* Schools */
@@ -511,18 +539,164 @@ const pageSchema = [
     color: #FF1616;
   }
 
-  /* CTA with Parallax */
-  .seg-cta {
-    position: relative;
-    background: url('/images/testimonials-hero.webp') center/cover no-repeat fixed;
-    color: #fff;
+  .seg-schools__note {
     text-align: center;
+    font-size: 0.85rem;
+    color: var(--gray);
+    font-style: italic;
+    max-width: 800px;
+    margin: 1.5rem auto 0;
   }
 
-  .seg-cta__overlay {
+  /* Commute */
+  .seg-commute__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .seg-commute__card {
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .seg-commute__time {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #FF1616;
+    margin-bottom: 0.5rem;
+  }
+
+  .seg-commute__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .seg-commute__card p {
+    color: var(--gray);
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+
+  /* Explore cards */
+  .seg-explore__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .seg-explore__card {
+    display: block;
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    padding: 2rem;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .seg-explore__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .seg-explore__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: #000;
+  }
+
+  .seg-explore__card:hover h3 {
+    color: #FF1616;
+  }
+
+  .seg-explore__card p {
+    color: var(--gray);
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  /* FAQ */
+  .faq-section {
+    padding: 4rem 0;
+    background: #f9f9f9;
+  }
+  .faq-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .faq-item {
+    background: #fff;
+    border: 1px solid #eee;
+    margin-bottom: 1rem;
+    padding: 0;
+  }
+  .faq-item summary {
+    padding: 1.25rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.3rem;
+    color: #FF1616;
+    font-weight: 700;
+  }
+  .faq-item[open] summary::after {
+    content: '\2212';
+  }
+  .faq-item p {
+    padding: 0 1.5rem 1.25rem;
+    color: #555;
+    line-height: 1.8;
+    font-size: 0.95rem;
+  }
+
+  /* CTA parallax */
+  .seg-cta-parallax {
+    position: relative;
+    padding: 5rem 0;
+    color: #fff;
+    text-align: center;
+    background-image: url('/images/testimonials-hero.webp');
+    background-size: cover;
+    background-position: center bottom;
+    background-attachment: fixed;
+  }
+
+  .seg-cta-parallax__overlay {
     position: absolute;
     inset: 0;
     background: rgba(0,0,0,0.75);
+  }
+
+  .seg-cta-parallax__content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .seg-cta-parallax__content p {
+    color: rgba(255,255,255,0.7);
+    max-width: 600px;
+    margin: 1rem auto 2rem;
   }
 
   .seg-cta__buttons {
@@ -532,24 +706,24 @@ const pageSchema = [
     flex-wrap: wrap;
   }
 
-  .seg-cta p {
-    color: rgba(255,255,255,0.7);
-    max-width: 600px;
-    margin: 1rem auto 2rem;
-  }
-
   /* Responsive */
   @media (max-width: 768px) {
-    .seg-intro__grid {
-      grid-template-columns: 1fr;
-    }
-
-    .seg-why__grid {
-      grid-template-columns: 1fr;
-    }
-
+    .seg-stats__grid,
+    .seg-grid-4,
+    .seg-cost__grid,
+    .seg-commute__grid,
     .seg-explore__grid {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .seg-hero {
+      background-attachment: scroll;
+    }
+
+    .seg-cta-parallax {
+      background-attachment: scroll;
     }
   }
 </style>

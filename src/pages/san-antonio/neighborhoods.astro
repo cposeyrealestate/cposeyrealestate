@@ -1,0 +1,352 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { articleSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
+
+const pageTitle = 'San Antonio Neighborhoods by Corridor | Cody Posey Real Estate';
+const pageDescription = 'San Antonio, TX neighborhoods organized by corridor — the JBSA Randolph corridor (Schertz/Cibolo/Universal City), Alamo Ranch and Helotes, Stone Oak, the Fort Sam corridor, and the historic urban core.';
+const faqs = [
+  {
+    q: 'Which San Antonio corridor is best for a Randolph AFB PCS?',
+    a: 'Schertz, Cibolo, and Universal City. You are under 10 minutes from Randolph\'s Main Gate, in Schertz–Cibolo–Universal City ISD, and the corridor is almost entirely new construction built for exactly this buyer. Selma and Live Oak sit inside the same corridor and feed the same schools and commute. My Randolph AFB guide (/military-relocation/randolph-afb/) covers BAH math and first-30-days moves.',
+  },
+  {
+    q: 'Where is the new construction in San Antonio?',
+    a: 'Alamo Ranch and the far west side, the Schertz–Cibolo corridor, and pockets of Stone Oak. Those three areas hold the bulk of active builder communities inside the metro. New construction can carry MUD or PID taxes on top of the standard property-tax rate — always ask the builder\'s rep for the total effective tax rate before you write an offer.',
+  },
+  {
+    q: 'Where do military families buy in San Antonio?',
+    a: 'Near their gate. Randolph families buy Schertz/Cibolo/Universal City. Lackland families buy Alamo Ranch and Helotes. Fort Sam families buy Alamo Heights, Terrell Hills, Olmos Park, or Government Hill. The pattern is simple: the shorter the commute, the happier the tour. Start with your installation, then pick the corridor.',
+  },
+];
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/san-antonio/neighborhoods/' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'San Antonio', url: '/san-antonio/' },
+    { name: 'Neighborhoods', url: '/san-antonio/neighborhoods/' },
+  ]),
+  faqSchema(faqs),
+];
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="sa-hero">
+      <div class="sa-hero__overlay"></div>
+      <div class="sa-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/san-antonio/">San Antonio</a> <span>/</span> <span>Neighborhoods</span>
+        </nav>
+        <h1>San Antonio <span style="color:#FF1616;">Neighborhoods</span></h1>
+        <p>Organized by corridor — because your commute picks your neighborhood here</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="sa-page-intro sa-page-intro--centered">San Antonio covers 500+ square miles, so "best neighborhood" is the wrong question. The right question is: where do you work, and which corridor gets you there fastest? Military families pick by gate. Everyone else picks by employer side of town. Here's how the city breaks down.</p>
+        <p class="sa-page-intro sa-page-intro--note">Price ranges below are typical ranges as of September 2026, not appraisals — they move with the market and vary block by block.</p>
+      </div>
+    </section>
+
+    <!-- Northeast JBSA Corridor -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Northeast <span class="accent">JBSA Corridor</span></h2>
+          <p>The Randolph AFB corridor — the one I work most</p>
+        </div>
+        <div class="sa-neighborhood__grid">
+          <div class="sa-neighborhood__card">
+            <h3>Schertz / Cibolo / Universal City</h3>
+            <p>The corridor built around Randolph's gates. Under 10 minutes to the Main Gate, SCUCISD schools, and new construction on nearly every arterial. This is where the majority of Randolph PCS families land, and it's the San Antonio corridor I know best. Selma and Live Oak sit inside this same corridor and feed the same schools and commute. <a href="/cibolo-schertz/">Read the full Cibolo/Schertz guide →</a></p>
+            <div class="sa-neighborhood__tags">
+              <span class="sa-neighborhood__tag">$300s–$500s typical</span>
+              <span class="sa-neighborhood__tag">SCUCISD</span>
+              <span class="sa-neighborhood__tag">&lt;10 min to Randolph</span>
+            </div>
+          </div>
+          <div class="sa-neighborhood__card">
+            <h3>Converse</h3>
+            <p>Just south of the Randolph corridor along I-10 and Loop 410. More established housing stock than Schertz/Cibolo, served by Judson ISD, and priced a step below the newest construction corridors — a value play for buyers who work east or northeast.</p>
+            <div class="sa-neighborhood__tags">
+              <span class="sa-neighborhood__tag">$250s–$400s typical</span>
+              <span class="sa-neighborhood__tag">Judson ISD</span>
+              <span class="sa-neighborhood__tag">I-10 / 410 access</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- North-Central -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>North- <span class="accent">Central</span></h2>
+          <p>Stone Oak and the established north side</p>
+        </div>
+        <div class="sa-neighborhood__grid">
+          <div class="sa-neighborhood__card">
+            <h3>Stone Oak</h3>
+            <p>The north side's master-planned default: North East ISD, medical-center adjacent, every amenity within 10 minutes. Established families land here for newer construction without going all the way out to the far corridors. The tradeoff is the US-281 commute — 20–25 minutes off-peak, 35–45+ at rush hour.</p>
+            <div class="sa-neighborhood__tags">
+              <span class="sa-neighborhood__tag">$450s–$900s+ typical</span>
+              <span class="sa-neighborhood__tag">NEISD</span>
+              <span class="sa-neighborhood__tag">Medical Center adjacent</span>
+            </div>
+          </div>
+          <div class="sa-neighborhood__card">
+            <h3>Timberwood Park & Medical Center Area</h3>
+            <p>Timberwood Park sits in the North Central zone just above Stone Oak — larger lots, Hill Country feel, still tied to the north-central commute pattern. The Medical Center area itself draws healthcare professionals who want to live near the South Texas Medical Center employment hub.</p>
+            <div class="sa-neighborhood__tags">
+              <span class="sa-neighborhood__tag">$350s–$600s typical</span>
+              <span class="sa-neighborhood__tag">NEISD / Northside ISD</span>
+              <span class="sa-neighborhood__tag">Healthcare corridor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Northwest / Far West -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Northwest & <span class="accent">Far West</span></h2>
+          <p>The Lackland corridor</p>
+        </div>
+        <div class="sa-neighborhood__grid">
+          <div class="sa-neighborhood__card">
+            <h3>Alamo Ranch</h3>
+            <p>The far west side's master-planned engine: Northside ISD, 10–15 minutes to Lackland AFB, and the best new-construction value inside Loop 1604's orbit. Young military and civilian families dominate — built for exactly that buyer.</p>
+            <div class="sa-neighborhood__tags">
+              <span class="sa-neighborhood__tag">$350s–$650s typical</span>
+              <span class="sa-neighborhood__tag">Northside ISD</span>
+              <span class="sa-neighborhood__tag">10–15 min to Lackland</span>
+            </div>
+          </div>
+          <div class="sa-neighborhood__card">
+            <h3>Helotes</h3>
+            <p>Small-city feel on the northwest edge, where the suburbs meet the Hill Country. Northside ISD, larger lots than Alamo Ranch, and a genuine small-town main street — for buyers who want the Lackland commute without the master-planned density.</p>
+            <div class="sa-neighborhood__tags">
+              <span class="sa-neighborhood__tag">$400s–$800s typical</span>
+              <span class="sa-neighborhood__tag">Northside ISD</span>
+              <span class="sa-neighborhood__tag">Hill Country edge</span>
+            </div>
+          </div>
+          <div class="sa-neighborhood__card">
+            <h3>The Dominion</h3>
+            <p>San Antonio's gated luxury enclave in the far northwest — estate homes, country club, and the highest price points in the metro. Northside ISD. This is where the market's top end lives.</p>
+            <div class="sa-neighborhood__tags">
+              <span class="sa-neighborhood__tag">$1M+ typical</span>
+              <span class="sa-neighborhood__tag">Northside ISD</span>
+              <span class="sa-neighborhood__tag">Gated luxury</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fort Sam Corridor -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Fort Sam <span class="accent">Corridor</span></h2>
+          <p>Premium neighborhoods minutes from the gates</p>
+        </div>
+        <div class="sa-neighborhood__grid">
+          <div class="sa-neighborhood__card">
+            <h3>Alamo Heights / Terrell Hills / Olmos Park</h3>
+            <p>San Antonio's premium corridor: historic homes, mature oaks, and Alamo Heights ISD — one of the primary drivers of home values near Fort Sam. Minutes to the gates. You pay for all of it, and residents say it's worth it.</p>
+            <div class="sa-neighborhood__tags">
+              <span class="sa-neighborhood__tag">$600s–$2M+ typical</span>
+              <span class="sa-neighborhood__tag">Alamo Heights ISD</span>
+              <span class="sa-neighborhood__tag">&lt;15 min to Fort Sam</span>
+            </div>
+          </div>
+          <div class="sa-neighborhood__card">
+            <h3>Government Hill</h3>
+            <p>Right outside Fort Sam's gates — historic housing stock, a fraction of the Heights price point, and the shortest possible commute. The neighborhood is mid-revitalization: more upside, more block-by-block variance. Worth a drive-through with someone who knows it.</p>
+            <div class="sa-neighborhood__tags">
+              <span class="sa-neighborhood__tag">$250s–$450s typical</span>
+              <span class="sa-neighborhood__tag">SAISD</span>
+              <span class="sa-neighborhood__tag">Fort Sam adjacent</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Historic Urban Core -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Historic <span class="accent">Urban Core</span></h2>
+          <p>Character, walkability, and the River Walk at your door</p>
+        </div>
+        <div class="sa-neighborhood__grid">
+          <div class="sa-neighborhood__card">
+            <h3>King William</h3>
+            <p>San Antonio's premier historic district — Victorian and Greek Revival homes along the river, south of downtown. The Guenther House sits here. Strict historic guidelines protect the character; renovations need approval.</p>
+            <div class="sa-neighborhood__tags">
+              <span class="sa-neighborhood__tag">$400s–$900s typical</span>
+              <span class="sa-neighborhood__tag">Historic district</span>
+              <span class="sa-neighborhood__tag">River adjacent</span>
+            </div>
+          </div>
+          <div class="sa-neighborhood__card">
+            <h3>Monte Vista</h3>
+            <p>Grand early-1900s homes north of downtown — San Antonio's answer to a historic mansion district. Large lots, architectural variety, and prices that reflect the pedigree. One of the city's most photographed neighborhoods.</p>
+            <div class="sa-neighborhood__tags">
+              <span class="sa-neighborhood__tag">$500s–$1.5M typical</span>
+              <span class="sa-neighborhood__tag">Historic district</span>
+              <span class="sa-neighborhood__tag">Near downtown</span>
+            </div>
+          </div>
+          <div class="sa-neighborhood__card">
+            <h3>Tobin Hill & the Pearl Area</h3>
+            <p>The neighborhood around the Pearl District — walkable, densifying, and closest to the city's best dining. A mix of historic bungalows, new townhomes, and condos. The urban-core pick for buyers who want the food scene as their backyard.</p>
+            <div class="sa-neighborhood__tags">
+              <span class="sa-neighborhood__tag">$350s–$700s typical</span>
+              <span class="sa-neighborhood__tag">Urban / walkable</span>
+              <span class="sa-neighborhood__tag">Pearl adjacent</span>
+            </div>
+          </div>
+          <div class="sa-neighborhood__card">
+            <h3>Southtown / Lavaca</h3>
+            <p>The arts district south of downtown — galleries, First Friday art walks, Blue Star Arts Complex, and a mix of historic cottages and new infill. The creative-class corridor, with the most walkable blocks outside the Pearl.</p>
+            <div class="sa-neighborhood__tags">
+              <span class="sa-neighborhood__tag">$300s–$600s typical</span>
+              <span class="sa-neighborhood__tag">Arts district</span>
+              <span class="sa-neighborhood__tag">Walkable pockets</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- More SA guides -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>More <span class="accent">San Antonio</span> Guides</h2>
+        </div>
+        <div class="sa-neighborhood__grid">
+          <a href="/san-antonio/" class="sa-neighborhood__card sa-neighborhood__card--link">
+            <h3>San Antonio Overview</h3>
+            <p>Median prices, cost snapshot, schools, and commute times — the full 2026 relocation guide.</p>
+          </a>
+          <a href="/san-antonio/restaurants/" class="sa-neighborhood__card sa-neighborhood__card--link">
+            <h3>Restaurants</h3>
+            <p>Where to eat once you live here — Market Square to the River Walk to the Pearl.</p>
+          </a>
+          <a href="/san-antonio/things-to-do/" class="sa-neighborhood__card sa-neighborhood__card--link">
+            <h3>Things to Do</h3>
+            <p>The Alamo, the missions, the Zoo, theme parks — what weekends look like in Military City USA.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About San Antonio Neighborhoods</h2>
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="sa-parallax-cta">
+      <div class="sa-parallax-cta__overlay"></div>
+      <div class="sa-parallax-cta__content">
+        <h2>Need Help <span class="accent">Narrowing It Down</span>?</h2>
+        <p>Tell me your gate or employer and your budget — I'll send you the corridors where people in your situation actually land, with real listings and real drive times.</p>
+        <a href="#contact" class="btn btn-outline">Get Help Choosing a Corridor</a>
+      </div>
+    </section>
+
+  </main>
+  <ParallaxBanner image="/images/areas/san-antonio.jpg" />
+
+  <ContactForm context="I'd like help choosing a San Antonio neighborhood for my commute and budget..." />
+  <Footer />
+</Layout>
+
+<style>
+  .sa-hero {
+    position: relative;
+    height: 280px;
+    background: url('/images/areas/san-antonio.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    background-color: #111;
+  }
+  .sa-hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
+  .sa-hero__content { position: relative; z-index: 1; padding: 0 1.5rem; }
+  .sa-hero__content h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 0.75rem; }
+  .sa-hero__content p { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+
+  .breadcrumb { font-size: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.5); }
+  .breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .sa-page-intro { font-size: 1.05rem; color: var(--gray); line-height: 1.8; max-width: 800px; }
+  .sa-page-intro--centered { text-align: center; font-weight: 700; color: var(--black); margin: 0 auto 1rem; }
+  .sa-page-intro--note { text-align: center; font-size: 0.85rem; font-style: italic; margin: 0 auto; }
+
+  .sa-neighborhood__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .sa-neighborhood__card { background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column; padding: 2rem; text-decoration: none; color: inherit; }
+  .sa-neighborhood__card h3 { font-family: var(--font-heading); font-size: 1.15rem; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .sa-neighborhood__card p { color: var(--gray); line-height: 1.7; margin-bottom: 1rem; flex: 1; font-size: 0.92rem; }
+  .sa-neighborhood__card p a { color: #FF1616; font-weight: 600; }
+  .sa-neighborhood__card--link { transition: transform 0.2s, box-shadow 0.2s; }
+  .sa-neighborhood__card--link:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .sa-neighborhood__card--link:hover h3 { color: #FF1616; }
+  .sa-neighborhood__tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .sa-neighborhood__tag { display: inline-block; background: var(--light-gray); color: var(--gray); font-size: 0.75rem; font-weight: 600; padding: 0.3rem 0.75rem; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.03em; }
+
+  .sa-parallax-cta { position: relative; background: url('/images/testimonials-hero.webp') center / cover no-repeat fixed; padding: 5rem 1.5rem; text-align: center; color: #fff; }
+  .sa-parallax-cta__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.7); }
+  .sa-parallax-cta__content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+  .sa-parallax-cta__content h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); margin-bottom: 1rem; }
+  .sa-parallax-cta__content p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 2rem; line-height: 1.7; }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
+
+  @media (max-width: 768px) {
+    .sa-neighborhood__grid { grid-template-columns: 1fr; }
+    .sa-parallax-cta { background-attachment: scroll; }
+  }
+</style>

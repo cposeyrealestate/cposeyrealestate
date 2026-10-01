@@ -1,0 +1,285 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
+
+const pageTitle = 'Things to Do in San Antonio, TX | Cody Posey';
+const pageDescription = 'Discover the best things to do in San Antonio, TX — the Alamo, the River Walk, the UNESCO missions, the Pearl District, the Zoo, Six Flags Fiesta Texas, and SeaWorld.';
+const faqs = [
+  {
+    q: 'What are the must-see attractions in San Antonio?',
+    a: 'The Alamo (300 Alamo Plaza — free timed-entry tickets, book ahead), the 15-mile River Walk with its downtown, Museum Reach, and Mission Reach sections, and San Antonio Missions National Historical Park — the only UNESCO World Heritage Site in Texas. Those three are the non-negotiable first visit. The Pearl District, Market Square, and the Tower of the Americas round out the classic itinerary.',
+  },
+  {
+    q: 'Is San Antonio good for families with kids?',
+    a: 'One of the best family cities in Texas. The San Antonio Zoo and Japanese Tea Garden sit together in Brackenridge Park, The DoSeum is a top-tier children\'s museum, and the theme-park lineup — Six Flags Fiesta Texas, SeaWorld San Antonio, and Morgan\'s Wonderland — is the deepest of any Texas metro. Natural Bridge Caverns, 30 minutes north, stays a cool 70 degrees underground year-round.',
+  },
+  {
+    q: 'What is Fiesta San Antonio?',
+    a: 'Fiesta is San Antonio\'s signature 11-day festival every April — a citywide celebration of the city\'s history and culture with parades, concerts, and events across town. It\'s the cultural anchor of the spring calendar, the way the River Walk is the anchor of daily life. If you\'re house-hunting in April, plan around it — the whole city shows up.',
+  },
+];
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/san-antonio/things-to-do/' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'San Antonio', url: '/san-antonio/' },
+    { name: 'Things to Do', url: '/san-antonio/things-to-do/' },
+  ]),
+  faqSchema(faqs),
+];
+
+const activities = [
+  { name: 'The Alamo', category: 'history', description: "The Shrine of Texas Liberty at 300 Alamo Plaza — the 18th-century mission and site of the 1836 battle. Free timed-entry tickets; book online ahead. Photography is prohibited inside the church.", url: 'https://www.thealamo.org/' },
+  { name: 'San Antonio River Walk', category: 'outdoors', description: "A 15-mile urban oasis along the San Antonio River — the bustling downtown section, the artsy Museum Reach, and the quiet Mission Reach trail. GO RIO river barges run the downtown loop.", url: null },
+  { name: 'San Antonio Missions National Historical Park', category: 'history', description: "The only UNESCO World Heritage Site in Texas — four Spanish colonial missions (Concepción, San José, San Juan, Espada) connected by hike-and-bike trail along the Mission Reach.", url: 'https://www.nps.gov/saan/index.htm' },
+  { name: 'Pearl District', category: 'culture', description: "The former Pearl Brewery turned culinary and cultural district on the Museum Reach — 20+ restaurants and bars, Hotel Emma, the weekend farmers market, and the best people-watching in the city.", url: 'https://atpearl.com/' },
+  { name: 'Historic Market Square (El Mercado)', category: 'culture', description: "The largest Mexican market in the U.S. — shops, restaurants, and live music west of downtown. Mi Tierra Cafe y Panaderia anchors the square.", url: null },
+  { name: 'Tower of the Americas', category: 'family', description: "The 750-foot observation tower in Hemisfair Park — panoramic city views and a revolving restaurant. The park around it is one of downtown's best green spaces.", url: 'http://www.hemisfair.org/' },
+  { name: 'San Antonio Zoo', category: 'family', description: "750+ species across 57 acres in Brackenridge Park — one of the country's most respected zoos, with strong conservation programs and easy pairing with the Japanese Tea Garden next door.", url: null },
+  { name: 'Japanese Tea Garden', category: 'outdoors', description: "A lush garden of stone bridges, koi ponds, and waterfalls in Brackenridge Park — free, shaded, and one of the most photographed spots in the city.", url: null },
+  { name: 'Brackenridge Park', category: 'outdoors', description: "The 343-acre park anchoring the Museum Reach — Zoo, Tea Garden, Witte Museum, and miles of riverside trails in one connected green space.", url: null },
+  { name: 'Six Flags Fiesta Texas', category: 'family', description: "The thrill-ride anchor of the 'Theme Park Capital of Texas' — world-class coasters built into a former limestone quarry in the northwest. Fright Fest runs select fall nights.", url: 'https://www.sixflags.com/fiestatexas' },
+  { name: 'SeaWorld San Antonio', category: 'family', description: "Marine-life shows, rides, and up-close animal encounters on the far west side — the other half of the theme-park one-two punch with Fiesta Texas.", url: null },
+  { name: "Morgan's Wonderland", category: 'family', description: "The world's first ultra-accessible theme park — designed for guests of all abilities, in the northeast near the airport. A San Antonio original.", url: null },
+  { name: 'San Antonio Museum of Art', category: 'culture', description: "Housed in a historic brewery on the Museum Reach — renowned for ancient Mediterranean and Latin American collections.", url: null },
+  { name: 'Witte Museum', category: 'culture', description: "Natural history, science, and South Texas heritage in Brackenridge Park — dinosaurs, Texas wildlife, and the South Texas Heritage Center.", url: null },
+  { name: 'The DoSeum', category: 'family', description: "San Antonio's children's museum — hands-on STEM and imagination exhibits that locals rank among the best in the state.", url: null },
+  { name: 'Natural Bridge Caverns', category: 'outdoors', description: "Texas's largest commercial caverns, 30 minutes north — 180 feet underground, a cool 70 degrees year-round, with zip lines and a ropes course above ground.", url: null },
+  { name: 'Fiesta San Antonio', category: 'seasonal', description: "The city's signature 11-day April festival — parades, concerts, and celebrations across town honoring San Antonio's history and culture.", url: null },
+];
+
+const categoryLabels = {
+  history: 'History',
+  outdoors: 'Outdoor & Nature',
+  family: 'Family Fun',
+  culture: 'Culture & Museums',
+  seasonal: 'Seasonal Events',
+};
+
+const categories = [...new Set(activities.map(a => a.category))];
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="act-hero">
+      <div class="act-hero__overlay"></div>
+      <div class="act-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/san-antonio/">San Antonio</a> <span>/</span> <span>Things to Do</span>
+        </nav>
+        <h1>Things to Do in <span style="color:#FF1616;">San Antonio</span></h1>
+        <p>Three centuries of history, a 15-mile river, and the deepest theme-park lineup in Texas</p>
+      </div>
+    </div>
+
+    <!-- Intro + expanded content -->
+    <section class="section">
+      <div class="container">
+        <p class="act-intro">San Antonio isn't just a great place to live — it's a destination. Three centuries of Spanish colonial history, a river that runs through the middle of downtown, the only UNESCO World Heritage Site in Texas, and a theme-park lineup no other Texas metro touches. Here's what weekends actually look like here.</p>
+        <div class="sa-expanded-content">
+          <p>Founded in 1718, San Antonio is one of the oldest cities in the United States — and it wears the history openly. The Alamo sits in the middle of downtown at 300 Alamo Plaza, drawing millions of visitors a year to the Shrine of Texas Liberty. Admission to the grounds is free with timed-entry tickets, and the Long Barrack museum plus the living-history encampment put the 1836 battle in context. It is the non-negotiable first stop, and it takes about half a day.</p>
+          <p>The River Walk is the city's living room: a 15-mile network of shaded walkways along the San Antonio River with three distinct personalities. The downtown loop is the bustling restaurant-and-barge stretch everyone pictures. The Museum Reach runs north past the San Antonio Museum of Art to the Pearl District. The Mission Reach runs south along quiet hike-and-bike trail to the Spanish missions. GO RIO river barges narrate the downtown loop — worth doing once, then walk it yourself.</p>
+          <h3>History, Culture, and Museums</h3>
+          <p>San Antonio Missions National Historical Park preserves four of the five Spanish colonial missions — Concepción, San José, San Juan, and Espada — and together with the Alamo they form the only UNESCO World Heritage Site in Texas. The missions are connected by the Mission Reach trail, and the best way to see them is by bike. The Pearl District, built around the former Pearl Brewery on the Museum Reach, is the city's culinary and cultural anchor: 20+ restaurants and bars, Hotel Emma, the weekend farmers market, and the stretch of riverfront where locals actually spend their weekends.</p>
+          <p>Historic Market Square — El Mercado — is the largest Mexican market in the United States, with shops, restaurants, and live music west of downtown. The Tower of the Americas rises 750 feet over Hemisfair Park with panoramic views and a revolving restaurant. On the Museum Reach, the San Antonio Museum of Art (in a historic brewery building) holds renowned ancient Mediterranean and Latin American collections, while the Witte Museum in Brackenridge Park covers natural history, science, and South Texas heritage.</p>
+          <h3>Family Weekends</h3>
+          <p>San Antonio calls itself the Theme Park Capital of Texas, and the claim holds: Six Flags Fiesta Texas (coasters built into a former limestone quarry), SeaWorld San Antonio (marine shows and rides on the far west side), and Morgan's Wonderland — the world's first ultra-accessible theme park, designed for guests of all abilities. Together with Schlitterbahn up in New Braunfels, this metro has the deepest family-entertainment bench in the state.</p>
+          <p>For quieter days: the San Antonio Zoo (750+ species on 57 acres), the Japanese Tea Garden's shaded stone bridges and koi ponds, and Brackenridge Park's 343 acres of riverside trails — all connected in one green corridor along the Museum Reach. The DoSeum ranks among the state's best children's museums. And 30 minutes north, Natural Bridge Caverns drops 180 feet underground where it stays a cool 70 degrees year-round, with zip lines and a ropes course above.</p>
+          <h3>Seasonal Events</h3>
+          <p>Fiesta San Antonio is the signature event: an 11-day festival every April celebrating the city's history and culture, with parades, concerts, and events across town. The whole city shows up — if you're house-hunting in April, plan around it. Six Flags runs Fright Fest on select fall nights, the River Walk lights up for the holidays, and the Pearl's farmers market runs year-round.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter Tabs -->
+    <section class="section" style="background: var(--light-gray); padding-top: 2rem; padding-bottom: 0;">
+      <div class="container">
+        <div class="act-filters" id="actFilters">
+          <button class="act-filter act-filter--active" data-filter="all">All</button>
+          {categories.map(cat => (
+            <button class="act-filter" data-filter={cat}>{categoryLabels[cat]}</button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Activity Cards -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="act-grid" id="actGrid">
+          {activities.map(a => (
+            a.url ? (
+              <a href={a.url} target="_blank" rel="noopener" class="act-card" data-category={a.category}>
+                <span class="act-card__category">{categoryLabels[a.category]}</span>
+                <h3>{a.name}</h3>
+                <p>{a.description}</p>
+              </a>
+            ) : (
+              <div class="act-card" data-category={a.category}>
+                <span class="act-card__category">{categoryLabels[a.category]}</span>
+                <h3>{a.name}</h3>
+                <p>{a.description}</p>
+              </div>
+            )
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- More SA guides -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>More <span class="accent">San Antonio</span> Guides</h2>
+        </div>
+        <div class="act-grid">
+          <a href="/san-antonio/" class="act-card act-card--more">
+            <span class="act-card__category">Relocation Guide</span>
+            <h3>San Antonio Overview</h3>
+            <p>Median prices, cost snapshot, schools, and commute times — the full 2026 guide.</p>
+          </a>
+          <a href="/san-antonio/neighborhoods/" class="act-card act-card--more">
+            <span class="act-card__category">Neighborhoods</span>
+            <h3>Neighborhoods by Corridor</h3>
+            <p>Where to live based on your gate or employer — the corridor breakdown.</p>
+          </a>
+          <a href="/san-antonio/restaurants/" class="act-card act-card--more">
+            <span class="act-card__category">Restaurants</span>
+            <h3>San Antonio Restaurants</h3>
+            <p>Where to eat once you live here — Market Square to the River Walk to the Pearl.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="act-cta">
+      <div class="act-cta__overlay"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <h2>Want to Live Where the <span class="accent">Fun Is</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">I can help you find a home close to the River Walk, the Pearl, the missions, and everything else that makes San Antonio worth the move.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Let's Connect</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions About Things to Do in San Antonio</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ParallaxBanner image="/images/areas/san-antonio.jpg" />
+
+  <ContactForm context="I'd like to find a home near the best things to do in San Antonio..." />
+  <Footer />
+</Layout>
+
+<style>
+  .act-hero {
+    position: relative;
+    height: 280px;
+    background: url('/images/areas/san-antonio.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    background-color: #111;
+  }
+  .act-hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
+  .act-hero__content { position: relative; z-index: 1; padding: 0 1.5rem; }
+  .act-hero__content h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 0.75rem; }
+  .act-hero__content p { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+
+  .breadcrumb { font-size: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.5); }
+  .breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .act-intro { font-size: 1.05rem; color: var(--gray); line-height: 1.8; max-width: 800px; text-align: center; margin: 0 auto 2rem; font-weight: 600; }
+  .sa-expanded-content { max-width: 800px; margin: 0 auto; }
+  .sa-expanded-content p { color: var(--gray); line-height: 1.8; margin-bottom: 1.25rem; font-size: 0.95rem; }
+  .sa-expanded-content h3 { font-family: var(--font-heading); font-size: 1.2rem; text-transform: uppercase; margin: 2.5rem 0 1rem; }
+
+  .act-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; padding-bottom: 2rem; }
+  .act-filter { padding: 0.5rem 1.25rem; border: 2px solid #ddd; border-radius: 25px; background: #fff; font-family: var(--font-heading); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; cursor: pointer; transition: all 0.2s; color: #333; }
+  .act-filter:hover { border-color: #FF1616; color: #FF1616; }
+  .act-filter--active { background: #FF1616; border-color: #FF1616; color: #fff; }
+  .act-filter--active:hover { color: #fff; }
+
+  .act-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .act-card { display: block; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; color: inherit; }
+  a.act-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .act-card__category { display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #FF1616; background: rgba(255, 22, 22, 0.08); padding: 0.25rem 0.6rem; border-radius: 4px; margin-bottom: 0.75rem; }
+  .act-card h3 { font-family: var(--font-heading); font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 0.75rem; }
+  .act-card p { color: var(--gray); font-size: 0.88rem; line-height: 1.7; }
+  .act-card--more:hover h3 { color: #FF1616; }
+
+  .act-cta { position: relative; padding: 5rem 0; color: #fff; text-align: center; background-image: url('/images/testimonials-hero.webp'); background-size: cover; background-position: center; background-attachment: fixed; background-color: #333; }
+  .act-cta__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.65); }
+  .act-cta h2 { color: #fff; }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
+
+  @media (max-width: 768px) {
+    .act-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .act-cta { background-attachment: scroll; }
+  }
+</style>
+
+<script is:inline>
+  // Filter functionality
+  const filters = document.querySelectorAll('.act-filter');
+  const cards = document.querySelectorAll('.act-card');
+
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      filters.forEach(f => f.classList.remove('act-filter--active'));
+      btn.classList.add('act-filter--active');
+
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

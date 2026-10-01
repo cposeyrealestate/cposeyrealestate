@@ -4,32 +4,51 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
-import { placeSchema, collectionPageSchema, breadcrumbSchema } from '../../lib/schema';
+import { placeSchema, collectionPageSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
 
-const grDescription = 'Living in Garden Ridge, TX: the upscale enclave between New Braunfels and San Antonio. Comal ISD schools, larger lots, commute times, and what buyers need to know.';
+const grDescription = 'Garden Ridge, TX homes for sale — 2026 relocation guide. Median home price, real neighborhoods, Comal ISD schools, commute times, restaurants, and things to do. Straight talk for buyers.';
 const pageSchema = [
-  placeSchema({ name: 'Garden Ridge, TX', description: grDescription, url: '/garden-ridge/' }),
+  placeSchema({ name: 'Garden Ridge, TX', description: grDescription, url: '/garden-ridge/', image: '/images/areas/garden-ridge.jpg' }),
   collectionPageSchema({
-    name: 'Living in Garden Ridge, TX',
+    name: 'Garden Ridge, TX Homes for Sale | 2026 Relocation Guide',
     description: grDescription,
     url: '/garden-ridge/',
     hasPart: [
-      { name: 'Why Garden Ridge', url: '/garden-ridge/#why-gr' },
-      { name: 'Neighborhoods', url: '/garden-ridge/#neighborhoods' },
-      { name: 'Schools', url: '/garden-ridge/#schools' },
+      { name: 'Garden Ridge Neighborhoods', url: '/garden-ridge/neighborhoods/' },
+      { name: 'Garden Ridge Restaurants', url: '/garden-ridge/restaurants/' },
+      { name: 'Things to Do in Garden Ridge', url: '/garden-ridge/things-to-do/' },
       { name: 'Commute & Lifestyle', url: '/garden-ridge/#commute' },
+      { name: 'FAQ', url: '/garden-ridge/#faq' },
     ],
   }),
   breadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: 'Explore Area', url: '/explorearea/' },
+    { name: 'Hill Country Relocation Guide', url: '/hill-country-relocation-guide/' },
     { name: 'Garden Ridge', url: '/garden-ridge/' },
+  ]),
+  faqSchema([
+    {
+      q: 'Where is Garden Ridge, TX?',
+      a: 'Garden Ridge is a small city on the ridge between New Braunfels and San Antonio along the Loop 1604 corridor — about 15 minutes southwest of New Braunfels and 20 miles (roughly 25 minutes) from downtown San Antonio. It is almost entirely residential, known for larger lots, mature trees, and a quiet, upscale character.',
+    },
+    {
+      q: 'What is the median home price in Garden Ridge?',
+      a: 'As of July 2026, the median home price in Garden Ridge was $874,500 (Homes.com) — a premium over the San Antonio metro driven by lot size, Comal ISD schools, and limited inventory. Expect most of the market to run roughly $750K to $1.5M+. New construction starts at $729,990 in Heimer Estates and climbs past $1M in Enchanted Bluff.',
+    },
+    {
+      q: 'What school district is Garden Ridge in?',
+      a: 'The city of Garden Ridge is served by Comal ISD — Garden Ridge Elementary, Danville Middle School, and Davenport High School. School quality is one of the primary drivers of home values in the city. Always verify attendance boundaries by street address before buying.',
+    },
+    {
+      q: 'What should buyers watch out for in Garden Ridge?',
+      a: 'Three things: (1) premium pricing with thin inventory — financing should be fully lined up before touring; (2) deed restrictions and HOAs are common in the gated subdivisions, so read the CC&Rs before offering; (3) older resale homes may be on septic or well water — budget for inspections beyond the standard set.',
+    },
   ]),
 ];
 ---
 
 <Layout
-  title="Living in Garden Ridge, TX: Neighborhoods & Home Prices | Cody Posey"
+  title="Garden Ridge, TX Homes for Sale | 2026 Relocation Guide"
   description={grDescription}
   schema={pageSchema}
 >
@@ -41,106 +60,129 @@ const pageSchema = [
       <div class="gr-hero__overlay"></div>
       <div class="gr-hero__content">
         <nav class="breadcrumb" aria-label="Breadcrumb">
-          <a href="/">Home</a> <span>/</span> <a href="/explorearea/">Explore Area</a> <span>/</span> <span>Garden Ridge</span>
+          <a href="/">Home</a> <span>/</span> <a href="/hill-country-relocation-guide/">Relocation Guide</a> <span>/</span> <span>Garden Ridge</span>
         </nav>
         <h1>Garden <span style="color:#FF1616;">Ridge</span></h1>
-        <p>The upscale enclave between New Braunfels and San Antonio — quiet, wooded, and close to everything</p>
+        <p>Homes for sale, real neighborhoods, Comal ISD schools, and honest market data — the 2026 Garden Ridge relocation guide</p>
       </div>
     </div>
 
-    <!-- Intro -->
-    <section id="commute" class="section gr-intro">
+    <!-- Stat band + quick answer -->
+    <section class="section gr-intro">
       <div class="container">
         <div class="gr-quick">
-          <p><strong>Quick answer:</strong> Garden Ridge is a small, affluent city of a few thousand residents tucked between New Braunfels and San Antonio along the 1604 corridor. Buyers come for larger lots, mature trees, Comal ISD schools (Garden Ridge Elementary, Danville Middle, Davenport High), and a genuinely quiet feel — while staying under 30 minutes to downtown San Antonio and about 15 minutes to New Braunfels. It's a premium market: expect prices above the regional median and competition for the best lots.</p>
+          <p><strong>Quick answer:</strong> Garden Ridge is a small, affluent city of 4,186 residents (2020 Census) tucked between New Braunfels and San Antonio. Buyers come for larger lots, mature trees, Comal ISD schools (Garden Ridge Elementary, Danville Middle, Davenport High), and a genuinely quiet feel — while staying ~25 minutes to downtown San Antonio and about 15 minutes to New Braunfels. It's a premium market: the median home price was $874,500 as of July 2026 (Homes.com).</p>
         </div>
         <div class="gr-intro__grid">
           <div class="gr-intro__text">
             <h2>Small City, <span class="accent">Big</span> Lots</h2>
             <p>Garden Ridge doesn't feel like a suburb — it feels like a retreat that happens to sit in the middle of the metro. The city sits on the ridge (the name is literal) between New Braunfels to the northeast and San Antonio to the southwest, with Loop 1604 and I-35 both within easy reach. Homes here sit on larger lots than you'll find in most San Antonio subdivisions, many of them shaded by mature oaks, and the whole city has a deliberately low-key, residential character.</p>
-            <p>The buyer profile is consistent: established professionals, executives, and military officers who want space and quiet without giving up commute access. Downtown San Antonio runs under 30 minutes via 1604, the airport is a straight shot south, New Braunfels is about 15 minutes up I-35, and Camp Bullis sits just to the west. Randolph AFB is reachable via the 1604/35 corridor in roughly 25–30 minutes.</p>
-            <p>Nature is part of the pitch here. The Bracken Bat Cave — home to one of the largest bat colonies in the world — sits just outside the city, and the surrounding Hill Country terrain means deer in the yard is a normal Tuesday. If you want walkable nightlife, this isn't it. If you want to hear yourself think, it is.</p>
+            <p>The buyer profile is consistent: established professionals, executives, and military officers who want space and quiet without giving up commute access. Nature is part of the pitch here — the Bracken Bat Cave, home to the world's largest bat colony, sits just outside the city, and deer in the yard is a normal Tuesday. If you want walkable nightlife, this isn't it. If you want to hear yourself think, it is.</p>
           </div>
           <div class="gr-intro__stats">
             <div class="gr-stat">
-              <span class="gr-stat__number">&lt;30 min</span>
-              <span class="gr-stat__label">To downtown San Antonio</span>
+              <span class="gr-stat__number">4,186</span>
+              <span class="gr-stat__label">Population (2020 Census)</span>
             </div>
             <div class="gr-stat">
-              <span class="gr-stat__number">~15 min</span>
-              <span class="gr-stat__label">To New Braunfels</span>
+              <span class="gr-stat__number">~$875K</span>
+              <span class="gr-stat__label">Median Home (Jul 2026)</span>
+            </div>
+            <div class="gr-stat">
+              <span class="gr-stat__number">~25 min</span>
+              <span class="gr-stat__label">To downtown San Antonio</span>
             </div>
             <div class="gr-stat">
               <span class="gr-stat__number">Comal ISD</span>
               <span class="gr-stat__label">School district</span>
-            </div>
-            <div class="gr-stat">
-              <span class="gr-stat__number">Premium</span>
-              <span class="gr-stat__label">Price vs. regional median</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Why GR -->
-    <section id="why-gr" class="section gr-why" style="background: var(--light-gray);">
+    <!-- Honest overview -->
+    <section class="section" style="background: var(--light-gray);">
       <div class="container">
         <div class="section-title">
-          <h2>Why Buyers Choose <span class="accent">Garden Ridge</span></h2>
-          <p>The four things that set it apart from every surrounding suburb</p>
+          <h2>The <span class="accent">Honest</span> Overview</h2>
+          <p>What Garden Ridge gets right — and what buyers should watch for</p>
         </div>
-        <div class="gr-why__grid">
-          <div class="gr-why__card">
-            <h3>Space and Trees</h3>
-            <p>Larger lots and mature oak canopy are the norm, not the upgrade. Garden Ridge feels wooded and established in a way that new-construction corridors can't replicate — because it grew up slowly instead of all at once.</p>
+        <div class="gr-honest__grid">
+          <div class="gr-honest__col">
+            <h3>What works here</h3>
+            <p>Garden Ridge is one of the few Hill Country enclaves where you can own an acre or more, live under mature oak canopy, and still reach downtown San Antonio in under 30 minutes. Comal ISD is a top-tier district, and the Davenport High feeder pattern is a genuine value anchor — Davenport earned an A (95) with all seven eligible distinctions in the 2026 TEA ratings. Crime is low, turnover is low, and neighbors tend to stay for decades.</p>
+            <p>For military families, the position is hard to beat: ~20 minutes to Camp Bullis, ~25 minutes to Randolph AFB via 1604, and BAH for the SA area can support this price point for senior officers and NCOs.</p>
           </div>
-          <div class="gr-why__card">
-            <h3>Comal ISD Schools</h3>
-            <p>Garden Ridge Elementary, Danville Middle, and Davenport High serve the city — all Comal ISD, one of the fastest-growing and most in-demand districts in Texas. School quality is a primary driver of home values here.</p>
-          </div>
-          <div class="gr-why__card">
-            <h3>The Commute Math</h3>
-            <p>Under 30 minutes to downtown San Antonio, about 15 to New Braunfels, and positioned between both job centers. For dual-career households splitting the difference between the two cities, Garden Ridge is the geographic compromise that doesn't feel like one.</p>
-          </div>
-          <div class="gr-why__card">
-            <h3>Genuine Quiet</h3>
-            <p>No commercial strip, no through-traffic shortcuts, no noise. Garden Ridge is almost entirely residential by design. Buyers who've lived in busier corridors describe the difference the first night they sleep here.</p>
+          <div class="gr-honest__col">
+            <h3>Watch-outs</h3>
+            <ul class="gr-honest__list">
+              <li><strong>Premium price, thin inventory.</strong> The median was $874,500 as of July 2026, and well-priced homes move fast. Have financing fully ready before you tour — there is no negotiating leverage from volume here.</li>
+              <li><strong>HOAs and deed restrictions.</strong> The gated subdivisions (Enchanted Bluff, Woodlands of Garden Ridge) run on CC&Rs. Read them before you offer, not after.</li>
+              <li><strong>Older stock needs inspection depth.</strong> Much of the resale inventory is custom homes from the 70s–90s. Septic systems, wells, and older foundations show up — budget for inspections beyond the standard set and price accordingly.</li>
+              <li><strong>No commercial strip.</strong> Dining and grocery mean a short drive to the I-35 corridor in Selma/Schertz. If walkable amenities matter, this is the wrong zip.</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Neighborhoods -->
-    <section id="neighborhoods" class="section gr-explore">
+    <section class="section">
       <div class="container">
         <div class="section-title">
-          <h2>What to Know <span class="accent">Before You Buy</span></h2>
-          <p>Straight talk on the Garden Ridge market</p>
+          <h2>Garden Ridge <span class="accent">Neighborhoods</span></h2>
+          <p>The subdivisions buyers actually ask about</p>
         </div>
         <div class="gr-explore__grid">
-          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="gr-explore__card">
-            <h3>Pricing Runs Premium</h3>
-            <p>Garden Ridge trades above the San Antonio regional median — you're paying for lot size, trees, schools, and scarcity. There isn't much inventory at any given time, so well-priced homes move. Have your financing fully ready before you tour.</p>
+          <a href="/garden-ridge/neighborhoods/" class="gr-explore__card">
+            <h3>Enchanted Bluff</h3>
+            <p>The headline luxury community — gated, with three active builders: Drees Custom Homes (from $1,018,900), Sitterle Homes (from $875,000), and Toll Brothers (from $839,995). New construction on estate-sized lots.</p>
           </a>
-          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="gr-explore__card">
-            <h3>Resale Over New Construction</h3>
-            <p>This is an established city, not a builder corridor. Most of what you'll buy is resale on established lots — which means inspections matter more here than in a new subdivision. Septic, wells, and older foundations show up; price accordingly.</p>
+          <a href="/garden-ridge/neighborhoods/" class="gr-explore__card">
+            <h3>Heimer Estates at Garden Ridge</h3>
+            <p>Chesmar Homes builds from $729,990 — the cheapest new construction in Garden Ridge and the entry point for a new build in the city. 3–5 bed plans from 2,500+ sq ft.</p>
           </a>
-          <a href="/military-relocation/camp-bullis/" class="gr-explore__card">
-            <h3>Military-Friendly Position</h3>
-            <p>Officers and senior NCOs like Garden Ridge for the same reasons executives do — space, schools, quiet. It's roughly 20 minutes to Camp Bullis and 25–30 to Randolph AFB via 1604, workable for JBSA assignments with BAH that supports the price point.</p>
+          <a href="/garden-ridge/neighborhoods/" class="gr-explore__card">
+            <h3>Wild Wind</h3>
+            <p>Resale custom homes in a quiet wooded pocket of the city. Recent listings run roughly $795K–$1.5M for 3–4 bed homes — classic Garden Ridge: big lots, big trees, no through traffic.</p>
           </a>
-          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="gr-explore__card">
-            <h3>Search Garden Ridge Listings</h3>
-            <p>See what's on the market in Garden Ridge right now. Inventory is thin — set up an alert so you don't miss the next one.</p>
+          <a href="/garden-ridge/neighborhoods/" class="gr-explore__card">
+            <h3>Woodlands of Garden Ridge</h3>
+            <p>Gated community off FM 2252 and Bat Cave Road on large half-acre lots. Recent median list around $871,500 (Nov 2025) — established Hill Country living minutes from the caverns corridor.</p>
           </a>
         </div>
+        <p class="gr-more"><a href="/garden-ridge/neighborhoods/">See all Garden Ridge neighborhoods →</a></p>
+      </div>
+    </section>
+
+    <!-- Cost snapshot -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Cost <span class="accent">Snapshot</span></h2>
+          <p>What homes actually cost here (date-stamped, not guessed)</p>
+        </div>
+        <div class="gr-cost__grid">
+          <div class="gr-cost__card">
+            <span class="gr-cost__number">~$875K</span>
+            <span class="gr-cost__label">Median home price, July 2026 (Homes.com)</span>
+          </div>
+          <div class="gr-cost__card">
+            <span class="gr-cost__number">$730K–$1.5M+</span>
+            <span class="gr-cost__label">Typical market range, recent MLS snapshots</span>
+          </div>
+          <div class="gr-cost__card">
+            <span class="gr-cost__number">1.7–2.2%</span>
+            <span class="gr-cost__label">Property tax range in Comal County (approx.)</span>
+          </div>
+        </div>
+        <p class="gr-cost__note">Note: median figures vary by source (foreclosure.com reported a $710,603 median home value in Aug 2026; WalletInvestor reported $698,385 in Sep 2026). Sources disagree on methodology and timing — treat medians as directional, not guarantees. There is also no state income tax in Texas.</p>
       </div>
     </section>
 
     <!-- Schools -->
-    <section id="schools" class="section" style="background: var(--light-gray);">
+    <section class="section">
       <div class="container">
         <div class="section-title">
           <h2>School <span class="accent">Districts</span></h2>
@@ -149,8 +191,55 @@ const pageSchema = [
         <div class="gr-schools__grid">
           <a href="https://www.comalisd.org" target="_blank" rel="noopener" class="gr-schools__card">
             <h3>Comal ISD</h3>
-            <p>Garden Ridge feeds Garden Ridge Elementary, Danville Middle School, and Davenport High School — all Comal ISD. One of the fastest-growing districts in Texas and a core driver of the city's home values.</p>
+            <p>Garden Ridge feeds Garden Ridge Elementary, Danville Middle School, and Davenport High School — all Comal ISD, one of the fastest-growing and most in-demand districts in Texas. Davenport High earned an A (95) with all seven eligible TEA distinctions in 2026. School quality is a core driver of the city's home values.</p>
             <span class="gr-schools__link">Visit Comal ISD Website →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Commute -->
+    <section id="commute" class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2><span class="accent">Commute</span> Times</h2>
+          <p>Where the ridge puts you relative to the region's job centers</p>
+        </div>
+        <div class="gr-commute__grid">
+          <div class="gr-commute__card"><span class="gr-commute__time">~15 min</span><span class="gr-commute__dest">New Braunfels (11 mi NE via I-35)</span></div>
+          <div class="gr-commute__card"><span class="gr-commute__time">~25 min</span><span class="gr-commute__dest">Downtown San Antonio (20 mi SW via 1604)</span></div>
+          <div class="gr-commute__card"><span class="gr-commute__time">~20 min</span><span class="gr-commute__dest">Camp Bullis (west via FM 3009)</span></div>
+          <div class="gr-commute__card"><span class="gr-commute__time">~25 min</span><span class="gr-commute__dest">Randolph AFB (via Loop 1604)</span></div>
+          <div class="gr-commute__card"><span class="gr-commute__time">~30 min</span><span class="gr-commute__dest">Fort Sam Houston (via 1604/I-35)</span></div>
+          <div class="gr-commute__card"><span class="gr-commute__time">~1 hr</span><span class="gr-commute__dest">Austin (via I-35)</span></div>
+        </div>
+        <p class="gr-cost__note">Drive times are approximate, off-peak. I-35 and Loop 1604 both back up at rush hour — do a test drive of your actual route before you commit.</p>
+      </div>
+    </section>
+
+    <!-- Explore subpages -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Explore <span class="accent">Garden Ridge</span></h2>
+          <p>Guides to the areas, food, and lifestyle that matter to you</p>
+        </div>
+        <div class="gr-explore__grid">
+          <a href="/garden-ridge/neighborhoods/" class="gr-explore__card">
+            <h3>Neighborhoods</h3>
+            <p>Enchanted Bluff, Heimer Estates, Wild Wind, Woodlands of Garden Ridge, and more — how the city's subdivisions differ by price, lot size, and builder.</p>
+          </a>
+          <a href="/garden-ridge/restaurants/" class="gr-explore__card">
+            <h3>Restaurants</h3>
+            <p>Wraptitude's live-music patio, Capparelli's family Italian, Grumpy's Tex-Mex breakfasts — the real dining map in and around Garden Ridge.</p>
+          </a>
+          <a href="/garden-ridge/things-to-do/" class="gr-explore__card">
+            <h3>Things to Do</h3>
+            <p>Bracken Bat Cave dusk emergences, Natural Bridge Caverns, the wildlife ranch, Paul Davis Park, and Market Days every second Saturday.</p>
+          </a>
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="gr-explore__card">
+            <h3>Search Homes</h3>
+            <p>See what's on the market in Garden Ridge right now. Inventory is thin — set up an alert so you don't miss the next one.</p>
           </a>
         </div>
       </div>
@@ -170,21 +259,25 @@ const pageSchema = [
     </section>
 
     <!-- FAQ Section -->
-    <section class="faq-section">
+    <section id="faq" class="faq-section">
       <div class="container">
         <h2>Frequently Asked Questions About <span class="accent">Garden Ridge</span></h2>
         <div class="faq-list">
           <details class="faq-item">
             <summary>Where is Garden Ridge, TX?</summary>
-            <p>Garden Ridge is a small city between New Braunfels and San Antonio along the Loop 1604 corridor — about 15 minutes southwest of New Braunfels and under 30 minutes from downtown San Antonio. It's almost entirely residential, known for larger lots, mature trees, and a quiet, upscale character.</p>
+            <p>Garden Ridge is a small city on the ridge between New Braunfels and San Antonio along the Loop 1604 corridor — about 15 minutes southwest of New Braunfels and 20 miles (roughly 25 minutes) from downtown San Antonio. It's almost entirely residential, known for larger lots, mature trees, and a quiet, upscale character.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What is the median home price in Garden Ridge?</summary>
+            <p>As of July 2026, the median home price in Garden Ridge was $874,500 (Homes.com) — a premium over the San Antonio metro driven by lot size, Comal ISD schools, and limited inventory. Expect most of the market to run roughly $750K to $1.5M+. New construction starts at $729,990 in Heimer Estates and climbs past $1M in Enchanted Bluff.</p>
           </details>
           <details class="faq-item">
             <summary>What school district is Garden Ridge in?</summary>
-            <p>Garden Ridge is served by Comal ISD — Garden Ridge Elementary, Danville Middle School, and Davenport High School. School quality is one of the primary drivers of home values in the city. Always verify attendance boundaries by street address before buying.</p>
+            <p>The city of Garden Ridge is served by Comal ISD — Garden Ridge Elementary, Danville Middle School, and Davenport High School. School quality is one of the primary drivers of home values in the city. Always verify attendance boundaries by street address before buying.</p>
           </details>
           <details class="faq-item">
-            <summary>Is Garden Ridge expensive?</summary>
-            <p>Relative to the San Antonio metro, yes — Garden Ridge trades at a premium for lot size, mature trees, Comal ISD schools, and limited inventory. Buyers get more land and more quiet than surrounding suburbs, but they pay for it. Financing should be fully lined up before touring, because well-priced homes move fast.</p>
+            <summary>What should buyers watch out for in Garden Ridge?</summary>
+            <p>Three things: (1) premium pricing with thin inventory — financing should be fully lined up before touring; (2) deed restrictions and HOAs are common in the gated subdivisions, so read the CC&amp;Rs before offering; (3) older resale homes may be on septic or well water — budget for inspections beyond the standard set.</p>
           </details>
         </div>
       </div>
@@ -197,39 +290,6 @@ const pageSchema = [
   <Footer />
 </Layout>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Where is Garden Ridge, TX?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Garden Ridge is a small city between New Braunfels and San Antonio along the Loop 1604 corridor — about 15 minutes southwest of New Braunfels and under 30 minutes from downtown San Antonio. It's almost entirely residential, known for larger lots, mature trees, and a quiet, upscale character."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What school district is Garden Ridge in?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Garden Ridge is served by Comal ISD — Garden Ridge Elementary, Danville Middle School, and Davenport High School. School quality is one of the primary drivers of home values in the city."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is Garden Ridge expensive?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Relative to the San Antonio metro, yes — Garden Ridge trades at a premium for lot size, mature trees, Comal ISD schools, and limited inventory."
-      }
-    }
-  ]
-}
-</script>
-
 <style>
   .faq-section { padding: 4rem 0; background: #f9f9f9; }
   .faq-section h2 { text-align: center; margin-bottom: 2rem; }
@@ -240,11 +300,11 @@ const pageSchema = [
   .faq-item[open] summary::after { content: '\2212'; }
   .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
 
-  .gr-hero { position: relative; height: 320px; background: url('/images/generated/hill-country-home-2.webp') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; }
+  .gr-hero { position: relative; height: 340px; background: url('/images/areas/garden-ridge.jpg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; }
   .gr-hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
   .gr-hero__content { position: relative; z-index: 1; padding: 0 1.5rem; }
   .gr-hero__content h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 0.75rem; }
-  .gr-hero__content p { color: rgba(255,255,255,0.7); font-size: 1rem; max-width: 600px; margin: 0 auto; }
+  .gr-hero__content p { color: rgba(255,255,255,0.7); font-size: 1rem; max-width: 640px; margin: 0 auto; }
 
   .breadcrumb { font-size: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.5); }
   .breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
@@ -262,10 +322,12 @@ const pageSchema = [
   .gr-stat__number { display: block; font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: #FF1616; }
   .gr-stat__label { display: block; font-size: 0.8rem; color: var(--gray); margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em; }
 
-  .gr-why__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-  .gr-why__card { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
-  .gr-why__card h3 { font-family: var(--font-heading); font-size: 1.1rem; text-transform: uppercase; margin-bottom: 0.75rem; }
-  .gr-why__card p { color: var(--gray); font-size: 0.9rem; line-height: 1.7; }
+  .gr-honest__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .gr-honest__col h3 { font-family: var(--font-heading); font-size: 1.1rem; text-transform: uppercase; margin-bottom: 1rem; }
+  .gr-honest__col p { color: var(--gray); line-height: 1.8; margin-bottom: 1rem; font-size: 0.95rem; }
+  .gr-honest__list { list-style: none; padding: 0; margin: 0; }
+  .gr-honest__list li { color: var(--gray); line-height: 1.7; font-size: 0.95rem; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; }
+  .gr-honest__list li::before { content: '—'; position: absolute; left: 0; color: #FF1616; font-weight: 700; }
 
   .gr-explore__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
   .gr-explore__card { display: block; background: #fff; border: 1px solid var(--light-gray); padding: 2rem; border-radius: 8px; transition: transform 0.2s, box-shadow 0.2s; }
@@ -273,6 +335,14 @@ const pageSchema = [
   .gr-explore__card h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; margin-bottom: 0.5rem; color: #000; }
   .gr-explore__card:hover h3 { color: #FF1616; }
   .gr-explore__card p { color: var(--gray); font-size: 0.85rem; line-height: 1.6; }
+  .gr-more { text-align: center; margin-top: 2rem; }
+  .gr-more a { font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em; color: #FF1616; }
+
+  .gr-cost__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1000px; margin: 0 auto 1.5rem; }
+  .gr-cost__card { background: #fff; padding: 2rem 1.5rem; text-align: center; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .gr-cost__number { display: block; font-family: var(--font-heading); font-size: 1.7rem; font-weight: 800; color: #FF1616; }
+  .gr-cost__label { display: block; font-size: 0.78rem; color: var(--gray); margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.5; }
+  .gr-cost__note { text-align: center; font-style: italic; color: var(--gray); font-size: 0.85rem; max-width: 800px; margin: 0 auto; line-height: 1.7; }
 
   .gr-schools__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
   .gr-schools__card { display: block; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: transform 0.2s, box-shadow 0.2s; text-align: center; }
@@ -282,14 +352,25 @@ const pageSchema = [
   .gr-schools__card p { color: var(--gray); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem; }
   .gr-schools__link { font-family: var(--font-heading); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #FF1616; }
 
+  .gr-commute__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1000px; margin: 0 auto 1.5rem; }
+  .gr-commute__card { background: #fff; padding: 1.5rem; text-align: center; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .gr-commute__time { display: block; font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: #FF1616; }
+  .gr-commute__dest { display: block; font-size: 0.8rem; color: var(--gray); margin-top: 0.35rem; line-height: 1.5; }
+
   .gr-cta { position: relative; background: url('/images/testimonials-hero.webp') center/cover no-repeat fixed; color: #fff; text-align: center; }
   .gr-cta__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.75); }
   .gr-cta__buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
   .gr-cta p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem; }
 
+  @media (max-width: 600px) {
+    .gr-cta { background-attachment: scroll; }
+  }
+
   @media (max-width: 768px) {
     .gr-intro__grid { grid-template-columns: 1fr; }
-    .gr-why__grid { grid-template-columns: 1fr; }
+    .gr-honest__grid { grid-template-columns: 1fr; }
     .gr-explore__grid { grid-template-columns: 1fr; }
+    .gr-cost__grid { grid-template-columns: 1fr; }
+    .gr-commute__grid { grid-template-columns: 1fr 1fr; }
   }
 </style>

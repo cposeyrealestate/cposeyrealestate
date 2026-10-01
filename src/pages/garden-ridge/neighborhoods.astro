@@ -1,0 +1,266 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = 'Garden Ridge Neighborhoods | Cody Posey Real Estate';
+const pageDescription = 'Explore Garden Ridge, TX neighborhoods — Enchanted Bluff, Heimer Estates, Wild Wind, Woodlands of Garden Ridge, and more. Price ranges, lot sizes, and who each subdivision fits.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/garden-ridge/neighborhoods/', image: '/images/generated/hill-country-home-2.webp' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Garden Ridge', url: '/garden-ridge/' },
+    { name: 'Neighborhoods', url: '/garden-ridge/neighborhoods/' },
+  ]),
+];
+
+const neighborhoods = [
+  {
+    name: 'Enchanted Bluff',
+    price: '$840K - $1.5M+',
+    tags: ['New Construction', 'Gated', 'Comal ISD'],
+    description: 'The headline luxury community in Garden Ridge — a gated enclave with three active builders stacked at the top of the market: Drees Custom Homes from $1,018,900, Sitterle Homes from $875,000, and Toll Brothers from $839,995 (builder-published pricing, 2026). Estate-sized lots, custom plans, and the newest floor plans in the city. This is where you land when you want brand-new on Garden Ridge dirt.',
+  },
+  {
+    name: 'Heimer Estates at Garden Ridge',
+    price: 'From $730K',
+    tags: ['New Construction', 'Chesmar Homes', 'Comal ISD'],
+    description: 'Chesmar Homes builds here from $729,990 — the cheapest new construction in Garden Ridge, and the entry point for a new build in the city. Plans run 3–5 beds from 2,500+ sq ft. For buyers who want warranty-covered new construction without the Enchanted Bluff premium, this is the address.',
+  },
+  {
+    name: 'Wild Wind',
+    price: '$795K - $1.5M',
+    tags: ['Resale', 'Custom Homes', 'Comal ISD'],
+    description: 'Resale custom homes in a quiet, wooded pocket of the city. Recent listings run roughly $795K–$1.5M for 3–4 bed homes on generous lots — classic Garden Ridge: big trees, no through traffic, no builder rows. Homes here turn over rarely, so expect competition when one hits the market.',
+  },
+  {
+    name: 'Woodlands of Garden Ridge',
+    price: '$800K - $950K',
+    tags: ['Gated', 'Established', 'Comal ISD'],
+    description: 'A gated community off FM 2252 and Bat Cave Road on large half-acre lots, close to the Natural Bridge Caverns corridor. Recent median list sits around $871,500 (Nov 2025 MLS snapshot). Established Hill Country living — mature landscaping, quiet streets, and some of the most consistent resale activity in the city.',
+  },
+  {
+    name: 'Garden Ridge Estates',
+    price: '$900K - $1M+',
+    tags: ['Resale', 'Estate Lots', 'Comal ISD'],
+    description: 'One of the city\u2019s established estate subdivisions — large custom homes on big wooded lots, mostly built in the 80s and 90s. Recent listings around $935K for 4-bed homes over 4,300 sq ft. Expect older systems (septic, well, original roofs) and inspect accordingly; the land is the asset.',
+  },
+  {
+    name: 'Park Lane Estates',
+    price: '$950K - $1.1M',
+    tags: ['Resale', 'Custom Homes', 'Comal ISD'],
+    description: 'Upscale custom-home subdivision with recent listings near $995K for 4-bed, 4,400 sq ft homes on estate lots. Quiet, established, and close to the FM 3009 commercial edge — a practical position for households that split commutes between San Antonio and New Braunfels.',
+  },
+  {
+    name: 'Forest Waters',
+    price: '$1M - $1.2M',
+    tags: ['Resale', 'Custom Homes', 'Comal ISD'],
+    description: 'Custom homes on large lots with recent listings around $1.085M for 5-bed, 4,000 sq ft builds from the mid-90s. Heavily wooded — the name is literal — which buyers either love or learn to maintain. Inspections should budget for drainage and foundation checks on older custom builds.',
+  },
+  {
+    name: 'Seven Hills Ranch',
+    price: '$1.1M - $1.3M',
+    tags: ['Resale', 'Acreage', 'Comal ISD'],
+    description: 'Ranch-style living on acreage within city reach — recent listings near $1.185M for 4-bed, 4,100+ sq ft homes from the mid-2000s. This is the closest Garden Ridge gets to true Hill Country ranch life while staying inside Comal ISD and 25 minutes from downtown San Antonio.',
+  },
+];
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="grn-hero">
+      <div class="grn-hero__overlay"></div>
+      <div class="grn-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/garden-ridge/">Garden Ridge</a> <span>/</span> <span>Neighborhoods</span>
+        </nav>
+        <h1>Garden Ridge <span style="color:#FF1616;">Neighborhoods</span></h1>
+        <p>Gated luxury, custom resale, and estate acreage — how the subdivisions break down</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="grn-page-intro grn-page-intro--centered">Garden Ridge is small — 4,186 people in the 2020 Census — but its subdivisions split clearly by buyer type: new-build luxury in the gated communities, custom resale on wooded lots, and ranch-style acreage. Every neighborhood below feeds Comal ISD. Price ranges reflect recent MLS listing snapshots, not official medians.</p>
+      </div>
+    </section>
+
+    <!-- Neighborhood cards -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="grn-grid">
+          {neighborhoods.map(n => (
+            <div class="grn-card">
+              <h3>{n.name}</h3>
+              <p>{n.description}</p>
+              <div class="grn-tags">
+                <span class="grn-tag grn-tag--price">{n.price}</span>
+                {n.tags.map(tag => (
+                  <span class="grn-tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- School Districts -->
+    <section class="section grn-schools">
+      <div class="container">
+        <div class="section-title">
+          <h2>School <span class="accent">Districts</span></h2>
+          <p>Every neighborhood above feeds the same district and the same campuses.</p>
+        </div>
+        <div class="grn-schools__grid">
+          <a href="https://www.comalisd.org" target="_blank" rel="noopener" class="grn-schools__card">
+            <h3>Comal ISD</h3>
+            <p>Garden Ridge Elementary, Danville Middle School, and Davenport High School. Davenport earned an A (95) with all seven eligible TEA distinctions in 2026 — school quality is a core driver of home values in every subdivision on this page.</p>
+            <span class="grn-schools__link">Visit Comal ISD Website &rarr;</span>
+          </a>
+        </div>
+        <p class="grn-schools__note">Always verify school assignments directly with the district. Boundaries can change as new schools are built.</p>
+      </div>
+    </section>
+
+    <!-- Explore more of Garden Ridge -->
+    <section class="section grn-crosslinks" style="padding-top: 0;">
+      <div class="container">
+        <div class="grn-crosslinks__grid">
+          <a href="/garden-ridge/" class="grn-crosslinks__card"><h3>Garden Ridge Guide</h3><p>Market data, commute times, schools, and the honest overview.</p></a>
+          <a href="/garden-ridge/restaurants/" class="grn-crosslinks__card"><h3>Restaurants</h3><p>Where locals actually eat in and around Garden Ridge.</p></a>
+          <a href="/garden-ridge/things-to-do/" class="grn-crosslinks__card"><h3>Things to Do</h3><p>Bats, caverns, trails, parks, and Market Days.</p></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Parallax CTA -->
+    <section class="grn-parallax-cta">
+      <div class="grn-parallax-cta__overlay"></div>
+      <div class="grn-parallax-cta__content">
+        <h2>Need Help <span class="accent">Narrowing It Down</span>?</h2>
+        <p>I can walk you through the differences between Garden Ridge subdivisions and focus your search on neighborhoods that match your price point and lot-size goals.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Get Help Choosing a Neighborhood</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ParallaxBanner image="/images/generated/guadalupe-river.webp" />
+
+  <ContactForm context="I'd like to learn more about Garden Ridge neighborhoods..." />
+  <Footer />
+</Layout>
+
+<style>
+  .grn-hero {
+    position: relative;
+    height: 280px;
+    background: url('/images/generated/hill-country-home-2.webp') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .grn-hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
+  .grn-hero__content { position: relative; z-index: 1; padding: 0 1.5rem; }
+  .grn-hero__content h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 0.75rem; }
+  .grn-hero__content p { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+
+  .breadcrumb { font-size: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.5); }
+  .breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .grn-page-intro { font-size: 1.05rem; color: var(--gray); line-height: 1.8; max-width: 800px; }
+  .grn-page-intro--centered { text-align: center; font-weight: 700; color: var(--black); margin: 0 auto; }
+
+  .grn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .grn-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .grn-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    border-left: 3px solid #FF1616;
+    padding-left: 0.75rem;
+  }
+  .grn-card p { color: var(--gray); line-height: 1.7; margin-bottom: 1.25rem; flex: 1; font-size: 0.92rem; }
+  .grn-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .grn-tag {
+    display: inline-block;
+    background: var(--light-gray);
+    color: var(--gray);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .grn-tag--price { background: #111; color: #fff; }
+
+  .grn-schools { background: var(--light-gray); }
+  .grn-schools__grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 1.5rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+  .grn-schools__card {
+    background: #fff; padding: 2rem; border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); text-decoration: none; color: inherit;
+    display: flex; flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .grn-schools__card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .grn-schools__card h3 { font-family: var(--font-heading); font-size: 1.2rem; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .grn-schools__card p { color: var(--gray); line-height: 1.7; margin-bottom: 1rem; flex: 1; }
+  .grn-schools__link { color: #FF1616; font-weight: 600; font-size: 0.9rem; }
+  .grn-schools__note { text-align: center; font-style: italic; color: var(--gray); font-size: 0.85rem; }
+
+  .grn-crosslinks__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
+  .grn-crosslinks__card { display: block; background: var(--light-gray); padding: 1.75rem; border-radius: 8px; transition: transform 0.2s, box-shadow 0.2s; }
+  .grn-crosslinks__card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .grn-crosslinks__card h3 { font-family: var(--font-heading); font-size: 0.95rem; text-transform: uppercase; margin-bottom: 0.5rem; color: #000; }
+  .grn-crosslinks__card:hover h3 { color: #FF1616; }
+  .grn-crosslinks__card p { color: var(--gray); font-size: 0.85rem; line-height: 1.6; }
+
+  .grn-parallax-cta {
+    position: relative;
+    background: url('/images/testimonials-hero.webp') center / cover no-repeat fixed;
+    padding: 5rem 1.5rem;
+    text-align: center;
+    color: #fff;
+  }
+  .grn-parallax-cta__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.7); }
+  .grn-parallax-cta__content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+  .grn-parallax-cta__content h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); margin-bottom: 1rem; }
+  .grn-parallax-cta__content p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 2rem; line-height: 1.7; }
+
+  @media (max-width: 600px) {
+    .grn-parallax-cta { background-attachment: scroll; }
+  }
+
+  @media (max-width: 768px) {
+    .grn-grid { grid-template-columns: 1fr; }
+    .grn-crosslinks__grid { grid-template-columns: 1fr; }
+  }
+</style>

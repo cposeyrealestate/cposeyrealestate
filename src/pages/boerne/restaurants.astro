@@ -1,0 +1,281 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = 'Best Restaurants in Boerne, TX | Cody Posey Real Estate';
+const pageDescription = 'Where Boerne, TX eats — Cypress Grille, The Creek, Peggy\'s on the Green, Little Gretel, the Dodging Duck Brewhaus, Bear Moon Bakery, and more. Local dining by category, with addresses.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/boerne/restaurants/', image: '/images/areas/boerne.jpg' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Boerne', url: '/boerne/' },
+    { name: 'Restaurants', url: '/boerne/restaurants/' },
+  ]),
+];
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="brn-hero">
+      <div class="brn-hero__overlay"></div>
+      <div class="brn-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/boerne/">Boerne</a> <span>/</span> <span>Restaurants</span>
+        </nav>
+        <h1>Boerne <span style="color:#FF1616;">Restaurants</span></h1>
+        <p>German heritage, Main Street date nights, and a serious breakfast-taco game</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="brn-page-intro brn-page-intro--centered">Boerne's dining scene is stronger than a town of 24,000 has any right to field — the German roots run deep, Main Street punches above its weight for date night, and the breakfast crowd is loyal. Here's where locals actually eat, organized by occasion.</p>
+      </div>
+    </section>
+
+    <!-- Date night & upscale -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Date Night &amp; <span class="accent">Upscale</span></h2>
+        </div>
+        <div class="brn-rest__grid">
+          <div class="brn-rest__card">
+            <h3>Cypress Grille</h3>
+            <p class="brn-rest__addr">170 S Main St</p>
+            <p>Upscale Hill Country wine bar in the heart of downtown Boerne — 4.7 stars, a well-curated wine list, live music, and dishes like Steak Diane, pan-seared scallops, and the much-talked-about Buffalo burger. Pricier, but worth the special-occasion reservation.</p>
+          </div>
+          <div class="brn-rest__card">
+            <h3>The Creek Restaurant</h3>
+            <p class="brn-rest__addr">119 Staffel St</p>
+            <p>Steakhouse and seafood in a rustic, romantic setting with a deck overlooking the creek. One of the most consistently well-reviewed special-occasion rooms in town — book brunch or dinner ahead.</p>
+          </div>
+          <div class="brn-rest__card">
+            <h3>Peggy's on the Green</h3>
+            <p class="brn-rest__addr">128 W Blanco Rd</p>
+            <p>Elevated Southern and American dining in a charming historic spot — brunch, lunch, and dinner with a polished, special-occasion feel.</p>
+          </div>
+          <div class="brn-rest__card">
+            <h3>Valeria</h3>
+            <p class="brn-rest__addr">109 Waterview Pkwy</p>
+            <p>Italian and French-leaning fine dining on the north side — the pick when Main Street is packed and you want a quieter table.</p>
+          </div>
+          <div class="brn-rest__card">
+            <h3>259 Brantley's Bistro</h3>
+            <p class="brn-rest__addr">259 S Main St</p>
+            <p>American grill on Main Street with a cool, easygoing atmosphere — the mid-week dinner spot that works for clients and date nights alike.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- German & Hill Country roots -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>German &amp; <span class="accent">Hill Country Roots</span></h2>
+        </div>
+        <div class="brn-rest__grid">
+          <div class="brn-rest__card">
+            <h3>Little Gretel</h3>
+            <p class="brn-rest__addr">518 River Rd</p>
+            <p>The German kitchen Boerne is known for — schnitzel, strudel, a homey dining room plus a bar and biergarten. German culture is the town's heritage, and this is where it shows up on the plate.</p>
+          </div>
+          <div class="brn-rest__card">
+            <h3>The Dodging Duck Brewhaus</h3>
+            <p class="brn-rest__addr">402 River Rd</p>
+            <p>German-American brewpub on the river with one of the highest review counts in town — smoked sausage platters, house beers, and a patio by the water.</p>
+          </div>
+          <div class="brn-rest__card">
+            <h3>Hungry Horse Restaurant</h3>
+            <p class="brn-rest__addr">109 S Saunders St</p>
+            <p>Homestyle comfort — catfish, chicken-fried steak, adjustable portions. The locals' lunch counter.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Breakfast & casual -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Breakfast &amp; <span class="accent">Casual</span></h2>
+        </div>
+        <div class="brn-rest__grid">
+          <div class="brn-rest__card">
+            <h3>Bear Moon Bakery Cafe</h3>
+            <p class="brn-rest__addr">401 S Main St</p>
+            <p>The breakfast institution — daily buffet, comfort food, and baked goods in a homey cafe. Open for lunch too.</p>
+          </div>
+          <div class="brn-rest__card">
+            <h3>Mary's Tacos</h3>
+            <p class="brn-rest__addr">518 E Blanco Rd</p>
+            <p>The trusted taco spot in a town that doesn't have many — breakfast and lunch tacos done right. Low-key, local, and busy.</p>
+          </div>
+          <div class="brn-rest__card">
+            <h3>Z's Wood Fired Pizza</h3>
+            <p class="brn-rest__addr">118 Old San Antonio Rd</p>
+            <p>Wood-fired pizza in a rustic wood-paneled house with a backyard patio — pair it with beer on tap and it's a party.</p>
+          </div>
+          <div class="brn-rest__card">
+            <h3>The Dienger Trading Co.</h3>
+            <p class="brn-rest__addr">Downtown Boerne</p>
+            <p>Quirky vintage bistro serving breakfast, sandwiches, beer, and wine in a 19th-century building — equal parts cafe and shopping trip.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Explore Boerne cross-links -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Keep <span class="accent">Exploring Boerne</span></h2>
+        </div>
+        <div class="brn-explore__grid">
+          <a href="/boerne/neighborhoods/" class="brn-explore__card">
+            <h3>Neighborhoods</h3>
+            <p>Cordillera Ranch to Esperanza — where Boerne's price points actually land, neighborhood by neighborhood.</p>
+          </a>
+          <a href="/boerne/things-to-do/" class="brn-explore__card">
+            <h3>Things to Do</h3>
+            <p>Caves, the Cibolo Center for Conservation, Boerne City Lake, and the Hill Country Mile — weekends in Boerne.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Parallax CTA -->
+    <section class="brn-parallax-cta">
+      <div class="brn-parallax-cta__overlay"></div>
+      <div class="brn-parallax-cta__content">
+        <h2>Thinking About <span class="accent">Moving to Boerne</span>?</h2>
+        <p>Restaurants tell you who a town is. Boerne's tell you it's a place that takes its heritage seriously and its weekends slowly. If that sounds right, let's talk neighborhoods.</p>
+        <a href="#contact" class="btn btn-outline">Talk to Cody</a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About <span class="accent">Boerne Dining</span></h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Where is the best German food in Boerne?</summary>
+            <p>Little Gretel (518 River Rd) is the dedicated German kitchen — schnitzel, strudel, and a biergarten. The Dodging Duck Brewhaus (402 River Rd) is the German-American brewpub option with smoked sausage platters and house beers by the river.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What are the best breakfast spots in Boerne?</summary>
+            <p>Bear Moon Bakery Cafe (401 S Main St) runs the classic breakfast-and-bakery playbook with a daily buffet. Mary's Tacos (518 E Blanco Rd) is the go-to for breakfast tacos in town.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Where do locals go for a date night in Boerne?</summary>
+            <p>Cypress Grille (170 S Main St) and The Creek Restaurant (119 Staffel St) are the two most consistently well-reviewed upscale rooms downtown. Peggy's on the Green (128 W Blanco Rd) is the historic-venue alternative.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ParallaxBanner image="/images/generated/hill-country-sunset.webp" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Where is the best German food in Boerne?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Little Gretel (518 River Rd) is the dedicated German kitchen — schnitzel, strudel, and a biergarten. The Dodging Duck Brewhaus (402 River Rd) is the German-American brewpub option with smoked sausage platters and house beers by the river."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the best breakfast spots in Boerne?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bear Moon Bakery Cafe (401 S Main St) runs the classic breakfast-and-bakery playbook with a daily buffet. Mary's Tacos (518 E Blanco Rd) is the go-to for breakfast tacos in town."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where do locals go for a date night in Boerne?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cypress Grille (170 S Main St) and The Creek Restaurant (119 Staffel St) are the two most consistently well-reviewed upscale rooms downtown. Peggy's on the Green (128 W Blanco Rd) is the historic-venue alternative."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <ContactForm context="I'd like to learn more about living in Boerne..." />
+  <Footer />
+</Layout>
+
+<style>
+  .brn-hero { position: relative; height: 280px; background: url('/images/areas/boerne.jpg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; }
+  .brn-hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
+  .brn-hero__content { position: relative; z-index: 1; padding: 0 1.5rem; }
+  .brn-hero__content h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 0.75rem; }
+  .brn-hero__content p { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+
+  .breadcrumb { font-size: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.5); }
+  .breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .brn-page-intro { font-size: 1.05rem; color: var(--gray); line-height: 1.8; max-width: 800px; }
+  .brn-page-intro--centered { text-align: center; font-weight: 700; color: var(--black); margin: 0 auto; }
+
+  .brn-rest__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .brn-rest__card { background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); padding: 2rem; }
+  .brn-rest__card h3 { font-family: var(--font-heading); font-size: 1.2rem; text-transform: uppercase; margin-bottom: 0.25rem; }
+  .brn-rest__addr { color: #FF1616; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+  .brn-rest__card p { color: var(--gray); line-height: 1.7; font-size: 0.92rem; }
+
+  .brn-explore__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .brn-explore__card { display: block; background: #fff; border: 1px solid var(--light-gray); padding: 2rem; border-radius: 8px; transition: transform 0.2s, box-shadow 0.2s; }
+  .brn-explore__card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .brn-explore__card h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; margin-bottom: 0.5rem; color: #000; }
+  .brn-explore__card:hover h3 { color: #FF1616; }
+  .brn-explore__card p { color: var(--gray); font-size: 0.85rem; line-height: 1.6; }
+
+  .brn-parallax-cta { position: relative; background: url('/images/testimonials-hero.webp') center / cover no-repeat fixed; padding: 5rem 1.5rem; text-align: center; color: #fff; }
+  .brn-parallax-cta__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.7); }
+  .brn-parallax-cta__content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+  .brn-parallax-cta__content h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); margin-bottom: 1rem; }
+  .brn-parallax-cta__content p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 2rem; line-height: 1.7; }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
+
+  @media (max-width: 768px) {
+    .brn-rest__grid { grid-template-columns: 1fr; }
+    .brn-explore__grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .brn-parallax-cta { background-attachment: scroll; }
+  }
+</style>

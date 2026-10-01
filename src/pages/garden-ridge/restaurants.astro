@@ -1,0 +1,334 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import { articleSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
+
+const pageTitle = 'Best Restaurants in Garden Ridge, TX | Cody Posey';
+const pageDescription = "A local's guide to restaurants in and around Garden Ridge, TX — Wraptitude's live-music patio, Capparelli's Italian, Grumpy's Tex-Mex, and the nearby I-35 dining corridor.";
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/garden-ridge/restaurants/', image: '/images/generated/hill-country-sunset.webp' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Garden Ridge', url: '/garden-ridge/' },
+    { name: 'Restaurants', url: '/garden-ridge/restaurants/' },
+  ]),
+  faqSchema([
+    {
+      q: 'Are there restaurants in Garden Ridge?',
+      a: 'A few — Garden Ridge is almost entirely residential, so the in-city list is short: Wraptitude (burgers, wraps, live music, family patio) on FM 3009, Capparelli\u2019s Italian Food, Pizza, & Catering on FM 3009, and Grumpy\u2019s Mexican Cafe on FM 2252. For a full dining scene, residents drive 10–15 minutes to the I-35 retail corridor in Selma and Schertz.',
+    },
+    {
+      q: 'Where do Garden Ridge families eat out?',
+      a: 'Wraptitude is the default family spot — a shaded outdoor patio, playground, live music, and a burger-and-wrap menu at moderate prices. Capparelli\u2019s is the local Italian night-out pick, and Grumpy\u2019s draws regulars for chicken fried steak and migas breakfasts.',
+    },
+    {
+      q: 'How far is the nearest big dining and shopping corridor?',
+      a: 'The I-35 frontage in Selma and Schertz is about 10 minutes south, with national chains and regional restaurants. Downtown New Braunfels and Gruene\u2019s restaurant row are roughly 15 minutes northeast.',
+    },
+  ]),
+];
+
+const restaurants = [
+  { name: 'Wraptitude', cuisine: 'Burgers & Wraps', description: "Locally owned burger and wrap joint on FM 3009 — char-grilled burgers, wraps, tacos, and local craft beer with live music on the shaded patio. Kid-friendly with a playground, pet-friendly, and a go-to for casual dinners after a day out. The Maverick burger and Cali Club wrap are the signatures.", price: '$$', tags: ['family', 'live-music', 'patio'], address: '23210 FM-3009, San Antonio, TX 78266', url: 'https://wraptitude.com/' },
+  { name: "Capparelli's Italian Food, Pizza, & Catering", cuisine: 'Italian', description: "Family-owned Italian kitchen in the heart of Garden Ridge — scratch-made pizza, baked ziti, fettuccine alfredo, and cheese bread, with takeout and DoorDash. Cozy, moderately priced, and the default Italian night-out for residents.", price: '$$', tags: ['family', 'takeout'], address: '19501 FM3009 #3, Garden Ridge, TX 78266', url: 'https://www.capparellisrestaurantsanantonio.com/' },
+  { name: "Grumpy's Mexican Cafe", cuisine: 'Tex-Mex', description: "Tex-Mex comfort spot on FM 2252 near Bracken — Texas-sized plates, hand-breaded chicken fried steak, migas, and homemade cinnamon crumble muffins. Breakfast and lunch crowd, kid-friendly, and a regular stop for locals on the west side of Garden Ridge.", price: '$$', tags: ['tex-mex', 'breakfast', 'local-favorite'], address: '18817 FM 2252, San Antonio, TX 78266', url: 'https://grumpysmexicancafe.godaddysites.com/' },
+  { name: 'Safari Camp Grill', cuisine: 'American', description: "The on-site grill at the Natural Bridge Wildlife Ranch — a quick, easy lunch stop when you bring the family to the safari. Homemade fudge, burgers, and grill staples with the giraffes a short drive away.", price: '$$', tags: ['family', 'day-trip'], address: '26515 Natural Bridge Caverns Rd, San Antonio, TX 78266', url: 'https://www.wildliferanchtexas.com/safari-camp-grill' },
+  { name: "Cheddar's Scratch Kitchen", cuisine: 'American', description: "The nearest full-service chain sit-down — made-from-scratch comfort food (honey butter croissants, chicken fried steak, chicken alfredo) at the I-35 corridor in Selma, about 10 minutes south. A reliable backup when the local spots are packed.", price: '$$', tags: ['family', 'nearby'], address: '15284 I-35 N, Selma, TX 78154', url: 'https://www.cheddars.com/locations/tx/selma/2063' },
+];
+
+const categories = [...new Set(restaurants.map(r => r.cuisine))];
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="rest-hero">
+      <div class="rest-hero__overlay"></div>
+      <div class="rest-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/garden-ridge/">Garden Ridge</a> <span>/</span> <span>Restaurants</span>
+        </nav>
+        <h1>Garden Ridge <span style="color:#FF1616;">Restaurants</span></h1>
+        <p>A short list — because Garden Ridge is residential — and exactly where locals go</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="rest-intro">Garden Ridge has no commercial strip, so the in-city dining list is short — but it's local, family-run, and good. Wraptitude's live-music patio is the town's gathering spot, Capparelli's handles Italian night, and Grumpy's covers Tex-Mex breakfasts. For a bigger night out, the I-35 corridor in Selma/Schertz is about 10 minutes south, and Gruene's restaurant row is about 15 minutes north.</p>
+      </div>
+    </section>
+
+    <!-- Filter Tabs -->
+    <section class="section" style="background: var(--light-gray); padding-top: 2rem; padding-bottom: 0;">
+      <div class="container">
+        <div class="rest-filters" id="restFilters">
+          <button class="rest-filter rest-filter--active" data-filter="all">All</button>
+          {categories.map(cat => (
+            <button class="rest-filter" data-filter={cat}>{cat}</button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Restaurant List -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="rest-grid" id="restGrid">
+          {restaurants.map(r => (
+            <div class="rest-card" data-cuisine={r.cuisine}>
+              <div class="rest-card__header">
+                <h3>{r.name}</h3>
+                <span class="rest-card__cuisine">{r.cuisine}</span>
+              </div>
+              <p class="rest-card__desc">{r.description}</p>
+              <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.name + ', ' + r.address)}`} target="_blank" rel="noopener" class="rest-card__address">{r.address}</a>
+              <div class="rest-card__footer">
+                <span class="rest-card__price">{r.price}</span>
+                <div class="rest-card__tags">
+                  {r.tags.map(tag => (
+                    <span class="rest-card__tag">{tag.replace(/-/g, ' ')}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Dining corridor note -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>The <span class="accent">10-Minute</span> Corridor</h2>
+          <p>When the local list isn't enough</p>
+        </div>
+        <div class="rest-intro" style="font-weight: 400;">
+          <p style="color: var(--gray); line-height: 1.8; font-size: 0.95rem; max-width: 800px; margin: 0 auto;">Garden Ridge's dining reality: residents drive. The I-35 frontage through Selma and Schertz — about 10 minutes south — has the full chain and regional lineup for weeknight convenience, and downtown New Braunfels / Gruene (about 15 minutes northeast) has the date-night and live-music dining. Buyers who need walkable restaurants should know that before they fall for the lots.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Explore more of Garden Ridge -->
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div class="rest-crosslinks__grid">
+          <a href="/garden-ridge/" class="rest-crosslinks__card"><h3>Garden Ridge Guide</h3><p>Market data, commute times, schools, and the honest overview.</p></a>
+          <a href="/garden-ridge/neighborhoods/" class="rest-crosslinks__card"><h3>Neighborhoods</h3><p>Subdivisions by price, lot size, and builder.</p></a>
+          <a href="/garden-ridge/things-to-do/" class="rest-crosslinks__card"><h3>Things to Do</h3><p>Bats, caverns, trails, parks, and Market Days.</p></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="rest-cta">
+      <div class="rest-cta__overlay"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <h2>Looking for a Home Near Your <span class="accent">Favorite Spots</span>?</h2>
+        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">I can help you find homes in the Garden Ridge neighborhoods closest to the restaurants, shops, and corridors you use most.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Let's Connect</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions About Dining in Garden Ridge</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Are there restaurants in Garden Ridge?</summary>
+          <p>A few — Garden Ridge is almost entirely residential, so the in-city list is short: Wraptitude (burgers, wraps, live music, family patio) on FM 3009, Capparelli's Italian Food, Pizza, &amp; Catering on FM 3009, and Grumpy's Mexican Cafe on FM 2252. For a full dining scene, residents drive 10–15 minutes to the I-35 retail corridor in Selma and Schertz.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Where do Garden Ridge families eat out?</summary>
+          <p>Wraptitude is the default family spot — a shaded outdoor patio, playground, live music, and a burger-and-wrap menu at moderate prices. Capparelli's is the local Italian night-out pick, and Grumpy's draws regulars for chicken fried steak and migas breakfasts.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How far is the nearest big dining and shopping corridor?</summary>
+          <p>The I-35 frontage in Selma and Schertz is about 10 minutes south, with national chains and regional restaurants. Downtown New Braunfels and Gruene's restaurant row are roughly 15 minutes northeast.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <ParallaxBanner image="/images/generated/guadalupe-river.webp" />
+
+  <ContactForm context="I'd like to find homes near the best restaurants around Garden Ridge..." />
+  <Footer />
+</Layout>
+
+<style>
+  .rest-hero {
+    position: relative;
+    height: 280px;
+    background: url('/images/generated/hill-country-sunset.webp') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .rest-hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
+  .rest-hero__content { position: relative; z-index: 1; padding: 0 1.5rem; }
+  .rest-hero__content h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 0.75rem; }
+  .rest-hero__content p { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+
+  .breadcrumb { font-size: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.5); }
+  .breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .rest-intro {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 800px;
+    text-align: center;
+    margin: 0 auto;
+    font-weight: 600;
+  }
+
+  .rest-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    padding-bottom: 2rem;
+  }
+
+  .rest-filter {
+    padding: 0.5rem 1.25rem;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    background: #fff;
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #333;
+  }
+
+  .rest-filter:hover { border-color: #FF1616; color: #FF1616; }
+  .rest-filter--active { background: #FF1616; border-color: #FF1616; color: #fff; }
+  .rest-filter--active:hover { color: #fff; }
+
+  .rest-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .rest-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    border-left: 3px solid #FF1616;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .rest-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .rest-card__header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.75rem; }
+  .rest-card__header h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .rest-card__cuisine {
+    flex-shrink: 0;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #FF1616;
+    background: rgba(255, 22, 22, 0.08);
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+  }
+  .rest-card__desc { color: var(--gray); font-size: 0.88rem; line-height: 1.7; margin-bottom: 1rem; }
+  .rest-card__address { display: block; font-size: 0.82rem; color: #FF1616; margin-bottom: 1rem; transition: opacity 0.2s; }
+  .rest-card__address:hover { opacity: 0.7; }
+  .rest-card__footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f0f0f0; padding-top: 0.75rem; }
+  .rest-card__price { font-family: var(--font-heading); font-weight: 700; font-size: 0.9rem; color: #FF1616; }
+  .rest-card__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .rest-card__tag {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--gray);
+    background: #f5f5f5;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  .rest-crosslinks__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
+  .rest-crosslinks__card { display: block; background: #fff; border: 1px solid var(--light-gray); padding: 1.75rem; border-radius: 8px; transition: transform 0.2s, box-shadow 0.2s; }
+  .rest-crosslinks__card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .rest-crosslinks__card h3 { font-family: var(--font-heading); font-size: 0.95rem; text-transform: uppercase; margin-bottom: 0.5rem; color: #000; }
+  .rest-crosslinks__card:hover h3 { color: #FF1616; }
+  .rest-crosslinks__card p { color: var(--gray); font-size: 0.85rem; line-height: 1.6; }
+
+  .rest-cta {
+    position: relative;
+    padding: 5rem 0;
+    color: #fff;
+    text-align: center;
+    background-image: url('/images/testimonials-hero.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #333;
+  }
+  .rest-cta__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.65); }
+  .rest-cta h2 { color: #fff; }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
+
+  @media (max-width: 600px) {
+    .rest-cta { background-attachment: scroll; }
+  }
+
+  @media (max-width: 768px) {
+    .rest-grid { grid-template-columns: 1fr; }
+    .rest-crosslinks__grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script is:inline>
+  // Filter functionality
+  const filters = document.querySelectorAll('.rest-filter');
+  const cards = document.querySelectorAll('.rest-card');
+
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      filters.forEach(f => f.classList.remove('rest-filter--active'));
+      btn.classList.add('rest-filter--active');
+
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.cuisine === filter) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

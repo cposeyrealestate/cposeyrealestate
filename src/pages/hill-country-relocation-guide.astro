@@ -1,0 +1,1120 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import ParallaxBanner from '../components/ParallaxBanner.astro';
+import PcsLandingPlan from '../components/PcsLandingPlan.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { articleSchema, breadcrumbSchema, faqSchema } from '../lib/schema';
+
+const pageTitle = 'Texas Hill Country Relocation Guide 2026 | Cody Posey';
+const pageDescription =
+  'Relocating to the Texas Hill Country? This 2026 guide compares neighborhoods, cost of living, schools, property taxes, and VA loan options — by Cody Posey.';
+
+const faqItems = [
+  {
+    q: 'Is the Texas Hill Country actually affordable in 2026?',
+    a: 'Compared to where most relocators come from, yes — with eyes open. The San Antonio–New Braunfels metro median list price was $324,000 in August 2026 (Realtor.com), about $211,000 below Austin and roughly in line with the national median. San Antonio runs about 9% below the U.S. cost-of-living average, and nearly all of that gap is housing. The honest part: property taxes run 1.7–2.2% locally and insurance averages around $4,560/year, so budget the full monthly payment, not just the mortgage. Call/text (830) 360-5569 and I\'ll run real numbers for your price point before you fly in.',
+  },
+  {
+    q: 'What is the best area for military families near JBSA?',
+    a: 'It depends on your installation. Cibolo and Schertz sit closest to Randolph AFB with SCUCISD schools and quick gate access; the I-35 corridor through New Braunfels works well for Fort Sam Houston; and Bulverde and the northwest side shorten the Lackland drive. The full breakdown — commute times, BAH by rank, and school notes — is in the military relocation guide at /military-relocation/. If you want a second set of eyes on your shortlist, call/text (830) 360-5569.',
+  },
+  {
+    q: 'How much are property taxes in the Texas Hill Country?',
+    a: 'Plan on 1.7–2.2% of assessed value per year once city, county, school district, and special districts stack up. On a $350,000 home that is roughly $5,950–$7,700 a year before exemptions. Texas raised the school-district homestead exemption to $140,000 in November 2025, and veterans rated 100% disabled pay zero property tax on their homestead under Texas Tax Code §11.131. File your homestead exemption the week you close — it caps annual appraisal growth at 10%.',
+  },
+  {
+    q: 'What is the commute really like on I-35?',
+    a: 'Honest answer: I-35 between San Antonio and Austin is one of the most congested corridors in Texas. The 80-mile drive takes about 1.5 hours off-peak and can stretch past 2.5 hours on a Friday afternoon. Loop 1604 around San Antonio is the other choke point. If you commute daily, live on the same side of the corridor as your job — or negotiate remote days before you pick a ZIP code.',
+  },
+  {
+    q: 'Is new construction a good buy in this market?',
+    a: 'Sometimes — but do the tax math first. New communities often sit inside MUDs or PIDs, which layer extra assessments on top of the base rate and can push your effective tax well above 2%. Builders also price with incentives that don\'t always survive the appraisal. Get the full tax-rate breakdown for the specific community, compare it to a comparable resale, and make sure your agent knows how to negotiate builder contracts. I work both sides of this regularly.',
+  },
+  {
+    q: 'Where do I start if I am PCSing from out of state?',
+    a: 'Start with the PCS Landing Plan below: lock your numbers 60–90 days out (VA pre-approval plus BAH mapped against real taxes and insurance), target the right installation, buy from anywhere with video walkthroughs, and time closing to your report date. Check current BAH rates at /military-relocation/bah-rates/ and make sure your agent is genuinely VA-savvy — the guide at /va-savvy-agent/ shows what to ask. Call/text (830) 360-5569 when you have orders and I\'ll build your battle rhythm from there.',
+  },
+  {
+    q: 'How do school districts work across the corridor?',
+    a: 'Four districts cover most of the corridor: Comal ISD (fastest-growing, serves west/south New Braunfels, Canyon Lake, Bulverde, Garden Ridge), New Braunfels ISD (central NB and Gruene), SCUCISD (Schertz, Cibolo, Universal City), and Boerne ISD (Boerne and Fair Oaks Ranch, TEA A-rated). Attendance is by street address, not city name — verify every address with the district before you buy. Always confirm individual campus ratings at tea.texas.gov — district reputations don\'t always reflect individual campuses.',
+  },
+];
+
+const pageSchema = [
+  articleSchema({
+    title: pageTitle,
+    description: pageDescription,
+    url: '/hill-country-relocation-guide/',
+    image: '/images/areas/new-braunfels.jpg',
+    datePublished: '2026-10-01',
+    dateModified: '2026-10-01',
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Texas Hill Country Relocation Guide', url: '/hill-country-relocation-guide/' },
+  ]),
+  faqSchema(faqItems),
+].filter(Boolean);
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  type="article"
+  publishedTime="2026-10-01"
+  modifiedTime="2026-10-01"
+  schema={pageSchema}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- 1. Credibility eyebrow bar -->
+    <div class="hc-eyebrow">
+      <div class="container">
+        2026 Guide &nbsp;·&nbsp; No State Income Tax &nbsp;·&nbsp; I-35 Corridor &nbsp;·&nbsp; Written by Cody Posey, U.S. Army First Sergeant (Ret.), REALTOR®
+      </div>
+    </div>
+
+    <!-- 2. Hero -->
+    <div class="hc-hero">
+      <div class="hc-hero__overlay"></div>
+      <div class="hc-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <span>Texas Hill Country Relocation Guide</span>
+        </nav>
+        <h1>Texas Hill Country <span style="color:#FF1616;">Relocation Guide</span></h1>
+        <p class="hc-hero__sub">For PCS military families, remote workers, retirees, and Austin refugees — the data-driven guide to neighborhoods, costs, schools, and taxes along the I-35 corridor.</p>
+      </div>
+    </div>
+
+    <!-- 3. Author credibility block -->
+    <section class="section hc-author">
+      <div class="container">
+        <div class="hc-author__inner">
+          <img src="/images/cody-posey-headshot.jpg" alt="Cody Posey, REALTOR®" class="hc-author__photo" />
+          <div>
+            <p class="hc-author__eyebrow">Written by</p>
+            <h2>Cody Posey</h2>
+            <p class="hc-author__creds">U.S. Army First Sergeant (Retired) — 20 years of service · REALTOR® with Popby Realty · Texas license #822002-SA · AI &amp; Technology Leader at his brokerage</p>
+            <p>I relocated my own family on military orders. I have bought, sold, and guided hundreds of moves along this corridor. This guide is what I tell every relocating buyer in our first conversation — the numbers, the trade-offs, and the parts most agents skip. <a href="/about/">More about me →</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Stat band -->
+    <section class="section hc-stats" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>The Corridor <span class="accent">by the Numbers</span></h2>
+          <p>Every stat below is sourced and date-stamped. No rounded-up marketing numbers.</p>
+        </div>
+        <div class="hc-stats__grid">
+          <div class="hc-stat">
+            <span class="hc-stat__number">Top 3</span>
+            <span class="hc-stat__label">Fastest-growing U.S. city 2010–2020 — New Braunfels, +56.4% (U.S. Census)</span>
+            <span class="hc-stat__date">as of Sept 2026</span>
+          </div>
+          <div class="hc-stat">
+            <span class="hc-stat__number">0%</span>
+            <span class="hc-stat__label">Texas state income tax — on wages, retirement pay, and VA disability</span>
+            <span class="hc-stat__date">as of Sept 2026</span>
+          </div>
+          <div class="hc-stat">
+            <span class="hc-stat__number">$324K</span>
+            <span class="hc-stat__label">SA–New Braunfels metro median list price — $211K below Austin (Realtor.com)</span>
+            <span class="hc-stat__date">as of Sept 2026</span>
+          </div>
+          <div class="hc-stat">
+            <span class="hc-stat__number">3</span>
+            <span class="hc-stat__label">JBSA installations — Fort Sam Houston, Randolph, Lackland; largest joint base in the DoD</span>
+            <span class="hc-stat__date">as of Sept 2026</span>
+          </div>
+          <div class="hc-stat">
+            <span class="hc-stat__number">80 mi</span>
+            <span class="hc-stat__label">San Antonio to Austin via I-35 — ~1.5 hrs off-peak, 2.5+ at rush hour</span>
+            <span class="hc-stat__date">as of Sept 2026</span>
+          </div>
+          <div class="hc-stat">
+            <span class="hc-stat__number">7%+</span>
+            <span class="hc-stat__label">30-year mortgage rates crossed 7% in September 2026 (Realtor.com)</span>
+            <span class="hc-stat__date">as of Sept 2026</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. The Honest Overview -->
+    <section class="section hc-overview">
+      <div class="container">
+        <div class="section-title">
+          <h2>The Honest <span class="accent">Overview</span></h2>
+          <p>Three corridors, three different lives. Pick the one that matches your commute and your budget.</p>
+        </div>
+        <div class="hc-overview__grid">
+          <div class="hc-overview__card">
+            <h3>I-35 Corridor: New Braunfels ↔ San Antonio</h3>
+            <p>The growth engine. New Braunfels sits midway between the two metros — about 30 minutes to downtown San Antonio, 45 to Austin off-peak. Median list price $379,000 (Sept 2026). This is where the jobs, the new construction, and the river weekends are. It is also where the traffic is.</p>
+          </div>
+          <div class="hc-overview__card">
+            <h3>Hill Country West: Boerne &amp; Bulverde</h3>
+            <p>The lifestyle play. Rolling hills, acreage, top-rated schools, and a real small-town core in Boerne. Median list prices run $650K–$685K — you pay a premium for the view and the schools. The I-10 commute into San Antonio is 30–35 minutes off-peak and 50+ at rush hour.</p>
+          </div>
+          <div class="hc-overview__card">
+            <h3>SA-Adjacent East: Cibolo &amp; Schertz</h3>
+            <p>The value corridor. Newer subdivisions, SCUCISD schools, and the shortest drives to Randolph AFB and northeast San Antonio employers. The most house per dollar on this list — and the best fit for most PCS families reporting to Randolph.</p>
+          </div>
+        </div>
+
+        <div class="hc-watchouts">
+          <h3>Watch-outs I tell every buyer</h3>
+          <ul>
+            <li><strong>Property taxes are real.</strong> Local rates run 1.7–2.2% once city, county, school, and special districts stack. On a $350,000 home that is roughly $5,950–$7,700 per year before exemptions. Texas has no income tax — this is how the state gets paid. File your homestead exemption immediately; it caps annual appraisal growth at 10%.</li>
+            <li><strong>Summer heat is a budget line.</strong> Expect 100+ degree stretches June through September. Average summer electric bills run $220–$280/month for a typical home (electricrates.org, 2026) — size your AC expectations and your budget accordingly.</li>
+            <li><strong>I-35 and Loop 1604 at rush hour.</strong> The 80-mile San Antonio–Austin drive can take 2.5+ hours on a Friday afternoon. Loop 1604 around San Antonio is the local choke point. Live on the same side of the corridor as your job, or negotiate remote days before you pick a ZIP code.</li>
+            <li><strong>MUDs and PIDs in new construction.</strong> New communities often sit inside Municipal Utility Districts or Public Improvement Districts that layer extra assessments on top of the base tax rate. Always get the full stacked rate for the specific community — not the builder's headline number.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Who Is Moving Here -->
+    <section class="section hc-personas" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Who Is <span class="accent">Moving Here</span></h2>
+          <p>Four buyer profiles, four different playbooks</p>
+        </div>
+        <div class="hc-personas__grid">
+          <div class="hc-persona">
+            <p class="hc-persona__label">PCS Military Families</p>
+            <h3>Orders to JBSA?</h3>
+            <p>Your priorities are VA loan execution, BAH that actually covers the payment, and a remote closing that survives a report-date change. I run PCS buys start to finish — video walkthroughs, power of attorney, and exemptions filed at closing. Start with the <a href="/military-relocation/">military relocation guide</a>, check <a href="/military-relocation/bah-rates/">2026 BAH rates</a>, and read <a href="/va-savvy-agent/">how to choose a VA-savvy agent</a>.</p>
+          </div>
+          <div class="hc-persona">
+            <p class="hc-persona__label">Remote Workers &amp; Austin Refugees</p>
+            <h3>Keep the salary, lose the cost</h3>
+            <p>No state income tax, Hill Country views, and a median price roughly $211,000 below Austin. The I-35 corridor gives you fiber-connected subdivisions 45 minutes from Austin when you need to be there — and a mortgage that does not eat your raise. New Braunfels and the Schertz/Cibolo corridor are where most remote buyers land.</p>
+          </div>
+          <div class="hc-persona">
+            <p class="hc-persona__label">Retirees</p>
+            <h3>Quiet acreage, lower carrying costs</h3>
+            <p>Texas exempts retirement pay from state income tax (there is none), and homeowners 65+ get an additional $60,000 school-district exemption plus a freeze on school taxes. Canyon Lake and Bulverde offer quiet acreage and lake access without the San Antonio pace. I will walk you through the over-65 exemptions at closing — they are worth real money every year.</p>
+          </div>
+          <div class="hc-persona">
+            <p class="hc-persona__label">Young Families &amp; First-Time Buyers</p>
+            <h3>Your entry point exists</h3>
+            <p>Seguin's median sold price was $275,000 in August 2026 — the most affordable entry point on the corridor — and SCUCISD schools draw young families to Cibolo and Schertz. With rates above 7%, the play is buying the right payment today and refinancing later, not waiting for a market that keeps growing. I will run the full monthly payment — taxes, insurance, HOA — before you write a single offer.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Best Areas by Lifestyle -->
+    <section class="section hc-areas">
+      <div class="container">
+        <div class="section-title">
+          <h2>Best Areas <span class="accent">by Lifestyle</span></h2>
+          <p>Price ranges are approximate as of Sept 2026 — medians move monthly. Full guides linked on each card.</p>
+        </div>
+        <div class="hc-areas__grid">
+          <a href="/new-braunfels/" class="hc-area">
+            <img src="/images/areas/new-braunfels.jpg" alt="New Braunfels, Texas" loading="lazy" />
+            <div class="hc-area__body">
+              <h3>New Braunfels</h3>
+              <p>The corridor anchor — rivers, Gruene, and the fastest-growing city in the region, midway between San Antonio and Austin.</p>
+              <ul>
+                <li><strong>Price range:</strong> ~$250K–$700K+ (median list $379K, Sept 2026)</li>
+                <li><strong>Schools:</strong> New Braunfels ISD / Comal ISD</li>
+                <li><strong>Commute:</strong> ~30 min to San Antonio, ~45 min to Austin</li>
+              </ul>
+              <span class="hc-area__link">New Braunfels Guide →</span>
+            </div>
+          </a>
+          <a href="/canyon-lake/" class="hc-area">
+            <img src="/images/areas/canyon-lake.jpg" alt="Canyon Lake, Texas" loading="lazy" />
+            <div class="hc-area__body">
+              <h3>Canyon Lake</h3>
+              <p>Lake life in the Hill Country — waterfront and hilltop homes 20 minutes north of New Braunfels, built for weekends on the water.</p>
+              <ul>
+                <li><strong>Price range:</strong> ~$350K–$775K (median list ~$468K)</li>
+                <li><strong>Schools:</strong> Comal ISD</li>
+                <li><strong>Commute:</strong> ~40 min to San Antonio</li>
+              </ul>
+              <span class="hc-area__link">Canyon Lake Guide →</span>
+            </div>
+          </a>
+          <a href="/seguin/" class="hc-area">
+            <img src="/images/areas/seguin.jpg" alt="Seguin, Texas" loading="lazy" />
+            <div class="hc-area__body">
+              <h3>Seguin</h3>
+              <p>The affordability play — the corridor's lowest entry prices, a historic downtown, and easy I-10 access east of San Antonio.</p>
+              <ul>
+                <li><strong>Price range:</strong> ~$200K–$400K+ (median sold $275K, Aug 2026)</li>
+                <li><strong>Schools:</strong> Seguin ISD</li>
+                <li><strong>Commute:</strong> ~35 min to San Antonio</li>
+              </ul>
+              <span class="hc-area__link">Seguin Guide →</span>
+            </div>
+          </a>
+          <a href="/cibolo-schertz/" class="hc-area">
+            <img src="/images/areas/cibolo-schertz.jpg" alt="Cibolo and Schertz, Texas" loading="lazy" />
+            <div class="hc-area__body">
+              <h3>Cibolo / Schertz</h3>
+              <p>Master-planned value — newer subdivisions, SCUCISD schools, and the shortest drive to Randolph AFB. The PCS-family favorite.</p>
+              <ul>
+                <li><strong>Price range:</strong> ~$280K–$450K (approximate)</li>
+                <li><strong>Schools:</strong> Schertz-Cibolo-Universal City ISD</li>
+                <li><strong>Commute:</strong> ~20–25 min to San Antonio / Randolph AFB</li>
+              </ul>
+              <span class="hc-area__link">Cibolo / Schertz Guide →</span>
+            </div>
+          </a>
+          <a href="/bulverde/" class="hc-area">
+            <img src="/images/areas/bulverde.jpg" alt="Bulverde, Texas" loading="lazy" />
+            <div class="hc-area__body">
+              <h3>Bulverde</h3>
+              <p>Front-porch Hill Country — larger lots, highly rated Comal ISD schools, and a quieter pace 10 minutes north of San Antonio.</p>
+              <ul>
+                <li><strong>Price range:</strong> ~$450K–$1M+ (median list ~$652K, 78163)</li>
+                <li><strong>Schools:</strong> Comal ISD</li>
+                <li><strong>Commute:</strong> ~25–30 min to San Antonio</li>
+              </ul>
+              <span class="hc-area__link">Bulverde Guide →</span>
+            </div>
+          </a>
+          <a href="/garden-ridge/" class="hc-area">
+            <img src="/images/areas/garden-ridge.jpg" alt="Garden Ridge, Texas" loading="lazy" />
+            <div class="hc-area__body">
+              <h3>Garden Ridge</h3>
+              <p>Upscale and tucked away — estate-style homes on wooded lots just off 1604, minutes from San Antonio with a Hill Country feel.</p>
+              <ul>
+                <li><strong>Price range:</strong> ~$500K–$1M+ (approximate)</li>
+                <li><strong>Schools:</strong> Comal ISD</li>
+                <li><strong>Commute:</strong> ~20 min to San Antonio</li>
+              </ul>
+              <span class="hc-area__link">Garden Ridge Guide →</span>
+            </div>
+          </a>
+          <a href="/boerne/" class="hc-area">
+            <img src="/images/areas/boerne.jpg" alt="Boerne, Texas" loading="lazy" />
+            <div class="hc-area__body">
+              <h3>Boerne</h3>
+              <p>The premium Hill Country town — historic Main Street, A-rated schools, and acreage west of San Antonio on I-10. You pay for the address.</p>
+              <ul>
+                <li><strong>Price range:</strong> ~$450K–$1.2M+ (median list ~$674–685K, Sept 2026)</li>
+                <li><strong>Schools:</strong> Boerne ISD (TEA A-rated)</li>
+                <li><strong>Commute:</strong> ~30–35 min to San Antonio off-peak</li>
+              </ul>
+              <span class="hc-area__link">Boerne Guide →</span>
+            </div>
+          </a>
+          <a href="/san-antonio/" class="hc-area">
+            <img src="/images/areas/san-antonio.jpg" alt="San Antonio, Texas" loading="lazy" />
+            <div class="hc-area__body">
+              <h3>San Antonio</h3>
+              <p>The metro itself — 1.5 million people, the jobs, the medical center, JBSA, and the most housing choice at the lowest median price.</p>
+              <ul>
+                <li><strong>Price range:</strong> ~$220K–$600K+ (median list $289.9K, Sept 2026)</li>
+                <li><strong>Schools:</strong> Multiple — NEISD, Northside, Judson, SAISD</li>
+                <li><strong>Commute:</strong> 15–30 min to JBSA installations</li>
+              </ul>
+              <span class="hc-area__link">San Antonio Guide →</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Cost of living -->
+    <section class="section hc-col" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Cost of <span class="accent">Living</span></h2>
+          <p>The full monthly picture — not just the mortgage</p>
+        </div>
+        <div class="hc-tablewrap">
+          <table class="hc-table">
+            <thead>
+              <tr><th>Category</th><th>What to expect</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>State income tax</strong></td>
+                <td>0% — Texas has no state income tax on wages, retirement pay, or VA disability compensation.</td>
+              </tr>
+              <tr>
+                <td><strong>Median home price by area</strong></td>
+                <td>San Antonio $289.9K · San Antonio–New Braunfels metro $324K · New Braunfels $379K · Austin $535K (median list, Realtor.com, Sept 2026)</td>
+              </tr>
+              <tr>
+                <td><strong>Property tax rate</strong></td>
+                <td>1.7–2.2% effective locally once city, county, school, and special districts stack. On a $350K home: roughly $5,950–$7,700/year before exemptions.</td>
+              </tr>
+              <tr>
+                <td><strong>Summer electricity / AC</strong></td>
+                <td>$220–$280/month June–September for a typical home; ~$164/month annual average (electricrates.org, 2026). Texas lets you shop providers — do it every contract cycle.</td>
+              </tr>
+              <tr>
+                <td><strong>Homeowners insurance</strong></td>
+                <td>~$4,560/year state average (Insurify, mid-2026) — 7th highest in the U.S. Hail is the driver here. Roof age and deductible structure move your quote more than your ZIP code.</td>
+              </tr>
+              <tr>
+                <td><strong>Groceries &amp; dining</strong></td>
+                <td>Track close to the Texas average — San Antonio runs about 9% below the U.S. cost-of-living average, and nearly all of that gap is housing, not groceries.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="hc-vetnote">
+          <h3>Veterans: your property tax exemptions</h3>
+          <p><strong>100% disabled (VA-rated):</strong> zero property tax on your homestead — every taxing entity — under Texas Tax Code §11.131. <strong>All homeowners:</strong> $140,000 school-district homestead exemption (raised by Prop 13, Nov 2025) plus a 10% annual cap on appraisal growth. <strong>Partial disability ratings:</strong> $5,000–$12,000 off assessed value under §11.22. File through your county appraisal district the week you close.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Schools by area -->
+    <section class="section hc-schools">
+      <div class="container">
+        <div class="section-title">
+          <h2>Schools <span class="accent">by Area</span></h2>
+          <p>Attendance is by street address — verify every home with the district before you buy</p>
+        </div>
+        <div class="hc-schools__grid">
+          <a href="https://www.comalisd.org" target="_blank" rel="noopener" class="hc-schools__card">
+            <h3>Comal ISD</h3>
+            <p>One of the fastest-growing districts in Texas. Serves west and south New Braunfels, Canyon Lake, Bulverde, and Garden Ridge — including most new-construction communities.</p>
+            <span class="hc-schools__link">Visit Comal ISD Website →</span>
+          </a>
+          <a href="https://www.nbisd.org" target="_blank" rel="noopener" class="hc-schools__card">
+            <h3>New Braunfels ISD</h3>
+            <p>Serves central New Braunfels, downtown, Gruene, and the Veramendi area. Long-established district with deep community roots.</p>
+            <span class="hc-schools__link">Visit NBISD Website →</span>
+          </a>
+          <a href="https://www.scucisd.org" target="_blank" rel="noopener" class="hc-schools__card">
+            <h3>Schertz-Cibolo-Universal City ISD</h3>
+            <p>Fast-growth district covering Schertz, Cibolo, Universal City, and Selma across Bexar and Guadalupe counties — the Randolph AFB corridor.</p>
+            <span class="hc-schools__link">Visit SCUCISD Website →</span>
+          </a>
+          <a href="https://www.boerneisd.net" target="_blank" rel="noopener" class="hc-schools__card">
+            <h3>Boerne ISD</h3>
+            <p>TEA "A"-rated district serving Boerne, Fair Oaks Ranch, and Scenic Oaks, with a graduation rate above 98%. Premium schools, premium home prices.</p>
+            <span class="hc-schools__link">Visit Boerne ISD Website →</span>
+          </a>
+        </div>
+        <p class="hc-schools__note">Always confirm individual campus ratings at tea.texas.gov — district reputations don't always reflect individual campuses.</p>
+      </div>
+    </section>
+
+    <!-- 10. Jobs & Economy -->
+    <section class="section hc-jobs" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Jobs &amp; <span class="accent">Economy</span></h2>
+          <p>What actually employs the corridor</p>
+        </div>
+        <div class="hc-jobs__grid">
+          <div class="hc-jobs__card">
+            <h3>Military &amp; Defense</h3>
+            <p>Joint Base San Antonio — Fort Sam Houston, Randolph, and Lackland — is the largest joint base in the DoD, supporting 80,000+ personnel plus 250,000+ retirees in the area. The single biggest economic engine in the region.</p>
+          </div>
+          <div class="hc-jobs__card">
+            <h3>Healthcare</h3>
+            <p>South Texas Medical Center anchors Methodist, Baptist, UT Health San Antonio, and Christus Santa Rosa — one of the largest medical employment clusters in the state, with facilities spreading up the corridor.</p>
+          </div>
+          <div class="hc-jobs__card">
+            <h3>Tech &amp; Cybersecurity</h3>
+            <p>"Cyber City USA" — NSA Texas, USAA's tech operations, and a growing cybersecurity corridor around Port San Antonio. Remote tech workers relocating from Austin and the coasts keep arriving.</p>
+          </div>
+          <div class="hc-jobs__card">
+            <h3>Tourism &amp; Hospitality</h3>
+            <p>The River Walk, Gruene, Schlitterbahn, and Canyon Lake draw millions of visitors a year — and that visitor economy supports a deep bench of hospitality, retail, and service jobs across Comal County.</p>
+          </div>
+          <div class="hc-jobs__card">
+            <h3>Remote Work</h3>
+            <p>No state income tax, lower housing costs than Austin or the coasts, and expanding fiber coverage make the corridor a natural landing zone for remote workers keeping big-city salaries.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. PCS Landing Plan -->
+    <PcsLandingPlan />
+
+    <!-- Parallax divider -->
+    <ParallaxBanner image="/images/areas/canyon-lake.jpg" height="280px" />
+
+    <!-- 12. FAQ -->
+    <section class="section hc-faq">
+      <div class="container">
+        <div class="section-title">
+          <h2>Relocation <span class="accent">FAQ</span></h2>
+          <p>The questions every relocating buyer asks — answered straight</p>
+        </div>
+        <div class="hc-faq__list">
+          {faqItems.map((item) => (
+            <details class="hc-faq__item">
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. Final CTA -->
+    <section class="section hc-final" style="background:#0a0a0a;">
+      <div class="container hc-final__content">
+        <h2>Moving to the Hill Country? <span class="accent">Start With the Numbers.</span></h2>
+        <p>One conversation: your timeline, your budget, your installation or your remote setup — and a short list of areas that actually fit. No pressure, no pitch. Just the data and an honest read on where you land.</p>
+        <div class="nb-cta__buttons">
+          <a href="#contact" class="btn btn-primary">Talk to Cody</a>
+          <a href="tel:+18303605569" class="btn btn-outline">Call/Text (830) 360-5569</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <ContactForm context="I'm relocating to the Texas Hill Country and I'd like help figuring out where to land..." />
+  <Footer />
+</Layout>
+
+<style>
+  /* Eyebrow bar */
+  .hc-eyebrow {
+    background: #0a0a0a;
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.75rem 0;
+    text-align: center;
+  }
+
+  /* Hero */
+  .hc-hero {
+    position: relative;
+    min-height: 420px;
+    background: url('/images/areas/new-braunfels.jpg') center/cover no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .hc-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+  }
+
+  .hc-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 3rem 1.5rem;
+    max-width: 820px;
+  }
+
+  .hc-hero__content h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+  }
+
+  .hc-hero__sub {
+    color: rgba(255,255,255,0.85);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 0 auto;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #FF1616;
+  }
+
+  .breadcrumb span {
+    margin: 0 0.3rem;
+  }
+
+  /* Author block */
+  .hc-author__inner {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 2rem;
+    align-items: start;
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    padding: 2rem;
+  }
+
+  .hc-author__photo {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .hc-author__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #FF1616;
+    margin-bottom: 0.25rem;
+  }
+
+  .hc-author__inner h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .hc-author__creds {
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 0.75rem;
+  }
+
+  .hc-author__inner p {
+    color: var(--gray);
+    line-height: 1.7;
+    font-size: 0.95rem;
+  }
+
+  .hc-author__inner a {
+    color: #FF1616;
+    font-weight: 700;
+  }
+
+  /* Stat band */
+  .hc-stats__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .hc-stat {
+    background: #fff;
+    padding: 1.75rem 1.5rem;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .hc-stat__number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #FF1616;
+  }
+
+  .hc-stat__label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-top: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .hc-stat__date {
+    display: block;
+    font-size: 0.7rem;
+    color: #999;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* Honest overview */
+  .hc-overview__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .hc-overview__card {
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    border-top: 4px solid #FF1616;
+    padding: 2rem;
+    border-radius: 8px;
+  }
+
+  .hc-overview__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .hc-overview__card p {
+    color: var(--gray);
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  .hc-watchouts {
+    margin-top: 2.5rem;
+    background: #0a0a0a;
+    color: #fff;
+    padding: 2.5rem;
+    border-radius: 8px;
+  }
+
+  .hc-watchouts h3 {
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .hc-watchouts ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .hc-watchouts li {
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
+    font-size: 0.95rem;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .hc-watchouts li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #FF1616;
+    font-weight: 800;
+  }
+
+  .hc-watchouts strong {
+    color: #fff;
+  }
+
+  /* Personas */
+  .hc-personas__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .hc-persona {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .hc-persona__label {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #FF1616;
+    border: 1px solid #FF1616;
+    border-radius: 4px;
+    padding: 0.3rem 0.7rem;
+    margin-bottom: 1rem;
+  }
+
+  .hc-persona h3 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .hc-persona p {
+    color: var(--gray);
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  .hc-persona a {
+    color: #FF1616;
+    font-weight: 700;
+  }
+
+  /* Area cards */
+  .hc-areas__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .hc-area {
+    display: block;
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .hc-area:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .hc-area img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hc-area__body {
+    padding: 1.75rem;
+  }
+
+  .hc-area__body h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #000;
+  }
+
+  .hc-area:hover .hc-area__body h3 {
+    color: #FF1616;
+  }
+
+  .hc-area__body p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .hc-area__body ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .hc-area__body li {
+    font-size: 0.85rem;
+    color: var(--gray);
+  }
+
+  .hc-area__body li strong {
+    color: #000;
+  }
+
+  .hc-area__link {
+    display: inline-block;
+    color: #FF1616;
+    font-weight: 700;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* Cost of living table */
+  .hc-tablewrap {
+    overflow-x: auto;
+  }
+
+  .hc-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .hc-table th {
+    background: #0a0a0a;
+    color: #fff;
+    text-align: left;
+    padding: 1rem 1.5rem;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .hc-table td {
+    padding: 1.1rem 1.5rem;
+    border-top: 1px solid var(--light-gray);
+    font-size: 0.92rem;
+    color: var(--gray);
+    line-height: 1.6;
+    vertical-align: top;
+  }
+
+  .hc-table td:first-child {
+    white-space: nowrap;
+  }
+
+  .hc-table td strong {
+    color: #000;
+  }
+
+  .hc-vetnote {
+    margin-top: 1.5rem;
+    background: #fff;
+    border-left: 4px solid #FF1616;
+    padding: 1.75rem;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .hc-vetnote h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .hc-vetnote p {
+    color: var(--gray);
+    font-size: 0.92rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .hc-vetnote strong {
+    color: #000;
+  }
+
+  /* Schools */
+  .hc-schools__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .hc-schools__card {
+    display: block;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .hc-schools__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .hc-schools__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .hc-schools__card p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .hc-schools__link {
+    display: inline-block;
+    color: #FF1616;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-top: 0.75rem;
+  }
+
+  .hc-schools__note {
+    text-align: center;
+    font-style: italic;
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+  }
+
+  /* Jobs */
+  .hc-jobs__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .hc-jobs__card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .hc-jobs__card:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .hc-jobs__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .hc-jobs__card p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* FAQ */
+  .hc-faq__list {
+    max-width: 860px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .hc-faq__item {
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .hc-faq__item summary {
+    padding: 1.25rem 1.5rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hc-faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .hc-faq__item summary::after {
+    content: '+';
+    color: #FF1616;
+    font-size: 1.4rem;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .hc-faq__item[open] summary::after {
+    content: '–';
+  }
+
+  .hc-faq__item p {
+    padding: 0 1.5rem 1.5rem;
+    color: var(--gray);
+    font-size: 0.92rem;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  /* Final CTA */
+  .hc-final {
+    text-align: center;
+    color: #fff;
+    padding: 5rem 0;
+  }
+
+  .hc-final__content h2 {
+    color: #fff;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    margin-bottom: 1rem;
+  }
+
+  .hc-final__content p {
+    color: rgba(255,255,255,0.7);
+    max-width: 640px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
+  }
+
+  .nb-cta__buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .hc-stats__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hc-overview__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hc-author__inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .hc-author__photo {
+      margin: 0 auto;
+    }
+
+    .hc-personas__grid,
+    .hc-areas__grid,
+    .hc-schools__grid,
+    .hc-jobs__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hc-jobs__card:last-child {
+      grid-column: auto;
+    }
+
+    .hc-table td:first-child {
+      white-space: normal;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hc-hero {
+      background-attachment: scroll;
+    }
+
+    .hc-stats__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hc-watchouts {
+      padding: 1.75rem;
+    }
+  }
+</style>

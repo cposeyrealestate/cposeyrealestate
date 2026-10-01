@@ -1,0 +1,278 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ParallaxBanner from '../../components/ParallaxBanner.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+const pageTitle = 'Boerne, TX Neighborhoods | Cody Posey Real Estate';
+const pageDescription = 'Boerne, TX neighborhoods explained — Cordillera Ranch, Esperanza, Tapatio Springs, River Mountain Ranch, Trails at Herff Ranch, and the historic core. Price ranges, lifestyle, and which areas fit your commute.';
+const pageSchema = [
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/boerne/neighborhoods/', image: '/images/areas/boerne.jpg' }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Boerne', url: '/boerne/' },
+    { name: 'Neighborhoods', url: '/boerne/neighborhoods/' },
+  ]),
+];
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  schema={pageSchema}
+>
+  <Navbar />
+  <main style="padding-top: 80px;">
+
+    <!-- Hero -->
+    <div class="brn-hero">
+      <div class="brn-hero__overlay"></div>
+      <div class="brn-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/boerne/">Boerne</a> <span>/</span> <span>Neighborhoods</span>
+        </nav>
+        <h1>Boerne <span style="color:#FF1616;">Neighborhoods</span></h1>
+        <p>Resort communities, master plans, and Hill Country acreage — where your budget actually goes</p>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <p class="brn-page-intro brn-page-intro--centered">Boerne splits cleanly into three worlds: luxury resort communities west of town, master-planned growth on the I-10 side, and the historic core where small lots carry the highest price per square foot in town. Neighborhood medians in 2026 run from roughly $476K (Tapatio Springs) to $2.55M (Cordillera Ranch) — so "the Boerne market" depends entirely on which Boerne you buy. Here's the breakdown.</p>
+      </div>
+    </section>
+
+    <!-- Resort & Golf -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Resort &amp; <span class="accent">Golf Communities</span></h2>
+        </div>
+        <div class="brn-neighborhood__grid">
+          <div class="brn-neighborhood__card">
+            <h3>Cordillera Ranch</h3>
+            <p>The luxury benchmark for the entire San Antonio metro. An 8,700-acre guard-gated community off Hwy 46 near Bergheim with the Jack Nicklaus Signature golf course, Guadalupe River frontage, spa and fitness facilities, equestrian and rod-and-gun clubs, and roughly 1,200 homesites on acreage lots. Preferred custom builders, resort-level amenities, and prices to match — this is where Boerne's top end lives.</p>
+            <div class="brn-neighborhood__tags">
+              <span class="brn-neighborhood__tag">$2.55M median listing</span>
+              <span class="brn-neighborhood__tag">Boerne ISD</span>
+            </div>
+          </div>
+          <div class="brn-neighborhood__card">
+            <h3>Tapatio Springs</h3>
+            <p>A resort and golf community with Hill Country views at the most accessible price point of Boerne's resort tier. The Deep Hollow section offers larger homesites on wooded acreage with long-range views. Strong option for buyers who want the golf-community lifestyle without the Cordillera Ranch premium.</p>
+            <div class="brn-neighborhood__tags">
+              <span class="brn-neighborhood__tag">$476K median listing</span>
+              <span class="brn-neighborhood__tag">Boerne ISD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Master-Planned -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Master-Planned <span class="accent">Growth</span></h2>
+        </div>
+        <div class="brn-neighborhood__grid">
+          <div class="brn-neighborhood__card">
+            <h3>Esperanza</h3>
+            <p>The big master plan on the I-10 side of Boerne: 450+ acres of open space, 20+ miles of trails, Reuni&oacute;n Parque community complex, onsite fire and emergency services, and a commercial Town Center with restaurants and retail. Regency at Esperanza, Toll Brothers' 55+ active-adult section, has its own clubhouse (The Hacienda) with a resort pool, pickleball, and a lifestyle director. The shortest on-ramp to the San Antonio commute.</p>
+            <div class="brn-neighborhood__tags">
+              <span class="brn-neighborhood__tag">Master-planned</span>
+              <span class="brn-neighborhood__tag">Boerne ISD</span>
+            </div>
+          </div>
+          <div class="brn-neighborhood__card">
+            <h3>River Mountain Ranch</h3>
+            <p>Luxury acreage living: roughly 620 tracts of 3–5+ acres along the Guadalupe River with two gated river parks, horses allowed, and custom builders throughout. Elbow room with real Hill Country character — wells and septic are common, so inspect accordingly.</p>
+            <div class="brn-neighborhood__tags">
+              <span class="brn-neighborhood__tag">$857K median listing</span>
+              <span class="brn-neighborhood__tag">Boerne ISD</span>
+            </div>
+          </div>
+          <div class="brn-neighborhood__card">
+            <h3>Trails at Herff Ranch</h3>
+            <p>A family-friendly community on the north side near the Herff Farm area, carrying one of the lower neighborhood medians in Boerne. Worth a look for buyers who want the Boerne address and Boerne ISD without the resort-community price tag.</p>
+            <div class="brn-neighborhood__tags">
+              <span class="brn-neighborhood__tag">$484K median listing</span>
+              <span class="brn-neighborhood__tag">Boerne ISD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Historic Core & Acreage -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Historic Core &amp; <span class="accent">Acreage</span></h2>
+        </div>
+        <div class="brn-neighborhood__grid">
+          <div class="brn-neighborhood__card">
+            <h3>Historic Core &amp; the Hill Country Mile</h3>
+            <p>Older homes near Main Street — character, walkability, and mature trees. Smaller lots and the strongest resale in town, with the highest price per square foot in Boerne. Verify flood plain near the creeks before you write an offer.</p>
+            <div class="brn-neighborhood__tags">
+              <span class="brn-neighborhood__tag">Walkable</span>
+              <span class="brn-neighborhood__tag">Boerne ISD</span>
+            </div>
+          </div>
+          <div class="brn-neighborhood__card">
+            <h3>North &amp; West Acreage</h3>
+            <p>Larger lots and acreage toward Bergheim, Kendalia, and Sisterdale. Quieter nights, starry skies, and a few extra minutes on every drive. Well and septic territory — budget for inspections that suburban buyers skip.</p>
+            <div class="brn-neighborhood__tags">
+              <span class="brn-neighborhood__tag">Acreage</span>
+              <span class="brn-neighborhood__tag">Verify ISD by address</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Explore Boerne cross-links -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Keep <span class="accent">Exploring Boerne</span></h2>
+        </div>
+        <div class="brn-explore__grid">
+          <a href="/boerne/restaurants/" class="brn-explore__card">
+            <h3>Restaurants</h3>
+            <p>German biergartens, Main Street date-night picks, and the best breakfast tacos in town — where Boerne eats.</p>
+          </a>
+          <a href="/boerne/things-to-do/" class="brn-explore__card">
+            <h3>Things to Do</h3>
+            <p>Caves, the Cibolo Center for Conservation, Boerne City Lake, and the Hill Country Mile — weekends in Boerne.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Parallax CTA -->
+    <section class="brn-parallax-cta">
+      <div class="brn-parallax-cta__overlay"></div>
+      <div class="brn-parallax-cta__content">
+        <h2>Need Help <span class="accent">Narrowing It Down</span>?</h2>
+        <p>Resort amenities vs. commute vs. price per square foot — Boerne neighborhoods optimize for different things. I can help you focus on the areas that match your priorities and budget.</p>
+        <a href="#contact" class="btn btn-outline">Get Help Choosing a Neighborhood</a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions About <span class="accent">Boerne Neighborhoods</span></h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Which Boerne neighborhood is best for commuting to San Antonio?</summary>
+            <p>Esperanza and the other I-10-side communities have the shortest on-ramp to San Antonio, which matters when the commute runs 45–50+ minutes at rush hour. West-side communities like Cordillera Ranch and River Mountain Ranch add 10–15 minutes to every trip down I-10.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Where are the most affordable homes in Boerne?</summary>
+            <p>Among named communities, Tapatio Springs ($476K median listing) and Trails at Herff Ranch ($484K median listing) carry the lowest neighborhood medians in 2026 (Realtor.com). Entry-level homes across Boerne start in the mid-$400s.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What is Boerne's luxury market?</summary>
+            <p>Cordillera Ranch is the flagship — an 8,700-acre guard-gated community with a Jack Nicklaus Signature course and a Realtor.com neighborhood median listing of $2,549,000. River Mountain Ranch offers luxury acreage at a lower median ($857K).</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <ParallaxBanner image="/images/generated/hill-country-sunset.webp" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Which Boerne neighborhood is best for commuting to San Antonio?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Esperanza and the other I-10-side communities have the shortest on-ramp to San Antonio, which matters when the commute runs 45–50+ minutes at rush hour. West-side communities like Cordillera Ranch and River Mountain Ranch add 10–15 minutes to every trip down I-10."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where are the most affordable homes in Boerne?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Among named communities, Tapatio Springs ($476K median listing) and Trails at Herff Ranch ($484K median listing) carry the lowest neighborhood medians in 2026 (Realtor.com). Entry-level homes across Boerne start in the mid-$400s."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Boerne's luxury market?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cordillera Ranch is the flagship — an 8,700-acre guard-gated community with a Jack Nicklaus Signature course and a Realtor.com neighborhood median listing of $2,549,000. River Mountain Ranch offers luxury acreage at a lower median ($857K)."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <ContactForm context="I'd like to learn more about Boerne neighborhoods..." />
+  <Footer />
+</Layout>
+
+<style>
+  .brn-hero { position: relative; height: 280px; background: url('/images/areas/boerne.jpg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; }
+  .brn-hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
+  .brn-hero__content { position: relative; z-index: 1; padding: 0 1.5rem; }
+  .brn-hero__content h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 0.75rem; }
+  .brn-hero__content p { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+
+  .breadcrumb { font-size: 0.8rem; margin-bottom: 1rem; color: rgba(255,255,255,0.5); }
+  .breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+  .breadcrumb a:hover { color: #FF1616; }
+  .breadcrumb span { margin: 0 0.3rem; }
+
+  .brn-page-intro { font-size: 1.05rem; color: var(--gray); line-height: 1.8; max-width: 800px; }
+  .brn-page-intro--centered { text-align: center; font-weight: 700; color: var(--black); margin: 0 auto; }
+
+  .brn-neighborhood__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .brn-neighborhood__card { background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column; overflow: hidden; padding: 2rem; }
+  .brn-neighborhood__card h3 { font-family: var(--font-heading); font-size: 1.2rem; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .brn-neighborhood__card p { color: var(--gray); line-height: 1.7; margin-bottom: 1rem; flex: 1; font-size: 0.92rem; }
+  .brn-neighborhood__tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .brn-neighborhood__tag { display: inline-block; background: var(--light-gray); color: var(--gray); font-size: 0.75rem; font-weight: 600; padding: 0.3rem 0.75rem; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.03em; }
+
+  .brn-explore__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .brn-explore__card { display: block; background: #fff; border: 1px solid var(--light-gray); padding: 2rem; border-radius: 8px; transition: transform 0.2s, box-shadow 0.2s; }
+  .brn-explore__card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .brn-explore__card h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; margin-bottom: 0.5rem; color: #000; }
+  .brn-explore__card:hover h3 { color: #FF1616; }
+  .brn-explore__card p { color: var(--gray); font-size: 0.85rem; line-height: 1.6; }
+
+  .brn-parallax-cta { position: relative; background: url('/images/testimonials-hero.webp') center / cover no-repeat fixed; padding: 5rem 1.5rem; text-align: center; color: #fff; }
+  .brn-parallax-cta__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.7); }
+  .brn-parallax-cta__content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+  .brn-parallax-cta__content h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); margin-bottom: 1rem; }
+  .brn-parallax-cta__content p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 2rem; line-height: 1.7; }
+
+  .faq-section { padding: 4rem 0; background: #f9f9f9; }
+  .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; border: 1px solid #eee; margin-bottom: 1rem; }
+  .faq-item summary { padding: 1.25rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #FF1616; font-weight: 700; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { padding: 0 1.5rem 1.25rem; color: #555; line-height: 1.8; font-size: 0.95rem; }
+
+  @media (max-width: 768px) {
+    .brn-neighborhood__grid { grid-template-columns: 1fr; }
+    .brn-explore__grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .brn-parallax-cta { background-attachment: scroll; }
+  }
+</style>

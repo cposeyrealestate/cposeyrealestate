@@ -4,14 +4,35 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
-import { placeSchema, collectionPageSchema, breadcrumbSchema } from '../../lib/schema';
+import { placeSchema, collectionPageSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
 
-const nbDescription = 'Explore New Braunfels, Texas — neighborhoods, homes for sale, schools, and lifestyle. Your local guide to finding the right home in the Texas Hill Country.';
+const pageTitle = 'New Braunfels, TX Homes for Sale | 2026 Relocation Guide';
+const pageDescription = 'New Braunfels, TX homes for sale — prices, schools, commute times, and neighborhoods. Your 2026 Texas Hill Country relocation guide from Cody Posey, REALTOR®.';
+
+const faqs = [
+  {
+    q: 'What is the median home price in New Braunfels in 2026?',
+    a: 'As of September 2026, the median listing price in New Braunfels is about $379,000 and the median sold price is about $334,000, per Realtor.com. Homes typically range from around $290K on the outer edges to $480K+ in established and luxury corridors. Prices vary widely by neighborhood — tell me your budget and I will narrow it to the right corridors.',
+  },
+  {
+    q: 'How long is the commute from New Braunfels to San Antonio?',
+    a: 'About 30 minutes to downtown San Antonio off-peak via I-35, but plan on 45 minutes or more during rush hour — the I-35/Loop 1604 interchange is the choke point. Austin runs 50 to 60 minutes on a good-traffic day. If the commute is make-or-break, test-drive the route at 7 AM before you write an offer.',
+  },
+  {
+    q: 'Which school district will I be in?',
+    a: 'Two districts serve the area: New Braunfels ISD covers central, downtown, Gruene, and Veramendi, while Comal ISD covers the west, north, and south sides, including most new construction. Assignments are based on physical address, so always verify directly with the district before purchasing. <a href="/new-braunfels/schools/">View school district details</a>.',
+  },
+  {
+    q: 'What are property taxes like in New Braunfels?',
+    a: 'High by national standards, like everywhere in Texas — there is no state income tax to offset them. Typical combined rates run 1.7% to 2.2%, so a $400,000 home can run $6,800 to $8,800 per year. Newer developments can carry additional MUD or PID assessments, so always pull the tax certificate on a specific address. <a href="/new-braunfels/faq/">Read more FAQs</a>.',
+  },
+];
+
 const pageSchema = [
-  placeSchema({ name: 'New Braunfels, TX', description: nbDescription, url: '/new-braunfels/' }),
+  placeSchema({ name: 'New Braunfels, TX', description: pageDescription, url: '/new-braunfels/', image: '/images/areas/new-braunfels.jpg' }),
   collectionPageSchema({
     name: 'New Braunfels Area Guide',
-    description: nbDescription,
+    description: pageDescription,
     url: '/new-braunfels/',
     hasPart: [
       { name: 'Neighborhoods', url: '/new-braunfels/neighborhoods/' },
@@ -25,138 +46,148 @@ const pageSchema = [
   }),
   breadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: 'Explore Area', url: '/explorearea/' },
+    { name: 'Hill Country Relocation Guide', url: '/hill-country-relocation-guide/' },
     { name: 'New Braunfels', url: '/new-braunfels/' },
   ]),
+  faqSchema(faqs),
 ];
 ---
 
 <Layout
-  title="New Braunfels, TX Real Estate | Cody Posey"
-  description={nbDescription}
+  title={pageTitle}
+  description={pageDescription}
   schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">
 
-    <!-- Hero -->
+    <!-- 1. Hero -->
     <div class="nb-hero">
       <div class="nb-hero__overlay"></div>
       <div class="nb-hero__content">
         <nav class="breadcrumb" aria-label="Breadcrumb">
           <a href="/">Home</a> <span>/</span> <span>New Braunfels</span>
         </nav>
-        <h1>New <span style="color:#FF1616;">Braunfels</span></h1>
-        <p>Your guide to living, buying, and investing in one of Texas's fastest-growing cities</p>
+        <p class="nb-hero__eyebrow">2026 Guide · I-35 Corridor · No State Income Tax</p>
+        <h1>New Braunfels, TX <span style="color:#FF1616;">Homes for Sale</span></h1>
+        <p>Real prices, real neighborhoods, and the honest trade-offs of one of Texas's fastest-growing cities — written by Cody Posey, U.S. Army First Sergeant (Ret.), REALTOR®</p>
       </div>
     </div>
 
-    <!-- City Intro -->
-    <section class="section nb-intro">
+    <!-- 2. Stat band -->
+    <section class="section nb-stats">
       <div class="container">
-        <div class="nb-intro__grid">
-          <div class="nb-intro__text">
-            <h2>A City That <span class="accent">Keeps Growing</span></h2>
-            <p>New Braunfels sits between Austin and San Antonio along the I-35 corridor, anchored by the Comal and Guadalupe Rivers. What started as a small German settlement has become one of the most sought-after places to live in Texas — and for good reason.</p>
-            <p>The city offers a rare combination: Hill Country scenery, strong schools, a growing job market within commuting distance of two major metros, and a quality of life that draws families, professionals, and retirees alike.</p>
-            <p>Whether you're relocating from out of state, moving from San Antonio or Austin, or looking for your next home within the area — this section is designed to help you understand what makes New Braunfels different and where you might fit.</p>
+        <div class="nb-stats__grid">
+          <div class="nb-stat">
+            <span class="nb-stat__number">128,700</span>
+            <span class="nb-stat__label">Population (2026 est.)</span>
           </div>
-          <div class="nb-intro__stats">
-            <div class="nb-stat">
-              <span class="nb-stat__number">100K+</span>
-              <span class="nb-stat__label">Population</span>
-            </div>
-            <div class="nb-stat">
-              <span class="nb-stat__number">30 min</span>
-              <span class="nb-stat__label">To San Antonio</span>
-            </div>
-            <div class="nb-stat">
-              <span class="nb-stat__number">45 min</span>
-              <span class="nb-stat__label">To Austin</span>
-            </div>
-            <div class="nb-stat">
-              <span class="nb-stat__number">Top 5</span>
-              <span class="nb-stat__label">Fastest Growing TX Cities</span>
-            </div>
+          <div class="nb-stat">
+            <span class="nb-stat__number">$379K</span>
+            <span class="nb-stat__label">Median Listing Price</span>
+          </div>
+          <div class="nb-stat">
+            <span class="nb-stat__number">~30 min</span>
+            <span class="nb-stat__label">To San Antonio (off-peak)</span>
+          </div>
+          <div class="nb-stat">
+            <span class="nb-stat__number">NBISD · CISD</span>
+            <span class="nb-stat__label">School Districts</span>
           </div>
         </div>
+        <p class="nb-stats__note">Population per World Population Review 2026 estimate; home prices per Realtor.com market data — as of Sept 2026.</p>
       </div>
     </section>
 
-    <!-- Why People Move Here -->
-    <section class="section nb-why" style="background: var(--light-gray);">
-      <div class="container">
-        <div class="section-title">
-          <h2>Why People <span class="accent">Move Here</span></h2>
-          <p>The most common reasons buyers choose New Braunfels</p>
-        </div>
-        <div class="nb-why__grid">
-          <div class="nb-why__card">
-            <h3>Location</h3>
-            <p>Positioned directly between Austin and San Antonio on I-35, with easy access to both metros for work, dining, healthcare, and entertainment.</p>
-          </div>
-          <div class="nb-why__card">
-            <h3>Affordability</h3>
-            <p>More home for your money compared to Austin, with a lower cost of living and no state income tax. Housing options range from starter homes to luxury estates.</p>
-          </div>
-          <div class="nb-why__card">
-            <h3>Quality of Life</h3>
-            <p>Hill Country scenery, river access, historic Gruene, local shops, and a pace of life that balances growth with small-town character.</p>
-          </div>
-          <div class="nb-why__card">
-            <h3>Schools & Families</h3>
-            <p>Two well-regarded school districts serve the area — New Braunfels ISD and Comal ISD — making it a top choice for families with school-age children.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Navigation Cards -->
-    <section class="section nb-explore">
-      <div class="container">
-        <div class="section-title">
-          <h2>Explore <span class="accent">New Braunfels</span></h2>
-          <p>Dig deeper into the areas, homes, and lifestyle that matter to you</p>
-        </div>
-        <div class="nb-explore__grid">
-          <a href="/new-braunfels/neighborhoods/" class="nb-explore__card">
-            <h3>Neighborhoods</h3>
-            <p>Understand how the city is laid out — from Gruene to the I-35 corridor — and find the area that fits your lifestyle.</p>
-          </a>
-          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="nb-explore__card">
-            <h3>Home Search</h3>
-            <p>Search current listings in New Braunfels. Filter by price, area, and home type to find what's available now.</p>
-          </a>
-          <a href="/new-braunfels/new-construction/" class="nb-explore__card">
-            <h3>New Construction</h3>
-            <p>Explore builder communities, new developments, and what to know before buying a new build in the area.</p>
-          </a>
-          <a href="/new-braunfels/living-in-new-braunfels/" class="nb-explore__card">
-            <h3>Living Here</h3>
-            <p>What daily life actually looks like — commutes, culture, growth, weather, and who New Braunfels is best for.</p>
-          </a>
-          <a href="/new-braunfels/schools/" class="nb-explore__card">
-            <h3>Schools</h3>
-            <p>An overview of the school districts serving New Braunfels and how attendance boundaries affect your home search.</p>
-          </a>
-          <a href="/new-braunfels/restaurants/" class="nb-explore__card">
-            <h3>Restaurants</h3>
-            <p>From legendary BBQ and Tex-Mex to German beer halls and fine dining — the best places to eat in New Braunfels.</p>
-          </a>
-          <a href="/new-braunfels/things-to-do/" class="nb-explore__card">
-            <h3>Things to Do</h3>
-            <p>River tubing, Gruene Hall, Schlitterbahn, seasonal festivals, and everything else that makes this city special.</p>
-          </a>
-          <a href="/new-braunfels/faq/" class="nb-explore__card">
-            <h3>FAQ</h3>
-            <p>Answers to the most common questions buyers ask about moving to and living in New Braunfels.</p>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- School Districts -->
+    <!-- 3. Honest overview -->
     <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>The Honest <span class="accent">Overview</span></h2>
+        </div>
+        <div class="nb-prose">
+          <p>New Braunfels sits between Austin and San Antonio along the I-35 corridor, anchored by the Comal and Guadalupe Rivers. What started as a small German settlement has become one of the fastest-growing cities in the country — buyers get Hill Country scenery, river access, historic Gruene, two solid school districts, and a housing market with more options under the roof than Austin.</p>
+          <p>Here is the straight talk. Property taxes are high — typical combined rates of 1.7% to 2.2% mean a $400,000 home runs $6,800 to $8,800 a year, and newer developments can add MUD or PID assessments on top. Summers are brutal, with triple-digit stretches that make shaded lots and efficient AC real considerations. And I-35 traffic through town is a genuine bottleneck — the Loop 1604 interchange backs up hard at rush hour, so if you commute, factor the drive in at peak hours, not on a Sunday afternoon.</p>
+          <p>If those trade-offs do not bother you, the value proposition is strong: more home for your money than Austin, no state income tax, and a pace of life that still balances growth with small-town character. <a href="/new-braunfels/living-in-new-braunfels/">See what daily life here actually looks like</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Neighborhoods -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Top <span class="accent">Neighborhoods</span></h2>
+          <p>Master-planned communities, historic districts, and Hill Country estates</p>
+        </div>
+        <div class="nb-nbhd__grid">
+          <div class="nb-nbhd__card">
+            <h3>Veramendi</h3>
+            <p>A 2,400-acre master-planned community with resort-style pools, miles of trails, and open-concept homes with stone and brick exteriors. Served by NBISD.</p>
+            <div class="nb-nbhd__tags">
+              <span class="nb-nbhd__tag">$350K - $800K</span>
+              <span class="nb-nbhd__tag">NBISD</span>
+            </div>
+          </div>
+          <div class="nb-nbhd__card">
+            <h3>Gruene & Historic Downtown</h3>
+            <p>New Braunfels's most iconic district — historic homes, Gruene Hall, river access, and a walkable small-town core that draws buyers from both metros.</p>
+            <div class="nb-nbhd__tags">
+              <span class="nb-nbhd__tag">Varied</span>
+              <span class="nb-nbhd__tag">NBISD</span>
+            </div>
+          </div>
+          <div class="nb-nbhd__card">
+            <h3>Vintage Oaks</h3>
+            <p>A 3,900-acre luxury Hill Country community with custom homes on 1 to 14+ acre lots, a Tuscan-style clubhouse, and panoramic views. Served by Comal ISD.</p>
+            <div class="nb-nbhd__tags">
+              <span class="nb-nbhd__tag">$500K - $2M+</span>
+              <span class="nb-nbhd__tag">Comal ISD</span>
+            </div>
+          </div>
+          <div class="nb-nbhd__card">
+            <h3>River Chase</h3>
+            <p>Private, peaceful Hill Country living with a private river park and exclusive Guadalupe River access, plus a clubhouse, pools, and trails. Served by Comal ISD.</p>
+            <div class="nb-nbhd__tags">
+              <span class="nb-nbhd__tag">$550K - $1.5M</span>
+              <span class="nb-nbhd__tag">Comal ISD</span>
+            </div>
+          </div>
+        </div>
+        <p class="nb-nbhd__more"><a href="/new-braunfels/neighborhoods/">Explore all New Braunfels neighborhoods →</a></p>
+        <p class="nb-nbhd__more"><a href="/new-braunfels/new-construction/">Buying new? See new construction communities →</a></p>
+      </div>
+    </section>
+
+    <!-- 5. Cost snapshot -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>Cost <span class="accent">Snapshot</span></h2>
+        </div>
+        <div class="nb-cost__grid">
+          <div class="nb-cost__card">
+            <span class="nb-cost__label">Median listing price</span>
+            <span class="nb-cost__value">$379,000</span>
+          </div>
+          <div class="nb-cost__card">
+            <span class="nb-cost__label">Median sold price</span>
+            <span class="nb-cost__value">$334,000</span>
+          </div>
+          <div class="nb-cost__card">
+            <span class="nb-cost__label">Typical range</span>
+            <span class="nb-cost__value">$290K – $480K</span>
+          </div>
+        </div>
+        <div class="nb-prose">
+          <p>The honest tax math: Texas has no state income tax, but it makes up for it on property. At typical combined rates of 1.7% to 2.2%, a $400,000 home runs roughly $6,800 to $8,800 per year in property taxes — plan on that number in your monthly payment. New construction on the outer edges can add MUD or PID assessments, so always pull the tax certificate before you write an offer.</p>
+          <p>On the lifestyle side: no state income tax, a combined sales tax of 8.25%, and a cost of living that sits below the national average — that is where New Braunfels keeps its edge over Austin. <span class="nb-cost__stamp">Prices per Realtor.com market data — as of Sept 2026.</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Schools -->
+    <section class="section">
       <div class="container">
         <div class="section-title">
           <h2>School <span class="accent">Districts</span></h2>
@@ -165,20 +196,88 @@ const pageSchema = [
         <div class="nb-schools__grid">
           <a href="https://www.nbisd.org" target="_blank" rel="noopener" class="nb-schools__card">
             <h3>New Braunfels ISD</h3>
-            <p>Serves central, downtown, Gruene, and Veramendi areas. Strong community roots and a long-established presence in the city.</p>
+            <p>Covers central New Braunfels, downtown, Gruene, and Veramendi. Strong community roots and a long-established presence in the city.</p>
             <span class="nb-schools__link">Visit NBISD Website →</span>
           </a>
           <a href="https://www.comalisd.org" target="_blank" rel="noopener" class="nb-schools__card">
             <h3>Comal ISD</h3>
-            <p>One of the fastest-growing districts in Texas. Serves the west, north, and south sides of the NB area including most new construction communities.</p>
+            <p>One of the fastest-growing districts in Texas. Serves the west, north, and south sides of the area, including most new construction communities.</p>
             <span class="nb-schools__link">Visit Comal ISD Website →</span>
           </a>
         </div>
         <p class="nb-schools__note">School assignments are based on physical address. Always verify directly with the district before purchasing.</p>
+        <p class="nb-nbhd__more"><a href="/new-braunfels/schools/">School district overview for New Braunfels →</a></p>
       </div>
     </section>
 
-    <!-- CTA with Parallax -->
+    <!-- 7. Commute -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>The <span class="accent">Commute</span></h2>
+        </div>
+        <div class="nb-commute__grid">
+          <div class="nb-commute__card">
+            <span class="nb-commute__time">~30 min</span>
+            <span class="nb-commute__dest">Downtown San Antonio</span>
+            <p>Off-peak via I-35. Rush hour pushes 45 minutes or more.</p>
+          </div>
+          <div class="nb-commute__card">
+            <span class="nb-commute__time">50–60 min</span>
+            <span class="nb-commute__dest">Austin</span>
+            <p>On a good-traffic day via I-35. Plan longer at peak.</p>
+          </div>
+          <div class="nb-commute__card">
+            <span class="nb-commute__time">~40 min</span>
+            <span class="nb-commute__dest">JBSA-Randolph</span>
+            <p>Off-peak estimate via I-35/Forum Pkwy. Test-drive it at 7 AM.</p>
+          </div>
+        </div>
+        <p class="nb-schools__note">Times are off-peak estimates, not guarantees. The I-35/Loop 1604 interchange is the main bottleneck — test-drive your actual route at peak hours.</p>
+      </div>
+    </section>
+
+    <!-- 8. Things to Do / Restaurants -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Life <span class="accent">Here</span></h2>
+        </div>
+        <div class="nb-life__grid">
+          <a href="/new-braunfels/things-to-do/" class="nb-life__card">
+            <h3>Things to Do</h3>
+            <p>River tubing on the Comal and Guadalupe, live music at Gruene Hall, Schlitterbahn summers, and seasonal festivals year-round. This is what weekends look like here.</p>
+            <span class="nb-schools__link">See things to do →</span>
+          </a>
+          <a href="/new-braunfels/restaurants/" class="nb-life__card">
+            <h3>Restaurants</h3>
+            <p>Legendary Hill Country BBQ, Tex-Mex staples, German beer halls rooted in the city's heritage, and a growing fine-dining scene.</p>
+            <span class="nb-schools__link">See where to eat →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. FAQ -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>New Braunfels <span class="accent">FAQs</span></h2>
+          <p>What buyers ask before they buy</p>
+        </div>
+        <div class="nb-faq">
+          {faqs.map((faq) => (
+            <details class="nb-faq__item">
+              <summary class="nb-faq__question">{faq.q}</summary>
+              <div class="nb-faq__answer"><p set:html={faq.a} /></div>
+            </details>
+          ))}
+        </div>
+        <p class="nb-nbhd__more"><a href="/new-braunfels/faq/">Read the full New Braunfels FAQ →</a></p>
+      </div>
+    </section>
+
+    <!-- 10. CTA -->
     <section class="section nb-cta-parallax">
       <div class="nb-cta-parallax__overlay"></div>
       <div class="container nb-cta-parallax__content">
@@ -194,7 +293,7 @@ const pageSchema = [
   </main>
   <ParallaxBanner image="/images/generated/guadalupe-river.webp" />
 
-  <ContactForm context="I'd like to learn more about New Braunfels..." />
+  <ContactForm context="I'd like to learn more about buying in New Braunfels, TX..." />
   <Footer />
 </Layout>
 
@@ -202,8 +301,8 @@ const pageSchema = [
   /* Hero */
   .nb-hero {
     position: relative;
-    height: 320px;
-    background: url('/images/generated/comal-river.webp') center/cover no-repeat;
+    min-height: 420px;
+    background: url('/images/areas/new-braunfels.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -220,7 +319,15 @@ const pageSchema = [
   .nb-hero__content {
     position: relative;
     z-index: 1;
-    padding: 0 1.5rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .nb-hero__eyebrow {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 0.75rem;
   }
 
   .nb-hero__content h1 {
@@ -228,10 +335,10 @@ const pageSchema = [
     margin-bottom: 0.75rem;
   }
 
-  .nb-hero__content p {
+  .nb-hero__content > p {
     color: rgba(255,255,255,0.7);
     font-size: 1rem;
-    max-width: 600px;
+    max-width: 680px;
     margin: 0 auto;
   }
 
@@ -255,114 +362,153 @@ const pageSchema = [
     margin: 0 0.3rem;
   }
 
-  /* Intro */
-  .nb-intro__grid {
+  /* Stat band */
+  .nb-stats__grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 3rem;
-    align-items: start;
-  }
-
-  .nb-intro__text p {
-    color: var(--gray);
-    line-height: 1.8;
-    margin-bottom: 1rem;
-  }
-
-  .nb-intro__stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
   }
 
   .nb-stat {
     background: var(--light-gray);
-    padding: 1.5rem;
+    padding: 1.5rem 1rem;
     text-align: center;
     border-radius: 8px;
+    border-top: 3px solid #FF1616;
   }
 
   .nb-stat__number {
     display: block;
     font-family: var(--font-heading);
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 800;
     color: #FF1616;
   }
 
   .nb-stat__label {
     display: block;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--gray);
     margin-top: 0.25rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
 
-  /* Why Section */
-  .nb-why__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+  .nb-stats__note {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--gray);
+    margin-top: 1.5rem;
+    font-style: italic;
   }
 
-  .nb-why__card {
+  /* Prose */
+  .nb-prose {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .nb-prose p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .nb-prose a {
+    color: #FF1616;
+    font-weight: 700;
+  }
+
+  /* Neighborhoods */
+  .nb-nbhd__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .nb-nbhd__card {
     background: #fff;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-top: 3px solid #FF1616;
   }
 
-  .nb-why__card h3 {
+  .nb-nbhd__card h3 {
     font-family: var(--font-heading);
     font-size: 1.1rem;
     text-transform: uppercase;
     margin-bottom: 0.75rem;
   }
 
-  .nb-why__card p {
+  .nb-nbhd__card p {
     color: var(--gray);
     font-size: 0.9rem;
     line-height: 1.7;
+    margin-bottom: 1rem;
   }
 
-  /* Explore Cards */
-  .nb-explore__grid {
+  .nb-nbhd__tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .nb-nbhd__tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--light-gray);
+    padding: 0.4rem 0.75rem;
+    border-radius: 4px;
+  }
+
+  .nb-nbhd__more {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+
+  .nb-nbhd__more a {
+    color: #FF1616;
+    font-weight: 700;
+  }
+
+  /* Cost */
+  .nb-cost__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
+    margin-bottom: 2rem;
   }
 
-  .nb-explore__card {
-    display: block;
+  .nb-cost__card {
     background: #fff;
-    border: 1px solid var(--light-gray);
-    padding: 2rem;
+    padding: 1.75rem 1rem;
+    text-align: center;
     border-radius: 8px;
-    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   }
 
-  .nb-explore__card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  }
-
-  .nb-explore__card h3 {
-    font-family: var(--font-heading);
-    font-size: 1rem;
+  .nb-cost__label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--gray);
     text-transform: uppercase;
+    letter-spacing: 0.05em;
     margin-bottom: 0.5rem;
+  }
+
+  .nb-cost__value {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 800;
     color: #000;
   }
 
-  .nb-explore__card:hover h3 {
-    color: #FF1616;
-  }
-
-  .nb-explore__card p {
-    color: var(--gray);
-    font-size: 0.85rem;
-    line-height: 1.6;
+  .nb-cost__stamp {
+    font-style: italic;
   }
 
   /* Schools */
@@ -416,6 +562,136 @@ const pageSchema = [
     margin-top: 1.5rem;
   }
 
+  /* Commute */
+  .nb-commute__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .nb-commute__card {
+    background: #fff;
+    padding: 1.75rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    text-align: center;
+  }
+
+  .nb-commute__time {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #FF1616;
+  }
+
+  .nb-commute__dest {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0.5rem 0;
+  }
+
+  .nb-commute__card p {
+    color: var(--gray);
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  /* Life (Things to Do / Restaurants) */
+  .nb-life__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .nb-life__card {
+    display: block;
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    padding: 2rem;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .nb-life__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .nb-life__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    color: #000;
+  }
+
+  .nb-life__card:hover h3 {
+    color: #FF1616;
+  }
+
+  .nb-life__card p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  /* FAQ accordion */
+  .nb-faq {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .nb-faq__item {
+    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .nb-faq__question {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .nb-faq__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .nb-faq__question::after {
+    content: '+';
+    float: right;
+    color: #FF1616;
+    font-size: 1.25rem;
+  }
+
+  .nb-faq__item[open] .nb-faq__question::after {
+    content: '−';
+  }
+
+  .nb-faq__answer {
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .nb-faq__answer p {
+    color: var(--gray);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .nb-faq__answer a {
+    color: #FF1616;
+    font-weight: 700;
+  }
+
   /* CTA Parallax */
   .nb-cta-parallax {
     position: relative;
@@ -454,20 +730,34 @@ const pageSchema = [
 
   /* Responsive */
   @media (max-width: 768px) {
-    .nb-intro__grid {
+    .nb-stats__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .nb-nbhd__grid {
       grid-template-columns: 1fr;
     }
 
-    .nb-why__grid {
-      grid-template-columns: 1fr;
-    }
-
-    .nb-explore__grid {
+    .nb-cost__grid {
       grid-template-columns: 1fr;
     }
 
     .nb-schools__grid {
       grid-template-columns: 1fr;
+    }
+
+    .nb-commute__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .nb-life__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .nb-cta-parallax {
+      background-attachment: scroll;
     }
   }
 </style>

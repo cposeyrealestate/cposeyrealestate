@@ -5,12 +5,32 @@ import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import VideoEmbed from '../../components/VideoEmbed.astro';
-import { placeSchema, collectionPageSchema, breadcrumbSchema } from '../../lib/schema';
+import { placeSchema, collectionPageSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
 
-const csDescription = 'Explore Cibolo and Schertz, Texas — family-friendly communities between San Antonio and New Braunfels. Top schools, safe neighborhoods, and I-35 access.';
+const csDescription = "Cibolo & Schertz, TX homes for sale: SCUCISD schools, 10–20 minutes to JBSA-Randolph, and median home values near $350K. Cody Posey's 2026 relocation guide.";
+
+const faqs = [
+  {
+    q: 'What do homes cost in Cibolo and Schertz?',
+    a: 'Median home values in the Cibolo/Schertz area sit near $350K (ESRI, August 2026: $358K in Cibolo, $346K in Schertz). Older resale homes start in the low $300s, while newer construction in master-planned communities runs into the mid-$400s — new construction median sale price was $479K in August 2026. Compared to north San Antonio neighborhoods with similar schools, you typically get more square footage per dollar here.',
+  },
+  {
+    q: 'Is Cibolo/Schertz a good fit for a military family PCSing to JBSA-Randolph?',
+    a: 'It is one of the strongest fits in the San Antonio metro. Randolph AFB borders Schertz to the east, so many neighborhoods are 10–20 minutes from the gate, and a large share of residents are active-duty, retired military, or DoD civilians. VA loans are widely used and accepted, and the transient-friendly community makes PCS integration fast. One caution: homes near the base fall under Randolph\'s AICUZ noise contours, which can trigger land-use restrictions and disclosure requirements in a transaction — I flag affected listings before we tour them.',
+  },
+  {
+    q: 'How are the schools in Cibolo and Schertz?',
+    a: 'The area is served by Schertz-Cibolo-Universal City ISD (SCUCISD), which earned an overall B (81) in the 2026 TEA accountability release, with Byron P. Steele II High School earning an A and both Steele and Samuel Clemens consistently ranking in the top 30% of Texas high schools. Campus ratings vary within the district, so always verify the campus assigned to a specific address before buying — that detail affects resale value as much as academics.',
+  },
+  {
+    q: 'What should I watch out for before buying in Cibolo or Schertz?',
+    a: 'Three things: traffic, taxes, and new construction fine print. I-35 and Loop 1604 are the commute choke points — test your actual drive at your actual hours before committing. Effective property tax rates in this corridor typically run 1.8–2.3%, but newer communities with MUD or PID financing can push rates above 2.3%, which meaningfully changes your monthly payment. Get the exact total tax rate in writing on any new build before you sign.',
+  },
+];
+
 const pageSchema = [
-  placeSchema({ name: 'Cibolo, TX', description: csDescription, url: '/cibolo-schertz/' }),
-  placeSchema({ name: 'Schertz, TX', description: csDescription, url: '/cibolo-schertz/' }),
+  placeSchema({ name: 'Cibolo, TX', description: csDescription, url: '/cibolo-schertz/', image: '/images/areas/cibolo-schertz.jpg' }),
+  placeSchema({ name: 'Schertz, TX', description: csDescription, url: '/cibolo-schertz/', image: '/images/areas/cibolo-schertz.jpg' }),
   collectionPageSchema({
     name: 'Cibolo & Schertz Area Guide',
     description: csDescription,
@@ -21,106 +41,210 @@ const pageSchema = [
       { name: 'Things to Do', url: '/cibolo-schertz/things-to-do/' },
     ],
   }),
+  faqSchema(faqs),
   breadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: 'Explore Area', url: '/explorearea/' },
+    { name: 'Hill Country Relocation Guide', url: '/hill-country-relocation-guide/' },
     { name: 'Cibolo & Schertz', url: '/cibolo-schertz/' },
   ]),
 ];
 ---
 
 <Layout
-  title="Cibolo & Schertz, TX Real Estate | Cody Posey"
+  title="Cibolo & Schertz, TX Homes for Sale | 2026 Relocation Guide"
   description={csDescription}
   schema={pageSchema}
 >
   <Navbar />
   <main style="padding-top: 80px;">
 
-    <!-- Hero -->
+    <!-- 1. Hero -->
     <div class="cs-hero">
       <div class="cs-hero__overlay"></div>
       <div class="cs-hero__content">
         <nav class="breadcrumb" aria-label="Breadcrumb">
           <a href="/">Home</a> <span>/</span> <span>Cibolo / Schertz</span>
         </nav>
-        <h1>Cibolo / <span style="color:#FF1616;">Schertz</span></h1>
-        <p>Family-Friendly Communities Between SA & New Braunfels</p>
+        <p class="cs-hero__eyebrow">2026 Relocation Guide · I-35 Corridor · Minutes from JBSA-Randolph</p>
+        <h1>Cibolo &amp; <span style="color:#FF1616;">Schertz</span> Homes for Sale</h1>
+        <p>The military-family favorite on San Antonio's northeast side — SCUCISD schools, new construction, and a straight shot to Randolph AFB.</p>
       </div>
     </div>
 
-    <!-- City Intro -->
-    <section class="section cs-intro">
+    <!-- 2. Stat band -->
+    <section class="cs-statband" aria-label="Key facts">
+      <div class="container cs-statband__grid">
+        <div class="cs-stat">
+          <span class="cs-stat__number">85K+</span>
+          <span class="cs-stat__label">Combined Population</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat__number">$345–358K</span>
+          <span class="cs-stat__label">Median Home Value</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat__number">10–20 min</span>
+          <span class="cs-stat__label">To JBSA-Randolph</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat__number">B (81)</span>
+          <span class="cs-stat__label">SCUCISD, 2026 TEA</span>
+        </div>
+      </div>
+      <p class="cs-statband__source">Population and home-value figures as of September 2026 (ESRI Aug 2026 data, World Population Review 2026 estimates). Drive times are off-peak ranges.</p>
+    </section>
+
+    <!-- 3. Honest overview -->
+    <section class="section">
       <div class="container">
-        <div class="cs-intro__grid">
-          <div class="cs-intro__text">
-            <h2>Two of the Most <span class="accent">Desirable Suburbs</span></h2>
-            <p>Cibolo and Schertz are two of the most desirable suburban communities in the I-35 corridor. With A-rated SCUCISD schools, safe neighborhoods, and proximity to Randolph AFB, these cities offer a strong sense of community with big-city access. Over the past two decades, both cities have experienced rapid but well-managed growth, transforming from small towns into thriving suburban hubs that consistently rank among the best places to live in Texas.</p>
-            <p>Located just 20 minutes from San Antonio and 15 minutes from New Braunfels, the Cibolo/Schertz area has grown into a combined population of over 75,000 — and continues to attract families, military personnel, and professionals looking for quality schools, affordable housing, and a convenient location along the I-35 corridor. The area sits at the intersection of I-35 and FM 3009, making it easy to reach downtown San Antonio, the San Antonio International Airport, and the booming commercial corridor along I-35 between San Antonio and Austin.</p>
-            <p>What makes Cibolo and Schertz stand out from other San Antonio suburbs is the combination of top-rated schools, family-oriented neighborhoods, and a genuine community feel. Both cities have invested heavily in parks, trails, community centers, and public events. The Schertz Civic Center regularly hosts concerts, festivals, and farmers markets, while Cibolo has developed an impressive network of walking and biking trails that connect neighborhoods to parks and retail areas.</p>
-            <p>The housing market here offers strong value for buyers. You will find a mix of established neighborhoods built in the early 2000s with mature landscaping and larger lots, alongside newer master-planned communities with modern floor plans and community amenities like pools, playgrounds, and splash pads. Price points typically range from the low $200s for older homes to the mid-$400s for newer construction with upgraded finishes. Compared to neighborhoods on the north side of San Antonio with similar school ratings, Cibolo and Schertz often deliver more square footage per dollar.</p>
-            <p>The military community is a defining feature of the area. Randolph Air Force Base, now part of Joint Base San Antonio, is located just minutes away, and a significant percentage of residents are active-duty service members, veterans, or civilian employees of the Department of Defense. This creates a welcoming, diverse, and transient-friendly community where newcomers are easily integrated. As a veteran myself, I understand the unique needs of military families navigating PCS moves and VA loan purchases, and I work with a lot of buyers in that situation.</p>
-            <p>Retail and dining options have expanded significantly in both cities. The Schertz Parkway corridor and FM 3009 are lined with restaurants, shopping centers, and entertainment venues. H-E-B, Target, Home Depot, and dozens of local and chain restaurants are all within a short drive. For bigger outings, The Forum shopping center in Selma is right next door, and downtown San Antonio and the Pearl District are about 20 minutes away.</p>
-            <p>For families with children, the school district is often the deciding factor. SCUCISD has earned consistent A ratings from the Texas Education Agency, with strong academic programs, competitive athletics, and a wide range of extracurricular activities. The district's high schools — including Steele and Samuel Clemens — are well-regarded, and newer elementary and middle school campuses have been built to keep pace with the area's growth.</p>
+        <div class="cs-overview__grid">
+          <div class="cs-overview__text">
+            <h2>The <span class="accent">Honest Overview</span></h2>
+            <p>Cibolo and Schertz sit side by side in Guadalupe County, straddling I-35 between San Antonio and New Braunfels. Together they house roughly 85,000 people, and the draw is no mystery: SCUCISD schools, family-oriented neighborhoods at a discount to north San Antonio, and Randolph Air Force Base — now part of Joint Base San Antonio — bordering Schertz to the east. A large percentage of residents are active-duty, retired military, or DoD civilians, which makes this one of the most transient-friendly, newcomer-welcoming communities in the metro. As a veteran, I work with a lot of PCS buyers here, and the rhythm is familiar: short timelines, VA loans, and families who need a neighborhood that feels like home on day one.</p>
+            <p>The housing stock splits into two lanes. Established neighborhoods built in the early 2000s offer mature landscaping, larger lots, and prices starting in the low $300s. Newer master-planned communities bring modern floor plans, amenity centers, and price tags into the mid-$400s. Retail has kept pace — the Schertz Parkway and FM 3009 corridors cover daily needs, and the Forum shopping corridor in Selma sits right next door for bigger trips. The Schertz Civic Center hosts concerts, festivals, and farmers markets, while Cibolo's trail network ties neighborhoods to parks and retail.</p>
+            <p>Now the watch-outs, because you deserve them before you tour. I-35 and Loop 1604 are genuine commute bottlenecks — a 20-minute drive to San Antonio off-peak can double at rush hour, so test your real route at your real hours. New construction comes with new-construction taxes: MUD and PID financing in some communities can push effective property tax rates above 2.3%, which adds hundreds to your monthly payment versus an older resale at 1.8–2.0%. And if you're buying near Randolph AFB, know that AICUZ noise contours can trigger disclosure requirements and land-use restrictions on affected homes — I check for this on every listing east of I-35.</p>
           </div>
-          <div class="cs-intro__stats">
-            <div class="cs-stat">
-              <span class="cs-stat__number">75,000+</span>
-              <span class="cs-stat__label">Population</span>
+          <div class="cs-why__cards">
+            <div class="cs-why__card">
+              <h3>Military-Friendly</h3>
+              <p>10–20 minutes to JBSA-Randolph. Active-duty and veteran families everywhere, VA loans widely accepted, newcomers absorbed fast.</p>
             </div>
-            <div class="cs-stat">
-              <span class="cs-stat__number">20 min</span>
-              <span class="cs-stat__label">To San Antonio</span>
+            <div class="cs-why__card">
+              <h3>SCUCISD Schools</h3>
+              <p>B (81) in the 2026 TEA release, with Steele II earning an A. Campus ratings vary — verify the address assignment before buying.</p>
             </div>
-            <div class="cs-stat">
-              <span class="cs-stat__number">15 min</span>
-              <span class="cs-stat__label">To New Braunfels</span>
+            <div class="cs-why__card">
+              <h3>Value per Square Foot</h3>
+              <p>Median home value near $350K gets you more house here than in comparable north San Antonio school zones.</p>
             </div>
-            <div class="cs-stat">
-              <span class="cs-stat__number">A-Rated</span>
-              <span class="cs-stat__label">Schools</span>
+            <div class="cs-why__card">
+              <h3>I-35 Corridor Location</h3>
+              <p>San Antonio one way, New Braunfels the other, Austin an hour up the interstate. Both metros are realistically commutable.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Why People Move Here -->
-    <section class="section cs-why" style="background: var(--light-gray);">
+    <!-- 4. Neighborhoods -->
+    <section class="section" style="background: var(--light-gray);">
       <div class="container">
         <div class="section-title">
-          <h2>Why People <span class="accent">Choose Cibolo / Schertz</span></h2>
-          <p>The most common reasons buyers choose this area</p>
+          <h2>Top <span class="accent">Neighborhoods</span></h2>
+          <p>Four of the strongest communities in the Cibolo/Schertz corridor</p>
         </div>
-        <div class="cs-why__grid">
-          <div class="cs-why__card">
-            <h3>Top Schools</h3>
-            <p>A-rated Schertz-Cibolo-Universal City ISD (SCUCISD) serves the area, anchored by Steele High School. Families consistently rank schools as a top reason for moving here.</p>
+        <div class="cs-nbh__grid">
+          <div class="cs-nbh__card">
+            <h3>Saddle Creek Ranch</h3>
+            <p>A long-established Schertz community with mature trees, larger lots, and a neighborhood lake and park system. Popular with military families for its proximity to the Randolph gate and solid resale history.</p>
           </div>
-          <div class="cs-why__card">
-            <h3>Military-Friendly</h3>
-            <p>Just 20 minutes from Randolph AFB, the area has a diverse and welcoming military community. Many active-duty and veteran families call Cibolo and Schertz home.</p>
+          <div class="cs-nbh__card">
+            <h3>Falcon Ridge</h3>
+            <p>Newer Schertz construction with modern floor plans and community amenities. A frequent landing spot for PCS buyers who want a new build without the MUD/PID tax surprise — confirm the rate before writing an offer.</p>
           </div>
-          <div class="cs-why__card">
-            <h3>Safe Communities</h3>
-            <p>Family-oriented neighborhoods with low crime rates, well-maintained parks, and a strong sense of community make this area ideal for raising a family.</p>
+          <div class="cs-nbh__card">
+            <h3>Bentwood Ranch</h3>
+            <p>Cibolo community blending established resales with newer sections. Quiet, family-oriented streets with quick FM 3009 access to I-35 and the retail corridor.</p>
           </div>
-          <div class="cs-why__card">
-            <h3>Convenient Location</h3>
-            <p>Positioned along the I-35 corridor between San Antonio and New Braunfels, with growing retail, dining, and services. Easy access to both metros for work and entertainment.</p>
+          <div class="cs-nbh__card">
+            <h3>Cibolo Valley Ranch</h3>
+            <p>Cibolo's growth-front community with newer homes, trails, and amenity centers. Strong appeal for young families trading commute time for square footage and new-build warranties.</p>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:2rem;">
+          <a href="/cibolo-schertz/neighborhoods/" class="btn btn-primary">Explore All Neighborhoods</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Cost snapshot -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Cost <span class="accent">Snapshot</span></h2>
+          <p>What it actually costs to buy in Cibolo and Schertz</p>
+        </div>
+        <div class="cs-cost__grid">
+          <div class="cs-cost__card">
+            <span class="cs-cost__value">$345–358K</span>
+            <span class="cs-cost__label">Median home value (ESRI, Aug 2026)</span>
+            <p>Schertz: $346K · Cibolo: $358K. Older resales start in the low $300s; new construction in master-planned communities runs into the mid-$400s.</p>
+          </div>
+          <div class="cs-cost__card">
+            <span class="cs-cost__value">$479K</span>
+            <span class="cs-cost__label">New-construction median sale price (Aug 2026)</span>
+            <p>New builds carry a premium here. Builders offer rate buydowns and incentives that can beat resale math — bring a buyer-side agent even when the builder has one on site.</p>
+          </div>
+          <div class="cs-cost__card">
+            <span class="cs-cost__value">1.8–2.3%+</span>
+            <span class="cs-cost__label">Typical effective property tax range</span>
+            <p>No state income tax, but property taxes do the work in Texas. Newer MUD/PID communities can exceed 2.3% — get the exact total rate in writing before you sign a new-build contract.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Navigation Cards -->
-    <section class="section cs-explore">
+    <!-- 6. Schools -->
+    <section class="section" style="background: var(--light-gray);">
+      <div class="container">
+        <div class="section-title">
+          <h2>School <span class="accent">District</span></h2>
+          <p>One district serves nearly the entire corridor</p>
+        </div>
+        <div class="cs-schools__grid">
+          <a href="https://www.scuc.txed.net" target="_blank" rel="noopener" class="cs-schools__card">
+            <h3>Schertz-Cibolo-Universal City ISD (SCUCISD)</h3>
+            <p>Overall B (81) in the 2026 TEA accountability release. Byron P. Steele II High School earned an A, and both Steele and Samuel Clemens rank in the top 30% of Texas high schools with a 94%+ graduation rate. The district serves Schertz, Cibolo, Universal City, and Selma. Campus ratings vary — verify the assignment for your address.</p>
+            <span class="cs-schools__link">Visit SCUCISD Website →</span>
+          </a>
+        </div>
+        <p class="cs-schools__note">School assignments are based on physical address. Always verify directly with the district before purchasing.</p>
+      </div>
+    </section>
+
+    <!-- 7. Commute -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Commute <span class="accent">Times</span></h2>
+          <p>Off-peak ranges — verify your actual route at your actual hours</p>
+        </div>
+        <div class="cs-commute__grid">
+          <div class="cs-commute__card">
+            <span class="cs-commute__time">10–20 min</span>
+            <h3>JBSA-Randolph</h3>
+            <p>Randolph AFB borders Schertz to the east. The gate commute is the corridor's whole pitch — but check AICUZ noise contours on homes nearest the base.</p>
+          </div>
+          <div class="cs-commute__card">
+            <span class="cs-commute__time">20–30 min</span>
+            <h3>San Antonio</h3>
+            <p>Downtown and the Medical Center run down I-35. Rush hour regularly adds 15–25 minutes — Loop 1604 is the other choke point worth knowing.</p>
+          </div>
+          <div class="cs-commute__card">
+            <span class="cs-commute__time">~60 min</span>
+            <h3>Austin</h3>
+            <p>Doable for hybrid schedules and weekend trips; a daily drive grinds on I-35. San Antonio International Airport is roughly 25–30 minutes south.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Things to Do / Restaurants -->
+    <section class="section cs-explore" style="background: var(--light-gray);">
       <div class="container">
         <div class="section-title">
           <h2>Explore <span class="accent">Cibolo / Schertz</span></h2>
           <p>Dig deeper into the neighborhoods, homes, and lifestyle that matter to you</p>
         </div>
         <div class="cs-explore__grid">
+          <a href="/cibolo-schertz/things-to-do/" class="cs-explore__card">
+            <h3>Things to Do</h3>
+            <p>Nature parks, wildlife safaris, live entertainment, and outdoor adventures in and around the area — including SchertzFest and CiboloFest each year.</p>
+          </a>
+          <a href="/cibolo-schertz/restaurants/" class="cs-explore__card">
+            <h3>Restaurants</h3>
+            <p>From wings and Tex-Mex to authentic Thai — the best local spots to eat in the Cibolo/Schertz area.</p>
+          </a>
           <a href="/cibolo-schertz/neighborhoods/" class="cs-explore__card">
             <h3>Neighborhoods</h3>
             <p>Explore the top communities in Cibolo and Schertz — from established favorites to newer developments.</p>
@@ -129,64 +253,21 @@ const pageSchema = [
             <h3>Home Search</h3>
             <p>Search current listings in Cibolo and Schertz. Filter by price, area, and home type to find what's available now.</p>
           </a>
-          <a href="/cibolo-schertz/restaurants/" class="cs-explore__card">
-            <h3>Restaurants</h3>
-            <p>From wings and Tex-Mex to authentic Thai — the best local spots to eat in the Cibolo/Schertz area.</p>
-          </a>
-          <a href="/cibolo-schertz/things-to-do/" class="cs-explore__card">
-            <h3>Things to Do</h3>
-            <p>Nature parks, wildlife safaris, live entertainment, and outdoor adventures in and around the area.</p>
-          </a>
         </div>
       </div>
     </section>
 
-    <!-- School District -->
-    <section class="section">
-      <div class="container">
-        <div class="section-title">
-          <h2>School <span class="accent">District</span></h2>
-          <p>One of the highest-rated school districts in the San Antonio metro</p>
-        </div>
-        <div class="cs-schools__grid">
-          <a href="https://www.scuc.txed.net" target="_blank" rel="noopener" class="cs-schools__card">
-            <h3>Schertz-Cibolo-Universal City ISD (SCUCISD)</h3>
-            <p>An A-rated district known for academic excellence, strong athletics, and community engagement. Steele High School and Byron P. Steele II are among the top-rated campuses. The district serves Schertz, Cibolo, and Universal City.</p>
-            <span class="cs-schools__link">Visit SCUCISD Website →</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="section cs-cta" style="background: #000; color: #fff; text-align: center;">
-      <div class="container">
-        <h2>Ready to Explore <span class="accent">Cibolo / Schertz</span>?</h2>
-        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem auto 2rem;">Whether you're just starting your search or ready to schedule showings, I can help you navigate the market and find the right fit.</p>
-        <div class="cs-cta__buttons">
-          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="btn btn-primary">Search Homes</a>
-          <a href="#contact" class="btn btn-outline">Ask About Cibolo / Schertz</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
+    <!-- 9. FAQ -->
     <section class="faq-section">
       <div class="container">
         <h2>Frequently Asked Questions About <span class="accent">Cibolo and Schertz</span></h2>
         <div class="faq-list">
-          <details class="faq-item">
-            <summary>What are home prices like in Cibolo and Schertz?</summary>
-            <p>Home prices in the Cibolo and Schertz area typically range from the low $200s for older resale homes to the mid-$400s for newer construction in master-planned communities. The median home price generally falls in the mid-$300s, which represents strong value compared to neighborhoods in north San Antonio with comparable school ratings. New construction communities like Deer Creek Ranch, Cibolo Canyons, and Verde Ranch offer modern floor plans with community amenities at competitive price points. If you are looking for a specific price range, I can set up a custom search to show you exactly what is available right now.</p>
-          </details>
-          <details class="faq-item">
-            <summary>How are the schools in Cibolo and Schertz?</summary>
-            <p>The area is served by Schertz-Cibolo-Universal City ISD (SCUCISD), which consistently earns A ratings from the Texas Education Agency. The district is known for strong academics, competitive athletics, and a wide range of extracurricular programs. High schools in the district include Byron P. Steele II and Samuel Clemens, both of which have strong reputations. The district has also built several new elementary and middle school campuses in recent years to accommodate growth. Schools are one of the top reasons families choose this area, and the district's performance is a major factor in the strong resale values here.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Is Cibolo/Schertz a good area for military families?</summary>
-            <p>Absolutely. The Cibolo and Schertz area is one of the most military-friendly communities in the San Antonio metro. Randolph Air Force Base, part of Joint Base San Antonio, is just minutes away, and a large percentage of residents are active-duty, retired military, or DoD civilians. The community is welcoming to newcomers, which is important for families who move frequently. VA loans are widely used and accepted here, and many of the newer neighborhoods were specifically designed to appeal to military families with features like community pools, parks, and proximity to base. As a veteran, I have firsthand experience helping military families navigate PCS moves and find the right home in this area.</p>
-          </details>
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
         </div>
       </div>
     </section>
@@ -206,45 +287,25 @@ const pageSchema = [
       </div>
     </section>
 
-  </main>
-  <ParallaxBanner image="/images/generated/cibolo-schertz-home.webp" />
+    <!-- 10. CTA -->
+    <section class="section cs-cta-parallax">
+      <div class="cs-cta-parallax__overlay"></div>
+      <div class="container cs-cta-parallax__content">
+        <h2>Ready to Explore <span class="accent">Cibolo / Schertz</span>?</h2>
+        <p>Whether you're PCSing to Randolph and need a home in 30 days, or just starting your search — I can help you navigate the market and find the right fit.</p>
+        <div class="cs-cta__buttons">
+          <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="btn btn-primary">Search Homes</a>
+          <a href="#contact" class="btn btn-outline">Ask About Cibolo / Schertz</a>
+        </div>
+      </div>
+    </section>
 
-  <ContactForm context="I'd like to learn more about Cibolo / Schertz..." />
+  </main>
+  <ParallaxBanner image="/images/areas/cibolo-schertz.jpg" />
+
+  <ContactForm context="I'd like to learn more about Cibolo and Schertz..." />
   <Footer />
 </Layout>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What are home prices like in Cibolo and Schertz?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Home prices in the Cibolo and Schertz area typically range from the low $200s for older resale homes to the mid-$400s for newer construction in master-planned communities. The median home price generally falls in the mid-$300s, which represents strong value compared to neighborhoods in north San Antonio with comparable school ratings."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How are the schools in Cibolo and Schertz?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The area is served by Schertz-Cibolo-Universal City ISD (SCUCISD), which consistently earns A ratings from the Texas Education Agency. The district is known for strong academics, competitive athletics, and a wide range of extracurricular programs. High schools in the district include Byron P. Steele II and Samuel Clemens."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is Cibolo/Schertz a good area for military families?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Absolutely. The Cibolo and Schertz area is one of the most military-friendly communities in the San Antonio metro. Randolph Air Force Base, part of Joint Base San Antonio, is just minutes away, and a large percentage of residents are active-duty, retired military, or DoD civilians."
-      }
-    }
-  ]
-}
-</script>
 
 <style>
   /* FAQ */
@@ -295,8 +356,8 @@ const pageSchema = [
   /* Hero */
   .cs-hero {
     position: relative;
-    height: 320px;
-    background: url('/images/generated/cibolo-schertz-home.webp') center/cover no-repeat;
+    height: 360px;
+    background: url('/images/areas/cibolo-schertz.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -314,6 +375,14 @@ const pageSchema = [
     position: relative;
     z-index: 1;
     padding: 0 1.5rem;
+  }
+
+  .cs-hero__eyebrow {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 0.75rem;
   }
 
   .cs-hero__content h1 {
@@ -348,31 +417,18 @@ const pageSchema = [
     margin: 0 0.3rem;
   }
 
-  /* Intro */
-  .cs-intro__grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 3rem;
-    align-items: start;
+  /* Stat band */
+  .cs-statband {
+    background: #000;
+    padding: 2.5rem 0 1.5rem;
+    color: #fff;
   }
 
-  .cs-intro__text p {
-    color: var(--gray);
-    line-height: 1.8;
-    margin-bottom: 1rem;
-  }
-
-  .cs-intro__stats {
+  .cs-statband__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
-  }
-
-  .cs-stat {
-    background: var(--light-gray);
-    padding: 1.5rem;
     text-align: center;
-    border-radius: 8px;
   }
 
   .cs-stat__number {
@@ -386,29 +442,50 @@ const pageSchema = [
   .cs-stat__label {
     display: block;
     font-size: 0.8rem;
-    color: var(--gray);
+    color: rgba(255,255,255,0.6);
     margin-top: 0.25rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
 
-  /* Why Section */
-  .cs-why__grid {
+  .cs-statband__source {
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+    margin-top: 1.25rem;
+    padding: 0 1.5rem;
+  }
+
+  /* Overview */
+  .cs-overview__grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .cs-overview__text p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .cs-why__cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
   }
 
   .cs-why__card {
     background: #fff;
-    padding: 2rem;
+    padding: 1.75rem;
     border-radius: 8px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   }
 
   .cs-why__card h3 {
     font-family: var(--font-heading);
-    font-size: 1.1rem;
+    font-size: 1rem;
     text-transform: uppercase;
     margin-bottom: 0.75rem;
   }
@@ -416,6 +493,111 @@ const pageSchema = [
   .cs-why__card p {
     color: var(--gray);
     font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  /* Neighborhood cards */
+  .cs-nbh__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cs-nbh__card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-left: 4px solid #FF1616;
+  }
+
+  .cs-nbh__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .cs-nbh__card p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  /* Cost cards */
+  .cs-cost__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cs-cost__card {
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .cs-cost__value {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 800;
+    color: #FF1616;
+    margin-bottom: 0.25rem;
+  }
+
+  .cs-cost__label {
+    display: block;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gray);
+    margin-bottom: 1rem;
+  }
+
+  .cs-cost__card p {
+    color: var(--gray);
+    font-size: 0.85rem;
+    line-height: 1.7;
+    text-align: left;
+  }
+
+  /* Commute cards */
+  .cs-commute__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cs-commute__card {
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .cs-commute__time {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #FF1616;
+    margin-bottom: 0.25rem;
+  }
+
+  .cs-commute__card h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .cs-commute__card p {
+    color: var(--gray);
+    font-size: 0.85rem;
     line-height: 1.7;
   }
 
@@ -511,7 +693,43 @@ const pageSchema = [
     color: #FF1616;
   }
 
-  /* CTA */
+  .cs-schools__note {
+    text-align: center;
+    font-style: italic;
+    color: var(--gray);
+    font-size: 0.85rem;
+    margin-top: 1.5rem;
+  }
+
+  /* CTA parallax */
+  .cs-cta-parallax {
+    position: relative;
+    padding: 5rem 0;
+    color: #fff;
+    text-align: center;
+    background-image: url('/images/areas/cibolo-schertz.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  .cs-cta-parallax__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+  }
+
+  .cs-cta-parallax__content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cs-cta-parallax__content p {
+    color: rgba(255,255,255,0.7);
+    max-width: 600px;
+    margin: 1rem auto 2rem;
+  }
+
   .cs-cta__buttons {
     display: flex;
     gap: 1rem;
@@ -521,16 +739,38 @@ const pageSchema = [
 
   /* Responsive */
   @media (max-width: 768px) {
-    .cs-intro__grid {
+    .cs-overview__grid {
       grid-template-columns: 1fr;
     }
 
-    .cs-why__grid {
+    .cs-why__cards {
+      grid-template-columns: 1fr;
+    }
+
+    .cs-nbh__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cs-cost__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cs-commute__grid {
       grid-template-columns: 1fr;
     }
 
     .cs-explore__grid {
       grid-template-columns: 1fr;
+    }
+
+    .cs-statband__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .cs-cta-parallax {
+      background-attachment: scroll;
     }
   }
 </style>
