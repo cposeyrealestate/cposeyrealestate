@@ -2,84 +2,77 @@
 // Curated subset of reviews sourced from the Google Business Profile
 // (33 reviews, all 5-star). The full list lives in src/pages/testimonials.astro;
 // the running total drives aggregateRating and is kept in src/data/seo.json.
+//
+// Avatars are CSS-rendered initials — no external placeholder images.
 const testimonials = [
   {
     name: 'Shasta King',
     role: 'Home Buyer',
     quote: 'God truly blessed us when he sent Cody Posey our way when we were looking for our new home. He truly pays attention to what you want, need, and everything in between. He makes the process so smooth and easy. We are so grateful for him!',
-    avatar: 'https://placehold.co/100x100/FF1616/fff?text=SK',
   },
   {
     name: 'Otmaro Menjivar',
     role: 'Home Seller — Army Veteran',
     quote: "Having known him for over 10 years—first serving together in the Army—I already knew his character, integrity, and work ethic were second to none. In a challenging market where homes can sit, Cody got our house sold in just 36 days while still putting money in our pockets.",
-    avatar: 'https://placehold.co/100x100/FF1616/fff?text=OM',
   },
   {
     name: 'Megan Dupuis',
     role: 'Home Buyer & Renter',
     quote: 'I would highly recommend Cody during your home or rental search. He is extremely knowledgeable and goes above and beyond to get you the best deal. He just got me set up in a rental and I plan to go back to him when I am ready to buy.',
-    avatar: 'https://placehold.co/100x100/FF1616/fff?text=MD',
   },
   {
     name: 'Patrick Mechlinar',
     role: 'Home Buyer',
     quote: 'Mr Posey was very reliable, flexible and super friendly! Working with him was great! He made it so easy for us to find a new home, we are so thankful to have found him and work with him! Great Realtor!',
-    avatar: 'https://placehold.co/100x100/FF1616/fff?text=PM',
   },
   {
     name: 'Brian Tilton',
     role: 'Home Buyer — Mortgage Industry Executive',
     quote: 'I recently worked with Cody on a home purchase that just closed, and I can confidently say he stands out as one of the best agents I\'ve partnered with in my 30+ years in the mortgage industry.',
-    avatar: 'https://placehold.co/100x100/FF1616/fff?text=BT',
   },
   {
     name: 'Michelle Maloney',
     role: 'Google Local Guide',
     quote: 'Cody Posey is the most knowledgeable real estate agent in Texas! His knowledge of the market is top notch, but beyond that he knows how to market your home to buyers to get it SOLD! As a US Veteran, he has a servant heart matched only by his work ethic.',
-    avatar: 'https://placehold.co/100x100/FF1616/fff?text=MM',
   },
   {
     name: 'Shannon Cheatham',
     role: 'Home Buyer & Seller',
     quote: 'Cody was a pleasure to work with. He went above and beyond and exemplifies true customer service! We would highly recommend him if you are selling or buying a home! He helped in many different ways to ensure EVERYTHING was perfect. Thank you Cody for going above and beyond expectations!',
-    avatar: 'https://placehold.co/100x100/FF1616/fff?text=SC',
   },
   {
     name: 'Mara',
     role: 'Home Buyer',
     quote: 'We had the best experience with Cody! He took his time, even spontaneously on the same day to help us find our home. Everything went smoothly and he took care of the whole process — and still after everything was signed and we moved in, he\'s still there to help us with any questions. We can highly recommend him.',
-    avatar: 'https://placehold.co/100x100/FF1616/fff?text=M',
   },
   {
     name: 'David Goad',
     role: 'Verified Client',
     quote: 'Cody is exceptional at his craft. He is also very in tune with technology and his local market. If you are looking to buy or sell and he is in your area, I highly recommend giving him a call.',
-    avatar: 'https://placehold.co/100x100/FF1616/fff?text=DG',
   },
   {
     name: 'Ferrol Bell',
     role: 'New Construction Buyer',
     quote: 'Cody was phenomenal from start to finish. Our home buying process went extremely fast and felt like a whirlwind but Cody handled it all knowing how hectic our schedules. He even caught that the builder\'s gutter crew had installed the gutters incorrectly — his attention to detail is unmatched.',
-    avatar: 'https://placehold.co/100x100/FF1616/fff?text=FB',
   },
   {
     name: 'Greg Van Leer',
     role: 'Home Buyer',
     quote: 'Cody has always been a pleasure to work with. He has outstanding knowledge of the home buying process and will go above and beyond for anyone who works with him. He will not only inspect the home thoroughly but will tell you everything you need to know.',
-    avatar: 'https://placehold.co/100x100/FF1616/fff?text=GV',
   },
   {
     name: 'Donna Davi',
     role: 'Verified Client',
     quote: 'I had several real estate questions which gave me a lot of anxiety. I saw one of Cody\'s videos which I found very informative and easy to understand. I reached out and Cody responded immediately. He was selfless with his time and truly put my mind at ease.',
-    avatar: 'https://placehold.co/100x100/FF1616/fff?text=DD',
   },
 ];
+
+const initials = (name: string) =>
+  name.split(/\s+/).map((w) => w[0]).slice(0, 2).join('').toUpperCase();
 ---
 
 <section class="testimonials section" id="testimonials"
-  style="background-image: url('https://media-production.lp-cdn.com/cdn-cgi/image/format=auto,quality=85,fit=scale-down,width=1280/https://media-production.lp-cdn.com/media/28b62a24-fd1c-4443-9e1b-dcc7e4069f64');">
+  style="background-image: url('/images/testimonials-hero.webp');">
   <div class="testimonials__overlay"></div>
 
   <div class="container" style="position:relative;z-index:2;">
@@ -98,7 +91,7 @@ const testimonials = [
                 "{t.quote}"
               </blockquote>
               <div class="testi-card__author">
-                <img src={t.avatar} alt={t.name} class="testi-card__avatar" />
+                <div class="testi-card__avatar" aria-hidden="true">{initials(t.name)}</div>
                 <div>
                   <div class="testi-card__name">{t.name}</div>
                   <div class="testi-card__role">{t.role}</div>
@@ -170,8 +163,17 @@ const testimonials = [
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #FF1616;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #FF1616 0%, #8f0e0e 100%);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: 0.03em;
+    border: 2px solid rgba(255,255,255,0.3);
   }
 
   .testi-card__name {
@@ -197,6 +199,15 @@ const testimonials = [
   .testimonials-swiper .swiper-pagination-bullet-active {
     background: #FF1616 !important;
   }
+
+  @media (max-width: 768px) {
+    .testimonials {
+      background-attachment: scroll;
+    }
+    .testi-card {
+      padding: 1.75rem 1.25rem;
+    }
+  }
 </style>
 
 <script>
@@ -205,7 +216,7 @@ const testimonials = [
     slidesPerView: 1,
     spaceBetween: 24,
     loop: true,
-    autoplay: { delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true },
+    autoplay: { delay: 6500, disableOnInteraction: false, pauseOnMouseEnter: true },
     navigation: {
       nextEl: '.testimonials-swiper .swiper-button-next',
       prevEl: '.testimonials-swiper .swiper-button-prev',
