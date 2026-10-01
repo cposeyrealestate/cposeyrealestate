@@ -1,0 +1,119 @@
+---
+// The PCS Landing Plan — Cody's named offer for military buyers.
+// Placed on the homepage after the proof sections (Testimonials, StatsBand).
+const steps = [
+  {
+    num: '01',
+    title: 'Lock Your Numbers',
+    desc: '60–90 days out: VA pre-approval with a VA-experienced lender, and your BAH mapped against real taxes, insurance, and HOA — so you know your true out-of-pocket before you shop.',
+  },
+  {
+    num: '02',
+    title: 'Target Your Base',
+    desc: 'Neighborhoods matched to your installation — Randolph, Fort Sam Houston, or Lackland — weighed against commute, schools, and long-term value. No guessing from a base housing office 1,000 miles away.',
+  },
+  {
+    num: '03',
+    title: 'Buy From Anywhere',
+    desc: 'Live video walkthroughs of every serious contender, remote offers, and a power of attorney so you or your spouse can close even if orders and closing dates collide.',
+  },
+  {
+    num: '04',
+    title: 'Land Soft',
+    desc: 'Closing timed to your report date, homestead and veteran exemptions filed with the county, and a local point of contact after the keys are yours — not just at the closing table.',
+  },
+];
+---
+
+<section class="pcs-plan section" id="pcs-landing-plan" style="background:#0a0a0a;">
+  <div class="container">
+    <div class="section-title">
+      <p class="pcs-plan__eyebrow">For Military Buyers</p>
+      <h2 style="color:#fff;">The PCS <span class="accent">Landing Plan</span></h2>
+      <p style="color:rgba(255,255,255,0.65);">Orders to JBSA? This is the exact battle rhythm I run with every military buyer — from first call to keys in hand.</p>
+    </div>
+
+    <div class="pcs-plan__grid">
+      {steps.map((s) => (
+        <div class="pcs-plan__step">
+          <div class="pcs-plan__num">{s.num}</div>
+          <h3>{s.title}</h3>
+          <p>{s.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="pcs-plan__cta">
+      <a href="/military-relocation/" class="btn btn-primary">Start Your Landing Plan</a>
+      <a href="/va-savvy-agent/" class="pcs-plan__link">How to choose a VA-savvy agent &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pcs-plan__eyebrow {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #FF1616;
+    margin-bottom: 0.75rem;
+  }
+  .pcs-plan__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  .pcs-plan__step {
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 1.75rem 1.5rem;
+    background: rgba(255,255,255,0.03);
+  }
+  .pcs-plan__num {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 2rem;
+    color: #FF1616;
+    margin-bottom: 0.75rem;
+  }
+  .pcs-plan__step h3 {
+    color: #fff;
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+  }
+  .pcs-plan__step p {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+  .pcs-plan__cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .pcs-plan__link {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .pcs-plan__link:hover {
+    color: #FF1616;
+  }
+  @media (max-width: 900px) {
+    .pcs-plan__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 560px) {
+    .pcs-plan__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
