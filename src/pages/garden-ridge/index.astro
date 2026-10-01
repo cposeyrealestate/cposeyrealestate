@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
-import { placeSchema, collectionPageSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
+import { placeSchema, collectionPageSchema, breadcrumbSchema, faqSchema, videoObjectSchema } from '../../lib/schema';
 
 const grDescription = 'Garden Ridge, TX homes for sale — 2026 relocation guide. Median home price, real neighborhoods, Comal ISD schools, commute times, restaurants, and things to do. Straight talk for buyers.';
 const pageSchema = [
@@ -44,6 +44,11 @@ const pageSchema = [
       a: 'Three things: (1) premium pricing with thin inventory — financing should be fully lined up before touring; (2) deed restrictions and HOAs are common in the gated subdivisions, so read the CC&Rs before offering; (3) older resale homes may be on septic or well water — budget for inspections beyond the standard set.',
     },
   ]),
+  videoObjectSchema({
+    videoId: 'U3apeK97ANA',
+    title: 'Why This San Antonio Luxury Home is My #1 Pick!',
+    description: 'My #1 luxury home pick in the San Antonio area — a Garden Ridge luxury home tour from a REALTOR based in New Braunfels.',
+  }),
 ];
 ---
 
@@ -96,6 +101,18 @@ const pageSchema = [
               <span class="gr-stat__number">Comal ISD</span>
               <span class="gr-stat__label">School district</span>
             </div>
+          </div>
+        </div>
+        <div class="gr-video">
+          <h3>Watch: Why This San Antonio Luxury Home is My #1 Pick!</h3>
+          <div class="gr-video__frame">
+            <iframe
+              src="https://www.youtube.com/embed/U3apeK97ANA"
+              title="Why This San Antonio Luxury Home is My #1 Pick!"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
           </div>
         </div>
       </div>
@@ -373,4 +390,8 @@ const pageSchema = [
     .gr-cost__grid { grid-template-columns: 1fr; }
     .gr-commute__grid { grid-template-columns: 1fr 1fr; }
   }
+  .gr-video { max-width: 900px; margin: 2.5rem auto 0; }
+  .gr-video h3 { font-size: 1.15rem; margin-bottom: 1rem; }
+  .gr-video__frame { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
+  .gr-video__frame iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 </style>

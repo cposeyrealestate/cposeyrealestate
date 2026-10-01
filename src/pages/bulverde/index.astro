@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
-import { placeSchema, articleSchema, collectionPageSchema, faqSchema, breadcrumbSchema } from '../../lib/schema';
+import { placeSchema, articleSchema, collectionPageSchema, faqSchema, breadcrumbSchema, videoObjectSchema } from '../../lib/schema';
 
 const bvDescription = 'Bulverde, TX homes for sale: acreage lots, Comal ISD schools, 25–30 min to San Antonio. Honest 2026 relocation guide — the prices, costs, and trade-offs.';
 
@@ -48,6 +48,11 @@ const pageSchema = [
     ],
   }),
   faqSchema(faqs),
+  videoObjectSchema({
+    videoId: '51CYkv66BRI',
+    title: "Moving to Texas? The Best Place Near San Antonio's Hill Country",
+    description: "The best place near San Antonio's Hill Country to move to — Bulverde, Texas, from a retired Army First Sergeant and REALTOR.",
+  }),
   breadcrumbSchema([
     { name: 'Home', url: '/' },
     { name: 'Hill Country Relocation Guide', url: '/hill-country-relocation-guide/' },
@@ -99,6 +104,18 @@ const pageSchema = [
             <span class="bv-stat__number">1–10+ ac</span>
             <span class="bv-stat__label">Typical Lot Sizes</span>
             <span class="bv-stat__source">Acreage market</span>
+          </div>
+        </div>
+        <div class="bv-video">
+          <h3>Watch: Moving to Texas? The Best Place Near San Antonio's Hill Country</h3>
+          <div class="bv-video__frame">
+            <iframe
+              src="https://www.youtube.com/embed/51CYkv66BRI"
+              title="Moving to Texas? The Best Place Near San Antonio's Hill Country"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
           </div>
         </div>
       </div>
@@ -422,6 +439,10 @@ const pageSchema = [
     padding: 2.5rem 0;
     color: #fff;
   }
+  .bv-video { max-width: 900px; margin: 2.5rem auto 0; }
+  .bv-video h3 { font-size: 1.15rem; margin-bottom: 1rem; color: #fff; }
+  .bv-video__frame { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
+  .bv-video__frame iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
   .bv-stats__grid {
     display: grid;

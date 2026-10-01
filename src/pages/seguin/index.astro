@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import VideoEmbed from '../../components/VideoEmbed.astro';
-import { placeSchema, articleSchema, collectionPageSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
+import { placeSchema, articleSchema, collectionPageSchema, breadcrumbSchema, faqSchema, videoObjectSchema } from '../../lib/schema';
 
 const sgTitle = 'Seguin, TX Homes for Sale | 2026 Relocation Guide';
 const sgDescription = 'Seguin, TX homes for sale: median ~$289K, 35 min to San Antonio, Guadalupe River living. Explore neighborhoods, schools, commute, and honest 2026 cost data.';
@@ -54,6 +54,11 @@ const pageSchema = [
     { name: 'Seguin', url: '/seguin/' },
   ]),
   faqSchema(faqs),
+  videoObjectSchema({
+    videoId: 'mEOheFhazEQ',
+    title: 'Why are So Many People Flocking to this San Antonio Suburb?',
+    description: 'Why so many people are moving to Seguin, Texas — affordability, growth, and the tradeoffs, from a retired Army First Sergeant and REALTOR.',
+  }),
 ];
 ---
 
@@ -99,6 +104,18 @@ const pageSchema = [
           </div>
         </div>
         <p class="seg-stats__note">Stats verified as of Sept 2026. Population: U.S. Census Bureau 2024 annual estimate; Seguin ranked the fastest-growing city in the San Antonio metro. Price: Sept 2026 market data; typical sold range $208K-$414K (Aug 2026).</p>
+        <div class="seg-video">
+          <h3>Watch: Why are So Many People Flocking to this San Antonio Suburb?</h3>
+          <div class="seg-video__frame">
+            <iframe
+              src="https://www.youtube.com/embed/mEOheFhazEQ"
+              title="Why are So Many People Flocking to this San Antonio Suburb?"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -393,6 +410,10 @@ const pageSchema = [
     margin-left: auto;
     margin-right: auto;
   }
+  .seg-video { max-width: 900px; margin: 2.5rem auto 0; }
+  .seg-video h3 { font-size: 1.15rem; margin-bottom: 1rem; }
+  .seg-video__frame { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
+  .seg-video__frame iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
   /* Overview */
   .seg-overview__text {

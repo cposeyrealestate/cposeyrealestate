@@ -5,7 +5,7 @@ import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import VideoEmbed from '../../components/VideoEmbed.astro';
-import { placeSchema, collectionPageSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
+import { placeSchema, collectionPageSchema, breadcrumbSchema, faqSchema, videoObjectSchema } from '../../lib/schema';
 
 const csDescription = "Cibolo & Schertz, TX homes for sale: SCUCISD schools, 10–20 minutes to JBSA-Randolph, and median home values near $350K. Cody Posey's 2026 relocation guide.";
 
@@ -42,6 +42,11 @@ const pageSchema = [
     ],
   }),
   faqSchema(faqs),
+  videoObjectSchema({
+    videoId: 'TTGTwpJbJ1Y',
+    title: 'Why Everyone Is Moving to this Schertz Neighborhood!',
+    description: 'Why everyone is moving to Schertz, Texas — neighborhoods, schools, and the JBSA-Randolph corridor, from a retired Army First Sergeant and REALTOR.',
+  }),
   breadcrumbSchema([
     { name: 'Home', url: '/' },
     { name: 'Hill Country Relocation Guide', url: '/hill-country-relocation-guide/' },
@@ -92,6 +97,20 @@ const pageSchema = [
         </div>
       </div>
       <p class="cs-statband__source">Population and home-value figures as of September 2026 (ESRI Aug 2026 data, World Population Review 2026 estimates). Drive times are off-peak ranges.</p>
+      <div class="container">
+        <div class="cs-video">
+          <h3>Watch: Why Everyone Is Moving to this Schertz Neighborhood!</h3>
+          <div class="cs-video__frame">
+            <iframe
+              src="https://www.youtube.com/embed/TTGTwpJbJ1Y"
+              title="Why Everyone Is Moving to this Schertz Neighborhood!"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- 3. Honest overview -->
@@ -455,6 +474,10 @@ const pageSchema = [
     margin-top: 1.25rem;
     padding: 0 1.5rem;
   }
+  .cs-video { max-width: 900px; margin: 2.5rem auto 0; }
+  .cs-video h3 { font-size: 1.15rem; margin-bottom: 1rem; color: #fff; }
+  .cs-video__frame { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
+  .cs-video__frame iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
   /* Overview */
   .cs-overview__grid {

@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
-import { placeSchema, collectionPageSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
+import { placeSchema, collectionPageSchema, breadcrumbSchema, faqSchema, videoObjectSchema } from '../../lib/schema';
 
 const brnTitle = 'Boerne, TX Homes for Sale | 2026 Relocation Guide';
 const brnDescription = 'Boerne, TX 2026 relocation guide: median list price $675K–$685K, population ~24K, Boerne ISD (TEA A-rated), I-10 commute times, neighborhoods, property taxes, and what buyers need to know before paying the Hill Country premium.';
@@ -43,6 +43,11 @@ const pageSchema = [
     { name: 'Boerne', url: '/boerne/' },
   ]),
   faqSchema(brnFaqs),
+  videoObjectSchema({
+    videoId: '1IMfdtOkX5w',
+    title: "Boerne's Resort Secret: San Antonio's Hidden Community",
+    description: "Boerne, Texas — San Antonio's hidden resort community. Why buyers are choosing Boerne, from a retired Army First Sergeant and REALTOR.",
+  }),
 ];
 ---
 
@@ -86,6 +91,18 @@ const pageSchema = [
           <div class="brn-stat">
             <span class="brn-stat__number">TEA A-rated</span>
             <span class="brn-stat__label">Boerne ISD — 99% graduation rate</span>
+          </div>
+        </div>
+        <div class="brn-video">
+          <h3>Watch: Boerne's Resort Secret: San Antonio's Hidden Community</h3>
+          <div class="brn-video__frame">
+            <iframe
+              src="https://www.youtube.com/embed/1IMfdtOkX5w"
+              title="Boerne's Resort Secret: San Antonio's Hidden Community"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
           </div>
         </div>
       </div>
@@ -348,4 +365,8 @@ const pageSchema = [
   @media (max-width: 600px) {
     .brn-cta { background-attachment: scroll; }
   }
+  .brn-video { max-width: 900px; margin: 2.5rem auto 0; }
+  .brn-video h3 { font-size: 1.15rem; margin-bottom: 1rem; }
+  .brn-video__frame { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
+  .brn-video__frame iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 </style>
