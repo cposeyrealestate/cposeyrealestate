@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
-import { placeSchema, collectionPageSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
+import { placeSchema, collectionPageSchema, breadcrumbSchema, faqSchema, videoObjectSchema } from '../../lib/schema';
 
 const pageTitle = 'New Braunfels, TX Homes for Sale | 2026 Relocation Guide';
 const pageDescription = 'New Braunfels, TX homes for sale — prices, schools, commute times, and neighborhoods. Your 2026 Texas Hill Country relocation guide from Cody Posey, REALTOR®.';
@@ -50,6 +50,11 @@ const pageSchema = [
     { name: 'New Braunfels', url: '/new-braunfels/' },
   ]),
   faqSchema(faqs),
+  videoObjectSchema({
+    videoId: '3_hdw7Nta7I',
+    title: "Relocating to San Antonio? Consider New Braunfels' Best-Kept Secret",
+    description: 'Why relocating buyers should consider New Braunfels, Texas — the Hill Country best-kept secret between San Antonio and Austin.',
+  }),
 ];
 ---
 
@@ -96,6 +101,18 @@ const pageSchema = [
           </div>
         </div>
         <p class="nb-stats__note">Population per World Population Review 2026 estimate; home prices per Realtor.com market data — as of Sept 2026.</p>
+        <div class="nb-video">
+          <h3>Watch: Relocating to San Antonio? Consider New Braunfels' Best-Kept Secret</h3>
+          <div class="nb-video__frame">
+            <iframe
+              src="https://www.youtube.com/embed/3_hdw7Nta7I"
+              title="Relocating to San Antonio? Consider New Braunfels' Best-Kept Secret"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -760,4 +777,8 @@ const pageSchema = [
       background-attachment: scroll;
     }
   }
+  .nb-video { max-width: 900px; margin: 2.5rem auto 0; }
+  .nb-video h3 { font-size: 1.15rem; margin-bottom: 1rem; }
+  .nb-video__frame { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
+  .nb-video__frame iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 </style>

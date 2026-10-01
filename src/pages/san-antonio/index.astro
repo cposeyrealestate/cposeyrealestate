@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ParallaxBanner from '../../components/ParallaxBanner.astro';
 import ContactForm from '../../components/ContactForm.astro';
-import { placeSchema, collectionPageSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
+import { placeSchema, collectionPageSchema, breadcrumbSchema, faqSchema, videoObjectSchema } from '../../lib/schema';
 
 const saDescription = 'San Antonio, TX homes for sale: 2026 relocation guide with median prices, neighborhoods by corridor, schools, commute times, and the honest tradeoffs — from a retired Army First Sergeant based in New Braunfels.';
 const faqs = [
@@ -43,6 +43,16 @@ const pageSchema = [
     { name: 'San Antonio', url: '/san-antonio/' },
   ]),
   faqSchema(faqs),
+  videoObjectSchema({
+    videoId: 'B12VHEaZZ1U',
+    title: '10 Pros and Cons of Living in San Antonio Texas [2026]',
+    description: 'The honest pros and cons of living in San Antonio, Texas in 2026 — from a retired Army First Sergeant and REALTOR based in New Braunfels.',
+  }),
+  videoObjectSchema({
+    videoId: 'EoNdYynrO2U',
+    title: "If I were Moving to San Antonio Texas AGAIN, I'd Move Here",
+    description: 'Where I would buy in San Antonio if I were moving here again — corridors, neighborhoods, and the tradeoffs that matter.',
+  }),
 ];
 ---
 
@@ -99,6 +109,18 @@ const pageSchema = [
           </div>
         </div>
         <p class="sa-stat__note">Population: 2025 Census estimate via Wikipedia. Median list price: Realtor.com September 2026 monthly housing trends, San Antonio–New Braunfels metro. JBSA: Fort Sam Houston, Lackland AFB, Randolph AFB.</p>
+        <div class="sa-video">
+          <h3>Watch: 10 Pros and Cons of Living in San Antonio Texas [2026]</h3>
+          <div class="sa-video__frame">
+            <iframe
+              src="https://www.youtube.com/embed/B12VHEaZZ1U"
+              title="10 Pros and Cons of Living in San Antonio Texas [2026]"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -170,6 +192,21 @@ const pageSchema = [
         </div>
       </div>
     </section>
+
+    <div class="container">
+      <div class="sa-video">
+        <h3>Watch: If I Were Moving to San Antonio Texas AGAIN, I'd Move Here</h3>
+        <div class="sa-video__frame">
+          <iframe
+            src="https://www.youtube.com/embed/EoNdYynrO2U"
+            title="If I were Moving to San Antonio Texas AGAIN, I'd Move Here"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </div>
 
     <!-- 5. Cost snapshot -->
     <section class="section sa-cost" style="background: var(--light-gray);">
@@ -392,6 +429,10 @@ const pageSchema = [
   .sa-stat__number { display: block; font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: #FF1616; }
   .sa-stat__label { display: block; font-size: 0.8rem; color: var(--gray); margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em; }
   .sa-stat__note { font-size: 0.78rem; color: var(--gray); font-style: italic; margin-top: 2rem; max-width: 900px; }
+  .sa-video { max-width: 900px; margin: 2.5rem auto 0; }
+  .sa-video h3 { font-size: 1.15rem; margin-bottom: 1rem; }
+  .sa-video__frame { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
+  .sa-video__frame iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
   /* 3. Honest overview */
   .sa-honest__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
