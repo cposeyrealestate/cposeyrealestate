@@ -3,12 +3,13 @@ interface Props {
   image: string;
   alt?: string;
   height?: string;
+  position?: string;
 }
 
-const { image, alt = '', height = '300px' } = Astro.props;
+const { image, alt = '', height = '300px', position = 'center' } = Astro.props;
 ---
 
-<div class="parallax-banner" style={`background-image: url('${image}'); height: ${height};`}>
+<div class="parallax-banner" style={`background-image: url('${image}'); height: ${height}; background-position: ${position};`}>
   <div class="parallax-banner__overlay"></div>
 </div>
 
