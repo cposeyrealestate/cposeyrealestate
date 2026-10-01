@@ -114,3 +114,109 @@
 
 # Area section restructure (2026-10-01): new flagship hub replaces /explorearea/.
 /explorearea/  /hill-country-relocation-guide/  301
+
+# ── Previous-website 404 cleanup (Oct 2026) ─────────────────────────
+# 837 dead URLs from the old site, per Search Console. Splat rules catch
+# the IDX/listing/property/neighborhood patterns; old blog slugs get
+# exact rules (mapped to the closest current post, or /blog/).
+
+# Old IDX search, sold-listing detail, and account URLs -> site search
+/home-search/*  /search  301
+
+# Old property detail pages -> site search
+/properties/*  /search  301
+
+# Old portfolio detail pages -> portfolio index
+/portfolio/*  /portfolio  301
+
+# Old neighborhood pages (veramendi's specific rule above stays first)
+/neighborhoods/garden-ridge  /garden-ridge/neighborhoods/  301
+/neighborhoods/*  /hill-country-relocation-guide/  301
+
+# Old site sections -> current equivalents
+/buyers  /buyers-guide  301
+/sellers  /sellers-guide  301
+/terms-and-conditions  /terms  301
+/thank-you  /contact  301
+/profile  /  301
+/auth/sign_in  /  301
+
+# Old blog slugs -> closest current post
+/blog/best-neighborhoods-in-new-braunfels-for-first-time-buyers-in-2026  /blog/new-braunfels-seller-concessions-first-time-buyers-2026  301
+/blog/how-much-does-it-cost-to-sell-a-home-in-new-braunfels-tx  /blog/best-time-to-sell-house-new-braunfels-2026  301
+/blog/how-to-sell-a-home-in-a-buyers-market-in-new-braunfels-tx  /blog/choose-listing-agent-new-braunfels-tx-2026  301
+/blog/how-to-sell-a-home-with-a-mortgage-in-new-braunfels-tx-1  /blog/choose-listing-agent-new-braunfels-tx-2026  301
+/blog/is-the-hill-country-lifestyle-still-affordable-for-new-braunfels-relocators-in-2026  /blog/hill-country-living-near-new-braunfels-river-or-lake  301
+/blog/new-braunfels-2026-best-time-to-sell-your-home  /blog/new-braunfels-buyer-or-seller-market-2026  301
+/blog/new-construction-vs-resale-hill-country-2026  /blog/new-construction-vs-resale-prices-new-braunfels  301
+/blog/new-construction-vs-resale-homes-in-new-braunfels-2026-which-wins-in-todays-buyers-market  /blog/new-construction-vs-resale-prices-new-braunfels  301
+/blog/new-construction-vs-resale-homes-in-new-braunfels-which-wins-for-buyers-in-2026  /blog/new-construction-vs-resale-prices-new-braunfels  301
+/blog/new-construction-vs-resale-true-cost-2026  /blog/new-construction-vs-resale-prices-new-braunfels  301
+/blog/new-vs-resale-homes-best-buy-in-new-braunfels  /blog/new-construction-vs-resale-prices-new-braunfels  301
+/blog/va-loans-for-hill-country-vets-2026-guide  /blog/va-loan-timeline-before-pcs-converse-2026-guide  301
+/blog/what-are-the-steps-to-selling-a-home-in-new-braunfels-tx  /blog/best-time-to-sell-house-new-braunfels-2026  301
+/blog/what-happens-if-my-home-doesnt-sell-in-new-braunfels-tx  /blog/best-time-to-sell-house-new-braunfels-2026  301
+/blog/what-is-the-best-time-of-year-to-sell-a-home-in-new-braunfels-tx  /blog/best-time-to-sell-house-new-braunfels-2026  301
+/blog/whats-so-special-about-texas-hill-country  /blog/buying-second-home-texas-hill-country-2026  301
+/blog/when-is-the-best-time-to-sell-a-home-in-new-braunfels-tx  /blog/best-time-to-sell-house-new-braunfels-2026  301
+
+# Old blog slugs with no current equivalent -> blog index
+/blog/2025-hill-country-design-trends-for-new-braunfels-buyers  /blog/  301
+/blog/5-mistakes-sellers-in-new-braunfels-are-making-in-2025-and-how-to-avoid-them  /blog/  301
+/blog/6-essential-steps-to-buying-a-home-a-guide-for-first-time-homebuyers  /blog/  301
+/blog/are-downsizers-in-guadalupe-and-comal-county-facing-lower-profits-due-to-falling-home-values  /blog/  301
+/blog/beat-new-builds-sell-your-nb-home-strategically  /blog/  301
+/blog/buyer-season-is-here-what-to-expect-in-the-2025-housing-market  /blog/  301
+/blog/can-i-sell-my-home-in-new-braunfels-if-im-behind-on-mortgage-payments  /blog/  301
+/blog/can-i-sell-my-home-in-new-braunfels-without-paying-capital-gains-tax  /blog/  301
+/blog/can-you-really-time-the-real-estate-market  /blog/  301
+/blog/cash-home-buyers-vs-traditional-real-estate-agents-in-new-braunfels-which-gets-you-more-money  /blog/  301
+/blog/could-an-investor-ban-make-san-antonio-new-braunfels-homes-more-affordable  /blog/  301
+/blog/date-the-rate-marry-the-home  /blog/  301
+/blog/dont-let-your-new-braunfels-home-languish-on-the-market-proven-strategies-for-a-faster-sale  /blog/  301
+/blog/dont-sell-someone-elses-home-the-high-cost-of-overpricing-in-real-estate  /blog/  301
+/blog/housing-affordability-strain-and-the-rising-risk-of-underwater-sellers-in-the-san-antonionew-braunfels-metro  /blog/  301
+/blog/how-the-2025-va-loan-reform-quietly-changed-everything-for-veteran-homebuyers  /blog/  301
+/blog/how-to-assess-your-goals-before-buying-a-home  /blog/  301
+/blog/how-to-market-your-home-effectively-in-new-braunfels-tx  /blog/  301
+/blog/how-to-protest-your-property-taxes-in-texas-and-potentially-save-thousands  /blog/  301
+/blog/how-to-sell-a-fixer-upper-home-in-new-braunfels-tx  /blog/  301
+/blog/how-to-sell-a-home-during-a-job-transfer-in-new-braunfels-tx  /blog/  301
+/blog/how-to-sell-a-home-when-upsizing-in-new-braunfels-tx  /blog/  301
+/blog/how-to-sell-a-home-with-equity-in-new-braunfels-tx  /blog/  301
+/blog/how-to-sell-a-home-with-multiple-offers-in-new-braunfels-tx  /blog/  301
+/blog/how-to-sell-a-luxury-home-in-new-braunfels-tx  /blog/  301
+/blog/inventory-is-spiking-and-days-on-market-are-risingis-the-new-braunfels-real-estate-market-facing-a-correction-and-what-does-it-mean-for-your-homes-value  /blog/  301
+/blog/is-2026-the-right-time-to-sell-your-new-braunfels-home-a-data-driven-guide-to-pricing-in-a-buyers-market  /blog/  301
+/blog/is-2026-the-right-time-to-sell-your-new-braunfels-home-navigating-rising-days-on-market-with-strategic-precision  /blog/  301
+/blog/is-creekside-worth-the-premium-in-2026  /blog/  301
+/blog/is-hill-country-water-scarcity-killing-the-dream-of-living-here-in-2026  /blog/  301
+/blog/is-it-a-good-time-to-buy-in-new-braunfels-and-san-antonio  /blog/  301
+/blog/is-new-braunfels-losing-its-hill-country-charm-navigating-rapid-growth-for-2026-relocators  /blog/  301
+/blog/is-new-braunfels-still-the-right-move-why-the-78130-zip-code-boom-signals-opportunitynot-the-end-of-the-dream  /blog/  301
+/blog/is-now-the-right-time-to-relocate-to-new-braunfels-navigating-2025s-explosive-growth-and-lifestyle-shifts  /blog/  301
+/blog/is-the-texas-hill-country-housing-market-about-to-shift-heres-what-the-data-says  /blog/  301
+/blog/is-today-a-good-time-for-real-estate-heres-what-june-2025-shows-us  /blog/  301
+/blog/mortgage-rate-predictions-20252026-will-relief-be-coming-soon  /blog/  301
+/blog/navigating-new-braunfels-real-estate-for-veterans-in-2026-finding-your-perfect-home  /blog/  301
+/blog/navigating-the-shifting-sands-decoding-the-new-braunfels-real-estate-market  /blog/  301
+/blog/new-data-just-put-san-antonionew-braunfels-on-the-buyer-friendly-map  /blog/  301
+/blog/remote-workers-moving-to-hill-country-tax-impact-decoded  /blog/  301
+/blog/resale-vs-new-construction-where-to-sell-in-2026  /blog/  301
+/blog/should-you-drop-your-price-or-wait-it-out-in-new-braunfels  /blog/  301
+/blog/summer-vs-fall-selling  /blog/  301
+/blog/the-2025-seller-squeeze-why-pandemic-era-buyers-in-san-antonio-and-new-braunfels-are-struggling-to-break-even  /blog/  301
+/blog/the-negotiation-advantage-how-to-find-affordable-homes-in-new-braunfels-right-now  /blog/  301
+/blog/the-rising-age-of-first-time-homebuyers-what-it-really-says-about-housing-affordability  /blog/  301
+/blog/the-ultimate-guide-to-military-pcs-relocating-with-confidence-and-ease  /blog/  301
+/blog/understanding-housing-affordability-in-late-2025  /blog/  301
+/blog/unlocking-the-best-incentives-why-now-is-the-perfect-time-to-buy-a-new-construction-home  /blog/  301
+/blog/when-affordable-isnt-affordable-anymore-the-real-cost-of-living-in-new-braunfelssan-antonio  /blog/  301
+/blog/where-to-sell-home-items-in-new-braunfels-before-listing-your-house  /blog/  301
+/blog/why-50-year-mortgages-are-a-bad-idea-even-if-they-sound-good-at-first  /blog/  301
+/blog/why-are-interest-rates-still-so-high-and-why-that-shouldnt-stop-you-from-buying-a-home  /blog/  301
+/blog/why-more-sellers-are-delisting-their-homes-and-what-it-means-for-the-san-antonionew-braunfels-market-in-2025  /blog/  301
+/blog/why-new-braunfels-sellers-are-facing-a-buyers-market-in-2025and-how-to-flip-the-script  /blog/  301
+/blog/why-pricing-strategy-matters-more-than-ever  /blog/  301
+/blog/why-some-homes-sit-while-others-sell-fast-in-july  /blog/  301
+/blog/why-you-should-fall-in-love-with-the-location-not-just-the-house  /blog/  301
