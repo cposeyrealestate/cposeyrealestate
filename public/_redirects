@@ -120,18 +120,11 @@
 # the IDX/listing/property/neighborhood patterns; old blog slugs get
 # exact rules (mapped to the closest current post, or /blog/).
 
-# Old IDX search, sold-listing detail, and account URLs -> site search
-/home-search/*  /search  301
 
-# Old property detail pages -> site search
-/properties/*  /search  301
 
-# Old portfolio detail pages -> portfolio index
-/portfolio/*  /portfolio  301
 
 # Old neighborhood pages (veramendi's specific rule above stays first)
 /neighborhoods/garden-ridge  /garden-ridge/neighborhoods/  301
-/neighborhoods/*  /hill-country-relocation-guide/  301
 
 # Old site sections -> current equivalents
 /buyers  /buyers-guide  301
@@ -261,3 +254,22 @@
 /blog/2026-04-07-neighborhood-spotlight-seguin/  /seguin/  301
 /blog/2026-04-15-buyers-corner-hill-country-home-buying-checklist  /hill-country-relocation-guide/  301
 /blog/2026-04-15-buyers-corner-hill-country-home-buying-checklist/  /hill-country-relocation-guide/  301
+
+
+# ── Splat rules LAST ─────────────────────────────────────────────
+# Wrangler classifies every rule below the first splat/placeholder as
+# "dynamic" (Cloudflare limit: 100 dynamic rules), so all static rules
+# must come first. Order within this section is preserved.
+
+# Old IDX search, sold-listing detail, and account URLs -> site search
+/home-search/*  /search  301
+
+# Old property detail pages -> site search
+/properties/*  /search  301
+
+# Old portfolio detail pages -> portfolio index
+/portfolio/*  /portfolio  301
+
+# Old neighborhood pages -> relocation guide (veramendi's and garden-ridge's
+# specific rules above stay first)
+/neighborhoods/*  /hill-country-relocation-guide/  301
