@@ -267,7 +267,8 @@
 # Old property detail pages -> site search
 /properties/*  /search  301
 
-# Current portfolio listings - serve directly (must come before the /portfolio/* splat below)
+# Current portfolio pages - serve directly (must come before the /portfolio/* splat below)
+/portfolio/  /portfolio/  200
 /portfolio/4448-klein-meadows/  /portfolio/4448-klein-meadows/  200
 /portfolio/7607-sky-loop/  /portfolio/7607-sky-loop/  200
 /portfolio/531-eden-ranch-dr/  /portfolio/531-eden-ranch-dr/  200
