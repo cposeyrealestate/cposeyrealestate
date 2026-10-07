@@ -1,6 +1,5 @@
 {
-  "_comment": "Portfolio data — current listings pull from IDX detail pages via mlsId + slug; past sales are manually maintained. Replace placeholder entries with real data. Keep the shape of each object identical.",
-
+  "_comment": "Portfolio data \u2014 current listings pull from IDX detail pages via mlsId + slug; past sales are manually maintained. Replace placeholder entries with real data. Keep the shape of each object identical.",
   "currentListings": [
     {
       "source": "internal",
@@ -8,7 +7,7 @@
       "slug": "4448-klein-meadows",
       "status": "Active",
       "featured": true,
-      "price": "$259,000",
+      "price": "$249,000",
       "address": "4448 Klein Meadows",
       "city": "New Braunfels, TX 78130",
       "beds": 3,
@@ -62,51 +61,160 @@
         "/images/listings/2005863-35.webp",
         "/images/listings/2005863-36.webp"
       ],
-      "description": "Single-story 3-bedroom, 2-bathroom home in the Legend Point community of New Braunfels, TX 78130. Built in 2022, this 1,604-square-foot home backs directly to a greenbelt, so there are no rear neighbors and open green space beyond the back fence.\n\nThe single-level floor plan puts all three bedrooms, both full bathrooms, and the kitchen, dining, and living areas on one connected main floor — no stairs, easy to move through, and simple to maintain. Flooring runs carpet and vinyl throughout, a practical, low-upkeep choice for a near-new home. The layout keeps the living, dining, and kitchen areas open to each other, so the main living space stays bright and connected whether you're cooking, hosting, or relaxing.\n\nJust off the living area, a covered back patio overlooks the greenbelt — a shaded, private spot for morning coffee or weekend grilling. The privacy-fenced backyard offers room to garden, play, or add your own touches over time.\n\nAs a Legend Point resident, you get access to the community pool and playground, plus the wide, quiet streets the neighborhood is known for. The home sits down the street from Legend Point Elementary and Long Creek High School, with the middle school about five minutes away — a short drive on school mornings.\n\nQuick access to I-35 puts downtown New Braunfels about 10 minutes out and the Gruene Historic District about fifteen, where you'll find Gruene Hall, live music, restaurants, and local shops. New Braunfels is a place people plan vacations around — tube the Comal and Guadalupe Rivers, spend a day at Schlitterbahn Waterpark, explore Landa Park, or catch Wurstfest in the fall. Everyday needs are close too, with grocery stores, dining, and the growing south-side retail corridor just minutes away.\n\nNear-new 2022 construction, single-story living, low-maintenance finishes, and a greenbelt lot with no rear neighbors make this Legend Point home a strong option on the fast-growing south side of New Braunfels, TX.",
+      "description": "Single-story 3-bedroom, 2-bathroom home in the Legend Point community of New Braunfels, TX 78130. Built in 2022, this 1,604-square-foot home backs directly to a greenbelt, so there are no rear neighbors and open green space beyond the back fence.\n\nThe single-level floor plan puts all three bedrooms, both full bathrooms, and the kitchen, dining, and living areas on one connected main floor \u2014 no stairs, easy to move through, and simple to maintain. Flooring runs carpet and vinyl throughout, a practical, low-upkeep choice for a near-new home. The layout keeps the living, dining, and kitchen areas open to each other, so the main living space stays bright and connected whether you're cooking, hosting, or relaxing.\n\nJust off the living area, a covered back patio overlooks the greenbelt \u2014 a shaded, private spot for morning coffee or weekend grilling. The privacy-fenced backyard offers room to garden, play, or add your own touches over time.\n\nAs a Legend Point resident, you get access to the community pool and playground, plus the wide, quiet streets the neighborhood is known for. The home sits down the street from Legend Point Elementary and Long Creek High School, with the middle school about five minutes away \u2014 a short drive on school mornings.\n\nQuick access to I-35 puts downtown New Braunfels about 10 minutes out and the Gruene Historic District about fifteen, where you'll find Gruene Hall, live music, restaurants, and local shops. New Braunfels is a place people plan vacations around \u2014 tube the Comal and Guadalupe Rivers, spend a day at Schlitterbahn Waterpark, explore Landa Park, or catch Wurstfest in the fall. Everyday needs are close too, with grocery stores, dining, and the growing south-side retail corridor just minutes away.\n\nNear-new 2022 construction, single-story living, low-maintenance finishes, and a greenbelt lot with no rear neighbors make this Legend Point home a strong option on the fast-growing south side of New Braunfels, TX.",
       "features": {
         "Interior": [
-          ["Total Bedrooms", "3"],
-          ["Total Bathrooms", "2"],
-          ["Full Bathrooms", "2"],
-          ["Laundry Room", "Main Level"],
-          ["Flooring", "Carpeting, Linoleum, Laminate"],
-          ["Fireplace", "One"],
-          ["Master Bedroom", "Main Level"],
-          ["Master Bath", "Shower Only"],
-          ["Appliances", "Ceiling Fans, Microwave Oven, Stove/Range"],
-          ["Other Interior Features", "One Living Area, Living/Dining Combo, Eat-In Kitchen, Breakfast Bar, All Bedrooms on Main Level"]
+          [
+            "Total Bedrooms",
+            "3"
+          ],
+          [
+            "Total Bathrooms",
+            "2"
+          ],
+          [
+            "Full Bathrooms",
+            "2"
+          ],
+          [
+            "Laundry Room",
+            "Main Level"
+          ],
+          [
+            "Flooring",
+            "Carpeting, Linoleum, Laminate"
+          ],
+          [
+            "Fireplace",
+            "One"
+          ],
+          [
+            "Master Bedroom",
+            "Main Level"
+          ],
+          [
+            "Master Bath",
+            "Shower Only"
+          ],
+          [
+            "Appliances",
+            "Ceiling Fans, Microwave Oven, Stove/Range"
+          ],
+          [
+            "Other Interior Features",
+            "One Living Area, Living/Dining Combo, Eat-In Kitchen, Breakfast Bar, All Bedrooms on Main Level"
+          ]
         ],
         "Exterior": [
-          ["Stories", "1"],
-          ["Garage", "Attached, 2-Car"],
-          ["Roof", "Composition"],
-          ["Construction", "Brick, Cement Fiber"],
-          ["Foundation", "Slab"],
-          ["Heat Type", "Central, Electric"],
-          ["Air Conditioning", "One Central"],
-          ["Exterior Features", "Covered Patio, Patio Slab, Privacy Fence"],
-          ["Lot Description", "On Greenbelt"],
-          ["Neighborhood Amenities", "Pool, Park/Playground"]
+          [
+            "Stories",
+            "1"
+          ],
+          [
+            "Garage",
+            "Attached, 2-Car"
+          ],
+          [
+            "Roof",
+            "Composition"
+          ],
+          [
+            "Construction",
+            "Brick, Cement Fiber"
+          ],
+          [
+            "Foundation",
+            "Slab"
+          ],
+          [
+            "Heat Type",
+            "Central, Electric"
+          ],
+          [
+            "Air Conditioning",
+            "One Central"
+          ],
+          [
+            "Exterior Features",
+            "Covered Patio, Patio Slab, Privacy Fence"
+          ],
+          [
+            "Lot Description",
+            "On Greenbelt"
+          ],
+          [
+            "Neighborhood Amenities",
+            "Pool, Park/Playground"
+          ]
         ],
         "Area & Lot": [
-          ["Status", "Active"],
-          ["Living Area", "1,604 Sq.Ft."],
-          ["Lot Area", "0.12 Acres"],
-          ["MLS® ID", "2005863"],
-          ["Type", "Single Family Detached"],
-          ["Year Built", "2022"],
-          ["Architecture Style", "One Story"],
-          ["Subdivision", "Legend Point"],
-          ["County", "Guadalupe"],
-          ["Elementary School", "Legend Point Elementary"],
-          ["Middle School", "New Braunfels"],
-          ["High School", "Long Creek"],
-          ["School District", "New Braunfels I.S.D."],
-          ["Annual Taxes", "$4,676"],
-          ["HOA", "$357.50 / year — Lifetime HOA Management"],
-          ["Builder", "KB Homes"]
+          [
+            "Status",
+            "Active"
+          ],
+          [
+            "Living Area",
+            "1,604 Sq.Ft."
+          ],
+          [
+            "Lot Area",
+            "0.12 Acres"
+          ],
+          [
+            "MLS\u00ae ID",
+            "2005863"
+          ],
+          [
+            "Type",
+            "Single Family Detached"
+          ],
+          [
+            "Year Built",
+            "2022"
+          ],
+          [
+            "Architecture Style",
+            "One Story"
+          ],
+          [
+            "Subdivision",
+            "Legend Point"
+          ],
+          [
+            "County",
+            "Guadalupe"
+          ],
+          [
+            "Elementary School",
+            "Legend Point Elementary"
+          ],
+          [
+            "Middle School",
+            "New Braunfels"
+          ],
+          [
+            "High School",
+            "Long Creek"
+          ],
+          [
+            "School District",
+            "New Braunfels I.S.D."
+          ],
+          [
+            "Annual Taxes",
+            "$4,676"
+          ],
+          [
+            "HOA",
+            "$357.50 / year \u2014 Lifetime HOA Management"
+          ],
+          [
+            "Builder",
+            "KB Homes"
+          ]
         ]
-      }
+      },
+      "leasePrice": "$1,695/mo"
     },
     {
       "source": "internal",
@@ -184,49 +292,166 @@
       "description": "Custom 4,164 SF two-story home built in 2007 in gated Seven Hills Ranch. Situated on 1.39 acres with mature heritage oaks, level topography, and greenbelt boundary backing to a protected Bat Conservation Area. Stone and stucco exterior with concrete roof and circular drive.\n\nOpen floor plan with 4 bedrooms, 3 full baths, dedicated study, formal dining, two living areas, and high ceilings. Living room features stone fireplace with gas logs and wide windows framing tree canopy and sunset views. Island kitchen with cooktop, double ovens, walk-in pantry, butler's pantry, breakfast area, and adjacent dining space.\n\nPrimary suite located on main level with outdoor access, walk-in closet, and bath with soaking tub and separate shower. Guest en-suite with private bath provides secondary primary option. Two additional bedrooms upstairs with shared hall bath and additional living/family room.\n\nExterior includes covered patio, heated in-ground pool and spa, wrought iron fencing, and expansive yard with mature oak trees. Property borders protected land providing unobstructed Hill Country views and added privacy.\n\nOversized 4-car garage accommodates vehicles, boat, or storage. Circular driveway allows additional parking and guest access.\n\nEnergy features include spray foam insulation, radiant barrier decking, double-pane windows, dehumidifier, HVAC (3+ units, zoned), ceiling fans, and electric water heater. Private well. Central vacuum system. Water softener (owned).\n\nInterior features include wood, tile, and carpet flooring; high ceilings; open living areas; utility room; attic with radiant barrier and partial flooring; security system (owned); and pre-wiring for security.\n\nLevel lot and level drive. Accessibility features include 36-inch-wide halls, first-floor bedroom, and first-floor bath.",
       "features": {
         "Interior": [
-          ["Total Bedrooms", "4"],
-          ["Total Bathrooms", "3"],
-          ["Full Bathrooms", "3"],
-          ["Laundry Room", "Main Level"],
-          ["Flooring", "Carpet, Ceramic Tile, Wood"],
-          ["Fireplace", "Living Room, Gas Logs"],
-          ["Master Bedroom", "Main Level, Outside Access, Walk-In Closet, Full Bath"],
-          ["Master Bath", "Tub / Shower Separate"],
-          ["Appliances", "Cooktop, Double Ovens, Dishwasher, Disposal, Refrigerator, Self-Cleaning Oven, Water Softener (owned)"],
-          ["Other Interior Features", "Two Living Areas, Separate Dining Room, Island Kitchen, Walk-In Pantry, Study / Library, High Ceilings, Open Floor Plan, Walk-In Closets, Central Vacuum, Security System"]
+          [
+            "Total Bedrooms",
+            "4"
+          ],
+          [
+            "Total Bathrooms",
+            "3"
+          ],
+          [
+            "Full Bathrooms",
+            "3"
+          ],
+          [
+            "Laundry Room",
+            "Main Level"
+          ],
+          [
+            "Flooring",
+            "Carpet, Ceramic Tile, Wood"
+          ],
+          [
+            "Fireplace",
+            "Living Room, Gas Logs"
+          ],
+          [
+            "Master Bedroom",
+            "Main Level, Outside Access, Walk-In Closet, Full Bath"
+          ],
+          [
+            "Master Bath",
+            "Tub / Shower Separate"
+          ],
+          [
+            "Appliances",
+            "Cooktop, Double Ovens, Dishwasher, Disposal, Refrigerator, Self-Cleaning Oven, Water Softener (owned)"
+          ],
+          [
+            "Other Interior Features",
+            "Two Living Areas, Separate Dining Room, Island Kitchen, Walk-In Pantry, Study / Library, High Ceilings, Open Floor Plan, Walk-In Closets, Central Vacuum, Security System"
+          ]
         ],
         "Exterior": [
-          ["Stories", "2"],
-          ["Garage", "Oversized 4-Car, Circular Driveway"],
-          ["Pool", "In-Ground, Heated, Adjoining Spa"],
-          ["Roof", "Concrete"],
-          ["Construction", "Stone, Stucco"],
-          ["Foundation", "Slab"],
-          ["Heat Type", "3+ Units, Electric"],
-          ["Air Conditioning", "Three+ Central, Zoned"],
-          ["Energy Efficiency", "Double-Pane Windows, Radiant Barrier, Foam Insulation, Dehumidifier, Ceiling Fans"],
-          ["Exterior Features", "Covered Patio, Wrought Iron Fence, Mature Trees"],
-          ["Lot Description", "On Greenbelt, County View, 1–2 Acres, Borders State Park"],
-          ["Disability Features", "36\" Wide Halls, Level Lot, Level Drive, First-Floor Bath, First-Floor Bedroom"],
-          ["Neighborhood Amenities", "Controlled Access (Gated)"]
+          [
+            "Stories",
+            "2"
+          ],
+          [
+            "Garage",
+            "Oversized 4-Car, Circular Driveway"
+          ],
+          [
+            "Pool",
+            "In-Ground, Heated, Adjoining Spa"
+          ],
+          [
+            "Roof",
+            "Concrete"
+          ],
+          [
+            "Construction",
+            "Stone, Stucco"
+          ],
+          [
+            "Foundation",
+            "Slab"
+          ],
+          [
+            "Heat Type",
+            "3+ Units, Electric"
+          ],
+          [
+            "Air Conditioning",
+            "Three+ Central, Zoned"
+          ],
+          [
+            "Energy Efficiency",
+            "Double-Pane Windows, Radiant Barrier, Foam Insulation, Dehumidifier, Ceiling Fans"
+          ],
+          [
+            "Exterior Features",
+            "Covered Patio, Wrought Iron Fence, Mature Trees"
+          ],
+          [
+            "Lot Description",
+            "On Greenbelt, County View, 1\u20132 Acres, Borders State Park"
+          ],
+          [
+            "Disability Features",
+            "36\" Wide Halls, Level Lot, Level Drive, First-Floor Bath, First-Floor Bedroom"
+          ],
+          [
+            "Neighborhood Amenities",
+            "Controlled Access (Gated)"
+          ]
         ],
         "Area & Lot": [
-          ["Status", "Active"],
-          ["Living Area", "4,164 Sq.Ft."],
-          ["Lot Area", "1.39 Acres"],
-          ["MLS® ID", "1945785"],
-          ["Type", "Single Family Detached"],
-          ["Year Built", "2007"],
-          ["Architecture Style", "Two Story, Spanish"],
-          ["Subdivision", "Seven Hills Ranch"],
-          ["County", "Comal"],
-          ["Elementary School", "Garden Ridge"],
-          ["Middle School", "Danville"],
-          ["High School", "Davenport"],
-          ["School District", "Comal ISD"],
-          ["Annual Taxes", "$15,319"],
-          ["HOA", "$450 / year — 7H Ranch POA"],
-          ["Builder", "Storer Construction LLC"]
+          [
+            "Status",
+            "Active"
+          ],
+          [
+            "Living Area",
+            "4,164 Sq.Ft."
+          ],
+          [
+            "Lot Area",
+            "1.39 Acres"
+          ],
+          [
+            "MLS\u00ae ID",
+            "1945785"
+          ],
+          [
+            "Type",
+            "Single Family Detached"
+          ],
+          [
+            "Year Built",
+            "2007"
+          ],
+          [
+            "Architecture Style",
+            "Two Story, Spanish"
+          ],
+          [
+            "Subdivision",
+            "Seven Hills Ranch"
+          ],
+          [
+            "County",
+            "Comal"
+          ],
+          [
+            "Elementary School",
+            "Garden Ridge"
+          ],
+          [
+            "Middle School",
+            "Danville"
+          ],
+          [
+            "High School",
+            "Davenport"
+          ],
+          [
+            "School District",
+            "Comal ISD"
+          ],
+          [
+            "Annual Taxes",
+            "$15,319"
+          ],
+          [
+            "HOA",
+            "$450 / year \u2014 7H Ranch POA"
+          ],
+          [
+            "Builder",
+            "Storer Construction LLC"
+          ]
         ]
       }
     },
@@ -261,33 +486,92 @@
       "description": "Discover the freedom to build your Hill Country retreat on this scenic 8-acre homesite in Eden Ranch. With sweeping Hill Country views, sloping terrain, and a natural landscape of mature oaks and cedar, this property offers the perfect canvas for a custom home designed to take full advantage of the surrounding beauty.\n\nThe gently rolling topography creates ideal building opportunities for a home with elevated views, expansive patios, and outdoor living spaces that capture the sunrise and sunset over the Texas Hill Country. Electric is available and private wells are allowed, giving you flexibility as you design and build your dream property.\n\nLocated on paved Eden Ranch Drive, this acreage provides the privacy and elbow room buyers are searching for, while still being close to everything that makes Canyon Lake living special. Spend weekends boating, fishing, and enjoying nearby Canyon Lake and Guadalupe River recreation, or take a short drive to dining, shopping, and entertainment in New Braunfels and the surrounding Hill Country communities.\n\nWith no HOA, you'll enjoy greater freedom in how you design your property, while mobile and manufactured homes are restricted, helping preserve the character and quality of the surrounding acreage homesites.\n\nIf you've been searching for space, views, and the relaxed outdoorsy Hill Country lifestyle, this property is ready for your vision.",
       "features": {
         "Land Details": [
-          ["Topography", "Country View, Sloping"],
-          ["Frontage", "Private Street — 220 ft frontage × 1,200 ft deep"],
-          ["Trees", "Many — Mature Oaks & Cedar"],
-          ["Improvements", "Paved Roads"],
-          ["Utilities On Site", "Electric"],
-          ["Utilities Available", "Private Well Allowed"],
-          ["Septic", "Allowed"],
-          ["Restrictions", "No Mobile / Manufactured Homes (no HOA)"]
+          [
+            "Topography",
+            "Country View, Sloping"
+          ],
+          [
+            "Frontage",
+            "Private Street \u2014 220 ft frontage \u00d7 1,200 ft deep"
+          ],
+          [
+            "Trees",
+            "Many \u2014 Mature Oaks & Cedar"
+          ],
+          [
+            "Improvements",
+            "Paved Roads"
+          ],
+          [
+            "Utilities On Site",
+            "Electric"
+          ],
+          [
+            "Utilities Available",
+            "Private Well Allowed"
+          ],
+          [
+            "Septic",
+            "Allowed"
+          ],
+          [
+            "Restrictions",
+            "No Mobile / Manufactured Homes (no HOA)"
+          ]
         ],
         "Area & Lot": [
-          ["Status", "Active"],
-          ["Lot Area", "8.01 Acres"],
-          ["MLS® ID", "1948761"],
-          ["Type", "Residential Lot and Acreage"],
-          ["Subdivision", "Eden Ranch (Phase 7)"],
-          ["County", "Comal"],
-          ["Elementary School", "Mountain Valley"],
-          ["Middle School", "Mountain Valley"],
-          ["High School", "Canyon Lake"],
-          ["School District", "Comal ISD"],
-          ["Annual Taxes", "$5,884.81"],
-          ["HOA", "None"]
+          [
+            "Status",
+            "Active"
+          ],
+          [
+            "Lot Area",
+            "8.01 Acres"
+          ],
+          [
+            "MLS\u00ae ID",
+            "1948761"
+          ],
+          [
+            "Type",
+            "Residential Lot and Acreage"
+          ],
+          [
+            "Subdivision",
+            "Eden Ranch (Phase 7)"
+          ],
+          [
+            "County",
+            "Comal"
+          ],
+          [
+            "Elementary School",
+            "Mountain Valley"
+          ],
+          [
+            "Middle School",
+            "Mountain Valley"
+          ],
+          [
+            "High School",
+            "Canyon Lake"
+          ],
+          [
+            "School District",
+            "Comal ISD"
+          ],
+          [
+            "Annual Taxes",
+            "$5,884.81"
+          ],
+          [
+            "HOA",
+            "None"
+          ]
         ]
       }
     }
   ],
-
   "pastSales": [
     {
       "source": "internal",
@@ -341,41 +625,134 @@
       "description": "Investment Opportunity! 3BR/2BA home with 1,334 sqft on a 0.165-acre corner lot next to downtown San Antonio. Positioned as an investment property with value-add potential, suitable for renovation or buyers seeking a primary residence with potential for updates.\n\nNew roof installed in 2025. Existing layout includes 3 bedrooms and 2 bathrooms, offering flexibility for interior updates, reconfiguration, or expansion subject to buyer verification. Fenced yard with mature trees provides usable outdoor space and defined lot boundaries.\n\nCorner lot placement allows for multiple access points, site planning flexibility, and potential for additional improvements. Lot size of approximately 0.165 acres supports outdoor enhancements, storage, or future modifications.\n\nLocated approximately one mile from Downtown San Antonio and less than a mile from the Alamodome, with proximity to employment centers, restaurants, retail, and entertainment. Approximately 1.0 mile to St. Philip's College and 2.0 miles to Hemisfair Park.\n\nInvestment-focused property with potential for long-term hold, rental income, or resale after improvements. Buyer to verify all measurements, zoning, utilities, and condition.",
       "features": {
         "Interior": [
-          ["Total Bedrooms", "3"],
-          ["Total Bathrooms", "2"],
-          ["Full Bathrooms", "2"],
-          ["Flooring", "Carpeting, Ceramic Tile"],
-          ["Master Bedroom", "Main Level"],
-          ["Master Bath", "Tub/Shower Combo"],
-          ["Appliances", "Ceiling Fans, Washer Connection, Dryer Connection, Stove/Range"],
-          ["Other Interior Features", "One Living Area, Living/Dining Combo"]
+          [
+            "Total Bedrooms",
+            "3"
+          ],
+          [
+            "Total Bathrooms",
+            "2"
+          ],
+          [
+            "Full Bathrooms",
+            "2"
+          ],
+          [
+            "Flooring",
+            "Carpeting, Ceramic Tile"
+          ],
+          [
+            "Master Bedroom",
+            "Main Level"
+          ],
+          [
+            "Master Bath",
+            "Tub/Shower Combo"
+          ],
+          [
+            "Appliances",
+            "Ceiling Fans, Washer Connection, Dryer Connection, Stove/Range"
+          ],
+          [
+            "Other Interior Features",
+            "One Living Area, Living/Dining Combo"
+          ]
         ],
         "Exterior": [
-          ["Stories", "1"],
-          ["Roof", "Composition (New 2025)"],
-          ["Construction", "Brick"],
-          ["Foundation", "Slab"],
-          ["Heat Type", "Central, Electric"],
-          ["Air Conditioning", "One Central"],
-          ["Exterior Features", "Chain Link Fence, Mature Trees"],
-          ["Lot Description", "Corner Lot"]
+          [
+            "Stories",
+            "1"
+          ],
+          [
+            "Roof",
+            "Composition (New 2025)"
+          ],
+          [
+            "Construction",
+            "Brick"
+          ],
+          [
+            "Foundation",
+            "Slab"
+          ],
+          [
+            "Heat Type",
+            "Central, Electric"
+          ],
+          [
+            "Air Conditioning",
+            "One Central"
+          ],
+          [
+            "Exterior Features",
+            "Chain Link Fence, Mature Trees"
+          ],
+          [
+            "Lot Description",
+            "Corner Lot"
+          ]
         ],
         "Area & Lot": [
-          ["Status", "Sold"],
-          ["Living Area", "1,334 Sq.Ft."],
-          ["Lot Area", "0.165 Acres"],
-          ["MLS® ID", "1963725"],
-          ["Type", "Single Family Detached"],
-          ["Year Built", "1955"],
-          ["Architecture Style", "One Story"],
-          ["Subdivision", "Denver Heights"],
-          ["County", "Bexar"],
-          ["Elementary School", "Herff"],
-          ["Middle School", "Poe"],
-          ["High School", "Brackenridge"],
-          ["School District", "San Antonio I.S.D."],
-          ["Annual Taxes", "$7,611"],
-          ["HOA", "None"]
+          [
+            "Status",
+            "Sold"
+          ],
+          [
+            "Living Area",
+            "1,334 Sq.Ft."
+          ],
+          [
+            "Lot Area",
+            "0.165 Acres"
+          ],
+          [
+            "MLS\u00ae ID",
+            "1963725"
+          ],
+          [
+            "Type",
+            "Single Family Detached"
+          ],
+          [
+            "Year Built",
+            "1955"
+          ],
+          [
+            "Architecture Style",
+            "One Story"
+          ],
+          [
+            "Subdivision",
+            "Denver Heights"
+          ],
+          [
+            "County",
+            "Bexar"
+          ],
+          [
+            "Elementary School",
+            "Herff"
+          ],
+          [
+            "Middle School",
+            "Poe"
+          ],
+          [
+            "High School",
+            "Brackenridge"
+          ],
+          [
+            "School District",
+            "San Antonio I.S.D."
+          ],
+          [
+            "Annual Taxes",
+            "$7,611"
+          ],
+          [
+            "HOA",
+            "None"
+          ]
         ]
       }
     },
@@ -404,28 +781,79 @@
         "/images/listings/604073-5.webp",
         "/images/listings/604073-6.webp"
       ],
-      "description": "5.25-acre tract on CR 3390 with paved county road frontage and available water and electric. Generally flat terrain with light tree coverage offering multiple build sites. Fenced perimeter, no HOA, and no known deed restrictions.\n\nApproximately 3 miles to Highway 190 with direct access to Copperas Cove and Lampasas. About 20 miles to Fort Hood — convenient for military families and commuters.\n\nSuitable for residential construction, barndominium, manufactured home, workshop, RV storage, or small agricultural use. Survey available.",
+      "description": "5.25-acre tract on CR 3390 with paved county road frontage and available water and electric. Generally flat terrain with light tree coverage offering multiple build sites. Fenced perimeter, no HOA, and no known deed restrictions.\n\nApproximately 3 miles to Highway 190 with direct access to Copperas Cove and Lampasas. About 20 miles to Fort Hood \u2014 convenient for military families and commuters.\n\nSuitable for residential construction, barndominium, manufactured home, workshop, RV storage, or small agricultural use. Survey available.",
       "features": {
         "Land Details": [
-          ["Topography", "Generally Flat — Multiple Build Sites"],
-          ["Frontage", "Paved County Road (CR 3390)"],
-          ["Trees", "Light Coverage"],
-          ["Fencing", "Fenced Perimeter"],
-          ["Utilities Available", "Water & Electric"],
-          ["Restrictions", "None (No HOA, No Known Deed Restrictions)"],
-          ["Permitted Uses", "Residential, Barndominium, Manufactured Home, Workshop, RV Storage, Light Agricultural"],
-          ["Survey", "Available"]
+          [
+            "Topography",
+            "Generally Flat \u2014 Multiple Build Sites"
+          ],
+          [
+            "Frontage",
+            "Paved County Road (CR 3390)"
+          ],
+          [
+            "Trees",
+            "Light Coverage"
+          ],
+          [
+            "Fencing",
+            "Fenced Perimeter"
+          ],
+          [
+            "Utilities Available",
+            "Water & Electric"
+          ],
+          [
+            "Restrictions",
+            "None (No HOA, No Known Deed Restrictions)"
+          ],
+          [
+            "Permitted Uses",
+            "Residential, Barndominium, Manufactured Home, Workshop, RV Storage, Light Agricultural"
+          ],
+          [
+            "Survey",
+            "Available"
+          ]
         ],
         "Area & Lot": [
-          ["Status", "Sold"],
-          ["Lot Area", "5.25 Acres"],
-          ["MLS® ID", "604073"],
-          ["Type", "Land"],
-          ["County", "Lampasas"],
-          ["Nearest Highway", "~3 miles to US Hwy 190"],
-          ["Nearest Cities", "Copperas Cove, Lampasas"],
-          ["Notable Distance", "~20 miles to Fort Cavazos (Fort Hood)"],
-          ["HOA", "None"]
+          [
+            "Status",
+            "Sold"
+          ],
+          [
+            "Lot Area",
+            "5.25 Acres"
+          ],
+          [
+            "MLS\u00ae ID",
+            "604073"
+          ],
+          [
+            "Type",
+            "Land"
+          ],
+          [
+            "County",
+            "Lampasas"
+          ],
+          [
+            "Nearest Highway",
+            "~3 miles to US Hwy 190"
+          ],
+          [
+            "Nearest Cities",
+            "Copperas Cove, Lampasas"
+          ],
+          [
+            "Notable Distance",
+            "~20 miles to Fort Cavazos (Fort Hood)"
+          ],
+          [
+            "HOA",
+            "None"
+          ]
         ]
       }
     },
@@ -506,44 +934,146 @@
       "description": "Central San Antonio location within Oak Park near Alamo Heights, the Broadway corridor, Brackenridge Park, The DoSeum, the San Antonio Zoo, Pearl, Downtown San Antonio, Fort Sam Houston, and the San Antonio International Airport, with quick access to I-410 and Hwy 281.\n\nPositioned on a 0.32-acre corner lot with mature oak trees, this 5-bedroom, 5-bath home combines updated systems, flexible living space, and proximity to major city destinations, restaurants, parks, museums, and employers.\n\nThe layout includes two living areas, separate dining room, main-level primary suite, main-level guest bedroom, and three additional upstairs bedrooms. Multiple living and bedroom configurations support guest accommodations, office space, workout rooms, hobby space, or multi-generational living. Interior features include engineered hardwood flooring, a Chef's Kitchen with natural stone countertops, custom cabinetry, gas cooking, pantry storage, built-ins, updated bathrooms, and Level 5 smooth wall texture throughout much of the home.\n\nOutdoor spaces include a covered patio, fenced backyard, landscaped yard, mature trees, and rear-entry attached 2-car garage. The lot provides usable outdoor space for entertaining, gardening, pets, or future outdoor additions.\n\nRecent updates completed by current ownership include a 2024 stone-coated steel tile roof, 2024 exterior stucco paint, 2024 gutters with leaf guards, 2023 dual HVAC systems, 2024 water heater, interior paint, updated hardware, painted fencing, repaired sprinkler system, refreshed landscaping, and epoxy-coated patio deck. Additional prior improvements include expanded covered patio areas, attic insulation, kitchen remodeling, and bathroom renovations.\n\nSmart home features include monitored Ring security system, Ring cameras, Ring video doorbell, smart lighting, smart locks, smart thermostat, network wiring, and Google Fiber availability. Several smart home devices and network equipment convey with the sale, along with the kitchen refrigerator.\n\nLocated within Alamo Heights ISD and zoned to Woodridge Elementary, Alamo Heights Middle School, and Alamo Heights High School. No HOA.",
       "features": {
         "Interior": [
-          ["Total Bedrooms", "5"],
-          ["Total Bathrooms", "5"],
-          ["Full Bathrooms", "5"],
-          ["Laundry Room", "Main Level"],
-          ["Flooring", "Marble, Wood, Vinyl"],
-          ["Master Bedroom", "Main Level"],
-          ["Master Bath", "Shower Only"],
-          ["Appliances", "Gas Cooking, Stove/Range, Water Softener (owned), Central Vacuum, Garage Door Opener, Smoke Alarm, Solid Counter Tops"],
-          ["Other Interior Features", "Two Living Areas, Separate Dining Room, Eat-In Kitchen, Utility Room Inside, Secondary Bedroom Down, Open Floor Plan"]
+          [
+            "Total Bedrooms",
+            "5"
+          ],
+          [
+            "Total Bathrooms",
+            "5"
+          ],
+          [
+            "Full Bathrooms",
+            "5"
+          ],
+          [
+            "Laundry Room",
+            "Main Level"
+          ],
+          [
+            "Flooring",
+            "Marble, Wood, Vinyl"
+          ],
+          [
+            "Master Bedroom",
+            "Main Level"
+          ],
+          [
+            "Master Bath",
+            "Shower Only"
+          ],
+          [
+            "Appliances",
+            "Gas Cooking, Stove/Range, Water Softener (owned), Central Vacuum, Garage Door Opener, Smoke Alarm, Solid Counter Tops"
+          ],
+          [
+            "Other Interior Features",
+            "Two Living Areas, Separate Dining Room, Eat-In Kitchen, Utility Room Inside, Secondary Bedroom Down, Open Floor Plan"
+          ]
         ],
         "Exterior": [
-          ["Stories", "2"],
-          ["Garage", "Attached, Rear Entry, 2-Car"],
-          ["Roof", "Stone-Coated Steel Tile (2024)"],
-          ["Construction", "Brick, 4 Sides Masonry"],
-          ["Foundation", "Slab"],
-          ["Heat Type", "Central, 2 Units, Electric"],
-          ["Air Conditioning", "Two Central (2023)"],
-          ["Exterior Features", "Covered Patio, Fenced Backyard, Mature Oaks, Sprinkler System"],
-          ["Lot Description", "Corner, 0.32 Acres"],
-          ["Smart Home", "Ring Security, Cameras, Doorbell, Smart Locks, Smart Thermostat, Smart Lighting, Google Fiber Available"]
+          [
+            "Stories",
+            "2"
+          ],
+          [
+            "Garage",
+            "Attached, Rear Entry, 2-Car"
+          ],
+          [
+            "Roof",
+            "Stone-Coated Steel Tile (2024)"
+          ],
+          [
+            "Construction",
+            "Brick, 4 Sides Masonry"
+          ],
+          [
+            "Foundation",
+            "Slab"
+          ],
+          [
+            "Heat Type",
+            "Central, 2 Units, Electric"
+          ],
+          [
+            "Air Conditioning",
+            "Two Central (2023)"
+          ],
+          [
+            "Exterior Features",
+            "Covered Patio, Fenced Backyard, Mature Oaks, Sprinkler System"
+          ],
+          [
+            "Lot Description",
+            "Corner, 0.32 Acres"
+          ],
+          [
+            "Smart Home",
+            "Ring Security, Cameras, Doorbell, Smart Locks, Smart Thermostat, Smart Lighting, Google Fiber Available"
+          ]
         ],
         "Area & Lot": [
-          ["Status", "Sold"],
-          ["Living Area", "3,080 Sq.Ft."],
-          ["Lot Area", "0.321 Acres"],
-          ["MLS® ID", "1968354"],
-          ["Type", "Single Family Detached"],
-          ["Year Built", "1965"],
-          ["Architecture Style", "Two Story, Mediterranean"],
-          ["Subdivision", "Oak Park / Royal Oaks"],
-          ["County", "Bexar"],
-          ["Elementary School", "Woodridge"],
-          ["Middle School", "Alamo Heights"],
-          ["High School", "Alamo Heights"],
-          ["School District", "Alamo Heights I.S.D."],
-          ["Annual Taxes", "$20,973"],
-          ["HOA", "None"]
+          [
+            "Status",
+            "Sold"
+          ],
+          [
+            "Living Area",
+            "3,080 Sq.Ft."
+          ],
+          [
+            "Lot Area",
+            "0.321 Acres"
+          ],
+          [
+            "MLS\u00ae ID",
+            "1968354"
+          ],
+          [
+            "Type",
+            "Single Family Detached"
+          ],
+          [
+            "Year Built",
+            "1965"
+          ],
+          [
+            "Architecture Style",
+            "Two Story, Mediterranean"
+          ],
+          [
+            "Subdivision",
+            "Oak Park / Royal Oaks"
+          ],
+          [
+            "County",
+            "Bexar"
+          ],
+          [
+            "Elementary School",
+            "Woodridge"
+          ],
+          [
+            "Middle School",
+            "Alamo Heights"
+          ],
+          [
+            "High School",
+            "Alamo Heights"
+          ],
+          [
+            "School District",
+            "Alamo Heights I.S.D."
+          ],
+          [
+            "Annual Taxes",
+            "$20,973"
+          ],
+          [
+            "HOA",
+            "None"
+          ]
         ]
       }
     },

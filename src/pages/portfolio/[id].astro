@@ -27,6 +27,7 @@ interface Listing {
   mlsId?: string;
   status: string;
   price: string;
+  leasePrice?: string;
   address: string;
   city: string;
   beds?: number;
@@ -155,6 +156,9 @@ const hasMap = typeof listing.lat === 'number' && typeof listing.lng === 'number
         <div class="detail__band-info">
           <span class={`detail__status ${listing.status.toLowerCase().replace(/\s+/g, '-')}`}>{listing.status}</span>
           <h1 class={`detail__price${isClosed ? ' detail__price--tbd' : ''}`}>{displayPrice}</h1>
+          {listing.leasePrice && !isClosed && (
+            <div class="detail__lease">Also available for lease at <strong>{listing.leasePrice}</strong></div>
+          )}
           <div class="detail__address">{listing.address}</div>
           <div class="detail__city">{listing.city}</div>
           {listing.mlsId && <div class="detail__mls">MLS #{listing.mlsId}</div>}
@@ -490,6 +494,12 @@ const hasMap = typeof listing.lat === 'number' && typeof listing.lng === 'number
     line-height: 1;
   }
   .detail__price--tbd { font-size: clamp(1.35rem, 2.6vw, 1.75rem); }
+  .detail__lease {
+    font-size: 1.05rem;
+    color: #1E7A63;
+    margin: 0 0 0.4rem;
+  }
+  .detail__lease strong { font-weight: 700; }
   .detail__address { font-weight: 600; font-size: 1.1rem; margin-bottom: 0.2rem; }
   .detail__city { color: #777; font-size: 0.95rem; margin-bottom: 0.5rem; }
   .detail__mls {
