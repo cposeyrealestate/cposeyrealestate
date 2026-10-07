@@ -261,17 +261,17 @@
 # "dynamic" (Cloudflare limit: 100 dynamic rules), so all static rules
 # must come first. Order within this section is preserved.
 
+# Current portfolio pages - serve directly (200 rewrites beat the /portfolio/* splat below)
+/portfolio/  /portfolio/  200
+/portfolio/4448-klein-meadows/  /portfolio/4448-klein-meadows/  200
+/portfolio/7607-sky-loop/  /portfolio/7607-sky-loop/  200
+/portfolio/531-eden-ranch-dr/  /portfolio/531-eden-ranch-dr/  200
+
 # Old IDX search, sold-listing detail, and account URLs -> site search
 /home-search/*  /search  301
 
 # Old property detail pages -> site search
 /properties/*  /search  301
-
-# Current portfolio pages - serve directly (must come before the /portfolio/* splat below)
-/portfolio/  /portfolio/index.html  200
-/portfolio/4448-klein-meadows/  /portfolio/4448-klein-meadows/index.html  200
-/portfolio/7607-sky-loop/  /portfolio/7607-sky-loop/index.html  200
-/portfolio/531-eden-ranch-dr/  /portfolio/531-eden-ranch-dr/index.html  200
 
 # Old portfolio detail pages -> portfolio index
 /portfolio/*  /portfolio  301
