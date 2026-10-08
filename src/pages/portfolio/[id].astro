@@ -155,7 +155,7 @@ const hasMap = typeof listing.lat === 'number' && typeof listing.lng === 'number
       <div class="container detail__band-inner">
         <div class="detail__band-info">
           <span class={`detail__status ${listing.status.toLowerCase().replace(/\s+/g, '-')}`}>{listing.status}</span>
-          <h1 class={`detail__price${isClosed ? ' detail__price--tbd' : ''}`}>{displayPrice}</h1>
+          <h1 class={`detail__price${isClosed || !/^\$[\d,]+$/.test(displayPrice) ? ' detail__price--tbd' : ''}`}>{displayPrice}</h1>
           {listing.leasePrice && !isClosed && (
             <div class="detail__lease">Also available for lease at <strong>{listing.leasePrice}</strong></div>
           )}
@@ -491,7 +491,8 @@ const hasMap = typeof listing.lat === 'number' && typeof listing.lng === 'number
     font-size: clamp(1.9rem, 4vw, 2.6rem);
     color: #FF1616;
     margin: 0 0 0.25rem;
-    line-height: 1;
+    line-height: 1.15;
+    white-space: pre-line;
   }
   .detail__price--tbd { font-size: clamp(1.35rem, 2.6vw, 1.75rem); }
   .detail__lease {
