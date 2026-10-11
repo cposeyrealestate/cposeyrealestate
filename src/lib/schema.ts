@@ -288,12 +288,6 @@ export function blogPostingSchema(post: {
     image: new URL(post.featuredImage || seo.site.defaultOgImage, SITE).toString(),
     datePublished: post.dateRaw,
     dateModified,
-    // Speakable: points voice assistants and AI answer engines at the
-    // quick-answer summary block, which is written as a direct answer.
-    speakable: {
-      '@type': 'SpeakableSpecification',
-      cssSelector: ['.quick-answer-block'],
-    },
     // Inline author/publisher so Google's Rich Results validator can
     // classify them without resolving @id across JSON-LD blocks.
     // The @id is retained so entity graph linking still works.
