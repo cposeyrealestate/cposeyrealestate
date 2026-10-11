@@ -19,10 +19,8 @@ export interface Props {
 
 const { videoId, title, description = '', uploadDate: rawUploadDate } = Astro.props;
 
-// Google requires uploadDate to carry a timezone; expand bare dates to noon Central.
-const uploadDate = rawUploadDate && /^\d{4}-\d{2}-\d{2}$/.test(rawUploadDate)
-  ? `${rawUploadDate}T12:00:00-06:00`
-  : rawUploadDate;
+// Preserve the recorded publication date without inventing a time or timezone.
+const uploadDate = rawUploadDate;
 
 const schema = {
   '@context': 'https://schema.org',
@@ -32,7 +30,6 @@ const schema = {
   thumbnailUrl: `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
   ...(uploadDate && { uploadDate }),
   embedUrl: `https://www.youtube-nocookie.com/embed/${videoId}`,
-  contentUrl: `https://www.youtube.com/watch?v=${videoId}`,
   author: {
     '@type': 'Person',
     name: seo.person.name,
@@ -59,7 +56,7 @@ const schema = {
   <p class="video-embed__caption">{title}</p>
 </div>
 
-<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+{uploadDate && <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, "\\u003c")} />}
 
 <style>
   .video-embed {
