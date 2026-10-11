@@ -18,8 +18,14 @@ const { post } = Astro.props as { post: any };
 
 // Build the per-post schema graph.
 // If the post has a curated faqItems array, attach FAQPage schema too.
+const metaDescription = (post.metaDescription || post.excerpt || `${post.category}: ${post.title}`)
+  .replace(/\[&hellip;\]/g, '')
+  .replace(/&hellip;/g, '…').replace(/&amp;/g, '&')
+  .replace(/&#8217;|&rsquo;/g, "’").replace(/&quot;/g, '"')
+  .replace(/\s+/g, ' ').trim();
+
 const schemaPayload: object[] = [
-  blogPostingSchema(post),
+  blogPostingSchema({ ...post, excerpt: metaDescription }),
   breadcrumbSchema([
     { name: 'Home', url: '/' },
     { name: 'Blog', url: '/blog/' },
@@ -42,10 +48,31 @@ if (post.youtubeVideo && post.youtubeVideo.videoId) {
   if (videoSchema) schemaPayload.push(videoSchema);
 }
 
-// Preserve the complete excerpt; fall back to the category and title.
-const metaDescription = (post.excerpt || `${post.category}: ${post.title}`)
-  .replace(/\s+/g, ' ')
-  .trim();
+// Use the same heading IDs in the article and its server-rendered navigation.
+const headings: { id: string; text: string }[] = [];
+const headingText = (value: string) => value.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').trim();
+const articleHtml = post.content ? String(post.content).replace(/<h2([^>]*)>([\s\S]*?)<\/h2>/gi, (_match, attrs, text) => {
+  const id = `article-section-${headings.length + 1}`;
+  headings.push({ id, text: headingText(text) });
+  return `<h2${attrs.replace(/\s+id=(?:"[^"]*"|'[^']*')/gi, '')} id="${id}">${text}</h2>`;
+}) : '';
+if (!post.content && Array.isArray(post.content_sections)) {
+  post.content_sections.forEach((section: any, i: number) => headings.push({ id: `article-section-${i + 1}`, text: headingText(section.h) }));
+}
+const terms = (value: string) => new Set(value.toLowerCase().match(/[a-z]+/g)?.filter(word => word.length > 3 && !['with', 'your', 'home', 'homes', 'guide', 'what', 'should', 'before', 'buying'].includes(word)) || []);
+const postTerms = terms(`${post.title} ${post.slug}`);
+const relatedPosts = blogPosts.filter(candidate => candidate.slug !== post.slug).map(candidate => ({
+  post: candidate,
+  score: [...terms(`${candidate.title} ${candidate.slug}`)].filter(term => postTerms.has(term)).length + (candidate.category === post.category ? 1 : 0),
+})).filter(candidate => candidate.score >= 3).sort((a, b) => b.score - a.score || b.post.dateRaw.localeCompare(a.post.dateRaw)).slice(0, 3).map(candidate => candidate.post);
+const topicText = `${post.title} ${post.category} ${post.slug}`.toLowerCase();
+const resource = /new.construction|builder/.test(topicText)
+  ? { href: '/new-braunfels/new-construction/', title: 'New Braunfels new construction homes', text: 'Compare communities, builder questions, and your next steps before touring.' }
+  : /sell|listing/.test(topicText)
+  ? { href: '/sellers-guide/', title: "Seller’s guide", text: 'Plan your pricing, preparation, and sale with Cody Posey.' }
+  : /pcs|veteran|military|va.loan|jbsa/.test(topicText)
+  ? { href: '/military-relocation/', title: 'JBSA relocation guide', text: 'Explore military relocation resources and plan your move.' }
+  : { href: '/buyers-guide/', title: "Buyer’s guide", text: 'Understand the buying process and plan your next steps.' };
 
 const formatActionStep = (step: string) =>
   String(step).replace(/^\s*(?:step\s*\d+|[\d]+[.)])\s*[:—-]\s*/i, '');
@@ -73,7 +100,7 @@ const formatActionStep = (step: string) =>
         </nav>
         <span class="post-hero__cat">{post.category}</span>
         <h1>{post.title}</h1>
-        <p class="post-hero__meta">By Cody Posey &nbsp;|&nbsp; {post.date}</p>
+        <p class="post-hero__meta">By <a href="/about/" rel="author">Cody Posey</a> &nbsp;|&nbsp; <time datetime={post.dateRaw}>{post.date}</time></p>
       </div>
     </div>
 
@@ -82,12 +109,18 @@ const formatActionStep = (step: string) =>
       <img src={post.featuredImage} alt={post.title} />
     </div>
 
+    {headings.length >= 3 && (
+      <nav class="article-nav container" aria-label="In this article">
+        <details open><summary>In this article</summary><ol>{headings.map(heading => <li><a href={`#${heading.id}`}>{heading.text}</a></li>)}</ol></details>
+      </nav>
+    )}
+
     <!-- Post Content -->
     <article class="post-content section">
       <div class="container">
         <div class="post-content__body">
           {post.content ? (
-            <Fragment set:html={post.content} />
+            <Fragment set:html={articleHtml} />
           ) : (
             <>
               {post.opening_question && <h3>{post.opening_question}</h3>}
@@ -105,7 +138,7 @@ const formatActionStep = (step: string) =>
                 const insertConversion = post.mid_post_block && i === midpoint;
                 return (
                   <Fragment>
-                    <h2>{section.h}</h2>
+                    <h2 id={`article-section-${i + 1}`}>{section.h}</h2>
                     {String(section.p).split("\n\n").map((para: string) => (
                       <p set:html={para} />
                     ))}
@@ -198,6 +231,18 @@ const formatActionStep = (step: string) =>
       </section>
     )}
 
+    <section class="article-resources section">
+      <div class="container">
+        <aside class="author-card" aria-label="About the author">
+          <h2>About Cody Posey</h2>
+          <p>Cody Posey is a real estate agent with Popby Realty serving New Braunfels and the surrounding Texas Hill Country. <a href="/about/">Read Cody’s background and credentials</a>, or <a href="/contact/">ask a question about your move</a>.</p>
+        </aside>
+        <h2>Plan your next step</h2>
+        <p><a href={resource.href}>{resource.title}</a> — {resource.text}</p>
+        {relatedPosts.length > 0 && <><h2>Related local guides</h2><div class="related-guides">{relatedPosts.map(related => <a href={`/blog/${related.slug}/`}><h3>{related.title}</h3></a>)}</div></>}
+      </div>
+    </section>
+
     <!-- Back to Blog -->
     <section class="section" style="background: var(--light-gray); text-align: center;">
       <div class="container">
@@ -213,6 +258,21 @@ const formatActionStep = (step: string) =>
 </Layout>
 
 <style>
+  .post-hero__meta a { color: #fff; text-decoration: underline; }
+  .article-nav, .article-resources .container { max-width: 800px; }
+  .article-nav { margin-top: 2rem; }
+  .article-nav details, .author-card { background: #f5f5f5; padding: 1.5rem; border-radius: 8px; }
+  .article-nav summary { cursor: pointer; font-weight: 700; }
+  .article-nav ol { margin-top: 1rem; padding-left: 1.5rem; }
+  .article-nav li { list-style: decimal; margin: .5rem 0; }
+  .article-nav a, .article-resources a { text-decoration: underline; }
+  .article-resources h2 { margin: 1.5rem 0 .75rem; font-size: 1.4rem; }
+  .article-resources p { line-height: 1.8; }
+  .author-card h2 { margin-top: 0; }
+  .related-guides { display: grid; gap: 1rem; }
+  .related-guides a { padding: 1rem; border: 1px solid #ddd; border-radius: 8px; }
+  .related-guides h3 { font-size: 1.05rem; margin: 0; }
+
   .post-hero {
     position: relative;
     min-height: 320px;
@@ -254,18 +314,18 @@ const formatActionStep = (step: string) =>
   }
 
   .post-hero__meta {
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.9);
     font-size: 0.85rem;
   }
 
   .breadcrumb {
     font-size: 0.75rem;
     margin-bottom: 1.5rem;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.85);
   }
 
   .breadcrumb a {
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.85);
     transition: color 0.2s;
   }
 
@@ -306,7 +366,8 @@ const formatActionStep = (step: string) =>
   .post-content__body :global(h2) {
     font-family: var(--font-heading);
     font-size: 1.5rem;
-    text-transform: uppercase;
+    text-transform: none;
+    scroll-margin-top: 110px;
     margin: 2.5rem 0 1rem;
     color: #000;
   }
@@ -314,7 +375,7 @@ const formatActionStep = (step: string) =>
   .post-content__body :global(h3) {
     font-family: var(--font-heading);
     font-size: 1.2rem;
-    text-transform: uppercase;
+    text-transform: none;
     margin: 2rem 0 0.75rem;
     color: #000;
   }
@@ -369,6 +430,8 @@ const formatActionStep = (step: string) =>
   }
 
   .post-content__body :global(table) {
+    display: block;
+    overflow-x: auto;
     width: 100%;
     border-collapse: collapse;
     margin: 1.5rem 0;
