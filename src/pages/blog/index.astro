@@ -25,7 +25,7 @@ const blogSchema = {
     headline: p.title,
     url: `https://cposeyrealestate.com/blog/${p.slug}/`,
     datePublished: p.dateRaw,
-    image: p.featuredImage,
+    image: new URL(p.featuredImage || seo.site.defaultOgImage, seo.site.url).toString(),
   })),
 };
 ---

@@ -46,9 +46,9 @@ function openingHoursSpec() {
 
 function serviceAreaList() {
   return seo.serviceArea.map((a: any) => ({
-    '@type': 'City',
+    '@type': a.name.endsWith('County') ? 'AdministrativeArea' : 'City',
     name: a.name,
-    addressRegion: a.state,
+    address: { '@type': 'PostalAddress', addressRegion: a.state, addressCountry: 'US' },
   }));
 }
 
@@ -56,7 +56,7 @@ function serviceAreaList() {
 export function personSchema() {
   const person: any = {
     '@context': 'https://schema.org',
-    '@type': ['Person', 'RealEstateAgent'],
+    '@type': 'Person',
     '@id': PERSON_ID,
     name: seo.person.name,
     givenName: seo.person.givenName,
@@ -66,10 +66,9 @@ export function personSchema() {
     image: seo.person.image,
     telephone: seo.person.telephone,
     email: `mailto:${seo.person.email}`,
-    url: SITE,
+    url: `${SITE}/about/`,
     worksFor: { '@id': ORG_ID },
     knowsLanguage: seo.person.languages,
-    slogan: seo.site.tagline,
     hasOccupation: {
       '@type': 'Occupation',
       name: 'Real Estate Agent',
@@ -106,19 +105,8 @@ export function personSchema() {
       url: m.url,
     })),
     knowsAbout: seo.services,
-    areaServed: serviceAreaList(),
     sameAs: allSameAsUrls(),
   };
-  // Attach aggregateRating only if we have review data
-  if (seo.reviews?.reviewCount > 0) {
-    person.aggregateRating = {
-      '@type': 'AggregateRating',
-      ratingValue: seo.reviews.aggregateRating,
-      reviewCount: seo.reviews.reviewCount,
-      bestRating: 5,
-      worstRating: 1,
-    };
-  }
   return person;
 }
 
@@ -297,7 +285,7 @@ export function blogPostingSchema(post: {
     '@id': `${url}#post`,
     headline: post.title,
     description: post.excerpt,
-    image: post.featuredImage || seo.site.defaultOgImage,
+    image: new URL(post.featuredImage || seo.site.defaultOgImage, SITE).toString(),
     datePublished: post.dateRaw,
     dateModified,
     // Speakable: points voice assistants and AI answer engines at the
@@ -313,7 +301,7 @@ export function blogPostingSchema(post: {
       '@type': 'Person',
       '@id': PERSON_ID,
       name: seo.person.name,
-      url: SITE,
+      url: `${SITE}/about/`,
       image: seo.person.image,
     },
     publisher: {
@@ -343,15 +331,17 @@ export function videoObjectSchema(video: {
   dateRaw?: string;
   featuredImage?: string;
 }) {
+  // Never substitute an article's publication date for a video's upload date.
+  // Keep the player visible, but omit incomplete rich-result markup.
+  if (!video.dateRaw) return undefined;
   return {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
     name: video.title || 'Related video',
-    description: (video.description || '').replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, '').trim().slice(0, 500) || undefined,
-    thumbnailUrl: video.featuredImage || `https://i.ytimg.com/vi/${video.videoId}/hqdefault.jpg`,
+    description: (video.description || video.title || 'Related video').replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, '').trim().slice(0, 500) || undefined,
+    thumbnailUrl: `https://i.ytimg.com/vi/${video.videoId}/hqdefault.jpg`,
     uploadDate: video.dateRaw || undefined,
     embedUrl: `https://www.youtube.com/embed/${video.videoId}`,
-    contentUrl: `https://www.youtube.com/watch?v=${video.videoId}`,
     publisher: {
       '@type': 'RealEstateAgent',
       '@id': BUSINESS_ID,
@@ -403,7 +393,7 @@ export function articleSchema(article: {
   // a valid 'image' (Google prefers it present even though it's optional).
   const image = article.image
     ? (article.image.startsWith('http') ? article.image : new URL(article.image, SITE).toString())
-    : seo.site.defaultOgImage;
+    : new URL(seo.site.defaultOgImage, SITE).toString();
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -418,7 +408,7 @@ export function articleSchema(article: {
       '@type': 'Person',
       '@id': PERSON_ID,
       name: seo.person.name,
-      url: SITE,
+      url: `${SITE}/about/`,
       image: seo.person.image,
     },
     publisher: {

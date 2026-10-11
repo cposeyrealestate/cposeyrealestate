@@ -5,6 +5,9 @@
 # The actual contact page lives at /contact.
 /contact-us  /contact  301
 
+# An existing credit-score article references this unpublished closing-cost guide.
+/blog/first-time-home-buyer-texas-2026-closing-costs-breakdown/  /closing-costs/  301
+
 # AI-written blog posts (Mar-Apr 2026) linked to pages that never
 # existed; the links are fixed in blog-posts.json but Google already
 # crawled the 404s, so send them to the closest real page.
@@ -261,11 +264,14 @@
 # "dynamic" (Cloudflare limit: 100 dynamic rules), so all static rules
 # must come first. Order within this section is preserved.
 
-# Current portfolio pages - serve directly (200 rewrites beat the /portfolio/* splat below)
+# Current portfolio pages (active AND sold) - serve directly (200 rewrites beat the /portfolio/* splat below)
 /portfolio/  /portfolio/  200
 /portfolio/4448-klein-meadows/  /portfolio/4448-klein-meadows/  200
 /portfolio/7607-sky-loop/  /portfolio/7607-sky-loop/  200
 /portfolio/531-eden-ranch-dr/  /portfolio/531-eden-ranch-dr/  200
+/portfolio/203-paul-street/  /portfolio/203-paul-street/  200
+/portfolio/0000-cr-3390-kempner/  /portfolio/0000-cr-3390-kempner/  200
+/portfolio/226-treasure-way/  /portfolio/226-treasure-way/  200
 
 # Old IDX search, sold-listing detail, and account URLs -> site search
 /home-search/*  /search  301
