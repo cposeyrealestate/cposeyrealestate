@@ -33,21 +33,19 @@ if (Array.isArray(post.faqItems) && post.faqItems.length > 0) {
 // VideoObject for posts with an embedded YouTube video — lets Google
 // and AI engines see the video as structured content, not just an iframe.
 if (post.youtubeVideo && post.youtubeVideo.videoId) {
-  schemaPayload.push(videoObjectSchema({
+  const videoSchema = videoObjectSchema({
     videoId: post.youtubeVideo.videoId,
     title: post.youtubeVideo.title,
     description: post.youtubeVideo.description,
-    dateRaw: post.dateRaw,
-    featuredImage: post.featuredImage,
-  }));
+    dateRaw: post.youtubeVideo.uploadDate,
+  });
+  if (videoSchema) schemaPayload.push(videoSchema);
 }
 
-// Meta description: excerpt trimmed to Google's 155-char sweet spot,
-// falling back to category + title if excerpt is unusually short.
+// Preserve the complete excerpt; fall back to the category and title.
 const metaDescription = (post.excerpt || `${post.category}: ${post.title}`)
   .replace(/\s+/g, ' ')
-  .trim()
-  .slice(0, 155);
+  .trim();
 
 const formatActionStep = (step: string) =>
   String(step).replace(/^\s*(?:step\s*\d+|[\d]+[.)])\s*[:—-]\s*/i, '');
