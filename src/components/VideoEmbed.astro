@@ -20,9 +20,9 @@ export interface Props {
 
 const { videoId, title, description = '', uploadDate: rawUploadDate } = Astro.props;
 
-// Preserve the recorded publication date without inventing a time or timezone.
-// Drop anything that isn't a valid ISO date so GSC never sees an invalid
-// "uploadDate" value — the player still renders, only the schema field is omitted.
+// A bare date is expanded to local midnight (America/Chicago) — Google
+// requires a full datetime for uploadDate. Anything else invalid is dropped
+// so GSC never sees a bad value — the player still renders either way.
 const uploadDate = cleanUploadDate(rawUploadDate);
 
 const schema = {

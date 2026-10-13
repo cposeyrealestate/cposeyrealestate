@@ -318,8 +318,9 @@ export function blogPostingSchema(post: {
 }
 
 /* ── VideoObject schema for posts with an embedded YouTube video ── */
-// Only emit a syntactically valid ISO date as uploadDate — GSC flags anything
-// else ("Invalid datetime value"), so a bad value from a data feed must be
+// Google requires uploadDate as a FULL ISO datetime — GSC flags bare dates
+// ("Invalid datetime value"). A date-only value is normalized to midnight in
+// the site's local timezone (America/Chicago); anything else invalid is
 // dropped, never published.
 export function cleanUploadDate(raw?: string): string | undefined {
   if (!raw) return undefined;
@@ -330,7 +331,28 @@ export function cleanUploadDate(raw?: string): string | undefined {
   const y = +m[1], mo = +m[2], d = +m[3];
   const check = new Date(Date.UTC(y, mo - 1, d));
   if (check.getUTCFullYear() !== y || check.getUTCMonth() !== mo - 1 || check.getUTCDate() !== d) return undefined;
+  if (!m[4]) {
+    // Date-only: expand to local midnight with the correct DST offset.
+    return `${trimmed}T00:00:00${chicagoOffset(y, mo, d)}`;
+  }
   return trimmed;
+}
+
+// UTC offset string (e.g. "-05:00") for America/Chicago on a given date.
+function chicagoOffset(y: number, mo: number, d: number): string {
+  const dtf = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Chicago', hour12: false,
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit',
+  });
+  // Noon UTC anchor: safely inside the Chicago calendar day.
+  const anchor = new Date(Date.UTC(y, mo - 1, d, 12));
+  const parts = Object.fromEntries(dtf.formatToParts(anchor).map(p => [p.type, p.value]));
+  const chicagoAsUtc = Date.UTC(+parts.year, +parts.month - 1, +parts.day, (+parts.hour) % 24, +parts.minute);
+  const offsetMin = Math.round((chicagoAsUtc - anchor.getTime()) / 60000);
+  const sign = offsetMin <= 0 ? '-' : '+';
+  const abs = Math.abs(offsetMin);
+  return `${sign}${String(Math.floor(abs / 60)).padStart(2, '0')}:${String(abs % 60).padStart(2, '0')}`;
 }
 
 export function videoObjectSchema(video: {
