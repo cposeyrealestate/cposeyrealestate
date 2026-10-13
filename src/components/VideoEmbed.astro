@@ -9,6 +9,7 @@
  * click. Lazy loading keeps below-fold embeds off the initial page weight.
  */
 import seo from '../data/seo.json';
+import { cleanUploadDate } from '../lib/schema';
 
 export interface Props {
   videoId: string;
@@ -20,7 +21,9 @@ export interface Props {
 const { videoId, title, description = '', uploadDate: rawUploadDate } = Astro.props;
 
 // Preserve the recorded publication date without inventing a time or timezone.
-const uploadDate = rawUploadDate;
+// Drop anything that isn't a valid ISO date so GSC never sees an invalid
+// "uploadDate" value — the player still renders, only the schema field is omitted.
+const uploadDate = cleanUploadDate(rawUploadDate);
 
 const schema = {
   '@context': 'https://schema.org',

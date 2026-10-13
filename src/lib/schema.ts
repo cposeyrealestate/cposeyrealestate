@@ -318,6 +318,21 @@ export function blogPostingSchema(post: {
 }
 
 /* ── VideoObject schema for posts with an embedded YouTube video ── */
+// Only emit a syntactically valid ISO date as uploadDate — GSC flags anything
+// else ("Invalid datetime value"), so a bad value from a data feed must be
+// dropped, never published.
+export function cleanUploadDate(raw?: string): string | undefined {
+  if (!raw) return undefined;
+  const trimmed = raw.trim();
+  const m = /^(\d{4})-(\d{2})-(\d{2})(T\d{2}:\d{2}(:\d{2})?(\.\d+)?(Z|[+-]\d{2}:?\d{2})?)?$/.exec(trimmed);
+  if (!m) return undefined;
+  // Reject impossible calendar dates (JS Date silently rolls 2026-02-30 into March).
+  const y = +m[1], mo = +m[2], d = +m[3];
+  const check = new Date(Date.UTC(y, mo - 1, d));
+  if (check.getUTCFullYear() !== y || check.getUTCMonth() !== mo - 1 || check.getUTCDate() !== d) return undefined;
+  return trimmed;
+}
+
 export function videoObjectSchema(video: {
   videoId: string;
   title?: string;
@@ -327,14 +342,15 @@ export function videoObjectSchema(video: {
 }) {
   // Never substitute an article's publication date for a video's upload date.
   // Keep the player visible, but omit incomplete rich-result markup.
-  if (!video.dateRaw) return undefined;
+  const uploadDate = cleanUploadDate(video.dateRaw);
+  if (!uploadDate) return undefined;
   return {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
     name: video.title || 'Related video',
     description: (video.description || video.title || 'Related video').replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, '').trim().slice(0, 500) || undefined,
     thumbnailUrl: `https://i.ytimg.com/vi/${video.videoId}/hqdefault.jpg`,
-    uploadDate: video.dateRaw || undefined,
+    uploadDate,
     embedUrl: `https://www.youtube.com/embed/${video.videoId}`,
     publisher: {
       '@type': 'RealEstateAgent',
