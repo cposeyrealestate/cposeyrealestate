@@ -1,23 +1,21 @@
 {
-  "_comment": "Canonical source of truth for SEO, schema.org, and AI-agent metadata. Referenced by SEO.astro, schema builders, llms.txt, and sitemap config. Edit here once — propagates everywhere.",
-
+  "_comment": "Canonical source of truth for SEO, schema.org, and AI-agent metadata. Referenced by SEO.astro, schema builders, llms.txt, and sitemap config. Edit here once \u2014 propagates everywhere.",
   "site": {
     "name": "Cody Posey Real Estate",
     "url": "https://cposeyrealestate.com",
     "locale": "en_US",
     "language": "English",
-    "description": "Cody Posey is a U.S. Army veteran and New Braunfels REALTOR® serving the Texas Hill Country. Trusted buyer and seller representation across New Braunfels, Canyon Lake, Seguin, Cibolo, Schertz, and Bulverde.",
+    "description": "Cody Posey is a U.S. Army veteran and New Braunfels REALTOR\u00ae serving the Texas Hill Country. Trusted buyer and seller representation across New Braunfels, Canyon Lake, Seguin, Cibolo, Schertz, and Bulverde.",
     "tagline": "Educating. Serving. Delivering Results.",
     "defaultOgImage": "/images/generated/hero-home-aerial.webp",
     "themeColor": "#FF1616"
   },
-
   "person": {
     "name": "Cody Posey",
     "givenName": "Cody",
     "familyName": "Posey",
-    "jobTitle": "REALTOR®",
-    "bio": "Cody Posey is a U.S. Army veteran (20 years of service) and licensed Texas REALTOR® focused on the New Braunfels and Texas Hill Country market. He holds the MRP (Military Relocation Professional), ABR (Accredited Buyer's Representative), and PSA (Pricing Strategy Advisor) certifications. Cody represents both buyers and sellers across New Braunfels, Canyon Lake, Seguin, Cibolo, Schertz, Bulverde, and San Antonio.",
+    "jobTitle": "REALTOR\u00ae",
+    "bio": "Cody Posey is a U.S. Army veteran (20 years of service) and licensed Texas REALTOR\u00ae focused on the New Braunfels and Texas Hill Country market. He holds the MRP (Military Relocation Professional), ABR (Accredited Buyer's Representative), and PSA (Pricing Strategy Advisor) certifications. Cody represents both buyers and sellers across New Braunfels, Canyon Lake, Seguin, Cibolo, Schertz, Bulverde, and San Antonio.",
     "image": "https://cposeyrealestate.com/images/cody-posey.webp",
     "email": "codyposey@cposeyrealestate.com",
     "telephone": "+1-830-360-5569",
@@ -27,25 +25,46 @@
       "since": "2024"
     },
     "designations": [
-      { "short": "MRP", "full": "Military Relocation Professional" },
-      { "short": "ABR", "full": "Accredited Buyer's Representative" },
-      { "short": "PSA", "full": "Pricing Strategy Advisor" }
+      {
+        "short": "MRP",
+        "full": "Military Relocation Professional"
+      },
+      {
+        "short": "ABR",
+        "full": "Accredited Buyer's Representative"
+      },
+      {
+        "short": "PSA",
+        "full": "Pricing Strategy Advisor"
+      }
     ],
     "memberOf": [
-      { "name": "National Association of REALTORS®", "url": "https://www.nar.realtor/" },
-      { "name": "Texas REALTORS®", "url": "https://www.texasrealestate.com/" },
-      { "name": "San Antonio Board of REALTORS® (SABOR)", "url": "https://sabor.com/" },
-      { "name": "Texas Real Estate Commission (TREC)", "url": "https://www.trec.texas.gov/" }
+      {
+        "name": "National Association of REALTORS\u00ae",
+        "url": "https://www.nar.realtor/"
+      },
+      {
+        "name": "Texas REALTORS\u00ae",
+        "url": "https://www.texasrealestate.com/"
+      },
+      {
+        "name": "San Antonio Board of REALTORS\u00ae (SABOR)",
+        "url": "https://sabor.com/"
+      },
+      {
+        "name": "Texas Real Estate Commission (TREC)",
+        "url": "https://www.trec.texas.gov/"
+      }
     ],
-    "languages": ["English"]
+    "languages": [
+      "English"
+    ]
   },
-
   "reviews": {
     "aggregateRating": 5.0,
-    "reviewCount": 33,
+    "reviewCount": 34,
     "source": "Google Business Profile"
   },
-
   "brokerage": {
     "name": "Popby Realty",
     "license": {
@@ -62,24 +81,65 @@
     },
     "logo": "https://cposeyrealestate.com/images/popby-logo.png"
   },
-
   "hours": [
-    { "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "09:00", "closes": "21:00" },
-    { "days": ["Sunday"], "opens": "12:00", "closes": "20:00" }
+    {
+      "days": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "09:00",
+      "closes": "21:00"
+    },
+    {
+      "days": [
+        "Sunday"
+      ],
+      "opens": "12:00",
+      "closes": "20:00"
+    }
   ],
-
   "serviceArea": [
-    { "name": "New Braunfels", "state": "TX" },
-    { "name": "Canyon Lake", "state": "TX" },
-    { "name": "Seguin", "state": "TX" },
-    { "name": "Cibolo", "state": "TX" },
-    { "name": "Schertz", "state": "TX" },
-    { "name": "Bulverde", "state": "TX" },
-    { "name": "San Antonio", "state": "TX" },
-    { "name": "Comal County", "state": "TX" },
-    { "name": "Guadalupe County", "state": "TX" }
+    {
+      "name": "New Braunfels",
+      "state": "TX"
+    },
+    {
+      "name": "Canyon Lake",
+      "state": "TX"
+    },
+    {
+      "name": "Seguin",
+      "state": "TX"
+    },
+    {
+      "name": "Cibolo",
+      "state": "TX"
+    },
+    {
+      "name": "Schertz",
+      "state": "TX"
+    },
+    {
+      "name": "Bulverde",
+      "state": "TX"
+    },
+    {
+      "name": "San Antonio",
+      "state": "TX"
+    },
+    {
+      "name": "Comal County",
+      "state": "TX"
+    },
+    {
+      "name": "Guadalupe County",
+      "state": "TX"
+    }
   ],
-
   "services": [
     "Residential home buying",
     "Residential home selling",
@@ -91,7 +151,6 @@
     "Residential leasing",
     "Land and lot sales"
   ],
-
   "socials": {
     "facebook": "https://www.facebook.com/cposeyrealestate",
     "instagram": "https://www.instagram.com/cposeyrealestate/",
@@ -100,7 +159,6 @@
     "youtubeSecondary": "https://www.youtube.com/@cposeyrealestate",
     "linkedin": "https://www.linkedin.com/in/cposeyrealestate/"
   },
-
   "directories": {
     "googleBusinessReview": "https://g.page/r/Cbqy8Bqvej7eEBM/review",
     "zillow": "https://www.zillow.com/profile/Cody%20Posey",
@@ -109,7 +167,6 @@
     "homeLight": "https://www.homelight.com/agents/cody-posey-tx-822002",
     "homesDotCom": "https://www.homes.com/real-estate-agents/cody-posey/zx296nx/"
   },
-
   "legal": {
     "fairHousingStatement": "Cody Posey Real Estate / Popby Realty is committed to equal housing opportunity. We do not discriminate on the basis of race, color, religion, sex, handicap, familial status, national origin, sexual orientation, or gender identity.",
     "trecNotices": {
