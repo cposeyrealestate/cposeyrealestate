@@ -1,0 +1,84 @@
+---
+interface Props { resources?: boolean; }
+const { resources = false } = Astro.props;
+const guides = [
+  { title: 'Home Buyer’s Guide', href: '/buyers-guide/', description: 'Understand the home-buying process, mortgage preparation, and next steps.' },
+  { title: 'Home Seller’s Guide', href: '/sellers-guide/', description: 'Prepare for listing photos, showings, inspections, and your home sale.' },
+  { title: 'Relocation Guide', href: '/relocation-guide/', description: 'Plan your move and compare local areas before your home search.' },
+  { title: 'Mortgage Calculator', href: '/mortgage-calculator/', description: 'Explore a payment estimate and the costs to discuss with your lender.' },
+  { title: 'Closing Cost Estimator', href: '/closing-costs/', description: 'Prepare for the expenses that can come with buying a home.' },
+  { title: 'Seller’s Net Sheet', href: '/sellers-net-sheet/', description: 'Estimate your proceeds after selling costs and mortgage payoff.' },
+];
+---
+
+{resources ? (
+  <section class="home-services section" id="resources">
+    <div class="container">
+      <div class="section-title">
+        <h2>Home Buying, Selling, and <span class="accent">Relocation Guides</span></h2>
+        <p>Use these guides and calculators to prepare your questions and plan your next step.</p>
+      </div>
+      <div class="home-services__grid">
+        {guides.map(guide => (
+          <a href={guide.href} class="home-services__card">
+            <h3>{guide.title}</h3>
+            <p>{guide.description}</p>
+            <span>Open resource &rarr;</span>
+          </a>
+        ))}
+      </div>
+      <p class="home-services__more"><a href="/ask-ai/">Questions about working with Cody Posey &rarr;</a></p>
+    </div>
+  </section>
+) : (
+  <>
+    <section class="home-services home-services--light section" id="buying">
+      <div class="container">
+        <div class="section-title">
+          <h2>Buying a Home in <span class="accent">New Braunfels</span></h2>
+          <p>Get local guidance on the property, the area, and the contract before you commit.</p>
+        </div>
+        <div class="home-services__grid">
+          <div class="home-services__card"><h3>Compare Homes and Neighborhoods</h3><p>Work through your budget, commute, home type, and neighborhood priorities to focus your search.</p></div>
+          <div class="home-services__card"><h3>Plan Your Offer</h3><p>Review comparable properties and discuss price, contingencies, timing, and the terms that matter to you.</p></div>
+          <div class="home-services__card"><h3>Navigate Inspections and Closing</h3><p>Keep track of inspections, lender milestones, contract deadlines, and the questions to resolve before closing.</p></div>
+        </div>
+        <p class="home-services__more"><a href="/buyers-guide/">Read the New Braunfels home buyer’s guide &rarr;</a> <a href="/new-braunfels/new-construction/">Compare new construction homes &rarr;</a></p>
+      </div>
+    </section>
+    <section class="home-services section" id="selling">
+      <div class="container">
+        <div class="section-title">
+          <h2>Selling Your Home in <span class="accent">New Braunfels</span></h2>
+          <p>Build a practical plan for pricing, preparation, marketing, and the offers you receive.</p>
+        </div>
+        <div class="home-services__grid">
+          <div class="home-services__card"><h3>Price Your Home</h3><p>Review local comparable sales, condition, and current competition before choosing a listing price.</p></div>
+          <div class="home-services__card"><h3>Prepare and Market Your Listing</h3><p>Decide which improvements and presentation details deserve attention before your home goes on the market.</p></div>
+          <div class="home-services__card"><h3>Compare Offers and Net Proceeds</h3><p>Consider financing, contingencies, deadlines, and estimated proceeds alongside the offer price.</p></div>
+        </div>
+        <p class="home-services__more"><a href="/sellers-guide/">Read the New Braunfels home seller’s guide &rarr;</a></p>
+        <div class="home-services__valuation">
+          <h2>What Is My New Braunfels Home <span class="accent">Worth?</span></h2>
+          <p>Request a free, personalized market analysis. Share your address and property details so Cody can compare your home with relevant local sales.</p>
+          <a href="/home-value/" class="btn btn-primary">Request My Home Value</a>
+        </div>
+      </div>
+    </section>
+  </>
+)}
+
+<style>
+  .home-services--light { background: #f4f4f4; }
+  .home-services__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+  .home-services__card { display: flex; flex-direction: column; padding: 1.75rem; border: 1px solid #ddd; border-radius: 6px; background: #fff; }
+  a.home-services__card:hover, a.home-services__card:focus-visible { border-color: var(--red); }
+  .home-services__card h3 { font-size: 1.2rem; line-height: 1.4; }
+  .home-services__card p { margin: 1rem 0; color: #555; }
+  .home-services__card span { margin-top: auto; font-weight: 700; }
+  .home-services__more { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2rem; margin-top: 2rem; font-weight: 700; text-align: center; }
+  .home-services__valuation { margin-top: 3rem; padding: 2rem; border-left: 4px solid var(--red); background: #f4f4f4; }
+  .home-services__valuation h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); }
+  .home-services__valuation p { margin: 1rem 0 1.5rem; max-width: 750px; }
+  @media (max-width: 800px) { .home-services__grid { grid-template-columns: 1fr; } }
+</style>

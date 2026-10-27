@@ -1,0 +1,70 @@
+---
+const areas = [
+  { name: 'New Braunfels', href: '/new-braunfels/', description: 'Compare neighborhoods, housing costs, schools, and local home-search options.' },
+  { name: 'Canyon Lake', href: '/canyon-lake/', description: 'Explore lake-area living, acreage, and the questions to ask before buying.' },
+  { name: 'Schertz and Cibolo', href: '/cibolo-schertz/', description: 'Compare communities along the I-35 corridor and access to JBSA-Randolph.' },
+  { name: 'Bulverde', href: '/bulverde/', description: 'Explore Hill Country home options and decide how the location fits your daily life.' },
+  { name: 'Garden Ridge', href: '/garden-ridge/', description: 'Get local context for a home search between New Braunfels and San Antonio.' },
+  { name: 'San Antonio', href: '/san-antonio/', description: 'Compare city neighborhoods, commute priorities, and military relocation options.' },
+];
+const neighborhoods = [
+  { name: 'Veramendi', slug: 'veramendi', description: 'Compare new homes and community amenities near central New Braunfels.' },
+  { name: 'Mayfair', slug: 'mayfair', description: 'Explore a growing master-planned community and its new-home options.' },
+  { name: 'Vintage Oaks', slug: 'vintage-oaks', description: 'Consider custom homes, lot sizes, and Hill Country living.' },
+  { name: 'River Chase', slug: 'river-chase', description: 'Compare acreage homes, community amenities, and river access.' },
+];
+---
+
+<section class="discovery section" id="areas">
+  <div class="container">
+    <div class="section-title">
+      <h2>Homes for Sale in <span class="accent">Nearby Communities</span></h2>
+      <p>Start with a local area guide, then follow its home-search links or ask Cody to narrow the listings to your needs.</p>
+    </div>
+    <div class="discovery__grid">
+      {areas.map(area => (
+        <a class="discovery__card" href={area.href}>
+          <h3>{area.name} Real Estate</h3>
+          <p>{area.description}</p>
+          <span>Explore {area.name} &rarr;</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="discovery discovery--light section" id="neighborhoods">
+  <div class="container">
+    <div class="section-title">
+      <h2>Homes for Sale in <span class="accent">New Braunfels Neighborhoods</span></h2>
+      <p>Use the neighborhood guides below to compare communities, then ask Cody for current homes that fit your budget and timing.</p>
+    </div>
+    <div class="discovery__grid discovery__grid--four">
+      {neighborhoods.map(neighborhood => (
+        <a class="discovery__card" href={`/new-braunfels/neighborhoods/#${neighborhood.slug}`}>
+          <h3>{neighborhood.name}</h3>
+          <p>{neighborhood.description}</p>
+          <span>Read the neighborhood guide &rarr;</span>
+        </a>
+      ))}
+    </div>
+    <div class="discovery__actions">
+      <a href="/new-braunfels/neighborhoods/" class="btn btn-outline-dark">Compare All Neighborhoods</a>
+      <a href="#contact" class="btn btn-primary">Request Neighborhood Listings</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .discovery--light { background: #f4f4f4; }
+  .discovery__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+  .discovery__grid--four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .discovery__card { display: flex; flex-direction: column; padding: 1.75rem; border: 1px solid #ddd; border-radius: 6px; background: #fff; transition: border-color .2s; }
+  .discovery__card:hover, .discovery__card:focus-visible { border-color: var(--red); }
+  .discovery__card h3 { font-size: 1.2rem; line-height: 1.4; }
+  .discovery__card p { margin: 1rem 0; color: #555; }
+  .discovery__card span { margin-top: auto; font-weight: 700; font-size: .9rem; }
+  .discovery__actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+  @media (max-width: 1000px) { .discovery__grid--four { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 700px) { .discovery__grid, .discovery__grid--four { grid-template-columns: 1fr; } }
+</style>

@@ -12,8 +12,8 @@
   <div class="hero__overlay"></div>
 
   <div class="hero__content">
-    <h1 class="hero__name">Cody Posey</h1>
-    <h2 class="hero__title">New Braunfels and Texas Hill Country<br />Real Estate Agent</h2>
+    <h1 class="hero__name">New Braunfels Real Estate Agent <span class="hero__identity">Cody Posey</span></h1>
+    <p class="hero__title">Buy, sell, or relocate with a local REALTOR® and retired Army First Sergeant serving New Braunfels and the Texas Hill Country.</p>
     <p class="hero__tagline"><em>Educating. Serving. Delivering Results.</em></p>
 
     <!-- Property Search -->
@@ -118,12 +118,14 @@
   }
 
   .hero__name {
-    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-size: clamp(2rem, 4.5vw, 3.6rem);
     color: #fff;
     margin-bottom: 0.5rem;
     text-shadow: 0 2px 12px rgba(0,0,0,0.5);
     line-height: 1.1;
   }
+
+  .hero__identity { display: block; font-size: 0.65em; margin-top: 0.6rem; }
 
   .hero__title {
     font-size: 24px;
@@ -196,6 +198,7 @@
 
   .hero__search-input {
     flex: 1;
+    min-width: 0;
     border: none;
     outline: none;
     font-family: 'Poppins', sans-serif;
@@ -296,6 +299,10 @@
   }
 
   @media (max-width: 600px) {
+    .hero__title { font-size: 1.05rem; }
+    .hero__search-wrap { padding: 1rem; }
+    .hero__search-btn { padding: 0.9rem 0.75rem; }
+    .hero__near-me { flex-shrink: 0; }
     .hero__search-btn span { display: none; }
     .hero__quick-links { gap: 1rem; }
   }
