@@ -1,6 +1,7 @@
 ---
 import SEO from '../components/SEO.astro';
 import CookieBanner from '../components/CookieBanner.astro';
+import SignupPopup from '../components/SignupPopup.astro';
 import seo from '../data/seo.json';
 
 export interface Props {
@@ -65,6 +66,7 @@ const {
   <body>
     <slot />
     <CookieBanner />
+    <SignupPopup />
   </body>
 </html>
 
