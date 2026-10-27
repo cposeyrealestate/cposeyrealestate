@@ -1,0 +1,183 @@
+---
+// Keep the invitation off utility pages and pages with an existing lead flow.
+const excluded = /^\/(?:admin|api|idx-header|idx-footer|contact|privacy|relocation-guide|mortgage-calculator|closing-costs|sellers-net-sheet|join-popby-realty)(?:\/|$)/;
+const enabled = !excluded.test(Astro.url.pathname);
+---
+
+{enabled && (
+  <aside id="signupPopup" class="signup-popup" role="dialog" aria-modal="false" aria-labelledby="signupTitle" aria-describedby="signupIntro" data-nosnippet hidden>
+    <button type="button" class="signup-popup__close" data-signup-dismiss aria-label="Dismiss signup">&times;</button>
+    <p class="signup-popup__eyebrow">Planning your next move?</p>
+    <h2 id="signupTitle">Local insight. A clearer next step.</h2>
+    <p id="signupIntro">Sign up and Cody will follow up with real estate guidance for New Braunfels, San Antonio, and the Hill Country.</p>
+    <button type="button" class="signup-popup__expand" aria-expanded="false" aria-controls="signupDetails">Get local guidance</button>
+    <div id="signupDetails" class="signup-popup__details">
+      <form id="signupForm">
+        <label for="signupName">Name <span aria-hidden="true">*</span></label>
+        <input id="signupName" name="name" type="text" autocomplete="name" maxlength="120" required />
+        <label for="signupEmail">Email <span aria-hidden="true">*</span></label>
+        <input id="signupEmail" name="email" type="email" autocomplete="email" maxlength="254" required />
+        <label for="signupPhone">Phone <span class="signup-popup__optional">(optional)</span></label>
+        <input id="signupPhone" name="phone" type="tel" autocomplete="tel" maxlength="40" />
+        <div class="signup-popup__trap" aria-hidden="true">
+          <label for="signupWebsite">Leave this field empty</label>
+          <input id="signupWebsite" name="website" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <p class="signup-popup__privacy">By signing up, you ask Cody Posey to follow up by email, or by phone if provided. Signup is optional. <a href="/privacy/">Privacy policy</a></p>
+        <p id="signupError" class="signup-popup__error" role="alert" hidden>We couldn't send your signup. Please try again, or <a href="/contact/">contact Cody directly</a>.</p>
+        <button type="submit" class="signup-popup__submit">Sign me up</button>
+      </form>
+      <p id="signupSuccess" class="signup-popup__success" role="status" tabindex="-1" hidden>Thanks for signing up! Cody will be in touch. You can keep exploring.</p>
+    </div>
+    <button type="button" class="signup-popup__decline" data-signup-dismiss>No thanks, keep browsing</button>
+  </aside>
+)}
+
+<style>
+  .signup-popup[hidden], .signup-popup [hidden] { display: none !important; }
+  .signup-popup { position: fixed; right: 24px; bottom: 84px; z-index: 1100; width: min(380px, calc(100vw - 32px)); max-height: calc(100dvh - 120px); overflow-y: auto; padding: 26px; background: #111; color: #fff; border: 1px solid #444; border-top: 3px solid #ff1616; border-radius: 12px; box-shadow: 0 12px 48px #0006; }
+  .signup-popup__close { position: absolute; top: 5px; right: 5px; width: 44px; height: 44px; background: transparent; border: 0; color: #ddd; font-size: 28px; cursor: pointer; }
+  .signup-popup__eyebrow { padding-right: 25px; color: #ff7373; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 8px; }
+  .signup-popup h2 { color: #fff; font-size: 23px; line-height: 1.25; margin: 0 15px 12px 0; }
+  #signupIntro { color: #d0d0d0; font-size: 14px; line-height: 1.5; margin: 0 0 16px; }
+  .signup-popup label { display: block; font-size: 13px; font-weight: 600; margin: 12px 0 5px; }
+  .signup-popup__optional { color: #bbb; font-weight: 400; }
+  .signup-popup input { box-sizing: border-box; width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid #686868; border-radius: 5px; background: #222; color: #fff; font: inherit; font-size: 16px; }
+  .signup-popup :is(input, button, a):focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+  .signup-popup__privacy { color: #bdbdbd; font-size: 12px; line-height: 1.5; margin: 14px 0; }
+  .signup-popup a { color: #fff; text-decoration: underline; }
+  .signup-popup__submit, .signup-popup__expand { width: 100%; min-height: 46px; background: #ff1616; border: 0; border-radius: 5px; color: #fff; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
+  .signup-popup__submit:disabled { opacity: .65; cursor: wait; }
+  .signup-popup__decline { display: block; min-height: 44px; width: 100%; margin-top: 6px; border: 0; color: #ccc; background: transparent; font: inherit; font-size: 13px; text-decoration: underline; cursor: pointer; }
+  .signup-popup__expand { display: none; }
+  .signup-popup__error { color: #ffaaaa; font-size: 13px; line-height: 1.5; }
+  .signup-popup__success { color: #fff; font-size: 16px; line-height: 1.6; }
+  .signup-popup__trap { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  @media (max-width: 640px), (max-height: 700px) {
+    .signup-popup { right: 16px; bottom: calc(72px + env(safe-area-inset-bottom, 0px)); padding: 20px; max-height: calc(100dvh - 110px); }
+    .signup-popup h2 { font-size: 20px; }
+    .signup-popup__details { display: none; }
+    .signup-popup__expand { display: block; }
+    .signup-popup--expanded .signup-popup__details { display: block; }
+    .signup-popup--expanded .signup-popup__expand { display: none; }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const popup = document.getElementById('signupPopup');
+    if (!popup) return;
+    const form = document.getElementById('signupForm');
+    const error = document.getElementById('signupError');
+    const success = document.getElementById('signupSuccess');
+    const submit = form.querySelector('[type="submit"]');
+    const seenKey = 'cpr_signup_seen_v1';
+    const doneKey = 'cpr_signup_done_v1';
+    const week = 7 * 24 * 60 * 60 * 1000;
+    let shown = false;
+    let stopped = false;
+    let ready = false;
+    let pending = false;
+    let returnFocus = null;
+    const read = (key) => { try { return localStorage.getItem(key); } catch { return null; } };
+    const write = (key, value) => { try { localStorage.setItem(key, value); } catch {} };
+    const suppressed = () => read(doneKey) || read('cpr_lead') || Date.now() - Number(read(seenKey) || 0) < week;
+    if (suppressed()) return;
+
+    function stop() {
+      stopped = true;
+      window.removeEventListener('scroll', maybeShow);
+      document.removeEventListener('focusout', maybeShow);
+      document.removeEventListener('visibilitychange', maybeShow);
+      clearInterval(retry);
+      clearTimeout(delay);
+    }
+    function close() {
+      popup.hidden = true;
+      write(seenKey, String(Date.now()));
+      if (popup.contains(document.activeElement)) {
+        if (returnFocus && returnFocus.isConnected && returnFocus !== document.body) returnFocus.focus({ preventScroll: true });
+        else document.activeElement.blur();
+      }
+      stop();
+    }
+    function maybeShow() {
+      if (stopped || shown || !ready || document.visibilityState !== 'visible') return;
+      if (suppressed()) { stop(); return; }
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollable > 0 && window.scrollY / scrollable < .35) return;
+      // Avoid covering cookie choices, another dialog, or an active form.
+      const cookie = document.getElementById('cookieBanner');
+      const gate = document.getElementById('leadGate');
+      const contact = document.getElementById('contact');
+      const active = document.activeElement;
+      if (contact) {
+        const bounds = contact.getBoundingClientRect();
+        if (bounds.top < window.innerHeight && bounds.bottom > 0) return;
+      }
+      if ((cookie && !cookie.hidden) || (gate && gate.getClientRects().length) || document.querySelector('dialog[open]') || (active && active.closest('form, iframe, [contenteditable="true"]'))) return;
+      returnFocus = active;
+      popup.hidden = false;
+      shown = true;
+      write(seenKey, String(Date.now()));
+      stop();
+    }
+    popup.querySelectorAll('[data-signup-dismiss]').forEach(button => button.addEventListener('click', close));
+    popup.querySelector('.signup-popup__expand').addEventListener('click', (event) => {
+      popup.classList.add('signup-popup--expanded');
+      event.currentTarget.setAttribute('aria-expanded', 'true');
+      document.getElementById('signupName').focus({ preventScroll: true });
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !popup.hidden) { event.preventDefault(); close(); }
+    });
+    // Another form submission is already a deliberate contact action.
+    document.addEventListener('submit', (event) => {
+      if (event.target !== form) { close(); }
+    });
+    const delay = setTimeout(() => { ready = true; maybeShow(); }, 30000);
+    const retry = setInterval(maybeShow, 5000);
+    window.addEventListener('scroll', maybeShow, { passive: true });
+    document.addEventListener('focusout', maybeShow);
+    document.addEventListener('visibilitychange', maybeShow);
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (pending || !form.reportValidity()) return;
+      if (form.elements.website.value) return;
+      const name = form.elements.name.value.trim();
+      const email = form.elements.email.value.trim();
+      if (!name || !email) { form.elements.name.focus(); return; }
+      pending = true;
+      error.hidden = true;
+      submit.disabled = true;
+      submit.textContent = 'Sending…';
+      form.setAttribute('aria-busy', 'true');
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 20000);
+      try {
+        const response = await fetch('/api/lead', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: controller.signal,
+          body: JSON.stringify({ name, email, phone: form.elements.phone.value.trim(), source: 'Website Signup Popup', message: 'Requested local real estate guidance and follow-up. Signup page: ' + window.location.origin + window.location.pathname })
+        });
+        if (!response.ok) throw new Error('Signup failed');
+        const result = await response.json();
+        if (result.success !== true) throw new Error('Signup not confirmed');
+        // Store only a suppression flag, never the visitor's contact details.
+        write(doneKey, '1');
+        form.reset();
+        form.hidden = true;
+        success.hidden = false;
+        if (!popup.hidden) success.focus({ preventScroll: true });
+      } catch {
+        error.hidden = false;
+      } finally {
+        clearTimeout(timeout);
+        pending = false;
+        submit.disabled = false;
+        submit.textContent = 'Sign me up';
+        form.removeAttribute('aria-busy');
+      }
+    });
+  })();
+</script>
