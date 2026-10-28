@@ -100,7 +100,7 @@ const formatActionStep = (step: string) =>
         </nav>
         <span class="post-hero__cat">{post.category}</span>
         <h1>{post.title}</h1>
-        <p class="post-hero__meta">By <a href="/about/" rel="author">Cody Posey</a> &nbsp;|&nbsp; <time datetime={post.dateRaw}>{post.date}</time></p>
+        <p class="post-hero__meta">By {post.guestAuthor ? <a href={post.guestAuthor.url} rel="author">{post.guestAuthor.name}</a> : <a href="/about/" rel="author">Cody Posey</a>} &nbsp;|&nbsp; <time datetime={post.dateRaw}>{post.date}</time></p>
       </div>
     </div>
 
@@ -234,8 +234,7 @@ const formatActionStep = (step: string) =>
     <section class="article-resources section">
       <div class="container">
         <aside class="author-card" aria-label="About the author">
-          <h2>About Cody Posey</h2>
-          <p>Cody Posey is a real estate agent with Popby Realty serving New Braunfels and the surrounding Texas Hill Country. <a href="/about/">Read Cody’s background and credentials</a>, or <a href="/contact/">ask a question about your move</a>.</p>
+          {post.guestAuthor ? <><h2>About {post.guestAuthor.name}</h2><p>{post.guestAuthor.bio} <a href={post.guestAuthor.url}>Visit DFW Barndominium Guide</a>.</p></> : <><h2>About Cody Posey</h2><p>Cody Posey is a real estate agent with Popby Realty serving New Braunfels and the surrounding Texas Hill Country. <a href="/about/">Read Cody’s background and credentials</a>, or <a href="/contact/">ask a question about your move</a>.</p></>}
         </aside>
         <h2>Plan your next step</h2>
         <p><a href={resource.href}>{resource.title}</a> — {resource.text}</p>

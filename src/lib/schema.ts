@@ -276,6 +276,7 @@ export function blogPostingSchema(post: {
   category?: string;
   featuredImage?: string;
   quickAnswer?: string;
+  guestAuthor?: { name: string; url?: string };
 }) {
   const url = `${SITE}/blog/${post.slug}/`;
   const dateModified = post.dateModified || post.dateRaw;
@@ -291,7 +292,11 @@ export function blogPostingSchema(post: {
     // Inline author/publisher so Google's Rich Results validator can
     // classify them without resolving @id across JSON-LD blocks.
     // The @id is retained so entity graph linking still works.
-    author: {
+    author: post.guestAuthor ? {
+      '@type': 'Person',
+      name: post.guestAuthor.name,
+      ...(post.guestAuthor.url && { url: post.guestAuthor.url }),
+    } : {
       '@type': 'Person',
       '@id': PERSON_ID,
       name: seo.person.name,
