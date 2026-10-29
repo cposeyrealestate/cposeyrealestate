@@ -106,7 +106,8 @@ const formatActionStep = (step: string) =>
 
     <!-- Featured Image -->
     <div class="post-image container">
-      <img src={post.featuredImage} alt={post.title} />
+      <img src={post.featuredImage} alt={post.featuredImageAlt || post.title} />
+      {post.featuredImageCaption && <p class="post-image__caption">{post.featuredImageCaption}</p>}
     </div>
 
     {headings.length >= 3 && (
