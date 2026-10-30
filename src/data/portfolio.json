@@ -216,13 +216,130 @@
       },
       "leasePrice": "$1,695/mo"
     },
+        {
+      "source": "internal",
+      "mlsId": "1948761",
+      "slug": "531-eden-ranch-dr",
+      "status": "Active",
+      "featured": true,
+      "price": "$424,900",
+      "address": "531 Eden Ranch Dr",
+      "city": "Canyon Lake, TX 78133",
+      "acres": "8.01",
+      "propertyType": "Residential Lot and Acreage",
+      "subdivision": "Eden Ranch",
+      "county": "Comal",
+      "hoaMonthly": null,
+      "lat": 29.860359,
+      "lng": -98.136443,
+      "img": "/images/listings/1948761-1.webp",
+      "gallery": [
+        "/images/listings/1948761-1.webp",
+        "/images/listings/1948761-2.webp",
+        "/images/listings/1948761-3.webp",
+        "/images/listings/1948761-4.webp",
+        "/images/listings/1948761-5.webp",
+        "/images/listings/1948761-6.webp",
+        "/images/listings/1948761-7.webp",
+        "/images/listings/1948761-8.webp",
+        "/images/listings/1948761-9.webp"
+      ],
+      "description": "Discover the freedom to build your Hill Country retreat on this scenic 8-acre homesite in Eden Ranch. With sweeping Hill Country views, sloping terrain, and a natural landscape of mature oaks and cedar, this property offers the perfect canvas for a custom home designed to take full advantage of the surrounding beauty.\n\nThe gently rolling topography creates ideal building opportunities for a home with elevated views, expansive patios, and outdoor living spaces that capture the sunrise and sunset over the Texas Hill Country. Electric is available and private wells are allowed, giving you flexibility as you design and build your dream property.\n\nLocated on paved Eden Ranch Drive, this acreage provides the privacy and elbow room buyers are searching for, while still being close to everything that makes Canyon Lake living special. Spend weekends boating, fishing, and enjoying nearby Canyon Lake and Guadalupe River recreation, or take a short drive to dining, shopping, and entertainment in New Braunfels and the surrounding Hill Country communities.\n\nWith no HOA, you'll enjoy greater freedom in how you design your property, while mobile and manufactured homes are restricted, helping preserve the character and quality of the surrounding acreage homesites.\n\nIf you've been searching for space, views, and the relaxed outdoorsy Hill Country lifestyle, this property is ready for your vision.",
+      "features": {
+        "Land Details": [
+          [
+            "Topography",
+            "Country View, Sloping"
+          ],
+          [
+            "Frontage",
+            "Private Street \u2014 220 ft frontage \u00d7 1,200 ft deep"
+          ],
+          [
+            "Trees",
+            "Many \u2014 Mature Oaks & Cedar"
+          ],
+          [
+            "Improvements",
+            "Paved Roads"
+          ],
+          [
+            "Utilities On Site",
+            "Electric"
+          ],
+          [
+            "Utilities Available",
+            "Private Well Allowed"
+          ],
+          [
+            "Septic",
+            "Allowed"
+          ],
+          [
+            "Restrictions",
+            "No Mobile / Manufactured Homes (no HOA)"
+          ]
+        ],
+        "Area & Lot": [
+          [
+            "Status",
+            "Active"
+          ],
+          [
+            "Lot Area",
+            "8.01 Acres"
+          ],
+          [
+            "MLS\u00ae ID",
+            "1948761"
+          ],
+          [
+            "Type",
+            "Residential Lot and Acreage"
+          ],
+          [
+            "Subdivision",
+            "Eden Ranch (Phase 7)"
+          ],
+          [
+            "County",
+            "Comal"
+          ],
+          [
+            "Elementary School",
+            "Mountain Valley"
+          ],
+          [
+            "Middle School",
+            "Mountain Valley"
+          ],
+          [
+            "High School",
+            "Canyon Lake"
+          ],
+          [
+            "School District",
+            "Comal ISD"
+          ],
+          [
+            "Annual Taxes",
+            "$5,884.81"
+          ],
+          [
+            "HOA",
+            "None"
+          ]
+        ]
+      }
+    }
+  ],
+  "pastSales": [
     {
       "source": "internal",
       "mlsId": "1945785",
       "slug": "7607-sky-loop",
-      "status": "Under Contract",
-      "featured": true,
-      "price": "Non-Distressed Auction\nBidding to Start at $800,000",
+      "status": "Sold",
+      "price": "$942,500",
       "address": "7607 Sky Loop",
       "city": "San Antonio, TX 78266",
       "beds": 4,
@@ -231,6 +348,7 @@
       "acres": "1.39",
       "yearBuilt": 2007,
       "propertyType": "Single Family",
+      "role": "Listing Agent",
       "subdivision": "Seven Hills Ranch",
       "county": "Comal",
       "hoaMonthly": 37.5,
@@ -390,7 +508,7 @@
         "Area & Lot": [
           [
             "Status",
-            "Under Contract"
+            "Sold"
           ],
           [
             "Living Area",
@@ -455,125 +573,7 @@
         ]
       }
     },
-    {
-      "source": "internal",
-      "mlsId": "1948761",
-      "slug": "531-eden-ranch-dr",
-      "status": "Active",
-      "featured": true,
-      "price": "$424,900",
-      "address": "531 Eden Ranch Dr",
-      "city": "Canyon Lake, TX 78133",
-      "acres": "8.01",
-      "propertyType": "Residential Lot and Acreage",
-      "subdivision": "Eden Ranch",
-      "county": "Comal",
-      "hoaMonthly": null,
-      "lat": 29.860359,
-      "lng": -98.136443,
-      "img": "/images/listings/1948761-1.webp",
-      "gallery": [
-        "/images/listings/1948761-1.webp",
-        "/images/listings/1948761-2.webp",
-        "/images/listings/1948761-3.webp",
-        "/images/listings/1948761-4.webp",
-        "/images/listings/1948761-5.webp",
-        "/images/listings/1948761-6.webp",
-        "/images/listings/1948761-7.webp",
-        "/images/listings/1948761-8.webp",
-        "/images/listings/1948761-9.webp"
-      ],
-      "description": "Discover the freedom to build your Hill Country retreat on this scenic 8-acre homesite in Eden Ranch. With sweeping Hill Country views, sloping terrain, and a natural landscape of mature oaks and cedar, this property offers the perfect canvas for a custom home designed to take full advantage of the surrounding beauty.\n\nThe gently rolling topography creates ideal building opportunities for a home with elevated views, expansive patios, and outdoor living spaces that capture the sunrise and sunset over the Texas Hill Country. Electric is available and private wells are allowed, giving you flexibility as you design and build your dream property.\n\nLocated on paved Eden Ranch Drive, this acreage provides the privacy and elbow room buyers are searching for, while still being close to everything that makes Canyon Lake living special. Spend weekends boating, fishing, and enjoying nearby Canyon Lake and Guadalupe River recreation, or take a short drive to dining, shopping, and entertainment in New Braunfels and the surrounding Hill Country communities.\n\nWith no HOA, you'll enjoy greater freedom in how you design your property, while mobile and manufactured homes are restricted, helping preserve the character and quality of the surrounding acreage homesites.\n\nIf you've been searching for space, views, and the relaxed outdoorsy Hill Country lifestyle, this property is ready for your vision.",
-      "features": {
-        "Land Details": [
-          [
-            "Topography",
-            "Country View, Sloping"
-          ],
-          [
-            "Frontage",
-            "Private Street \u2014 220 ft frontage \u00d7 1,200 ft deep"
-          ],
-          [
-            "Trees",
-            "Many \u2014 Mature Oaks & Cedar"
-          ],
-          [
-            "Improvements",
-            "Paved Roads"
-          ],
-          [
-            "Utilities On Site",
-            "Electric"
-          ],
-          [
-            "Utilities Available",
-            "Private Well Allowed"
-          ],
-          [
-            "Septic",
-            "Allowed"
-          ],
-          [
-            "Restrictions",
-            "No Mobile / Manufactured Homes (no HOA)"
-          ]
-        ],
-        "Area & Lot": [
-          [
-            "Status",
-            "Active"
-          ],
-          [
-            "Lot Area",
-            "8.01 Acres"
-          ],
-          [
-            "MLS\u00ae ID",
-            "1948761"
-          ],
-          [
-            "Type",
-            "Residential Lot and Acreage"
-          ],
-          [
-            "Subdivision",
-            "Eden Ranch (Phase 7)"
-          ],
-          [
-            "County",
-            "Comal"
-          ],
-          [
-            "Elementary School",
-            "Mountain Valley"
-          ],
-          [
-            "Middle School",
-            "Mountain Valley"
-          ],
-          [
-            "High School",
-            "Canyon Lake"
-          ],
-          [
-            "School District",
-            "Comal ISD"
-          ],
-          [
-            "Annual Taxes",
-            "$5,884.81"
-          ],
-          [
-            "HOA",
-            "None"
-          ]
-        ]
-      }
-    }
-  ],
-  "pastSales": [
-    {
+{
       "source": "internal",
       "mlsId": "1963725",
       "slug": "203-paul-street",
