@@ -100,7 +100,7 @@ const formatActionStep = (step: string) =>
         </nav>
         <span class="post-hero__cat">{post.category}</span>
         <h1>{post.title}</h1>
-        <p class="post-hero__meta">By {post.guestAuthor ? <a href={post.guestAuthor.url} rel="author">{post.guestAuthor.name}</a> : <a href="/about/" rel="author">Cody Posey</a>} &nbsp;|&nbsp; <time datetime={post.dateRaw}>{post.date}</time></p>
+        <p class="post-hero__meta">By {post.guestAuthor ? <a href={post.guestAuthor.url} rel="author">{post.guestAuthor.name}</a> : <a href="/about/" rel="author">Cody Posey</a>} &nbsp;|&nbsp; <time datetime={post.dateRaw}>{post.date}</time>{post.dateModified && <> &nbsp;|&nbsp; Updated <time datetime={post.dateModified}>{new Date(post.dateModified).toLocaleDateString('en-US', { timeZone: 'America/Chicago', month: 'long', day: 'numeric', year: 'numeric' })}</time></>}</p>
       </div>
     </div>
 
