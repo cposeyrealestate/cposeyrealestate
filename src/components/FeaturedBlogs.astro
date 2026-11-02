@@ -1,10 +1,11 @@
 ---
 import allPosts from '../data/blog-posts.json';
-const sortedPosts = [...allPosts].sort((a, b) => (b.dateRaw || '').localeCompare(a.dateRaw || ''));
+import { recentPosts, blogCardDate } from '../lib/blog-listing';
+const sortedPosts = recentPosts(allPosts);
 const blogs = sortedPosts.slice(0, 9).map(post => ({
   title: post.title,
   category: post.category,
-  date: post.date,
+  date: blogCardDate(post),
   img: post.featuredImage,
   slug: post.slug,
 }));

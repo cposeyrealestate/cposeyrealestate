@@ -5,9 +5,10 @@ import Footer from '../../components/Footer.astro';
 import blogPosts from '../../data/blog-posts.json';
 import { breadcrumbSchema } from '../../lib/schema';
 import seo from '../../data/seo.json';
+import { recentPosts, blogCardDate } from '../../lib/blog-listing';
 
 const POSTS_PER_PAGE = 12;
-const posts = [...blogPosts].sort((a, b) => (b.dateRaw || '').localeCompare(a.dateRaw || ''));
+const posts = recentPosts(blogPosts);
 const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
 
 // Blog index schema: a Blog entity that lists the most recent posts.
@@ -25,6 +26,7 @@ const blogSchema = {
     headline: p.title,
     url: `https://cposeyrealestate.com/blog/${p.slug}/`,
     datePublished: p.dateRaw,
+    ...(p.dateModified && { dateModified: p.dateModified }),
     image: new URL(p.featuredImage || seo.site.defaultOgImage, seo.site.url).toString(),
   })),
 };
@@ -71,7 +73,7 @@ const blogSchema = {
                   <a href={`/blog/${post.slug}/`}>{post.title}</a>
                 </h3>
                 <p class="blog-card__excerpt">{post.excerpt.slice(0, 150)}...</p>
-                <p class="blog-card__meta">Cody Posey &nbsp;|&nbsp; {post.date}</p>
+                <p class="blog-card__meta">Cody Posey &nbsp;|&nbsp; {blogCardDate(post)}</p>
               </div>
             </article>
           ))}
