@@ -8,6 +8,7 @@ const blogs = sortedPosts.slice(0, 9).map(post => ({
   date: blogCardDate(post),
   img: post.featuredImage,
   slug: post.slug,
+  author: post.guestAuthor?.name || 'Cody Posey',
 }));
 ---
 
@@ -29,7 +30,7 @@ const blogs = sortedPosts.slice(0, 9).map(post => ({
             <h3 class="blog-card__title">
               <a href={`/blog/${post.slug}/`}>{post.title}</a>
             </h3>
-            <p class="blog-card__meta">Cody Posey &nbsp;|&nbsp; {post.date}</p>
+            <p class="blog-card__meta">{post.author} &nbsp;|&nbsp; {post.date}</p>
           </div>
         </article>
       ))}
@@ -39,9 +40,9 @@ const blogs = sortedPosts.slice(0, 9).map(post => ({
       {blogs.slice(3).map(post => (
         <article class="blog-row">
           <span class="blog-row__cat">{post.category}</span>
-          <h4 class="blog-row__title">
+          <h3 class="blog-row__title">
             <a href={`/blog/${post.slug}/`}>{post.title}</a>
-          </h4>
+          </h3>
           <span class="blog-row__date">{post.date}</span>
         </article>
       ))}

@@ -32,6 +32,7 @@ const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]);
 let videos = 0;
 let schemas = 0;
 const titles = new Map();
+let checkedHeadings = 0;
 function inspectImages(value, url) {
   if (!value || typeof value !== 'object') return;
   for (const [key, child] of Object.entries(value)) {
@@ -55,6 +56,32 @@ for (const url of urls) {
   if (titles.has(title)) errors.push(`${url}: duplicate title also at ${titles.get(title)}`);
   titles.set(title, url);
   if (!/name="description"[^>]*content="[^"]+"/.test(html)) errors.push(`${url}: missing description`);
+  // Outline checks run against generated markup, including imported blog HTML.
+  // Skip non-content elements so strings inside scripts cannot look like headings.
+  const body = html.match(/<body\b[^>]*>([\s\S]*?)<\/body>/i)?.[1] || '';
+  const content = body.replace(/<(script|style|template)\b[^>]*>[\s\S]*?<\/\1>/gi, '');
+  const headings = [...content.matchAll(/<h([1-6])\b[^>]*>([\s\S]*?)<\/h\1\s*>/gi)];
+  if (headings.filter(match => match[1] === '1').length !== 1) errors.push(`${url}: expected exactly one H1`);
+  let previousLevel = 0;
+  for (const heading of headings) {
+    const level = Number(heading[1]);
+    if ((!previousLevel && level !== 1) || (previousLevel && level > previousLevel + 1)) {
+      errors.push(`${url}: heading skips H${previousLevel} to H${level}`);
+    }
+    if (!heading[2].replace(/<[^>]*>/g, '').trim()) errors.push(`${url}: empty heading`);
+    previousLevel = level;
+    checkedHeadings++;
+  }
+  const anchors = [...content.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
+  const anchorSet = new Set(anchors);
+  if (path.startsWith('/blog/') && path !== '/blog/') {
+    for (const match of content.matchAll(/href="#((?:article-|article-section-)[^"]+)"/g)) {
+      if (!anchorSet.has(match[1])) errors.push(`${url}: article navigation points to missing #${match[1]}`);
+    }
+  }
+  for (const image of content.matchAll(/<img\b[^>]*>/gi)) {
+    if (!/\balt\s*=/.test(image[0])) errors.push(`${url}: image missing alt attribute`);
+  }
 }
 for (const file of htmlFiles) {
   const html = readFileSync(file, 'utf8');
@@ -75,6 +102,6 @@ for (const file of htmlFiles) {
     }
   }
 }
-console.log(`Checked ${htmlFiles.length} HTML files, ${urls.length} sitemap URLs, ${schemas} JSON-LD blocks, ${videos} videos.`);
+console.log(`Checked ${htmlFiles.length} HTML files, ${urls.length} sitemap URLs, ${checkedHeadings} headings, ${schemas} JSON-LD blocks, ${videos} videos.`);
 if (errors.length) { console.error(errors.join('\n')); process.exitCode = 1; }
 else console.log('SEO output checks passed. This does not guarantee search indexing or rankings.');

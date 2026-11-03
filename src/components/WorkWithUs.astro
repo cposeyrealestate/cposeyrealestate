@@ -113,6 +113,7 @@
           <textarea name="message" rows="4" placeholder="Tell me how I can help..."></textarea>
         </div>
         <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
+        <p id="homeContactError" role="alert" hidden>We couldn't confirm your message was received. Please try again, or call/text <a href="tel:+18303605569">(830) 360-5569</a>. Your entries are still here.</p>
       </form>
 
       <div class="contact-success" id="contactSuccess" style="display:none;">
@@ -517,6 +518,7 @@
   (function() {
     var form = document.getElementById('contactForm');
     var successEl = document.getElementById('contactSuccess');
+    var errorEl = document.getElementById('homeContactError');
     if (!form) return;
 
     function showSuccess() {
@@ -528,6 +530,8 @@
       if (e) e.preventDefault();
       var data = new FormData(form);
       var btn = form.querySelector('button[type="submit"]');
+      if (btn && btn.disabled) return;
+      if (errorEl) errorEl.hidden = true;
       if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
 
       var interest = data.get('interest') || '';
@@ -545,25 +549,23 @@
         source: 'Lets Connect Form'
       };
 
-      console.log('[LetsConnect] Submitting lead', payload);
-
       fetch('/api/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       })
       .then(function(res) {
-        console.log('[LetsConnect] Response status:', res.status);
-        return res.json().catch(function() { return {}; });
+        if (!res.ok) throw new Error('Submission failed');
+        return res.json();
       })
       .then(function(data) {
-        console.log('[LetsConnect] Response body:', data);
+        if (data.success !== true) throw new Error('Submission not confirmed');
+        document.dispatchEvent(new CustomEvent('cpre:lead-submitted', { detail: { form: 'homepage-contact' } }));
         showSuccess();
       })
       .catch(function(err) {
-        console.error('[LetsConnect] Submit error:', err);
-        // Still show success so user isn't stuck — lead is logged server-side
-        showSuccess();
+        if (errorEl) errorEl.hidden = false;
+        if (btn) { btn.disabled = false; btn.textContent = 'Send Message'; }
       });
     }
 

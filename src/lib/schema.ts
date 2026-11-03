@@ -98,7 +98,6 @@ export function personSchema() {
         },
       })),
     ],
-    award: seo.person.designations.map((d: any) => `${d.full} (${d.short})`),
     memberOf: seo.person.memberOf.map((m: any) => ({
       '@type': 'Organization',
       name: m.name,
@@ -158,7 +157,6 @@ export function localBusinessSchema() {
     priceRange: '$$',
     sameAs: allSameAsUrls(),
     knowsAbout: seo.services,
-    award: seo.person.designations.map((d: any) => `${d.full} (${d.short})`),
     memberOf: seo.person.memberOf.map((m: any) => ({
       '@type': 'Organization',
       name: m.name,

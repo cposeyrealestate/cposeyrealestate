@@ -75,6 +75,21 @@ const schemaArray = schema
   ? Array.isArray(schema) ? schema : [schema]
   : [];
 const validSchemas = schemaArray.filter(Boolean);
+validSchemas.push({
+  '@context': 'https://schema.org',
+  '@type': type === 'profile' ? 'ProfilePage' : 'WebPage',
+  '@id': `${canonicalUrl}#webpage`,
+  url: canonicalUrl,
+  name: title,
+  description: cleanDescription,
+  inLanguage: seo.site.locale.replace('_', '-'),
+  isPartOf: { '@id': `${seo.site.url}#website` },
+  publisher: { '@id': `${seo.site.url}#business` },
+  primaryImageOfPage: { '@type': 'ImageObject', url: ogImage },
+  ...(type === 'profile' && { mainEntity: { '@id': `${seo.site.url}#person-cody-posey` } }),
+  ...(publishedTime && { datePublished: publishedTime }),
+  ...(modifiedTime && { dateModified: modifiedTime }),
+});
 ---
 
 <!-- ── Core tags ───────────────────────────────────────────── -->

@@ -163,6 +163,7 @@ const enabled = !excluded.test(Astro.url.pathname);
         if (!response.ok) throw new Error('Signup failed');
         const result = await response.json();
         if (result.success !== true) throw new Error('Signup not confirmed');
+        document.dispatchEvent(new CustomEvent('cpre:lead-submitted', { detail: { form: 'signup' } }));
         // Store only a suppression flag, never the visitor's contact details.
         write(doneKey, '1');
         form.reset();

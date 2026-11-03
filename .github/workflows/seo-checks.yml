@@ -1,0 +1,33 @@
+name: Website SEO checks
+
+on:
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'public/robots.txt'
+      - 'public/_redirects'
+      - 'astro.config.mjs'
+      - 'package*.json'
+      - 'scripts/**'
+      - '.github/workflows/seo-checks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    env:
+      ASTRO_TELEMETRY_DISABLED: '1'
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run test:seo
+      - run: npm run build
+      - run: npm run check:seo

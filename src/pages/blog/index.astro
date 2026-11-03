@@ -61,6 +61,7 @@ const blogSchema = {
     <!-- Blog Grid -->
     <section class="section" id="blog-list">
       <div class="container">
+        <h2>Latest real estate articles and local guides</h2>
         <div class="blog-grid" data-blog-grid>
           {posts.map((post, i) => (
             <article class="blog-card" data-page={Math.floor(i / POSTS_PER_PAGE) + 1}>

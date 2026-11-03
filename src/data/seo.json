@@ -50,10 +50,6 @@
       {
         "name": "San Antonio Board of REALTORS\u00ae (SABOR)",
         "url": "https://sabor.com/"
-      },
-      {
-        "name": "Texas Real Estate Commission (TREC)",
-        "url": "https://www.trec.texas.gov/"
       }
     ],
     "languages": [
@@ -137,6 +133,14 @@
     },
     {
       "name": "Guadalupe County",
+      "state": "TX"
+    },
+    {
+      "name": "Garden Ridge",
+      "state": "TX"
+    },
+    {
+      "name": "Boerne",
       "state": "TX"
     }
   ],
