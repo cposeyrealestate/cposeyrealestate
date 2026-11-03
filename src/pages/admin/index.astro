@@ -251,7 +251,7 @@ import SEO from '../../components/SEO.astro';
       </footer>
     </div>
 
-    <style>
+    <style is:global>
       :root {
         --bg: #0a0a0a;
         --panel: #141414;
@@ -547,6 +547,7 @@ import SEO from '../../components/SEO.astro';
 
       /* Responsive */
       .report-links { display: flex; flex-wrap: wrap; gap: 0.65rem 1.25rem; margin-bottom: 1.5rem; }
+      .card > .gsc-totals { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
       .report-links a, .card a { color: #ff8585; text-underline-offset: 3px; }
       .report-links a:focus-visible, .card a:focus-visible { outline: 2px solid white; outline-offset: 4px; }
       .report-note { color: var(--text-dim); font-size: 0.8rem; line-height: 1.7; }
