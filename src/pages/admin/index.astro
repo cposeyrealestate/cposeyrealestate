@@ -44,6 +44,18 @@ import SEO from '../../components/SEO.astro';
         </div>
       </header>
 
+      <nav class="report-links" aria-label="Analytics reports">
+        <a data-gsc-report="overview" href="https://search.google.com/search-console?resource_id=sc-domain%3Acposeyrealestate.com" target="_blank" rel="noopener noreferrer">Search Console ↗</a>
+        <a data-gsc-report="performance" href="https://search.google.com/search-console/performance/search-analytics?resource_id=sc-domain%3Acposeyrealestate.com" target="_blank" rel="noopener noreferrer">Google performance ↗</a>
+        <a data-gsc-report="indexing" href="https://search.google.com/search-console/index?resource_id=sc-domain%3Acposeyrealestate.com" target="_blank" rel="noopener noreferrer">Page indexing ↗</a>
+        <a data-gsc-report="ai" href="https://search.google.com/search-console/performance/search-analytics/ai?resource_id=sc-domain%3Acposeyrealestate.com" target="_blank" rel="noopener noreferrer">Google AI performance ↗</a>
+        <a data-gsc-report="sitemaps" href="https://search.google.com/search-console/sitemaps?resource_id=sc-domain%3Acposeyrealestate.com" target="_blank" rel="noopener noreferrer">Sitemaps ↗</a>
+        <a href="https://plausible.io/cposeyrealestate.com" target="_blank" rel="noopener noreferrer">Plausible ↗</a>
+        <a href="#ai-referrals">AI referrals</a>
+        <a href="#lead-conversions">Lead conversions</a>
+        <a href="#search-pages">Google pages</a>
+      </nav>
+
       <!-- Global error banner -->
       <div id="errorBanner" class="error-banner" hidden></div>
 
@@ -148,6 +160,49 @@ import SEO from '../../components/SEO.astro';
           </thead>
           <tbody><tr><td colspan="3" class="empty">Loading…</td></tr></tbody>
         </table>
+      </section>
+
+      <section class="card card--wide" id="ai-referrals">
+        <header class="card__header"><h2>AI Referrals</h2><span class="card__hint">Visits, not citations</span></header>
+        <div class="gsc-totals">
+          <div class="gsc-stat"><div class="gsc-stat__label">AI visitors</div><div class="gsc-stat__value" id="aiVisitors">—</div></div>
+          <div class="gsc-stat"><div class="gsc-stat__label">AI visits</div><div class="gsc-stat__value" id="aiVisits">—</div></div>
+        </div>
+        <p class="report-note" id="aiStatus" role="status">Loading AI referrals…</p>
+        <div class="grid-2">
+          <div><h3>AI sources</h3><div class="table-scroll"><table class="data-table"><thead><tr><th>Source</th><th class="num">Visitors</th><th class="num">Visits</th></tr></thead><tbody id="aiSourcesBody"><tr><td colspan="3">Loading…</td></tr></tbody></table></div></div>
+          <div><h3>AI landing pages</h3><div class="table-scroll"><table class="data-table"><thead><tr><th>Landing page</th><th class="num">Visits</th></tr></thead><tbody id="aiPagesBody"><tr><td colspan="2">Loading…</td></tr></tbody></table></div></div>
+        </div>
+      </section>
+
+      <section class="card card--wide" id="lead-conversions">
+        <header class="card__header"><h2>Lead Conversions</h2><a href="https://plausible.io/cposeyrealestate.com/settings/goals" target="_blank" rel="noopener noreferrer">Plausible goals ↗</a></header>
+        <div class="gsc-totals">
+          <div class="gsc-stat"><div class="gsc-stat__label">Form submissions</div><div class="gsc-stat__value" id="leadCount">—</div></div>
+          <div class="gsc-stat"><div class="gsc-stat__label">Visitor conversion rate</div><div class="gsc-stat__value" id="leadRate">—</div></div>
+          <div class="gsc-stat"><div class="gsc-stat__label">AI-referred submissions</div><div class="gsc-stat__value" id="aiLeadCount">—</div></div>
+        </div>
+        <p class="report-note" id="leadStatus" role="status">Loading conversion data…</p>
+        <div class="grid-2">
+          <div><h3>Lead sources</h3><div class="table-scroll"><table class="data-table"><thead><tr><th>Source</th><th class="num">Visitors</th><th class="num">Submissions</th></tr></thead><tbody id="leadSourcesBody"><tr><td colspan="3">Loading…</td></tr></tbody></table></div></div>
+          <div><h3>Lead landing pages</h3><div class="table-scroll"><table class="data-table"><thead><tr><th>Landing page</th><th class="num">Visitors</th><th class="num">Submissions</th></tr></thead><tbody id="leadPagesBody"><tr><td colspan="3">Loading…</td></tr></tbody></table></div></div>
+        </div>
+        <h3>Contact link activity</h3>
+        <p class="report-note">Link clicks show intent; they do not confirm a completed call, email, or appointment.</p>
+        <table class="data-table"><thead><tr><th>Action</th><th class="num">Clicks</th></tr></thead><tbody id="contactActionsBody"><tr><td colspan="2">Loading…</td></tr></tbody></table>
+      </section>
+
+      <section class="card card--wide" id="search-pages">
+        <header class="card__header"><h2>Google Search by Page</h2><a data-gsc-report="performance" href="https://search.google.com/search-console/performance/search-analytics?resource_id=sc-domain%3Acposeyrealestate.com" target="_blank" rel="noopener noreferrer">Full Google report ↗</a></header>
+        <p class="report-note" id="searchDates"></p><p id="searchChange" role="status">Loading page-level search data…</p>
+        <h3>Pages with the most search impressions</h3>
+        <p class="report-note">Top 25 from up to 1,000 returned pages per period. Google may omit data; these rows are not an indexing inventory.</p>
+        <div class="table-scroll"><table class="data-table"><thead><tr><th>Page / report</th><th class="num">Clicks</th><th class="num">Impressions</th><th class="num">CTR</th><th class="num">Position</th><th class="num">Click change</th></tr></thead><tbody id="searchPagesBody"><tr><td colspan="6">Loading…</td></tr></tbody></table></div>
+        <h3>Largest page click changes</h3>
+        <div class="table-scroll"><table class="data-table"><thead><tr><th>Page / report</th><th class="num">Previous clicks</th><th class="num">Current clicks</th><th class="num">Change</th></tr></thead><tbody id="searchChangesBody"><tr><td colspan="4">Loading…</td></tr></tbody></table></div>
+        <h3>Search query opportunities and changes</h3>
+        <p class="report-note">Top 20 queries by current impressions from up to 1,000 returned queries per period. Query rows omit some searches and do not add up to site totals.</p>
+        <div class="table-scroll"><table class="data-table"><thead><tr><th>Query / report</th><th class="num">Clicks</th><th class="num">Impressions</th><th class="num">CTR</th><th class="num">Position</th><th class="num">Click change</th></tr></thead><tbody id="searchQueryChangesBody"><tr><td colspan="6">Loading…</td></tr></tbody></table></div>
       </section>
 
       <!-- Search Console -->
@@ -491,6 +546,15 @@ import SEO from '../../components/SEO.astro';
       .btn:disabled { opacity: 0.5; cursor: wait; }
 
       /* Responsive */
+      .report-links { display: flex; flex-wrap: wrap; gap: 0.65rem 1.25rem; margin-bottom: 1.5rem; }
+      .report-links a, .card a { color: #ff8585; text-underline-offset: 3px; }
+      .report-links a:focus-visible, .card a:focus-visible { outline: 2px solid white; outline-offset: 4px; }
+      .report-note { color: var(--text-dim); font-size: 0.8rem; line-height: 1.7; }
+      .table-scroll { overflow-x: auto; }
+      .report-page { min-width: 200px; max-width: 480px; overflow-wrap: anywhere; }
+      .report-page a + br + a { font-size: 0.72rem; }
+      .card h3 { font-size: 0.95rem; margin-top: 1.5rem; }
+      #ai-referrals, #lead-conversions, #search-pages { scroll-margin-top: 1rem; margin-bottom: 1.25rem; }
       @media (max-width: 1000px) {
         .scorecards { grid-template-columns: repeat(2, 1fr); }
         .grid-2, .grid-3 { grid-template-columns: 1fr; }
@@ -804,7 +868,7 @@ import SEO from '../../components/SEO.astro';
 
       async function loadCountries() {
         const data = await queryPlausible({
-          metrics: ['visitors'],
+          metrics: ['visitors', 'percentage'],
           date_range: STATE.range,
           dimensions: ['visit:country'],
           pagination: { limit: 10 },
@@ -815,11 +879,10 @@ import SEO from '../../components/SEO.astro';
           tbody.innerHTML = '<tr><td colspan="3" class="empty">No data</td></tr>';
           return;
         }
-        const total = rows.reduce((s, r) => s + r.metrics[0], 0) || 1;
         tbody.innerHTML = rows
           .map((r) => {
             const v = r.metrics[0];
-            const pct = ((v / total) * 100).toFixed(1) + '%';
+            const pct = Number(r.metrics[1] || 0).toFixed(1) + '%';
             return (
               '<tr><td>' +
               countryName(r.dimensions[0]) +
@@ -851,7 +914,8 @@ import SEO from '../../components/SEO.astro';
         document.getElementById('gscClicks').textContent = fmt.int(t.clicks);
         document.getElementById('gscImpressions').textContent = fmt.int(t.impressions);
         document.getElementById('gscCtr').textContent = (t.ctr * 100).toFixed(2) + '%';
-        document.getElementById('gscPosition').textContent = Number(t.position || 0).toFixed(1);
+        document.getElementById('gscPosition').textContent = totals.rows?.length ? Number(t.position).toFixed(1) : '—';
+        document.getElementById('gscHint').textContent = start + '–' + end + ' · Latest 3 days excluded';
 
         // Top queries
         const q = await queryGSC({
@@ -872,7 +936,7 @@ import SEO from '../../components/SEO.astro';
               '<tr><td class="truncate" title="' +
               escapeHtml(r.keys[0]) +
               '">' +
-              escapeHtml(r.keys[0]) +
+              '<a target="_blank" rel="noopener noreferrer" data-gsc-query="' + escapeHtml(r.keys[0]) + '" href="https://search.google.com/search-console/performance/search-analytics?resource_id=' + encodeURIComponent(q._site || 'https://cposeyrealestate.com/') + '&amp;query=' + encodeURIComponent('!' + r.keys[0]) + '">' + escapeHtml(r.keys[0]) + ' ↗</a>' +
               '</td><td class="num">' +
               fmt.int(r.clicks) +
               '</td><td class="num">' +
@@ -922,7 +986,9 @@ import SEO from '../../components/SEO.astro';
       async function refresh() {
         const btn = document.getElementById('refreshBtn');
         btn.disabled = true;
+        document.getElementById('dateRange').disabled = true;
         clearError();
+        document.dispatchEvent(new CustomEvent('admin:refresh', { detail: { range: STATE.range } }));
 
         try {
           await Promise.all([
@@ -947,6 +1013,7 @@ import SEO from '../../components/SEO.astro';
             new Date().toLocaleTimeString();
         } finally {
           btn.disabled = false;
+          document.getElementById('dateRange').disabled = false;
         }
       }
 
@@ -968,6 +1035,9 @@ import SEO from '../../components/SEO.astro';
       } else {
         window.addEventListener('load', init);
       }
+    </script>
+    <script>
+      import '../../scripts/admin-reports.js';
     </script>
   </body>
 </html>
