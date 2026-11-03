@@ -31,6 +31,9 @@ test('AI patterns accept known referrers without counting lookalike hosts', () =
   assert.equal(regex.test('chatgpt.com/search'), true);
   assert.equal(regex.test('chatgpt.com.evil.example/search'), false);
   assert.equal(regex.test('example.com/chatgpt.com'), false);
+  const referrers = clauses.filter(x => x[0] === 'matches' && x[1] === 'visit:referrer').flatMap(x => x[2]).map(x => new RegExp(x));
+  assert.equal(referrers.some(regex => regex.test('l.meta.ai/')), true);
+  assert.equal(referrers.some(regex => regex.test('l.meta.ai.evil.example/')), false);
 });
 
 const script = readFileSync('src/scripts/admin-reports.js','utf8').replace(/^import .*;\n/, '');
@@ -41,6 +44,7 @@ async function runReport({ goal = false, aiFailure = false, searchFailure = fals
     const body = options.body ? JSON.parse(options.body) : null; calls.push({ url, body });
     if (url.endsWith('/goals')) return { ok:true,json:async()=>({goals:goal?[{event_name:'Lead Submitted',display_name:'Lead Submitted'}]:[]}) };
     if (url.endsWith('/gsc')) return {ok:!searchFailure,status:searchFailure?502:200,json:async()=>searchFailure?{error:'Unavailable'}:{rows:[],_site:'sc-domain:cposeyrealestate.com'}};
+    if (body.dimensions?.includes('visit:entry_page') && body.metrics?.includes('events')) return {ok:false,status:400,json:async()=>({error:'Event metrics cannot be queried with entry-page session dimensions'})};
     if (aiFailure && body.filters?.[0]?.[0] === 'or') return {ok:false,status:502,json:async()=>({error:'Unavailable'})};
     return {ok:true,status:200,json:async()=>({results:body.dimensions?.length?[]:[{metrics:body.metrics.map(()=>0)}]})};
   };

@@ -65,16 +65,16 @@ async function loadConversions(range, signal, active) {
   const base = { date_range: range, filters };
   const [summary, sources, pages, ai] = await Promise.all([
     request('plausible', { ...base, metrics: ['events', 'conversion_rate'] }, signal),
-    request('plausible', { ...base, metrics: ['visitors', 'events'], dimensions: ['visit:source'], pagination: { limit: 10 } }, signal),
-    request('plausible', { ...base, metrics: ['visitors', 'events'], dimensions: ['visit:entry_page'], pagination: { limit: 10 } }, signal),
+    request('plausible', { ...base, metrics: ['visitors', 'group_conversion_rate'], dimensions: ['visit:source'], pagination: { limit: 10 } }, signal),
+    request('plausible', { ...base, metrics: ['visitors', 'group_conversion_rate'], dimensions: ['visit:entry_page'], pagination: { limit: 10 } }, signal),
     request('plausible', { ...base, filters: [...filters, aiFilter()], metrics: ['events'] }, signal),
   ]);
   if (!active()) return;
   const total = summary.results?.[0]?.metrics || [0, 0];
   $('leadCount').textContent = number(total[0]); $('leadRate').textContent = pct(total[1]); $('aiLeadCount').textContent = number(ai.results?.[0]?.metrics?.[0]);
-  $('leadStatus').textContent = 'Confirmed form-submission events, not unique people or closed transactions. Conversion rate measures visitors who submitted. Tracking began November 3, 2026.';
-  $('leadSourcesBody').innerHTML = (sources.results || []).map(r => '<tr><td>' + escape(r.dimensions[0] || 'Direct / None') + '</td><td class="num">' + number(r.metrics[0]) + '</td><td class="num">' + number(r.metrics[1]) + '</td></tr>').join('');
-  $('leadPagesBody').innerHTML = (pages.results || []).map(r => '<tr>' + pageCell(r.dimensions[0]) + '<td class="num">' + number(r.metrics[0]) + '</td><td class="num">' + number(r.metrics[1]) + '</td></tr>').join('');
+  $('leadStatus').textContent = 'The total counts confirmed form-submission events. Source and landing-page rows count visitors who submitted and their conversion rate. These are not closed transactions. Tracking began November 3, 2026.';
+  $('leadSourcesBody').innerHTML = (sources.results || []).map(r => '<tr><td>' + escape(r.dimensions[0] || 'Direct / None') + '</td><td class="num">' + number(r.metrics[0]) + '</td><td class="num">' + pct(r.metrics[1]) + '</td></tr>').join('');
+  $('leadPagesBody').innerHTML = (pages.results || []).map(r => '<tr>' + pageCell(r.dimensions[0]) + '<td class="num">' + number(r.metrics[0]) + '</td><td class="num">' + pct(r.metrics[1]) + '</td></tr>').join('');
   if (!sources.results?.length) empty('leadSourcesBody', 3, 'No recorded lead sources in this period.');
   if (!pages.results?.length) empty('leadPagesBody', 3, 'No recorded lead landing pages in this period.');
 }

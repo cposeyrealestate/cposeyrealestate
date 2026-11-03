@@ -34,6 +34,8 @@ export function aiFilter() {
   return ['or', [
     ['matches', 'visit:source', [AI_SOURCE]],
     ['matches', 'visit:referrer', [AI_REFERRER]],
+    ['is', 'visit:source', ['Meta AI', 'meta.ai', 'l.meta.ai']],
+    ['matches', 'visit:referrer', ['^([a-z]+\\.)?meta\\.ai(/|$)']],
     ['is', 'visit:utm_source', ['chatgpt.com', 'chatgpt', 'perplexity', 'perplexity.ai', 'copilot', 'gemini', 'claude', 'grok', 'deepseek'], { case_sensitive: false }],
   ]];
 }
