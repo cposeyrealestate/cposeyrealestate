@@ -11,7 +11,7 @@ let context = {};
 async function request(service, body, signal) {
   const response = await fetch('/admin/api/' + service, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal });
   const value = await response.json();
-  if (!response.ok || value?.error) throw new Error(service + ' report unavailable (' + response.status + ')');
+  if (!response.ok || value?.error) throw new Error(service + ' report unavailable (' + response.status + '): ' + JSON.stringify(value?.error || value?.message || value));
   return value;
 }
 function link(label, href) { return '<a target="_blank" rel="noopener noreferrer" href="' + escape(href) + '">' + escape(label) + ' ↗</a>'; }
@@ -117,7 +117,7 @@ document.addEventListener('admin:refresh', async event => {
   for (const [id, cols] of [['aiSourcesBody',3],['aiPagesBody',2],['leadSourcesBody',3],['leadPagesBody',3],['contactActionsBody',2],['searchPagesBody',6],['searchChangesBody',4],['searchQueryChangesBody',6]]) empty(id, cols, 'Loading…');
   await Promise.allSettled([
     loadAI(range, signal, active).catch(error => { if (active() && error.name !== 'AbortError') { $('aiStatus').textContent = 'AI referral report unavailable. Your other analytics still work.'; for (const id of ['aiSourcesBody','aiPagesBody']) empty(id, 3, 'Report unavailable.'); } }),
-    loadConversions(range, signal, active).catch(error => { if (active() && error.name !== 'AbortError') { $('leadStatus').textContent = 'Conversion report unavailable. Confirm your Plausible goals and API access; no lead count is inferred.'; for (const id of ['leadSourcesBody','leadPagesBody','contactActionsBody']) empty(id, 3, 'Report unavailable.'); } }),
+    loadConversions(range, signal, active).catch(error => { if (active() && error.name !== 'AbortError') { console.warn('[analytics] Conversion report failed', error.message); $('leadStatus').textContent = 'Conversion report unavailable. Confirm your Plausible goals and API access; no lead count is inferred.'; for (const id of ['leadSourcesBody','leadPagesBody','contactActionsBody']) empty(id, 3, 'Report unavailable.'); } }),
     loadSearch(range, signal, active).catch(error => { if (active() && error.name !== 'AbortError') { $('searchChange').textContent = 'Page-level search report unavailable. Use the Search Console links above.'; for (const id of ['searchPagesBody','searchQueryChangesBody']) empty(id,6,'Report unavailable.'); empty('searchChangesBody',4,'Report unavailable.'); } }),
   ]);
   if (active()) shortcuts();
