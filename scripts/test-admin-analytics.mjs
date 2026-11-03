@@ -10,7 +10,7 @@ test('Search Console links preserve exact page/query filters and resolved domain
   assert.equal(url.searchParams.get('resource_id'), 'sc-domain:cposeyrealestate.com');
   assert.equal(url.searchParams.get('page'), '!https://cposeyrealestate.com/blog/a/?x=1&y=2');
   assert.equal(url.searchParams.get('query'), '!homes & land');
-  assert.equal(url.searchParams.get('start_date'), '2026-10-04');
+  assert.equal(url.searchParams.get('start_date'), '20261004');
   assert.equal(new URL(helpers.gscLink({ report: 'indexing' })).pathname, '/search-console/index');
 });
 test('settled periods exclude three days and compare equal nonoverlapping windows across year boundaries', () => {

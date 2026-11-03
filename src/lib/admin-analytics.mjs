@@ -5,12 +5,12 @@ export function configuredGoal(goals, name) {
   return goals.find(goal => goal.event_name === name && Object.keys(goal.custom_props || {}).length === 0)?.display_name || null;
 }
 
-export function gscLink({ property = SITE, report = 'performance', start, end, page, query } = {}) {
-  const paths = { performance: 'performance/search-analytics', overview: '', indexing: 'index', sitemaps: 'sitemaps' };
+export function gscLink({ property = 'sc-domain:cposeyrealestate.com', report = 'performance', start, end, page, query } = {}) {
+  const paths = { performance: 'performance/search-analytics', ai: 'performance/search-analytics/ai', overview: '', indexing: 'index', sitemaps: 'sitemaps' };
   const url = new URL('https://search.google.com/search-console/' + (paths[report] ?? paths.performance));
   url.searchParams.set('resource_id', property);
-  if (report === 'performance') {
-    if (start && end) { url.searchParams.set('start_date', start); url.searchParams.set('end_date', end); }
+  if (report === 'performance' || report === 'ai') {
+    if (start && end) { url.searchParams.set('start_date', start.replaceAll('-', '')); url.searchParams.set('end_date', end.replaceAll('-', '')); }
     if (page) url.searchParams.set('page', '!' + new URL(page, SITE).href);
     if (query) url.searchParams.set('query', '!' + query);
   }

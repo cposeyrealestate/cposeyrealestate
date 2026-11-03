@@ -5,7 +5,7 @@ const number = value => Number(value || 0).toLocaleString('en-US');
 const pct = value => Number(value || 0).toFixed(2) + '%';
 const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 let generation = 0;
-let property = SITE;
+let property = 'sc-domain:cposeyrealestate.com';
 let context = {};
 
 async function request(service, body, signal) {
