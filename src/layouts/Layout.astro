@@ -3,6 +3,7 @@ import SEO from '../components/SEO.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 import SignupPopup from '../components/SignupPopup.astro';
 import seo from '../data/seo.json';
+import { homepageSchema } from '../lib/schema';
 
 export interface Props {
   title?: string;
@@ -31,6 +32,12 @@ const {
   author,
   tags,
 } = Astro.props;
+
+// Define the same author, business, brokerage, and website on each page.
+// Preserve page-specific definitions when a page supplies a node with the same ID.
+const schemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const definedIds = new Set(schemas.map((node: any) => node?.['@id']).filter(Boolean));
+const pageSchemas = [...homepageSchema().filter(node => !definedIds.has(node['@id'])), ...schemas];
 ---
 
 <!DOCTYPE html>
@@ -49,7 +56,7 @@ const {
       image={image}
       type={type}
       noindex={noindex}
-      schema={schema}
+      schema={pageSchemas}
       publishedTime={publishedTime}
       modifiedTime={modifiedTime}
       author={author}
@@ -67,6 +74,26 @@ const {
     <slot />
     <CookieBanner />
     <SignupPopup />
+    <script>
+      const track = (name: string, props: Record<string, string> = {}) => {
+        const analytics = (window as Window & { plausible?: (event: string, options: object) => void }).plausible;
+        if (typeof analytics === 'function') analytics(name, { props });
+      };
+      document.addEventListener('cpre:lead-submitted', (event: Event) => {
+        const form = (event as CustomEvent).detail?.form;
+        if (['homepage-contact', 'contact', 'valuation-modal', 'home-valuation', 'guide-download', 'lead-gate', 'signup'].includes(form)) {
+          track('Lead Submitted', { form });
+        }
+      });
+      document.addEventListener('click', event => {
+        const link = event.target instanceof Element ? event.target.closest('a') : null;
+        if (!link) return;
+        const href = link.getAttribute('href') || '';
+        if (href.startsWith('tel:')) track('Phone Link Click');
+        else if (href.startsWith('mailto:')) track('Email Link Click');
+        else if (/^(?:\/contact\/?|\/)#book$|^#book$/.test(href)) track('Consultation Link Click');
+      });
+    </script>
   </body>
 </html>
 

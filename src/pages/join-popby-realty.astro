@@ -127,7 +127,7 @@ const pageSchema = [
 
             <!-- FULL MODE HERO -->
             <div class="pb-hero" id="pbHero">
-              <h1>Know your numbers.</h1>
+              <h3>Know your numbers.</h3>
               <p>Your brokerage should make sense for your business. Enter what you're
                 producing today and we'll do the math on what you're actually paying
                 to sell real estate — no login, no pressure.</p>
@@ -263,12 +263,12 @@ const pageSchema = [
 
               <div class="pb-compare">
                 <div class="pb-compare-col">
-                  <h4>Your brokerage, today</h4>
+                  <h3>Your brokerage, today</h3>
                   <div class="pb-total pb-tabular" id="pbCurrentTotal">$0</div>
                   <ul id="pbCurrentBreakdown"></ul>
                 </div>
                 <div class="pb-compare-col">
-                  <h4>With Popby</h4>
+                  <h3>With Popby</h3>
                   <div class="pb-total pb-tabular" id="pbPopbyTotal">$0</div>
                   <ul id="pbPopbyBreakdown"></ul>
                 </div>
@@ -276,7 +276,7 @@ const pageSchema = [
 
               <!-- CAP COUNTDOWN -->
               <div class="pb-cap-countdown" id="pbCapCountdown" hidden>
-                <h4 id="pbCapHeadline">Your cap</h4>
+                <h3 id="pbCapHeadline">Your cap</h3>
                 <div class="pb-cap-track">
                   <div class="pb-cap-fill" id="pbCapFill"></div>
                   <div class="pb-cap-marker" id="pbCapMarker"></div>
@@ -286,7 +286,7 @@ const pageSchema = [
 
               <!-- MULTI-YEAR PROJECTION -->
               <div class="pb-projection" id="pbProjection" hidden>
-                <h4 id="pbProjectionTitle">If nothing else changes</h4>
+                <h3 id="pbProjectionTitle">If nothing else changes</h3>
                 <p class="pb-proj-sub">Same production, no growth assumed — just what today's numbers add up to over time.</p>
                 <div class="pb-proj-row">
                   <span class="pb-proj-label">Year 1</span>
@@ -346,7 +346,7 @@ const pageSchema = [
                 </div>
                 <div class="pb-lead-success" id="pbLeadSuccess" hidden>
                   <div class="pb-check">✓</div>
-                  <h4>Sent.</h4>
+                  <h3>Sent.</h3>
                   <p id="pbLeadSuccessCopy">We'll follow up with your personalized breakdown shortly.</p>
                 </div>
               </div>
@@ -687,7 +687,7 @@ const pageSchema = [
      HERO (mode=full only)
   --------------------------------------------------------------------- */
   .pb-hero { margin-bottom: clamp(28px, 6vw, 44px); max-width: 62ch; }
-  .pb-hero h1 {
+  .pb-hero h3 {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: clamp(28px, 5.4vw, 44px);
@@ -968,7 +968,7 @@ const pageSchema = [
     border-radius: var(--pb-radius-sm);
     padding: 16px;
   }
-  .pb-cap-countdown h4 {
+  .pb-cap-countdown h3 {
     margin: 0 0 10px;
     font-size: 13px;
     font-weight: 700;
@@ -1119,7 +1119,7 @@ const pageSchema = [
     border-radius: var(--pb-radius-sm);
     padding: 18px;
   }
-  .pb-projection h4 {
+  .pb-projection h3 {
     margin: 0 0 4px;
     font-size: 13px;
     font-weight: 600;
@@ -1423,7 +1423,7 @@ const pageSchema = [
     border-radius: var(--pb-radius-sm);
     padding: 16px;
   }
-  .pb-compare-col h4 {
+  .pb-compare-col h3 {
     margin: 0 0 10px;
     font-size: 12.5px;
     color: var(--pb-slate);
@@ -1493,7 +1493,7 @@ const pageSchema = [
     font-size: 16px;
     margin-bottom: 10px;
   }
-  .pb-lead-success h4 { margin: 0 0 4px; font-size: 16px; }
+  .pb-lead-success h3 { margin: 0 0 4px; font-size: 16px; }
   .pb-lead-success p { margin: 0; font-size: 13.5px; color: var(--pb-ink-soft); }
 
   /* ---------------------------------------------------------------------

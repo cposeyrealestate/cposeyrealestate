@@ -535,6 +535,7 @@ const pageSchema = [
       })
       .then(function(result) {
         if (result.ok && result.data && result.data.success) {
+          document.dispatchEvent(new CustomEvent('cpre:lead-submitted', { detail: { form: 'home-valuation' } }));
           form.style.display = 'none';
           success.style.display = 'flex';
         } else {

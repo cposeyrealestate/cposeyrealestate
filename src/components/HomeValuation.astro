@@ -92,6 +92,7 @@
       <button type="submit" class="btn btn-primary" style="width:100%;">
         Request My Free Valuation
       </button>
+      <p id="valuationModalError" role="alert" hidden>We couldn't confirm your valuation request. Please try again, or call/text <a href="tel:+18303605569">(830) 360-5569</a>. Your entries are still here.</p>
       <p class="form-disclaimer">
         By submitting you agree to be contacted by Cody Posey Real Estate. We respect your privacy.
       </p>
@@ -324,6 +325,9 @@
     const form = e.target;
     const data = new FormData(form);
     const btn = form.querySelector('button[type="submit"]');
+    if (btn.disabled) return;
+    const errorBox = document.getElementById('valuationModalError');
+    if (errorBox) errorBox.hidden = true;
     btn.disabled = true;
     btn.textContent = 'Submitting...';
 
@@ -339,7 +343,13 @@
         source: 'Home Valuation Modal'
       })
     })
-    .then(function() {
+    .then(function(res) {
+      if (!res.ok) throw new Error('Submission failed');
+      return res.json();
+    })
+    .then(function(result) {
+      if (result.success !== true) throw new Error('Submission not confirmed');
+      document.dispatchEvent(new CustomEvent('cpre:lead-submitted', { detail: { form: 'valuation-modal' } }));
       if (modal) modal.style.display = 'none';
       document.body.style.overflow = '';
       form.reset();
@@ -348,12 +358,9 @@
       alert('Thank you! Cody will be in touch shortly with your home valuation.');
     })
     .catch(function() {
-      if (modal) modal.style.display = 'none';
-      document.body.style.overflow = '';
-      form.reset();
       btn.disabled = false;
       btn.textContent = 'Request My Free Valuation';
-      alert('Thank you! Cody will be in touch shortly with your home valuation.');
+      if (errorBox) errorBox.hidden = false;
     });
   });
 </script>

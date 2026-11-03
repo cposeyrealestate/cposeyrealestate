@@ -37,6 +37,7 @@ export default defineConfig({
         !page.includes('/idx-header') &&
         !page.includes('/idx-footer') &&
         !page.includes('/api/') &&
+        !page.endsWith('/llms.txt') &&
         !page.endsWith('/search/') &&
         !page.endsWith('/admin/') &&
         !redirectSources.has(new URL(page).pathname.replace(/\/$/, '') || '/'),

@@ -339,7 +339,9 @@ const isDownload = mode === 'download';
         if (!res.ok) throw new Error('Server error');
         return res.json();
       })
-      .then(function() {
+      .then(function(result) {
+        if (result.success !== true) throw new Error('Submission not confirmed');
+        document.dispatchEvent(new CustomEvent('cpre:lead-submitted', { detail: { form: isDownload ? 'guide-download' : 'lead-gate' } }));
         if (!isDownload) {
           localStorage.setItem('cpr_lead', JSON.stringify({
             name: data.name,

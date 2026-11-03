@@ -372,6 +372,11 @@ const prefillMessage = listing
         // fetch() only rejects on network failure — must check res.ok
         // explicitly or a 4xx/5xx looks like a success.
         if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(function(result) {
+        if (result.success !== true) throw new Error('Submission not confirmed');
+        document.dispatchEvent(new CustomEvent('cpre:lead-submitted', { detail: { form: 'contact' } }));
         form.style.display = 'none';
         success.style.display = 'flex';
       })
