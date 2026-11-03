@@ -24,3 +24,5 @@ Ready PR https://github.com/cposeyrealestate/cposeyrealestate/pull/12 . Branch c
 Measurement: GoogleURL/cluster impressions/clicks, qualified inquiries, and observed AI citations/referrals separately; no added monitoring or analytics access.
 
 Validation complete November 2: Astro build passed; 151 unique records, all150previous objects identical; canonical/meta/schema, plannedCSTdate, image and internal links passed; oneH1/oneHTMLtable; desktop/mobile visual inspection passed with document width375px=scrollWidth375px, table327px. Both built listing previews place article first. Production checks remain publisher's responsibility after release.
+
+November3 catch-up release authorized explicitly by user: publish it. Scheduled6AM was missed. Prepared timestamp updated to 2026-11-03T10:31:18-06:00; verify actual deployment time separately and do not claim6AM success.
