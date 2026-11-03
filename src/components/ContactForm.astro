@@ -377,7 +377,10 @@ const prefillMessage = listing
       .then(function(result) {
         if (result.success !== true) throw new Error('Submission not confirmed');
         document.dispatchEvent(new CustomEvent('cpre:lead-submitted', { detail: { form: 'contact' } }));
-        form.style.display = 'none';
+        // The confirmation is inside this form; keep its parent visible.
+        form.querySelectorAll('.contact-form__field, .contact-form__row, .contact-form__submit').forEach(function(element) {
+          element.style.display = 'none';
+        });
         success.style.display = 'flex';
       })
       .catch(function(err) {

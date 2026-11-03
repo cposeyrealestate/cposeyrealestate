@@ -11,7 +11,7 @@ The generated site already had distinct titles, descriptions, canonicals, articl
 - Attribute guest articles consistently in HTML author metadata and featured article cards.
 - Generate llms.txt from the shared business record and current article data. Remove stale review/library-count superlatives and conflicting Sunday hours from the old file. AI prompt review counts also use the shared record. This optional resource is excluded from the HTML sitemap and does not guarantee AI visibility.
 - Disallow administrative routes in robots.txt; existing API and wrapper exclusions remain.
-- Fix homepage contact and valuation-modal handlers that previously showed success after rejected or failed requests. Confirm success before acknowledging receipt; preserve entries and allow retry on errors. Remove browser logging of the homepage visitor payload.
+- Fix homepage contact and valuation-modal handlers that previously showed success after rejected or failed requests. Confirm success before acknowledging receipt; preserve entries and allow retry on errors. Keep the shared contact form's nested confirmation visible instead of hiding its parent. Remove browser logging of the homepage visitor payload.
 - Add Plausible events for confirmed primary contact/valuation/signup/guide submissions, phone links, email links, and consultation-link intent. Custom properties contain only a fixed form identifier, never visitor contact details. These events do not claim a phone call or appointment was completed.
 - Add rendered-output checks for one H1 per sitemap page, heading order, empty headings, image alt attributes, and article navigation targets. Add a pull-request workflow to run tests, production build, and output checks.
 
@@ -19,7 +19,7 @@ The generated site already had distinct titles, descriptions, canonicals, articl
 
 Baseline: 230 generated HTML documents; 229 sitemap URLs. A separate outline scan found 176 issues across 160 documents (navigation headings excluded from that baseline).
 
-After changes: production build passes; 229 sitemap URLs pass the output audit, including 4,914 headings, canonical and description presence, unique page titles, image alt attributes, valid JSON-LD, and complete emitted video metadata. The separate outline scan reports zero issues. Four article-outline tests and ten simulated form-response tests pass, including HTTP rejection, unconfirmed success, malformed JSON, network failure, retries, and confirmed receipt. Tests use a fake transport and do not create CRM leads.
+After changes: production build passes; 229 sitemap URLs pass the output audit, including 4,914 headings, canonical and description presence, unique page titles, image alt attributes, valid JSON-LD, and complete emitted video metadata. The separate outline scan reports zero issues. Four article-outline tests and twelve simulated form-response tests pass, including HTTP rejection, unconfirmed success, malformed JSON, network failure, retries, confirmed receipt, and visible contact confirmation. Tests use a fake transport and do not create CRM leads.
 
 ## Limits and follow-up
 

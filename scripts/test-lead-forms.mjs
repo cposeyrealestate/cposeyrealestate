@@ -32,6 +32,49 @@ function harness(component, response) {
   return { form, button, success, error, modal, events, alerts, submit: () => handlers.get('submit')({ preventDefault() {}, target: form }) };
 }
 const flush = () => new Promise(resolve => setImmediate(resolve));
+
+function contactHarness(response) {
+  let submit;
+  const field = value => ({ value, style: {}, classList: { add() {}, remove() {} } });
+  const fields = { '#cf-name': field('Test Visitor'), '#cf-email': field('test@example.invalid'), '#cf-message': field('Local test'), '#cf-phone': field('') };
+  const button = { disabled: false, textContent: 'Send Message', style: {} };
+  const success = { style: { display: 'none' } };
+  const error = { style: { display: 'none' } };
+  const form = {
+    style: {}, addEventListener: (_type, handler) => { submit = handler; },
+    querySelector: selector => fields[selector] || button,
+    querySelectorAll: selector => selector === '.error' ? [] : [...Object.values(fields), button],
+  };
+  const events = [];
+  const script = readFileSync('src/components/ContactForm.astro', 'utf8').match(/<script is:inline>([\s\S]*?)<\/script>/)[1];
+  runInNewContext(script, {
+    document: { getElementById: id => ({ contactForm: form, contactSuccess: success, contactError: error })[id], dispatchEvent: event => events.push(event) },
+    window: { location: { search: '' } }, URLSearchParams,
+    fetch: async () => response,
+    CustomEvent: class { constructor(type, options) { this.type = type; this.detail = options.detail; } },
+    console: { error() {} },
+  });
+  return { form, success, error, button, events, submit: () => submit({ preventDefault() {} }) };
+}
+
+test('shared contact form keeps its nested confirmation visible on accepted receipt', async () => {
+  const h = contactHarness({ ok: true, json: async () => ({ success: true }) });
+  h.submit(); await flush();
+  assert.notEqual(h.form.style.display, 'none');
+  assert.equal(h.success.style.display, 'flex');
+  assert.equal(h.events.length, 1);
+});
+
+test('shared contact form rejects an unconfirmed response and permits retry', async () => {
+  const h = contactHarness({ ok: true, json: async () => ({ success: false }) });
+  h.submit(); await flush();
+  assert.notEqual(h.form.style.display, 'none');
+  assert.equal(h.success.style.display, 'none');
+  assert.equal(h.error.style.display, 'flex');
+  assert.equal(h.button.disabled, false);
+  assert.equal(h.events.length, 0);
+});
+
 for (const component of ['WorkWithUs', 'HomeValuation']) {
   for (const [label, response] of [
     ['HTTP rejection', { ok: false, json: async () => ({ error: 'Rejected' }) }],
