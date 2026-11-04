@@ -7,9 +7,9 @@ import ParallaxBanner from '../components/ParallaxBanner.astro';
 import { articleSchema, breadcrumbSchema } from '../lib/schema';
 
 const pageTitle = "New Braunfels Home Value | Free Market Analysis | Cody Posey";
-const pageDescription = 'Request a free, personalized home valuation in New Braunfels, San Antonio, and the Texas Hill Country — a real comparative market analysis from a local agent.';
+const pageDescription = 'What is your New Braunfels home worth? Request Cody Posey’s free local market analysis with comparable sales, competing listings, and a suggested price range.';
 const pageSchema = [
-  articleSchema({ title: pageTitle, description: pageDescription, url: '/home-value/' }),
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/home-value/', dateModified: '2026-11-03' }),
   breadcrumbSchema([
     { name: 'Home', url: '/' },
     { name: 'Home Value', url: '/home-value/' },
@@ -21,6 +21,7 @@ const pageSchema = [
   title={pageTitle}
   description={pageDescription}
   schema={pageSchema}
+  modifiedTime="2026-11-03"
 >
   <Navbar />
   <main style="padding-top: 80px;">
@@ -34,32 +35,32 @@ const pageSchema = [
       </div>
     </section>
 
-    <ShortAnswer answer="Your New Braunfels home's value comes from recent comparable sales nearby, adjusted for condition, upgrades, and lot — not automated estimates, which miss renovations and micro-neighborhood trends. For an accurate number, get a comparative market analysis built on live MLS data. Cody provides free, no-pressure CMAs for Hill Country homeowners." />
+    <ShortAnswer answer="A comparative market analysis estimates a likely price range using recent comparable sales, competing listings, and your home’s condition, upgrades, and lot. Cody prepares a free, personalized analysis for New Braunfels and Hill Country homeowners. It is a pricing guide, not an appraisal or guaranteed sale price." />
 
     <!-- Valuation Form -->
-    <section class="valuation-form-section">
+    <section class="valuation-form-section" id="request">
       <div class="valuation-form__container">
         <div class="valuation-form__card">
           <h2>Request Your Free Home Value Estimate</h2>
-          <p class="valuation-form__subtitle">Fill out the form below and I'll send you a comprehensive market report for your property as soon as possible — typically within 24 hours.</p>
+          <p class="valuation-form__subtitle">Tell me where the home is and how to reach you. I typically prepare the analysis within 24–48 hours once the property details are confirmed. A unique property or walkthrough may require an agreed follow-up time.</p>
 
           <form class="valuation-form" id="valuationForm" novalidate>
             <div class="valuation-form__field">
               <label for="vf-name">Full Name <span class="req">*</span></label>
-              <input type="text" id="vf-name" name="name" required placeholder="Your full name" />
+              <input type="text" id="vf-name" name="name" autocomplete="name" required placeholder="Your full name" />
             </div>
             <div class="valuation-form__field">
               <label for="vf-address">Property Address <span class="req">*</span></label>
-              <input type="text" id="vf-address" name="address" required placeholder="123 Main St, New Braunfels, TX 78130" />
+              <input type="text" id="vf-address" name="address" autocomplete="street-address" required placeholder="123 Main St, New Braunfels, TX 78130" />
             </div>
             <div class="valuation-form__row">
               <div class="valuation-form__field">
                 <label for="vf-email">Email <span class="req">*</span></label>
-                <input type="email" id="vf-email" name="email" required placeholder="you@example.com" />
+                <input type="email" id="vf-email" name="email" autocomplete="email" required placeholder="you@example.com" />
               </div>
               <div class="valuation-form__field">
-                <label for="vf-phone">Phone <span class="req">*</span></label>
-                <input type="tel" id="vf-phone" name="phone" required placeholder="(555) 555-5555" />
+                <label for="vf-phone">Phone (optional)</label>
+                <input type="tel" id="vf-phone" name="phone" autocomplete="tel" placeholder="(555) 555-5555" />
               </div>
             </div>
             <button type="submit" class="valuation-form__submit">Get My Home Value</button>
@@ -78,17 +79,29 @@ const pageSchema = [
             <p class="valuation-form__error-text">We couldn't submit your request. Please try again, or call <a href="tel:+18303605569">(830) 360-5569</a> directly.</p>
           </div>
 
-          <p class="valuation-form__disclaimer">By submitting, you agree to be contacted by Cody Posey at Popby Realty. We respect your privacy and will never share your information.</p>
+          <p class="valuation-form__disclaimer">By submitting, you ask Cody Posey at Popby Realty to follow up about this valuation by email or by phone if provided. <a href="/privacy/">Privacy policy</a>.</p>
         </div>
       </div>
     </section>
 
+    <section class="valuation-deliverable"><div class="container">
+      <h2>What your personalized market analysis includes</h2>
+      <div class="valuation-deliverable__grid">
+        <article><h3>Relevant comparable sales</h3><p>Recent nearby sales selected for similarity in home type, size, location, and condition, with the differences explained.</p></article>
+        <article><h3>Today’s competing listings</h3><p>Active and pending properties that help explain your home’s position against other choices buyers can consider.</p></article>
+        <article><h3>A suggested price range</h3><p>A practical pricing discussion based on available information, your improvements, and your selling timeline. A walkthrough can refine the analysis.</p></article>
+      </div>
+      <h2>What happens after you request it?</h2>
+      <ol><li><strong>I review your property details.</strong> If needed, I’ll ask about condition, renovations, unusual features, or the timing of a possible sale.</li><li><strong>I prepare the comparison.</strong> Typical timing is 24–48 hours after the details are confirmed; a more complex property may need additional research.</li><li><strong>We discuss the result.</strong> You can ask questions about the range, preparation, and next steps. There is no obligation to list your home.</li></ol>
+      <p>Have recent improvements, acreage, a pool, or an unusual floor plan? Those details help select better comparisons. An estimate does not guarantee what a buyer will offer or what a lender’s appraisal will support.</p>
+      <p><a href="#request">Request your analysis</a> · <a href="/sellers-net-sheet/">Estimate possible selling proceeds</a> · <a href="/sellers-guide/">Read the seller’s guide</a></p>
+    </div></section>
     <!-- Educational Content -->
     <section style="padding:60px 20px;background:#fff;">
       <div style="max-width:800px;margin:0 auto;">
         <h2 style="font-size:24px;font-weight:700;margin-bottom:16px;color:#111;">How a Local Home Market Analysis <span style="color:#FF1616;">Works</span></h2>
         <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">A home valuation — also called a comparative market analysis or CMA — is an estimate of your home's current market value based on recent sales of similar properties in your area. Unlike an automated online estimate from sites like Zillow or Redfin, a CMA is prepared by a local real estate professional who understands the nuances of your specific neighborhood, street, and property.</p>
-        <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">Online home value estimates (often called AVMs or automated valuation models) can be useful as a starting point, but they have significant limitations. They do not account for your home's condition, upgrades, lot characteristics, or view. They cannot assess the quality of your finishes, the layout of your floor plan, or how your property compares to the homes that have recently sold nearby. In the Hill Country, where properties vary widely in lot size, topography, and style, these automated estimates can be off by tens of thousands of dollars.</p>
+        <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">Online home value estimates (often called AVMs or automated valuation models) can be useful as a starting point, but they have significant limitations. Their available data may not reflect recent renovations, condition, unique lot features, or the most relevant comparisons. A local analysis gives you an opportunity to supply those details and discuss how they affect the estimate.</p>
         <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">When I prepare a home valuation, I analyze recently sold comparable properties, active listings, and pending sales in your area. I consider factors like square footage, lot size, age, condition, upgrades, school district, and location relative to amenities. The result is a data-driven, market-specific estimate that reflects what a buyer would realistically pay for your home in the current market.</p>
         <p style="color:#555;line-height:1.8;font-size:0.95rem;margin-bottom:1.25rem;">Whether you are thinking about selling, curious about your equity, considering a refinance, or just want to stay informed about your largest asset, requesting a home valuation is a smart move. There is no cost and no obligation — just honest, useful information from a local agent who knows your market.</p>
       </div>
@@ -101,20 +114,21 @@ const pageSchema = [
         <div class="faq-list">
           <details class="faq-item">
             <summary>How is a home valuation different from an appraisal?</summary>
-            <p>A home valuation or CMA is an informal estimate prepared by a real estate agent based on comparable sales data. It is free and used to help sellers price their home or understand their equity. An appraisal is a formal assessment conducted by a licensed appraiser, typically ordered by a lender during the mortgage process. Appraisals cost $450-$650 and carry legal weight in the transaction.</p>
+            <p>A home valuation or CMA is an informal estimate prepared by a real estate agent based on comparable sales data. It is free and used to help sellers price their home or understand their equity. An appraisal is a formal assessment conducted by a licensed appraiser, typically ordered by a lender during the mortgage process. Fees and requirements vary; a CMA does not replace a lender-required appraisal.</p>
           </details>
           <details class="faq-item">
             <summary>How accurate are online home value estimates?</summary>
-            <p>Online estimates from sites like Zillow, Redfin, and Realtor.com can vary widely. They are generated by algorithms that analyze public data, but they cannot account for your home's specific condition, upgrades, or unique features. In the Hill Country, where properties vary significantly, these estimates can be off by 5-15% or more. A local CMA prepared by an agent who knows your area is far more reliable.</p>
+            <p>Online estimates from sites like Zillow, Redfin, and Realtor.com can vary widely. They are generated by algorithms that analyze public data, but they cannot account for your home's specific condition, upgrades, or unique features. The difference depends on the home and available data. A CMA lets you review the comparisons and provide details the estimate may be missing; neither approach guarantees a sale price.</p>
           </details>
           <details class="faq-item">
             <summary>How long does it take to receive my home valuation?</summary>
-            <p>I typically deliver a comprehensive home valuation report within 24 to 48 hours of receiving your request. The report includes comparable sales, market trends, and a recommended price range for your property. If you prefer a walkthrough of the home for a more detailed assessment, I can schedule that at your convenience.</p>
+            <p>I typically deliver a comprehensive home valuation report within 24–48 hours once property details are confirmed. The report includes comparable sales, competing listings, and a suggested price range. Unique properties may need extra research; I’ll confirm the follow-up timing with you. If you prefer a walkthrough of the home for a more detailed assessment, I can schedule that at your convenience.</p>
           </details>
         </div>
       </div>
     </section>
 
+    <section class="valuation-deliverable"><div class="container"><h2>Local comparisons need neighborhood context</h2><p>New-home incentives, lot characteristics, and the mix of competing homes can affect how a resale is positioned. Explore the <a href="/new-braunfels/neighborhoods/veramendi/">Veramendi</a>, <a href="/new-braunfels/neighborhoods/mayfair/">Mayfair</a>, <a href="/new-braunfels/neighborhoods/vintage-oaks/">Vintage Oaks</a>, and <a href="/new-braunfels/neighborhoods/river-chase/">River Chase</a> guides for questions specific to those communities, or compare <a href="/new-braunfels/new-construction/">new-construction purchase options</a> if your sale is part of a move.</p></div></section>
     <!-- Why Get a Valuation -->
     <section class="valuation-why">
       <div class="valuation-why__container">
@@ -184,7 +198,7 @@ const pageSchema = [
         "name": "How accurate are online home value estimates?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Online estimates from Zillow, Redfin, and similar sites can be off by 5-15% or more in the Hill Country. A local CMA prepared by an agent who knows your area is far more reliable."
+          "text": "Automated estimates may miss condition, renovations, or unique features. A CMA lets you review the comparisons and provide property details; neither approach guarantees a sale price."
         }
       },
       {
@@ -192,7 +206,7 @@ const pageSchema = [
         "name": "How long does it take to receive my home valuation?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "I typically deliver a comprehensive home valuation report within 24 to 48 hours of receiving your request, including comparable sales, market trends, and a recommended price range."
+          "text": "I typically deliver a comprehensive home valuation report within 24–48 hours once property details are confirmed, including comparable sales, competing listings, and a suggested price range. Unique properties may require an agreed follow-up time."
         }
       }
     ]
@@ -201,6 +215,8 @@ const pageSchema = [
 </Layout>
 
 <style>
+  #request{scroll-margin-top:90px}.valuation-deliverable{padding:3rem 1.25rem}.valuation-deliverable .container{max-width:1000px}.valuation-deliverable p,.valuation-deliverable li{line-height:1.8;color:#444}.valuation-deliverable a{color:#a70c0c;text-decoration:underline}.valuation-deliverable__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:1.5rem 0 2.5rem}.valuation-deliverable__grid article{border:1px solid #ddd;padding:1.5rem;border-radius:8px}.valuation-deliverable h3{font-size:1.1rem}@media(max-width:700px){.valuation-deliverable__grid{grid-template-columns:1fr}}
+
   /* ── Hero ── */
   .valuation-hero {
     position: relative;
@@ -458,7 +474,7 @@ const pageSchema = [
   .valuation-cta__btn {
     display: inline-block;
     padding: 14px 36px;
-    background: #FF1616;
+    background: #c40f0f;
     color: #fff;
     font-size: 15px;
     font-weight: 600;
@@ -497,6 +513,7 @@ const pageSchema = [
 
   form?.addEventListener('submit', function(e) {
     e.preventDefault();
+    if (form.querySelector('.valuation-form__submit').disabled) return;
 
     // Clear previous errors
     form.querySelectorAll('.error').forEach(function(el) { el.classList.remove('error'); });
@@ -511,7 +528,6 @@ const pageSchema = [
     if (!name.value.trim()) { name.classList.add('error'); valid = false; }
     if (!address.value.trim()) { address.classList.add('error'); valid = false; }
     if (!email.value.trim() || !email.value.includes('@')) { email.classList.add('error'); valid = false; }
-    if (!phone.value.trim()) { phone.classList.add('error'); valid = false; }
 
     if (valid) {
       var submitBtn = form.querySelector('.valuation-form__submit');

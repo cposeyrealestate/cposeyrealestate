@@ -1,0 +1,51 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+import ContactForm from '../../../components/ContactForm.astro';
+import ShortAnswer from '../../../components/ShortAnswer.astro';
+import VideoEmbed from '../../../components/VideoEmbed.astro';
+import guides from '../../../data/neighborhood-guides.json';
+import { articleSchema, breadcrumbSchema, faqSchema } from '../../../lib/schema';
+export function getStaticPaths() { return guides.map(guide => ({ params: { slug: guide.slug }, props: { guide } })); }
+const { guide } = Astro.props;
+const path = `/new-braunfels/neighborhoods/${guide.slug}/`;
+const schema = [articleSchema({ title: guide.title, description: guide.description, url: path, dateModified: '2026-11-03' }), breadcrumbSchema([{name:'Home',url:'/'},{name:'New Braunfels',url:'/new-braunfels/'},{name:'Neighborhoods',url:'/new-braunfels/neighborhoods/'},{name:guide.name,url:path}]), faqSchema(guide.faqs.map(([q,a])=>({q,a})))];
+---
+<Layout title={guide.title} description={guide.description} schema={schema} modifiedTime="2026-11-03">
+  <Navbar />
+  <main class="community-guide">
+    <header class="guide-hero">
+      <div class="container">
+        <nav aria-label="Breadcrumb"><a href="/new-braunfels/">New Braunfels</a> / <a href="/new-braunfels/neighborhoods/">Neighborhoods</a> / <span>{guide.name}</span></nav>
+        <p class="guide-eyebrow">NEW BRAUNFELS NEIGHBORHOOD GUIDE</p>
+        <h1>{guide.name} Homes and Neighborhood Guide</h1>
+        <p>{guide.intro}</p>
+        <div class="guide-actions"><a class="btn btn-primary" href="#contact">Request {guide.name} home options</a><a class="btn btn-outline" href="/search?pt=1&ccz=city&city%5B%5D=32367">Search New Braunfels listings</a></div>
+        <p class="guide-note">The listing search covers New Braunfels; ask Cody to narrow it to {guide.name}. Guide reviewed November 3, 2026.</p>
+      </div>
+    </header>
+    <ShortAnswer answer={guide.answer} />
+    <section class="section"><div class="container guide-body">
+      <h2>{guide.name} at a glance</h2>
+      <dl class="guide-facts">{guide.facts.map(([label,value])=><div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
+      <p>Use this guide to prepare a shortlist. Current listings, builder offers, association documents, and address-specific information determine what is available and what it will cost.</p>
+      <nav class="guide-contents" aria-label="On this page"><strong>On this page</strong>{guide.sections.map(([heading],index)=><a href={`#guide-${index+1}`}>{heading}</a>)}<a href="#questions">Frequently asked questions</a><a href="#sources">Official sources</a></nav>
+    </div></section>
+    {guide.sections.map(([heading,items],index)=><section class:list={['section',{'guide-shade':index%2===0}]} id={`guide-${index+1}`}><div class="container guide-body"><h2>{heading}</h2>{items.map(([title,body])=><article><h3>{title}</h3><p>{body}</p></article>)}</div></section>)}
+    <section class="section"><div class="container guide-body">
+      <h2>Bring these details to your {guide.name} home search</h2>
+      <ul><li>Your target purchase budget and comfortable monthly payment.</li><li>Your move date and whether the closing date can change.</li><li>Required lot, home, accessibility, and workspace features.</li><li>Your work destinations and any address-specific school questions.</li></ul>
+      <p>Cody Posey, REALTOR® and retired Army First Sergeant, can help compare properties and coordinate a local or remote search. For a PCS move, pair this guide with the <a href="/military-relocation/">JBSA relocation resources</a>.</p>
+      <a class="btn btn-primary" href="#contact">Ask Cody to compare {guide.name} homes</a>
+    </div></section>
+    {guide.slug==='mayfair'&&<section class="section guide-shade"><div class="container guide-body"><h2>Watch Cody’s Mayfair builder walkthrough</h2><p>This is a look at a particular builder home, rather than a current inventory or incentive guarantee. Confirm today’s terms for any home you shortlist.</p><VideoEmbed videoId="qWKXsylnCi4" title="Inside Coventry Homes in Mayfair, New Braunfels" description="Cody’s walkthrough of a Coventry home in Mayfair." uploadDate="2026-04-27" /></div></section>}
+    <section class="section guide-shade" id="questions"><div class="container guide-body"><h2>{guide.name} buyer questions</h2>{guide.faqs.map(([q,a])=><details><summary>{q}</summary><p>{a}</p></details>)}</div></section>
+    <section class="section" id="sources"><div class="container guide-body"><h2>Official sources and related guides</h2><p>Community facts were checked against the sources below on November 3, 2026. Future development, fees, availability, and school boundaries can change. This is Cody Posey’s independent buyer guide.</p><h3>Community and district sources</h3><ul>{guide.sources.map(([label,url])=><li><a href={url} target="_blank" rel="noopener noreferrer">{label} ↗</a></li>)}</ul><h3>Continue your comparison</h3><ul>{guide.reading.map(([label,url])=><li><a href={url}>{label}</a></li>)}<li><a href="/new-braunfels/new-construction/">Compare new-construction purchase options</a></li><li><a href="/home-value/">Request a value analysis before selling your current home</a></li></ul><div class="guide-other">{guides.filter(g=>g.slug!==guide.slug).map(g=><a href={`/new-braunfels/neighborhoods/${g.slug}/`}>{g.name} guide →</a>)}</div></div></section>
+  </main>
+  <ContactForm source={`${guide.name} Neighborhood Guide`} context={`I’m interested in ${guide.name}. My budget is __, my move date is __, and I’d like help with __.`} initialMessage={`I’m interested in ${guide.name}. Please help me compare current home options.`} />
+  <Footer />
+</Layout>
+<style>
+  .community-guide{padding-top:80px}.guide-hero{background:#151515;color:#fff;padding:3rem 0}.guide-hero h1{color:#fff;font-size:clamp(2rem,4vw,3rem);max-width:1000px}.guide-hero p{max-width:850px;line-height:1.8;color:#ddd}.guide-hero nav{font-size:.85rem;margin-bottom:2rem}.guide-hero nav a{color:#fff;text-decoration:underline}.guide-eyebrow{font-weight:700;letter-spacing:.1em}.guide-actions{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0}.guide-note{font-size:.85rem}.guide-body{max-width:960px}.guide-body p,.guide-body li{line-height:1.85;color:#444}.guide-body h3{margin-top:1.75rem}.guide-body a:not(.btn){color:#a70c0c;text-decoration:underline}.guide-shade{background:#f7f7f7}.guide-facts{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}.guide-facts div{padding:1.25rem;border:1px solid #ddd;background:#fff}.guide-facts dt{font-weight:700;margin-bottom:.4rem}.guide-facts dd{margin:0;color:#444}.guide-contents{padding:1.5rem;border-left:4px solid #c40f0f;margin-top:2rem}.guide-contents a{display:block;margin-top:.75rem}section[id]{scroll-margin-top:95px}details{border:1px solid #ddd;background:#fff;margin-top:1rem;padding:1.25rem}summary{cursor:pointer;font-weight:600}details p{margin-top:1rem}.guide-other{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:2rem}@media(max-width:600px){.guide-facts{grid-template-columns:1fr}.guide-actions .btn{width:100%;text-align:center}.guide-hero{padding:2rem 0}}
+</style>

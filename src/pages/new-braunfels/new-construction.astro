@@ -7,10 +7,10 @@ import ContactForm from '../../components/ContactForm.astro';
 import VideoEmbed from '../../components/VideoEmbed.astro';
 import { articleSchema, breadcrumbSchema } from '../../lib/schema';
 
-const pageTitle = 'New Construction Homes in New Braunfels, TX | Cody Posey';
-const pageDescription = 'Compare New Braunfels new construction communities, builder incentives, and buying costs with Cody Posey. Search available homes through New Home Buddy.';
+const pageTitle = 'New Construction Homes in New Braunfels | Compare Builders';
+const pageDescription = 'Explore New Braunfels new construction homes. Compare quick move-ins, Veramendi and Mayfair, builder offers, inspections, and full costs with Cody Posey.';
 const pageSchema = [
-  articleSchema({ title: pageTitle, description: pageDescription, url: '/new-braunfels/new-construction/' }),
+  articleSchema({ title: pageTitle, description: pageDescription, url: '/new-braunfels/new-construction/', dateModified: '2026-11-03' }),
   breadcrumbSchema([
     { name: 'Home', url: '/' },
     { name: 'New Braunfels', url: '/new-braunfels/' },
@@ -23,6 +23,7 @@ const pageSchema = [
   title={pageTitle}
   description={pageDescription}
   schema={pageSchema}
+  modifiedTime="2026-11-03"
 >
   <Navbar />
   <main style="padding-top: 80px;">
@@ -35,7 +36,9 @@ const pageSchema = [
           <a href="/">Home</a> <span>/</span> <a href="/new-braunfels/">New Braunfels</a> <span>/</span> <span>New Construction</span>
         </nav>
         <h1>New <span style="color:#FF1616;">Construction</span> Homes in New Braunfels, TX</h1>
-        <p>Builder communities, new developments, and what to know before buying new</p>
+        <p>Compare quick move-ins, builder homes, and communities with a plan for your budget and move date.</p>
+        <div class="nc-actions"><a class="btn btn-primary" href="https://a.nhb.app/u/cposeyrealestate" target="_blank" rel="noopener">Search new homes</a><a class="btn btn-outline" href="#contact">Request a builder comparison</a></div>
+        <p>Search opens on New Home Buddy. Community guide reviewed November 3, 2026.</p>
       </div>
     </div>
 
@@ -82,10 +85,10 @@ const pageSchema = [
           <div class="nc-compare__card">
             <h3>Why Buyers Choose New Construction</h3>
             <ul>
-              <li>Everything is new — no deferred maintenance</li>
+              <li>New materials and systems; still verify condition through inspections</li>
               <li>Modern floor plans and energy efficiency</li>
               <li>Builder warranties (structural, mechanical, cosmetic)</li>
-              <li>Ability to choose finishes, colors, and upgrades</li>
+              <li>Selection options may be available, depending on construction stage</li>
               <li>Community amenities (pools, trails, playgrounds)</li>
               <li>Builder incentives and rate buydowns</li>
             </ul>
@@ -93,7 +96,7 @@ const pageSchema = [
           <div class="nc-compare__card">
             <h3>What to Consider</h3>
             <ul>
-              <li>Timelines can shift — builds take 4-8+ months</li>
+              <li>Timelines can shift; confirm the specific home’s completion terms</li>
               <li>Base prices don't include upgrades or lot premiums</li>
               <li>Landscaping is often minimal at closing</li>
               <li>Newer communities may lack mature trees and shade</li>
@@ -105,41 +108,28 @@ const pageSchema = [
       </div>
     </section>
 
-    <!-- Major Communities -->
-    <section class="section">
-      <div class="container">
-        <div class="section-title">
-          <h2>New Home Communities in <span class="accent">New Braunfels</span></h2>
-          <p>Some of the active new construction communities in and around New Braunfels</p>
-        </div>
-        <div class="nc-communities__grid">
-          <div class="nc-community">
-            <h3>Veramendi</h3>
-            <p>A 2,400-acre mixed-use development located between Highway 46 and River Road. Veramendi includes over 480 acres of parkland with miles of walking and cycling trails. The Ledge amenity center features a 25,000 sq ft complex with a resort-style pool, splash pad, pavilions, and poolside kitchen. Builders include Brightland Homes, Coventry Homes, David Weekley Homes, Highland Homes, Perry Homes, Pulte Homes, Scott Felder Homes, Drees Custom Homes, and others. Homes range from the high $300s to mid-$500Ks. Zoned to New Braunfels ISD with an on-site elementary school and a second NBISD elementary campus planned.</p>
-          </div>
-          <div class="nc-community">
-            <h3>Vintage Oaks</h3>
-            <p>A 3,900-acre master-planned community located west of New Braunfels off Highway 46 in the Texas Hill Country. Vintage Oaks is a build-on-your-lot community with homesites ranging from 1 to 14 acres. Buyers can choose their own builder or select a completed custom home. Amenities include a Tuscan-style clubhouse, Olympic-size pool, lazy river, fitness facility, 5-mile hiking trail, tennis and volleyball courts, and a regulation soccer field. Multiple neighborhoods within the community include The Grove, Bear Creek, The Bluffs, Timber Ridge, and others. Homesites are priced from the low $180Ks, with finished home prices varying by builder and lot.</p>
-          </div>
-          <div class="nc-community">
-            <h3>Meyer Ranch</h3>
-            <p>A 700-acre master-planned community located at 9666 W. Highway 46, built on a former working cattle ranch. Builders include Gehan Homes, Highland Homes, Chesmar Homes, and Scott Felder Homes, with homes starting from the high $390s. Amenities include a splash pad, fitness center, dog park, putting green, playgrounds, an amphitheater, community green with fire pits, and Hilltop Park with trails and butterfly gardens. Zoned to Comal ISD — Bill Brown Elementary, Smithson Valley Middle School, and Smithson Valley High School.</p>
-          </div>
-          <div class="nc-community">
-            <h3>Mayfair</h3>
-            <p>New master-planned community on the north side developed by SouthStar Communities. Over 300 acres of parks and open space, 35+ miles of planned trails, and a new Comal ISD elementary school already open with four more campuses planned. Homes start from the $290s. A commercial district — Midtown Mayfair — is planned for shopping, dining, and workspaces.</p>
-          </div>
-          <div class="nc-community">
-            <h3>Legacy at Lake Dunlap</h3>
-            <p>Located along the shores of Lake Dunlap near Highway 46 with builders including Toll Brothers, Pulte Homes, Monticello Homes, Highland Homes, and Drees Custom Homes. Homes start in the high $300Ks with floor plans from approximately 1,637 to 3,925 sq ft. Amenities include private lake access, community docks, pickleball courts, trails, and Guadalupe River access. Served by Comal ISD.</p>
-          </div>
-          <div class="nc-community">
-            <h3>Other Active Communities</h3>
-            <p>New communities are being announced regularly as the New Braunfels area continues to grow. Builders are actively developing along Highway 46, FM 1044, Klein Road, and other corridors. Reach out for the most current list of active new construction options in your price range and preferred area.</p>
-          </div>
-        </div>
+    <section class="section" id="communities"><div class="container">
+      <h2>Compare New Braunfels new-home communities</h2>
+      <p>Start with the type of purchase you want. Builder inventory, resale homes in a newer community, and a custom-home project involve different timelines and costs. Availability and incentives need to be checked for the specific home.</p>
+      <div class="nc-communities__grid">
+        <article class="nc-community"><h3><a href="/new-braunfels/neighborhoods/veramendi/">Veramendi</a></h3><p>Compare builder homes and resales in a master-planned community with parks, trails, and The Ledge amenity center. Check the exact parcel’s tax information, included features, and development phase.</p><a href="/new-braunfels/neighborhoods/veramendi/">Read the Veramendi buyer guide →</a></article>
+        <article class="nc-community"><h3><a href="/new-braunfels/neighborhoods/mayfair/">Mayfair</a></h3><p>Compare multiple builders and quick move-in possibilities alongside the timing of a growing community. Fairway Park is an existing amenity; Midtown development and future projects should be verified separately.</p><a href="/new-braunfels/neighborhoods/mayfair/">Read the Mayfair buyer guide →</a></article>
+        <article class="nc-community"><h3><a href="/new-braunfels/neighborhoods/vintage-oaks/">Vintage Oaks</a></h3><p>For a custom-home approach, compare completed homes with the feasibility and full budget of a homesite purchase. Site work, architectural approval, utilities, and the builder’s schedule belong in the comparison.</p><a href="/new-braunfels/neighborhoods/vintage-oaks/">Read the Vintage Oaks buyer guide →</a></article>
+        <article class="nc-community"><h3><a href="/new-braunfels/neighborhoods/river-chase/">River Chase</a></h3><p>Compare custom-home and individual-lot options along FM 306. Verify utilities by section and distinguish community river-park access from the rights and conditions of an individual property.</p><a href="/new-braunfels/neighborhoods/river-chase/">Read the River Chase buyer guide →</a></article>
       </div>
-    </section>
+      <p>This is a starting comparison, not a complete inventory of active builder communities. <a href="#contact">Share your price range, preferred area, and move date</a> for a current shortlist.</p>
+    </div></section>
+    <section class="section" style="background:#f7f7f7"><div class="container">
+      <h2>Choose the purchase path that fits your deadline</h2>
+      <div class="nc-table-wrap"><table class="nc-table"><caption>Questions to resolve before choosing a new home</caption><thead><tr><th scope="col">Purchase path</th><th scope="col">What to compare</th><th scope="col">What to confirm</th></tr></thead><tbody>
+        <tr><th scope="row">Quick move-in</th><td>The actual completed features, lot, price, and financing offer.</td><td>Completion status, inspections, punch-list items, and written closing terms.</td></tr>
+        <tr><th scope="row">Home under construction</th><td>Remaining choices, included work, and expected completion.</td><td>What can change, inspection access, and the contract’s delay provisions.</td></tr>
+        <tr><th scope="row">To-be-built or custom</th><td>Lot suitability, design, site work, utilities, and total project budget.</td><td>Approvals, deposits, financing, construction milestones, and contingencies.</td></tr>
+      </tbody></table></div>
+      <h3>What Cody needs to prepare a useful comparison</h3>
+      <p>Share your target price and monthly budget, move date, preferred communities, and must-have features. Include any builder quote you already have so the comparison uses the same home, lot, and financing terms.</p>
+      <a class="btn btn-primary" href="#contact">Help me compare new homes</a>
+    </div></section>
 
     <!-- Builder Considerations -->
     <section class="section" style="background: var(--light-gray);">
@@ -154,11 +144,11 @@ const pageSchema = [
           </div>
           <div class="nc-builder__item">
             <h3>Understand the True Cost</h3>
-            <p>Base price is the starting point. Lot premiums, structural options, design center upgrades, and closing costs can add 10-20% or more to the advertised price. I can help you evaluate the real cost before you commit.</p>
+            <p>Base price is a starting point. Request a written total for the actual lot, options, finishes, and closing costs. Compare recurring taxes, insurance, association charges, and any special assessments as well as the purchase price.</p>
           </div>
           <div class="nc-builder__item">
             <h3>Know the Timeline</h3>
-            <p>New builds typically take 4-8 months from contract to close, depending on the builder and stage of construction. Pre-construction homes may take longer. Move-in ready inventory homes are available if you need to close faster.</p>
+            <p>Compare completed inventory with homes under construction and to-be-built options. Ask the builder for the current stage and contractual completion terms. Plan for possible delays before coordinating a lease, sale, or PCS move.</p>
           </div>
         </div>
       </div>
@@ -175,11 +165,11 @@ const pageSchema = [
           </details>
           <details class="faq-item">
             <summary>What builder incentives are currently available in New Braunfels?</summary>
-            <p>Builder incentives change frequently and vary by community and builder. Common incentives include interest rate buydowns, closing cost contributions, free upgrades, and reduced lot premiums on inventory homes. Some builders offer more aggressive incentives on homes that are completed or near completion. I stay current on available incentives across all active communities and can help you identify the best deals.</p>
+            <p>Builder incentives change frequently and vary by community and builder. Common incentives include interest rate buydowns, closing cost contributions, free upgrades, and reduced lot premiums on inventory homes. Some builders offer more aggressive incentives on homes that are completed or near completion. Request a current, written offer for the specific home. I can help compare the offer with alternatives, including financing conditions and costs after any temporary discount ends.</p>
           </details>
           <details class="faq-item">
             <summary>How long does it take to build a new home?</summary>
-            <p>Build times in the New Braunfels area typically range from four to eight months from contract to closing, depending on the builder and the stage of construction when you purchase. Pre-construction homes that have not started building may take longer. If you need to move in quickly, many communities have inventory homes that are completed or nearly completed and ready for a faster closing timeline.</p>
+            <p>Timing depends on the specific home’s construction stage, approvals, selections, and builder schedule. Ask for written completion terms and discuss delays. A completed or nearly completed inventory home may better match a fixed move date, but its closing date still needs confirmation.</p>
           </details>
         </div>
       </div>
@@ -197,6 +187,7 @@ const pageSchema = [
       </div>
     </section>
 
+    <section class="section"><div class="container"><h2>Sources and next steps</h2><p>Community details were reviewed November 3, 2026 using <a href="https://veramenditx.com/" target="_blank" rel="noopener">Veramendi’s official site</a>, <a href="https://mayfairtx.com/parks-trailways/" target="_blank" rel="noopener">Mayfair’s parks information</a>, <a href="https://www.vintageoakstexas.com/" target="_blank" rel="noopener">Vintage Oaks’ official site</a>, and the <a href="https://www.riverchasepoa.com/about/" target="_blank" rel="noopener">River Chase POA</a>. Follow each neighborhood guide for its sources and property-specific questions.</p><p>For a move involving a sale, <a href="/home-value/">request an analysis of your current home</a>. Military buyers can also use the <a href="/military-relocation/">JBSA relocation guide</a>.</p></div></section>
     <!-- Video -->
     <section class="section">
       <div class="container">
@@ -221,7 +212,7 @@ const pageSchema = [
   </main>
   <ParallaxBanner image="/images/generated/guadalupe-river.webp" />
 
-  <ContactForm context="I'm interested in touring new construction..." />
+  <ContactForm source="New Construction Comparison" context="My budget is __, my move date is __, and the communities or builders I’m considering are __." initialMessage="I’d like help comparing new construction homes, builders, and full purchase costs." />
   <Footer />
 
   <script type="application/ld+json">
@@ -250,7 +241,7 @@ const pageSchema = [
         "name": "How long does it take to build a new home?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Build times typically range from four to eight months from contract to closing. Inventory homes that are completed or near completion can close faster."
+          "text": "Timing depends on the specific home’s construction stage, approvals, selections, and builder schedule. Confirm written completion terms and discuss possible delays. Completed inventory may better suit a fixed move date."
         }
       }
     ]
@@ -259,6 +250,8 @@ const pageSchema = [
 </Layout>
 
 <style>
+  .nc-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin:1.5rem 0}.nc-table-wrap{overflow-x:auto;margin:1.5rem 0}.nc-table{width:100%;border-collapse:collapse;min-width:560px;background:#fff}.nc-table caption{text-align:left;font-weight:600;padding:.75rem}.nc-table th,.nc-table td{border:1px solid #ddd;padding:1rem;text-align:left;vertical-align:top;line-height:1.7}.nc-table thead{background:#eee}
+
   .nb-hero {
     position: relative;
     min-height: 280px;

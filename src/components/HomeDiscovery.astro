@@ -41,7 +41,7 @@ const neighborhoods = [
     </div>
     <div class="discovery__grid discovery__grid--four">
       {neighborhoods.map(neighborhood => (
-        <a class="discovery__card" href={`/new-braunfels/neighborhoods/#${neighborhood.slug}`}>
+        <a class="discovery__card" href={`/new-braunfels/neighborhoods/${neighborhood.slug}/`}>
           <h3>{neighborhood.name}</h3>
           <p>{neighborhood.description}</p>
           <span>Read the neighborhood guide &rarr;</span>
