@@ -15,3 +15,4 @@ Disallow: /admin/
 
 # Canonical sitemap
 Sitemap: https://cposeyrealestate.com/sitemap-index.xml
+Sitemap: https://cposeyrealestate.com/sitemap-videos.xml

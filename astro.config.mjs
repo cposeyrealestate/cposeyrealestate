@@ -35,6 +35,7 @@ export default defineConfig({
   adapter: cloudflare(),
   integrations: [
     sitemap({
+      customSitemaps: ['https://cposeyrealestate.com/sitemap-videos.xml'],
       // Don't index the IDX wrapper fragments or the API endpoints.
       // /search/ 302s out to IDX Broker and /admin/ sits behind Cloudflare
       // Access — neither resolves to an indexable page.
@@ -43,6 +44,7 @@ export default defineConfig({
         !page.includes('/idx-footer') &&
         !page.includes('/api/') &&
         !page.endsWith('/llms.txt') &&
+        !page.endsWith('/sitemap-videos.xml') &&
         !page.endsWith('/search/') &&
         !page.endsWith('/admin/') &&
         !redirectSources.has(new URL(page).pathname.replace(/\/$/, '') || '/'),

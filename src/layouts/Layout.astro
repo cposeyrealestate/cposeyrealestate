@@ -6,6 +6,7 @@ import seo from '../data/seo.json';
 import { homepageSchema } from '../lib/schema';
 
 export interface Props {
+  showSignupPopup?: boolean;
   title?: string;
   description?: string;
   canonical?: string;
@@ -20,6 +21,7 @@ export interface Props {
 }
 
 const {
+  showSignupPopup = true,
   title = 'Cody Posey | New Braunfels, Texas Real Estate Agent',
   description = seo.site.description,
   canonical,
@@ -73,7 +75,7 @@ const pageSchemas = [...homepageSchema().filter(node => !definedIds.has(node['@i
   <body>
     <slot />
     <CookieBanner />
-    <SignupPopup />
+    {showSignupPopup && <SignupPopup />}
     <script>
       const track = (name: string, props: Record<string, string> = {}) => {
         const analytics = (window as Window & { plausible?: (event: string, options: object) => void }).plausible;
