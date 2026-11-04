@@ -171,43 +171,9 @@ export function localBusinessSchema() {
       })),
     },
   };
-  if (seo.reviews?.reviewCount > 0) {
-    biz.aggregateRating = {
-      '@type': 'AggregateRating',
-      ratingValue: seo.reviews.aggregateRating,
-      reviewCount: seo.reviews.reviewCount,
-      bestRating: 5,
-      worstRating: 1,
-    };
-  }
+  // Genuine client reviews remain visible on the site. Do not publish
+  // self-serving review/rating markup for this business on its own domain.
   return biz;
-}
-
-/* ── Review items for the Testimonials page ─────────────────────── */
-export function reviewsSchema(reviews: Array<{ name: string; role?: string; quote: string; rating?: number }>) {
-  return reviews.map((r) => ({
-    '@context': 'https://schema.org',
-    '@type': 'Review',
-    // Inline the reviewed entity so Google's Rich Results validator can
-    // classify it without needing to follow the @id reference across
-    // separate JSON-LD blocks. The @id is retained so the reviews still
-    // attach to the same business entity in the entity graph.
-    itemReviewed: {
-      '@type': 'RealEstateAgent',
-      '@id': BUSINESS_ID,
-      name: seo.site.name,
-      image: seo.person.image,
-      url: SITE,
-    },
-    author: { '@type': 'Person', name: r.name, ...(r.role && { jobTitle: r.role }) },
-    reviewBody: r.quote,
-    reviewRating: {
-      '@type': 'Rating',
-      ratingValue: r.rating ?? 5,
-      bestRating: 5,
-      worstRating: 1,
-    },
-  }));
 }
 
 /* ── WebSite entity (enables Google sitelinks search box eligibility) */

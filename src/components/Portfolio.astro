@@ -7,6 +7,8 @@
 // pages; past sales link to the full /portfolio page.
 
 import data from '../data/portfolio.json';
+import imageDimensions from '../data/image-dimensions.json';
+import '../styles/carousel.css';
 
 type Current = {
   placeholder?: boolean;
@@ -127,7 +129,7 @@ function fmtSoldDate(iso: string) {
                 rel={'external' in s && s.external ? 'noopener' : undefined}
               >
                 <div class="prop-card__img-wrap">
-                  <img src={s.img} alt={s.address} class="prop-card__img" loading="lazy" />
+                  <img {...(imageDimensions[s.img] || {})} src={s.img} alt={s.address} class="prop-card__img" loading="lazy" decoding="async" />
                   <span class={`prop-card__status ${String(s.status).toLowerCase().replace(/\s+/g, '-')}`}>{s.status}</span>
                 </div>
                 <div class="prop-card__body">
@@ -146,7 +148,7 @@ function fmtSoldDate(iso: string) {
             ) : (
               <div class="prop-card prop-card--sold">
                 <div class="prop-card__img-wrap">
-                  <img src={s.img} alt={s.address} class="prop-card__img" loading="lazy" />
+                  <img {...(imageDimensions[s.img] || {})} src={s.img} alt={s.address} class="prop-card__img" loading="lazy" decoding="async" />
                   <span class={`prop-card__status ${String(s.status).toLowerCase().replace(/\s+/g, '-')}`}>{s.status}</span>
                   {'soldDate' in s && s.soldDate && (
                     <span class="prop-card__sold-date">Sold {fmtSoldDate(s.soldDate)}</span>
@@ -245,7 +247,7 @@ function fmtSoldDate(iso: string) {
     letter-spacing: 0.1em;
     color: #fff;
   }
-  .prop-card__status.active { background: #FF1616; }
+  .prop-card__status.active { background: var(--red-action, #c40f0f); }
   .prop-card__status.under-contract { background: #d97706; }
   .prop-card__status.pending { background: #e07b00; }
   .prop-card__status.sold { background: #111; }
@@ -338,12 +340,14 @@ function fmtSoldDate(iso: string) {
 </style>
 
 <script>
-  import Swiper from 'swiper/bundle';
+  import Swiper from 'swiper';
+  import { Navigation, Pagination, A11y, Autoplay } from 'swiper/modules';
   new Swiper('.portfolio-swiper', {
+    modules: [Navigation, Pagination, A11y, Autoplay],
     slidesPerView: 1,
     spaceBetween: 24,
     loop: true,
-    autoplay: {
+    autoplay: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? false : {
       delay: 3500,
       disableOnInteraction: false,
       pauseOnMouseEnter: true,

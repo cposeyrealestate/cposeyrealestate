@@ -7,7 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check:seo": "node scripts/audit-seo.mjs",
-    "test:seo": "node --test scripts/test-article-headings.mjs scripts/test-lead-forms.mjs scripts/test-admin-analytics.mjs"
+    "test:seo": "node --test scripts/test-article-headings.mjs scripts/test-lead-forms.mjs scripts/test-admin-analytics.mjs scripts/test-performance-loading.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.2.0",

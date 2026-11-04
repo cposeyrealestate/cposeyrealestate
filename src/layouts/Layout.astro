@@ -46,8 +46,8 @@ const pageSchemas = [...homepageSchema().filter(node => !definedIds.has(node['@i
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="/swiper-bundle.min.css" />
+    <link rel="preload" href="/fonts/font-e0fcb6cf81c5-v1.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/font-b877d7636354-v1.woff2" as="font" type="font/woff2" crossorigin />
 
     <SEO
       title={title}
@@ -85,6 +85,7 @@ const pageSchemas = [...homepageSchema().filter(node => !definedIds.has(node['@i
           track('Lead Submitted', { form });
         }
       });
+      document.addEventListener('cpre:booking-opened', () => track('Consultation Link Click'));
       document.addEventListener('click', event => {
         const link = event.target instanceof Element ? event.target.closest('a') : null;
         if (!link) return;

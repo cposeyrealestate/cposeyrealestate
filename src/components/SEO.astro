@@ -9,6 +9,7 @@
  */
 
 import seo from '../data/seo.json';
+import imageDimensions from '../data/image-dimensions.json';
 
 interface Props {
   title: string;
@@ -69,6 +70,8 @@ const ogImageInput = image || seo.site.defaultOgImage;
 const ogImage = ogImageInput.startsWith('http')
   ? ogImageInput
   : new URL(ogImageInput, Astro.site).toString();
+const ogDimensions = new URL(ogImage).origin === new URL(seo.site.url).origin
+  ? imageDimensions[new URL(ogImage).pathname] : undefined;
 
 // --- JSON-LD payload normalization
 const schemaArray = schema
@@ -108,6 +111,9 @@ validSchemas.push({
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={cleanDescription} />
 <meta property="og:image" content={ogImage} />
+{ogDimensions && <meta property="og:image:width" content={String(ogDimensions.width)} />}
+{ogDimensions && <meta property="og:image:height" content={String(ogDimensions.height)} />}
+<meta property="og:image:alt" content={title} />
 <!-- Images vary by page; do not assert dimensions that are not measured. -->
 {publishedTime && <meta property="article:published_time" content={publishedTime} />}
 {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}

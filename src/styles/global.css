@@ -2,7 +2,7 @@
    GLOBAL STYLES — cposeyrealestate.com
    ========================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+@import './fonts.css';
 
 /* --- Reset & Base --- */
 *, *::before, *::after {
@@ -13,6 +13,7 @@
 
 :root {
   --red: #FF1616;
+  --red-action: #c40f0f;
   --black: #000000;
   --white: #ffffff;
   --gray: #555555;
@@ -82,7 +83,7 @@ p {
 }
 
 .btn-primary {
-  background: var(--red);
+  background: var(--red-action);
   color: var(--white);
 }
 
@@ -143,8 +144,16 @@ p {
   color: var(--red) !important;
 }
 
-.swiper-pagination-bullet-active {
-  background: var(--red) !important;
+.swiper-pagination { min-height: 24px; }
+.swiper-pagination:not(.swiper-pagination-bullets-dynamic) { display: flex; flex-wrap: wrap; justify-content: center; }
+.swiper-pagination-bullet { width: 24px !important; height: 24px !important; margin: 0 !important; opacity: 1 !important; background: transparent !important; display: inline-flex; align-items: center; justify-content: center; }
+.swiper-pagination-bullet::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #777; }
+.swiper-pagination-bullet-active::before { background: var(--red-action); }
+:focus-visible { outline: 3px solid #668bff; outline-offset: 3px; }
+.btn { min-height: 44px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
 
 /* --- Mobile contact bar (fixed bottom) --- */

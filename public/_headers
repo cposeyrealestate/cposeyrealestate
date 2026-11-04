@@ -1,0 +1,37 @@
+# Versioned assets may be cached without revalidation.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/videos/hero-1.web-v1.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/videos/hero-2.web-v1.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/videos/hero-3.web-v1.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/videos/hero-4.web-v1.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/videos/hero-5.web-v1.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/hero-poster-v1.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/hero-poster-mobile-v1.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/popby-logo-v1.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon.svg
+  Cache-Control: public, max-age=604800
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
