@@ -1,7 +1,17 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { Script } from 'node:vm';
 import { initHeroVideo } from '../src/lib/hero-video.mjs';
 import { initBooking } from '../src/lib/booking.mjs';
+
+test('homepage classic inline scripts parse without module-only imports', () => {
+  const source = readFileSync(new URL('../src/components/Hero.astro', import.meta.url), 'utf8');
+  const inline = [...source.matchAll(/<script\s+is:inline\s*>([\s\S]*?)<\/script>/g)];
+  assert.ok(inline.length);
+  for (const [, body] of inline) new Script(body);
+  assert.match(source, /<script>\s*import \{ initHeroVideo \}/);
+});
 
 function node() {
   const events = {}; const classes = new Set(); const attrs = {};
