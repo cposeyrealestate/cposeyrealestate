@@ -1,0 +1,14 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import videos from '../../data/watch-videos.json';
+import { collectionPageSchema, breadcrumbSchema } from '../../lib/schema';
+import { watchPath, thumbnailUrl } from '../../lib/video-sitemap.mjs';
+const description='Watch Cody Posey’s community tours and relocation videos for New Braunfels, Bulverde, and the San Antonio area, with summaries and caption-derived transcripts.';
+const schema=[collectionPageSchema({name:'Video guides',description,url:'/videos/',hasPart:videos.map(video=>({name:video.title,url:watchPath(video)}))}),breadcrumbSchema([{name:'Home',url:'/'},{name:'Video guides',url:'/videos/'}])];
+---
+<Layout title="New Braunfels & San Antonio Video Guides | Cody Posey" description={description} schema={schema}>
+  <Navbar /><main class="video-library"><div class="container"><h1>Community Tours and Relocation Videos</h1><p>Watch a tour or compare local areas with Cody Posey. Each video has its own watch page, summary, and readable transcript.</p><div class="video-cards">{videos.map(video=><article><a href={watchPath(video)}><img src={thumbnailUrl(video)} alt="" width="480" height="360" loading="lazy"/><h2>{video.title}</h2></a><p class="meta">{video.dateLabel} · {video.durationLabel}</p><p>{video.description}</p><a class="btn btn-primary" href={watchPath(video)}>Watch video</a></article>)}</div></div></main><Footer />
+</Layout>
+<style>.video-library{padding:115px 1.25rem 4rem}.video-library h1{font-size:clamp(1.8rem,4vw,2.6rem)}.video-library p{line-height:1.8;color:#444}.video-cards{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}.video-cards article{border:1px solid #ddd;padding:1.25rem}.video-cards img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}.video-cards h2{font-size:1.25rem;margin-top:1rem}.meta{font-size:.85rem}.video-cards .btn{margin-top:1rem}@media(max-width:700px){.video-cards{grid-template-columns:1fr}}</style>

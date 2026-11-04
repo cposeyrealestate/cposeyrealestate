@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import videos from '../../data/watch-videos.json';
+import { videoObjectSchema, breadcrumbSchema } from '../../lib/schema';
+import { VIDEO_ORIGIN, watchPath, playerUrl, thumbnailUrl } from '../../lib/video-sitemap.mjs';
+export function getStaticPaths() { return videos.map(video=>({params:{slug:video.slug},props:{video}})); }
+const { video }=Astro.props;
+const url=VIDEO_ORIGIN+watchPath(video);
+const videoId=url+'#video';
+const schema=[{...videoObjectSchema({videoId:video.videoId,title:video.youtubeTitle,description:video.description,dateRaw:video.uploadDate}),'@id':videoId,url,duration:video.duration,mainEntityOfPage:{'@id':url+'#webpage'}},{'@context':'https://schema.org','@type':'WebPage','@id':url+'#webpage',url,name:video.title,description:video.description,mainEntity:{'@id':videoId}},breadcrumbSchema([{name:'Home',url:'/'},{name:'Video guides',url:'/videos/'},{name:video.title,url:watchPath(video)}])];
+---
+<Layout title={video.title+' | Watch with Cody Posey'} description={video.description} image={thumbnailUrl(video)} schema={schema} modifiedTime="2026-11-04" showSignupPopup={false}>
+  <Navbar />
+  <main class="watch-page">
+    <div class="watch-container">
+      <nav class="watch-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/videos/">Video guides</a></nav>
+      <h1>{video.title}</h1>
+      <p class="watch-byline">Cody Posey, REALTOR® · <time datetime={video.uploadDate}>{video.dateLabel}</time> · {video.durationLabel}</p>
+      <div class="watch-player" id="watch-player"><iframe src={playerUrl(video)} title={video.youtubeTitle} loading="eager" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      <p class="watch-original">YouTube title: {video.youtubeTitle} · <a href={`https://www.youtube.com/watch?v=${video.videoId}`} target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a></p>
+      <section class="watch-copy" aria-labelledby="about-video"><h2 id="about-video">About this video</h2><p>{video.summary}</p><h3>What you’ll see</h3><ul>{video.topics.map(topic=><li>{topic}</li>)}</ul></section>
+      <section class="watch-copy" aria-labelledby="transcript"><h2 id="transcript">Video transcript</h2><p class="watch-transcript-note">Adapted from the video’s English captions. Paragraphs and clear place-name spellings have been cleaned up; automated transcription may still contain errors. Prices, fees, financing offers, availability, and travel times discussed in the recording may have changed.</p><details class="watch-transcript"><summary>Read the full transcript</summary><div>{video.transcript.map(paragraph=><p>{paragraph}</p>)}</div></details></section>
+      <section class="watch-copy" id="contact"><h2>Explore the places discussed</h2><ul>{video.related.map(([label,path])=><li><a href={path}>{label}</a></li>)}</ul><p><a href={`/contact/?source=${encodeURIComponent('Video: '+video.slug)}`} class="btn btn-primary">Ask Cody about this video</a></p></section>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+<style>
+  .watch-page{padding:94px 1.25rem 3rem;background:#fff}.watch-container{max-width:1000px;margin:0 auto}.watch-breadcrumb{display:flex;gap:.65rem;font-size:.85rem;margin-bottom:.75rem}.watch-breadcrumb a,.watch-copy a:not(.btn),.watch-original a{color:#a70c0c;text-decoration:underline}.watch-page h1{font-size:clamp(1.55rem,3.2vw,2.35rem);line-height:1.2;margin:0 0 .65rem}.watch-byline{font-size:.85rem;color:#555;margin:0 0 1rem}.watch-player{width:100%;aspect-ratio:16/9;background:#000;position:relative}.watch-player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.watch-original{font-size:.8rem;color:#555;line-height:1.65;margin-top:.65rem}.watch-copy{max-width:850px;margin:2.5rem auto}.watch-copy h2{font-size:1.5rem}.watch-copy h3{font-size:1.1rem;margin-top:1.5rem}.watch-copy p,.watch-copy li{color:#444;line-height:1.85}.watch-transcript-note{font-size:.9rem}.watch-transcript{border:1px solid #ddd;padding:1rem 1.25rem}.watch-transcript summary{font-weight:600;cursor:pointer;min-height:30px}.watch-transcript p{margin:1.25rem 0}.watch-copy .btn{margin-top:1rem}#transcript{scroll-margin-top:95px}@media(max-width:600px){.watch-page{padding:90px 1rem 2rem}.watch-copy{margin:2rem auto}.watch-page h1{font-size:1.55rem}.watch-copy .btn{width:100%;text-align:center}}
+@media(min-width:768px){.watch-player{max-width:calc((100svh - 285px)*16/9);margin-inline:auto}}
+#contact{scroll-margin-top:95px}
+</style>

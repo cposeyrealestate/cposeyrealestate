@@ -23,6 +23,7 @@ export function GET() {
 
     ['Current listings and recent sales', '/portfolio/'],
     ['Real estate articles and local guides', '/blog/'],
+    ['Community tours and video guides', '/videos/'],
     ['Client testimonials', '/testimonials/'],
   ];
   const text = [
