@@ -1,5 +1,7 @@
 ---
 import portfolioData from '../data/portfolio.json';
+import imageDimensions from '../data/image-dimensions.json';
+import '../styles/carousel.css';
 
 const listings = (portfolioData.currentListings as any[])
   .filter((l: any) => l.featured)
@@ -31,7 +33,7 @@ const listings = (portfolioData.currentListings as any[])
           <div class="swiper-slide">
             <div class="prop-card">
               <div class="prop-card__img-wrap">
-                <img src={listing.img} alt={listing.address} class="prop-card__img" loading="lazy" />
+                <img {...(imageDimensions[listing.img] || {})} src={listing.img} alt={listing.address} class="prop-card__img" loading="lazy" decoding="async" />
                 <span class={`prop-card__status ${String(listing.status).toLowerCase().replace(/\s+/g, '-')}`}>{listing.status}</span>
               </div>
               <div class="prop-card__body">
@@ -120,7 +122,7 @@ const listings = (portfolioData.currentListings as any[])
     color: #fff;
   }
 
-  .prop-card__status.active { background: #FF1616; }
+  .prop-card__status.active { background: var(--red-action, #c40f0f); }
   .prop-card__status.under-contract { background: #d97706; }
   .prop-card__status.pending { background: #e07b00; }
   .prop-card__status.sold { background: #333; }
@@ -172,8 +174,10 @@ const listings = (portfolioData.currentListings as any[])
 </style>
 
 <script>
-  import Swiper from 'swiper/bundle';
+  import Swiper from 'swiper';
+  import { Navigation, Pagination, A11y } from 'swiper/modules';
   new Swiper('.properties-swiper', {
+    modules: [Navigation, Pagination, A11y],
     slidesPerView: 1,
     spaceBetween: 24,
     loop: true,

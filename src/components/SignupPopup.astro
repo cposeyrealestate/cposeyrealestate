@@ -46,7 +46,7 @@ const enabled = !excluded.test(Astro.url.pathname);
   .signup-popup :is(input, button, a):focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
   .signup-popup__privacy { color: #bdbdbd; font-size: 12px; line-height: 1.5; margin: 14px 0; }
   .signup-popup a { color: #fff; text-decoration: underline; }
-  .signup-popup__submit, .signup-popup__expand { width: 100%; min-height: 46px; background: #ff1616; border: 0; border-radius: 5px; color: #fff; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
+  .signup-popup__submit, .signup-popup__expand { width: 100%; min-height: 46px; background: var(--red-action, #c40f0f); border: 0; border-radius: 5px; color: #fff; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
   .signup-popup__submit:disabled { opacity: .65; cursor: wait; }
   .signup-popup__decline { display: block; min-height: 44px; width: 100%; margin-top: 6px; border: 0; color: #ccc; background: transparent; font: inherit; font-size: 13px; text-decoration: underline; cursor: pointer; }
   .signup-popup__expand { display: none; }

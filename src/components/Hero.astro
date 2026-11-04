@@ -3,11 +3,8 @@
 
 <section class="hero" id="hero">
   <div class="hero__video-wrap">
-    <video class="hero__video active" src="/videos/hero-1.mp4" muted playsinline autoplay></video>
-    <video class="hero__video" src="/videos/hero-2.mp4" muted playsinline preload="auto"></video>
-    <video class="hero__video" src="/videos/hero-3.mp4" muted playsinline preload="auto"></video>
-    <video class="hero__video" src="/videos/hero-4.mp4" muted playsinline preload="auto"></video>
-    <video class="hero__video" src="/videos/hero-5.mp4" muted playsinline preload="auto"></video>
+    <picture class="hero__poster-wrap"><source media="(max-width: 767px)" srcset="/images/hero-poster-mobile-v1.webp" /><img class="hero__poster" src="/images/hero-poster-v1.webp" alt="" width="1280" height="720" fetchpriority="high" decoding="async" /></picture>
+    {[1, 2, 3, 4, 5].map(number => <video class="hero__video" data-src={`/videos/hero-${number}.web-v1.mp4`} muted playsinline preload="none" aria-hidden="true"></video>)}
   </div>
   <div class="hero__overlay"></div>
 
@@ -30,6 +27,7 @@
         <input
           type="text"
           id="heroSearch"
+          aria-label="Search homes by city, neighborhood, ZIP code, or address"
           class="hero__search-input"
           placeholder="Search by city, neighborhood, zip, or address..."
           autocomplete="off"
@@ -57,6 +55,7 @@
     <span>Scroll</span>
     <div class="hero__scroll-line"></div>
   </div>
+  <button type="button" class="hero__motion" data-video-toggle hidden aria-label="Pause background video">Pause video</button>
 </section>
 
 <style>
@@ -77,6 +76,11 @@
     inset: 0;
     z-index: 0;
   }
+  .hero__poster-wrap { display: block; height: 100%; }
+  .hero__poster { width: 100%; height: 100%; object-fit: cover; }
+  .hero__motion { position: absolute; right: 1.5rem; bottom: 1.5rem; z-index: 3; background: rgba(0,0,0,0.75); color: #fff; border: 1px solid #aaa; padding: 0.6rem 0.9rem; min-height: 44px; cursor: pointer; font: inherit; font-size: 0.8rem; }
+  .hero__motion[hidden] { display: none; }
+  @media (prefers-reduced-motion: reduce), (max-width: 767px) { .hero__video, .hero__motion { display: none; } }
 
   .hero__video {
     position: absolute;
@@ -175,7 +179,7 @@
   }
 
   .hero__tab.active {
-    background: #FF1616;
+    background: var(--red-action, #c40f0f);
     border-color: #FF1616;
     color: #fff;
   }
@@ -414,27 +418,7 @@
     window.location.href = 'https://cposeyrealestate.idxbroker.com/idx/map/mapsearch';
   });
 
-  // Video rotation
-  (function() {
-    const videos = document.querySelectorAll('.hero__video');
-    if (!videos.length) return;
-    let current = 0;
-
-    function playNext() {
-      const next = (current + 1) % videos.length;
-      videos[next].currentTime = 0;
-      videos[next].play();
-      videos[next].classList.add('active');
-      videos[current].classList.remove('active');
-      current = next;
-    }
-
-    // When current video ends, switch to next
-    videos.forEach((video) => {
-      video.addEventListener('ended', playNext);
-    });
-
-    // Start first video
-    videos[0].play().catch(() => {});
-  })();
+  import { initHeroVideo } from '../lib/hero-video.mjs';
+  const hero = document.getElementById('hero');
+  if (hero) initHeroVideo(hero);
 </script>

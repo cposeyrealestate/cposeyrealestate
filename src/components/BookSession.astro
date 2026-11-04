@@ -14,13 +14,24 @@ const tidyCalPath = 'cposeyrealestate/30-minute-meeting';
       <p class="book-session__sub">Grab a free 30-minute call — whether you're buying, selling, relocating to the Hill Country, or just have questions about the New Braunfels market. Pick a time that works for you and I'll take it from there.</p>
     </div>
 
-    <div class="book-session__embed">
-      <div class="tidycal-embed" data-path={tidyCalPath}></div>
+    <div class="book-session__embed" data-booking-slot data-path={tidyCalPath}>
+      <div class="book-session__facade" data-booking-facade>
+        <h3>Find a time that works for you</h3>
+        <p>Choose a free 30-minute consultation with Cody.</p>
+        <button type="button" class="btn btn-primary" data-load-booking>View available times</button>
+        <p><a href={`https://tidycal.com/${tidyCalPath}`} target="_blank" rel="noopener noreferrer">Open the booking page ↗</a></p>
+        <p data-booking-status role="status" hidden></p>
+      </div>
     </div>
   </div>
 </section>
 
-<script is:inline async src="https://asset-tidycal.b-cdn.net/js/embed.js"></script>
+<script>
+  import { initBooking } from '../lib/booking.mjs';
+  for (const slot of document.querySelectorAll<HTMLElement>('[data-booking-slot]')) {
+    initBooking(slot);
+  }
+</script>
 
 <style>
   .book-session {
@@ -59,7 +70,12 @@ const tidyCalPath = 'cposeyrealestate/30-minute-meeting';
     margin: 2.5rem auto 0;
     max-width: 900px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+    min-height: 620px;
   }
+  .book-session__facade { min-height: 570px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1.25rem; text-align: center; color: #111; }
+  .book-session__facade[hidden] { display: none; }
+  .book-session__facade h3 { font-size: 1.4rem; }
+  .book-session__facade a { color: #b30d0d; text-decoration: underline; text-underline-offset: 3px; }
 
   @media (max-width: 600px) {
     .book-session__embed {

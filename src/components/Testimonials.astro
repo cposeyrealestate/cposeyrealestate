@@ -1,7 +1,8 @@
 ---
+import '../styles/carousel.css';
 // Curated subset of reviews sourced from the Google Business Profile
 // (34 reviews, all 5-star). The full list lives in src/pages/testimonials.astro;
-// the running total drives aggregateRating and is kept in src/data/seo.json.
+// the visible running total is kept in src/data/seo.json.
 //
 // Avatars are CSS-rendered initials — no external placeholder images.
 const testimonials = [
@@ -202,7 +203,7 @@ const initials = (name: string) =>
   }
 
   .testimonials-swiper .swiper-pagination-bullet-active {
-    background: #FF1616 !important;
+    background: var(--red-action, #c40f0f) !important;
   }
 
   @media (max-width: 768px) {
@@ -216,12 +217,14 @@ const initials = (name: string) =>
 </style>
 
 <script>
-  import Swiper from 'swiper/bundle';
+  import Swiper from 'swiper';
+  import { Navigation, Pagination, A11y, Autoplay } from 'swiper/modules';
   new Swiper('.testimonials-swiper', {
+    modules: [Navigation, Pagination, A11y, Autoplay],
     slidesPerView: 1,
     spaceBetween: 24,
     loop: true,
-    autoplay: { delay: 6500, disableOnInteraction: false, pauseOnMouseEnter: true },
+    autoplay: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? false : { delay: 6500, disableOnInteraction: false, pauseOnMouseEnter: true },
     navigation: {
       nextEl: '.testimonials-swiper .swiper-button-next',
       prevEl: '.testimonials-swiper .swiper-button-prev',

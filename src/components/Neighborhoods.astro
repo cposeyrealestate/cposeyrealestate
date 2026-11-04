@@ -1,4 +1,5 @@
 ---
+import '../styles/carousel.css';
 const neighborhoods = [
   {
     name: 'Veramendi',
@@ -175,8 +176,10 @@ const neighborhoods = [
 </style>
 
 <script>
-  import Swiper from 'swiper/bundle';
+  import Swiper from 'swiper';
+  import { Navigation, Pagination, A11y } from 'swiper/modules';
   new Swiper('.neighborhoods-swiper', {
+    modules: [Navigation, Pagination, A11y],
     slidesPerView: 1,
     spaceBetween: 0,
     loop: true,

@@ -6,6 +6,7 @@
     <div class="work-with-us__image-wrap">
       <img
         src="/images/cody-posey.webp"
+        width="1920" height="2880"
         alt="Cody Posey - New Braunfels Real Estate Agent"
         class="work-with-us__img"
         loading="lazy"
@@ -80,25 +81,25 @@
       <form class="contact-form" id="contactForm">
         <div class="form-row">
           <div class="form-group">
-            <label>First Name *</label>
-            <input type="text" name="firstName" required placeholder="First name" />
+            <label for="home-contact-firstName">First Name *</label>
+            <input id="home-contact-firstName" type="text" name="firstName" required placeholder="First name" />
           </div>
           <div class="form-group">
-            <label>Last Name *</label>
-            <input type="text" name="lastName" required placeholder="Last name" />
+            <label for="home-contact-lastName">Last Name *</label>
+            <input id="home-contact-lastName" type="text" name="lastName" required placeholder="Last name" />
           </div>
         </div>
         <div class="form-group">
-          <label>Email Address *</label>
-          <input type="email" name="email" required placeholder="your@email.com" />
+          <label for="home-contact-email">Email Address *</label>
+          <input id="home-contact-email" type="email" name="email" required placeholder="your@email.com" />
         </div>
         <div class="form-group">
-          <label>Phone Number</label>
-          <input type="tel" name="phone" placeholder="(555) 555-5555" />
+          <label for="home-contact-phone">Phone Number</label>
+          <input id="home-contact-phone" type="tel" name="phone" placeholder="(555) 555-5555" />
         </div>
         <div class="form-group">
-          <label>I'm interested in...</label>
-          <select name="interest">
+          <label for="home-contact-interest">I'm interested in...</label>
+          <select id="home-contact-interest" name="interest">
             <option value="">Select one</option>
             <option>Buying a Home</option>
             <option>Selling My Home</option>
@@ -109,8 +110,8 @@
           </select>
         </div>
         <div class="form-group">
-          <label>Message</label>
-          <textarea name="message" rows="4" placeholder="Tell me how I can help..."></textarea>
+          <label for="home-contact-message">Message</label>
+          <textarea id="home-contact-message" name="message" rows="4" placeholder="Tell me how I can help..."></textarea>
         </div>
         <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
         <p id="homeContactError" role="alert" hidden>We couldn't confirm your message was received. Please try again, or call/text <a href="tel:+18303605569">(830) 360-5569</a>. Your entries are still here.</p>
@@ -163,7 +164,7 @@
         </div>
 
         <div class="contact__brand">
-          <img src="/images/popby-logo.png" alt="Popby Realty" class="contact__brand-logo" />
+          <img src="/images/popby-logo-v1.webp" width="540" height="194" alt="Popby Realty" class="contact__brand-logo" />
           <p class="contact__brand-tagline">Your New Braunfels Real Estate Expert</p>
           <div class="contact__brand-social">
             <a href="https://www.facebook.com/cposeyrealestate" target="_blank" rel="noopener" aria-label="Facebook">
@@ -215,7 +216,7 @@
     position: absolute;
     bottom: -1.5rem;
     right: -1.5rem;
-    background: #FF1616;
+    background: var(--red-action, #c40f0f);
     color: #fff;
     padding: 1.5rem;
     text-align: center;
