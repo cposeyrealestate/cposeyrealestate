@@ -2,10 +2,11 @@
 // Keep the invitation off utility pages and pages with an existing lead flow.
 const excluded = /^\/(?:admin|api|idx-header|idx-footer|contact|privacy|relocation-guide|mortgage-calculator|closing-costs|sellers-net-sheet|join-popby-realty)(?:\/|$)/;
 const enabled = !excluded.test(Astro.url.pathname);
+const isBlogArticle = /^\/blog\/[^/]+\/?$/.test(Astro.url.pathname);
 ---
 
 {enabled && (
-  <aside id="signupPopup" class="signup-popup" role="dialog" aria-modal="false" aria-labelledby="signupTitle" aria-describedby="signupIntro" data-nosnippet hidden>
+  <aside id="signupPopup" class:list={['signup-popup', { 'signup-popup--blog': isBlogArticle }]} data-blog-article={isBlogArticle ? 'true' : 'false'} role="dialog" aria-modal="false" aria-labelledby="signupTitle" aria-describedby="signupIntro" data-nosnippet hidden>
     <button type="button" class="signup-popup__close" data-signup-dismiss aria-label="Dismiss signup">&times;</button>
     <p class="signup-popup__eyebrow">Planning your next move?</p>
     <h2 id="signupTitle">Local insight. A clearer next step.</h2>
@@ -60,6 +61,8 @@ const enabled = !excluded.test(Astro.url.pathname);
     .signup-popup__expand { display: block; }
     .signup-popup--expanded .signup-popup__details { display: block; }
     .signup-popup--expanded .signup-popup__expand { display: none; }
+    .signup-popup--blog .signup-popup__details { display: block; }
+    .signup-popup--blog .signup-popup__expand { display: none; }
   }
 </style>
 
@@ -71,7 +74,8 @@ const enabled = !excluded.test(Astro.url.pathname);
     const error = document.getElementById('signupError');
     const success = document.getElementById('signupSuccess');
     const submit = form.querySelector('[type="submit"]');
-    const seenKey = 'cpr_signup_seen_v1';
+    const isBlogArticle = popup.dataset.blogArticle === 'true';
+    const seenKey = isBlogArticle ? 'cpr_signup_blog_seen_v1' : 'cpr_signup_seen_v1';
     const doneKey = 'cpr_signup_done_v1';
     const week = 7 * 24 * 60 * 60 * 1000;
     let shown = false;
@@ -105,8 +109,8 @@ const enabled = !excluded.test(Astro.url.pathname);
       if (stopped || shown || !ready || document.visibilityState !== 'visible') return;
       if (suppressed()) { stop(); return; }
       const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      if (scrollable > 0 && window.scrollY / scrollable < .35) return;
-      // Avoid covering cookie choices, another dialog, or an active form.
+      if (!isBlogArticle && scrollable > 0 && window.scrollY / scrollable < .35) return;
+      // Avoid interrupting another dialog or an active form.
       const cookie = document.getElementById('cookieBanner');
       const gate = document.getElementById('leadGate');
       const contact = document.getElementById('contact');
@@ -115,7 +119,7 @@ const enabled = !excluded.test(Astro.url.pathname);
         const bounds = contact.getBoundingClientRect();
         if (bounds.top < window.innerHeight && bounds.bottom > 0) return;
       }
-      if ((cookie && !cookie.hidden) || (gate && gate.getClientRects().length) || document.querySelector('dialog[open]') || (active && active.closest('form, iframe, [contenteditable="true"]'))) return;
+      if ((!isBlogArticle && cookie && !cookie.hidden) || (gate && gate.getClientRects().length) || document.querySelector('dialog[open]') || (active && active.closest('form, iframe, [contenteditable="true"]'))) return;
       returnFocus = active;
       popup.hidden = false;
       shown = true;
@@ -135,7 +139,7 @@ const enabled = !excluded.test(Astro.url.pathname);
     document.addEventListener('submit', (event) => {
       if (event.target !== form) { close(); }
     });
-    const delay = setTimeout(() => { ready = true; maybeShow(); }, 30000);
+    const delay = setTimeout(() => { ready = true; maybeShow(); }, isBlogArticle ? 5000 : 30000);
     const retry = setInterval(maybeShow, 5000);
     window.addEventListener('scroll', maybeShow, { passive: true });
     document.addEventListener('focusout', maybeShow);
