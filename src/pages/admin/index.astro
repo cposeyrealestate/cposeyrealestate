@@ -49,7 +49,7 @@ import '../../styles/fonts.css';
         <a data-gsc-report="sitemaps" href="https://search.google.com/search-console/sitemaps?resource_id=sc-domain%3Acposeyrealestate.com" target="_blank" rel="noopener noreferrer">Sitemaps ↗</a>
         <a href="https://plausible.io/cposeyrealestate.com" target="_blank" rel="noopener noreferrer">Plausible ↗</a>
         <a href="#ai-referrals">AI referrals</a>
-        <a href="#lead-conversions">Lead conversions</a>
+        <a href="#lead-conversions">Lead conversions</a><a href="#priority-pages">Priority page queries</a>
         <a href="#search-pages">Google pages</a>
       </nav>
 
@@ -175,20 +175,33 @@ import '../../styles/fonts.css';
       <section class="card card--wide" id="lead-conversions">
         <header class="card__header"><h2>Lead Conversions</h2><a href="https://plausible.io/cposeyrealestate.com/settings/goals" target="_blank" rel="noopener noreferrer">Plausible goals ↗</a></header>
         <div class="gsc-totals">
-          <div class="gsc-stat"><div class="gsc-stat__label">Form submissions</div><div class="gsc-stat__value" id="leadCount">—</div></div>
-          <div class="gsc-stat"><div class="gsc-stat__label">Visitor conversion rate</div><div class="gsc-stat__value" id="leadRate">—</div></div>
+          <div class="gsc-stat"><div class="gsc-stat__label">All confirmed form submissions</div><div class="gsc-stat__value" id="leadCount">—</div></div>
+          <div class="gsc-stat"><div class="gsc-stat__label">Form visitor conversion rate</div><div class="gsc-stat__value" id="leadRate">—</div></div>
           <div class="gsc-stat"><div class="gsc-stat__label">AI-referred submissions</div><div class="gsc-stat__value" id="aiLeadCount">—</div></div>
         </div>
+        <div class="gsc-stat"><div class="gsc-stat__label">Property inquiry submissions</div><div class="gsc-stat__value" id="inquiryCount">—</div></div>
+        <p class="report-note">Property inquiries include contact and valuation forms. General signups and resource requests appear separately below. Counts are submission events, not unique prospects or completed sales.</p>
         <p class="report-note" id="leadStatus" role="status">Loading conversion data…</p>
         <div class="grid-2">
           <div><h3>Lead sources</h3><div class="table-scroll"><table class="data-table"><thead><tr><th>Source</th><th class="num">Converting visitors</th><th class="num">Conversion rate</th></tr></thead><tbody id="leadSourcesBody"><tr><td colspan="3">Loading…</td></tr></tbody></table></div></div>
           <div><h3>Lead landing pages</h3><div class="table-scroll"><table class="data-table"><thead><tr><th>Landing page</th><th class="num">Converting visitors</th><th class="num">Conversion rate</th></tr></thead><tbody id="leadPagesBody"><tr><td colspan="3">Loading…</td></tr></tbody></table></div></div>
+        </div>
+        <div class="grid-2">
+          <div><h3>Pages where forms were submitted</h3><p class="report-note">The page where the accepted form event occurred, which may differ from the visitor’s landing page. Top 25 pages.</p><div class="table-scroll"><table class="data-table"><thead><tr><th>Submission page</th><th class="num">Submissions</th><th class="num">Visitors</th></tr></thead><tbody id="submissionPagesBody"><tr><td colspan="3">Loading…</td></tr></tbody></table></div></div>
+          <div><h3>Submissions by form type</h3><p class="report-note">Only counted after the form’s submission endpoint confirms acceptance. Unclassified events are not assigned to property inquiries.</p><div class="table-scroll"><table class="data-table"><thead><tr><th>Form type</th><th class="num">Submissions</th></tr></thead><tbody id="submissionFormsBody"><tr><td colspan="2">Loading…</td></tr></tbody></table></div></div>
         </div>
         <h3>Contact link activity</h3>
         <p class="report-note">Link clicks show intent; they do not confirm a completed call, email, or appointment.</p>
         <table class="data-table"><thead><tr><th>Action</th><th class="num">Clicks</th></tr></thead><tbody id="contactActionsBody"><tr><td colspan="2">Loading…</td></tr></tbody></table>
       </section>
 
+      <section class="card card--wide" id="priority-pages">
+        <header class="card__header"><h2>Priority Page Search Queries</h2></header>
+        <label for="focusPage">Choose a page</label>
+        <select id="focusPage"><option value="/new-braunfels/new-construction/">New construction</option><option value="/home-value/">Home valuation</option><option value="/new-braunfels/neighborhoods/veramendi/">Veramendi</option><option value="/new-braunfels/neighborhoods/mayfair/">Mayfair</option><option value="/new-braunfels/neighborhoods/vintage-oaks/">Vintage Oaks</option><option value="/new-braunfels/neighborhoods/river-chase/">River Chase</option></select>
+        <p class="report-note" id="focusSearchStatus" role="status">Loading page queries…</p>
+        <div class="table-scroll"><table class="data-table"><thead><tr><th>Query / Search Console</th><th class="num">Clicks</th><th class="num">Impressions</th><th class="num">CTR</th><th class="num">Position</th></tr></thead><tbody id="focusSearchBody"><tr><td colspan="5">Loading…</td></tr></tbody></table></div>
+      </section>
       <section class="card card--wide" id="search-pages">
         <header class="card__header"><h2>Google Search by Page</h2><a data-gsc-report="performance" href="https://search.google.com/search-console/performance/search-analytics?resource_id=sc-domain%3Acposeyrealestate.com" target="_blank" rel="noopener noreferrer">Full Google report ↗</a></header>
         <p class="report-note" id="searchDates"></p><p id="searchChange" role="status">Loading page-level search data…</p>

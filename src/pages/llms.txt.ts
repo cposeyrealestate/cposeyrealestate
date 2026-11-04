@@ -15,6 +15,12 @@ export function GET() {
     ['Home buying guide', '/buyers-guide/'],
     ['Home selling guide', '/sellers-guide/'],
     ['Home valuation request', '/home-value/'],
+    ['New construction buying guide', '/new-braunfels/new-construction/'],
+    ['Veramendi buyer guide', '/new-braunfels/neighborhoods/veramendi/'],
+    ['Mayfair buyer guide', '/new-braunfels/neighborhoods/mayfair/'],
+    ['Vintage Oaks buyer guide', '/new-braunfels/neighborhoods/vintage-oaks/'],
+    ['River Chase buyer guide', '/new-braunfels/neighborhoods/river-chase/'],
+
     ['Current listings and recent sales', '/portfolio/'],
     ['Real estate articles and local guides', '/blog/'],
     ['Client testimonials', '/testimonials/'],

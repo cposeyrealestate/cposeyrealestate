@@ -13,6 +13,11 @@ const blogLastmod = new Map(
     .filter(([, v]) => v),
 );
 
+const updatedGuides = new Set([
+  '/home-value/', '/new-braunfels/new-construction/', '/new-braunfels/neighborhoods/',
+  ...['veramendi', 'mayfair', 'vintage-oaks', 'river-chase'].map(slug => `/new-braunfels/neighborhoods/${slug}/`),
+]);
+
 // Exclude permanent redirect sources: discovery should point at final pages.
 const redirectSources = new Set(
   readFileSync(new URL('./public/_redirects', import.meta.url), 'utf8')
@@ -42,6 +47,7 @@ export default defineConfig({
         !page.endsWith('/admin/') &&
         !redirectSources.has(new URL(page).pathname.replace(/\/$/, '') || '/'),
       serialize(item) {
+        if (updatedGuides.has(new URL(item.url).pathname)) item.lastmod = new Date('2026-11-03T00:00:00Z');
         const match = item.url.match(/\/blog\/([^/]+)\/?$/);
         if (match) {
           const lm = blogLastmod.get(match[1]);

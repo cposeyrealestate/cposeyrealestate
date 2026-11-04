@@ -1,6 +1,7 @@
 ---
 interface Props {
   context?: string;
+  initialMessage?: string;
   // Optional listing context — when provided, the banner and prefill
   // are rendered server-side and the form ships ready to submit. When
   // omitted, the script falls back to reading ?listing=&mls=&url= from
@@ -13,6 +14,7 @@ interface Props {
 
 const {
   context = "I'm interested in learning more about New Braunfels real estate...",
+  initialMessage,
   listing,
   mls,
   listingUrl,
@@ -22,7 +24,7 @@ const {
 // Pre-rendered prefill if a listing was passed in
 const prefillMessage = listing
   ? `I'm interested in ${listing}${mls ? ` (MLS# ${mls})` : ''}. Please send me more information or help me schedule a showing.`
-  : '';
+  : (initialMessage || '');
 ---
 
 <section class="contact-form section" id="contact">
@@ -303,7 +305,7 @@ const prefillMessage = listing
       listing = params.get('listing') || '';
       mls = params.get('mls') || '';
       sourceUrl = params.get('url') || '';
-      source = params.get('source') || '';
+      source = srvSource || params.get('source') || '';
 
       if (listing && banner) {
         var addr = document.getElementById('cfListingAddress');

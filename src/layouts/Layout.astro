@@ -92,7 +92,7 @@ const pageSchemas = [...homepageSchema().filter(node => !definedIds.has(node['@i
         const href = link.getAttribute('href') || '';
         if (href.startsWith('tel:')) track('Phone Link Click');
         else if (href.startsWith('mailto:')) track('Email Link Click');
-        else if (/^(?:\/contact\/?|\/)#book$|^#book$/.test(href)) track('Consultation Link Click');
+        else if (/^(?:\/contact\/?|\/)#book$|^#book$/.test(href) || /^https:\/\/tidycal\.com\/cposeyrealestate(?:\/|$)/.test(href)) track('Consultation Link Click');
       });
     </script>
   </body>

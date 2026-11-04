@@ -1,4 +1,4 @@
-import { SITE, LEAD_GOAL, CONTACT_GOALS, configuredGoal, gscLink, settledRange, aiFilter, joinSearchPages } from '../lib/admin-analytics.mjs';
+import { SITE, LEAD_GOAL, CONTACT_GOALS, configuredGoal, gscLink, settledRange, aiFilter, joinSearchPages, INQUIRY_FORMS, FORM_LABELS, FOCUS_PAGES, focusedQuery } from '../lib/admin-analytics.mjs';
 
 const $ = id => document.getElementById(id);
 const number = value => Number(value || 0).toLocaleString('en-US');
@@ -59,6 +59,8 @@ async function loadConversions(range, signal, active) {
     $('leadStatus').textContent = 'Setup needed: add a custom event goal named Lead Submitted in Plausible. This is not a zero-lead count. Tracking was added November 3, 2026.';
     empty('leadSourcesBody', 3, 'Lead reporting needs a configured goal and recorded events.');
     empty('leadPagesBody', 3, 'Lead reporting needs a configured goal and recorded events.');
+    for (const [id,cols] of [['submissionPagesBody',3],['submissionFormsBody',2]]) empty(id,cols,'A configured Lead Submitted goal is required.');
+    $('inquiryCount').textContent = '—';
     return;
   }
   const filters = [['is', 'event:goal', [leadName]]];
@@ -72,11 +74,26 @@ async function loadConversions(range, signal, active) {
   if (!active()) return;
   const total = summary.results?.[0]?.metrics || [0, 0];
   $('leadCount').textContent = number(total[0]); $('leadRate').textContent = pct(total[1]); $('aiLeadCount').textContent = number(ai.results?.[0]?.metrics?.[0]);
-  $('leadStatus').textContent = 'The total counts confirmed form-submission events. Source and landing-page rows count visitors who submitted and their conversion rate. These are not closed transactions. Tracking began November 3, 2026.';
+  $('leadStatus').textContent = 'The total counts confirmed form-submission events. Source and landing-page rows count visitors who submitted and their conversion rate. This total includes inquiry forms, resource requests, and general signups. Use the form breakdown to distinguish them. These are not closed transactions. Tracking began November 3, 2026.';
   $('leadSourcesBody').innerHTML = (sources.results || []).map(r => '<tr><td>' + escape(r.dimensions[0] || 'Direct / None') + '</td><td class="num">' + number(r.metrics[0]) + '</td><td class="num">' + pct(r.metrics[1]) + '</td></tr>').join('');
   $('leadPagesBody').innerHTML = (pages.results || []).map(r => '<tr>' + pageCell(r.dimensions[0]) + '<td class="num">' + number(r.metrics[0]) + '</td><td class="num">' + pct(r.metrics[1]) + '</td></tr>').join('');
   if (!sources.results?.length) empty('leadSourcesBody', 3, 'No recorded lead sources in this period.');
   if (!pages.results?.length) empty('leadPagesBody', 3, 'No recorded lead landing pages in this period.');
+  await Promise.allSettled([
+    request('plausible', { ...base, metrics:['events','visitors'], dimensions:['event:page'], pagination:{limit:25} }, signal).then(data=>{
+      if(!active())return;
+      $('submissionPagesBody').innerHTML=(data.results||[]).map(r=>'<tr>'+pageCell(r.dimensions[0])+'<td class="num">'+number(r.metrics[0])+'</td><td class="num">'+number(r.metrics[1])+'</td></tr>').join('');
+      if(!data.results?.length)empty('submissionPagesBody',3,'No confirmed submission pages recorded in this period.');
+    }).catch(error=>{if(active()&&error.name!=='AbortError')empty('submissionPagesBody',3,'Submission-page breakdown unavailable; totals above remain valid.');}),
+    request('plausible', { ...base, metrics:['events'], dimensions:['event:props:form'], pagination:{limit:100} }, signal).then(data=>{
+      if(!active())return;
+      const rows=data.results||[];
+      $('inquiryCount').textContent=number(rows.filter(r=>INQUIRY_FORMS.includes(r.dimensions[0])).reduce((sum,r)=>sum+Number(r.metrics[0]||0),0));
+      $('submissionFormsBody').innerHTML=rows.map(r=>'<tr><td>'+escape(FORM_LABELS[r.dimensions[0]]||'Unclassified form')+'</td><td class="num">'+number(r.metrics[0])+'</td></tr>').join('');
+      if(!rows.length)empty('submissionFormsBody',2,'No classified form-submission events recorded in this period.');
+    }).catch(error=>{if(active()&&error.name!=='AbortError'){ $('inquiryCount').textContent='—';empty('submissionFormsBody',2,'Form-type breakdown unavailable. No inquiry count is inferred.');}}),
+  ]);
+
 }
 
 async function loadSearch(range, signal, active) {
@@ -106,18 +123,39 @@ async function loadSearch(range, signal, active) {
   if (!queryRows.length) empty('searchQueryChangesBody',6,'No search query data returned.');
 }
 
+async function loadFocusedSearch(range, signal, active) {
+  const dates=settledRange(range);
+  const selected=$('focusPage').value;
+  const page=FOCUS_PAGES.includes(selected)?selected:FOCUS_PAGES[0];
+  const data=await request('gsc',focusedQuery(page,dates),signal);
+  if(!active())return;
+  const rows=[...(data.rows||[])].sort((a,b)=>b.impressions-a.impressions).slice(0,25);
+  $('focusSearchStatus').textContent=page+' · '+dates.start+'–'+dates.end+'. Top 25 by impressions from up to 1,000 returned queries. Google may omit anonymized searches. New pages may have no data yet.';
+  $('focusSearchBody').innerHTML=rows.map(r=>'<tr><td>'+link(r.keys[0],gscLink({property:data._site||property,...dates,page,query:r.keys[0]}))+'</td><td class="num">'+number(r.clicks)+'</td><td class="num">'+number(r.impressions)+'</td><td class="num">'+pct(r.ctr*100)+'</td><td class="num">'+Number(r.position).toFixed(1)+'</td></tr>').join('');
+  if(!rows.length)empty('focusSearchBody',5,'No query rows returned for this page and period. This does not establish indexing status.');
+}
+let focusedController, focusedGeneration=0, focusedRange='28d';
+async function refreshFocused(range) {
+  focusedRange=range; focusedController?.abort(); focusedController=new AbortController();
+  const id=++focusedGeneration,active=()=>id===focusedGeneration;
+  $('focusSearchStatus').textContent='Loading this page’s Google queries…';empty('focusSearchBody',5,'Loading…');
+  try{await loadFocusedSearch(range,focusedController.signal,active);}
+  catch(error){if(active()&&error.name!=='AbortError'){ $('focusSearchStatus').textContent='Page-query report unavailable. Your other reports remain available.';empty('focusSearchBody',5,'Use Search Console to inspect this page.');}}
+}
+$('focusPage')?.addEventListener?.('change',()=>refreshFocused(focusedRange));
 let controller;
 document.addEventListener('admin:refresh', async event => {
   controller?.abort(); controller = new AbortController();
   const id = ++generation; const active = () => id === generation;
   const signal = controller.signal; const range = event.detail.range;
   context = settledRange(range); shortcuts();
-  for (const id of ['aiVisitors', 'aiVisits', 'leadCount', 'leadRate', 'aiLeadCount']) $(id).textContent = '—';
+  for (const id of ['aiVisitors', 'aiVisits', 'leadCount', 'leadRate', 'aiLeadCount', 'inquiryCount']) $(id).textContent = '—';
   $('aiStatus').textContent = 'Loading AI referrals…'; $('leadStatus').textContent = 'Loading conversion data…'; $('searchChange').textContent = 'Loading page-level search data…';
-  for (const [id, cols] of [['aiSourcesBody',3],['aiPagesBody',2],['leadSourcesBody',3],['leadPagesBody',3],['contactActionsBody',2],['searchPagesBody',6],['searchChangesBody',4],['searchQueryChangesBody',6]]) empty(id, cols, 'Loading…');
+  for (const [id, cols] of [['aiSourcesBody',3],['aiPagesBody',2],['leadSourcesBody',3],['leadPagesBody',3],['contactActionsBody',2],['submissionPagesBody',3],['submissionFormsBody',2],['searchPagesBody',6],['searchChangesBody',4],['searchQueryChangesBody',6]]) empty(id, cols, 'Loading…');
   await Promise.allSettled([
+    refreshFocused(range),
     loadAI(range, signal, active).catch(error => { if (active() && error.name !== 'AbortError') { $('aiStatus').textContent = 'AI referral report unavailable. Your other analytics still work.'; for (const id of ['aiSourcesBody','aiPagesBody']) empty(id, 3, 'Report unavailable.'); } }),
-    loadConversions(range, signal, active).catch(error => { if (active() && error.name !== 'AbortError') { console.warn('[analytics] Conversion report failed', error.message); $('leadStatus').textContent = 'Conversion report unavailable. Confirm your Plausible goals and API access; no lead count is inferred.'; for (const id of ['leadSourcesBody','leadPagesBody','contactActionsBody']) empty(id, 3, 'Report unavailable.'); } }),
+    loadConversions(range, signal, active).catch(error => { if (active() && error.name !== 'AbortError') { console.warn('[analytics] Conversion report failed', error.message); $('leadStatus').textContent = 'Conversion report unavailable. Confirm your Plausible goals and API access; no lead count is inferred.'; for (const id of ['leadSourcesBody','leadPagesBody','contactActionsBody','submissionPagesBody','submissionFormsBody']) empty(id, 3, 'Report unavailable.'); } }),
     loadSearch(range, signal, active).catch(error => { if (active() && error.name !== 'AbortError') { $('searchChange').textContent = 'Page-level search report unavailable. Use the Search Console links above.'; for (const id of ['searchPagesBody','searchQueryChangesBody']) empty(id,6,'Report unavailable.'); empty('searchChangesBody',4,'Report unavailable.'); } }),
   ]);
   if (active()) shortcuts();

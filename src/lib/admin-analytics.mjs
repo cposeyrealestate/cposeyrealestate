@@ -48,3 +48,11 @@ export function joinSearchPages(current, previous) {
     clickChange: (now.get(page)?.clicks || 0) - (before.get(page)?.clicks || 0),
   }));
 }
+
+export const INQUIRY_FORMS = ['homepage-contact', 'contact', 'valuation-modal', 'home-valuation'];
+export const FORM_LABELS = { 'homepage-contact':'Homepage inquiry', contact:'Contact or property inquiry', 'valuation-modal':'Quick home valuation', 'home-valuation':'Home-value page request', 'guide-download':'Guide request', 'lead-gate':'Resource access request', signup:'General signup' };
+export const FOCUS_PAGES = ['/new-braunfels/new-construction/', '/home-value/', ...['veramendi','mayfair','vintage-oaks','river-chase'].map(slug=>'/new-braunfels/neighborhoods/'+slug+'/')];
+export function focusedQuery(page, dates) {
+  const selected = FOCUS_PAGES.includes(page) ? page : FOCUS_PAGES[0];
+  return { startDate:dates.start,endDate:dates.end,dimensions:['query'],rowLimit:1000,dimensionFilterGroups:[{filters:[{dimension:'page',operator:'equals',expression:new URL(selected,SITE).href}]}] };
+}

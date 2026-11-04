@@ -36,14 +36,15 @@ test('AI patterns accept known referrers without counting lookalike hosts', () =
   assert.equal(referrers.some(regex => regex.test('l.meta.ai.evil.example/')), false);
 });
 
-const script = readFileSync('src/scripts/admin-reports.js','utf8').replace(/^import .*;\n/, '');
-async function runReport({ goal = false, aiFailure = false, searchFailure = false } = {}) {
+const script = readFileSync('src/scripts/admin-reports.js','utf8').replace(/^import .*;\r?\n/, '');
+async function runReport({ goal = false, aiFailure = false, searchFailure = false, formFailure = false, formRows = [] } = {}) {
   const nodes = new Map(); const listeners = {}; const calls = [];
   const node = id => { if (!nodes.has(id)) nodes.set(id,{textContent:'',innerHTML:''}); return nodes.get(id); };
   const fetch = async (url, options = {}) => {
     const body = options.body ? JSON.parse(options.body) : null; calls.push({ url, body });
     if (url.endsWith('/goals')) return { ok:true,json:async()=>({goals:goal?[{event_name:'Lead Submitted',display_name:'Lead Submitted'}]:[]}) };
     if (url.endsWith('/gsc')) return {ok:!searchFailure,status:searchFailure?502:200,json:async()=>searchFailure?{error:'Unavailable'}:{rows:[],_site:'sc-domain:cposeyrealestate.com'}};
+    if (body.dimensions?.includes('event:props:form')) return {ok:!formFailure,status:formFailure?400:200,json:async()=>formFailure?{error:'Unavailable'}:{results:formRows}};
     if (body.dimensions?.includes('visit:entry_page') && body.metrics?.includes('events')) return {ok:false,status:400,json:async()=>({error:'Event metrics cannot be queried with entry-page session dimensions'})};
     if (aiFailure && body.filters?.[0]?.[0] === 'or') return {ok:false,status:502,json:async()=>({error:'Unavailable'})};
     return {ok:true,status:200,json:async()=>({results:body.dimensions?.length?[]:[{metrics:body.metrics.map(()=>0)}]})};
@@ -59,6 +60,31 @@ test('missing goal shows setup state rather than a fabricated zero', async()=>{
   assert.match(node('leadStatus').textContent,/Setup needed/);
   assert.equal(calls.some(c=>c.body?.filters?.some(f=>f[1]==='event:goal'&&f[2]?.includes('Lead Submitted'))),false);
   assert.equal(node('aiVisitors').textContent,'0');
+});
+
+test('priority query reports use an exact approved page and the settled date range',()=>{
+  const dates={start:'2026-10-04',end:'2026-10-31'};
+  const query=helpers.focusedQuery('/home-value/',dates);
+  assert.equal(query.dimensionFilterGroups[0].filters[0].expression,'https://cposeyrealestate.com/home-value/');
+  assert.equal(query.dimensionFilterGroups[0].filters[0].operator,'equals');
+  assert.equal(query.startDate,dates.start);
+  assert.equal(helpers.focusedQuery('https://example.invalid/',dates).dimensionFilterGroups[0].filters[0].expression,'https://cposeyrealestate.com/new-braunfels/new-construction/');
+});
+
+test('inquiries exclude signups, downloads, and unclassified events',async()=>{
+  const {node,calls}=await runReport({goal:true,formRows:[{dimensions:['contact'],metrics:[3]},{dimensions:['home-valuation'],metrics:[2]},{dimensions:['signup'],metrics:[7]},{dimensions:['guide-download'],metrics:[4]},{dimensions:['(none)'],metrics:[1]}]});
+  assert.equal(node('inquiryCount').textContent,'5');
+  assert.match(node('submissionFormsBody').innerHTML,/General signup/);
+  assert.match(node('submissionFormsBody').innerHTML,/Unclassified form/);
+  assert.ok(calls.some(c=>c.body?.dimensions?.includes('event:page')&&c.body?.metrics?.includes('events')));
+});
+
+test('unavailable custom form properties do not erase confirmed totals or page reporting',async()=>{
+  const {node}=await runReport({goal:true,formFailure:true});
+  assert.equal(node('leadCount').textContent,'0');
+  assert.equal(node('inquiryCount').textContent,'—');
+  assert.match(node('submissionFormsBody').innerHTML,/No inquiry count is inferred/);
+  assert.match(node('submissionPagesBody').innerHTML,/No confirmed submission pages/);
 });
 test('configured goal with no events renders a verified zero and percentage',async()=>{
   const {node}=await runReport({goal:true});
