@@ -233,9 +233,22 @@ const formatActionStep = (step: string) =>
 
     <section class="article-resources section">
       <div class="container">
-        <aside class="author-card" aria-label="About the author">
-          {post.guestAuthor ? <><h2>About {post.guestAuthor.name}</h2><p>{post.guestAuthor.bio} <a href={post.guestAuthor.url}>Visit DFW Barndominium Guide</a>.</p></> : <><h2>About Cody Posey</h2><p>Cody Posey is a real estate agent with Popby Realty serving New Braunfels and the surrounding Texas Hill Country. <a href="/about/">Read Cody’s background and credentials</a>, or <a href="/contact/">ask a question about your move</a>.</p></>}
+        {post.guestAuthor && <aside class="author-card guest-author" aria-label="About the author"><h2>About {post.guestAuthor.name}</h2><p>{post.guestAuthor.bio} <a href={post.guestAuthor.url}>Visit DFW Barndominium Guide</a>.</p></aside>}
+        <aside class="author-card cody-card" aria-label={post.guestAuthor ? 'Connect with Cody Posey' : 'About Cody Posey'}>
+          <img class="cody-card__photo" src="/images/cody-posey-headshot.jpg" alt="Cody Posey" width="320" height="360" loading="lazy" />
+          <div>
+            <h2>About Cody Posey</h2>
+            <p>Cody Posey is a real estate agent with Popby Realty serving New Braunfels and the surrounding Texas Hill Country. <a href="/about/">Read Cody’s background and credentials</a>.</p>
+            <div class="cody-card__actions"><a class="cody-card__booking" href="https://tidycal.com/cposeyrealestate/30-minute-meeting" target="_blank" rel="noopener noreferrer">Book a relocation call</a><a href="#contact">Ask Cody a question</a></div>
+          </div>
         </aside>
+      </div>
+    </section>
+
+    <ContactForm context="I have a question about this article..." source="Blog Article" />
+
+    <section class="article-resources section">
+      <div class="container">
         <h2>Plan your next step</h2>
         <p><a href={resource.href}>{resource.title}</a> — {resource.text}</p>
         {relatedPosts.length > 0 && <><h2>Related local guides</h2><div class="related-guides">{relatedPosts.map(related => <a href={`/blog/${related.slug}/`}><h3>{related.title}</h3></a>)}</div></>}
@@ -252,7 +265,6 @@ const formatActionStep = (step: string) =>
   </main>
   <ParallaxBanner image="/images/generated/hill-country-home-2.webp" />
 
-  <ContactForm context="I have a question about this article..." />
   <Footer />
 </Layout>
 
@@ -268,6 +280,13 @@ const formatActionStep = (step: string) =>
   .article-resources h2 { margin: 1.5rem 0 .75rem; font-size: 1.4rem; }
   .article-resources p { line-height: 1.8; }
   .author-card h2 { margin-top: 0; }
+  .guest-author { margin-bottom: 1rem; }
+  .cody-card { display: flex; align-items: center; gap: 1.5rem; }
+  .cody-card__photo { flex: 0 0 112px; width: 112px; height: 112px; border-radius: 50%; object-fit: cover; object-position: center 17%; }
+  .cody-card__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 1rem; }
+  .article-resources .cody-card__booking { display: inline-block; background: #b40d0d; color: #fff; padding: .75rem 1rem; border-radius: 4px; text-decoration: none; font-weight: 700; }
+  .cody-card__booking:focus-visible { outline: 3px solid #111; outline-offset: 3px; }
+  @media (max-width: 560px) { .cody-card { align-items: flex-start; gap: 1rem; } .cody-card__photo { flex-basis: 72px; width: 72px; height: 72px; } .cody-card__actions { align-items: flex-start; flex-direction: column; } }
   .related-guides { display: grid; gap: 1rem; }
   .related-guides a { padding: 1rem; border: 1px solid #ddd; border-radius: 8px; }
   .related-guides h3 { font-size: 1.05rem; margin: 0; }
