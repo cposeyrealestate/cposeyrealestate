@@ -30,3 +30,5 @@ Publisher must verify deployed article/meta/image/schema/sitemap and newest visi
 
 ## Publication validation
 Build passed; 46 SEO tests passed; output audit passed 241 HTML files / 238 sitemap URLs. All 152 existing records unchanged, 153 unique slugs; asset and internal links, canonical/meta/schema, single H1 and HTML table checked. Local browser access stopped during preparation. Recovered layout validation using the connected Cloudflare screenshot renderer on exact built HTML with inlined build CSS: 1440px desktop and 390px phone hero plus phone table visually inspected, legible and unclipped. This was a rendering check, not live publication. Release is late; dateRaw changed from planned 6AM to actual release preparation time. Production deployment timestamp must be recorded separately.
+
+PR: https://github.com/cposeyrealestate/cposeyrealestate/pull/22 . Final local rebuild and metadata checks passed after timestamp correction. Status: ready for CI and authorized production merge; live verification pending.
