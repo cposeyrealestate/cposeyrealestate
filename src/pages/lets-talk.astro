@@ -1,0 +1,127 @@
+---
+import Layout from '../layouts/Layout.astro';
+import dimensions from '../data/image-dimensions.json';
+const tidyCalPath = 'cposeyrealestate/30-minute-meeting';
+const bookingUrl = `https://tidycal.com/${tidyCalPath}`;
+const portrait = dimensions['/images/cody-posey.webp'];
+---
+
+<Layout
+  title="Plan Your Move with Cody Posey | YouTube Viewers"
+  description="Coming from YouTube? Book a free 30-minute relocation call with Cody Posey to talk through your move to San Antonio, New Braunfels, or the Texas Hill Country."
+  noindex={true}
+  showSignupPopup={false}
+  image="/images/cody-posey.webp"
+>
+  <a class="skip" href="#main">Skip to booking information</a>
+  <header class="landing-header wrap">
+    <p class="wordmark">CODY POSEY<span>REALTOR® · POPBY REALTY</span></p>
+    <span class="channel-label">FROM YOUTUBE TO YOUR NEXT CHAPTER</span>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="page-title">
+      <div class="intro">
+        <p class="eyebrow">Glad you made it over from YouTube</p>
+        <h1 id="page-title">You’ve seen the videos.<br /><span>Let’s plan your move.</span></h1>
+        <p class="lede">Moving to San Antonio, New Braunfels, or the Texas Hill Country? Let’s turn your questions into a plan.</p>
+        <div class="host">
+          <img src="/images/cody-posey.webp" alt="Cody Posey" width={portrait.width} height={portrait.height} fetchpriority="high" />
+          <div><strong>Talk with Cody Posey</strong><p>Local REALTOR® with Popby Realty<br />Your guide beyond the neighborhood tour.</p></div>
+        </div>
+        <p class="personal-note">Tell me what matters to you. We’ll work through the areas, homes, and next steps that fit your plans.</p>
+      </div>
+
+      <div class="booking-card" id="book" aria-labelledby="booking-title">
+        <p class="eyebrow">Your next step</p>
+        <h2 id="booking-title">Book your free<br />30-minute call</h2>
+        <p class="booking-description">A one-on-one relocation call, by phone or video. Choose a time and confirm your appointment in TidyCal.</p>
+        <div data-booking-slot data-path={tidyCalPath}>
+          <div class="booking-facade" data-booking-facade>
+            <button class="btn btn-primary booking-button" type="button" data-load-booking>See available times <span aria-hidden="true">↗</span></button>
+            <p class="small">No obligation. Just a conversation about your move.</p>
+            <p data-booking-status role="status" hidden></p>
+          </div>
+        </div>
+        <p class="calendar-fallback">Prefer a separate page? <a href={bookingUrl} target="_blank" rel="noopener noreferrer">Open my TidyCal calendar ↗</a></p>
+        <noscript><p>Use the TidyCal calendar link above to choose your time. No JavaScript is needed on this page to follow that link.</p></noscript>
+      </div>
+    </section>
+
+    <section class="conversation wrap" aria-labelledby="conversation-title">
+      <p class="eyebrow">Make the call your own</p>
+      <h2 id="conversation-title">Bring your questions.<br />We’ll talk through the details.</h2>
+      <div class="topics">
+        <article><span class="number" aria-hidden="true">01</span><h3>Your location</h3><p>Compare communities, commute needs, and the day-to-day lifestyle you’re looking for.</p></article>
+        <article><span class="number" aria-hidden="true">02</span><h3>Your home</h3><p>Talk about your budget, must-haves, and whether new construction or an existing home fits your plans.</p></article>
+        <article><span class="number" aria-hidden="true">03</span><h3>Your timeline</h3><p>Map out a visit, your home search, and the next steps—whether your move is coming soon or still taking shape.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="landing-footer wrap">
+    <p>Cody Posey, REALTOR® · Popby Realty<br />Office: (830) 321-0051 · 323 Arendes Dr, New Braunfels, TX 78130</p>
+    <p class="legal"><a href="/privacy/">Privacy Policy</a><a href="/docs/trec-consumer-protection-notice.pdf" target="_blank" rel="noopener">TREC Consumer Protection Notice</a><a href="/docs/trec-iabs.pdf" target="_blank" rel="noopener">Information About Brokerage Services</a></p>
+    <p>© {new Date().getFullYear()} Cody Posey Real Estate.</p>
+  </footer>
+</Layout>
+
+<script>
+  import { initBooking } from '../lib/booking.mjs';
+  const slot = document.querySelector<HTMLElement>('[data-booking-slot]');
+  if (slot) initBooking(slot);
+</script>
+
+<style>
+  :global(html body) { background: #f7f5f1; color: #191919; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding-left: 32px; padding-right: 32px; }
+  .skip { position: absolute; top: -100px; left: 16px; background: #fff; padding: 12px; z-index: 1000; }
+  .skip:focus { top: 8px; }
+  .landing-header { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 28px; padding-bottom: 28px; border-bottom: 1px solid #d9d5ce; }
+  .wordmark { font-family: var(--font-heading); font-weight: 800; font-size: 23px; letter-spacing: .04em; line-height: 1.2; }
+  .wordmark span { display: block; font-family: var(--font-sans); font-size: 10px; font-weight: 600; letter-spacing: .15em; margin-top: 7px; }
+  .channel-label { font-size: 10px; font-weight: 700; letter-spacing: .13em; color: #59544e; }
+  .hero { display: grid; grid-template-columns: 1.05fr 1fr; align-items: start; gap: 60px; padding-top: 65px; padding-bottom: 65px; }
+  .eyebrow { color: #ad1010; text-transform: uppercase; font-size: 11px; font-weight: 700; letter-spacing: .12em; margin-bottom: 18px; }
+  h1, h2, h3 { text-transform: none; letter-spacing: -.035em; }
+  h1 { font-size: clamp(2.4rem, 4.1vw, 3.6rem); line-height: 1.12; }
+  h1 span { color: #ad1010; }
+  .lede { margin-top: 24px; color: #514d47; font-size: 17px; max-width: 500px; }
+  .host { display: flex; align-items: center; gap: 18px; margin-top: 32px; }
+  .host img { width: 88px; height: 104px; border-radius: 7px; object-fit: cover; object-position: center 25%; }
+  .host strong { font-size: 15px; }
+  .host p { color: #59544e; font-size: 13px; line-height: 1.65; margin-top: 5px; }
+  .personal-note { font-size: 14px; color: #59544e; border-left: 2px solid #c7bfb3; padding-left: 17px; margin-top: 26px; max-width: 450px; }
+  .booking-card { padding: 36px; background: #fff; border: 1px solid #e1ddd6; border-top: 4px solid #b91010; border-radius: 12px; box-shadow: 0 16px 48px #30291d0d; min-width: 0; scroll-margin-top: 20px; }
+  .booking-card h2 { font-size: clamp(1.9rem, 3vw, 2.5rem); line-height: 1.15; }
+  .booking-description { margin: 20px 0 25px; color: #59544e; font-size: 14px; }
+  .booking-button { width: 100%; border-radius: 6px; font-size: 13px; letter-spacing: .02em; text-transform: none; padding: 17px 20px; display: flex; justify-content: space-between; align-items: center; }
+  .booking-button:disabled { opacity: .7; cursor: wait; }
+  .small { font-size: 11px; color: #59544e; margin-top: 12px; text-align: center; }
+  [data-booking-status] { font-size: 13px; margin-top: 15px; }
+  .calendar-fallback { font-size: 12px; line-height: 1.7; color: #59544e; padding-top: 22px; margin-top: 22px; border-top: 1px solid #e7e3dc; }
+  a { text-decoration: underline; text-underline-offset: 3px; }
+  .calendar-fallback a { color: #a80e0e; }
+  .conversation { border-top: 1px solid #d9d5ce; padding-top: 45px; padding-bottom: 55px; }
+  .conversation h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); }
+  .topics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; margin-top: 35px; }
+  .number { color: #a80e0e; font-size: 12px; font-weight: 700; }
+  .topics h3 { font-size: 19px; margin: 12px 0; letter-spacing: -.02em; }
+  .topics p { font-size: 14px; color: #59544e; }
+  .landing-footer { border-top: 1px solid #d9d5ce; padding-top: 25px; padding-bottom: 30px; font-size: 11px; color: #59544e; }
+  .legal { display: flex; gap: 12px 20px; flex-wrap: wrap; margin: 12px 0; }
+  @media (max-width: 800px) {
+    .wrap { padding-left: 22px; padding-right: 22px; }
+    .channel-label { display: none; }
+    .hero { grid-template-columns: 1fr; gap: 18px; padding-top: 30px; padding-bottom: 36px; }
+    h1 { font-size: clamp(2.25rem, 8vw, 3.4rem); }
+    .intro { display: contents; }
+    .intro > .eyebrow { order: 0; margin-bottom: 0; }
+    .intro h1 { order: 1; }
+    .booking-card { order: 3; padding: 26px 22px; margin-top: 8px; }
+    .lede { order: 2; margin-top: 0; font-size: 16px; }
+    .host { order: 4; margin-top: 12px; }
+    .personal-note { display: none; }
+    .topics { grid-template-columns: 1fr; gap: 26px; }
+  }
+</style>
