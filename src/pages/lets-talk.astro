@@ -44,6 +44,7 @@ const portrait = dimensions['/images/cody-posey.webp'];
           </div>
         </div>
         <p class="calendar-fallback">Prefer a separate page? <a href={bookingUrl} target="_blank" rel="noopener noreferrer">Open my TidyCal calendar ↗</a></p>
+        <p class="return-note">Book here and you’ll return to the homepage once your appointment is confirmed.</p>
         <noscript><p>Use the TidyCal calendar link above to choose your time. No JavaScript is needed on this page to follow that link.</p></noscript>
       </div>
     </section>
@@ -68,8 +69,9 @@ const portrait = dimensions['/images/cody-posey.webp'];
 
 <script>
   import { initBooking } from '../lib/booking.mjs';
+  import { initBookingRedirect } from '../lib/booking-redirect.mjs';
   const slot = document.querySelector<HTMLElement>('[data-booking-slot]');
-  if (slot) initBooking(slot);
+  if (slot) { initBookingRedirect(slot); initBooking(slot); }
 </script>
 
 <style>
@@ -102,6 +104,7 @@ const portrait = dimensions['/images/cody-posey.webp'];
   .calendar-fallback { font-size: 12px; line-height: 1.7; color: #59544e; padding-top: 22px; margin-top: 22px; border-top: 1px solid #e7e3dc; }
   a { text-decoration: underline; text-underline-offset: 3px; }
   .calendar-fallback a { color: #a80e0e; }
+  .return-note { font-size: 11px; color: #59544e; margin-top: 12px; }
   .conversation { border-top: 1px solid #d9d5ce; padding-top: 45px; padding-bottom: 55px; }
   .conversation h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); }
   .topics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; margin-top: 35px; }
