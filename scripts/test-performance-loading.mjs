@@ -57,11 +57,11 @@ test('video request waits for the page load event',async()=>{
 function booking() {
   const button=node(),status=node(),facade=node(),scripts=[],children=[],events=[];
   const doc={createElement:tag=>Object.assign(node(),{tag}),body:{appendChild:s=>scripts.push(s)},dispatchEvent:e=>events.push(e.type)};
-  const slot={ownerDocument:doc,dataset:{path:'cposeyrealestate/30-minute-meeting'},querySelector:s=>s.includes('load-booking')?button:s.includes('status')?status:facade,appendChild:s=>children.push(s)};
+  const slot={ownerDocument:doc,dataset:{path:'cposeyrealestate/satx-relocation'},querySelector:s=>s.includes('load-booking')?button:s.includes('status')?status:facade,appendChild:s=>children.push(s)};
   initBooking(slot);return {button,status,facade,scripts,children,events};
 }
 test('booking has no third-party script until intent and ignores double clicks',()=>{
-  const b=booking();assert.equal(b.scripts.length,0);b.button.events.click();b.button.events.click();assert.equal(b.scripts.length,1);assert.equal(b.children[0].dataset.path,'cposeyrealestate/30-minute-meeting');assert.deepEqual(b.events,['cpre:booking-opened']);
+  const b=booking();assert.equal(b.scripts.length,0);b.button.events.click();b.button.events.click();assert.equal(b.scripts.length,1);assert.equal(b.children[0].dataset.path,'cposeyrealestate/satx-relocation');assert.deepEqual(b.events,['cpre:booking-opened']);
 });
 test('failed scheduler script permits retry and retains the fallback facade',()=>{
   const b=booking();b.button.events.click();b.scripts[0].events.error();assert.equal(b.button.disabled,false);assert.match(b.status.textContent,/could not load/);b.button.events.click();assert.equal(b.scripts.length,2);
