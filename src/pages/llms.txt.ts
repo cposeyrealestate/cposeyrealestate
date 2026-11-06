@@ -9,6 +9,7 @@ export function GET() {
     ['About Cody Posey', '/about/'],
     ['Contact and consultation', '/contact/'],
     ['New Braunfels area guide', '/new-braunfels/'],
+    ['San Antonio area guide', '/san-antonio/'],
     ['Hill Country relocation guide', '/hill-country-relocation-guide/'],
     ['Military relocation to JBSA', '/military-relocation/'],
     ['2026 JBSA BAH rates', '/military-relocation/bah-rates/'],

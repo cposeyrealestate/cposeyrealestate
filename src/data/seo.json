@@ -1,11 +1,11 @@
 {
-  "_comment": "Canonical source of truth for SEO, schema.org, and AI-agent metadata. Referenced by SEO.astro, schema builders, llms.txt, and sitemap config. Edit here once \u2014 propagates everywhere.",
+  "_comment": "Canonical source of truth for SEO, schema.org, and AI-agent metadata. Referenced by SEO.astro, schema builders, llms.txt, and sitemap config. Edit here once — propagates everywhere.",
   "site": {
     "name": "Cody Posey Real Estate",
     "url": "https://cposeyrealestate.com",
     "locale": "en_US",
     "language": "English",
-    "description": "Cody Posey is a U.S. Army veteran and New Braunfels REALTOR\u00ae serving the Texas Hill Country. Trusted buyer and seller representation across New Braunfels, Canyon Lake, Seguin, Cibolo, Schertz, and Bulverde.",
+    "description": "Cody Posey is a retired Army First Sergeant and Texas REALTOR® serving San Antonio, New Braunfels, and the Texas Hill Country. Buyer and seller representation, military PCS relocation, and VA home-buying guidance.",
     "tagline": "Educating. Serving. Delivering Results.",
     "defaultOgImage": "/images/generated/hero-home-aerial.webp",
     "themeColor": "#FF1616"
@@ -14,8 +14,8 @@
     "name": "Cody Posey",
     "givenName": "Cody",
     "familyName": "Posey",
-    "jobTitle": "REALTOR\u00ae",
-    "bio": "Cody Posey is a U.S. Army veteran (20 years of service) and licensed Texas REALTOR\u00ae focused on the New Braunfels and Texas Hill Country market. He holds the MRP (Military Relocation Professional), ABR (Accredited Buyer's Representative), and PSA (Pricing Strategy Advisor) certifications. Cody represents both buyers and sellers across New Braunfels, Canyon Lake, Seguin, Cibolo, Schertz, Bulverde, and San Antonio.",
+    "jobTitle": "REALTOR®",
+    "bio": "Cody Posey is a retired U.S. Army First Sergeant with 20 years of service and a licensed Texas REALTOR® based in New Braunfels, serving San Antonio, New Braunfels, and the Texas Hill Country. He holds the MRP (Military Relocation Professional), ABR (Accredited Buyer's Representative), and PSA (Pricing Strategy Advisor) certifications. Cody represents buyers and sellers across San Antonio, New Braunfels, Canyon Lake, Seguin, Cibolo, Schertz, Bulverde, Garden Ridge, and Boerne, with a focus on military PCS relocation and VA home-buying guidance.",
     "image": "https://cposeyrealestate.com/images/cody-posey.webp",
     "email": "codyposey@cposeyrealestate.com",
     "telephone": "+1-830-360-5569",
@@ -40,15 +40,15 @@
     ],
     "memberOf": [
       {
-        "name": "National Association of REALTORS\u00ae",
+        "name": "National Association of REALTORS®",
         "url": "https://www.nar.realtor/"
       },
       {
-        "name": "Texas REALTORS\u00ae",
+        "name": "Texas REALTORS®",
         "url": "https://www.texasrealestate.com/"
       },
       {
-        "name": "San Antonio Board of REALTORS\u00ae (SABOR)",
+        "name": "San Antonio Board of REALTORS® (SABOR)",
         "url": "https://sabor.com/"
       }
     ],
@@ -57,7 +57,7 @@
     ]
   },
   "reviews": {
-    "aggregateRating": 5.0,
+    "aggregateRating": 5,
     "reviewCount": 35,
     "source": "Google Business Profile"
   },

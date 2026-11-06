@@ -18,7 +18,7 @@ const blogSchema = {
   '@id': 'https://cposeyrealestate.com/blog/#blog',
   name: 'Cody Posey Real Estate Blog',
   description:
-    'Market updates, neighborhood guides, and expert insight for buyers and sellers in New Braunfels and the Texas Hill Country.',
+    'Market updates, neighborhood guides, and expert insight for buyers and sellers in San Antonio, New Braunfels, and the Texas Hill Country.',
   url: 'https://cposeyrealestate.com/blog/',
   publisher: { '@id': `${seo.site.url}#business` },
   blogPost: posts.slice(0, 10).map((p) => ({
@@ -33,8 +33,8 @@ const blogSchema = {
 ---
 
 <Layout
-  title="New Braunfels Real Estate Blog | Cody Posey"
-  description="Market updates, neighborhood guides, and expert buyer + seller insights for New Braunfels, Canyon Lake, and the Texas Hill Country."
+  title="San Antonio &amp; New Braunfels Real Estate Blog | Cody Posey"
+  description="Market updates, neighborhood guides, and buyer, seller, and military relocation insights for San Antonio, New Braunfels, and the Texas Hill Country."
   schema={[
     blogSchema,
     breadcrumbSchema([
@@ -54,7 +54,7 @@ const blogSchema = {
           <a href="/">Home</a> <span>/</span> <span>Blog</span>
         </nav>
         <h1>Cody Posey <span style="color:#FF1616;">Real Estate Blog</span></h1>
-        <p>Insights on buying, selling, and living in the New Braunfels area</p>
+        <p>Insights on buying, selling, and living in San Antonio, New Braunfels, and the Texas Hill Country</p>
       </div>
     </div>
 
