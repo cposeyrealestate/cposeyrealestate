@@ -47,6 +47,7 @@ export default defineConfig({
         !page.endsWith('/sitemap-videos.xml') &&
         !page.endsWith('/search/') &&
         !page.endsWith('/admin/') &&
+        !/^\/lets-talk\/?$/.test(new URL(page).pathname) &&
         !redirectSources.has(new URL(page).pathname.replace(/\/$/, '') || '/'),
       serialize(item) {
         if (updatedGuides.has(new URL(item.url).pathname)) item.lastmod = new Date('2026-11-03T00:00:00Z');
