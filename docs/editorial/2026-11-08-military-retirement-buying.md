@@ -33,3 +33,5 @@ Validation results pending.
 Final build and48 tests passed; full SEO/watch-page/YouTube booking checks passed:243 HTML /239 sitemap URLs. All153 existing records unchanged;154 unique slugs. Planned6AMCST publication, meta/canonical/Cody schema/alt/internal links/image/sitemap checked. Four visible FAQ questions/answers match FAQPage exactly; FAQ before author/contact and no duplicate section. First card in both built listing previews (not production). Desktop1440 hero and390 phone comparison table visually reviewed using exact built HTML/inlined CSS through connected Cloudflare renderer; no clipped columns. Phone FAQ review pending retry after a rendering rate limit. No early merge.
 
 Phone FAQ rendering retry succeeded: all4 questions and answers reviewed, no horizontal clipping. Fixed navigation appears in selector captures as a screenshot artifact. Production live FAQ verification still required.
+
+Release PR: https://github.com/cposeyrealestate/cposeyrealestate/pull/28 . Status: prepared for November8, unmerged; current GitHub checks must pass before release. Reconcile latest master including PR27 before merge.
