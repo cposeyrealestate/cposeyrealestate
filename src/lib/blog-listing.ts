@@ -31,5 +31,5 @@ export function blogCardDate(post: ListingPost): string {
       timeZone: 'America/Chicago', month: 'long', day: 'numeric', year: 'numeric',
     })}`;
   }
-  return post.date;
+  return `Published ${post.date}`;
 }
