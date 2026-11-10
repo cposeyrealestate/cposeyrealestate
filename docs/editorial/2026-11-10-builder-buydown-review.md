@@ -1,6 +1,6 @@
 # November 10 builder-rate-buydown preparation — awaiting topic decision
 
-Status: NOT READY FOR PUBLICATION. No article data or image changed; do not merge this research-only draft as an article release. Preparation must not publish production. Assigned date remains November 10, 2026, 6 a.m. America/Chicago; do not silently move it or backdate a late release. Ongoing schedules remain active.
+Historical research hold — RESOLVED by explicit November10 user selection of alternative1, the New Braunfels new-construction inspection article, plus Mike McCown sourcing/contact links. The builder-buydown topic remains skipped. PR30 now carries the approved replacement and its own research/validation record at `2026-11-10-new-construction-inspections.md`. Do not interpret the earlier hold below as a current blocker. Ongoing schedules remain active; record the actual late release time.
 
 ## Approved reader and decision
 
