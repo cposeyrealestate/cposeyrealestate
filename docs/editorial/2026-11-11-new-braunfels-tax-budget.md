@@ -26,3 +26,4 @@ Build, content/data/metadata/links/FAQs/schema and desktop/mobile rendering pend
 
 Validation complete: production build,48tests and full SEO/watch/booking checks passed (244HTML/240sitemapURLs).155unique posts;154unrelated records identical. March16date/dateRaw retained. Meta/canonical/image/internal links, oneH1/oneHTMLtable, four visible FAQs exactly matching FAQPage, FAQ before author/contact, and first Updated November11 cards on both built listings verified. Arithmetic7600annual/633.33monthly and2400annual/200monthly checked. Desktop1440 and mobile390 table/FAQ rendered and reviewed. Windows built _headers normalized to LF only for existing output check; tracked headers unchanged. No production merge in preparation. PR and current-head CI below.
 
+Prepared PR: https://github.com/cposeyrealestate/cposeyrealestate/pull/31 . Ready article; current-head GitHub checks must pass before publisher merge. Preparation has not changed production.
