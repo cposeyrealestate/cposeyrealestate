@@ -7,7 +7,7 @@ import ContactForm from '../../components/ContactForm.astro';
 import { articleSchema, breadcrumbSchema } from '../../lib/schema';
 
 const pageTitle = 'Things to Do in Seguin, TX | Cody Posey';
-const pageDescription = "The best things to do in Seguin, TX — Guadalupe River kayaking, Max Starcke Park, historic downtown squares, ZDT's Amusement Park, and Hill Country events.";
+const pageDescription = "The best things to do in Seguin, TX — Guadalupe River kayaking, Max Starcke Park, historic downtown squares, and Hill Country events.";
 const pageSchema = [
   articleSchema({ title: pageTitle, description: pageDescription, url: '/seguin/things-to-do/' }),
   breadcrumbSchema([
@@ -41,14 +41,14 @@ const pageSchema = [
     <!-- Intro -->
     <section class="section">
       <div class="container">
-        <p class="seg-page-intro seg-page-intro--centered">Seguin offers a surprising amount to do for a city its size — from a 227-acre riverside park and scenic kayaking to a family amusement park and a walkable historic downtown.</p>
+        <p class="seg-page-intro seg-page-intro--centered">Seguin offers a surprising amount to do for a city its size — from a 227-acre riverside park and scenic kayaking to a walkable historic downtown.</p>
         <div class="seg-expanded-content">
           <h2>Plan your time in Seguin</h2>
           <p>Founded in 1838 and named after Juan Seguin, a hero of the Texas Revolution, the city of Seguin carries a deep sense of history that blends seamlessly with a modern small-town lifestyle. Situated along the Guadalupe River between San Antonio and Austin, Seguin has long been a gathering place for families, outdoor enthusiasts, and anyone seeking a slower pace without sacrificing access to recreation and culture. The combination of affordable living, genuine community spirit, and year-round outdoor activities makes Seguin a standout among Texas Hill Country towns.</p>
           <p>Max Starcke Park is the heart of outdoor life in Seguin and one of the most impressive city parks in the region. Stretching across 227 acres along the Guadalupe River, the park offers an 18-hole golf course, tennis and pickleball courts, multiple fishing access points, kayak and canoe launches, walking and jogging trails, and the popular Kids Kingdom playground. Families gather here on weekends for picnics under mature pecan trees, while golfers enjoy the well-maintained course that winds along the river. The park hosts community events throughout the year, from Easter egg hunts and Fourth of July celebrations to fall festivals and holiday lighting displays.</p>
           <p>The Guadalupe River through Seguin offers a different experience than the busier tubing stretches upstream in New Braunfels. Here, the water is calmer and the banks are more secluded, making it ideal for kayaking, canoeing, and fishing. Local outfitters provide rental equipment and shuttle services for those looking to spend a morning or afternoon on the water. Anglers target bass, catfish, and sunfish along shaded stretches, while birdwatchers enjoy sightings of herons, kingfishers, and other river wildlife. The river corridor is a peaceful retreat that feels miles away from city life, even though it runs right through town.</p>
           <h3>Family Fun and Entertainment</h3>
-          <p>ZDT's Amusement Park is one of the most unique family attractions in the area. This family-owned park features a wooden roller coaster, go-kart tracks, mini golf, bumper boats, and a variety of rides suitable for all ages. What sets ZDT's apart is its personal touch — built by a local family who poured years of effort into creating something special for the community. It regularly draws visitors from San Antonio and beyond, and it remains one of the best values for family entertainment in the region.</p>
+          <p>Family fun in Seguin centers on the park and the river: the Kids Kingdom playground and sports fields at Max Starcke Park, kayak rentals on the Guadalupe, and seasonal events downtown. One note for visitors planning around old guides: longtime local favorite ZDT's Amusement Park closed permanently in August 2025.</p>
           <p>For culture and history, the Seguin Heritage Museum tells the story of the city's founding and its role in the Texas Revolution. Exhibits cover the life of Juan Seguin, early German and Mexican settlers, and the development of the community through the 19th and 20th centuries. Downtown Seguin itself is a living piece of history, with restored storefronts, local boutiques, and restaurants lining Main Street. The courthouse square anchors the district and serves as a gathering point for seasonal markets and community celebrations.</p>
           <h3>Seasonal Events and Community Life</h3>
           <p>Seguin maintains a full calendar of community events that bring residents together throughout the year. The Guadalupe County Fair is a major annual tradition featuring livestock shows, carnival rides, live music, and food vendors. Freedom Fiesta celebrates Independence Day with parades, fireworks, and family activities along the river. During the holiday season, the city hosts a lighted Christmas parade and tree lighting ceremony downtown. Farmers markets, art walks, and live music events fill the calendar during spring and fall, adding to the small-town character that makes Seguin feel like home.</p>
@@ -97,13 +97,6 @@ const pageSchema = [
           <p>Launch from Max Starcke Park for scenic kayaking along the Guadalupe River. The Seguin stretch offers calm water, shaded banks, and wildlife — a more relaxed alternative to the busier tubing sections upstream in New Braunfels.</p>
         </a>
 
-        <a href="https://www.zdtamusement.com/" target="_blank" rel="noopener" class="seg-activity">
-          <div class="seg-activity__header">
-            <h3>ZDT's Amusement Park</h3>
-            <span class="seg-activity__tag">Family</span>
-          </div>
-          <p>A family-owned amusement park featuring go-karts, mini golf, a wooden roller coaster, and a variety of rides and attractions. ZDT's is a local favorite for families and a unique find for a city this size — fun for kids and adults alike.</p>
-        </a>
       </div>
     </section>
 
@@ -133,7 +126,7 @@ const pageSchema = [
           </details>
           <details class="faq-item">
             <summary>What family-friendly attractions does Seguin have?</summary>
-            <p>Seguin is home to ZDT's Amusement Park, a family-owned attraction featuring a wooden roller coaster, go-kart tracks, mini golf, bumper boats, and rides for all ages. It is one of the best family entertainment values in the region. Max Starcke Park offers playgrounds, picnic areas, and river access for families. The Seguin Heritage Museum provides an educational experience about local history and the Texas Revolution. Downtown Seguin has walkable shops, restaurants, and seasonal events that the whole family can enjoy.</p>
+            <p>Families gravitate to Max Starcke Park's playgrounds, picnic areas, and river access. (Longtime local favorite ZDT's Amusement Park closed permanently in August 2025.) The Seguin Heritage Museum provides an educational experience about local history and the Texas Revolution. Downtown Seguin has walkable shops, restaurants, and seasonal events that the whole family can enjoy.</p>
           </details>
           <details class="faq-item">
             <summary>What seasonal events and festivals take place in Seguin?</summary>
@@ -161,7 +154,7 @@ const pageSchema = [
           "name": "What family-friendly attractions does Seguin have?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Seguin is home to ZDT's Amusement Park, a family-owned attraction featuring a wooden roller coaster, go-kart tracks, mini golf, bumper boats, and rides for all ages. It is one of the best family entertainment values in the region. Max Starcke Park offers playgrounds, picnic areas, and river access for families. The Seguin Heritage Museum provides an educational experience about local history and the Texas Revolution. Downtown Seguin has walkable shops, restaurants, and seasonal events that the whole family can enjoy."
+            "text": "Families gravitate to Max Starcke Park's playgrounds, picnic areas, and river access. (Longtime local favorite ZDT's Amusement Park closed permanently in August 2025.) The Seguin Heritage Museum provides an educational experience about local history and the Texas Revolution. Downtown Seguin has walkable shops, restaurants, and seasonal events that the whole family can enjoy."
           }
         },
         {
