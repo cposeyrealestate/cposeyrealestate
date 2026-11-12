@@ -8,18 +8,17 @@
 
 <div class="reloc-map-wrap">
   <div id="reloc-map" role="application" aria-label="Interactive map of JBSA installations and Hill Country communities"></div>
-  <div class="reloc-ringbar" role="group" aria-label="Drive-time rings">
-    <span class="reloc-ringbar__label">Drive-time rings around:</span>
-    <button type="button" class="reloc-ringbtn is-active" data-base="JBSA Randolph">Randolph</button>
-    <button type="button" class="reloc-ringbtn" data-base="JBSA Fort Sam Houston">Fort Sam</button>
-    <button type="button" class="reloc-ringbtn" data-base="JBSA Lackland">Lackland</button>
-    <button type="button" class="reloc-ringbtn" data-base="Camp Bullis">Camp Bullis</button>
-    <button type="button" class="reloc-ringbtn" data-base="">Off</button>
-    <span class="reloc-ringbar__hint">Rings show roughly 15 / 30 / 45-minute drives — approximate, as traffic changes everything.</span>
+  <div class="reloc-ringbar" aria-label="Drive-time rings from downtown San Antonio">
+    <span class="reloc-ringbar__label">Drive rings from downtown San Antonio:</span>
+    <span class="reloc-map-chip">15 min ≈ Wurzbach Parkway</span>
+    <span class="reloc-map-chip">30 min ≈ Schertz</span>
+    <span class="reloc-map-chip">60 min ≈ Yarrington Rd, north of San Marcos</span>
+    <span class="reloc-ringbar__hint">Regional drives from San Antonio: Austin ≈ 1.5 hrs · Houston ≈ 3.5 hrs · Dallas ≈ 5 hrs — zoom out to see their pins. Rings are approximate; traffic changes everything.</span>
   </div>
   <div class="reloc-map-legend">
     <span class="reloc-map-chip"><span class="reloc-map-chip__pin reloc-map-chip__pin--base"><span class="reloc-map-chip__glyph">★</span></span> Military installation</span>
     <span class="reloc-map-chip"><span class="reloc-map-chip__pin reloc-map-chip__pin--town"></span> Community guide</span>
+    <span class="reloc-map-chip"><span class="reloc-map-chip__pin reloc-map-chip__pin--regional"></span> Regional city</span>
     <span class="reloc-map-legend__hint">Tap a pin — or pick a community below — for a short brief and the full guide.</span>
   </div>
 
@@ -82,6 +81,7 @@
   .reloc-pin:hover { transform: rotate(-45deg) scale(1.12); }
   .reloc-pin--base { background: linear-gradient(135deg, #ff3b30, #d90404); }
   .reloc-pin--town { background: linear-gradient(135deg, #3a3f47, #14171b); }
+  .reloc-pin--regional { background: linear-gradient(135deg, #54708f, #2f4b6e); }
   .reloc-pin__glyph {
     transform: rotate(45deg); color: #fff; font-size: 15px; line-height: 1;
     display: flex; align-items: center; justify-content: center;
@@ -102,6 +102,7 @@
   .reloc-map-chip__pin--base { background: linear-gradient(135deg, #ff3b30, #d90404); }
   .reloc-map-chip__glyph { transform: rotate(45deg); line-height: 1; }
   .reloc-map-chip__pin--town { background: linear-gradient(135deg, #3a3f47, #14171b); }
+  .reloc-map-chip__pin--regional { background: linear-gradient(135deg, #54708f, #2f4b6e); }
   .reloc-map-legend__hint { color: #777; font-size: 0.9rem; margin-left: 0.25rem; }
   /* Leaflet chrome */
   #reloc-map .leaflet-bar { border: none; box-shadow: 0 4px 14px rgba(15,23,42,0.18); border-radius: 10px; overflow: hidden; }
@@ -123,6 +124,7 @@
   }
   .reloc-popup__head--base { background: linear-gradient(135deg, #ff3b30, #c00); }
   .reloc-popup__head--town { background: linear-gradient(135deg, #3a3f47, #14171b); }
+  .reloc-popup__head--regional { background: linear-gradient(135deg, #54708f, #2f4b6e); }
   .reloc-popup__body { padding: 0.75rem 0.9rem 0.9rem; }
   .reloc-popup__body p { margin: 0 0 0.7rem; font-size: 0.88rem; line-height: 1.5; color: #333; }
   .reloc-popup__btn {
@@ -187,6 +189,12 @@
       { name: 'San Antonio', lat: 29.4241, lng: -98.4936, blurb: 'The metro core: Fort Sam Houston and Lackland sit inside the city; the Alamo and River Walk downtown.', link: '/san-antonio/', linkText: 'San Antonio guide' }
     ];
 
+    var REGIONAL = [
+      { name: 'Austin', lat: 30.2672, lng: -97.7431, blurb: 'About 1.5 hours north of San Antonio on I-35.', link: '/san-antonio/', linkText: 'San Antonio guide' },
+      { name: 'Houston', lat: 29.7604, lng: -95.3698, blurb: 'About 3.5 hours east of San Antonio on I-10.', link: '/san-antonio/', linkText: 'San Antonio guide' },
+      { name: 'Dallas', lat: 32.7767, lng: -96.7970, blurb: 'About 5 hours north of San Antonio on I-35.', link: '/san-antonio/', linkText: 'San Antonio guide' }
+    ];
+
     function popup(p, kind) {
       var glyph = kind === 'base' ? '\u2605 ' : '';
       return '<div class="reloc-popup">' +
@@ -210,7 +218,7 @@
 
     function init() {
       if (!window.L || !document.getElementById('reloc-map')) return;
-      var map = L.map('reloc-map', { scrollWheelZoom: false }).setView([29.62, -98.35], 9);
+      var map = L.map('reloc-map', { scrollWheelZoom: false }).setView([29.58, -98.33], 9);
       L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
         maxZoom: 18,
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, and the GIS user community'
@@ -228,45 +236,34 @@
         markers[p.name] = L.marker([p.lat, p.lng], { icon: pinIcon('town') }).bindPopup(popup(p, 'town')).addTo(townLayer);
       });
       baseLayer.addTo(map); townLayer.addTo(map);
-      L.control.layers(null, { 'Military installations': baseLayer, 'Communities': townLayer }, { collapsed: false }).addTo(map);
 
-      // Drive-time rings: simple concentric circles, Houston-style.
-      // Approximate by design — radii assume ~30 mph average door-to-door:
-      // 15 min ≈ 7.5 mi (12 km), 30 min ≈ 15 mi (24 km), 45 min ≈ 23 mi (37 km).
-      var ringsLayer = L.layerGroup().addTo(map);
-      var activeBase = 'JBSA Randolph';
+      // Drive rings centered on DOWNTOWN SAN ANTONIO, calibrated to Cody's landmarks:
+      // 15-min ring passes Wurzbach Parkway (~13.5 km), 30-min passes Schertz (~26 km),
+      // 60-min passes Yarrington Rd just north of San Marcos (~80 km). Approximate by design.
+      var DOWNTOWN_SA = [29.4241, -98.4936];
       var RING_BANDS = [
-        { time: 45, radius: 37000, fillOpacity: 0.05 },
-        { time: 30, radius: 24000, fillOpacity: 0.08 },
-        { time: 15, radius: 12000, fillOpacity: 0.12 }
+        { time: 60, radius: 80000, fillOpacity: 0.04 },
+        { time: 30, radius: 26000, fillOpacity: 0.07 },
+        { time: 15, radius: 13500, fillOpacity: 0.11 }
       ];
-      function drawRings() {
-        ringsLayer.clearLayers();
-        if (!activeBase) return;
-        var base = null;
-        BASES.forEach(function (b) { if (b.name === activeBase) base = b; });
-        if (!base) return;
-        RING_BANDS.forEach(function (band) {
-          L.circle([base.lat, base.lng], {
-            radius: band.radius, color: '#d90404', weight: 1.2,
-            fillColor: '#FF1616', fillOpacity: band.fillOpacity
-          })
-            .bindPopup('About a ' + band.time + '-minute drive to ' + base.name + ' (ring is approximate — traffic changes it).')
-            .addTo(ringsLayer);
-        });
-        baseLayer.eachLayer(function (m) { if (m.bringToFront) m.bringToFront(); });
-        townLayer.eachLayer(function (m) { if (m.bringToFront) m.bringToFront(); });
-      }
-      drawRings();
-      var ringBtns = document.querySelectorAll('.reloc-ringbtn[data-base]');
-      Array.prototype.forEach.call(ringBtns, function (btn) {
-        btn.addEventListener('click', function () {
-          Array.prototype.forEach.call(ringBtns, function (b) { b.classList.remove('is-active'); });
-          btn.classList.add('is-active');
-          activeBase = btn.getAttribute('data-base');
-          drawRings();
-        });
+      RING_BANDS.forEach(function (band) {
+        L.circle(DOWNTOWN_SA, {
+          radius: band.radius, color: '#d90404', weight: 1.2,
+          fillColor: '#FF1616', fillOpacity: band.fillOpacity
+        })
+          .bindPopup('About a ' + band.time + '-minute drive from downtown San Antonio (ring is approximate — traffic changes it).')
+          .addTo(map);
       });
+      L.circleMarker(DOWNTOWN_SA, { radius: 4, color: '#d90404', weight: 2, fillColor: '#fff', fillOpacity: 1 })
+        .bindPopup('Downtown San Antonio — the rings are measured from here.')
+        .addTo(map);
+
+      var regionalLayer = L.layerGroup();
+      REGIONAL.forEach(function (p) {
+        markers[p.name] = L.marker([p.lat, p.lng], { icon: pinIcon('regional') }).bindPopup(popup(p, 'regional')).addTo(regionalLayer);
+      });
+      regionalLayer.addTo(map);
+      L.control.layers(null, { 'Military installations': baseLayer, 'Communities': townLayer, 'Regional cities': regionalLayer }, { collapsed: false }).addTo(map);
 
       // Community cards fly the map to their pin and open its popup.
       var cards = document.querySelectorAll('.reloc-card[data-fly]');
