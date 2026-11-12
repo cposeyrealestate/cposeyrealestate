@@ -15,7 +15,7 @@
     <button type="button" class="reloc-ringbtn" data-base="JBSA Lackland">Lackland</button>
     <button type="button" class="reloc-ringbtn" data-base="Camp Bullis">Camp Bullis</button>
     <button type="button" class="reloc-ringbtn" data-base="">Off</button>
-    <span class="reloc-ringbar__hint">Rings show roughly 15 / 30 / 45-minute drives on the road network.</span>
+    <span class="reloc-ringbar__hint">Rings show roughly 15 / 30 / 45-minute drives — approximate, as traffic changes everything.</span>
   </div>
   <div class="reloc-map-legend">
     <span class="reloc-map-chip"><span class="reloc-map-chip__pin reloc-map-chip__pin--base"><span class="reloc-map-chip__glyph">★</span></span> Military installation</span>
@@ -230,30 +230,34 @@
       baseLayer.addTo(map); townLayer.addTo(map);
       L.control.layers(null, { 'Military installations': baseLayer, 'Communities': townLayer }, { collapsed: false }).addTo(map);
 
-      // Drive-time rings (precomputed road-network isochrones, loaded lazily).
+      // Drive-time rings: simple concentric circles, Houston-style.
+      // Approximate by design — radii assume ~30 mph average door-to-door:
+      // 15 min ≈ 7.5 mi (12 km), 30 min ≈ 15 mi (24 km), 45 min ≈ 23 mi (37 km).
       var ringsLayer = L.layerGroup().addTo(map);
-      var ringsData = null;
       var activeBase = 'JBSA Randolph';
-      var RING_STYLE = {
-        45: { color: '#d90404', weight: 1, dashArray: '5 5', fillColor: '#FF1616', fillOpacity: 0.05 },
-        30: { color: '#d90404', weight: 1, dashArray: '5 5', fillColor: '#FF1616', fillOpacity: 0.09 },
-        15: { color: '#d90404', weight: 1.2, fillColor: '#FF1616', fillOpacity: 0.14 }
-      };
+      var RING_BANDS = [
+        { time: 45, radius: 37000, fillOpacity: 0.05 },
+        { time: 30, radius: 24000, fillOpacity: 0.08 },
+        { time: 15, radius: 12000, fillOpacity: 0.12 }
+      ];
       function drawRings() {
         ringsLayer.clearLayers();
-        if (!ringsData || !activeBase || !ringsData[activeBase]) return;
-        ringsData[activeBase].forEach(function (f) {
-          L.geoJSON({ type: 'Feature', geometry: f.geometry }, { style: RING_STYLE[f.time] || RING_STYLE[45] })
-            .bindPopup('About a ' + f.time + '-minute drive to ' + activeBase + ' on the road network (before traffic).')
+        if (!activeBase) return;
+        var base = null;
+        BASES.forEach(function (b) { if (b.name === activeBase) base = b; });
+        if (!base) return;
+        RING_BANDS.forEach(function (band) {
+          L.circle([base.lat, base.lng], {
+            radius: band.radius, color: '#d90404', weight: 1.2,
+            fillColor: '#FF1616', fillOpacity: band.fillOpacity
+          })
+            .bindPopup('About a ' + band.time + '-minute drive to ' + base.name + ' (ring is approximate — traffic changes it).')
             .addTo(ringsLayer);
         });
         baseLayer.eachLayer(function (m) { if (m.bringToFront) m.bringToFront(); });
         townLayer.eachLayer(function (m) { if (m.bringToFront) m.bringToFront(); });
       }
-      fetch('/data/relocation-rings.json')
-        .then(function (r) { return r.json(); })
-        .then(function (d) { ringsData = d; drawRings(); })
-        .catch(function () { /* rings are an enhancement; map works without them */ });
+      drawRings();
       var ringBtns = document.querySelectorAll('.reloc-ringbtn[data-base]');
       Array.prototype.forEach.call(ringBtns, function (btn) {
         btn.addEventListener('click', function () {
