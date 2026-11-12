@@ -11,7 +11,7 @@
   <div class="reloc-ringbar" aria-label="Drive-time rings from downtown San Antonio">
     <span class="reloc-ringbar__label">Drive rings from downtown San Antonio:</span>
     <span class="reloc-map-chip">15 min ≈ Wurzbach Parkway</span>
-    <span class="reloc-map-chip">30 min ≈ Schertz</span>
+    <span class="reloc-map-chip">30 min ≈ FM 1103 in Cibolo</span>
     <span class="reloc-map-chip">60 min ≈ Yarrington Rd, north of San Marcos</span>
     <span class="reloc-ringbar__hint">Regional drives from San Antonio: Austin ≈ 1.5 hrs · Houston ≈ 3.5 hrs · Dallas ≈ 5 hrs — zoom out to see their pins. Rings are approximate; traffic changes everything.</span>
   </div>
@@ -238,12 +238,12 @@
       baseLayer.addTo(map); townLayer.addTo(map);
 
       // Drive rings centered on DOWNTOWN SAN ANTONIO, calibrated to Cody's landmarks:
-      // 15-min ring passes Wurzbach Parkway (~13.5 km), 30-min passes Schertz (~26 km),
+      // 15-min ring passes Wurzbach Parkway (~13.5 km), 30-min passes FM 1103 in Cibolo (~30 km),
       // 60-min passes Yarrington Rd just north of San Marcos (~80 km). Approximate by design.
       var DOWNTOWN_SA = [29.4241, -98.4936];
       var RING_BANDS = [
         { time: 60, radius: 80000, fillOpacity: 0.04 },
-        { time: 30, radius: 26000, fillOpacity: 0.07 },
+        { time: 30, radius: 30000, fillOpacity: 0.07 },
         { time: 15, radius: 13500, fillOpacity: 0.11 }
       ];
       RING_BANDS.forEach(function (band) {
