@@ -6,10 +6,54 @@
 
 <div class="reloc-map-wrap">
   <div id="reloc-map" role="application" aria-label="Interactive map of JBSA installations and Hill Country communities"></div>
+  <div class="reloc-ringbar" role="group" aria-label="Drive-time rings">
+    <span class="reloc-ringbar__label">Drive-time rings around:</span>
+    <button type="button" class="reloc-ringbtn is-active" data-base="JBSA Randolph">Randolph</button>
+    <button type="button" class="reloc-ringbtn" data-base="JBSA Fort Sam Houston">Fort Sam</button>
+    <button type="button" class="reloc-ringbtn" data-base="JBSA Lackland">Lackland</button>
+    <button type="button" class="reloc-ringbtn" data-base="Camp Bullis">Camp Bullis</button>
+    <button type="button" class="reloc-ringbtn" data-base="">Off</button>
+    <span class="reloc-ringbar__hint">Rings show roughly 15 / 30 / 45-minute drives on the road network.</span>
+  </div>
   <div class="reloc-map-legend">
     <span class="reloc-map-chip"><span class="reloc-map-chip__pin reloc-map-chip__pin--base"><span class="reloc-map-chip__glyph">★</span></span> Military installation</span>
     <span class="reloc-map-chip"><span class="reloc-map-chip__pin reloc-map-chip__pin--town"></span> Community guide</span>
-    <span class="reloc-map-legend__hint">Tap a pin for a short brief and the full guide.</span>
+    <span class="reloc-map-legend__hint">Tap a pin — or pick a community below — for a short brief and the full guide.</span>
+  </div>
+
+  <div class="reloc-cards">
+    <button type="button" class="reloc-card" data-fly="New Braunfels">
+      <span class="reloc-card__img"><img src="/images/areas/new-braunfels.jpg" alt="New Braunfels, Texas" loading="lazy" /></span>
+      <span class="reloc-card__body"><span class="reloc-card__name">New Braunfels</span><span class="reloc-card__desc">Rivers, Gruene, and the I-35 corridor between SA and Austin.</span><span class="reloc-card__cta">See it on the map ↑</span></span>
+    </button>
+    <button type="button" class="reloc-card" data-fly="Schertz">
+      <span class="reloc-card__img"><img src="/images/areas/cibolo-schertz.jpg" alt="Cibolo and Schertz, Texas" loading="lazy" /></span>
+      <span class="reloc-card__body"><span class="reloc-card__name">Cibolo &amp; Schertz</span><span class="reloc-card__desc">Closest to Randolph AFB — newer homes, SCUC ISD.</span><span class="reloc-card__cta">See it on the map ↑</span></span>
+    </button>
+    <button type="button" class="reloc-card" data-fly="Garden Ridge">
+      <span class="reloc-card__img"><img src="/images/areas/garden-ridge.jpg" alt="Garden Ridge, Texas" loading="lazy" /></span>
+      <span class="reloc-card__body"><span class="reloc-card__name">Garden Ridge</span><span class="reloc-card__desc">Acreage lots and a quiet, wooded feel.</span><span class="reloc-card__cta">See it on the map ↑</span></span>
+    </button>
+    <button type="button" class="reloc-card" data-fly="Bulverde">
+      <span class="reloc-card__img"><img src="/images/areas/bulverde.jpg" alt="Bulverde, Texas" loading="lazy" /></span>
+      <span class="reloc-card__body"><span class="reloc-card__name">Bulverde</span><span class="reloc-card__desc">Hill Country space and scenery on US-281.</span><span class="reloc-card__cta">See it on the map ↑</span></span>
+    </button>
+    <button type="button" class="reloc-card" data-fly="Canyon Lake">
+      <span class="reloc-card__img"><img src="/images/areas/canyon-lake.jpg" alt="Canyon Lake, Texas" loading="lazy" /></span>
+      <span class="reloc-card__body"><span class="reloc-card__name">Canyon Lake</span><span class="reloc-card__desc">Lake life on the Guadalupe River.</span><span class="reloc-card__cta">See it on the map ↑</span></span>
+    </button>
+    <button type="button" class="reloc-card" data-fly="Boerne">
+      <span class="reloc-card__img"><img src="/images/areas/boerne.jpg" alt="Boerne, Texas" loading="lazy" /></span>
+      <span class="reloc-card__body"><span class="reloc-card__name">Boerne</span><span class="reloc-card__desc">Historic Main Street on I-10, northwest of San Antonio.</span><span class="reloc-card__cta">See it on the map ↑</span></span>
+    </button>
+    <button type="button" class="reloc-card" data-fly="Seguin">
+      <span class="reloc-card__img"><img src="/images/areas/seguin.jpg" alt="Seguin, Texas" loading="lazy" /></span>
+      <span class="reloc-card__body"><span class="reloc-card__name">Seguin</span><span class="reloc-card__desc">Historic, affordable, and right on the river.</span><span class="reloc-card__cta">See it on the map ↑</span></span>
+    </button>
+    <button type="button" class="reloc-card" data-fly="San Antonio">
+      <span class="reloc-card__img"><img src="/images/areas/san-antonio.jpg" alt="San Antonio, Texas" loading="lazy" /></span>
+      <span class="reloc-card__body"><span class="reloc-card__name">San Antonio</span><span class="reloc-card__desc">The metro core — Fort Sam and Lackland inside the city.</span><span class="reloc-card__cta">See it on the map ↑</span></span>
+    </button>
   </div>
 </div>
 
@@ -84,7 +128,41 @@
     padding: 0.45rem 0.85rem; border-radius: 8px; text-decoration: none !important;
   }
   .reloc-popup__btn:hover { background: #d90404; }
+  /* Drive-time ring selector */
+  .reloc-ringbar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem; margin-top: 0.9rem; }
+  .reloc-ringbar__label { font-weight: 700; font-size: 0.9rem; color: #222; margin-right: 0.15rem; }
+  .reloc-ringbar__hint { color: #777; font-size: 0.85rem; width: 100%; margin-top: 0.15rem; }
+  .reloc-ringbtn {
+    font: inherit; font-size: 0.86rem; font-weight: 600; cursor: pointer;
+    background: #fff; color: #333; border: 1px solid #d8dce1; border-radius: 999px; padding: 0.32rem 0.8rem;
+    transition: all 0.15s ease;
+  }
+  .reloc-ringbtn:hover { border-color: #FF1616; color: #d90404; }
+  .reloc-ringbtn.is-active { background: #FF1616; border-color: #FF1616; color: #fff; }
+  /* Community cards */
+  .reloc-cards {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1.25rem;
+  }
+  .reloc-card {
+    display: block; text-align: left; background: #fff; border: 1px solid #e6e8ec; border-radius: 14px;
+    overflow: hidden; padding: 0; cursor: pointer; font: inherit;
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.06);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+  .reloc-card:hover, .reloc-card:focus-visible {
+    transform: translateY(-4px); border-color: #FF1616;
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.14); outline: none;
+  }
+  .reloc-card__img { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: #eef1f4; }
+  .reloc-card__img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s ease; }
+  .reloc-card:hover .reloc-card__img img { transform: scale(1.06); }
+  .reloc-card__body { display: block; padding: 0.8rem 0.95rem 0.95rem; }
+  .reloc-card__name { display: block; font-weight: 800; font-size: 1.02rem; color: #14171b; }
+  .reloc-card__desc { display: block; font-size: 0.86rem; line-height: 1.45; color: #555; margin-top: 0.25rem; }
+  .reloc-card__cta { display: block; font-size: 0.82rem; font-weight: 700; color: #d90404; margin-top: 0.55rem; }
+  @media (max-width: 900px) { .reloc-cards { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 640px) { #reloc-map { height: 400px; } }
+  @media (max-width: 520px) { .reloc-cards { grid-template-columns: 1fr; } }
 </style>
 
 <script is:inline>
@@ -139,16 +217,63 @@
       map.on('focus', function () { map.scrollWheelZoom.enable(); });
       map.on('blur', function () { map.scrollWheelZoom.disable(); });
 
+      var markers = {};
       var baseLayer = L.layerGroup();
       BASES.forEach(function (p) {
-        L.marker([p.lat, p.lng], { icon: pinIcon('base') }).bindPopup(popup(p, 'base')).addTo(baseLayer);
+        markers[p.name] = L.marker([p.lat, p.lng], { icon: pinIcon('base') }).bindPopup(popup(p, 'base')).addTo(baseLayer);
       });
       var townLayer = L.layerGroup();
       TOWNS.forEach(function (p) {
-        L.marker([p.lat, p.lng], { icon: pinIcon('town') }).bindPopup(popup(p, 'town')).addTo(townLayer);
+        markers[p.name] = L.marker([p.lat, p.lng], { icon: pinIcon('town') }).bindPopup(popup(p, 'town')).addTo(townLayer);
       });
       baseLayer.addTo(map); townLayer.addTo(map);
       L.control.layers(null, { 'Military installations': baseLayer, 'Communities': townLayer }, { collapsed: false }).addTo(map);
+
+      // Drive-time rings (precomputed road-network isochrones, loaded lazily).
+      var ringsLayer = L.layerGroup().addTo(map);
+      var ringsData = null;
+      var activeBase = 'JBSA Randolph';
+      var RING_STYLE = {
+        45: { color: '#d90404', weight: 1, dashArray: '5 5', fillColor: '#FF1616', fillOpacity: 0.05 },
+        30: { color: '#d90404', weight: 1, dashArray: '5 5', fillColor: '#FF1616', fillOpacity: 0.09 },
+        15: { color: '#d90404', weight: 1.2, fillColor: '#FF1616', fillOpacity: 0.14 }
+      };
+      function drawRings() {
+        ringsLayer.clearLayers();
+        if (!ringsData || !activeBase || !ringsData[activeBase]) return;
+        ringsData[activeBase].forEach(function (f) {
+          L.geoJSON({ type: 'Feature', geometry: f.geometry }, { style: RING_STYLE[f.time] || RING_STYLE[45] })
+            .bindPopup('About a ' + f.time + '-minute drive to ' + activeBase + ' on the road network (before traffic).')
+            .addTo(ringsLayer);
+        });
+        baseLayer.eachLayer(function (m) { if (m.bringToFront) m.bringToFront(); });
+        townLayer.eachLayer(function (m) { if (m.bringToFront) m.bringToFront(); });
+      }
+      fetch('/data/relocation-rings.json')
+        .then(function (r) { return r.json(); })
+        .then(function (d) { ringsData = d; drawRings(); })
+        .catch(function () { /* rings are an enhancement; map works without them */ });
+      var ringBtns = document.querySelectorAll('.reloc-ringbtn[data-base]');
+      Array.prototype.forEach.call(ringBtns, function (btn) {
+        btn.addEventListener('click', function () {
+          Array.prototype.forEach.call(ringBtns, function (b) { b.classList.remove('is-active'); });
+          btn.classList.add('is-active');
+          activeBase = btn.getAttribute('data-base');
+          drawRings();
+        });
+      });
+
+      // Community cards fly the map to their pin and open its popup.
+      var cards = document.querySelectorAll('.reloc-card[data-fly]');
+      Array.prototype.forEach.call(cards, function (card) {
+        card.addEventListener('click', function () {
+          var marker = markers[card.getAttribute('data-fly')];
+          if (!marker) return;
+          document.getElementById('reloc-map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+          map.flyTo(marker.getLatLng(), 11, { duration: 1.1 });
+          map.once('moveend', function () { marker.openPopup(); });
+        });
+      });
     }
 
     if (window.L) { init(); }
