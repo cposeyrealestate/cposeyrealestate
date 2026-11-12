@@ -8,12 +8,8 @@
 
 <div class="reloc-map-wrap">
   <div id="reloc-map" role="application" aria-label="Interactive map of JBSA installations and Hill Country communities"></div>
-  <div class="reloc-ringbar" aria-label="Drive-time rings from downtown San Antonio">
-    <span class="reloc-ringbar__label">Drive rings from downtown San Antonio:</span>
-    <span class="reloc-map-chip">15 min ≈ Wurzbach Parkway</span>
-    <span class="reloc-map-chip">30 min ≈ FM 1103 in Cibolo</span>
-    <span class="reloc-map-chip">60 min ≈ Yarrington Rd, north of San Marcos</span>
-    <span class="reloc-ringbar__hint">Regional drives from San Antonio: Austin ≈ 1.5 hrs · Houston ≈ 3.5 hrs · Dallas ≈ 5 hrs — zoom out to see their pins. Rings are approximate; traffic changes everything.</span>
+  <div class="reloc-ringbar" aria-label="Regional drive times from San Antonio">
+    <span class="reloc-ringbar__hint">Drive rings are centered on downtown San Antonio and labeled on the map (approximate — traffic changes everything). Regional drives: Austin ≈ 1.5 hrs · Houston ≈ 3.5 hrs · Dallas ≈ 5 hrs — zoom out to see their pins.</span>
   </div>
   <div class="reloc-map-legend">
     <span class="reloc-map-chip"><span class="reloc-map-chip__pin reloc-map-chip__pin--base"><span class="reloc-map-chip__glyph">★</span></span> Military installation</span>
@@ -136,6 +132,15 @@
   .reloc-ringbar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem; margin-top: 0.9rem; }
   .reloc-ringbar__label { font-weight: 700; font-size: 0.9rem; color: #222; margin-right: 0.15rem; }
   .reloc-ringbar__hint { color: #777; font-size: 0.85rem; width: 100%; margin-top: 0.15rem; }
+  /* On-map ring labels */
+  .reloc-ring-label { background: transparent; border: none; box-shadow: none; padding: 0; }
+  .reloc-ring-label::before { display: none; }
+  .reloc-ring-label__pill {
+    display: inline-block; background: #fff; color: #c00; border: 1.5px solid #FF1616;
+    font-size: 12px; font-weight: 800; letter-spacing: 0.02em;
+    padding: 2px 9px; border-radius: 999px; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.22);
+    white-space: nowrap;
+  }
   .reloc-ringbtn {
     font: inherit; font-size: 0.86rem; font-weight: 600; cursor: pointer;
     background: #fff; color: #333; border: 1px solid #d8dce1; border-radius: 999px; padding: 0.32rem 0.8rem;
@@ -252,6 +257,12 @@
           fillColor: '#FF1616', fillOpacity: band.fillOpacity
         })
           .bindPopup('About a ' + band.time + '-minute drive from downtown San Antonio (ring is approximate — traffic changes it).')
+          .addTo(map);
+        // Label sits on the ring's northern edge.
+        var labelLat = DOWNTOWN_SA[0] + band.radius / 111320;
+        L.tooltip({ permanent: true, direction: 'center', className: 'reloc-ring-label', interactive: false })
+          .setLatLng([labelLat, DOWNTOWN_SA[1]])
+          .setContent('<span class="reloc-ring-label__pill">' + band.time + ' min</span>')
           .addTo(map);
       });
       L.circleMarker(DOWNTOWN_SA, { radius: 4, color: '#d90404', weight: 2, fillColor: '#fff', fillOpacity: 1 })
