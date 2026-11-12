@@ -51,3 +51,5 @@ Release PR: https://github.com/cposeyrealestate/cposeyrealestate/pull/29 . Curre
 
 
 November11 preparation: user approved updating the March16 existing property-tax budgeting URL, /blog/new-braunfels-property-taxes-monthly-payment/, instead of adding a near-duplicate. Approved H1 retained. See 2026-11-11-new-braunfels-tax-budget.md for evidence, preserved dates and release gates. Preparation must not merge; actual release still needs publisher verification.
+
+November12 preparation: approved PCS-before-orders article is a distinct buyer commitment decision anchored to JBSA-Randolph/Fort Sam Houston/Lackland. New URL /blog/buying-home-before-pcs-orders-jbsa/; brief 2026-11-12-jbsa-before-orders.md. Scheduled6AMCentral; no production merge during preparation and no early publication. Publisher checks actual release time.
