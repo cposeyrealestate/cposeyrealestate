@@ -6,6 +6,7 @@ import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 import ParallaxBanner from '../components/ParallaxBanner.astro';
 import VideoEmbed from '../components/VideoEmbed.astro';
+import RelocationMap from '../components/RelocationMap.astro';
 import { articleSchema, breadcrumbSchema, faqSchema } from '../lib/schema';
 import { bahGroups, formatUsd } from '../data/bah-2026';
 
@@ -343,6 +344,17 @@ const veteranPosts = [
           <a href="#contact" class="btn btn-primary">Start Your PCS Plan</a>
           <a href="https://cposeyrealestate.idxbroker.com/idx/search/advanced" class="btn btn-outline-dark">Browse Homes Near JBSA</a>
         </div>
+      </div>
+    </section>
+
+    <!-- Interactive Map -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>The JBSA Area, <span class="accent">On One Map</span></h2>
+          <p>Randolph, Fort Sam Houston, Lackland and Camp Bullis — plus the communities military families actually land in. Tap a pin for the short brief and the full housing guide. For the numbers behind the move, see the <a href="/military-relocation/bah-rates/">2026 BAH rates</a>.</p>
+        </div>
+        <RelocationMap />
       </div>
     </section>
 

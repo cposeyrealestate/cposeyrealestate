@@ -1,0 +1,98 @@
+---
+// Interactive relocation map: JBSA installations + Hill Country communities.
+// Leaflet + OpenStreetMap (free, no API key). Pins link to the matching guide pages.
+---
+
+<div class="reloc-map-wrap">
+  <div id="reloc-map" role="application" aria-label="Interactive map of JBSA installations and Hill Country communities"></div>
+  <div class="reloc-map-legend">
+    <span class="reloc-map-legend__item"><span class="reloc-map-dot reloc-map-dot--base"></span> Military installation</span>
+    <span class="reloc-map-legend__item"><span class="reloc-map-dot reloc-map-dot--town"></span> Community guide</span>
+    <span class="reloc-map-legend__hint">Tap a pin for a short brief and the full guide.</span>
+  </div>
+</div>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<style>
+  .reloc-map-wrap { max-width: 1100px; margin: 0 auto; }
+  #reloc-map {
+    height: 480px; width: 100%;
+    border: 1px solid #d8d8d8; border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+    z-index: 0;
+  }
+  .reloc-map-legend {
+    display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; align-items: center;
+    margin-top: 0.75rem; font-size: 0.9rem; color: #444;
+  }
+  .reloc-map-legend__item { display: inline-flex; align-items: center; gap: 0.45rem; font-weight: 600; }
+  .reloc-map-legend__hint { color: #777; }
+  .reloc-map-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,0.25); }
+  .reloc-map-dot--base { background: #FF1616; }
+  .reloc-map-dot--town { background: #222; }
+  .reloc-popup h4 { margin: 0 0 0.35rem; font-size: 1rem; }
+  .reloc-popup p { margin: 0 0 0.5rem; font-size: 0.88rem; line-height: 1.45; }
+  .reloc-popup a { font-weight: 700; color: #c00; text-decoration: none; }
+  .reloc-popup a:hover { text-decoration: underline; }
+  @media (max-width: 640px) { #reloc-map { height: 380px; } }
+</style>
+
+<script is:inline>
+  (function () {
+    var BASES = [
+      { name: 'JBSA Randolph', lat: 29.5297, lng: -98.2817, blurb: 'The flight-training hub of JBSA. Schertz, Cibolo and New Braunfels are the common off-base picks.', link: '/military-relocation/randolph-afb/', linkText: 'Randolph AFB housing guide' },
+      { name: 'JBSA Fort Sam Houston', lat: 29.4713, lng: -98.4355, blurb: 'Home of Army medicine. Northeast San Antonio puts you close; New Braunfels is an I-35 commute.', link: '/military-relocation/fort-sam-houston/', linkText: 'Fort Sam Houston housing guide' },
+      { name: 'JBSA Lackland', lat: 29.3858, lng: -98.6153, blurb: 'Basic military training and technical schools. Most off-base living is on San Antonio\u2019s west and southwest sides.', link: '/military-relocation/lackland-afb/', linkText: 'Lackland AFB housing guide' },
+      { name: 'Camp Bullis', lat: 29.6850, lng: -98.5620, blurb: 'Training area on the north side. Stone Oak, Bulverde and Garden Ridge are the usual landing spots.', link: '/military-relocation/camp-bullis/', linkText: 'Camp Bullis housing guide' }
+    ];
+    var TOWNS = [
+      { name: 'New Braunfels', lat: 29.7030, lng: -98.1245, blurb: 'Rivers, German heritage, and the I-35 corridor between San Antonio and Austin. About 30 minutes to Randolph.', link: '/new-braunfels/', linkText: 'New Braunfels guide' },
+      { name: 'Schertz', lat: 29.5522, lng: -98.2697, blurb: 'The closest-in suburb to Randolph AFB, in Schertz-Cibolo-Universal City ISD.', link: '/cibolo-schertz/', linkText: 'Cibolo & Schertz guide' },
+      { name: 'Cibolo', lat: 29.5630, lng: -98.2260, blurb: 'Fast-growing, newer construction, and a short hop to Randolph\u2019s gate.', link: '/cibolo-schertz/', linkText: 'Cibolo & Schertz guide' },
+      { name: 'Garden Ridge', lat: 29.7283, lng: -98.2988, blurb: 'Acreage lots and a quiet, wooded feel between New Braunfels and San Antonio.', link: '/garden-ridge/', linkText: 'Garden Ridge guide' },
+      { name: 'Bulverde', lat: 29.7439, lng: -98.4537, blurb: 'Hill Country space on US-281: bigger lots, scenery, and a 35\u201345 minute peak commute downtown.', link: '/bulverde/', linkText: 'Bulverde guide' },
+      { name: 'Canyon Lake', lat: 29.8750, lng: -98.2600, blurb: 'Lake life on the Guadalupe. Water levels recovered to about 98% full in July 2026 after the spring rains.', link: '/canyon-lake/', linkText: 'Canyon Lake guide' },
+      { name: 'Boerne', lat: 29.7945, lng: -98.7319, blurb: 'Hill Country town on I-10 with a historic Main Street, northwest of San Antonio.', link: '/boerne/', linkText: 'Boerne guide' },
+      { name: 'Seguin', lat: 29.5684, lng: -97.9647, blurb: 'Historic, affordable, and on the Guadalupe River \u2014 east of New Braunfels on the way to Houston.', link: '/seguin/', linkText: 'Seguin guide' },
+      { name: 'San Antonio', lat: 29.4241, lng: -98.4936, blurb: 'The metro core: Fort Sam Houston and Lackland sit inside the city; the Alamo and River Walk downtown.', link: '/san-antonio/', linkText: 'San Antonio guide' }
+    ];
+
+    function popup(p) {
+      return '<div class="reloc-popup"><h4>' + p.name + '</h4><p>' + p.blurb + '</p>' +
+        '<a href="' + p.link + '">' + p.linkText + ' &rarr;</a></div>';
+    }
+
+    function init() {
+      if (!window.L || !document.getElementById('reloc-map')) return;
+      var map = L.map('reloc-map', { scrollWheelZoom: false }).setView([29.62, -98.35], 9);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+      map.on('focus', function () { map.scrollWheelZoom.enable(); });
+      map.on('blur', function () { map.scrollWheelZoom.disable(); });
+
+      var baseLayer = L.layerGroup();
+      BASES.forEach(function (p) {
+        L.circleMarker([p.lat, p.lng], { radius: 9, color: '#fff', weight: 2, fillColor: '#FF1616', fillOpacity: 0.95 })
+          .bindPopup(popup(p)).addTo(baseLayer);
+      });
+      var townLayer = L.layerGroup();
+      TOWNS.forEach(function (p) {
+        L.circleMarker([p.lat, p.lng], { radius: 8, color: '#fff', weight: 2, fillColor: '#222222', fillOpacity: 0.95 })
+          .bindPopup(popup(p)).addTo(townLayer);
+      });
+      baseLayer.addTo(map); townLayer.addTo(map);
+      L.control.layers(null, { 'Military installations': baseLayer, 'Communities': townLayer }, { collapsed: false }).addTo(map);
+    }
+
+    if (window.L) { init(); }
+    else {
+      var s = document.createElement('script');
+      s.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+      s.onload = init;
+      document.head.appendChild(s);
+    }
+  })();
+</script>
