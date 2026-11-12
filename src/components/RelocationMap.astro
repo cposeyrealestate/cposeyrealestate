@@ -1,13 +1,14 @@
 ---
 // Interactive relocation map: JBSA installations + Hill Country communities.
-// Leaflet + OpenStreetMap (free, no API key). Pins link to the matching guide pages.
+// Leaflet + CARTO Voyager tiles (modern basemap, free w/ attribution, no API key).
+// Custom branded pins: red star pins for installations, charcoal pins for communities.
 ---
 
 <div class="reloc-map-wrap">
   <div id="reloc-map" role="application" aria-label="Interactive map of JBSA installations and Hill Country communities"></div>
   <div class="reloc-map-legend">
-    <span class="reloc-map-legend__item"><span class="reloc-map-dot reloc-map-dot--base"></span> Military installation</span>
-    <span class="reloc-map-legend__item"><span class="reloc-map-dot reloc-map-dot--town"></span> Community guide</span>
+    <span class="reloc-map-chip"><span class="reloc-map-chip__pin reloc-map-chip__pin--base"><span class="reloc-map-chip__glyph">★</span></span> Military installation</span>
+    <span class="reloc-map-chip"><span class="reloc-map-chip__pin reloc-map-chip__pin--town"></span> Community guide</span>
     <span class="reloc-map-legend__hint">Tap a pin for a short brief and the full guide.</span>
   </div>
 </div>
@@ -17,25 +18,73 @@
 <style>
   .reloc-map-wrap { max-width: 1100px; margin: 0 auto; }
   #reloc-map {
-    height: 480px; width: 100%;
-    border: 1px solid #d8d8d8; border-radius: 12px;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
-    z-index: 0;
+    height: 520px; width: 100%;
+    border: none; border-radius: 16px;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.16), 0 3px 10px rgba(15, 23, 42, 0.08);
+    z-index: 0; background: #eef1f4;
+    font-family: inherit;
   }
-  .reloc-map-legend {
-    display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; align-items: center;
-    margin-top: 0.75rem; font-size: 0.9rem; color: #444;
+  /* Custom pins */
+  .reloc-pin {
+    width: 34px; height: 34px; border-radius: 50% 50% 50% 4px;
+    transform: rotate(-45deg);
+    border: 2.5px solid #fff;
+    box-shadow: 0 6px 14px rgba(15, 23, 42, 0.35);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.15s ease;
   }
-  .reloc-map-legend__item { display: inline-flex; align-items: center; gap: 0.45rem; font-weight: 600; }
-  .reloc-map-legend__hint { color: #777; }
-  .reloc-map-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,0.25); }
-  .reloc-map-dot--base { background: #FF1616; }
-  .reloc-map-dot--town { background: #222; }
-  .reloc-popup h4 { margin: 0 0 0.35rem; font-size: 1rem; }
-  .reloc-popup p { margin: 0 0 0.5rem; font-size: 0.88rem; line-height: 1.45; }
-  .reloc-popup a { font-weight: 700; color: #c00; text-decoration: none; }
-  .reloc-popup a:hover { text-decoration: underline; }
-  @media (max-width: 640px) { #reloc-map { height: 380px; } }
+  .reloc-pin:hover { transform: rotate(-45deg) scale(1.12); }
+  .reloc-pin--base { background: linear-gradient(135deg, #ff3b30, #d90404); }
+  .reloc-pin--town { background: linear-gradient(135deg, #3a3f47, #14171b); }
+  .reloc-pin__glyph {
+    transform: rotate(45deg); color: #fff; font-size: 15px; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .reloc-pin__dot { width: 9px; height: 9px; border-radius: 50%; background: #fff; }
+  /* Legend */
+  .reloc-map-legend { display: flex; flex-wrap: wrap; gap: 0.5rem 0.75rem; align-items: center; margin-top: 0.9rem; }
+  .reloc-map-chip {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: #fff; border: 1px solid #e3e6ea; border-radius: 999px;
+    padding: 0.35rem 0.8rem 0.35rem 0.45rem; font-size: 0.88rem; font-weight: 600; color: #222;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
+  }
+  .reloc-map-chip__pin {
+    width: 20px; height: 20px; border-radius: 50% 50% 50% 3px; transform: rotate(-45deg);
+    color: #fff; font-size: 10px; display: inline-flex; align-items: center; justify-content: center;
+  }
+  .reloc-map-chip__pin--base { background: linear-gradient(135deg, #ff3b30, #d90404); }
+  .reloc-map-chip__glyph { transform: rotate(45deg); line-height: 1; }
+  .reloc-map-chip__pin--town { background: linear-gradient(135deg, #3a3f47, #14171b); }
+  .reloc-map-legend__hint { color: #777; font-size: 0.9rem; margin-left: 0.25rem; }
+  /* Leaflet chrome */
+  #reloc-map .leaflet-bar { border: none; box-shadow: 0 4px 14px rgba(15,23,42,0.18); border-radius: 10px; overflow: hidden; }
+  #reloc-map .leaflet-bar a { border: none; width: 34px; height: 34px; line-height: 34px; color: #222; }
+  #reloc-map .leaflet-control-layers {
+    border: none; box-shadow: 0 4px 14px rgba(15,23,42,0.18); border-radius: 10px;
+    padding: 0.5rem 0.7rem; font-size: 0.85rem;
+  }
+  #reloc-map .leaflet-control-attribution { background: rgba(255,255,255,0.75); font-size: 10px; }
+  /* Popups */
+  #reloc-map .leaflet-popup-content-wrapper {
+    border-radius: 14px; box-shadow: 0 14px 34px rgba(15, 23, 42, 0.25); overflow: hidden; padding: 0;
+  }
+  #reloc-map .leaflet-popup-content { margin: 0; width: 250px !important; }
+  #reloc-map .leaflet-popup-tip { box-shadow: none; }
+  .reloc-popup__head {
+    padding: 0.65rem 0.9rem; color: #fff; font-weight: 800; font-size: 0.98rem; letter-spacing: 0.01em;
+    display: flex; align-items: center; gap: 0.45rem;
+  }
+  .reloc-popup__head--base { background: linear-gradient(135deg, #ff3b30, #c00); }
+  .reloc-popup__head--town { background: linear-gradient(135deg, #3a3f47, #14171b); }
+  .reloc-popup__body { padding: 0.75rem 0.9rem 0.9rem; }
+  .reloc-popup__body p { margin: 0 0 0.7rem; font-size: 0.88rem; line-height: 1.5; color: #333; }
+  .reloc-popup__btn {
+    display: inline-block; background: #FF1616; color: #fff !important; font-weight: 700; font-size: 0.85rem;
+    padding: 0.45rem 0.85rem; border-radius: 8px; text-decoration: none !important;
+  }
+  .reloc-popup__btn:hover { background: #d90404; }
+  @media (max-width: 640px) { #reloc-map { height: 400px; } }
 </style>
 
 <script is:inline>
@@ -58,30 +107,45 @@
       { name: 'San Antonio', lat: 29.4241, lng: -98.4936, blurb: 'The metro core: Fort Sam Houston and Lackland sit inside the city; the Alamo and River Walk downtown.', link: '/san-antonio/', linkText: 'San Antonio guide' }
     ];
 
-    function popup(p) {
-      return '<div class="reloc-popup"><h4>' + p.name + '</h4><p>' + p.blurb + '</p>' +
-        '<a href="' + p.link + '">' + p.linkText + ' &rarr;</a></div>';
+    function popup(p, kind) {
+      var glyph = kind === 'base' ? '\u2605 ' : '';
+      return '<div class="reloc-popup">' +
+        '<div class="reloc-popup__head reloc-popup__head--' + kind + '">' + glyph + p.name + '</div>' +
+        '<div class="reloc-popup__body"><p>' + p.blurb + '</p>' +
+        '<a class="reloc-popup__btn" href="' + p.link + '">' + p.linkText + ' &rarr;</a></div></div>';
+    }
+
+    function pinIcon(kind) {
+      var glyph = kind === 'base'
+        ? '<span class="reloc-pin__glyph">\u2605</span>'
+        : '<span class="reloc-pin__glyph"><span class="reloc-pin__dot"></span></span>';
+      return L.divIcon({
+        className: 'reloc-pin-icon',
+        html: '<div class="reloc-pin reloc-pin--' + kind + '">' + glyph + '</div>',
+        iconSize: [34, 34],
+        iconAnchor: [17, 32],
+        popupAnchor: [0, -30]
+      });
     }
 
     function init() {
       if (!window.L || !document.getElementById('reloc-map')) return;
       var map = L.map('reloc-map', { scrollWheelZoom: false }).setView([29.62, -98.35], 9);
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        maxZoom: 19,
+        subdomains: 'abcd',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
       }).addTo(map);
       map.on('focus', function () { map.scrollWheelZoom.enable(); });
       map.on('blur', function () { map.scrollWheelZoom.disable(); });
 
       var baseLayer = L.layerGroup();
       BASES.forEach(function (p) {
-        L.circleMarker([p.lat, p.lng], { radius: 9, color: '#fff', weight: 2, fillColor: '#FF1616', fillOpacity: 0.95 })
-          .bindPopup(popup(p)).addTo(baseLayer);
+        L.marker([p.lat, p.lng], { icon: pinIcon('base') }).bindPopup(popup(p, 'base')).addTo(baseLayer);
       });
       var townLayer = L.layerGroup();
       TOWNS.forEach(function (p) {
-        L.circleMarker([p.lat, p.lng], { radius: 8, color: '#fff', weight: 2, fillColor: '#222222', fillOpacity: 0.95 })
-          .bindPopup(popup(p)).addTo(townLayer);
+        L.marker([p.lat, p.lng], { icon: pinIcon('town') }).bindPopup(popup(p, 'town')).addTo(townLayer);
       });
       baseLayer.addTo(map); townLayer.addTo(map);
       L.control.layers(null, { 'Military installations': baseLayer, 'Communities': townLayer }, { collapsed: false }).addTo(map);
