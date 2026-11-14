@@ -58,3 +58,4 @@ November13: user explicitly instructed “publish it” after research report di
 November13 release PR34: https://github.com/cposeyrealestate/cposeyrealestate/pull/34 . Final URL https://cposeyrealestate.com/blog/repair-before-selling-or-credit-new-braunfels/ . Prepared and locally validated; actual deployment is recorded in work/publication-2026-11-13.json only after verification.
 
 November14preparation: user approved proceeding with the pool opinion guide after disclosure that demand remains unverified. No broader exception. URL /blog/selling-garden-ridge-home-with-pool/; brief2026-11-14-garden-ridge-pool-sale.md. November15remains open. Do not merge before6AMCentral; actual public deployment separately recorded.
+November14release PR35: https://github.com/cposeyrealestate/cposeyrealestate/pull/35 ; URL https://cposeyrealestate.com/blog/selling-garden-ridge-home-with-pool/ . Prepared, not published. Never merge before6AMCentral. November15open.

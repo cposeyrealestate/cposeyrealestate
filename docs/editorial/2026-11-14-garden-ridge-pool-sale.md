@@ -24,3 +24,5 @@ Visually reviewed existing authored aerial illustration showing residential stre
 Validation/PR pending.
 
 Validation: build,48tests and SEO checks247HTML/243sitemap URLs passed.158unique posts, all157unrelated records identical. OneH1, table, meta/canonical/image/internal links, four matching visible/schema FAQs before author/contact, and first PublishedNovember14 card on both built listings verified. Desktop1440 and mobile390table/FAQ render review passed. Preparation late relative4AM, completed ahead6AM; do not merge early. PRpending.
+
+Preparation release PR35: https://github.com/cposeyrealestate/cposeyrealestate/pull/35 . URL https://cposeyrealestate.com/blog/selling-garden-ridge-home-with-pool/ . No production merge during preparation. Publisher must check final-head CI and actual deployment.
