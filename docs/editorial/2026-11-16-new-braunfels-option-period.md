@@ -17,3 +17,5 @@ Hypothetical7dayoptioneffectiveMondayNov16,2026 => day1TuesdayNov17,day7MondayNo
 Validation/PR/liveverificationpending. Actual late deployment mustbe recorded separately; originalpublishedMay18retained and UpdatedNov16onbothlistingsrequired.
 
 Validation passed: build,48tests,247HTML/243sitemapSEOchecks.158unique posts, all157unrelated records identical, originalMay18date/dateRawretained. Canonical/meta/image/internal links/table, four matching visible/schemaFAQs beforeauthor/contact, first UpdatedNovember16card on both listings verified. Desktop1440/mobile390table+FAQreview passed. FinalGitHubchecks/productionpending.
+
+Release PR36: https://github.com/cposeyrealestate/cposeyrealestate/pull/36 . Existing URL https://cposeyrealestate.com/blog/texas-earnest-money-rules-2026-new-braunfels-buyers/ . Actual production receipt work/publication-2026-11-16.json after verification.
