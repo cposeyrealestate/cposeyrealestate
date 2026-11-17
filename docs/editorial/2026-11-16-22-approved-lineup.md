@@ -16,3 +16,5 @@ Both existing4AMpreparation/6AMpublication schedules remain ongoing with no expi
 November16release PR36: https://github.com/cposeyrealestate/cposeyrealestate/pull/36 . Current-head CI and production/public Updatedcard verification required.
 
 November17: low-appraisal draft prepared with sources/image/fourFAQs and passing localbuild/48tests/SEO/content/schema/listing checks. Publication HOLD: no topic-specific appraisal queries in availableCSV; broad contract contingencies5/0impressions is insufficient to claim this topic verified. Await explicit user exception or stronger demand evidence. Preserve November17assignment; do not silently shift or publish. No existing dedicated low-appraisal seller URL found; currentmaster158records unchanged in draft.
+
+Reviewable draft PR37: https://github.com/cposeyrealestate/cposeyrealestate/pull/37 . DO NOT MERGE while demand exception/evidence remains unresolved.

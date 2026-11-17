@@ -25,3 +25,5 @@ Validation and PR: pending build, tests, content/schema/meta/link checks, deskto
 Measurement when access permits: Google query-group impressions/clicks; separately documented consistent AI citation sample; actual AI referral sessions; qualified inquiries. No new monitoring schedules, access claims or ranking promises.
 
 Local validation November17: build completed;48/48 tests passed; SEO audits248HTML/244sitemapURLs passed; custom check confirms159unique posts/all158existing records identical, oneH1, real table, correctmeta/canonical/image/internal links, four matching visible/schemaFAQs and first PublishedNovember17card on both built listings. Desktop1440/mobile390 table andFAQ inspected. Production not deployed; current GitHub checks to be recorded on PR.
+
+Reviewable draft PR37: https://github.com/cposeyrealestate/cposeyrealestate/pull/37 . DO NOT MERGE while demand exception/evidence remains unresolved.
