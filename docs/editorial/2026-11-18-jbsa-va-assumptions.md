@@ -26,3 +26,5 @@ Validation pending: build48tests/fullSEO/customcontentmetaimage/internalinks/tab
 MeasureGooglequerygroups/impressions/clicks whenaccesspermits; separately trackconsistentAIcitationsample,actualAIreferrals,qualifiedinquiries. Noextraautomationsoraccessclaims.
 
 Local validation completed November18: build passed;48/48tests; fullSEO249HTML/245sitemapURLs; customchecks160unique posts/all159existing records unchanged, title/meta/canonical/image/source/internal links, real table,4visible/schemaFAQs and firstPublishedNovember18card on both builtlistings. Desktop1440andmobile390inspected. Livehomepage/blogHTTP200noNov18articleyet; robotsAllow/withonlyIDX/API/adminexclusions. No productionmerge. CIafterPRrequired.
+
+Prepared release PR38 https://github.com/cposeyrealestate/cposeyrealestate/pull/38 on codex/jbsa-va-loan-assumptions-2026-11-18. Publisher: never merge beforeNovember18 at6AMAmerica/Chicago; requirebothfinal-headchecks and recheckcurrentmaster/livefirst. PlannedURL/blog/va-loan-assumptions-jbsa-buyers/. Localbuild/48tests/SEO/content/meta/image/internal links/4FAQschema/firstPublishedcards and desktopmobilepassed. No productionreleaseyet.
