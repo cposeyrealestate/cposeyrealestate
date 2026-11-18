@@ -21,3 +21,5 @@ Noactualbuilderwarrantyprovided; articleisdocumentcomparisonframework,notafalsev
 Image: existingauthoredresidentialstreetillustration /images/blog/new-construction-vs-resale-cibolo-buyer-guide.png visuallychecked stone/brickhomes,sidewalks,trees;altaccuratenotnamedproperty,captionblank. Noadditionalbinaryassetneeded.
 
 Validation pending. All160prepared/existingposts mustremainidentical; new161stpost. PlannedURL https://cposeyrealestate.com/blog/new-construction-warranty-cibolo-schertz/ . No productionpublication. MeasurementGooglequeryclusters/impressions/clicks,AIcitations/referrals/qualifiedinquiriesseparatewhenaccessible;noextraschedules.
+
+Advance release PR39 https://github.com/cposeyrealestate/cposeyrealestate/pull/39 ; baseNovember18branch(PR38). Localbuild/48tests/fullSEO250HTML246sitemapURLs,161unique posts/all160priorrecordsunchanged, metadata/image/links/table/4FAQschema/bothlistingcardsanddesktopmobilepassed. AfterPR38published, retargetPR39tomaster and inspect/revalidate; never mergebeforeNovember19at6AMCentral. Preparationnotpublication. FinalCIpendingatthisnote.
