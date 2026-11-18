@@ -20,3 +20,10 @@ November17: low-appraisal draft prepared with sources/image/fourFAQs and passing
 Reviewable draft PR37: https://github.com/cposeyrealestate/cposeyrealestate/pull/37 . DO NOT MERGE while demand exception/evidence remains unresolved.
 
 November17 user explicitly approved publication: “good to publish,” after the draft and unverified topic-specific demand were disclosed. This resolves this article’s demand hold only; no search-volume verification claimed. PR37 is authorized for production after current-head checks. Updated dateRaw2026-11-17T07:44:05-06:00 honestly reflects late release preparation; actual deployment and live verification remain separate.
+
+November17 COMPLETE: PR37 merged2767b55f5123ef1191d95b0c3823c2baf19e7600; live07:49:12CST, verified07:49:46. Bothlistingcardsfirst,4FAQ/image/meta/sitemappassed. UserstandingpolicyNovember17: publishselectedtopicsafterfactual/technicalchecks; reportdemand/overlapconcernswithpublication,donotrepeatapprovalholds. No inventedverification/duplicatesorfailedcheckbypass.
+November18 preparingapprovedVAassumptionsbuyerdecisionat/blog/va-loan-assumptions-jbsa-buyers/. October31entitlementpagehasbriefrelatedrow; linkitandkeepnewcash/approval/liabilityscope. Assumption-specificdemandunverified; disclosewithoutapprovalholdunderlatestpolicy. Noearlymerge; planned6AMtimestampnotactualrelease. Brief2026-11-18-jbsa-va-assumptions.md.
+
+Prepared release PR38 https://github.com/cposeyrealestate/cposeyrealestate/pull/38 on codex/jbsa-va-loan-assumptions-2026-11-18. Publisher: never merge beforeNovember18 at6AMAmerica/Chicago; requirebothfinal-headchecks and recheckcurrentmaster/livefirst. PlannedURL/blog/va-loan-assumptions-jbsa-buyers/. Localbuild/48tests/SEO/content/meta/image/internal links/4FAQschema/firstPublishedcards and desktopmobilepassed. No productionreleaseyet.
+
+November18 publisher started after6AMCentral. Updated dateRaw honestly to2026-11-18T06:01:20-06:00 beforemerge; actualdeploymenttime recorded separately. RecheckedVAfee pageNovember18stilllists0.5percent assumption fee. Requirebothnewheadchecks andproduction/publicverification. PR38only; PR39remainsNovember19.
