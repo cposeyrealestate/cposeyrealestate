@@ -33,3 +33,5 @@ November19 preparation revalidated late after7:26AMCST. ReusedPR39 and merged cu
 November18 publication COMPLETE: PR38merged4490c604a613fbb7b3db822f4a3a3fb25c0b9a3c; productionbuild2e5dd99a-ac72-45a4-be22-6c330e63e276 succeededNovember18at10:49:23CST(late). Publicarticle/meta/image/sitemap/4FAQschemaandfirstPublishedcardsBOTHhomepage/blogverifiedNovember19; detailedreceipt2026-11-18-release-receipt.json. Do not duplicate. Earlier6AMpublisherinterruptedbyautomaticapprovalreviewusage-limitfailure; no unsafe-action determination. Completedreleasefoundoncurrentmaster.
 
 November19 revalidation after retargeting PR39 to master: build,48tests,SEO250HTML/246sitemapURLs,160masterpostsunchanged,metadata/image/links/4FAQschema/firstPublishedbuiltcards passed. FTC/TRECcurrentform sources recheckedNovember19. FinalheadGitHubvalidateandWorkerschecksrequired; no productionmerge inpreparation.
+
+November19 publisher started07:35CST; dateRaw refreshedhonestlybeforemerge to2026-11-19T07:35:50-06:00. Requirebothnewheadchecks; actualproductionrelease recordedseparately. Previous07:26timestampwaspreparation, notactualrelease.
