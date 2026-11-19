@@ -1,0 +1,31 @@
+{
+  "assignedDate": "2026-11-18",
+  "status": "published-and-verified",
+  "url": "https://cposeyrealestate.com/blog/va-loan-assumptions-jbsa-buyers/",
+  "pr": "https://github.com/cposeyrealestate/cposeyrealestate/pull/38",
+  "mergeCommit": "4490c604a613fbb7b3db822f4a3a3fb25c0b9a3c",
+  "buildId": "2e5dd99a-ac72-45a4-be22-6c330e63e276",
+  "deploymentSucceededAt": "2026-11-18T16:49:23.693Z",
+  "actualReleaseCentral": "2026-11-18T10:49:23-06:00",
+  "verifiedAt": "2026-11-19T13:28:57.065Z",
+  "dateRaw": "2026-11-18T06:01:20-06:00",
+  "article": true,
+  "metadata": true,
+  "image": true,
+  "sitemap": true,
+  "faqCount": 4,
+  "faqSchemaMatches": true,
+  "listings": [
+    {
+      "url": "https://cposeyrealestate.com/",
+      "cardPosition": 1,
+      "label": "Published November 18, 2026"
+    },
+    {
+      "url": "https://cposeyrealestate.com/blog/",
+      "cardPosition": 1,
+      "label": "Published November 18, 2026"
+    }
+  ],
+  "releaseWasLate": true
+}
