@@ -37,3 +37,5 @@ November19 revalidation after retargeting PR39 to master: build,48tests,SEO250HT
 November19 publisher started07:35CST; dateRaw refreshedhonestlybeforemerge to2026-11-19T07:35:50-06:00. Requirebothnewheadchecks; actualproductionrelease recordedseparately. Previous07:26timestampwaspreparation, notactualrelease.
 
 November21 preparation: approved inherited-home article, plannedURL/blog/inherited-home-new-braunfels-before-listing/. Sources/overlap/demand limits in2026-11-21-inherited-home-new-braunfels.md. No early merge. November20 well/septic refresh remains unprepared/unreleased as ofNov21live/master/PRcheck; do not mark complete or silently move its assigned date. Catch up safely after preparing current assignment.
+
+Prepared Nov21 release PR40 https://github.com/cposeyrealestate/cposeyrealestate/pull/40 . Do not merge beforeNov21at6AMCentral. The separately prepared missedNov20refresh should be caught up first after6AM, then merge currentmaster into this branch, preserve both records and revalidate currentheadchecks. No date reassignment.

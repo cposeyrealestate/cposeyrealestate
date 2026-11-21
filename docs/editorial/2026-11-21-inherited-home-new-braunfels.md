@@ -28,3 +28,5 @@ Observed heartbeat trigger2026-11-21T09:12:07Z equals03:12CST, earlier than conf
 Measurement remains separate for Google clicks/impressions/query groups, observed AI citations in a documented sample, actual AI referrals and qualified inquiries. No new monitoring schedule or access claims.
 
 Local validation completed: build,48tests,SEO251HTML247sitemapURLs,162unique posts/all161existingrecordsidentical,metadata/canonical/image/internal links/table/4visible-schemaFAQs/firstPublishedbuiltcards passed; desktop1440/mobile390 table andFAQs inspected. FinalheadGitHubchecksrequired. No productionmerge.
+
+Prepared Nov21 release PR40 https://github.com/cposeyrealestate/cposeyrealestate/pull/40 . Do not merge beforeNov21at6AMCentral. The separately prepared missedNov20refresh should be caught up first after6AM, then merge currentmaster into this branch, preserve both records and revalidate currentheadchecks. No date reassignment.
