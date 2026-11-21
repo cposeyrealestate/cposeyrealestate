@@ -9,7 +9,7 @@
   "assignedDate": "2026-11-20",
   "pr": "https://github.com/cposeyrealestate/cposeyrealestate/pull/41",
   "branch": "codex/bulverde-well-septic-refresh-2026-11-20",
-  "head": "pending-final-doc-commit",
+  "head": "52fff470c4b6547a395350d439f6f51538f5751b",
   "url": "https://cposeyrealestate.com/blog/texas-hill-country-septic-system-disclosure-guide/",
   "plannedDateModified": "2026-11-21T06:00:00-06:00",
   "originalDateRaw": "2026-06-24T05:36:17",
@@ -20,12 +20,12 @@
     "unrelatedPosts": "160 unchanged",
     "faq": "4 visible/schema equal",
     "bothBuiltListings": "first Updated November21",
-    "visual": "desktop/mobile table reviewed; final mobile FAQ screenshot blocked by automatic approval review; publisher must complete safe visual check",
+    "visual": "Desktop/mobile table reviewed; four FAQ questions and answers visually verified at390px in local Chrome; no remote HTML export.",
     "github": "recheck final head"
   },
   "issues": [
     "Missed November20 release; catch-up November21 without backdating.",
-    "One broad septic documentation impression; no exact local volume verified.",
-    "Mobile FAQ visual check remains."
-  ]
+    "One broad septic documentation impression; no exact local volume verified."
+  ],
+  "visualResolution": "Visual-check resolution: completed a local Chrome render of the built FAQ at390px, without exporting HTML. All four questions/answers fit and are readable. Prior external-rendering rejection remains documented, but no visual blocker remains. Complete production checks after publication. PR41 current-head CI still required."
 }
