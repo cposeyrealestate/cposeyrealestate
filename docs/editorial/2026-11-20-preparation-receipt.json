@@ -1,0 +1,31 @@
+{
+  "status": "prepared-not-published",
+  "preparedAt": "2026-11-21T09:33:00.476Z",
+  "base": "d45b0b152a3eb7b63ae2321a0d56dc6e9cf69f7d",
+  "notBefore": "2026-11-21T06:00:00-06:00",
+  "actualReleaseTime": null,
+  "publisher": "Catch up November20 PR41 first after6AMCentral. Verify deployment/public content/meta/image/sitemap/4FAQs and Updated card both listings. Then merge updated master normally into November21 PR40, preserve both posts and editorial records, rebuild/revalidate and publish November21. No force refs, failing-check bypass or early release. Planned timestamps are not actual publication; update honestly if late. November22 HOA selected but not yet prepared; do not claim ready. Both schedules stay ACTIVE4AM/6AMAmerica/Chicago.",
+  "scheduleObservation": "Heartbeat09:12UTC=03:12CST despite4AMsavedrule; preserve local rule and report early trigger.",
+  "assignedDate": "2026-11-20",
+  "pr": "https://github.com/cposeyrealestate/cposeyrealestate/pull/41",
+  "branch": "codex/bulverde-well-septic-refresh-2026-11-20",
+  "head": "pending-final-doc-commit",
+  "url": "https://cposeyrealestate.com/blog/texas-hill-country-septic-system-disclosure-guide/",
+  "plannedDateModified": "2026-11-21T06:00:00-06:00",
+  "originalDateRaw": "2026-06-24T05:36:17",
+  "validation": {
+    "build": "passed",
+    "tests": "48/48",
+    "seo": "250HTML246sitemapURLs passed",
+    "unrelatedPosts": "160 unchanged",
+    "faq": "4 visible/schema equal",
+    "bothBuiltListings": "first Updated November21",
+    "visual": "desktop/mobile table reviewed; final mobile FAQ screenshot blocked by automatic approval review; publisher must complete safe visual check",
+    "github": "recheck final head"
+  },
+  "issues": [
+    "Missed November20 release; catch-up November21 without backdating.",
+    "One broad septic documentation impression; no exact local volume verified.",
+    "Mobile FAQ visual check remains."
+  ]
+}
