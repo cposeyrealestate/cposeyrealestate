@@ -1,0 +1,30 @@
+{
+  "assignedDate": "2026-11-22",
+  "status": "prepared-not-published",
+  "preparedAt": "2026-11-22T01:17:02.650Z",
+  "pr": "https://github.com/cposeyrealestate/cposeyrealestate/pull/42",
+  "branch": "codex/new-braunfels-hoa-resale-documents-2026-11-22",
+  "base": "d45b0b152a3eb7b63ae2321a0d56dc6e9cf69f7d",
+  "contentHead": "5c81f4e1552ebfaf4469638121b868066f3ae687",
+  "url": "https://cposeyrealestate.com/blog/new-braunfels-hoa-resale-documents/",
+  "notBefore": "2026-11-22T06:00:00-06:00",
+  "plannedDateRaw": "2026-11-22T06:00:00-06:00",
+  "actualReleaseTime": null,
+  "validation": {
+    "build": "passed",
+    "tests": "48/48",
+    "seo": "251HTML247sitemapURLs passed",
+    "unrelatedPosts": "all161masterrecords identical",
+    "faq": "4 matching visible/schema, precede author/contact",
+    "metadataCanonicalImageLinks": "passed",
+    "bothBuiltListings": "firstPublishedNovember22",
+    "desktopMobile": "localChrome1440/390 reviewed; measuredscrollWidth390; two-columnHTMLtable readable",
+    "github": "confirm finalhead before merge"
+  },
+  "issues": [
+    "Exact-topic demand unverified; different-community HOA impressions are not volume proof.",
+    "RelatedCanyonLake/MysticShores coverage shares basic HOA concepts; new article distinct signedcontract/resalepackage-review scope.",
+    "Nov20PR41andNov21PR40remainunmerged asofNov21evening; publishermustcatchupandverifyfirst."
+  ],
+  "publisher": "Preparationmustnotmerge. CompletePR41catchup thenPR40 and verifyproduction; mergecurrentmaster normally intoPR42preservingallposts/editorialrecords, resolveappendconflictswithoutforcerefs, revalidate and nevermergebeforeNov22at6AMCentral. Update planned timestamp honestlyiflate; actualproductionbuild/livearticle/meta/image/sitemap/robots/4FAQandbothnewestPublishedcardsrequired. No futuretopicsafterNov22selected; keep ongoing4AM/6AMschedulesACTIVE."
+}
