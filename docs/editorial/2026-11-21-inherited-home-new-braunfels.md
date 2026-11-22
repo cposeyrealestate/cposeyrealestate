@@ -30,3 +30,5 @@ Measurement remains separate for Google clicks/impressions/query groups, observe
 Local validation completed: build,48tests,SEO251HTML247sitemapURLs,162unique posts/all161existingrecordsidentical,metadata/canonical/image/internal links/table/4visible-schemaFAQs/firstPublishedbuiltcards passed; desktop1440/mobile390 table andFAQs inspected. FinalheadGitHubchecksrequired. No productionmerge.
 
 Prepared Nov21 release PR40 https://github.com/cposeyrealestate/cposeyrealestate/pull/40 . Do not merge beforeNov21at6AMCentral. The separately prepared missedNov20refresh should be caught up first after6AM, then merge currentmaster into this branch, preserve both records and revalidate currentheadchecks. No date reassignment.
+
+Publisher revalidatedNovember21evening afterPR41productionverified. NormalmergecurrentmasterpreservedtheBulverderefresh/all161masterrecords; onlynewinheritedarticle. dateRawhonestlyset2026-11-21T19:26:57-06:00 beforemerge; actualdeploymentseparate. Bothnewheadchecks required.
