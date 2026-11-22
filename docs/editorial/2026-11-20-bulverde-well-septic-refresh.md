@@ -25,3 +25,5 @@ Local validation: build,48tests,SEO250HTML246sitemapURLs,161unique posts/all160u
 Release handoff: PR41 https://github.com/cposeyrealestate/cposeyrealestate/pull/41 ; assigned November20, catch-up not before November21 at6AMCentral. Final mobile FAQ screenshot was blocked by automatic approval review because full built HTML would be exported to Cloudflare rendering. Earlier desktop/mobile table review and automated four-visible/schema FAQ checks passed; mobile FAQ visual check remains for publisher using an approved safe surface/live page. No production merge or release yet.
 
 Visual-check resolution: completed a local Chrome render of the built FAQ at390px, without exporting HTML. All four questions/answers fit and are readable. Prior external-rendering rejection remains documented, but no visual blocker remains. Complete production checks after publication. PR41 current-head CI still required.
+
+Publisher began November21evening; missedNovember20release. RefresheddateModifiedhonestlybeforemerge to2026-11-21T19:21:20-06:00. OriginalJune24dates preserved. Actualdeployment separate; bothnewheadchecks and fullproductionverification required.
