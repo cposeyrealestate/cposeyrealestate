@@ -1,0 +1,35 @@
+{
+  "status": "resolved-published-and-verified",
+  "preparedAt": "2026-11-21T09:33:00.476Z",
+  "base": "d45b0b152a3eb7b63ae2321a0d56dc6e9cf69f7d",
+  "notBefore": "2026-11-21T06:00:00-06:00",
+  "actualReleaseTime": "2026-11-22T01:31:08.071Z",
+  "publisher": "Resolved: production published and publicly verified; see work/publication-2026-11-21.json. Do not duplicate this release.",
+  "scheduleObservation": "Heartbeat09:12UTC=03:12CST despite4AMsavedrule; preserve local rule and report early trigger.",
+  "assignedDate": "2026-11-21",
+  "pr": "https://github.com/cposeyrealestate/cposeyrealestate/pull/40",
+  "branch": "codex/new-braunfels-inherited-home-2026-11-21",
+  "head": "107a033ac2b99d50bb3be2b43c3cd0b883b622f0",
+  "url": "https://cposeyrealestate.com/blog/inherited-home-new-braunfels-before-listing/",
+  "plannedDateRaw": "2026-11-21T06:00:00-06:00",
+  "validation": {
+    "build": "passed",
+    "tests": "48/48",
+    "seo": "251HTML247sitemapURLs passed",
+    "unrelatedPosts": "161 unchanged",
+    "faq": "4 visible/schema equal",
+    "bothBuiltListings": "first Published November21",
+    "desktopMobile": "passed",
+    "github": {
+      "validate": "success",
+      "workersBuild": "success",
+      "head": "997c601edce0b2ae80333e1da94cc5145e5ea97a"
+    }
+  },
+  "issues": [
+    "Topic-specific demand unverified; standing user authorization applies.",
+    "Revalidate after PR41 catch-up merges."
+  ],
+  "publicationReceipt": "work/publication-2026-11-21.json",
+  "finalHead": "997c601edce0b2ae80333e1da94cc5145e5ea97a"
+}

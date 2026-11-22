@@ -1,0 +1,38 @@
+{
+  "status": "resolved-published-and-verified",
+  "preparedAt": "2026-11-21T09:33:00.476Z",
+  "base": "d45b0b152a3eb7b63ae2321a0d56dc6e9cf69f7d",
+  "notBefore": "2026-11-21T06:00:00-06:00",
+  "actualReleaseTime": "2026-11-22T01:25:14.506Z",
+  "publisher": "Resolved: production published and publicly verified; see work/publication-2026-11-20.json. Do not duplicate this release.",
+  "scheduleObservation": "Heartbeat09:12UTC=03:12CST despite4AMsavedrule; preserve local rule and report early trigger.",
+  "assignedDate": "2026-11-20",
+  "pr": "https://github.com/cposeyrealestate/cposeyrealestate/pull/41",
+  "branch": "codex/bulverde-well-septic-refresh-2026-11-20",
+  "head": "b6d5ce2d610c1fef50cf14618d4232f187f76fbb",
+  "url": "https://cposeyrealestate.com/blog/texas-hill-country-septic-system-disclosure-guide/",
+  "plannedDateModified": "2026-11-21T06:00:00-06:00",
+  "originalDateRaw": "2026-06-24T05:36:17",
+  "validation": {
+    "build": "passed",
+    "tests": "48/48",
+    "seo": "250HTML246sitemapURLs passed",
+    "unrelatedPosts": "160 unchanged",
+    "faq": "4 visible/schema equal",
+    "bothBuiltListings": "first Updated November21",
+    "visual": "Desktop/mobile table reviewed; four FAQ questions and answers visually verified at390px in local Chrome; no remote HTML export.",
+    "github": {
+      "validate": "success",
+      "workersBuild": "success",
+      "head": "601e4489cc046e2bb2d13c3902a85fb01e09cf2b"
+    }
+  },
+  "issues": [
+    "Missed November20 release; catch-up November21 without backdating.",
+    "One broad septic documentation impression; no exact local volume verified."
+  ],
+  "visualResolution": "Visual-check resolution: completed a local Chrome render of the built FAQ at390px, without exporting HTML. All four questions/answers fit and are readable. Prior external-rendering rejection remains documented, but no visual blocker remains. Complete production checks after publication. PR41 current-head CI still required.",
+  "finalChecksVerifiedAt": "2026-11-21T09:36:50.197Z",
+  "publicationReceipt": "work/publication-2026-11-20.json",
+  "finalHead": "601e4489cc046e2bb2d13c3902a85fb01e09cf2b"
+}
