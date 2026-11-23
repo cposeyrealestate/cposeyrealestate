@@ -8,7 +8,7 @@
   "actualReleaseTime": "2026-11-22T01:25:14.506Z",
   "actualReleaseLocal": "2026-11-21T19:25:14-06:00",
   "buildOutcome": "success",
-  "verifiedAt": "2026-11-22T01:26:04.697Z",
+  "verifiedAt": "2026-11-22T01:31:25.896Z",
   "originalDateRaw": "2026-06-24T05:36:17",
   "dateModified": "2026-11-21T19:21:20-06:00",
   "article": true,
@@ -21,12 +21,12 @@
   "listings": [
     {
       "url": "https://cposeyrealestate.com/",
-      "position": 1,
+      "position": 2,
       "label": "Updated November 21, 2026"
     },
     {
       "url": "https://cposeyrealestate.com/blog/",
-      "position": 1,
+      "position": 2,
       "label": "Updated November 21, 2026"
     }
   ],
