@@ -1,0 +1,39 @@
+{
+  "assignedDate": "2026-11-22",
+  "status": "published-and-verified",
+  "url": "https://cposeyrealestate.com/blog/new-braunfels-hoa-resale-documents/",
+  "pr": "https://github.com/cposeyrealestate/cposeyrealestate/pull/42",
+  "merge": "b05d8c65cbfa6462c1554a458cbb2466ec4074ee",
+  "build": "46970267-cb8c-4bc6-b620-d1ce3594e7be",
+  "actualReleaseTime": "2026-11-23T15:45:57.189Z",
+  "actualReleaseLocal": "2026-11-23T09:45:57-06:00",
+  "buildOutcome": "success",
+  "finalHead": "3521e01bc53b63e0e9feebc7464d2cf1efa593e8",
+  "verifiedAt": "2026-11-23T15:46:25.801Z",
+  "dateRaw": "2026-11-23T09:40:19-06:00",
+  "displayDate": "November 23, 2026",
+  "plannedTimestampNotActualRelease": true,
+  "dateModified": null,
+  "article": true,
+  "metadataCanonicalAuthor": true,
+  "image": true,
+  "sitemap": true,
+  "robots": true,
+  "faqCount": 4,
+  "faqSchemaMatches": true,
+  "listings": [
+    {
+      "url": "https://cposeyrealestate.com/",
+      "position": 1,
+      "label": "Published November 23, 2026"
+    },
+    {
+      "url": "https://cposeyrealestate.com/blog/",
+      "position": 1,
+      "label": "Published November 23, 2026"
+    }
+  ],
+  "releaseWasLate": true,
+  "searchDemand": "ExactNewBraunfelsHOAresale-documentdemand unverified; different-community siteimpressions are not local searchvolume.",
+  "overlap": "RelatedMysticShores/CanyonLakeHOAcoverage disclosed; selectedNewBraunfelscontract/package-reviewfocusdistinct."
+}
