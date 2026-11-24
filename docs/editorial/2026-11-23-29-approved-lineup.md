@@ -25,3 +25,5 @@ Reviewedall163currentmasterrecords (titles, content/structuredsections), openPR3
 - Titleinsurance: incidentalclosing-cost/titlementions; no dedicatedcoverage/exceptions decisionarticlefound. No volumeverificationinvented.
 
 Allscope/distinctness decisions must berecheckedbeforeeachrelease. Standinguserauthorization allowsreportingdemand/overlapissues withpublication without repeatedroutineholds, but notduplicates, fabricatedfacts orsilenttopic substitutions. No newshortlistinvented.
+
+November25 publisher handoff: PR45 https://github.com/cposeyrealestate/cposeyrealestate/pull/45 , branch codex/jbsa-remote-closing-spouse-2026-11-25, URL /blog/jbsa-remote-home-closing-without-spouse/. Local validation passed; current-head CI pending. NEVER merge beforeNovember25 6AMCentral. Reuse this PR; do not duplicate. November23/24 completed receipts included in this branch.
