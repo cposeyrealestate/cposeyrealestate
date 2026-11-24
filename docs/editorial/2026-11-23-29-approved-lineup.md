@@ -4,8 +4,8 @@ User approval: authorized Real Estate Blog Topics chat6ae78901-9f28-83ea-a295-9a
 
 | Assigned date | Selected topic | Treatment/status |
 |---|---|---|
-| November23 | Buying a Home in New Braunfels: How Much Earnest Money Could You Lose? | ExistingMay18URL refresh /blog/texas-earnest-money-rules-2026-new-braunfels-buyers/; preserveoriginaldates andNov16checklist; newdefault-riskanswer/FAQs. LatepreparationNov24; notpublished. |
-| November24 | Selling Your New Braunfels Home From Out of State: What to Arrange Before You Leave | Newowner-sale logistics guide /blog/selling-new-braunfels-home-from-out-of-state/; preparationinprogress, notpublished. |
+| November23 | Buying a Home in New Braunfels: How Much Earnest Money Could You Lose? | ExistingMay18URL refresh /blog/texas-earnest-money-rules-2026-new-braunfels-buyers/; preserveoriginaldates andNov16checklist; newdefault-riskanswer/FAQs. COMPLETE via PR43 / merge2889a16628fa31651c00e3353e24368e211a751f; actualNov24 07:45:30CST; four FAQs, image/meta/sitemap/robots and first Updated cards both listings verified07:46:15CST. |
+| November24 | Selling Your New Braunfels Home From Out of State: What to Arrange Before You Leave | Newowner-sale logistics guide /blog/selling-new-braunfels-home-from-out-of-state/; PR44 https://github.com/cposeyrealestate/cposeyrealestate/pull/44; local validation passed, publication pending current-head checks. |
 | November25 | PCSing to JBSA Without Your Spouse? How to Plan a Remote Home Closing | AnchorJBSA Randoph/FortSamHouston/Lackland; lender/titleapproved signingandPOAdecision; advancepreparationwhenfeasible. |
 | November26 | Buying a Hill Country Home: When Do You Need a New Survey? | Tie selectedbroadwording toNewBraunfels/Bulverde inarticle; currentrecord/surveyacceptance decision, do notsubstitutea newtopic. |
 | November27 | Buying in Cibolo or Schertz: What to Check During Your Final Walkthrough | Finalcondition/agreedrepairverification, distinctfrominspectionbooking/warrantycoverage. |

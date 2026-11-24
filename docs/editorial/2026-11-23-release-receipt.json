@@ -1,0 +1,39 @@
+{
+  "assignedDate": "2026-11-23",
+  "status": "published-and-verified",
+  "url": "https://cposeyrealestate.com/blog/texas-earnest-money-rules-2026-new-braunfels-buyers/",
+  "pr": "https://github.com/cposeyrealestate/cposeyrealestate/pull/43",
+  "merge": "2889a16628fa31651c00e3353e24368e211a751f",
+  "build": "e50dfbc1-40d8-427c-a5e7-5419d85298cc",
+  "actualReleaseTime": "2026-11-24T13:45:30.395Z",
+  "actualReleaseLocal": "2026-11-24T07:45:30-06:00",
+  "buildOutcome": "success",
+  "finalHead": "004b32cd0c7382ffae3ab7e997878fc7f6dffd60",
+  "verifiedAt": "2026-11-24T13:46:15.302Z",
+  "dateRaw": "2026-05-18T18:11:24",
+  "displayDate": "May 18, 2026",
+  "plannedTimestampNotActualRelease": true,
+  "dateModified": "2026-11-24T07:40:35-06:00",
+  "article": true,
+  "metadataCanonicalAuthor": true,
+  "image": true,
+  "sitemap": true,
+  "robots": true,
+  "faqCount": 4,
+  "faqSchemaMatches": true,
+  "listings": [
+    {
+      "url": "https://cposeyrealestate.com/",
+      "position": 1,
+      "label": "Updated November 24, 2026"
+    },
+    {
+      "url": "https://cposeyrealestate.com/blog/",
+      "position": 1,
+      "label": "Updated November 24, 2026"
+    }
+  ],
+  "releaseWasLate": true,
+  "searchDemand": "Exact-topic demand unverified; CSV has no matching rows and calendar windows are unknown. No market-volume claim.",
+  "overlap": "Substantial overlap handled at existing May18 URL; entire Nov16 checklist and original publication date preserved."
+}
