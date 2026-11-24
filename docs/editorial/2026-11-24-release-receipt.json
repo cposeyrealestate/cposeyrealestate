@@ -1,0 +1,39 @@
+{
+  "assignedDate": "2026-11-24",
+  "status": "published-and-verified",
+  "url": "https://cposeyrealestate.com/blog/selling-new-braunfels-home-from-out-of-state/",
+  "pr": "https://github.com/cposeyrealestate/cposeyrealestate/pull/44",
+  "merge": "80a60244bc65fe2286e77132d788175ddb1ab959",
+  "build": "4b8518ca-2d80-49a8-9f56-3c71dc6c081b",
+  "actualReleaseTime": "2026-11-24T13:52:53.081Z",
+  "actualReleaseLocal": "2026-11-24T07:52:53-06:00",
+  "buildOutcome": "success",
+  "finalHead": "4dbd950481c007dd4264069690d03d703927f46a",
+  "verifiedAt": "2026-11-24T13:53:34.141Z",
+  "dateRaw": "2026-11-24T07:40:35-06:00",
+  "displayDate": "November 24, 2026",
+  "plannedTimestampNotActualRelease": true,
+  "dateModified": null,
+  "article": true,
+  "metadataCanonicalAuthor": true,
+  "image": true,
+  "sitemap": true,
+  "robots": true,
+  "faqCount": 4,
+  "faqSchemaMatches": true,
+  "listings": [
+    {
+      "url": "https://cposeyrealestate.com/",
+      "position": 1,
+      "label": "Published November 24, 2026"
+    },
+    {
+      "url": "https://cposeyrealestate.com/blog/",
+      "position": 1,
+      "label": "Published November 24, 2026"
+    }
+  ],
+  "releaseWasLate": true,
+  "searchDemand": "Exact-topic demand unverified; CSV has no matching rows and calendar windows are unknown. No market-volume claim.",
+  "overlap": "Related Nov21 inherited-home guide linked; ordinary-owner out-of-state logistics scope is distinct."
+}
