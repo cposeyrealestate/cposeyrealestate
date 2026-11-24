@@ -9,7 +9,7 @@
   "actualReleaseLocal": "2026-11-24T07:45:30-06:00",
   "buildOutcome": "success",
   "finalHead": "004b32cd0c7382ffae3ab7e997878fc7f6dffd60",
-  "verifiedAt": "2026-11-24T13:46:15.302Z",
+  "verifiedAt": "2026-11-24T13:53:35.370Z",
   "dateRaw": "2026-05-18T18:11:24",
   "displayDate": "May 18, 2026",
   "plannedTimestampNotActualRelease": true,
@@ -24,12 +24,12 @@
   "listings": [
     {
       "url": "https://cposeyrealestate.com/",
-      "position": 1,
+      "position": 2,
       "label": "Updated November 24, 2026"
     },
     {
       "url": "https://cposeyrealestate.com/blog/",
-      "position": 1,
+      "position": 2,
       "label": "Updated November 24, 2026"
     }
   ],

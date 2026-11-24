@@ -1,0 +1,27 @@
+# November 25 — JBSA remote closing without spouse
+
+Approved selected BOFU topic: PCSing to JBSA Without Your Spouse? How to Plan a Remote Home Closing. Reader: military household buying near Randolph, Fort Sam Houston or Lackland while required signers are apart. Decision: approve lender/title signing workflow before committing to closing arrangements. Query cluster remote closing / military spouse / power of attorney. Related editorial questions: borrower versus signer; homestead joinder; POA approval; VA certification; online notarization; document review and delivery. These are scope phrases, not measured searches.
+
+Demand review November24: available Queries.csv has no matching remote-closing or POA rows; calendar windows unknown. Broad real-estate queries do not establish exact-topic or local market demand. GSC Wizard subscription block unchanged, not retried. Proceed selected article under standing user authorization, disclose unverified demand; do not invent volume.
+
+Overlap: all164 master/prepared records and current PRs reviewed in weekly queue. October2 VA closing-cost article and October4 UniversalCity guide include brief POA/remote paragraphs within60days. Dedicated signing/absent-spouse workflow is distinct; link broader VA guide without repeating cost tables. November12 preorders article concerns whether to commit, and November24 seller article ordinary-owner sale logistics; link preorders guide and do not repeat its scope. No dedicated absent-spouse buyer-closing guide found. Sixmonth/30day/60day gates applied.
+
+Primary sources accessed November24:
+- https://www.benefits.va.gov/homeloans/lenders_samp_doc.asp: working VA lender page explicitly requires POA/live-and-well certification, Veteran alive and if active duty not MIA. No assertion every POA/loan automatically approved. Specific Chapter9 PDF and handbook landing returned404; do not claim full verification or make detailed unsupported VA requirements.
+- https://tcss.legis.texas.gov/resources/FA/htm/FA.5.htm#5.001: homestead conveyance/encumbrance joinder, separate/community, exceptions; no blanket assertion spouse signs every loan document or becomes borrower.
+- https://tcss.legis.texas.gov/resources/GV/htm/GV.406.htm:406.0091 physical versus qualifying online appearance;406.110 online identity procedures. Method legal availability is not lender/title acceptance. No generic video-call notarization or blanket overseas guarantee.
+- https://www.consumerfinance.gov/owning-a-home/close/review-documents-before-closing/: advance document review/LoanEstimate comparison and payment-instruction fraud warning. No new deadline claim or invented fee.
+
+JBSA legal page access403 and old VA training page redirected; neither represented as verified substantive guidance. Do not promise legal-office eligibility/hours. Suggested contact plans and hypothetical Randolph split-signing example are editorial advice, not invented experience or transaction facts.
+
+Body1023words, one real two-column table, four useful faqItems; visible/schema must match. Existing authored asset texas-option-period-protect-earnest-money-new-braunfels.webp viewed November24: stone/stucco house, metal roof, driveway at sunset. Descriptive alt, blank caption, no named property/location claim; no new third-party attribution. Contact CTA coordinates lender/title/property timeline.
+
+Planned dateRaw2026-11-25T06:00:00-06:00 is NOT actual publication. NEVER merge before November25 6AMAmerica/Chicago. If late update honestly and record actual successful production deployment. Isolated branch codex/jbsa-remote-closing-spouse-2026-11-25, final URL https://cposeyrealestate.com/blog/jbsa-remote-home-closing-without-spouse/. Initially based PR44; integrate currentmaster after today's publication, preserving all164 prior records. Importer never run; listinghelper untouched.
+
+Validation/PR pending. Required build,48tests,check:seo,content/meta/links/image/fourFAQs/schema/sitemap/both built cards, desktop1440/mobile390 and BOTHcurrent-head GitHub checks before release. Actual live article/assets/FAQ/schema/robots/both listings required after deployment. Separate Google impressions, AI citations, AI referrals and inquiries; no new monitoring schedules or analytics access claims.
+
+Validation completed November24: build, all48tests, check:seo254HTML/250sitemapURLs, unique165posts/all164priorrecordsunchanged, metadata/canonical/internal links/image/sitemap/fourvisible-schemaFAQs and firstbuiltPublishedNovember25cards passed. Desktop1440/mobile390/table/FAQ screenshots reviewed locally with embeddedlocalassets; no horizontal document overflow. Actualrelease/CI stillpending; nevermergeearly.
+
+Integrated master80a60244 normally after PR44 merge; resolved JSON by asserting all164currentmasterrecords identical, then adding only approvedNov25record. Content unchanged from validated build. All7external/internal links directly HTTP200. ActualNov23/24deployment receipts included. CI pending on final pushed head; no production merge authorized beforeNov25 6AMCentral.
+
+Prepared PR45: https://github.com/cposeyrealestate/cposeyrealestate/pull/45 . Keep unmerged until November25 at6AMAmerica/Chicago. Publisher must inspect current-head checks and live/master before merging. Local preparation complete; finalhead CI pending.
